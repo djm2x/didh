@@ -1,0 +1,104 @@
+<div class="host">
+  <app-title title="Recommandation"></app-title>
+  <div class="">
+
+
+    <form [formGroup]="myForm">
+      <mat-card style="margin-top: 15px;">
+        <div class="input">
+          <mat-form-field appearance="outline" style="width: 100px;">
+            <mat-label>Code</mat-label>
+            <input matInput formControlName="codeRecommendation" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%; margin-left: 5px;">
+            <mat-label>Nom</mat-label>
+            <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
+            <input matInput formControlName="nom" required>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Etat</mat-label>
+          <mat-select formControlName="etat">
+            <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="inputs2">
+
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Mecanisme</mat-label>
+            <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" *ngIf="cycleActive">
+            <mat-label>Cycle</mat-label>
+            <mat-select formControlName="idCycle">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" *ngIf="visiteActive">
+            <mat-label>Visite</mat-label>
+            <mat-select formControlName="idVisite">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" *ngIf="organeActive">
+            <mat-label>Organe</mat-label>
+            <mat-select formControlName="idOrgane">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="inputs2">
+          <mat-form-field appearance="outline">
+            <mat-label>Axe</mat-label>
+            <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
+              <mat-option value="">...</mat-option>
+              <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Sous axe</mat-label>
+            <mat-select formControlName="idSousAxe">
+              <mat-option value="">...</mat-option>
+              <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="inputs2">
+          <mat-form-field appearance="outline">
+            <mat-label>Pays</mat-label>
+            <mat-select formControlName="idPays">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ e.nom }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- {{myForm.value | json}} -->
+        <!--  (eventToParent)="updateListOrganisme($event)  [selectedList]="listOrganisme""-->
+
+      </mat-card>
+    </form>
+
+    <app-organismes (eventToParent)="updateListOrganisme($event)" [listFromParent]="eventToChild"></app-organismes>
+
+    <div class="actions">
+      <button mat-button [routerLink]="['/admin/recommendation/list']" type="button">Retour</button>&nbsp;&nbsp;
+      <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
+      <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm)"
+        [disabled]="myForm.invalid">Enregistre</button>
+    </div>
+  </div>
+</div>

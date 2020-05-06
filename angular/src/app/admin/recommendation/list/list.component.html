@@ -1,0 +1,192 @@
+<div class="host">
+
+  <app-title title="Recommandations"></app-title>
+
+  <div class="right">
+    <button *ngIf="!session.isPointFocal && !session.isSuperViseur" class="mt-3" style="margin: 20px 0 0" mat-raised-button color="primary"
+      [routerLink]="['/admin/recommendation/update', 0]">
+      <mat-icon>add</mat-icon>
+      Recommandation
+    </button>
+  </div>
+  <div class="expension">
+    <mat-accordion>
+      <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>search</mat-icon>
+            <p>Recherche</p>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-divider>
+        </mat-divider>
+        <form [formGroup]="myForm"> 
+          <mat-form-field *ngIf="!session.isPointFocal" appearance="outline" style="width: 100%;margin-bottom: 5px;">
+            <mat-label>Organisme</mat-label>
+            <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="auto complétion">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="outline" style="width: 100%;margin-bottom: 5px;">
+            <mat-label>Organisme</mat-label>
+            <mat-select formControlName="idOrganisme">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <div class="inputs2">
+            <mat-form-field appearance="outline">
+              <mat-label>Pays</mat-label>
+              <mat-select formControlName="idPays">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ e.nom }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
+              <input matInput formControlName="nom" required>
+            </mat-form-field>
+          </div>
+          <div class="inputs2">
+
+
+
+            <mat-form-field appearance="outline">
+              <mat-label>Mecanisme</mat-label>
+              <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" *ngIf="cycleActive">
+              <mat-label>Cycle</mat-label>
+              <mat-select formControlName="idCycle">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of cycles" [value]="e.id">{{ e.label }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" *ngIf="visiteActive">
+              <mat-label>Visite</mat-label>
+              <mat-select formControlName="idVisite">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" *ngIf="organeActive">
+              <mat-label>Organe</mat-label>
+              <mat-select formControlName="idOrgane">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="inputs2">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Axe</mat-label>
+              <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Sous axe</mat-label>
+              <mat-select formControlName="idSousAxe">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </form>
+        <div class="right">
+
+          <button mat-raised-button color="primary" (click)="search(myForm.value)" [disabled]="isAllEmpty">
+            <mat-icon>search</mat-icon>
+            Rechercher
+          </button>
+          &nbsp;
+          <button mat-raised-button (click)="reset()" [disabled]="isAllEmpty">
+            <mat-icon>refresh</mat-icon>
+            Réinitialiser
+          </button>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <!-- {{myForm.value | json}} -->
+
+
+  <div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="example-table-container">
+      <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
+        <ng-container [matColumnDef]="columnDefs[0].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[0].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[0].columnDef]}}</td>
+        </ng-container>
+        <ng-container [matColumnDef]="columnDefs[1].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
+        </ng-container>
+        <ng-container [matColumnDef]="columnDefs[2].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[2].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
+        </ng-container>
+        <ng-container [matColumnDef]="columnDefs[3].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[3].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
+        </ng-container>
+        <ng-container [matColumnDef]="columnDefs[4].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[4].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef].label}}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[5].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[5].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[5].columnDef].label}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="option" style="flex-direction: row-reverse;">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="button-row">
+              <button mat-icon-button color="primary" (click)="detail(row)">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"  *ngIf="!session.isPointFocal && !session.isSuperViseur">
+                <mat-icon>create</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="delete(row)"  *ngIf="!session.isPointFocal && !session.isSuperViseur">
+                <mat-icon>delete_sweep</mat-icon>
+              </button>
+
+
+
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </div>
+
+    <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="10"
+      [pageSizeOptions]="[10, 25, 50, 100, 250]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

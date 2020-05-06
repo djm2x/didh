@@ -1,0 +1,90 @@
+<div class="host">
+
+
+
+
+
+  <app-title title="Organes de traité"></app-title>
+
+  <mat-tab-group class="example-stretched-tabs mat-elevation-z4" style="margin-top: 15px;">
+    <mat-tab label="Traité" [disabled]='false'>
+      <ng-template matTabContent>
+        <form [formGroup]="myForm">
+          <div class="myForm" style="margin-top: 15px; height: 100%;">
+            <!-- <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Traité</mat-label>
+                    <input matInput formControlName="nom" required>
+                  </mat-form-field> -->
+
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Convention/Protocole</mat-label>
+              <textarea matInput rows="6" formControlName="nom" required></textarea>
+              <!-- <input matInput formControlName="adresse" required> -->
+            </mat-form-field>
+
+
+            <div class="inputs">
+              <mat-form-field appearance="outline">
+                <mat-label>Date Signature</mat-label>
+                <input matInput [matDatepicker]="picker5" formControlName="dateSignature">
+                <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                <mat-datepicker #picker5></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Date de ratification</mat-label>
+                <input matInput [matDatepicker]="picker0" formControlName="dateRatification">
+                <mat-datepicker-toggle matSuffix [for]="picker0"></mat-datepicker-toggle>
+                <mat-datepicker #picker0></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <!-- {{myForm.value | json}} -->
+            <!--  -->
+            <div class="row justify-content-center" style="margin-bottom: 15px;">
+              
+
+                <app-upload nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
+                  [propertyOfParent]="conventionPieceTo" [eventSubmitToParent]="conventionPieceFrom"
+                  [eventSubmitFromParent]="eventSubmitFromParent">
+                </app-upload>
+      
+                <app-upload nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
+                  [propertyOfParent]="observationPieceTo" [eventSubmitToParent]="observationPieceFrom"
+                  [eventSubmitFromParent]="eventSubmitFromParent">
+                </app-upload>
+      
+                <app-upload nameBtn="Rapport de suivi de la mise en œuvre" [folderToSaveInServer]="folderToSaveInServer"
+                  [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
+                  [eventSubmitFromParent]="eventSubmitFromParent">
+                </app-upload>
+      
+              
+            </div>
+          </div>
+        </form>
+        <div class="actions">
+          <button mat-button [routerLink]="['/admin/rapport/list']" type="button">Retour</button>&nbsp;&nbsp;
+          <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
+          <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
+            [disabled]="myForm.invalid">Enregistre</button>
+        </div>
+      </ng-template>
+
+
+    </mat-tab>
+    <!--  -->
+    <mat-tab label="Rapport" [disabled]='o.id === 0'>
+      <ng-template matTabContent>
+        <app-piece-jointes [idTraite]="o.id" [listToParent]="dataFromChild" [listFromParent]="rapportsToChild">
+        </app-piece-jointes>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
+
+
+
+</div>

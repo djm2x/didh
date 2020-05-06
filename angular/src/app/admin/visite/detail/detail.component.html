@@ -1,0 +1,25 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{title}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+      <ul>
+        <li>Objet: {{o.mandat}}</li>
+        <!-- <li>Mandat: {{o.mandat}}</li> -->
+        <li>Date prévu: {{o.date | date : "dd/MM/yyyy"}}</li>
+      </ul>
+
+    </div>
+    <!--
+    {{myForm.status | json}}
+    {{myForm.value | json}} -->
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Retour</button>
+    </div>
+  </div>
+</div>

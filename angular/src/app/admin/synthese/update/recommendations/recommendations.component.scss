@@ -1,0 +1,54 @@
+.inputs2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+  // justify-content: space-around;
+  // flex-wrap: wrap;
+  align-items: center;
+  // mat-form-field {
+  //   width: 100%;
+  // }
+}
+
+::ng-deep h3 {
+  margin: 0 !important;
+}
+
+.host {
+  margin: 1em !important;
+}
+
+::ng-deep mat-checkbox label {
+  margin-top: 7px;
+}
+
+tr:hover {
+  cursor: pointer;
+}
+
+// .input-in-table ::ng-deep .mat-form-field-wrapper{
+//   padding-bottom: 0 !important;
+// }
+
+.mat-header-cell:first-child,
+.mat-cell:first-child {
+  width: 1px !important;
+  padding-right: 1px !important;
+}
+
+.actions {
+  display: flex;
+  // align-content: flex-end;
+  flex-direction: row-reverse;
+  margin: 0 15px 15px 0;
+}
+
+
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  background-color: rgb(223, 223, 223);
+  font-weight: 700;
+  // color: black;
+  // opacity: 1;
+}

@@ -1,0 +1,8 @@
+<mat-nav-list>
+  <div *ngFor="let r of rapports; let i=index">
+    <a mat-list-item *ngIf="r.pieceJointe !== ''" (click)="openLink(r.pieceJointe)">
+      <span mat-line>{{r.titre}}</span>
+      <span mat-line>{{r.pieceJointe}}</span>
+    </a>
+  </div>
+</mat-nav-list>

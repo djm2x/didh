@@ -1,0 +1,31 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{o.nom}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+      <ul>
+        <!-- <li>Code recommandation: {{o.codeRecommendation}}</li> -->
+        <!-- <li>Nom: {{o.nom}}</li> -->
+        <li>{{o.etat}}</li>
+        <li>{{o.mecanisme}}</li>
+        <li>Axe: {{o.axe.label}}</li>
+        <li>Sous axe: {{o.sousAxe.label}}</li>
+        <li *ngIf="o.cycle">Cylce: {{o.cycle.label}}</li>
+        <li *ngIf="o.visite">Visite: {{o.visite.mandat}}</li>
+        <li *ngIf="o.organe">Organe de traité: {{o.organe.label}}</li>
+      </ul>
+
+    </div>
+    <!--
+    {{myForm.status | json}}
+    {{myForm.value | json}} -->
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Retour</button>
+    </div>
+  </div>
+</div>

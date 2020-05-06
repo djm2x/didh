@@ -1,0 +1,68 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>Fiche organisme</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content style="max-height: 77vh;">
+
+      <form [formGroup]="myForm">
+        <div class="inputs">
+
+          <!-- <mat-form-field appearance="outline" style="width: 100%;margin-bottom: 5px;">
+            <mat-label>Organisme</mat-label>
+            <mat-select formControlName="idOrganisme">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+          <mat-form-field appearance="outline" style="width: 100%;margin-bottom: 5px;">
+            <mat-label>Organisme</mat-label>
+            <input matInput [formControl]="myAuto" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+        <div class="" style="margin-bottom: 15px;">
+          <!-- <input hidden #imgInput type="file" accept="image/*" (change)="handleFileInput($event.target.files)"> -->
+          <input hidden style="display: none;"
+            accept="application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            #file type="file" multiple="false" (change)="upload(file.files)">
+          <button mat-raised-button type="button" (click)="openInput(file)" color="accent">
+            Pièce jointe
+          </button>
+
+          <!-- <button mat-raised-button color="warn" type="button" (click)="remove()">
+                  Supprimer le rapport
+                </button> -->
+          <div class="myrow">
+            <!-- <div *ngFor="let f of pieceJointeToShow"> -->
+            <h6 *ngIf="pieceJointe !== ''">
+              <img [src]="setIcon(pieceJointe)" alt="pdf/word"> - {{pieceJointe}}
+              <button mat-icon-button color="warn" (click)="remove(pieceJointe)" type="button">
+                <mat-icon>delete_sweep</mat-icon>
+              </button>
+            </h6>
+          </div>
+          <!-- </div> -->
+        </div>
+
+      </form>
+    </div>
+
+    <!--
+      {{myForm.status | json}}
+      {{myForm.value | json}} -->
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+      <button mat-raised-button cdkFocusInitial color="primary" (click)="onOkClick(myForm.value)"
+        [disabled]="myForm.invalid">Enregistre</button>
+    </div>
+  </div>
+</div>

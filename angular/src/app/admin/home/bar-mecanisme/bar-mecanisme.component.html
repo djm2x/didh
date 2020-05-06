@@ -1,0 +1,49 @@
+<mat-card>
+
+
+  <div class="inputs2">
+    <mat-form-field style="width: 45%;">
+      <mat-label>Mecanismes</mat-label>
+      <mat-select (selectionChange)="selectMecanismeChange($event.value)" [formControl]="selectInput">
+        <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;&nbsp;
+    <mat-form-field style="width: 45%;" *ngIf="cycleActive">
+      <mat-label>Cycle</mat-label>
+      <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idCycle">
+        <mat-option value="0">...</mat-option>
+        <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;&nbsp;
+    <mat-form-field style="width: 45%;" *ngIf="visiteActive">
+      <mat-label>Visite</mat-label>
+      <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idVisite">
+        <mat-option value="0">...</mat-option>
+        <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.objet }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;&nbsp;
+    <mat-form-field style="width: 45%;" *ngIf="organeActive">
+      <mat-label>Organe</mat-label>
+      <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idOrgane">
+        <mat-option value="0">...</mat-option>
+        <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div style="display: block;">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [colors]="barChartColors"
+      [legend]="barChartLegend"
+      [labels]="barChartLabels"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+
+  </mat-card>

@@ -1,0 +1,65 @@
+<div class="host">
+  <app-title title="Synthèse"></app-title>
+
+  <mat-tab-group class="example-stretched-tabs mat-elevation-z4" #matgroup style="margin-top: 15px;">
+    <mat-tab label="Synthèse" [disabled]='false'>
+      <ng-template matTabContent>
+        <form [formGroup]="myForm">
+          <div class="myForm" style="margin: 15px; height: 100%;">
+            <!-- <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Traité</mat-label>
+                    <input matInput formControlName="nom" required>
+                  </mat-form-field> -->
+
+            <div class="inputs">
+              <mat-form-field appearance="outline">
+                <mat-label>Code</mat-label>
+                <input matInput formControlName="code" required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Synthèse</mat-label>
+                <textarea matInput rows="6" formControlName="detail" required></textarea>
+                <!-- <input matInput formControlName="adresse" required> -->
+              </mat-form-field>
+
+            </div>
+
+            <!-- {{myForm.value | json}} -->
+            <!--  -->
+
+          </div>
+        </form>
+        <div class="actions">
+          <button mat-button [routerLink]="['/admin/synthese/list']" type="button">Retour</button>&nbsp;&nbsp;
+          <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
+          <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm)"
+            [disabled]="myForm.invalid">Enregistre</button>
+        </div>
+      </ng-template>
+
+
+    </mat-tab>
+    <!--  -->
+    <mat-tab label="Recommandations" [disabled]='o.id === 0'>
+      <ng-template matTabContent>
+        <div style="margin: 15px;">
+            <app-recommendations [listFromParent]="listRecommendation" [isEdit]="id !== 0" [synthese]="o">
+          </app-recommendations>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Fiches organismes" [disabled]='o.id === 0'>
+      <ng-template matTabContent>
+        <app-fiche-synthese [synthese]="o"></app-fiche-synthese>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
+
+
+
+</div>

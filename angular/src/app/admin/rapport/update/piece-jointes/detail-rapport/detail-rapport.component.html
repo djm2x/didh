@@ -1,0 +1,48 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{o.titre}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+      <ul>
+        <li>Date Rapport: {{o.dateDernierRapport | date : "dd/MM/yyyy"}}</li>
+        <li>Date des observations finales: {{o.dateObservation | date : "dd/MM/yyyy"}}</li>
+        <li>Date Prochain Rapport: {{o.dateProchaineRapport | date : "dd/MM/yyyy"}}</li>
+        <li>Référence des observations finales: {{o.reference}}</li>
+      </ul>
+
+
+      <section>
+        <h5>Synthèses</h5>
+
+        <table cdk-table [dataSource]="dataSource">
+
+
+          <ng-container [cdkColumnDef]="columnDefs[0].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[0].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[0].columnDef]}}</td>
+          </ng-container>
+
+          <ng-container [cdkColumnDef]="columnDefs[1].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[1].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
+          </ng-container>
+
+          <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </section>
+
+    </div>
+    <!--
+    {{myForm.status | json}}
+    {{myForm.value | json}} -->
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Retour</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<!-- <app-header [userName]="currentUser"></app-header> -->
+<!-- <app-menu></app-menu>
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer> -->
+
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <p>Système de Suivi des recommandations des mécanismes onusiens des DH</p>
+    <span class="example-spacer"></span>
+    <!-- <p>role : {{session.getUser.profil.label}}</p> -->
+
+    <!-- <p>&nbsp;||&nbsp;organisme : {{session.getUser.organisme.label}}</p> -->
+    <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
+      {{session.getUser.prenom}}</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
+      <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <p>Système de suivi des recommandations</p>
+  <span class="example-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="beforeMenu">{{session.getUser.nom}}</button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/admin/compte']">Compte</button>
+    <button mat-menu-item (click)="disconnect()">Déconnecter</button>
+  </mat-menu> -->
+
+<mat-sidenav-container #sidenav class="example-sidenav-container" style=" z-index: 9;">
+  <mat-sidenav #snav [mode]="(!mobileQuery.matches) ? 'side' : 'over'" [opened]="opened && !mobileQuery.matches"
+    [fixedInViewport]="true" fixedTopGap="50">
+    <mat-nav-list class="list" style="width: 220px; padding: 0;">
+      <div class="logo">
+        <img src="../assets/logo-ddh.jpg" alt="marit logo" width="210">
+      </div>
+      <mat-list-item [routerLink]="['/admin/home']" routerLinkActive="router-link-active">
+        <mat-icon>home</mat-icon>&nbsp;<span>Accueil</span>
+      </mat-list-item>
+      <mat-accordion>
+        <mat-expansion-panel expanded  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Mecanisme
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+
+          <mat-list-item [routerLink]="['/admin/examen']" routerLinkActive="router-link-active">
+            <mat-icon>business</mat-icon>&nbsp;<span>Examen périodique universal</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item [routerLink]="['/admin/rapport']" routerLinkActive="router-link-active">
+            <mat-icon>book</mat-icon>&nbsp;<span>Organes de Traités</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          
+          <mat-list-item *ngIf="!session.isPointFocal" [routerLink]="['/admin/visite']"
+            routerLinkActive="router-link-active">
+            <mat-icon>check_circle_outline</mat-icon>&nbsp;<span>Procédures spéciales</span>
+          </mat-list-item>
+          
+        </mat-expansion-panel>
+
+
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/recommendation']" routerLinkActive="router-link-active">
+          <mat-icon>done_all</mat-icon>&nbsp;<span>Recommandations</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/synthese']" routerLinkActive="router-link-active"
+          *ngIf="!session.isPointFocal">
+          <mat-icon>thumbs_up_down</mat-icon>&nbsp;<span>Synthèse</span>
+        </mat-list-item>
+        <mat-divider *ngIf="!session.isPointFocal"></mat-divider>
+
+        <!-- <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    rb1
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+            </mat-expansion-panel> -->
+        <mat-expansion-panel *ngIf="session.isAdmin" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Sécurité
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item [routerLink]="['/admin/user']" routerLinkActive="router-link-active">
+            <mat-icon>group</mat-icon>&nbsp;<span>Utilisateur</span>
+          </mat-list-item>
+          <!-- <mat-list-item [routerLink]="['/admin/permission']" routerLinkActive="router-link-active">
+            <mat-icon>person_add</mat-icon>&nbsp;<span>Permissions</span>
+          </mat-list-item> -->
+          <mat-list-item [routerLink]="['/admin/profil']" routerLinkActive="router-link-active">
+            <mat-icon>control_point_duplicate</mat-icon>&nbsp;<span>Profils</span>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="session.isAdmin" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Paramétrage
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list-item [routerLink]="['/admin/organisme']" routerLinkActive="router-link-active">
+            <mat-icon>account_balance</mat-icon>&nbsp;<span>Organisations</span>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/admin/organe']" routerLinkActive="router-link-active">
+            <mat-icon>business</mat-icon>&nbsp;<span>Organe de traités</span>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/admin/cycle']" routerLinkActive="router-link-active">
+            <mat-icon>check_circle_outline</mat-icon>&nbsp;<span>Cycles</span>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/admin/axe']" routerLinkActive="router-link-active">
+            <mat-icon>call_made</mat-icon>&nbsp;<span>Axes</span>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/admin/sous-axe']" routerLinkActive="router-link-active">
+            <mat-icon>call_missed_outgoing</mat-icon>&nbsp;<span>Sous axe</span>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/admin/pays']" routerLinkActive="router-link-active">
+            <mat-icon>location_city</mat-icon>&nbsp;<span>Pays</span>
+          </mat-list-item>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+
+
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+
+    <!-- <div style="margin: 65px auto 15px;" class="mybreadcrumb">
+        <div *ngFor="let s of patchRoute" class="items">
+          <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
+        </div>
+      </div> -->
+    <main [@routerTransition]="getState(o)" style="margin: 65px 0 0 5px;">
+      <router-outlet #o="outlet"></router-outlet>
+    </main>
+
+    <!-- <footer>
+        <mat-toolbar class="mt-2 text" color="primary">
+          <mat-toolbar-row style="height: 70px">
+            <span style="margin-left: auto; margin-right: auto;"> © {{ d | date:"dd/MMMM/yyyy" }} - Yaasin MOURABIT</span>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

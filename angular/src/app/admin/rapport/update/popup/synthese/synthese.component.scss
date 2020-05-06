@@ -1,0 +1,12 @@
+.mat-header-cell:first-child,
+.mat-cell:first-child {
+  width: 60px !important;
+  // padding-right: 0 !important;
+  // min-width: 1px !important;
+}
+
+.mat-header-cell:nth-child(2), .mat-cell:nth-child(2) {
+  width: 100px !important;
+  // padding-right: 0 !important;
+  // min-width: 1px !important;
+}

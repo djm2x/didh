@@ -1,0 +1,51 @@
+// ::ng-deep .th-width {
+//   width: 10px;;
+// }
+
+
+.mat-header-cell:first-child,
+.mat-cell:first-child {
+  width: 20px !important;
+  // padding-right: 0 !important;
+  // min-width: 1px !important;
+}
+
+.mat-header-cell:nth-child(2), .mat-cell:nth-child(2) {
+  width: 20px !important;
+  // padding-right: 0 !important;
+  // min-width: 1px !important;
+}
+
+.mat-header-cell:nth-child(3), .mat-cell:nth-child(3) {
+  width: 80px !important;
+  // padding-right: 0 !important;
+  // min-width: 1px !important;
+  // font-size: 10px !important;
+}
+
+.mat-header-cell:last-child, .mat-cell:last-child {
+  width: 0!important;
+  // padding-right: 0 !important;
+  // font-size: 10px !important;
+}
+
+// ::ng-deep .mat-header-cell:first-child, .mat-cell[_ngcontent-xxs-c16]:first-child {
+//   width: 0 !important;
+// }
+
+// .mat-header-cell:last-child, .mat-cell:last-child {
+//   width: auto !important;
+//   padding-right: auto !important;
+//   font-size: 15px;
+// }
+
+::ng-deep tr.mat-header-row, tr.mat-row {
+  // border: 1px solid #e7e7e7;
+  // font-weight: bold;
+  height: 40px !important;
+}
+
+mat-icon {
+  font-size: 20px !important;
+}
+

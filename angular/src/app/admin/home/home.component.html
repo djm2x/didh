@@ -1,0 +1,67 @@
+<div class="host">
+  <div class="cards">
+    <!-- <mat-card>
+    <mat-icon>group</mat-icon>
+    <p>Utilisateur</p>
+    <h2>{{ (users | async) ? (users | async) : 'chargement...' }}</h2>
+  </mat-card> -->
+
+
+    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple style="background: #00A65A; color: white;" [routerLink]="['/admin/recommendation/update/0']">
+      <mat-icon>done_all</mat-icon>
+      <p style="margin-left: auto;">Nouvelle Recommandation</p>
+    </mat-card>
+
+    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple style="background: #4B94BF; color: white; margin-left: 10px !important;"
+      [routerLink]="['/admin/rapport/update/0']">
+      <mat-icon>book</mat-icon>
+      <p style="margin-left: auto;">Nouveau rapport</p>
+    </mat-card>
+
+    <mat-card matRipple style="background: #4B94BF; color: white; margin-left: 10px !important;">
+      <!-- <mat-icon>book</mat-icon> -->
+      <p style="font-size: 2.5em; font-weight: bold;">{{ (recommendations | async) ? (recommendations | async) : '...' }}</p>
+      <p style="margin-left: auto;">Recommandations</p>
+    </mat-card>
+
+    <mat-card matRipple style="background: #00A65A; color: white; margin-left: 10px !important;">
+
+      <!-- <mat-icon>done_all</mat-icon> -->
+      <p style="font-size: 2.5em; font-weight: bold;">{{(rapports | async) ? (rapports | async) : '...'}}</p>
+      <p style="margin-left: auto;">Conventions</p>
+    </mat-card>
+
+
+
+    <!-- <mat-card>
+      <mat-icon>book</mat-icon>
+      <div class="align">
+        <p>Rapport</p>
+        <p>{{ (rapports | async) ? (rapports | async) : '...' }}</p>
+      </div>
+
+      <div class="align">
+      </div>
+      <button mat-raised-button color="primary" [routerLink]="['/admin/rapport/update/0']">Nouveau rapport</button>
+    </mat-card> -->
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <app-calendar #myCalendar [testAction]="reactionTest" (dateSelected)="dateSelected($event)"></app-calendar> -->
+      <!-- <app-agenda></app-agenda> -->
+      <app-bar-convention></app-bar-convention>
+      <app-bar-mecanisme></app-bar-mecanisme>
+      <app-bar-one></app-bar-one>
+      <app-bar-two></app-bar-two>
+    </div>
+    <div class="col-md-6">
+      <app-notification></app-notification>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,70 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{title}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+      <ul>
+        <li>Datail: {{o.detail}}</li>
+      </ul>
+      <mat-divider>
+      </mat-divider>
+      <section *ngIf="dataSource.length !== 0">
+        <h5>Recommandations</h5>
+
+        <table cdk-table [dataSource]="dataSource">
+          <!-- Position Column -->
+          <ng-container cdkColumnDef="position">
+            <th cdk-header-cell *cdkHeaderCellDef> No. </th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <ng-container [cdkColumnDef]="columnDefs[0].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[0].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[0].columnDef]}}</td>
+          </ng-container>
+
+          <ng-container [cdkColumnDef]="columnDefs[1].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[1].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
+          </ng-container>
+
+          <ng-container [cdkColumnDef]="columnDefs[2].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[2].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
+          </ng-container>
+
+          <ng-container [cdkColumnDef]="columnDefs[3].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[3].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
+          </ng-container>
+          <ng-container [cdkColumnDef]="columnDefs[4].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[4].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[4].columnDef] ? row[columnDefs[4].columnDef].label : ''}}</td>
+          </ng-container>
+          <ng-container [cdkColumnDef]="columnDefs[5].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[5].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[5].columnDef] ? row[columnDefs[5].columnDef].label : ''}}</td>
+          </ng-container>
+          <ng-container [cdkColumnDef]="columnDefs[6].columnDef">
+            <th cdk-header-cell *cdkHeaderCellDef>{{columnDefs[6].headName}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row[columnDefs[6].columnDef] ? row[columnDefs[6].columnDef].label : ''}}</td>
+          </ng-container>
+
+          <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </section>
+    </div>
+    <!--
+    {{myForm.status | json}}
+    {{myForm.value | json}} -->
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Retour</button>
+    </div>
+  </div>
+</div>

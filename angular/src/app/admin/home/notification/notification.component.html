@@ -1,0 +1,68 @@
+<!-- Content Header (Page header) -->
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="example-table-container">
+    <table mat-table #table [dataSource]="dataSource" style="border-top: 5px solid #3F51B5;" multiTemplateDataRows
+      aria-label="Elements" matSort>
+      <!-- my lovely header -->
+      <ng-container matColumnDef="notif">
+        <th mat-header-cell style="font-size: 1.5em; background: white;color: #737373 !important;" *matHeaderCellDef colspan="4" >
+           Notifications </th>
+      </ng-container>
+      <!--  -->
+
+      <ng-container [matColumnDef]="columnDefs[0].columnDef">
+          <th mat-header-cell *matHeaderCellDef>
+            <!-- {{columnDefs[0].headName}} -->
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <!-- {{row[columnDefs[0].columnDef]}} -->
+
+            <!-- {{priorite[row[columnDefs[0].columnDef]-1]}} -->
+            <button mat-icon-button [color]="prioriteColor(row[columnDefs[0].columnDef])">
+              <mat-icon>priority_high</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      <ng-container [matColumnDef]="columnDefs[1].columnDef">
+          <th mat-header-cell *matHeaderCellDef class="th-width"></th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button [color]="row[columnDefs[1].columnDef] ? 'primary' : 'accent'">
+              <mat-icon>
+                {{ row[columnDefs[1].columnDef] ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+      <ng-container [matColumnDef]="columnDefs[2].columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[2].headName}}</th>
+        <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef] | date: "dd/MM/yyyy"}}</td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="columnDefs[3].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[3].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
+        </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="['notif']" style="font-size: .6em;font-weight: bold;"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUrl(row)" style="cursor: pointer;"></tr>
+
+    </table>
+  </div>
+
+  <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="10"
+      [pageSizeOptions]="[10, 25, 50, 100, 250]" showFirstLastButtons>
+    </mat-paginator>
+</div>
+
+
+
+  <!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

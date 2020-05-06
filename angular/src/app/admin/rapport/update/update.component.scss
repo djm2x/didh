@@ -1,0 +1,54 @@
+.myForm {
+  margin: 0 15px;
+  // display: flex;
+  // flex-direction: column;
+  .inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+    grid-column-gap: 6px;
+    grid-row-gap: 6px;
+    // justify-content: space-around;
+    // flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.actions {
+  display: flex;
+  // align-content: flex-end;
+  flex-direction: row-reverse;
+  margin: 0 15px 15px 0;
+}
+
+.host {
+  margin: 1em !important;
+}
+
+.myrow {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+}
+
+img {
+  height: 20px;
+  // width: 40px;
+}
+
+.example-stretched-tabs {
+  max-width: 100%;
+}
+
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  background-color: rgb(223, 223, 223);
+  font-weight: 700;
+  // color: black;
+  // opacity: 1;
+}
+
+::ng-deep .mat-tab-body-content {
+  height: calc(100vh - 210px) !important;
+  overflow: auto;
+}
+

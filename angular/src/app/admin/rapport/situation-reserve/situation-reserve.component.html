@@ -1,0 +1,25 @@
+<mat-card>
+    <h6>situation des réserves</h6>
+
+    <div class="row" style="margin-bottom: 15px;">
+        <div class="col-md-6">
+            <app-upload nameBtn="Pièce-jointe" [folderToSaveInServer]="folderToSaveInServer"
+                [propertyOfParent]="propertyUrlTo" [eventSubmitToParent]="propertyUrlFrom"
+                [eventSubmitFromParent]="eventSubmitFromParent">
+            </app-upload>
+        </div>
+
+
+        <div class="col-md-3">
+            <button mat-raised-button cdkFocusInitial color="primary" (click)="submit()"
+                [disabled]="o.url === '' && o.id === 0"><mat-icon>save_alt</mat-icon> Enregistre</button>
+        </div>
+
+        <div class="col-md-3">
+            <button mat-raised-button cdkFocusInitial color="accent" (click)="showPieceJoin()"
+                [disabled]="o.url === '' && o.id === 0">
+                <mat-icon>cloud_download</mat-icon> Telecharger
+            </button>
+        </div>
+    </div>
+</mat-card>
