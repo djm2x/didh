@@ -4,10 +4,10 @@ import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  templateUrl: './upload-select.component.html',
+  styleUrls: ['./upload-select.component.scss']
 })
-export class UploadComponent implements OnInit {
+export class UploadSelectComponent implements OnInit {
   listOfNames: string[] = [];
   listToDelete: string[] = [];
   files: File[] = [];

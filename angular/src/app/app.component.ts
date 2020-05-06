@@ -1,5 +1,4 @@
 
-import { AuthenticationService } from './_services';
 import { Router, NavigationStart, RouterOutlet } from '@angular/router';
 import { Component, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material';
