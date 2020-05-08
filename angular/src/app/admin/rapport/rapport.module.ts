@@ -17,7 +17,7 @@ import { PopupComponent } from './update/popup/popup.component';
 import { DetailRapportComponent } from './update/piece-jointes/detail-rapport/detail-rapport.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { SituationReserveComponent } from './situation-reserve/situation-reserve.component';
-
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { SituationReserveComponent } from './situation-reserve/situation-reserve
     PopupComponent,
     SyntheseComponent,
     DetailRapportComponent,
-    SituationReserveComponent
+    SituationReserveComponent,
+    ArchiveComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +47,8 @@ import { SituationReserveComponent } from './situation-reserve/situation-reserve
     SheetbottomComponent,
     DetailComponent,
     PopupComponent,
-    DetailRapportComponent
+    DetailRapportComponent,
+    ArchiveComponent
   ]
 })
 export class RapportModule { }

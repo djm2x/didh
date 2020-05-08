@@ -11,12 +11,14 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import { MatModule } from 'src/app/mat.module';
 import { DetailComponent } from './detail/detail.component';
-
+import { ArchiveComponent } from './archive/archive.component';
+import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 @NgModule({
   declarations: [
     VisiteComponent,
     UpdateComponent,
     DetailComponent,
+    ArchiveComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { DetailComponent } from './detail/detail.component';
     FormsModule,
     ReactiveFormsModule,
     TitleModule,
+    ManageFilesModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'fr'},
@@ -33,6 +36,7 @@ import { DetailComponent } from './detail/detail.component';
   entryComponents: [
     UpdateComponent,
     DetailComponent,
+    ArchiveComponent,
   ]
 })
 export class VisiteModule { }

@@ -7,111 +7,147 @@
   <title>DIDH</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" type="image/png" href="assets/marocLogo.png" />
+  <link rel="icon" type="image/png" href="assets/fav.png" />
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> -->
-  <style>
-      #vex-splash-screen {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #13293d;
-        z-index: 99999;
-        pointer-events: none;
-      }
 
-      #vex-splash-screen>.wrapper {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-      }
-
-      @-webkit-keyframes ball-scale-multiple {
-        0% {
-          -webkit-transform: scale(0);
-          transform: scale(0);
-          opacity: 0;
-        }
-
-        5% {
-          opacity: 1;
-        }
-
-        100% {
-          -webkit-transform: scale(1);
-          transform: scale(1);
-          opacity: 0;
-        }
-      }
-
-      @keyframes ball-scale-multiple {
-        0% {
-          -webkit-transform: scale(0);
-          transform: scale(0);
-          opacity: 0;
-        }
-
-        5% {
-          opacity: 1;
-        }
-
-        100% {
-          -webkit-transform: scale(1);
-          transform: scale(1);
-          opacity: 0;
-        }
-      }
-
-      .ball-scale-multiple {
-        position: relative;
-        -webkit-transform: translateY(-30px);
-        transform: translateY(-30px);
-      }
-
-      .ball-scale-multiple>div:nth-child(2) {
-        -webkit-animation-delay: -0.4s;
-        animation-delay: -0.4s;
-      }
-
-      .ball-scale-multiple>div:nth-child(3) {
-        -webkit-animation-delay: -0.2s;
-        animation-delay: -0.2s;
-      }
-
-      .ball-scale-multiple>div {
-        background-color: #fff;
-        border-radius: 100%;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        position: absolute;
-        left: -30px;
-        top: 0;
-        opacity: 0;
-        margin: 0;
-        width: 60px;
-        height: 60px;
-        -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
-        animation: ball-scale-multiple 1s 0s linear infinite;
-      }
-    </style>
 <link rel="stylesheet" href="styles.32471e23c9a956f18ced.css"></head>
 <body>
-    <!-- <div id="vex-splash-screen">
-        <div class="wrapper">
-          <div class="ball-scale-multiple">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      </div> -->
+  <style>
+    #splash-screen {
+      /* display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; */
+      /* background: #13293d; */
+      z-index: 99999;
+      pointer-events: none;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #splash-screen .header {
+      /* z-index: 10;
+      color: white; */
+      margin-bottom: 7vh;
+    }
+
+    #splash-screen>.wrapper {
+      /* position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%); */
+    }
+
+    @-webkit-keyframes ball-scale-multiple {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes ball-scale-multiple {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    .ball-scale-multiple {
+      position: relative;
+      /* -webkit-transform: translateY(-30px);
+      transform: translateY(-30px); */
+    }
+
+    .ball-scale-multiple>div:nth-child(2) {
+      -webkit-animation-delay: -0.4s;
+      animation-delay: -0.4s;
+    }
+
+    .ball-scale-multiple>div:nth-child(3) {
+      -webkit-animation-delay: -0.2s;
+      animation-delay: -0.2s;
+    }
+
+    .ball-scale-multiple>div {
+      background-color: #2304bfb9;
+      border-radius: 100%;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      position: absolute;
+      left: -45px;
+      top: 0;
+      opacity: 0;
+      margin: 0;
+      width: 90px;
+      height: 90px;
+      -webkit-animation: ball-scale-multiple 1s 0s linear infinite;
+      animation: ball-scale-multiple 1s 0s linear infinite;
+    }
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer p {
+      margin: 0;
+      font-weight: bold;
+    }
+
+
+  </style>
+
+  <div id="splash-screen">
+    <div class="header">
+      <img src="assets/logo-ddh.jpg" width="350" >
+    </div>
+    <div class="wrapper">
+      <div class="ball-scale-multiple">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <img src="assets/fav.png" width="30" height="30">
+      <p>&nbsp;- Délégation Interministérielle aux Droits de l'Homme</p>
+    </div>
+  </div>
   <app-root></app-root>
-<script src="runtime-es2015.2504297a5032f4e0492d.js" type="module"></script><script src="runtime-es5.2504297a5032f4e0492d.js" nomodule defer></script><script src="polyfills-es5.9e58a8e8ad0624ef177f.js" nomodule defer></script><script src="polyfills-es2015.1a2ead215a454a331034.js" type="module"></script><script src="main-es2015.cdcfad2ef47f8c40b390.js" type="module"></script><script src="main-es5.cdcfad2ef47f8c40b390.js" nomodule defer></script></body>
+<script src="runtime-es2015.83b723de3baa5891673c.js" type="module"></script><script src="runtime-es5.83b723de3baa5891673c.js" nomodule defer></script><script src="polyfills-es5.bd9339c1fe687181cae1.js" nomodule defer></script><script src="polyfills-es2015.11762a1a27deb1050771.js" type="module"></script><script src="main-es2015.97f8ea9697c334a42012.js" type="module"></script><script src="main-es5.97f8ea9697c334a42012.js" nomodule defer></script></body>
 </html>

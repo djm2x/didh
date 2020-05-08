@@ -19,25 +19,25 @@ export class UpdateComponent implements OnInit {
   o = new Traite();
   id = 0;
   // title = typeof (Rapport).name;
-  files: File[] = [];
-  // progress: number;
-  // message: any;
-  filename = 'Choisie un rapport';
-  iconFile = '';
-  pieceJointe = '';
-  pieceJointeToShow: string[] = [];
-  pieceJointeToDelete = [];
-  formData = new FormData();
-  rapportsToChild = new EventEmitter();
-  dataFromChild = new EventEmitter();
-  rapports = [];
-  rapportToDelete = [];
-  //
-  conventionPiece: File;
-  miseOeuvrePiece: File;
-  observationPiece: File;
+  // files: File[] = [];
+  // // progress: number;
+  // // message: any;
+  // filename = 'Choisie un rapport';
+  // iconFile = '';
+  // pieceJointe = '';
+  // pieceJointeToShow: string[] = [];
+  // pieceJointeToDelete = [];
+  // formData = new FormData();
+  // rapportsToChild = new EventEmitter();
+  // dataFromChild = new EventEmitter();
+  // rapports = [];
+  // rapportToDelete = [];
+  // //
+  // conventionPiece: File;
+  // miseOeuvrePiece: File;
+  // observationPiece: File;
 
-  folderToSaveInServer = 'organe';
+  folderToSaveInServer = 'traite';
 
   conventionPieceTo = new Subject();
   conventionPieceFrom = new Subject();
@@ -47,6 +47,9 @@ export class UpdateComponent implements OnInit {
   //
   miseOeuvrePieceTo = new Subject();
   miseOeuvrePieceFrom = new Subject();
+  //
+  analytiquePieceTo = new Subject();
+  analytiquePieceFrom = new Subject();
   //
   eventSubmitFromParent = new Subject();
 
@@ -60,7 +63,7 @@ export class UpdateComponent implements OnInit {
     if (this.id !== 0) {
       this.uow.traites.getOne(this.id).subscribe(r => {
         this.o = r as any;
-        this.rapportsToChild.next(this.o.rapports);
+        // this.rapportsToChild.next(this.o.rapports);
         console.log(this.o)
         // const pieces = this.o.pieceJointe.split(';');
         // pieces.pop();
@@ -74,27 +77,29 @@ export class UpdateComponent implements OnInit {
           this.conventionPieceTo.next(this.o.conventionPiece);
           this.observationPieceTo.next(this.o.observationPiece);
           this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
+          this.analytiquePieceTo.next(this.o.analytiquePiece);
         }, 100);
       });
     }
 
-    this.dataFromChild.subscribe((r: { datasource: any[], file: File, rapportToDelete: any[] }) => {
-      this.rapports = r.datasource;
-      if (r.file) {
-        console.log(r.file)
-        const nameFile = `${r.file.lastModified}_${r.file.name}` as string;
-        this.formData.append(nameFile, r.file, nameFile);
-      }
-
-      this.rapportToDelete = r.rapportToDelete;
-      this.pieceJointeToDelete = this.rapportToDelete.map((e: Rapport) => e.pieceJointe);
-      // console.log('>>>>>>>>>>>>>>>>>>>>>');
-      // console.log(this.rapports);
-    });
-
     this.conventionPieceFrom.subscribe(r => this.myForm.get('conventionPiece').setValue(r));
     this.observationPieceFrom.subscribe(r => this.myForm.get('observationPiece').setValue(r));
     this.miseOeuvrePieceFrom.subscribe(r => this.myForm.get('miseOeuvrePiece').setValue(r));
+    this.analytiquePieceFrom.subscribe(r => this.myForm.get('analytiquePiece').setValue(r));
+    // this.dataFromChild.subscribe((r: { datasource: any[], file: File, rapportToDelete: any[] }) => {
+    //   this.rapports = r.datasource;
+    //   if (r.file) {
+    //     console.log(r.file)
+    //     const nameFile = `${r.file.lastModified}_${r.file.name}` as string;
+    //     this.formData.append(nameFile, r.file, nameFile);
+    //   }
+
+    //   this.rapportToDelete = r.rapportToDelete;
+    //   this.pieceJointeToDelete = this.rapportToDelete.map((e: Rapport) => e.pieceJointe);
+    //   // console.log('>>>>>>>>>>>>>>>>>>>>>');
+    //   // console.log(this.rapports);
+    // });
+
 
   }
 
@@ -102,21 +107,24 @@ export class UpdateComponent implements OnInit {
     this.myForm = this.fb.group({
       id: this.o.id,
       nom: [this.o.nom, Validators.required],
+      discours: [this.o.discours],
       dateSignature: [this.o.dateSignature, Validators.required],
       dateRatification: [this.o.dateRatification, Validators.required],
       conventionPiece: [this.o.conventionPiece],
       observationPiece: [this.o.observationPiece],
       miseOeuvrePiece: [this.o.miseOeuvrePiece],
+      analytiquePiece: [this.o.analytiquePiece],
     });
   }
 
   submit(o: Traite) {
     o.dateRatification = this.valideDate(o.dateRatification);
     o.dateSignature = this.valideDate(o.dateSignature);
-    o.rapports = this.rapports;
+    // o.rapports = this.rapports;
     o.idUser = this.session.user.id;
     if (this.id === 0) {
       this.uow.traites.post(o).subscribe(async (r: Traite) => {
+        this.eventSubmitFromParent.next(true);
         // this.uow.rapports.uploadFiles(this.formData).subscribe(rs => {
         this.o = r;
         const notif: any = {
@@ -135,7 +143,6 @@ export class UpdateComponent implements OnInit {
         });
         // this.snack.notifyOk('Nouveau traité a été ajoutée');
 
-        this.eventSubmitFromParent.next(true);
 
         // const formData = new FormData();
         // if (this.conventionPiece) {
@@ -159,8 +166,9 @@ export class UpdateComponent implements OnInit {
 
       });
     } else {
-      (o as any).rapportToDelete = this.rapportToDelete;
-      this.uow.traites.put$(o).subscribe(async r => {
+      // (o as any).rapportToDelete = this.rapportToDelete;
+      this.uow.traites.put(o.id, o).subscribe(async r => {
+        this.eventSubmitFromParent.next(true);
         // this.uow.rapports.uploadFiles(this.formData).subscribe(rs => {
         //   this.uow.rapports.deleteFiles(this.pieceJointeToDelete, 'rapport').subscribe(() => {
         const notif: any = {
@@ -174,13 +182,9 @@ export class UpdateComponent implements OnInit {
           tableConcerner: 'traite',
           vu: false
         };
-        console.log('>>>>>>>>>>>>>>');
-        this.uow.notifications.post(notif).subscribe(n => {
-          console.log('<<<<<<<<<<<<<<<<<<<<');
-          // this.router.navigateByUrl('/admin/rapport/list');
-        });
 
-        this.eventSubmitFromParent.next(true);
+        this.uow.notifications.post(notif).subscribe(n => {});
+
         // const formData = new FormData();
         // if (this.conventionPiece) {
         //   const nameFile = `${this.conventionPiece.lastModified}_${this.conventionPiece.name}`;

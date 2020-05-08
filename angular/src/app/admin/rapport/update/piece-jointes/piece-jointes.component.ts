@@ -37,8 +37,8 @@ export class PieceJointesComponent implements OnInit {
   index = 0;
   displayedColumns = this.columnDefs.map(e => e.columnDef);
 
-  @Input() listToParent = new EventEmitter();
-  @Input() listFromParent = new EventEmitter();
+  // @Input() listToParent = new EventEmitter();
+  // @Input() listFromParent = new EventEmitter();
   // dataSource: Rapport[] = [];
   // dataSource2: Rapport[] = [];
   dataSource = [];

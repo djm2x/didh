@@ -21,6 +21,9 @@ namespace Admin5.Models
         public int? IdVisite { get; set; }
         public int? IdPays { get; set; }
         public string Etat { get; set; }
+        public string EtatAvancement { get; set; }
+        public string Observation { get; set; }
+        public string PieceJointe { get; set; }
         // public int IdOrganisme { get; set; }
         // public Organisme Organisme { get; set; }
         public Visite Visite { get; set; }

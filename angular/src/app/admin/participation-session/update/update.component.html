@@ -1,0 +1,42 @@
+<div class="dialog">
+  <h1 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+      <span>{{title}}</span>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+  </h1>
+  <div class="content">
+    <div mat-dialog-content>
+
+      <form [formGroup]="myForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Session</mat-label>
+          <input matInput formControlName="session" required>
+        </mat-form-field>
+
+        <div class="row justify-content-center" style="margin-bottom: 15px;">
+
+          <app-upload nameBtn="Discours de Mr le Ministre" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload>
+
+          <app-upload nameBtn="Documents de l'examen" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="documentsTo" [eventSubmitToParent]="documentsFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload>
+
+        </div>
+      </form>
+    </div>
+
+    <!-- {{myForm.status | json}} -->
+    <!-- {{myForm.value | json}} -->
+
+    <div class="actions" mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+      <button mat-raised-button cdkFocusInitial color="primary" (click)="onOkClick(myForm.value)"
+        [disabled]="myForm.invalid">Enregistre</button>
+    </div>
+  </div>
+</div>

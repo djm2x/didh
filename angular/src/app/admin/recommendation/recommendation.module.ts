@@ -11,6 +11,7 @@ import { MatModule } from 'src/app/mat.module';
 import { OrganismesComponent } from './update/organismes/organismes.component';
 import { TitleModule } from '../components/title/title.module';
 import { DetailComponent } from './detail/detail.component';
+import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DetailComponent } from './detail/detail.component';
     FormsModule,
     ReactiveFormsModule,
     TitleModule,
+    ManageFilesModule,
   ],
   entryComponents: [
     DetailComponent,

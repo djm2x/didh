@@ -18,34 +18,20 @@
           <input matInput formControlName="mandat" required>
         </mat-form-field>
         <mat-form-field appearance="outline">
+          <mat-label>Discours du président</mat-label>
+          <textarea matInput formControlName="discours" placeholder="Discours du président"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Date prévue</mat-label>
           <input matInput [matDatepicker]="picker" formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <div class="" style="margin-bottom: 15px;">
-          <!-- <input hidden #imgInput type="file" accept="image/*" (change)="handleFileInput($event.target.files)"> -->
-          <input hidden style="display: none;"
-          accept="application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-           #file type="file" multiple (change)="upload(file.files)">
-          <button mat-raised-button color="accent" type="button" (click)="openInput(file)">
-            Rapport de visite
-          </button>
-
-          <!-- <button mat-raised-button color="warn" type="button" (click)="remove()">
-            Supprimer le rapport
-          </button> -->
-          <div class="myrow">
-
-            <h6 *ngIf="filename !== ''">
-              <img [src]="setIcon(filename)" alt="pdf/word"> - {{filename}}
-              <button mat-icon-button color="warn" (click)="remove()" type="button">
-                <mat-icon>delete_sweep</mat-icon>
-              </button>
-            </h6>
-          </div>
-        </div>
+        <app-upload-select nameBtn="Upload un fichie" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="lienUploadTo" [eventSubmitToParent]="lienUploadFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
 
         <mat-form-field appearance="outline">
           <mat-label>Lien externe</mat-label>

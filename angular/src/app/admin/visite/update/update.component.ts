@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UowService } from 'src/app/services/uow.service';
 import { Visite } from 'src/app/Models/models';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-update',
   templateUrl: './update.component.html',
@@ -12,20 +13,37 @@ export class UpdateComponent implements OnInit {
   myForm: FormGroup;
   o: Visite;
   title = '';
-  // formData = new FormData();
-  file: File;
-  // progress: number;
-  // message: any;
-  filename = '';
-  iconFile = '';
+
+  folderToSaveInServer = 'visite';
+  lienUploadTo = new Subject();
+  lienUploadFrom = new Subject();
+  //
+  eventSubmitFromParent = new Subject();
+
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
     , private fb: FormBuilder, private uow: UowService) { }
 
   ngOnInit() {
     this.o = this.data.model;
     this.title = this.data.title;
-    this.filename = this.o.lienUpload === '' ? this.filename : this.o.lienUpload;
     this.createForm();
+
+    this.lienUploadFrom.subscribe(r => this.myForm.get('lienUpload').setValue(r));
+
+    setTimeout(() => {
+      this.lienUploadTo.next(this.o.lienUpload);
+    }, 100);
+  }
+
+  createForm() {
+    this.myForm = this.fb.group({
+      id: this.o.id,
+      mandat: [this.o.mandat, Validators.required],
+      discours: [this.o.discours],
+      date: [this.o.date, Validators.required],
+      lienRapport: [this.o.lienRapport],
+      lienUpload: [this.o.lienUpload],
+    });
   }
 
   onNoClick(): void {
@@ -33,71 +51,36 @@ export class UpdateComponent implements OnInit {
   }
 
   onOkClick(o: Visite): void {
-    o.date = this.valideDate(o.date);
-    this.dialogRef.close({ model: o, file: this.file });
+
+    this.submit(o);
   }
 
-  valideDate(date: Date): Date {
-    date = new Date(date);
+  submit(o: Visite) {
+    o.date = this.uow.valideDate(o.date);
 
-    const hoursDiff = date.getHours() - date.getTimezoneOffset() / 60;
-    const minutesDiff = (date.getHours() - date.getTimezoneOffset()) % 60;
-    date.setHours(hoursDiff);
-    date.setMinutes(minutesDiff);
+    if (this.o.id === 0) {
+      this.uow.visites.post(o).subscribe(async (r: Visite) => {
+        this.eventSubmitFromParent.next(true);
+        // }
+        this.dialogRef.close(true);
 
-    return date;
-  }
+      });
+    } else {
+      this.uow.visites.put(o.id, o).subscribe(async r => {
+        this.eventSubmitFromParent.next(true);
 
-  openInput(o/*: HTMLInputElement*/) {
-    o.click();
-  }
-
-  upload(files: FileList) {
-    if (files.length === 0) {
-      return;
+        this.dialogRef.close(true);
+      });
     }
 
-    this.file = files[0];
-    this.filename = this.file.name;
-
-    this.myForm.get('lienUpload').setValue(this.filename);
-
-
-    const i = this.filename.lastIndexOf('.');
-    const s = this.filename.substring(i + 1);
-    // console.log(s);
-    s === 'pdf' ? this.iconFile = '-' : this.iconFile = '-';
 
   }
 
-  remove() {
-    this.file = null;
-    this.filename = '';
-    this.myForm.get('lienUpload').setValue('');
-    this.iconFile = '';
-  }
 
-  createForm() {
-    this.myForm = this.fb.group({
-      id: this.o.id,
-      // objet: [this.o.objet, Validators.required],
-      mandat: [this.o.mandat, Validators.required],
-      date: [this.o.date, Validators.required],
-      lienRapport: [this.o.lienRapport],
-      lienUpload: [this.o.lienUpload],
-    });
-  }
 
   resetForm() {
     this.o = new Visite();
     this.createForm();
-  }
-
-  setIcon(filaName) {
-    const i = filaName.lastIndexOf('.');
-    const s = filaName.substring(i + 1);
-    // console.log(s);
-    return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
   }
 
 }

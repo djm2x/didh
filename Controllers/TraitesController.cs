@@ -69,8 +69,8 @@ namespace Admin5.Controllers
             Traite t = model;
             _context.Entry(t).State = EntityState.Modified;
             // _context.Entry(model.Rapports).State = EntityState.Modified;
-            _context.Rapports.UpdateRange(model.Rapports);
-            _context.Rapports.RemoveRange(model.RapportToDelete);
+            // _context.Rapports.UpdateRange(model.Rapports);
+            // _context.Rapports.RemoveRange(model.RapportToDelete);
             try
             {
                 await _context.SaveChangesAsync();

@@ -14,34 +14,39 @@
           <input matInput formControlName="libelle" required>
         </mat-form-field>
 
+        <mat-form-field appearance="outline">
+          <mat-label>Discours du président</mat-label>
+          <textarea matInput formControlName="discours" placeholder="Discours du président"></textarea>
+        </mat-form-field>
+
         <div class="row justify-content-center" style="margin-bottom: 15px;">
 
-          <app-upload nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="rapportNationalTo" [eventSubmitToParent]="rapportNationalFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
-          </app-upload>
+          </app-upload-select>
 
-          <app-upload nameBtn="Compilation HCDH" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="Compilation HCDH" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="compilationHCDHTo" [eventSubmitToParent]="compilationHCDHFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
-          </app-upload>
+          </app-upload-select>
 
-          <app-upload nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="observationFinaleTo" [eventSubmitToParent]="observationFinaleFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
-          </app-upload>
+          </app-upload-select>
 
-          <app-upload nameBtn="Rapport mi-parcours" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="Rapport mi-parcours" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="rapportMiParcoursTo" [eventSubmitToParent]="rapportMiParcoursFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
-          </app-upload>
-          
+          </app-upload-select>
+
         </div>
       </form>
     </div>
-    <!--
-    {{myForm.status | json}}
-    {{myForm.value | json}} -->
+
+    <!-- {{myForm.status | json}} -->
+    <!-- {{myForm.value | json}} -->
 
     <div class="actions" mat-dialog-actions>
       <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;

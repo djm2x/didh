@@ -32,6 +32,7 @@ export class Examen {
   compilationHCDH = '';
   observationFinale = '';
   rapportMiParcours = '';
+  discours = '';
 }
 
 export class Notification {
@@ -55,6 +56,8 @@ export class Traite {
   conventionPiece = '';
   miseOeuvrePiece = '';
   observationPiece = '';
+  analytiquePiece = '';
+  discours = '';
   rapports: Rapport[] = [];
   user = new User();
 }
@@ -101,6 +104,7 @@ export class Visite {
   date = new Date();
   lienRapport = '';
   lienUpload = '';
+  discours = '';
 }
 
 export class Profil {
@@ -131,6 +135,9 @@ export class Recommendation {
   idCycle = 0;
   idAxe = 0;
   etat = '';
+  etatAvancement = '';
+  observation = '';
+  pieceJointe = '';
   idOrgane = null;
   idVisite = null;
   idSousAxe = null;
@@ -143,6 +150,20 @@ export class Recommendation {
   cycle = new Cycle();
   pays = new Pays();
   syntheseRecommandations: SyntheseRecommandation[] = [];
+}
+
+export class Questionnaire {
+  id = 0;
+  theme = '';
+  sousTheme = '';
+  pieceJointe = '';
+}
+
+export class ParticipationSession {
+  id = 0;
+  session = '';
+  discours = '';
+  documents = '';
 }
 
 export class Cycle {

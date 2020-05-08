@@ -10,6 +10,7 @@ import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { ActivatedRoute } from '@angular/router';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 @Component({
   selector: 'app-examen',
@@ -101,13 +102,25 @@ export class ExamenComponent implements OnInit {
     });
   }
 
+  archive(o: Examen) {
+    this.dialog.open(ArchiveComponent, {
+      width: '80vw',
+      disableClose: true,
+      data: { model: o, title: o.libelle }
+    });
+  }
+
   async delete(o: Examen) {
     const r = await this.mydialog.openDialog('Examen').toPromise();
     if (r === 'ok') {
       // console.log(o);
       let list = [];
-      o.rapportNational !== '' ? list.push(o.rapportNational) : list = list;
-      o.observationFinale !== '' ? list.push(o.observationFinale) : list = list;
+
+      o.rapportNational !== '' ? list.push(...this.uow.decoupe(o.rapportNational)) : list = list;
+      o.compilationHCDH !== '' ? list.push(...this.uow.decoupe(o.compilationHCDH)) : list = list;
+      o.observationFinale !== '' ? list.push(...this.uow.decoupe(o.observationFinale)) : list = list;
+      o.rapportMiParcours !== '' ? list.push(...this.uow.decoupe(o.rapportMiParcours)) : list = list;
+
       this.uow.files.deleteFiles(list, 'examen').subscribe(res => {
         this.uow.examens.delete(o.id).subscribe(() => this.update.next(true));
       });

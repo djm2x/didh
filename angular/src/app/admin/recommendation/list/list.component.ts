@@ -1,7 +1,7 @@
 import { DetailComponent } from '../detail/detail.component';
 
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent, MatInput } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent, MatInput, MatBottomSheet } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { SessionService } from 'src/app/shared';
 import { switchMap } from 'rxjs/operators';
+import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 
 @Component({
   selector: 'app-list',
@@ -29,10 +30,11 @@ export class ListComponent implements OnInit {
   columnDefs = [
     { columnDef: 'codeRecommendation', headName: 'CODE' },
     { columnDef: 'nom', headName: '' },
-    { columnDef: 'etat', headName: '' },
+    { columnDef: 'etat', headName: 'Etat de mis en oeuvre' },
     { columnDef: 'mecanisme', headName: '' },
     { columnDef: 'axe', headName: '' },
     { columnDef: 'sousAxe', headName: 'SOUS AXE' },
+    { columnDef: 'pieceJointe', headName: '' },
     { columnDef: 'option', headName: '' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName;
@@ -60,7 +62,7 @@ export class ListComponent implements OnInit {
   filteredOptions: Observable<any>;
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, private fb: FormBuilder, public session: SessionService
-    , private route: ActivatedRoute) { }
+    , private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.createForm();
@@ -205,8 +207,21 @@ export class ListComponent implements OnInit {
   async delete(o: Recommendation) {
     const r = await this.mydialog.openDialog('recommandation').toPromise();
     if (r === 'ok') {
-      this.uow.recommendations.delete(o.id).subscribe(() => this.update.next(true));
+      // console.log(o);
+      let list = [];
+
+      o.pieceJointe !== '' ? list.push(...this.uow.decoupe(o.pieceJointe)) : list = list;
+
+      this.uow.files.deleteFiles(list, 'recommandation').subscribe(res => {
+        this.uow.recommendations.delete(o.id).subscribe(() => this.update.next(true));
+      });
     }
+  }
+
+  showPieceJoin(fileName) {
+    // const url = `${this.url}/examen/${fileName}`;
+    // window.open(url);
+    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'recommandation'}});
   }
 
   axeChange(idAxe: number) {

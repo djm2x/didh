@@ -24,7 +24,7 @@ export class UpdateComponent implements OnInit {
   // observationFinale: File;
   // pieceJointeToDelete = [];
   //
-  
+
   folderToSaveInServer = 'examen';
 
   rapportMiParcoursTo = new Subject();
@@ -50,7 +50,7 @@ export class UpdateComponent implements OnInit {
     // this.filename = this.o.lienUpload === '' ? this.filename : this.o.lienUpload;
     this.createForm();
 
-    this.rapportNationalFrom.subscribe(r => this.myForm.get('rapportNational').setValue(r)); 
+    this.rapportNationalFrom.subscribe(r => this.myForm.get('rapportNational').setValue(r));
     this.compilationHCDHFrom.subscribe(r => this.myForm.get('compilationHCDH').setValue(r));
     this.observationFinaleFrom.subscribe(r => this.myForm.get('observationFinale').setValue(r));
     this.rapportMiParcoursFrom.subscribe(r => this.myForm.get('rapportMiParcours').setValue(r));
@@ -63,6 +63,18 @@ export class UpdateComponent implements OnInit {
     }, 100);
   }
 
+  createForm() {
+    this.myForm = this.fb.group({
+      id: this.o.id,
+      libelle: [this.o.libelle, Validators.required],
+      rapportNational: [this.o.rapportNational],
+      discours: [this.o.discours],
+      compilationHCDH: [this.o.compilationHCDH],
+      observationFinale: [this.o.observationFinale],
+      rapportMiParcours: [this.o.rapportMiParcours],
+    });
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -73,7 +85,8 @@ export class UpdateComponent implements OnInit {
   }
 
   submit(o: Examen) {
-    // o.rapportMiParcours = 
+    // o.rapportMiParcours =
+    // return
     if (this.o.id === 0) {
       this.uow.examens.post(o).subscribe(async (r: Examen) => {
         this.eventSubmitFromParent.next(true);
@@ -117,23 +130,14 @@ export class UpdateComponent implements OnInit {
       });
     }
 
-    
+
   }
 
   openInput(o/*: HTMLInputElement*/) {
     o.click();
   }
 
-  createForm() {
-    this.myForm = this.fb.group({
-      id: this.o.id,
-      libelle: [this.o.libelle, Validators.required],
-      rapportNational: [this.o.rapportNational],
-      compilationHCDH: [this.o.compilationHCDH],
-      observationFinale: [this.o.observationFinale],
-      rapportMiParcours: [this.o.rapportMiParcours],
-    });
-  }
+
 
   resetForm() {
     this.o = new Examen();

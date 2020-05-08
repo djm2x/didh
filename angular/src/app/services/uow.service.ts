@@ -19,6 +19,8 @@ import { RecomOrgService } from './recomOrg.service';
 import { FicheSyntheseService } from './ficheSynthese.service';
 import { SyntheseRecommandationService } from './syntheseRecommandation.service';
 import { ExamenService } from './examen.service';
+import { QuestionnaireService } from './qustionnaire.service';
+import { ParticipationSessionService } from './participation.service';
 
 
 @Injectable({
@@ -45,12 +47,35 @@ export class UowService {
   examens = new ExamenService();
   syntheseRecommandations = new SyntheseRecommandationService();
   situationReserves = new SituationReserveService();
+  questionnaires = new QuestionnaireService();
+  participations = new ParticipationSessionService();
 
 
 
 
   mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
-  etats = ['Finalisée', 'clôture'];
+  etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
 
   constructor() { }
+
+  valideDate(date: Date): Date {
+    date = new Date(date);
+
+    const hoursDiff = date.getHours() - date.getTimezoneOffset() / 60;
+    const minutesDiff = (date.getHours() - date.getTimezoneOffset()) % 60;
+    date.setHours(hoursDiff);
+    date.setMinutes(minutesDiff);
+
+    return date;
+  }
+
+  decoupe(r) {
+    const l = r.split(';');
+
+    l.pop();
+
+    // console.log(l)
+
+    return l;
+  }
 }

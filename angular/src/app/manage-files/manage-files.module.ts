@@ -21,7 +21,8 @@ import { DownloadSheetComponent } from './download-sheet/download-sheet.componen
   ],
   exports: [
     UploadComponent,
-    DownloadSheetComponent
+    DownloadSheetComponent,
+    UploadSelectComponent,
   ],
   entryComponents: [
     DownloadSheetComponent

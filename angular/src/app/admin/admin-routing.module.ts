@@ -10,6 +10,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule), },
+      { path: 'participation-session', loadChildren: () =>
+        import('./participation-session/participation-session.module').then(m => m.ParticipationSessionModule), },
+      { path: 'questionnaire', loadChildren: () => import('./questionnaire/questionnaire.module').then(m => m.QuestionnaireModule), },
+      { path: 'state', loadChildren: () => import('./state/state.module').then(m => m.StateModule), },
       { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canActivate: [AdminGuard]},
       { path: 'pays', loadChildren: () => import('./pays/pays.module').then(m => m.PaysModule)},
       { path: 'synthese', loadChildren: () => import('./synthese/synthese.module').then(m => m.SyntheseModule), },

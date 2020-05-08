@@ -22,6 +22,11 @@
               <!-- <input matInput formControlName="adresse" required> -->
             </mat-form-field>
 
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Discours du président</mat-label>
+              <textarea matInput formControlName="discours" placeholder="Discours du président"></textarea>
+            </mat-form-field>
+
 
             <div class="inputs">
               <mat-form-field appearance="outline">
@@ -42,24 +47,29 @@
             <!-- {{myForm.value | json}} -->
             <!--  -->
             <div class="row justify-content-center" style="margin-bottom: 15px;">
-              
 
-                <app-upload nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
+
+                <app-upload-select nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
                   [propertyOfParent]="conventionPieceTo" [eventSubmitToParent]="conventionPieceFrom"
                   [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload>
-      
-                <app-upload nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
+                </app-upload-select>
+
+                <app-upload-select nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
                   [propertyOfParent]="observationPieceTo" [eventSubmitToParent]="observationPieceFrom"
                   [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload>
-      
-                <app-upload nameBtn="Rapport de suivi de la mise en œuvre" [folderToSaveInServer]="folderToSaveInServer"
+                </app-upload-select>
+
+                <app-upload-select nameBtn="Rapport de suivi de la mise en œuvre" [folderToSaveInServer]="folderToSaveInServer"
                   [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
                   [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload>
-      
-              
+                </app-upload-select>
+
+                <app-upload-select nameBtn="Rapport analytique" [folderToSaveInServer]="folderToSaveInServer"
+                  [propertyOfParent]="analytiquePieceTo" [eventSubmitToParent]="analytiquePieceFrom"
+                  [eventSubmitFromParent]="eventSubmitFromParent">
+                </app-upload-select>
+
+
             </div>
           </div>
         </form>
@@ -76,7 +86,9 @@
     <!--  -->
     <mat-tab label="Rapport" [disabled]='o.id === 0'>
       <ng-template matTabContent>
-        <app-piece-jointes [idTraite]="o.id" [listToParent]="dataFromChild" [listFromParent]="rapportsToChild">
+        <app-piece-jointes [idTraite]="o.id"
+        >
+        <!-- [listToParent]="dataFromChild" [listFromParent]="rapportsToChild" -->
         </app-piece-jointes>
       </ng-template>
     </mat-tab>

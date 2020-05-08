@@ -79,6 +79,20 @@ namespace Admin5.Controllers
             return Ok(list);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> RecommandationByOrganisme()
+        {
+            var list = await _context.Organismes
+                // .Include(e => e.us)
+                // .GroupBy(e => e.RecomOrgs.Label)
+                .Select(e => new { name = e.Label, count = e.RecomOrgs.Count })
+                .ToListAsync()
+                ;
+
+            return Ok(list);
+        }
+
+
         [HttpGet("{idCycle}")]
         public async Task<IActionResult> RecommandationByAxe(int idCycle)
         {

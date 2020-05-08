@@ -12,6 +12,7 @@ import { SheetbottomComponent } from '../sheetbottom/sheetbottom.component';
 import { ActivatedRoute } from '@angular/router';
 import { DetailComponent } from '../detail/detail.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
+import { ArchiveComponent } from '../archive/archive.component';
 
 @Component({
   selector: 'app-list',
@@ -32,18 +33,19 @@ export class ListComponent implements OnInit {
     { columnDef: 'conventionPiece', headName: 'Rapport national' },
     { columnDef: 'observationPiece', headName: `Observations finales` },
     { columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' },
+    { columnDef: 'analytiquePiece', headName: 'Rapport analytique' },
     { columnDef: 'option', headName: '...' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
     return e;
   });
 
-  
 
-  // . Convention/Protocole 
-  // 2. Rapport national   
-  // 3.Observations finales 
-  // 4.Rapport de suivi de la mise en œuvre 
+
+  // . Convention/Protocole
+  // 2. Rapport national
+  // 3.Observations finales
+  // 4.Rapport de suivi de la mise en œuvre
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
   progress = 0;
@@ -51,7 +53,7 @@ export class ListComponent implements OnInit {
   formData = new FormData();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, private bottomSheet: MatBottomSheet, public session: SessionService
-    , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) { 
+    , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
 
       // if (this.session.isPointFocal === false) {
       //   this.columnDefs.push({ columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' })
@@ -114,14 +116,23 @@ export class ListComponent implements OnInit {
     const r = await this.mydialog.openDialog('rapport').toPromise();
     if (r === 'ok') {
       let list = [];
-      o.conventionPiece !== '' ? list.push(o.conventionPiece) : list = list;
-      o.miseOeuvrePiece !== '' ? list.push(o.miseOeuvrePiece) : list = list;
-      o.observationPiece !== '' ? list.push(o.observationPiece) : list = list;
+      o.conventionPiece !== '' ? list.push(...this.uow.decoupe(o.conventionPiece)) : list = list;
+      o.miseOeuvrePiece !== '' ? list.push(...this.uow.decoupe(o.miseOeuvrePiece)) : list = list;
+      o.observationPiece !== '' ? list.push(...this.uow.decoupe(o.observationPiece)) : list = list;
+
 
       this.uow.files.deleteFiles(list, 'traite').subscribe(res => {
         this.uow.traites.delete(o.id).subscribe(() => this.update.next(true));
       });
     }
+  }
+
+  archive(o: Traite) {
+    this.dialog.open(ArchiveComponent, {
+      width: '80vw',
+      disableClose: true,
+      data: { model: o, title: o.nom }
+    });
   }
 
   showPieceJoin2(o: Traite) {

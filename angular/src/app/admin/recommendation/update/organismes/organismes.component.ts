@@ -6,6 +6,7 @@ import { SelectionModel, SelectionChange } from '@angular/cdk/collections';
 import { Organisme } from 'src/app/Models/models';
 import { FormControl } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
+import { SessionService } from 'src/app/shared';
 
 @Component({
   selector: 'app-organismes',
@@ -42,7 +43,7 @@ export class OrganismesComponent implements OnInit {
 
   idOrganisme = 0;
 
-  constructor(private uow: UowService) { }
+  constructor(private uow: UowService, private session: SessionService) { }
 
   ngOnInit() {
     // console.log(this.selection.hasValue());
@@ -73,6 +74,10 @@ export class OrganismesComponent implements OnInit {
     );
 
     this.autoComplete();
+  }
+
+  get isAdmin() {
+    return this.session.isAdmin;
   }
 
   autoComplete() {

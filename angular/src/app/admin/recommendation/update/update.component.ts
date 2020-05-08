@@ -6,6 +6,7 @@ import { Recommendation, Organisme, RecomOrg } from 'src/app/Models/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UowService } from 'src/app/services/uow.service';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-update',
@@ -24,6 +25,13 @@ export class UpdateComponent implements OnInit {
   organes = this.uow.organes.get();
   pays = this.uow.pays.get();
   sousAxes = [];
+
+  folderToSaveInServer = 'recommandation';
+
+  pieceJointeTo = new Subject();
+  pieceJointeFrom = new Subject();
+  //
+  eventSubmitFromParent = new Subject();
   // syntheses = this.uow.syntheses.get();
   o = new Recommendation();
   id = 0;
@@ -35,6 +43,10 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
+    this.pieceJointeFrom.subscribe(r => this.myForm.get('pieceJointe').setValue(r));
+
+    setTimeout(() =>  this.pieceJointeTo.next(this.o.pieceJointe) , 100);
+
     this.id = +this.route.snapshot.paramMap.get('id');
     if (this.id !== 0) {
       this.uow.recommendations.getOne(this.id).subscribe(r => {
@@ -47,10 +59,15 @@ export class UpdateComponent implements OnInit {
         // this.title = 'Modifier Utilisateur';
         this.uow.sousAxes.getByIdAxe(this.o.idAxe).subscribe(s => {
           this.sousAxes = s as any[];
+          setTimeout(() =>  this.pieceJointeTo.next(this.o.pieceJointe) , 100);
           this.createForm();
         });
       });
     }
+  }
+
+  get isAdmin() {
+    return this.session.isAdmin;
   }
 
   createForm() {
@@ -65,6 +82,9 @@ export class UpdateComponent implements OnInit {
       idAxe: [this.o.idAxe, Validators.required],
       idSousAxe: [this.o.idSousAxe, Validators.required],
       etat: [this.o.etat, Validators.required],
+      etatAvancement: [this.o.etatAvancement],
+      observation: [this.o.observation],
+      pieceJointe: [this.o.pieceJointe],
       idPays: [this.o.idPays, Validators.required],
       // idSynthese: [this.o.idSynthese, Validators.required],
     });
@@ -94,6 +114,7 @@ export class UpdateComponent implements OnInit {
     // return;
     if (this.id === 0) {
       this.uow.recommendations.post(recommendation).subscribe((r: Recommendation) => {
+
         const recomOrgs: RecomOrg[] = [];
         this.listOrganisme.map(o => {
           recomOrgs.push({ idOrganisme: o.id, idRecommendation: r.id, date: new Date() } as any);
@@ -115,6 +136,7 @@ export class UpdateComponent implements OnInit {
           };
           this.uow.notifications.post(notif).subscribe(n => {
             this.router.navigateByUrl('/admin/recommendation/list');
+            this.eventSubmitFromParent.next(true);
           });
         });
 
@@ -140,6 +162,7 @@ export class UpdateComponent implements OnInit {
           };
           this.uow.notifications.post(notif).subscribe(n => {
             this.router.navigateByUrl('/admin/recommendation/list');
+            this.eventSubmitFromParent.next(true);
           });
         });
       });

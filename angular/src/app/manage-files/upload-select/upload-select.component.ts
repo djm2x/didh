@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-upload',
+  selector: 'app-upload-select',
   templateUrl: './upload-select.component.html',
   styleUrls: ['./upload-select.component.scss']
 })
@@ -22,7 +22,9 @@ export class UploadSelectComponent implements OnInit {
 
   ngOnInit() {
     this.propertyOfParent.subscribe((r: string) => {
-      console.log(r);
+      if (!r) {
+        return;
+      }
       const l = r.split(';');
 
       l.pop();
@@ -45,7 +47,7 @@ export class UploadSelectComponent implements OnInit {
       // on récupère le i-ème fichier
       const file = files.item(i);
 
-      this.listOfNames.push(this.setFileName(file));
+      this.listOfNames.push(this.setFileName(file) + '0');
       this.sendPropertyOfParent();
 
       this.files.push(file);
@@ -54,11 +56,32 @@ export class UploadSelectComponent implements OnInit {
     }
   }
 
+
+
   setIcon(filaName) {
     const i = filaName.lastIndexOf('.');
     const s = filaName.substring(i + 1);
     // console.log(s);
     return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
+  }
+
+  active(isActive: boolean, name: string) {
+
+
+
+    this.listOfNames.forEach((e, i) => {
+      if (name.includes(e.substring(0, e.length - 2))) {
+
+        let newName = this.listOfNames[i];
+        newName =  newName.substring(0, newName.length - 1);
+
+        this.listOfNames[i] = `${newName}${isActive ? '1' : '0'}`;
+
+      }
+    });
+
+    this.sendPropertyOfParent();
+
   }
 
   remove(name: string) {
@@ -96,12 +119,15 @@ export class UploadSelectComponent implements OnInit {
       propertyOfParent += `${r};`;
     });
 
+    // console.log(this.listOfNames)
+    // console.log(propertyOfParent)
+
     this.eventSubmitToParent.next(propertyOfParent);
   }
 
   async submit() {
-    
-    
+
+
     const formData = new FormData();
 
     this.files.forEach(e => {

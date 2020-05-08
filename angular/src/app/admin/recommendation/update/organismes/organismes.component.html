@@ -37,7 +37,9 @@
           (change)="$event ? check(row) : null"
           (click)="$event.stopPropagation()"
                     [checked]="isSelected(row)"
-                    [aria-label]="checkboxLabel(row)">
+                    [aria-label]="checkboxLabel(row)"
+                    [disabled]="!isAdmin"
+                    >
           </mat-checkbox>
         </td>
       </ng-container>

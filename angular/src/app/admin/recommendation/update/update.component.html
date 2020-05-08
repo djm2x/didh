@@ -8,28 +8,22 @@
         <div class="input">
           <mat-form-field appearance="outline" style="width: 100px;">
             <mat-label>Code</mat-label>
-            <input matInput formControlName="codeRecommendation" required>
+            <input matInput formControlName="codeRecommendation" required [readonly]="!isAdmin">
           </mat-form-field>
 
           <mat-form-field appearance="outline" style="width: 100%; margin-left: 5px;">
             <mat-label>Nom</mat-label>
             <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
-            <input matInput formControlName="nom" required>
+            <input matInput formControlName="nom" required [readonly]="!isAdmin">
           </mat-form-field>
         </div>
-        <mat-form-field appearance="outline" style="width: 100%">
-          <mat-label>Etat</mat-label>
-          <mat-select formControlName="etat">
-            <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+
+
+
         <div class="inputs2">
-
-
-
           <mat-form-field appearance="outline">
             <mat-label>Mecanisme</mat-label>
-            <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
+            <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
             </mat-select>
@@ -37,7 +31,7 @@
 
           <mat-form-field appearance="outline" *ngIf="cycleActive">
             <mat-label>Cycle</mat-label>
-            <mat-select formControlName="idCycle">
+            <mat-select formControlName="idCycle" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
@@ -45,7 +39,7 @@
 
           <mat-form-field appearance="outline" *ngIf="visiteActive">
             <mat-label>Visite</mat-label>
-            <mat-select formControlName="idVisite">
+            <mat-select formControlName="idVisite" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
             </mat-select>
@@ -53,7 +47,7 @@
 
           <mat-form-field appearance="outline" *ngIf="organeActive">
             <mat-label>Organe</mat-label>
-            <mat-select formControlName="idOrgane">
+            <mat-select formControlName="idOrgane" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
@@ -62,7 +56,7 @@
         <div class="inputs2">
           <mat-form-field appearance="outline">
             <mat-label>Axe</mat-label>
-            <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
+            <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
               <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
@@ -70,7 +64,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Sous axe</mat-label>
-            <mat-select formControlName="idSousAxe">
+            <mat-select formControlName="idSousAxe" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
               <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
@@ -79,12 +73,35 @@
         <div class="inputs2">
           <mat-form-field appearance="outline">
             <mat-label>Pays</mat-label>
-            <mat-select formControlName="idPays">
+            <mat-select formControlName="idPays" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ e.nom }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
+
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Etat de mis en oeuvre</mat-label>
+          <mat-select formControlName="etat">
+            <mat-option value="">...</mat-option>
+            <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Etat d'avancement</mat-label>
+          <textarea matInput rows="0" formControlName="etatAvancement"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Observation</mat-label>
+          <textarea matInput rows="0" formControlName="observation"></textarea>
+        </mat-form-field>
+
+        <app-upload nameBtn="Piece Jointe" [folderToSaveInServer]="folderToSaveInServer"
+          [propertyOfParent]="pieceJointeTo" [eventSubmitToParent]="pieceJointeFrom"
+          [eventSubmitFromParent]="eventSubmitFromParent">
+        </app-upload>
 
         <!-- {{myForm.value | json}} -->
         <!--  (eventToParent)="updateListOrganisme($event)  [selectedList]="listOrganisme""-->

@@ -171,6 +171,35 @@ namespace seed
             return modelBuilder;
         }
 
+        public static ModelBuilder Questionnaires(this ModelBuilder modelBuilder)
+        {
+            var id = 1;
+            var list = new[]  { "Droit catégoriel", "Droit thématique" };
+            var faker = new Faker<Questionnaire>(DataSeeding.lang)
+                .CustomInstantiator(f => new Questionnaire { Id = id++ })
+                .RuleFor(o => o.Theme, f => f.PickRandom(list))
+                .RuleFor(o => o.SousTheme, f => $"sous theme {id - 1}")
+                .RuleFor(o => o.PieceJointe, f => $"");
+
+            modelBuilder.Entity<Questionnaire>().HasData(faker.Generate(15));
+
+            return modelBuilder;
+        }
+
+        public static ModelBuilder ParticipationSessions(this ModelBuilder modelBuilder)
+        {
+            var id = 1;
+            var faker = new Faker<ParticipationSession>(DataSeeding.lang)
+                .CustomInstantiator(f => new ParticipationSession { Id = id++ })
+                .RuleFor(o => o.Session, f => $"Session {id -1}")
+                .RuleFor(o => o.Discours, f => $"")
+                .RuleFor(o => o.Documents, f => $"");
+
+            modelBuilder.Entity<ParticipationSession>().HasData(faker.Generate(15));
+
+            return modelBuilder;
+        }
+
         public static ModelBuilder Examens(this ModelBuilder modelBuilder)
         {
             var id = 1;
@@ -386,7 +415,7 @@ namespace seed
         {
             var id = 1;
             var mecanisme = new[] { "Examen périodique universal", "Organes de traités", "Procédure spéciale" };
-            var etat = new[] { "En élaboration", "Finalisée", "En créeation" };
+            var etat = new[] {  "Réalisé", "En cours", "En continue","Non réalisé" };
             var list = new[]
             {
                 "Appui à la Délégation Interministérielle aux Droits de l’Homme (DIDH) pour l’intégration des droits humains dans les politiques publiques",
@@ -406,7 +435,10 @@ namespace seed
                 .RuleFor(o => o.IdOrgane, f => f.Random.Number(1, 6))
                 .RuleFor(o => o.IdAxe, f => f.Random.Number(1, 4))
                 .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
-                .RuleFor(o => o.Etat, f => f.PickRandom(mecanisme))
+                .RuleFor(o => o.Etat, f => f.PickRandom(etat))
+                .RuleFor(o => o.EtatAvancement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+                .RuleFor(o => o.Observation, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+                .RuleFor(o => o.PieceJointe, f => "")
                 // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
                 ;
 

@@ -45,6 +45,8 @@ namespace Admin5.Models
         public virtual DbSet<Examen> Examens { get; set; }
         public virtual DbSet<SituationReserve> SituationReserves { get; set; }
         public virtual DbSet<Pays> Pays { get; set; }
+        public virtual DbSet<Questionnaire> Questionnaires { get; set; }
+        public virtual DbSet<ParticipationSession> ParticipationSessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,17 +58,18 @@ namespace Admin5.Models
                 entity.Property(e => e.Url);
             });
 
-             modelBuilder.Entity<Examen>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Examen>(entity =>
+           {
+               entity.HasKey(e => e.Id);
+               entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.Libelle);
-                entity.Property(e => e.RapportNational);
-                entity.Property(e => e.CompilationHCDH);
-                entity.Property(e => e.ObservationFinale);
-                entity.Property(e => e.RapportMiParcours);
-            });
+               entity.Property(e => e.Libelle);
+               entity.Property(e => e.RapportNational);
+               entity.Property(e => e.Discours);
+               entity.Property(e => e.CompilationHCDH);
+               entity.Property(e => e.ObservationFinale);
+               entity.Property(e => e.RapportMiParcours);
+           });
 
             modelBuilder.Entity<Organisme>(entity =>
             {
@@ -113,8 +116,8 @@ namespace Admin5.Models
                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                entity.Property(e => e.DateRatification);
-
-               entity.Property(e => e.DateRatification);
+               entity.Property(e => e.Discours);
+               entity.Property(e => e.AnalytiquePiece);
                entity.Property(e => e.DateSignature);
                entity.Property(e => e.ConventionPiece);
                entity.Property(e => e.MiseOeuvrePiece);
@@ -233,15 +236,15 @@ namespace Admin5.Models
                 ;
             });
 
-             modelBuilder.Entity<Organe>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-                entity.Property(e => e.Label);
-                entity.HasMany(d => d.Recommendations).WithOne(p => p.Organe).HasForeignKey(d => d.IdOrgane)
-                // .OnDelete(DeleteBehavior.Cascade)
-                ;
-            });
+            modelBuilder.Entity<Organe>(entity =>
+           {
+               entity.HasKey(e => e.Id);
+               entity.Property(e => e.Id).ValueGeneratedOnAdd();
+               entity.Property(e => e.Label);
+               entity.HasMany(d => d.Recommendations).WithOne(p => p.Organe).HasForeignKey(d => d.IdOrgane)
+               // .OnDelete(DeleteBehavior.Cascade)
+               ;
+           });
 
             modelBuilder.Entity<Axe>(entity =>
             {
@@ -294,7 +297,7 @@ namespace Admin5.Models
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
+                entity.Property(e => e.Discours);
                 entity.Property(e => e.Date);
                 entity.Property(e => e.LienRapport).IsRequired(false);
                 entity.Property(e => e.LienUpload).IsRequired(false);
@@ -321,6 +324,8 @@ namespace Admin5.Models
                 .Notifications()
                 .RecomOrgs()
                 .FicheSyntheses()
+                .Questionnaires()
+                .ParticipationSessions()
                 .Examens()
             ;
 

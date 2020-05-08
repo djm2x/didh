@@ -22,7 +22,9 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.propertyOfParent.subscribe((r: string) => {
-      console.log(r);
+      if (!r) {
+        return;
+      }
       const l = r.split(';');
 
       l.pop();
@@ -100,8 +102,8 @@ export class UploadComponent implements OnInit {
   }
 
   async submit() {
-    
-    
+
+
     const formData = new FormData();
 
     this.files.forEach(e => {

@@ -36,17 +36,17 @@ namespace Admin5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-             services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", builder =>
-                {
-                    builder
-                    // .WithOrigins ("http://localhost:4200")
-                    .AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                });
-            });
+            services.AddCors(options =>
+           {
+               options.AddPolicy("CorsPolicy", builder =>
+               {
+                   builder
+                   // .WithOrigins ("http://localhost:4200")
+                   .AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+               });
+           });
             //
             services.AddControllers().AddNewtonsoftJson(options =>
             {
@@ -93,15 +93,15 @@ namespace Admin5
            });
             //auth
 
-           
+
 
             services.AddDbContext<AdminContext>(options =>
             {
-                // options.UseSqlServer(Configuration.GetConnectionString("db"));
+                // options.UseSqlServer(Configuration.GetConnectionString("asus"));
                 options.UseSqlite(Configuration.GetConnectionString("sqlite"));
             });
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,18 +131,22 @@ namespace Admin5
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Use(async (context, next) =>
+            else
             {
-                await next();
-
-                if (context.Response.StatusCode == 404
-                    && !Path.HasExtension(context.Request.Path.Value))
+                app.Use(async (context, next) =>
                 {
-                    context.Request.Path = "/index.html";
                     await next();
-                }
-            });
+
+                    if (context.Response.StatusCode == 404
+                        && !Path.HasExtension(context.Request.Path.Value))
+                    {
+                        context.Request.Path = "/index.html";
+                        await next();
+                    }
+                });
+            }
+
+
             app.UseRouting();
 
             app.UseCors("CorsPolicy");

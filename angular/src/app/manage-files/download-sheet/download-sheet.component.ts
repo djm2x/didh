@@ -15,18 +15,25 @@ export class DownloadSheetComponent implements OnInit {
     , @Inject(MAT_BOTTOM_SHEET_DATA) public data: any, @Inject('BASE_URL') public url: string) { }
 
   ngOnInit() {
+
     const l = this.data.fileName.split(';');
 
     l.pop();
 
     this.folder = this.data.folder;
+
+    console.log(l)
     this.list = l;
   }
 
-  async openLink(fileName/*event: MouseEvent*/) {
+  async openLink(e: string/*event: MouseEvent*/) {
     // this.bottomSheetRef.dismiss();
     // console.log(p);
-    const url = `${this.url}/${this.folder}/${fileName}`;
+    const lastLettre = +e.substring(e.length - 1, e.length);
+
+    e = isNaN(lastLettre) ? e : e.substring(0, e.length - 1);
+
+    const url = `${this.url}/${this.folder}/${e}`;
     window.open(url);
     // try {
     //   await this.uow.rapports.download(p).toPromise();
@@ -35,6 +42,20 @@ export class DownloadSheetComponent implements OnInit {
     // }
 
     // event.preventDefault();
+  }
+
+  show(e: string) {
+    if (e === '') {
+      return false;
+    }
+
+    const lastLettre = +e.substring(e.length - 1, e.length);
+
+    if (isNaN(lastLettre)) {
+      return true;
+    }
+
+    return lastLettre === 1;
   }
 
 }

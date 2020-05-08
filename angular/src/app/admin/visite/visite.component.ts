@@ -1,7 +1,7 @@
 import { SessionService } from './../../shared/session.service';
 import { Notification, Visite } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
 import { merge } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
@@ -10,6 +10,8 @@ import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { ActivatedRoute } from '@angular/router';
 import { DetailComponent } from './detail/detail.component';
+import { ArchiveComponent } from './archive/archive.component';
+import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 
 @Component({
   selector: 'app-visite',
@@ -41,7 +43,7 @@ export class VisiteComponent implements OnInit {
   message: any;
   formData = new FormData();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , private snack: SnackbarService, @Inject('BASE_URL') public url: string
+    , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService) { }
 
   ngOnInit() {
@@ -106,65 +108,36 @@ export class VisiteComponent implements OnInit {
   add() {
     this.openDialog(new Visite(), 'Ajouter Procédure spéciale').subscribe(result => {
       if (result) {
-        // then upload the visite object
-        this.uow.visites.post(result.model).subscribe((r: Visite) => {
-          // console.log(r);
-          // upload file first
-          console.log(result.file);
-          if (!result.file) {
-            this.update.next(true);
-          } else {
-            this.postFile(r, result.file);
-          }
-
-          const notif: Notification = {
-            id: 0,
-            date: new Date(),
-            destinataire: '',
-            idConcerner: r.id,
-            idOrganisme: this.session.user.idOrganisme,
-            message: 'Nouvelle Procédure spéciale a été ajouter',
-            priorite: 1,
-            tableConcerner: 'visite',
-            vu: false
-          };
-          this.uow.notifications.post(notif).subscribe(n => {
-            // this.router.navigateByUrl('/admin/recommendation/list');
-          });
+        const notif: Notification = {
+          id: 0,
+          date: new Date(),
+          destinataire: '',
+          idConcerner: result.id,
+          idOrganisme: this.session.user.idOrganisme,
+          message: 'Nouvelle Procédure spéciale a été ajouter',
+          priorite: 1,
+          tableConcerner: 'visite',
+          vu: false
+        };
+        this.uow.notifications.post(notif).subscribe(n => {
         });
+
+        this.update.next(true);
       }
+    });
+  }
+
+  archive(o: Visite) {
+    this.dialog.open(ArchiveComponent, {
+      width: '80vw',
+      disableClose: true,
+      data: { model: o, title: o.mandat }
     });
   }
 
   edit(o: Visite) {
     this.openDialog(o, 'Modifier Procédure spéciale').subscribe((result: any) => {
       if (result) {
-        console.log(result);
-        //
-        const visite = result.model as Visite;
-        const file = result.file as File;
-        if (file) {
-          this.formData = new FormData();
-          this.formData.append(`${file.lastModified}_${file.name}`, file);
-          visite.lienUpload = `${file.lastModified}_${file.name}`;
-          // delete old file if existe
-          this.uow.files.deleteFile(visite.id, 'visite').subscribe();
-          this.uow.visites.put(visite.id, visite).subscribe((r: Visite) => {
-            // insert new file
-            this.uow.files.postFile(this.formData).subscribe(() => this.update.next(true));
-          });
-        } else {
-          // there no file to upload
-          // just for checking if file is deleted and there is no upload
-          if (visite.lienUpload === '') {
-            this.uow.files.deleteFile(visite.id, 'visite').subscribe();
-          }
-
-          this.uow.visites.put(visite.id, visite).subscribe((r: Visite) => {
-            this.update.next(true);
-          });
-        }
-
         const notif: Notification = {
           id: 0,
           date: new Date(),
@@ -176,9 +149,9 @@ export class VisiteComponent implements OnInit {
           tableConcerner: 'visite',
           vu: false
         };
-        this.uow.notifications.post(notif).subscribe(n => {
-          // this.router.navigateByUrl('/admin/recommendation/list');
-        });
+
+        this.uow.notifications.post(notif).subscribe(n => { });
+        this.update.next(true);
       }
     });
   }
@@ -186,38 +159,39 @@ export class VisiteComponent implements OnInit {
   async delete(o: Visite) {
     const r = await this.mydialog.openDialog('Procédure spéciale').toPromise();
     if (r === 'ok') {
-      console.log(o.lienUpload);
-      this.uow.files.deleteFiles([o.lienUpload], 'visite').subscribe(r => {
-        this.uow.visites.delete(o.id).subscribe(() => this.update.next(true));
+      // console.log(o);
+      let list = [];
+      o.lienUpload !== '' ? list.push(...this.uow.decoupe(o.lienUpload)) : list = list;
+
+      this.uow.files.deleteFiles(list, 'visite').subscribe(res => {
+        this.uow.examens.delete(o.id).subscribe(() => this.update.next(true));
       });
     }
   }
 
-  postFile(visite, file: File) {
-    this.formData = new FormData();
+  // postFile(visite, file: File) {
+  //   this.formData = new FormData();
 
-    this.formData.append(`${file.lastModified}_${file.name}`, file);
-    this.uow.files.postFile(this.formData).subscribe((event: any) => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress = Math.round(100 * event.loaded / event.total);
-        console.log(this.progress);
-      } else if (event.type === HttpEventType.Response) {
-        this.message = event.body.toString();
-        console.log(this.message);
-        console.log(event);
-      } else {
-        visite.lienUpload = event.fileName; // `${visite.id}_${file.name}`;
-        this.uow.visites.put(visite.id, visite).subscribe(rs => this.update.next(true));
-      }
-    });
-  }
+  //   this.formData.append(`${file.lastModified}_${file.name}`, file);
+  //   this.uow.files.postFile(this.formData).subscribe((event: any) => {
+  //     if (event.type === HttpEventType.UploadProgress) {
+  //       this.progress = Math.round(100 * event.loaded / event.total);
+  //       console.log(this.progress);
+  //     } else if (event.type === HttpEventType.Response) {
+  //       this.message = event.body.toString();
+  //       console.log(this.message);
+  //       console.log(event);
+  //     } else {
+  //       visite.lienUpload = event.fileName; // `${visite.id}_${file.name}`;
+  //       this.uow.visites.put(visite.id, visite).subscribe(rs => this.update.next(true));
+  //     }
+  //   });
+  // }
 
-  download(o: Visite) {
-    // const p =  this.uow.files.download(o.lienUpload).toPromise();
-    // p.then().catch(e => console.warn(e));
-
-    const url = `${this.url}/visite/${o.lienUpload}`;
-    window.open(url);
+  showPieceJoin(fileName) {
+    // const url = `${this.url}/examen/${fileName}`;
+    // window.open(url);
+    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'examen'}});
   }
 
 }
