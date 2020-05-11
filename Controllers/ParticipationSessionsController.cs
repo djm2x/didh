@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
+using System.Linq;
+using Admin5.Providers;
 
 namespace Admin5.Controllers
 {
@@ -11,6 +13,26 @@ namespace Admin5.Controllers
     {
         public ParticipationSessionsController(AdminContext context) : base(context)
         { }
+
+        [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{session}")]
+        public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, string session)
+        {
+            var query = _context.ParticipationSessions
+               .Where(e => session == "*" ? true : e.Session.Contains(session))
+               ;
+
+            int count = await query.CountAsync();
+
+            var list = await query.OrderByName<ParticipationSession>(sortBy, sortDir == "desc")
+                .Skip(startIndex)
+                .Take(pageSize)
+                .ToListAsync()
+            ;
+
+
+
+            return Ok(new { list = list, count = count });
+        }
         
     }
 }

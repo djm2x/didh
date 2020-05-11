@@ -15,8 +15,12 @@ export class UpdateComponent implements OnInit {
   title = '';
 
   folderToSaveInServer = 'visite';
+
   lienUploadTo = new Subject();
   lienUploadFrom = new Subject();
+  //
+  discoursTo = new Subject();
+  discoursFrom = new Subject();
   //
   eventSubmitFromParent = new Subject();
 
@@ -28,9 +32,11 @@ export class UpdateComponent implements OnInit {
     this.title = this.data.title;
     this.createForm();
 
+    this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.lienUploadFrom.subscribe(r => this.myForm.get('lienUpload').setValue(r));
 
     setTimeout(() => {
+      this.lienUploadTo.next(this.o.lienUpload);
       this.lienUploadTo.next(this.o.lienUpload);
     }, 100);
   }

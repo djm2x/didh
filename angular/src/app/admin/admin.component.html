@@ -45,15 +45,12 @@
       <mat-list-item [routerLink]="['/admin/home']" routerLinkActive="router-link-active">
         <mat-icon>home</mat-icon>&nbsp;<span>Accueil</span>
       </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item [routerLink]="['/admin/state']" routerLinkActive="router-link-active">
-        <mat-icon>equalizer</mat-icon>&nbsp;<span>Diagrammes et statistiques</span>
-      </mat-list-item>
+
 
 
 
       <mat-accordion>
-        <mat-expansion-panel expanded  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Mecanisme
@@ -85,7 +82,7 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="['/admin/participation-session']" routerLinkActive="router-link-active">
-          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Participation au session des DI</span>
+          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Participation au session des DH</span>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="['/admin/questionnaire']" routerLinkActive="router-link-active">
@@ -96,6 +93,10 @@
         <mat-list-item [routerLink]="['/admin/synthese']" routerLinkActive="router-link-active"
           *ngIf="!session.isPointFocal">
           <mat-icon>thumbs_up_down</mat-icon>&nbsp;<span>Synthèse</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/state']" routerLinkActive="router-link-active">
+          <mat-icon>equalizer</mat-icon>&nbsp;<span>Diagrammes et statistiques</span>
         </mat-list-item>
         <mat-divider *ngIf="!session.isPointFocal"></mat-divider>
 

@@ -14,12 +14,16 @@
           <input matInput formControlName="libelle" required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Discours du président</mat-label>
           <textarea matInput formControlName="discours" placeholder="Discours du président"></textarea>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <div class="row justify-content-center" style="margin-bottom: 15px;">
+          <app-upload-select nameBtn="Discours du président" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
 
           <app-upload-select nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="rapportNationalTo" [eventSubmitToParent]="rapportNationalFrom"

@@ -66,11 +66,22 @@
         </ng-container>
         <!--  -->
         <ng-container [matColumnDef]="columnDefs[4].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{session.isPointFocal === false ? columnDefs[4].headName : ''}}</th>
+          <th mat-header-cell *matHeaderCellDef>{{columnDefs[4].headName}}</th>
           <td mat-cell *matCellDef="let row">
             <button *ngIf="session.isPointFocal === false" class="center" mat-icon-button
-              [disabled]="row.analytiquePiece === null || row.analytiquePiece === ''" [matTooltip]="row.analytiquePiece" color="accent"
+              [disabled]="row.analytiquePiece === ''" [matTooltip]="row.analytiquePiece" color="accent"
               (click)="showPieceJoin(row.analytiquePiece)">
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[5].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{columnDefs[5].headName}}</th>
+          <td mat-cell *matCellDef="let row">
+            <button class="center" mat-icon-button
+              [disabled]="row.discours === null || row.discours === ''" [matTooltip]="row.discours" color="accent"
+              (click)="showPieceJoin(row.discours)">
               <mat-icon>cloud_download</mat-icon>
             </button>
           </td>

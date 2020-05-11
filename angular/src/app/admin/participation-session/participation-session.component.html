@@ -1,10 +1,45 @@
 <div class="host">
-  <app-title title="Participation au session des DI"></app-title>
+  <app-title title="Participation au session des DH"></app-title>
   <div class="right">
     <button class="mt-3" style="margin: 20px 0" mat-raised-button color="primary" (click)="add()">
       <mat-icon>add</mat-icon>
       Participation
     </button>
+  </div>
+
+  <div class="expension">
+    <mat-accordion>
+      <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>search</mat-icon>
+            <p>Recherche</p>
+          </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-divider>
+        </mat-divider>
+        <div class="row p-2">
+          <mat-form-field appearance="outline" class="col-md-6">
+            <mat-label>Session</mat-label>
+            <input matInput [formControl]="sessionF" required>
+          </mat-form-field>
+        </div>
+
+        <div class="right">
+          <button mat-raised-button color="primary" (click)="search()" [disabled]="sessionF.value === ''">
+            <mat-icon>search</mat-icon>
+            Rechercher
+          </button>
+          &nbsp;
+          <button mat-raised-button (click)="reset()">
+            <mat-icon>refresh</mat-icon>
+            Réinitialiser
+          </button>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 
   <div class="example-container mat-elevation-z8">

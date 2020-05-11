@@ -31,7 +31,7 @@ export class VisiteComponent implements OnInit {
     { columnDef: 'mandat', headName: 'MANDAT' },
     { columnDef: 'date', headName: 'Date de la visite' },
     { columnDef: 'lienUpload', headName: 'Rapport de la visite' },
-    // { columnDef: 'lienRapport', headName: 'LIEN EXTERNE' },
+    { columnDef: 'discours', headName: 'Discours du président' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
@@ -162,6 +162,7 @@ export class VisiteComponent implements OnInit {
       // console.log(o);
       let list = [];
       o.lienUpload !== '' ? list.push(...this.uow.decoupe(o.lienUpload)) : list = list;
+      o.discours !== '' ? list.push(...this.uow.decoupe(o.discours)) : list = list;
 
       this.uow.files.deleteFiles(list, 'visite').subscribe(res => {
         this.uow.examens.delete(o.id).subscribe(() => this.update.next(true));

@@ -37,7 +37,7 @@ export class QuestionnaireComponent implements OnInit {
   columnDefs = [
     { columnDef: 'theme', headName: 'Theme' },
     { columnDef: 'sousTheme', headName: 'Sous theme' },
-    { columnDef: 'pieceJointe', headName: 'Piece Jointe' },
+    { columnDef: 'pieceJointe', headName: 'Documents' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();

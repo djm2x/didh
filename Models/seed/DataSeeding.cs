@@ -150,7 +150,9 @@ namespace seed
                 // .RuleFor(o => o.Mandat, f => $"Mandat-{id}")
                 .RuleFor(o => o.Date, (f, u) => f.Date.Past())
                 .RuleFor(o => o.LienRapport, f => "")
-                .RuleFor(o => o.LienUpload, f => "");
+                .RuleFor(o => o.LienUpload, f => "")
+                .RuleFor(o => o.Discours, f => $"")
+                ;
 
             modelBuilder.Entity<Visite>().HasData(faker.Generate(DataSeeding.i));
 
@@ -210,6 +212,7 @@ namespace seed
                 .RuleFor(o => o.CompilationHCDH, f => $"")
                 .RuleFor(o => o.ObservationFinale, f => $"")
                 .RuleFor(o => o.RapportMiParcours, f => $"")
+                .RuleFor(o => o.Discours, f => $"")
                 ;
 
             modelBuilder.Entity<Examen>().HasData(faker.Generate(6));
@@ -309,6 +312,8 @@ namespace seed
                 .RuleFor(o => o.ConventionPiece, "")
                 .RuleFor(o => o.MiseOeuvrePiece, "")
                 .RuleFor(o => o.ObservationPiece, "")
+                .RuleFor(o => o.Discours, f => $"")
+                .RuleFor(o => o.AnalytiquePiece, f => $"")
 
                 ;
             modelBuilder.Entity<Traite>().HasData(faker.Generate(DataSeeding.i));
@@ -366,6 +371,7 @@ namespace seed
                 .RuleFor(o => o.Reference, f => f.Internet.Url())
                 .RuleFor(o => o.IdTraite, f => f.Random.Number(1, 100))
                 .RuleFor(o => o.PieceJointe, f => "")
+                
                 ;
             modelBuilder.Entity<Rapport>().HasData(faker.Generate(DataSeeding.i));
 

@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
     { columnDef: 'observationPiece', headName: `Observations finales` },
     { columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' },
     { columnDef: 'analytiquePiece', headName: 'Rapport analytique' },
+    { columnDef: 'discours', headName: 'Discours du président' },
     { columnDef: 'option', headName: '...' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
@@ -119,6 +120,8 @@ export class ListComponent implements OnInit {
       o.conventionPiece !== '' ? list.push(...this.uow.decoupe(o.conventionPiece)) : list = list;
       o.miseOeuvrePiece !== '' ? list.push(...this.uow.decoupe(o.miseOeuvrePiece)) : list = list;
       o.observationPiece !== '' ? list.push(...this.uow.decoupe(o.observationPiece)) : list = list;
+      o.discours !== '' ? list.push(...this.uow.decoupe(o.discours)) : list = list;
+      o.analytiquePiece !== '' ? list.push(...this.uow.decoupe(o.analytiquePiece)) : list = list;
 
 
       this.uow.files.deleteFiles(list, 'traite').subscribe(res => {

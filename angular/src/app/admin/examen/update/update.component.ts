@@ -14,21 +14,14 @@ export class UpdateComponent implements OnInit {
   myForm: FormGroup;
   o: Examen;
   title = '';
-  // formData = new FormData();
-  // file: File;
-  // // progress: number;
-  // // message: any;
-  // filename = 'test';
-  // iconFile = 'test';
-  // rapportNational: File;
-  // observationFinale: File;
-  // pieceJointeToDelete = [];
-  //
 
   folderToSaveInServer = 'examen';
 
   rapportMiParcoursTo = new Subject();
   rapportMiParcoursFrom = new Subject();
+  //
+  discoursTo = new Subject();
+  discoursFrom = new Subject();
   //
   compilationHCDHTo = new Subject();
   compilationHCDHFrom = new Subject();
@@ -53,6 +46,7 @@ export class UpdateComponent implements OnInit {
     this.rapportNationalFrom.subscribe(r => this.myForm.get('rapportNational').setValue(r));
     this.compilationHCDHFrom.subscribe(r => this.myForm.get('compilationHCDH').setValue(r));
     this.observationFinaleFrom.subscribe(r => this.myForm.get('observationFinale').setValue(r));
+    this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.rapportMiParcoursFrom.subscribe(r => this.myForm.get('rapportMiParcours').setValue(r));
 
     setTimeout(() => {
@@ -60,6 +54,7 @@ export class UpdateComponent implements OnInit {
       this.compilationHCDHTo.next(this.o.compilationHCDH);
       this.observationFinaleTo.next(this.o.observationFinale);
       this.rapportMiParcoursTo.next(this.o.rapportMiParcours);
+      this.discoursTo.next(this.o.discours);
     }, 100);
   }
 

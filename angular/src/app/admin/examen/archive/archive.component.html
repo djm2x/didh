@@ -8,6 +8,15 @@
   <div class="content">
     <div mat-dialog-content>
       <div class="row">
+
+        <div class="col">
+          <p style="font-weight:bold;">Discours du président</p>
+          <mat-list role="list">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.discours)">
+              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
         <div class="col">
           <p style="font-weight:bold;">Rapport National</p>
           <mat-list role="list">

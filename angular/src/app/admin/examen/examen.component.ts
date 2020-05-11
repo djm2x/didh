@@ -32,6 +32,7 @@ export class ExamenComponent implements OnInit {
     { columnDef: 'compilationHCDH', headName: 'Compilation HCDH' },
     { columnDef: 'observationFinale', headName: 'Observations finales' },
     { columnDef: 'rapportMiParcours', headName: 'Rapport mi-parcours' },
+    { columnDef: 'discours', headName: 'Discours du président' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
@@ -120,6 +121,7 @@ export class ExamenComponent implements OnInit {
       o.compilationHCDH !== '' ? list.push(...this.uow.decoupe(o.compilationHCDH)) : list = list;
       o.observationFinale !== '' ? list.push(...this.uow.decoupe(o.observationFinale)) : list = list;
       o.rapportMiParcours !== '' ? list.push(...this.uow.decoupe(o.rapportMiParcours)) : list = list;
+      o.discours !== '' ? list.push(...this.uow.decoupe(o.discours)) : list = list;
 
       this.uow.files.deleteFiles(list, 'examen').subscribe(res => {
         this.uow.examens.delete(o.id).subscribe(() => this.update.next(true));

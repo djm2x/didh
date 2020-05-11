@@ -10,6 +10,7 @@ import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { ActivatedRoute } from '@angular/router';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { startWith } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -40,6 +41,8 @@ export class ParticipationSessionComponent implements OnInit {
   progress = 0;
   message: any;
   formData = new FormData();
+  panelOpenState = false;
+  sessionF = new FormControl('');
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , @Inject('BASE_URL') public url: string
     , public session: SessionService, private bottomSheet: MatBottomSheet) { }
@@ -58,13 +61,23 @@ export class ParticipationSessionComponent implements OnInit {
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
+          this.sessionF.value === '' ? '*' : this.sessionF.value,
         );
       }
     );
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir) {
-    this.uow.participations.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
+  search() {
+    this.update.next(true);
+  }
+
+  reset() {
+    this.sessionF.setValue('');
+    this.update.next(true);
+  }
+
+  getPage(startIndex, pageSize, sortBy, sortDir, session) {
+    this.uow.participations.getAll(startIndex, pageSize, sortBy, sortDir, session).subscribe(
       (r: any) => {
         console.log(r.list);
         this.dataSource = r.list;

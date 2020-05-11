@@ -19,29 +19,16 @@ export class UpdateComponent implements OnInit {
   o = new Traite();
   id = 0;
   // title = typeof (Rapport).name;
-  // files: File[] = [];
-  // // progress: number;
-  // // message: any;
-  // filename = 'Choisie un rapport';
-  // iconFile = '';
-  // pieceJointe = '';
-  // pieceJointeToShow: string[] = [];
-  // pieceJointeToDelete = [];
-  // formData = new FormData();
-  // rapportsToChild = new EventEmitter();
-  // dataFromChild = new EventEmitter();
-  // rapports = [];
-  // rapportToDelete = [];
-  // //
-  // conventionPiece: File;
-  // miseOeuvrePiece: File;
-  // observationPiece: File;
+
 
   folderToSaveInServer = 'traite';
 
   conventionPieceTo = new Subject();
   conventionPieceFrom = new Subject();
   //
+  discoursTo = new Subject();
+  discoursFrom = new Subject();
+
   observationPieceTo = new Subject();
   observationPieceFrom = new Subject();
   //
@@ -74,6 +61,7 @@ export class UpdateComponent implements OnInit {
         this.createForm();
 
         setTimeout(() => {
+          this.discoursTo.next(this.o.discours);
           this.conventionPieceTo.next(this.o.conventionPiece);
           this.observationPieceTo.next(this.o.observationPiece);
           this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
@@ -83,6 +71,7 @@ export class UpdateComponent implements OnInit {
     }
 
     this.conventionPieceFrom.subscribe(r => this.myForm.get('conventionPiece').setValue(r));
+    this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.observationPieceFrom.subscribe(r => this.myForm.get('observationPiece').setValue(r));
     this.miseOeuvrePieceFrom.subscribe(r => this.myForm.get('miseOeuvrePiece').setValue(r));
     this.analytiquePieceFrom.subscribe(r => this.myForm.get('analytiquePiece').setValue(r));

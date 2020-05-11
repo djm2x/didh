@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "f": "cd angular && ng serve --port 4201",
+    "f": "cd angular && ng serve --port 4204",
     "m": "dotnet ef migrations add first && dotnet ef database drop -f && dotnet ef database update && dotnet watch run",
     "b": "dotnet watch run",
     "f-p": "cd angular && ng build --prod",

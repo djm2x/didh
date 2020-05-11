@@ -11,4 +11,8 @@ export class ParticipationSessionService  extends SuperService<ParticipationSess
     super('ParticipationSessions');
   }
 
+  getAll(startIndex, pageSize, sortBy, sortDir, session) {
+    return this.http.get(`${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${session}`);
+  }
+
 }

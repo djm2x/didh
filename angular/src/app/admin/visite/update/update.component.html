@@ -33,6 +33,11 @@
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
+          <app-upload-select nameBtn="Discours du président" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
+
         <mat-form-field appearance="outline">
           <mat-label>Lien externe</mat-label>
           <input matInput formControlName="lienRapport">
