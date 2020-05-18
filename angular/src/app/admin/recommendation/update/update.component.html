@@ -88,7 +88,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline" style="width: 100%;" *ngIf="showEtatDavancement">
           <mat-label>Etat d'avancement</mat-label>
           <textarea matInput rows="0" formControlName="etatAvancement"></textarea>
         </mat-form-field>

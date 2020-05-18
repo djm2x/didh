@@ -1,6 +1,7 @@
 import { FileUploadService } from './../../services/file.upload.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
+import { SnackBarService } from 'src/app/loader/snack-bar.service';
 
 @Component({
   selector: 'app-upload-select',
@@ -18,7 +19,7 @@ export class UploadSelectComponent implements OnInit {
   @Input() eventSubmitToParent = new Subject();
   @Input() eventSubmitFromParent = new Subject();
 
-  constructor(private filesService: FileUploadService) { }
+  constructor(private filesService: FileUploadService, public snackBar: SnackBarService) { }
 
   ngOnInit() {
     this.propertyOfParent.subscribe((r: string) => {
@@ -141,7 +142,9 @@ export class UploadSelectComponent implements OnInit {
 
     if (formData) {
       await this.filesService.uploadFiles(formData, this.folderToSaveInServer).toPromise();
+      this.snackBar.notifyOk(200, 'fichier(s) uploade avec succès');
       await this.filesService.deleteFiles(this.listToDelete, this.folderToSaveInServer).toPromise();
+
     }
   }
 

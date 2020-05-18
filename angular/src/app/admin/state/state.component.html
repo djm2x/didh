@@ -1,6 +1,28 @@
 <div class="host">
   <div class="row">
-    <div class="col-md-6">
+    <!--  -->
+    <div class="col-md-12 expension">
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>add_alert</mat-icon>
+              <p>Notification</p>
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-divider>
+          </mat-divider>
+          <div class="row m-2">
+            <div class="col-md-12">
+              <app-notification></app-notification>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-md-12">
       <!-- <app-calendar #myCalendar [testAction]="reactionTest" (dateSelected)="dateSelected($event)"></app-calendar> -->
       <!-- <app-agenda></app-agenda> -->
       <app-bar-convention></app-bar-convention>
@@ -9,9 +31,7 @@
       <app-bar-one></app-bar-one>
       <app-bar-two></app-bar-two>
     </div>
-    <div class="col-md-6">
-      <app-notification></app-notification>
-    </div>
+
   </div>
 
 

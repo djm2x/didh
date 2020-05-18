@@ -51,6 +51,7 @@ export class ListComponent implements OnInit {
   organes = this.uow.organes.get();
   pays = this.uow.pays.get();
   cycles = [];
+  etats = this.uow.etats;
   myForm: FormGroup;
   //
   displayedColumns = this.columnDefs.map(e => e.columnDef);
@@ -127,6 +128,7 @@ export class ListComponent implements OnInit {
       idVisite: this.o.idVisite,
       idAxe: this.o.idAxe,
       nom: this.o.nom,
+      etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idCycle,
       startIndex: this.o.startIndex,
@@ -238,6 +240,7 @@ export class ListComponent implements OnInit {
       this.myForm.get('idOrgane').value.toString() === '0' &&
       this.myForm.get('idPays').value.toString() === '0' &&
       this.myForm.get('nom').value.toString() === '' &&
+      this.myForm.get('etat').value.toString() === '' &&
       this.myForm.get('idVisite').value.toString() === '0' &&
       this.myForm.get('mecanisme').value.toString() === '') {
       return true;
@@ -256,6 +259,7 @@ class Model {
   idOrgane = 0;
   idVisite = 0;
   nom = '';
+  etat = '';
   idPays = 0;
   startIndex = 0;
   pageSize = 10;

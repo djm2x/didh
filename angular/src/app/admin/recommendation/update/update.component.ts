@@ -70,6 +70,14 @@ export class UpdateComponent implements OnInit {
     return this.session.isAdmin;
   }
 
+  get showEtatDavancement() {
+    if ((this.myForm.get('etat').value as string).includes('cour') || (this.myForm.get('etat').value as string).includes('continue')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   createForm() {
     this.myForm = this.fb.group({
       id: this.o.id,

@@ -192,7 +192,7 @@ export class VisiteComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'examen'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'visite'}});
   }
 
 }

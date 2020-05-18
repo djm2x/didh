@@ -67,8 +67,8 @@
             <mat-icon>book</mat-icon>&nbsp;<span>Organes de Traités</span>
           </mat-list-item>
           <mat-divider></mat-divider>
-
-          <mat-list-item *ngIf="!session.isPointFocal" [routerLink]="['/admin/visite']"
+          <!-- *ngIf="!session.isPointFocal" -->
+          <mat-list-item  [routerLink]="['/admin/visite']"
             routerLinkActive="router-link-active">
             <mat-icon>check_circle_outline</mat-icon>&nbsp;<span>Procédures spéciales</span>
           </mat-list-item>

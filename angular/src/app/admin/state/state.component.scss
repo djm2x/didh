@@ -46,9 +46,29 @@ mat-card {
   }
 }
 
-.row {
-  margin-top: 10px;
-}
+// .row {
+//   margin-top: 10px;
+// }
 .host {
   margin: 1em !important;
+}
+
+.expension {
+  margin: 20px 0;
+}
+
+.right {
+  margin: 0 20px 20px;
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 0 0 10px;
+  }
+
+  mat-icon {
+    margin-top: 5px;
+  }
 }

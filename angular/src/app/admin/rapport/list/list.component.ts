@@ -146,7 +146,7 @@ export class ListComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'organe'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'traite'}});
   }
 
   // activeDownload(o: Traite) {

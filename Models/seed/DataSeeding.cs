@@ -176,7 +176,7 @@ namespace seed
         public static ModelBuilder Questionnaires(this ModelBuilder modelBuilder)
         {
             var id = 1;
-            var list = new[]  { "Droit catégoriel", "Droit thématique" };
+            var list = new[]  { "Droits catégoriels", "Droits thématiques" };
             var faker = new Faker<Questionnaire>(DataSeeding.lang)
                 .CustomInstantiator(f => new Questionnaire { Id = id++ })
                 .RuleFor(o => o.Theme, f => f.PickRandom(list))

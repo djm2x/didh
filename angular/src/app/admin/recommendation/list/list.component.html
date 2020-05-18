@@ -88,6 +88,14 @@
                 <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
               </mat-select>
             </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Etat de mis en oeuvre</mat-label>
+              <mat-select formControlName="etat">
+                <mat-option value="">...</mat-option>
+                <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="inputs2">
 

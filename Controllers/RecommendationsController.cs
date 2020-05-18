@@ -150,6 +150,7 @@ namespace Admin5.Controllers
                 // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
                 .Where(e => model.IdOrganisme == 0  ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
                 .Where(e => model.Nom == "" ? true : e.Nom.ToLower().Contains(model.Nom.ToLower()) )
+                .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()) )
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
@@ -336,6 +337,7 @@ namespace Admin5.Controllers
         public int IdCycle { get; set; }
         public int IdPays { get; set; }
         public string Nom { get; set; }
+        public string Etat { get; set; }
         public int IdOrgane { get; set; }
         public int IdVisite { get; set; }
         public string Mecanisme { get; set; }
@@ -347,7 +349,7 @@ namespace Admin5.Controllers
         public bool IsAllEmpty()
         {
             if (IdSousAxe == 0 && IdOrganisme == 0  && IdOrgane == 0 && IdVisite == 0
-                && IdAxe == 0 && IdCycle == 0 && Mecanisme == "" && Nom == "")
+                && IdAxe == 0 && IdCycle == 0 && Mecanisme == "" && Nom == "" && Etat == "")
             {
                 return true;
             }
