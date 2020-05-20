@@ -14,6 +14,7 @@ import { MessageComponent } from './shared/snakebar.service';
 import { LoaderInterceptor } from './loader/loader-interceptor';
 import { DeleteComponent } from './admin/components/delete/delete.component';
 import { SheetbottomComponent } from './admin/components/sheetbottom/sheetbottom.component';
+import { MatToolbarModule, MatProgressSpinnerModule, MatDividerModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,14 @@ import { SheetbottomComponent } from './admin/components/sheetbottom/sheetbottom
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatModule,
+    // MatModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatDialogModule,
     FormsModule,
     BrowserAnimationsModule,
     LoaderModule,
