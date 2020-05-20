@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic");
 
 // @import "../node_modules/bootstrap-css-only/css/bootstrap.min.css";
 @import "../node_modules/bootstrap-css-only/css/bootstrap-grid.min.css";
-@import "./mat_table.scss";
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./mat_table.scss";
 @import "./iconfont/material-icons.css";
 
 
