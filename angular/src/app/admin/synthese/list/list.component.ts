@@ -101,7 +101,7 @@ export class ListComponent implements OnInit {
     this.uow.syntheses.getAll(
       startIndex, pageSize, sortBy, sortDir, idOrganisme, idOrganismeEmetteur, idTraite, idRapport, idAxe, idSousAxe).subscribe(
       (r: any) => {
-        // console.log(r.list);
+        console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;

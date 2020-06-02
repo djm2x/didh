@@ -42,13 +42,12 @@
       <div class="logo">
         <img src="../assets/logo-ddh.jpg" alt="marit logo" width="210">
       </div>
+
+      <mat-divider></mat-divider>
       <mat-list-item [routerLink]="['/admin/home']" routerLinkActive="router-link-active">
         <mat-icon>home</mat-icon>&nbsp;<span>Accueil</span>
       </mat-list-item>
-
-
-
-
+      <mat-divider></mat-divider>
       <mat-accordion>
         <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
