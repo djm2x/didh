@@ -1,13 +1,28 @@
-
 .router-link-active {
-  background-color: #3f51b5 !important;
+  background-color: #3fb545 !important;
   color: white;
+}
+
+::ng-deep mat-list-item {
+  height: 100% !important;
+  .mat-list-item-content {
+    padding: 0 10px !important;
+  }
+
+  // .mat-list-base {
+  // }
+  width: fit-content !important;
+
+  span {
+    color: white;
+    font-size: 0.7em;
+    font-weight: 700;
+  }
 }
 
 .example-spacer {
   flex: 1 1 auto;
 }
-
 
 ::ng-deep .mat-expansion-panel {
   border-radius: 0 !important;
@@ -27,9 +42,9 @@
   font-size: 1.2em;
 }
 
-span {
-  font-size: .9em;
-}
+// span {
+//   font-size: 0.9em;
+// }
 
 main {
   // height: 100%;
@@ -42,7 +57,9 @@ mat-toolbar {
   // display: flex;
   // background-color: #3F51B5;
   // color: white;
-  height: 50px;position: fixed; z-index: 10;
+  height: 50px;
+  position: fixed;
+  z-index: 10;
   display: flex;
   justify-content: center;
   p {
@@ -50,7 +67,8 @@ mat-toolbar {
   }
 
   .mat-elevation-z6 {
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+      0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
   }
 }
 :host {
@@ -59,8 +77,7 @@ mat-toolbar {
 
 mat-sidenav-container {
   mat-sidenav {
-
-    box-shadow: 3px 0  5px -1px rgba(0,0,0,.2), 6px 0 10px 0 rgba(0,0,0,.14), 1px 0 18px 0 rgba(0,0,0,.12);
+    box-shadow: 3px 0 5px -1px rgba(0, 0, 0, 0.2),
+      6px 0 10px 0 rgba(0, 0, 0, 0.14), 1px 0 18px 0 rgba(0, 0, 0, 0.12);
   }
 }
-

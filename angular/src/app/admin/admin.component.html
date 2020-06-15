@@ -1,20 +1,10 @@
-<!-- <app-header [userName]="currentUser"></app-header> -->
-<!-- <app-menu></app-menu>
-<div class="content-wrapper">
-  <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer> -->
-
-<mat-toolbar color="primary" class="mat-elevation-z6">
+<mat-toolbar class="mat-elevation-z6">
   <mat-toolbar-row>
     <button mat-button (click)="snav.toggle()" routerLinkActive="active">
       <mat-icon>menu</mat-icon>
     </button>
     <p>Système de Suivi des recommandations des mécanismes onusiens des DH</p>
     <span class="example-spacer"></span>
-    <!-- <p>role : {{session.getUser.profil.label}}</p> -->
-
-    <!-- <p>&nbsp;||&nbsp;organisme : {{session.getUser.organisme.label}}</p> -->
     <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
       {{session.getUser.prenom}}</button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -23,20 +13,23 @@
     </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
-<!-- <button mat-button (click)="snav.toggle()" routerLinkActive="active">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <p>Système de suivi des recommandations</p>
-  <span class="example-spacer"></span>
+<div style="padding-top: 50px !important;">
 
-  <button mat-button [matMenuTriggerFor]="beforeMenu">{{session.getUser.nom}}</button>
-  <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item [routerLink]="['/admin/compte']">Compte</button>
-    <button mat-menu-item (click)="disconnect()">Déconnecter</button>
-  </mat-menu> -->
+  <mat-card class="d-flex mat-elevation-z6 w-100 p-0 m-0 text-white align-items-center" 
+  style="height: 100px;border-radius: 0; background-color: #3f51b5; ">
+  
+  <mat-nav-list class="d-flex align-items-start justify-content-start p-0" style=" height: 100%;">
+    <mat-list-item *ngFor="let e of navs; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
+      <span>{{e.name}}</span>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-card>
+</div>
+
+
 
 <mat-sidenav-container #sidenav class="example-sidenav-container" style=" z-index: 9;">
-  <mat-sidenav #snav [mode]="(!mobileQuery.matches) ? 'side' : 'over'" [opened]="opened && !mobileQuery.matches"
+  <mat-sidenav #snav [mode]="(!mobileQuery.matches) ? 'side' : 'over'" [opened]="opened"
     [fixedInViewport]="true" fixedTopGap="50">
     <mat-nav-list class="list" style="width: 220px; padding: 0;">
       <div class="logo">
@@ -66,9 +59,7 @@
             <mat-icon>book</mat-icon>&nbsp;<span>Organes de Traités</span>
           </mat-list-item>
           <mat-divider></mat-divider>
-          <!-- *ngIf="!session.isPointFocal" -->
-          <mat-list-item  [routerLink]="['/admin/visite']"
-            routerLinkActive="router-link-active">
+          <mat-list-item [routerLink]="['/admin/visite']" routerLinkActive="router-link-active">
             <mat-icon>check_circle_outline</mat-icon>&nbsp;<span>Procédures spéciales</span>
           </mat-list-item>
 
@@ -79,13 +70,31 @@
         <mat-list-item [routerLink]="['/admin/recommendation']" routerLinkActive="router-link-active">
           <mat-icon>done_all</mat-icon>&nbsp;<span>Recommandations</span>
         </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/evenements']" routerLinkActive="router-link-active">
+          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Evènements</span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/questionnaire']" routerLinkActive="router-link-active">
+          <mat-icon>live_help</mat-icon>&nbsp;<span>Questionnaires</span>
+        </mat-list-item>
+
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="['/admin/participation-session']" routerLinkActive="router-link-active">
           <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Participation au session des DH</span>
         </mat-list-item>
+
         <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/questionnaire']" routerLinkActive="router-link-active">
-          <mat-icon>live_help</mat-icon>&nbsp;<span>Questionnaires</span>
+        <mat-list-item [routerLink]="['/admin/state']" routerLinkActive="router-link-active">
+          <mat-icon>equalizer</mat-icon>&nbsp;<span>Diagrammes et statistiques</span>
+        </mat-list-item>
+        <mat-divider *ngIf="!session.isPointFocal"></mat-divider>
+
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/documentation']" routerLinkActive="router-link-active">
+          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Documentation</span>
         </mat-list-item>
 
         <mat-divider></mat-divider>
@@ -93,11 +102,7 @@
           *ngIf="!session.isPointFocal">
           <mat-icon>thumbs_up_down</mat-icon>&nbsp;<span>Synthèse</span>
         </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/state']" routerLinkActive="router-link-active">
-          <mat-icon>equalizer</mat-icon>&nbsp;<span>Diagrammes et statistiques</span>
-        </mat-list-item>
-        <mat-divider *ngIf="!session.isPointFocal"></mat-divider>
+
 
         <!-- <mat-expansion-panel>
               <mat-expansion-panel-header>

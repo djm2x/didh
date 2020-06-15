@@ -25,6 +25,19 @@ export class AdminComponent implements OnInit {
   // montantCaisse = this.s.notify;
   route = this.router.url;
   user = new User();
+  navs = [
+    { name: 'Accueil', route: ['/admin/home'] },
+    { name: 'Examen Périodique universelle', route: ['/admin/examen'] },
+    { name: 'Organes de Traités', route: ['/admin/rapport'] },
+    { name: 'Procédures spéciales', route: ['/admin/visite'] },
+    { name: 'Evènements ', route: ['/admin/evenements'] },
+    { name: 'Questionnaires', route: ['/admin/questionnaire'] },
+    { name: 'Participation aux sessions des droits de l’homme', route: ['/admin/participation-session'] },
+    { name: 'Diagrammes et Statistiques', route: ['/admin/state'] },
+    { name: 'Documentation', route: [''] },
+    // { name: 'Recommandations', route: ['/admin/documentation'] },
+    // { name: 'Synthèse', route: ['/admin/synthese'] },
+  ];
   constructor(public session: SessionService, changeDetectorRef: ChangeDetectorRef
     , media: MediaMatcher, public router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -35,11 +48,11 @@ export class AdminComponent implements OnInit {
 
 
     this.getRoute();
-    setTimeout(() => {
-      this.user = this.session.user;
-      console.log(this.user);
-      this.snav.toggle();
-    }, 300);
+    // setTimeout(() => {
+    //   this.user = this.session.user;
+    //   console.log(this.user);
+    //   this.snav.toggle();
+    // }, 300);
 
   }
 
@@ -52,6 +65,22 @@ export class AdminComponent implements OnInit {
         console.log(this.route);
       }
     });
+  }
+
+  get routes() {
+    return [
+      { name: 'Accueil', route: '/admin/home' },
+      { name: 'Examen Périodique universelle', route: '/admin/examen' },
+      // { name: 'Organes de Traités', route: '/admin/rapport' },
+      // { name: 'Procédures spéciales', route: '/admin/visite' },
+      // { name: 'Evènements ', route: '/admin/evenements' },
+      // { name: 'Questionnaires', route: '/admin/questionnaire' },
+      // { name: 'Participation aux sessions des droits de l’homme', route: '/admin/participation-session' },
+      // { name: 'Diagrammes et Statistiques', route: '/admin/state' },
+      // { name: 'Documentation', route: '' },
+      // { name: 'Recommandations', route: '/admin/documentation' },
+      // { name: 'Synthèse', route: '/admin/synthese' },
+    ];
   }
 
 
