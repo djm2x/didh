@@ -1,6 +1,6 @@
-import { Visite } from './../../../Models/models';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { Visite } from 'src/app/Models/models';
 
 @Component({
   selector: 'app-sheetbottom',

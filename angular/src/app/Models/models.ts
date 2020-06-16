@@ -107,6 +107,13 @@ export class Visite {
   discours = '';
 }
 
+export class Evenement {
+  id = 0;
+  title = '';
+  description = '';
+  date = new Date();
+}
+
 export class Profil {
   id = 0;
   label = '';

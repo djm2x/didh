@@ -13,6 +13,7 @@ import { MatModule } from 'src/app/mat.module';
 import { DetailComponent } from './detail/detail.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
+import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 @NgModule({
   declarations: [
     VisiteComponent,
@@ -29,6 +30,7 @@ import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
     ReactiveFormsModule,
     TitleModule,
     ManageFilesModule,
+    PieChartModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'fr'},

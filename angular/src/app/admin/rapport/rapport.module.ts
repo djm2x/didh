@@ -18,6 +18,7 @@ import { DetailRapportComponent } from './update/piece-jointes/detail-rapport/de
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { SituationReserveComponent } from './situation-reserve/situation-reserve.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ArchiveComponent } from './archive/archive.component';
     ReactiveFormsModule,
     TitleModule,
     ManageFilesModule,
+    PieChartModule,
   ],
   entryComponents: [
     SheetbottomComponent,

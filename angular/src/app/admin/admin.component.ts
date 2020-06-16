@@ -30,11 +30,11 @@ export class AdminComponent implements OnInit {
     { name: 'Examen Périodique universelle', route: ['/admin/examen'] },
     { name: 'Organes de Traités', route: ['/admin/rapport'] },
     { name: 'Procédures spéciales', route: ['/admin/visite'] },
-    { name: 'Evènements ', route: ['/admin/evenements'] },
+    { name: 'Evènements ', route: ['/admin/evenement'] },
     { name: 'Questionnaires', route: ['/admin/questionnaire'] },
     { name: 'Participation aux sessions des droits de l’homme', route: ['/admin/participation-session'] },
     { name: 'Diagrammes et Statistiques', route: ['/admin/state'] },
-    { name: 'Documentation', route: [''] },
+    { name: 'Documentation', route: ['documentation'] },
     // { name: 'Recommandations', route: ['/admin/documentation'] },
     // { name: 'Synthèse', route: ['/admin/synthese'] },
   ];

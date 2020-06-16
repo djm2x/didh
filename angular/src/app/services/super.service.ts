@@ -33,6 +33,10 @@ export class SuperService<T> implements ISuperService {
     return this.http.post(`${this.urlApi}/${this.controller}/updateRange`, o);
   }
 
+  deleteRange(o: number[]) {
+    return this.http.post(`${this.urlApi}/${this.controller}/deleteRange`, o);
+  }
+
   postRange(o: T[]) {
     // console.log("updating : ", o)
     return this.http.post(`${this.urlApi}/${this.controller}/postRange`, o);

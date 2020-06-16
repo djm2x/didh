@@ -22,6 +22,7 @@ namespace Admin5.Models
         public int? IdPays { get; set; }
         public string Etat { get; set; }
         public string EtatAvancement { get; set; }
+        public int EtatAvancementChiffre { get; set; }
         public string Observation { get; set; }
         public string PieceJointe { get; set; }
         // public int IdOrganisme { get; set; }

@@ -18,7 +18,7 @@ export class RecomOrgService extends SuperService<any> {
     return this.http.post(`${this.urlApi}/recomOrgs/putRange`, { modelsToDelete, modelsToAdd });
   }
 
-  deleteRange(modelsToDelete, modelsToAdd) {
+  deleteRangeCutm(modelsToDelete, modelsToAdd) {
     return this.http.post(`${this.urlApi}/recomOrgs/deleteRange`, { modelsToDelete, modelsToAdd });
   }
 

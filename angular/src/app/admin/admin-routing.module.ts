@@ -29,7 +29,10 @@ const routes: Routes = [
       { path: 'organe', loadChildren: () => import('./organe/organe.module').then(m => m.OrganeModule), canActivate: [AdminGuard]},
       { path: 'sous-axe', loadChildren: () => import('./sous-axe/sous-axe.module').then(m => m.SousAxeModule), canActivate: [AdminGuard]},
       { path: 'examen', loadChildren: () => import('./examen/examen.module').then(m => m.ExamenModule), },
-      { path: 'compte', loadChildren: () => import('./compte/compte.module').then(m => m.CompteModule), canActivate: [AdminGuard] }
+      { path: 'compte', loadChildren: () => import('./compte/compte.module').then(m => m.CompteModule), canActivate: [AdminGuard] },
+      { path: 'evenement', loadChildren: () =>
+        import('./evenement/evenement.module').then(m => m.EvenementModule), data: {animation: 'evenement'} },
+
     ]
   },
 ];

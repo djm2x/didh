@@ -213,6 +213,51 @@ namespace Admin5.Controllers
             return Ok(model);
         }
 
+        [HttpPost]
+        public virtual async Task<IActionResult> DeleteRange(List<int> models)
+        {
+            if (models.Count == 0)
+            {
+                return Ok(new { message = "count = 0" });
+            }
+
+            // generic List with no parameters
+            // Type openType = typeof(List<>);
+
+            // // To create a List<string>
+            // Type[] tArgs = { typeof(int) };
+            // Type target = openType.MakeGenericType(tArgs);
+
+            // Create an instance - Activator.CreateInstance will call the default constructor.
+            // This is equivalent to calling new List<string>().
+            // List<int> result = (List<int>)Activator.CreateInstance(target);
+
+            // models.ForEach(model => {
+            //     PropertyInfo prop = model.GetType().GetProperty("Id");
+
+            //     int id = (int)prop.GetValue(model, null);
+
+            //     _context.Set<T>().Remove(_context.Set<T>().Find(id));
+
+            // });
+
+            // var l =  models.Select(model => (int)model.GetType().GetProperty("Id").GetValue(model, null)).ToList();
+            var l =  models.Select(id => _context.Set<T>().Find(id)).ToList();
+
+            _context.Set<T>().RemoveRange(l);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+
+            return NoContent();
+        }
+
 
     }
 

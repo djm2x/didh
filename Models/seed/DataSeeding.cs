@@ -46,6 +46,19 @@ namespace seed
             return modelBuilder;
         }
 
+        public static ModelBuilder Evenements(this ModelBuilder modelBuilder)
+        {
+            int id = 1;
+            var faker = new Faker<Evenement>(DataSeeding.lang)
+                .CustomInstantiator(f => new Evenement { Id = id++ })
+                .RuleFor(o => o.Title, f => f.Lorem.Word())
+                .RuleFor(o => o.Description, f => f.Lorem.Word())
+                .RuleFor(o => o.Date, f => f.Date.Past())
+                ;
+            modelBuilder.Entity<Evenement>().HasData(faker.Generate(10));
+            return modelBuilder;
+        }
+
         public static ModelBuilder Users(this ModelBuilder modelBuilder)
         {
             int id = 1;
@@ -265,7 +278,7 @@ namespace seed
 
         public static ModelBuilder SousAxes(this ModelBuilder modelBuilder)
         {
-            var id = 1;
+            // var id = 1;
             var list = new List<SousAxe>();
             list.Add(new SousAxe { Id = 1, Label = "Démocratie", IdAxe = 1 });
             list.Add(new SousAxe { Id = 2, Label = "Gouvernance", IdAxe = 1 });
@@ -443,6 +456,7 @@ namespace seed
                 .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
                 .RuleFor(o => o.Etat, f => f.PickRandom(etat))
                 .RuleFor(o => o.EtatAvancement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+                .RuleFor(o => o.EtatAvancementChiffre, f => f.Random.Number(0, 100))
                 .RuleFor(o => o.Observation, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
                 .RuleFor(o => o.PieceJointe, f => "")
                 // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))

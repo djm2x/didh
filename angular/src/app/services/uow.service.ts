@@ -21,6 +21,7 @@ import { SyntheseRecommandationService } from './syntheseRecommandation.service'
 import { ExamenService } from './examen.service';
 import { QuestionnaireService } from './qustionnaire.service';
 import { ParticipationSessionService } from './participation.service';
+import { EvenementService } from './evenement.service';
 
 
 @Injectable({
@@ -49,7 +50,7 @@ export class UowService {
   situationReserves = new SituationReserveService();
   questionnaires = new QuestionnaireService();
   participations = new ParticipationSessionService();
-
+  evenements = new EvenementService();
 
 
 

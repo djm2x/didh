@@ -7,6 +7,15 @@
     </button>
   </div>
 
+  <div class="row">
+    <div class="col-md-6">
+      <app-pie-chart table="visite" type="taux" mytitle="Etat d’avancement des recommandations par visite"></app-pie-chart>
+    </div>
+    <div class="col-md-6">
+      <app-pie-chart table="visite" type="count" mytitle="Taux de recommandations par visite"></app-pie-chart>
+    </div>
+  </div>
+
   <div class="example-container mat-elevation-z8">
     <div class="example-loading-shade" *ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>

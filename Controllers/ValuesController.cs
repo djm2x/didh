@@ -2,21 +2,25 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
-using System.Collections.Generic;
 
 namespace Admin5.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ValuesController : SuperController<Axe>
+    public class ValuesController: ControllerBase
     {
-        public ValuesController(AdminContext context) : base(context)
-        { }
+        protected readonly AdminContext _context;
+        public ValuesController(AdminContext context)
+        { 
+            _context = context;
+        }
 
         [HttpGet]
-        public IActionResult GetValues()
+        public async Task<IActionResult>  GetValues()
         {
-            return Ok(new List<string>() {"me ", "you"});
+            var list = await _context.Axes.ToListAsync();
+
+            return Ok(list);
         }
         
     }

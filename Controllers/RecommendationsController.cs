@@ -67,10 +67,10 @@ namespace Admin5.Controllers
         [HttpGet("{idOrganisme}")]
         public async Task<ActionResult<int>> GetCount(int idOrganisme)
         {
-            var i = await _context.Recommendations
-                .Where(e => e.RecomOrgs.Any(o => o.IdOrganisme == idOrganisme))
-                .CountAsync()
-                ;
+            // var i = await _context.Recommendations
+            //     .Where(e => e.RecomOrgs.Any(o => o.IdOrganisme == idOrganisme))
+            //     .CountAsync()
+            //     ;
             return await _context.Recommendations
                 .Where(e => e.RecomOrgs.Any(o => o.IdOrganisme == idOrganisme))
                 .CountAsync()
@@ -86,6 +86,53 @@ namespace Admin5.Controllers
                 .Select(e => new { cycle = e.Key, recommandations = e.Count() })
                 .ToListAsync()
                 ;
+
+            return Ok(list);
+        }
+
+
+        [HttpGet("{table}/{type}")]
+        public async Task<IActionResult> GenericByRecommendation(string table, string type)
+        {
+            //https://stackoverflow.com/questions/57131550/why-cant-i-create-a-listt-of-anonymous-type-in-c
+
+            var list = new[] { new { table = "", value = 0 } }.ToList();
+
+            if (table == "axe")
+            {
+                list = await _context.Axes
+                    .Select(e => new
+                    {
+                        table = e.Label,
+                        value = type == "count" ? (e.Recommendations.Count()) : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                    })
+                    .Distinct()
+                    .ToListAsync()
+                ;
+            }
+            else if (table == "organe")
+            {
+                list = await _context.Organes
+                    .Select(e => new
+                    {
+                        table = e.Label,
+                        value = type == "count" ? (e.Recommendations.Count()) : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                    })
+                    .Distinct()
+                    .ToListAsync()
+                ;
+            }
+            else {
+                list = _context.Visites
+                    .Select(e => new
+                    {
+                        table = e.Mandat,
+                        value = type == "count" ? (e.Recommendations.Count()) : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                    })
+                    .Distinct()
+                    .ToList()
+                ;
+            }
 
             return Ok(list);
         }

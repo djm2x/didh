@@ -47,6 +47,7 @@ namespace Admin5.Models
         public virtual DbSet<Pays> Pays { get; set; }
         public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<ParticipationSession> ParticipationSessions { get; set; }
+        public virtual DbSet<Evenement> Evenements { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -200,6 +201,8 @@ namespace Admin5.Models
                 entity.Property(e => e.IdCycle);
                 entity.Property(e => e.IdVisite);
                 entity.Property(e => e.IdOrgane);
+                entity.Property(e => e.EtatAvancement);
+                entity.Property(e => e.EtatAvancementChiffre);
                 entity.Property(e => e.IdAxe).IsRequired();
                 entity.Property(e => e.IdSousAxe);
                 entity.Property(e => e.Etat).IsRequired();
@@ -306,6 +309,14 @@ namespace Admin5.Models
                 entity.HasMany(d => d.Recommendations).WithOne(p => p.Visite).HasForeignKey(d => d.IdVisite);
             });
 
+             modelBuilder.Entity<Evenement>(entity => 
+            {entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.Title);
+            entity.Property(e => e.Description);
+            entity.Property(e => e.Date);
+            });
+
             OnModelCreatingPartial(modelBuilder);
 
             modelBuilder.Profils()
@@ -327,6 +338,7 @@ namespace Admin5.Models
                 .Questionnaires()
                 .ParticipationSessions()
                 .Examens()
+                .Evenements()
             ;
 
 

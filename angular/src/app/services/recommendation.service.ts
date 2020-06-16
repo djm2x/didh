@@ -61,6 +61,10 @@ export class RecommendationService extends SuperService<Recommendation> {
     return this.http.get(`${this.urlApi}/${this.controller}/getByIdSynthese/${idSynthese}`);
   }
 
+  genericByRecommendation(table: 'axe' | 'organe' | 'visite', type: 'count' | 'taux') {
+    return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/genericByRecommendation/${table}/${type}`);
+  }
+
 
 
 }
