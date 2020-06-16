@@ -18,7 +18,7 @@ import { ThreeComponent } from './three/three.component';
   declarations: [
     StateComponent,
     NotificationComponent,
-    // CalendarComponent,
+    CalendarComponent,
     BarOneComponent,
     BarTwoComponent,
     BarConventionComponent,
