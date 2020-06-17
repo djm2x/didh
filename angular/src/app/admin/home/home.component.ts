@@ -18,25 +18,30 @@ export class HomeComponent implements OnInit {
   //
   // displayedColumns: string[] = ['item', 'cost'];
   mecanismes = this.uow.mecanismes;
-  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe'});
-  pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: 'Taux de recommandations par axe'});
-
+  pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
+  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
+  list: { name: string, value: number }[] = [];
   constructor(private uow: UowService, public session: SessionService) { }
 
   ngOnInit() {
+    this.stateRecommendationByOrganisme();
+  }
+
+  stateRecommendationByOrganisme() {
+    return this.uow.recommendations.stateRecommendationByOrganisme().subscribe(r => {
+      this.list = r as any;
+    });
   }
 
   selectChange(e: string) {
     const isOrgane = e.toLocaleLowerCase().includes('organe');
     const isExamen = e.toLocaleLowerCase().includes('examen');
     // const isVisite = e.toLocaleLowerCase().includes('procédure');
-    
-    const table: 'axe' | 'organe' | 'visite' = isOrgane ? 'organe' : (isExamen ? 'axe' : 'visite');
 
-    console.log(table)
-    
-    this.pieChartSubjectC.next({table: table, type: 'count', title: `Etat d’avancement des recommandations par ${e}`});
-    this.pieChartSubject.next({table: table, type: 'taux', title: `Taux de recommandations par ${e}`});
+    const tableS: 'axe' | 'organe' | 'visite' = isOrgane ? 'organe' : (isExamen ? 'axe' : 'visite');
+
+    this.pieChartSubjectC.next({ table: tableS, type: 'count', title: `Etat d’avancement des recommandations par ${e}` });
+    this.pieChartSubject.next({ table: tableS, type: 'taux', title: `Taux de recommandations par ${e}` });
   }
 
 }

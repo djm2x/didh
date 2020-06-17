@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { UowService } from 'src/app/services/uow.service';
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -21,10 +22,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   /*{imagesInit}*/
 
-
+  categories = this.http.get('assets/json/categorie_event.json');
 
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
-    , private fb: FormBuilder, private uow: UowService) { }
+    , private fb: FormBuilder, private uow: UowService, private http: HttpClient) { }
 
   ngOnInit() {
     this.o = this.data.model;
@@ -43,6 +44,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
   onOkClick(o: Evenement): void {
     let sub = null;
+    o.date = this.uow.valideDate(o.date);
     if (o.id === 0) {
       sub = this.uow.evenements.post(o).subscribe(r => {
 
@@ -62,6 +64,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     this.myForm = this.fb.group({
       id: [this.o.id, [Validators.required, ]],
 title: [this.o.title, [Validators.required, ]],
+categorie: [this.o.categorie, [Validators.required, ]],
 description: [this.o.description, [Validators.required, ]],
 date: [this.o.date, [Validators.required, ]],
 

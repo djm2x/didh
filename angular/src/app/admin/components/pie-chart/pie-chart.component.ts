@@ -48,7 +48,6 @@ export class PieChartComponent implements OnInit {
     this.obs.subscribe(d => {
       this.title = d.title;
       this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
-        console.log(r);
         this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
         this.pieChartData = r.map(e => e.value);
 

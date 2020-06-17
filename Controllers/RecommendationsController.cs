@@ -8,11 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using Newtonsoft.Json;
 using System.Linq.Expressions;
 using System.Reflection;
 using Admin5.Providers;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Admin5.Controllers
 {
@@ -86,6 +84,23 @@ namespace Admin5.Controllers
                 .Select(e => new { cycle = e.Key, recommandations = e.Count() })
                 .ToListAsync()
                 ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateRecommendationByOrganisme()
+        {
+            var list = await _context.Organismes
+                    .Select(e => new
+                    {
+                        name = e.Label,
+                        value = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+                    })
+                    .Distinct()
+                    .ToListAsync()
+                ;
+            
 
             return Ok(list);
         }

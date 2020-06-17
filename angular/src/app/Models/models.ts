@@ -111,6 +111,8 @@ export class Evenement {
   id = 0;
   title = '';
   description = '';
+  categorie = '';
+
   date = new Date();
 }
 

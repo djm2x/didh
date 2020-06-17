@@ -53,6 +53,7 @@ namespace seed
                 .CustomInstantiator(f => new Evenement { Id = id++ })
                 .RuleFor(o => o.Title, f => f.Lorem.Word())
                 .RuleFor(o => o.Description, f => f.Lorem.Word())
+                .RuleFor(o => o.Categorie, f => "Categorie 1")
                 .RuleFor(o => o.Date, f => f.Date.Past())
                 ;
             modelBuilder.Entity<Evenement>().HasData(faker.Generate(10));

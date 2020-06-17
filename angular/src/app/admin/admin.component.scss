@@ -3,19 +3,26 @@
   color: white;
 }
 
+.mywidth {
+  ::ng-deep .mat-list-item-content {
+    padding: 0 10px !important;
+    width: 187px;
+  }
+}
 ::ng-deep mat-list-item {
   height: 100% !important;
+  
   .mat-list-item-content {
     padding: 0 10px !important;
+    // width: 187px;
   }
-
   // .mat-list-base {
   // }
   width: fit-content !important;
 
   .myspan {
     color: white;
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: 400;
   }
 }

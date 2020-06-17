@@ -7,23 +7,29 @@
 @import "./mat_table.scss";
 @import "./iconfont/material-icons.css";
 
-
-body{
-    // font-family: 'Source Sans Pro', sans-serif !important;
-  }
-html, body { height: 100%; background-color: rgb(247, 247, 247);}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  // font-family: 'Source Sans Pro', sans-serif !important;
+}
+html,
+body {
+  height: 100%;
+  background-color: rgb(247, 247, 247);
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
 
 mat-dialog-container {
   padding: 0 !important;
 }
 
 .warn-snackbar {
-
   background-color: rgb(190, 136, 20) !important;
 }
 
-.green-snackbar{
+.green-snackbar {
   // color: rgb(65, 158, 86);
   background-color: rgb(65, 158, 86) !important;
   // padding: 0 5vw !important;
@@ -34,7 +40,7 @@ mat-dialog-container {
 }
 
 mat-icon {
-  font-size:  25px !important;
+  font-size: 25px !important;
 }
 
 .mat-header-cell:last-child,
@@ -46,7 +52,6 @@ mat-icon {
 // .mat-header-cell:nth-child(2),.mat-cell:nth-child(2){
 //   flex:85%;
 // }
-
 
 mat-icon {
   // margin-top: 4px !important;

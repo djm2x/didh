@@ -28,7 +28,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   dataSource: Evenement[] = [];
   selectedList: Evenement[] = [];
 
-  displayedColumns = ['select',  'title', 'date', 'option'];
+  displayedColumns = ['select',  'categorie',  'title', 'date', 'option'];
 
   panelOpenState = false;
 
@@ -99,7 +99,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   }
 
   add() {
-    this.openDialog(new Evenement(), 'Ajouter evenement').subscribe(result => {
+    this.openDialog(new Evenement(), 'Ajouter evènement').subscribe(result => {
       if (result) {
         this.update.next(true);
       }
@@ -107,7 +107,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   }
 
   edit(o: Evenement) {
-    this.openDialog(o, 'Modifier evenement').subscribe((result: Evenement) => {
+    this.openDialog(o, 'Modifier evènement').subscribe((result: Evenement) => {
       if (result) {
         this.update.next(true);
       }
@@ -115,7 +115,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   }
 
   async delete(id: number) {
-    const r = await this.mydialog.openDialog('evenement').toPromise();
+    const r = await this.mydialog.openDialog('evènement').toPromise();
     if (r === 'ok') {
       const sub = this.uow.evenements.delete(id).subscribe(() => this.update.next(true));
 

@@ -1,8 +1,8 @@
 <mat-toolbar class="mat-elevation-z6">
   <mat-toolbar-row>
-    <button mat-button (click)="snav.toggle()" routerLinkActive="active">
+    <!-- <button mat-button (click)="snav.toggle()" routerLinkActive="active">
       <mat-icon>menu</mat-icon>
-    </button>
+    </button> -->
     <p>Système de Suivi des recommandations des mécanismes onusiens des DH</p>
     <span class="example-spacer"></span>
     <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
@@ -10,6 +10,12 @@
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
       <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
+      <mat-divider></mat-divider>
+      <div *ngIf="session.isAdmin">
+        <button mat-menu-item *ngFor="let e of menus; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
+          {{e.name}}
+        </button>
+      </div>
     </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -21,7 +27,7 @@
 
     <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: 100%;">
       <mat-list-item *ngFor="let e of navs; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
-        <span class="myspan">{{e.name}}</span>
+        <span class="myspan" [style.width]="e.width">{{e.name}}</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-card>
@@ -67,10 +73,7 @@
         </mat-expansion-panel>
 
 
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/recommendation']" routerLinkActive="router-link-active">
-          <mat-icon>done_all</mat-icon>&nbsp;<span>Recommandations</span>
-        </mat-list-item>
+        
 
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="['/admin/evenements']" routerLinkActive="router-link-active">
@@ -93,7 +96,7 @@
         </mat-list-item>
         <mat-divider *ngIf="!session.isPointFocal"></mat-divider> -->
 
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider>
         <mat-list-item [routerLink]="['/admin/documentation']" routerLinkActive="router-link-active">
           <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Documentation</span>
         </mat-list-item>
@@ -103,6 +106,11 @@
           *ngIf="!session.isPointFocal">
           <mat-icon>thumbs_up_down</mat-icon>&nbsp;<span>Synthèse</span>
         </mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/recommendation']" routerLinkActive="router-link-active">
+          <mat-icon>done_all</mat-icon>&nbsp;<span>Recommandations</span>
+        </mat-list-item> -->
 
 
         <!-- <mat-expansion-panel>

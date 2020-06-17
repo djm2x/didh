@@ -38,13 +38,14 @@ namespace Admin5.Controllers
                 .Take(pageSize)
                 
                 .Select(e => new 
-{
-id = e.Id,
-title = e.Title,
-description = e.Description,
-date = e.Date,
+                {
+                    id = e.Id,
+                    categorie = e.Categorie,
+                    title = e.Title,
+                    description = e.Description,
+                    date = e.Date,
 
-})
+                })
                 .ToListAsync()
                 ;
 

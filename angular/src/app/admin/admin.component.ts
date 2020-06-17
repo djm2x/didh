@@ -26,17 +26,28 @@ export class AdminComponent implements OnInit {
   route = this.router.url;
   user = new User();
   navs = [
-    { name: 'Accueil', route: ['/admin/home'] },
-    { name: 'Examen Périodique universelle', route: ['/admin/examen'] },
-    { name: 'Organes de Traités', route: ['/admin/rapport'] },
-    { name: 'Procédures spéciales', route: ['/admin/visite'] },
-    { name: 'Evènements ', route: ['/admin/evenement'] },
-    { name: 'Questionnaires', route: ['/admin/questionnaire'] },
-    { name: 'Participation aux sessions des droits de l’homme', route: ['/admin/participation-session'] },
-    { name: 'Diagrammes et Statistiques', route: ['/admin/state'] },
-    { name: 'Documentation', route: ['documentation'] },
-    // { name: 'Recommandations', route: ['/admin/documentation'] },
-    // { name: 'Synthèse', route: ['/admin/synthese'] },
+    { name: 'Accueil', route: ['/admin/home'], width: '70px' },
+    { name: 'Examen Périodique universelle', route: ['/admin/examen'], width: '126px' },
+    { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
+    { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
+    { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' },
+    { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' },
+    { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' },
+    { name: 'Diagrammes et Statistiques', route: ['/admin/state'], width: '100px' },
+    { name: 'Documentation', route: ['documentation'], width: '100px' },
+    { name: 'Recommandations', route: ['/admin/documentation'], width: '113px' },
+    { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' },
+  ];
+
+  menus = [
+    { name: 'Utilisateur', route: ['/admin/user'], width: '' },
+    { name: 'Profils', route: ['/admin/profil'], width: '' },
+    { name: 'Organisations', route: ['/admin/organisme'], width: '' },
+    { name: 'Organe de traités', route: ['/admin/organe'], width: '' },
+    { name: 'Cycles', route: ['/admin/cycle'], width: '' },
+    { name: 'Axes', route: ['/admin/axe'], width: '' },
+    { name: 'Sous axe', route: ['/admin/sous-axe'], width: '' },
+    { name: 'Pays', route: ['/admin/pays'], width: '' },
   ];
   constructor(public session: SessionService, changeDetectorRef: ChangeDetectorRef
     , media: MediaMatcher, public router: Router) {
