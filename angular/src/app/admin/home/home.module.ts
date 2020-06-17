@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatModule } from 'src/app/mat.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HomeRoutingModule } from './home-routing.module';
     MatModule,
     FormsModule,
     ReactiveFormsModule,
+    PieChartModule,
   ]
 })
 export class HomeModule { }

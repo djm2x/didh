@@ -3,7 +3,7 @@ import { Rapport, Traite } from './../../../Models/models';
 
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge } from 'rxjs';
+import { merge, BehaviorSubject } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { Visite, Recommendation } from 'src/app/Models/models';
@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailComponent } from '../detail/detail.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from '../archive/archive.component';
+import { IData } from '../../components/pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-list',
@@ -52,6 +53,10 @@ export class ListComponent implements OnInit {
   progress = 0;
   message: any;
   formData = new FormData();
+
+  pieChartSubject = new BehaviorSubject<IData>({table: 'organe', type: 'count', title: 'Etat d’avancement des recommandations par organe'});
+  pieChartSubjectC = new BehaviorSubject<IData>({table: 'organe', type: 'taux', title: 'Taux de recommandations par organe'});
+  
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {

@@ -1,61 +1,53 @@
 <div class="host">
-  <div class="cards">
-    <!-- <mat-card>
-    <mat-icon>group</mat-icon>
-    <p>Utilisateur</p>
-    <h2>{{ (users | async) ? (users | async) : 'chargement...' }}</h2>
-  </mat-card> -->
-
-
-    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple style="background: #00A65A; color: white;" [routerLink]="['/admin/recommendation/update/0']">
+  <!-- <div class="cards">
+    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple
+      style="background: #00A65A; color: white;" [routerLink]="['/admin/recommendation/update/0']">
       <mat-icon>done_all</mat-icon>
       <p style="margin-left: auto;">Nouvelle Recommandation</p>
     </mat-card>
 
-    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple style="background: #4B94BF; color: white; margin-left: 10px !important;"
+    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple
+      style="background: #4B94BF; color: white; margin-left: 10px !important;"
       [routerLink]="['/admin/rapport/update/0']">
       <mat-icon>book</mat-icon>
       <p style="margin-left: auto;">Nouveau rapport</p>
     </mat-card>
 
     <mat-card matRipple style="background: #4B94BF; color: white; margin-left: 10px !important;">
-      <!-- <mat-icon>book</mat-icon> -->
-      <p style="font-size: 2.5em; font-weight: bold;">{{ (recommendations | async) ? (recommendations | async) : '...' }}</p>
+      <p style="font-size: 2.5em; font-weight: bold;">
+        {{ (recommendations | async) ? (recommendations | async) : '...' }}</p>
       <p style="margin-left: auto;">Recommandations</p>
     </mat-card>
 
     <mat-card matRipple style="background: #00A65A; color: white; margin-left: 10px !important;">
-
-      <!-- <mat-icon>done_all</mat-icon> -->
       <p style="font-size: 2.5em; font-weight: bold;">{{(rapports | async) ? (rapports | async) : '...'}}</p>
       <p style="margin-left: auto;">Conventions</p>
     </mat-card>
-
-
-
-    <!-- <mat-card>
-      <mat-icon>book</mat-icon>
-      <div class="align">
-        <p>Rapport</p>
-        <p>{{ (rapports | async) ? (rapports | async) : '...' }}</p>
-      </div>
-
-      <div class="align">
-      </div>
-      <button mat-raised-button color="primary" class="d-flex justify-content-center" [routerLink]="['/admin/rapport/update/0']">Nouveau rapport</button>
-    </mat-card> -->
-
   </div>
 
   <mat-divider></mat-divider>
 
   <div class="row pr-3 pl-3 pb-3">
-    <!-- <mat-card  style="width: 100%;background-size: cover;">
-      <mat-card-content>
-      </mat-card-content>
-    </mat-card> -->
     <img src="assets/home.jpg" alt="" srcset="" style="width: 100%; background-size: cover;">
+  </div> -->
+
+  <div class="row">
+    <mat-form-field class="col-md-6">
+      <mat-label>Mecanismes</mat-label>
+      <mat-select (selectionChange)="selectChange($event.value)" value="Examen périodique universal">
+        <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="col-md-12">
+      <div class="row w-100">
+        <div class="col-md-6">
+          <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
+        </div>
+        <div class="col-md-6">
+          <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+        </div>
+      </div>
+    </div>
+
+
   </div>
-
-
-</div>

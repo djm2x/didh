@@ -2,7 +2,7 @@ import { SessionService } from './../../shared/session.service';
 import {  Examen } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge } from 'rxjs';
+import { merge, Subject, BehaviorSubject } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { HttpEventType } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { ActivatedRoute } from '@angular/router';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { IData } from '../components/pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-examen',
@@ -43,13 +44,16 @@ export class ExamenComponent implements OnInit {
   progress = 0;
   message: any;
   formData = new FormData();
+
+  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe'});
+  pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: 'Taux de recommandations par axe'});
+  
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
-    setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300)
-      ;
+    setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;

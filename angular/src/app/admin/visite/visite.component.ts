@@ -2,7 +2,7 @@ import { SessionService } from './../../shared/session.service';
 import { Notification, Visite } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge } from 'rxjs';
+import { merge, BehaviorSubject } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { HttpEventType } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailComponent } from './detail/detail.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
+import { IData } from '../components/pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-visite',
@@ -42,6 +43,10 @@ export class VisiteComponent implements OnInit {
   progress = 0;
   message: any;
   formData = new FormData();
+
+  pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'count', title: 'Etat d’avancement des recommandations par visite'});
+  pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
+  
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService) { }

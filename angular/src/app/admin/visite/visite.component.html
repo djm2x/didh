@@ -6,13 +6,12 @@
       Procédure spéciale
     </button>
   </div>
-
   <div class="row">
     <div class="col-md-6">
-      <app-pie-chart table="visite" type="taux" mytitle="Etat d’avancement des recommandations par visite"></app-pie-chart>
+      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
     </div>
     <div class="col-md-6">
-      <app-pie-chart table="visite" type="count" mytitle="Taux de recommandations par visite"></app-pie-chart>
+      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
   </div>
 

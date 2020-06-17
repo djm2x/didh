@@ -14,12 +14,12 @@
     </button>
   </div>
 
-  <div class="row">
+   <div class="row">
     <div class="col-md-6">
-      <app-pie-chart table="organe" type="taux" mytitle="Etat d’avancement des recommandations par organe"></app-pie-chart>
+      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
     </div>
     <div class="col-md-6">
-      <app-pie-chart table="organe" type="count" mytitle="Taux de recommandations par organe"></app-pie-chart>
+      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
   </div>
 
