@@ -88,7 +88,6 @@ export class ListComponent implements OnInit {
       this.cycles = r as any[];
       if (this.cycles.length !== 0) {
         this.myForm.get('idCycle').patchValue(this.cycles[0].id);
-        // console.log(this.myForm.get('idCycle').value);
       }
     });
 

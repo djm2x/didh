@@ -13,6 +13,7 @@ import { ChartsModule } from 'ng2-charts';
 import { BarConventionComponent } from './bar-convention/bar-convention.component';
 import { BarMecanismeComponent } from './bar-mecanisme/bar-mecanisme.component';
 import { ThreeComponent } from './three/three.component';
+import { DiagrammeComponent } from './diagramme/diagramme.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ThreeComponent } from './three/three.component';
     BarConventionComponent,
     BarMecanismeComponent,
     ThreeComponent,
+    DiagrammeComponent,
   ],
   imports: [
     CommonModule,

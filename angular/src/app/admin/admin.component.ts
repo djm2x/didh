@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
     { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' },
     { name: 'Diagrammes et Statistiques', route: ['/admin/state'], width: '100px' },
     { name: 'Documentation', route: ['documentation'], width: '100px' },
-    { name: 'Recommandations', route: ['/admin/documentation'], width: '113px' },
+    { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' },
     { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' },
   ];
 
