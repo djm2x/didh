@@ -23,8 +23,11 @@
 
 <nav style="padding-top: 50px !important;">
   <mat-card class="d-flex mat-elevation-z6 w-100 p-0 m-0 text-white align-items-center"
-    style="height: 100px;border-radius: 0; background-color: #3f51b5; ">
+    style="height: 70px;border-radius: 0; background-color: var(--primary)">
 
+    <div style="margin: auto 0;">
+      <img src="../assets/logo-ddh.jpg" alt="marit logo" style="width: 250px;">
+    </div>
     <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: 100%;">
       <mat-list-item *ngFor="let e of navs; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
         <span class="myspan" [style.width]="e.width">{{e.name}}</span>
@@ -180,7 +183,7 @@
           <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
         </div>
       </div> -->
-    <main class="container-fluid" [@routerTransition]="getState(o)"
+    <main class="container" [@routerTransition]="getState(o)"
       style="margin-top: 5px;">
       <router-outlet #o="outlet"></router-outlet>
     </main>

@@ -20,7 +20,9 @@ namespace Admin5
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                    // .UseUrls("http://192.168.1.103:5002/")
+                    .UseStartup<Startup>();
                 });
     }
 }

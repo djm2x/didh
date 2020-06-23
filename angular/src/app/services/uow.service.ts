@@ -56,6 +56,22 @@ export class UowService {
 
   mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
   etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
+  monthsAlpha = [
+    'Janvier',
+    'Fevrier',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre',
+  ].map((e, i) => {
+    return { id: i + 1, name: e };
+  });
 
   constructor() { }
 

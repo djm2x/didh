@@ -9,9 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { TitleModule } from '../components/title/title.module';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
-  declarations: [EvenementComponent, UpdateComponent],
+  declarations: [EvenementComponent, UpdateComponent, DetailComponent],
   imports: [
     CommonModule,
     EvenementRoutingModule,
@@ -23,7 +24,8 @@ import { TitleModule } from '../components/title/title.module';
     ManageFilesModule,
   ],
   entryComponents: [
-    UpdateComponent
+    UpdateComponent,
+    DetailComponent,
   ]
 })
 export class EvenementModule { }

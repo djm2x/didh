@@ -13,7 +13,9 @@ body {
 html,
 body {
   height: 100%;
-  background-color: rgb(247, 247, 247);
+  background-color: rgb(234, 235, 236);
+  --gray: #ebebeb;
+  --primary: #15629a;
 }
 body {
   margin: 0;
@@ -23,6 +25,14 @@ body {
 
 mat-dialog-container {
   padding: 0 !important;
+}
+
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+  background-color: #15629a;
+}
+
+.mat-button.mat-warn, .mat-icon-button.mat-warn, .mat-stroked-button.mat-warn {
+  color: #cb4b11;
 }
 
 .warn-snackbar {

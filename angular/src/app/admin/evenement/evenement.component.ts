@@ -1,3 +1,4 @@
+import { SessionService } from 'src/app/shared';
 import { Component, OnInit, ViewChild, EventEmitter, Inject, OnDestroy } from '@angular/core';
 import { merge, Subscription } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
@@ -9,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
 import { DeleteService } from '../components/delete/delete.service';
 import { Evenement } from 'src/app/Models/models';
+import { DetailComponent } from './detail/detail.component';
 
 @Component({
   selector: 'app-evenement',
@@ -17,7 +19,7 @@ import { Evenement } from 'src/app/Models/models';
 })
 export class EvenementComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  // @ViewChild(MatSort, { static: true }) sort: MatSort;
   update = new EventEmitter();
   isLoadingResults = true;
   resultsLength = 0;
@@ -34,14 +36,15 @@ export class EvenementComponent implements OnInit, OnDestroy {
 
   title = new FormControl('');
 
-
+  
 
 
   constructor(private uow: UowService, public dialog: MatDialog
-    , private mydialog: DeleteService, @Inject('BASE_URL') private url: string ) { }
+    , private mydialog: DeleteService, @Inject('BASE_URL') private url: string 
+    , public session: SessionService) { }
 
   ngOnInit() {
-    const sub = merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
+    const sub = merge(...[/*this.sort.sortChange, */this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
@@ -50,8 +53,8 @@ export class EvenementComponent implements OnInit, OnDestroy {
         this.getPage(
           startIndex,
           this.paginator.pageSize,
-          this.sort.active ? this.sort.active : 'id',
-          this.sort.direction ? this.sort.direction : 'desc',
+          /*this.sort.active ? this.sort.active : */'id',
+          /*this.sort.direction ? this.sort.direction : */'desc',
           this.title.value === '' ? '*' : this.title.value,
 
         );
@@ -65,6 +68,25 @@ export class EvenementComponent implements OnInit, OnDestroy {
     this.title.setValue('');
 
     this.update.next(true);
+  }
+
+  formatDate(d1: string) {
+    const d = new Date(d1);
+    return {
+      day: d.getDate().toString().length === 1 ? `0${d.getDate()}` : d.getDate(),
+      month: this.uow.monthsAlpha[d.getMonth()].name,
+      year: d.getFullYear()
+    }
+  }
+
+  detail(o: Evenement) {
+    const dialogRef = this.dialog.open(DetailComponent, {
+      width: '7100px',
+      disableClose: true,
+      data: { model: o, title: o.title }
+    });
+
+    return dialogRef.afterClosed();
   }
 
   // generateExcel() {
