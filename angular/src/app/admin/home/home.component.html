@@ -31,21 +31,21 @@
     <img src="assets/home.jpg" alt="" srcset="" style="width: 100%; background-size: cover;">
   </div> -->
   <section>
-    <h3 style="color: var(--primary);">Accueil</h3>
+    <h3>Accueil</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis atque natus consequuntur quas aut iure mollitia
       nam ducimus doloribus alias.</p>
   </section>
-
-  <h3 style="color: var(--primary);">Système de Suivi des recommandations des mécanismes onusiens des droits de l’homme</h3>
+  <mat-divider> </mat-divider>
+  <h3>Système de Suivi des recommandations des mécanismes onusiens des droits de l’homme</h3>
 
 
   <div class="row">
-    <mat-form-field class="col-md-6">
+    <!-- <mat-form-field class="col-md-6">
       <mat-label>Mecanismes</mat-label>
       <mat-select (selectionChange)="selectChange($event.value)" value="Examen périodique universal">
         <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
     <div class="col-md-12">
       <div class="row w-100">
         <div class="col-md-6">
@@ -58,14 +58,17 @@
     </div>
 
   </div>
+  <mat-divider> </mat-divider>
+  <h3>Etat d’avancement des recommandations – départements</h3>
+
 
   <div class="row">
     <div class="col-md-12">
       <mat-card>
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
           <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
           </h5>
-        </div>
+        </div> -->
         <div class="d-flex flex-wrap justify-content-center">
 
           <div *ngFor="let e of list; let i=index">

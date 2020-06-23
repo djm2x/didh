@@ -18,8 +18,12 @@ export class HomeComponent implements OnInit {
   //
   // displayedColumns: string[] = ['item', 'cost'];
   mecanismes = this.uow.mecanismes;
-  pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
-  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
+  pieChartSubject = new BehaviorSubject<IData>(
+    { type: 'stateRecommendationByMecanismeTaux', title: 'Etat d’avancement des recommandations par mécanismes' } as any);
+  pieChartSubjectC = new BehaviorSubject<IData>(
+    { type: 'stateRecommendationByMecanismePercentage', title: 'Taux de recommandations par mécanismes' } as any);
+  // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
+  // pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
   list: { name: string, value: number }[] = [];
   constructor(private uow: UowService, public session: SessionService) { }
 
@@ -40,8 +44,8 @@ export class HomeComponent implements OnInit {
 
     const tableS: 'axe' | 'organe' | 'visite' = isOrgane ? 'organe' : (isExamen ? 'axe' : 'visite');
 
-    this.pieChartSubjectC.next({ table: tableS, type: 'count', title: `Etat d’avancement des recommandations par ${e}` });
-    this.pieChartSubject.next({ table: tableS, type: 'taux', title: `Taux de recommandations par ${e}` });
+    // this.pieChartSubjectC.next({ table: tableS, type: 'count', title: `Etat d’avancement des recommandations par ${e}` });
+    // this.pieChartSubject.next({ table: tableS, type: 'taux', title: `Taux de recommandations par ${e}` });
   }
 
 }

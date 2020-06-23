@@ -100,7 +100,63 @@ namespace Admin5.Controllers
                     .Distinct()
                     .ToListAsync()
                 ;
-            
+
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateRecommendationByMecanismeTaux()
+        {
+            var axe = await _context.Axes
+                    .Select(e => e.Recommendations.Count())
+                   .FirstOrDefaultAsync()
+                ;
+
+            var visite = await _context.Visites
+                   .Select(e => e.Recommendations.Count())
+                   .FirstOrDefaultAsync()
+               ;
+
+            var organe = await _context.Organes
+                .Select(e => e.Recommendations.Count())
+                .FirstOrDefaultAsync()
+            ;
+
+            var list = new[] { new { table = "", value = 0 } }.ToList();
+
+            list.Add(new { table = "Examen Périodique universelle", value = axe });
+            list.Add(new { table = "Organes de Traités", value = organe });
+            list.Add(new { table = "Procédures spéciales", value = visite });
+
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateRecommendationByMecanismePercentage()
+        {
+            var axe = await _context.Axes
+                    .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+                   .FirstOrDefaultAsync()
+                ;
+
+            var visite = await _context.Visites
+                   .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+                   .FirstOrDefaultAsync()
+               ;
+
+            var organe = await _context.Organes
+                .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+                .FirstOrDefaultAsync()
+            ;
+
+            var list = new[] { new { table = "", value = 0 } }.ToList();
+
+            list.Add(new { table = "Examen Périodique universelle", value = axe });
+            list.Add(new { table = "Organes de Traités", value = organe });
+            list.Add(new { table = "Procédures spéciales", value = visite });
+
 
             return Ok(list);
         }
@@ -137,7 +193,8 @@ namespace Admin5.Controllers
                     .ToListAsync()
                 ;
             }
-            else {
+            else
+            {
                 list = _context.Visites
                     .Select(e => new
                     {
