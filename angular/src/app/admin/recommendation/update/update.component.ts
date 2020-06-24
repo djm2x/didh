@@ -52,6 +52,8 @@ export class UpdateComponent implements OnInit {
       this.uow.recommendations.getOne(this.id).subscribe(r => {
         this.o = r as Recommendation;
         // console.log(r);
+        this.handleEtatAvancementChiffre(this.o.etat);
+
         this.o.recomOrgs.forEach(e => {
           this.listOrganisme.push({ id: e.idOrganisme } as any);
         });
@@ -64,6 +66,8 @@ export class UpdateComponent implements OnInit {
         });
       });
     }
+
+    
   }
 
   get isAdmin() {
@@ -91,6 +95,7 @@ export class UpdateComponent implements OnInit {
       idSousAxe: [this.o.idSousAxe, Validators.required],
       etat: [this.o.etat, Validators.required],
       etatAvancement: [this.o.etatAvancement],
+      etatAvancementChiffre: [this.o.etatAvancementChiffre],
       observation: [this.o.observation],
       pieceJointe: [this.o.pieceJointe],
       idPays: [this.o.idPays, Validators.required],
@@ -181,6 +186,30 @@ export class UpdateComponent implements OnInit {
     this.uow.sousAxes.getByIdAxe(idAxe).subscribe(r => {
       this.sousAxes = r as any[];
     });
+  }
+
+  etat(etat: string) {
+    console.log(etat)
+
+    this.handleEtatAvancementChiffre(etat);
+  }
+
+  handleEtatAvancementChiffre(etat: string) {
+    let v = this.myForm.get('etatAvancementChiffre').value;
+    if (etat.includes('Réalisé')) {
+      v = 100;
+      this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
+    } else if (etat.includes('Non')){
+      v = 0;
+      this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
+    } else if (etat.includes('cours')){
+      v = v > 5 ? v : 5;
+      this.myForm.get('etatAvancementChiffre').enable();
+    } else {
+      this.myForm.get('etatAvancementChiffre').enable();
+    }
+
+    this.myForm.get('etatAvancementChiffre').patchValue(v);
   }
 
   selectChange(mecanisme) {

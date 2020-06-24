@@ -1,12 +1,16 @@
 <div class="host">
   <app-title title="Examens périodique universal"></app-title>
   <div class="right" *ngIf="!session.isPointFocal">
-    <button class="mt-3" style="margin: 20px 0" mat-raised-button color="primary" (click)="add()">
+    <button class="mt-3" mat-raised-button color="primary" (click)="add()">
       <mat-icon>add</mat-icon>
       Examen
     </button>
   </div>
-
+  <section>
+    <!-- <h3>Accueil</h3> -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis atque natus consequuntur quas aut iure mollitia
+      nam ducimus doloribus alias.</p>
+  </section>
   <div class="row">
     <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>

@@ -145,6 +145,7 @@ export class Recommendation {
   idAxe = 0;
   etat = '';
   etatAvancement = '';
+  etatAvancementChiffre = 0;
   observation = '';
   pieceJointe = '';
   idOrgane = null;

@@ -80,12 +80,17 @@
           </mat-form-field>
         </div>
 
-        <mat-form-field appearance="outline" style="width: 100%">
+        <mat-form-field appearance="outline" style="width: 78%">
           <mat-label>Etat de mis en oeuvre</mat-label>
-          <mat-select formControlName="etat">
+          <mat-select formControlName="etat" (selectionChange)="etat($event.value)">
             <mat-option value="">...</mat-option>
             <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
           </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 20%; margin-left: 2%;">
+          <mat-label>Etat en %</mat-label>
+          <input matInput formControlName="etatAvancementChiffre" type="number" min="0" max="100" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" style="width: 100%;" *ngIf="showEtatDavancement">

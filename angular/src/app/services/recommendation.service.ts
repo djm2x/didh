@@ -77,4 +77,8 @@ export class RecommendationService extends SuperService<Recommendation> {
     return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/stateRecommendationByMecanismePercentage`);
   }
 
+  stateRecommendationByAxe() {
+    return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/stateRecommendationByAxe`);
+  }
+
 }

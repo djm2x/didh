@@ -106,6 +106,22 @@ namespace Admin5.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> StateRecommendationByAxe()
+        {
+            var list = await _context.Axes
+                    .Select(e => new
+                    {
+                        table = e.Label,
+                        value = e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()
+                    })
+                   .ToListAsync()
+                ;
+
+
+            return Ok(list);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> StateRecommendationByMecanismeTaux()
         {
             var axe = await _context.Axes

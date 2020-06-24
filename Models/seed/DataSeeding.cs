@@ -260,10 +260,13 @@ namespace seed
             var id = 1;
             var list = new[]
             {
-                "Démocratie et gouvernance",
-                "Droits économiques, sociaux, culturels et environnementaux",
-                "Promotion et protection des droits catégoriels",
-                "Cadre institutionnel et juridique",
+                "Consolider la gouvernance du développement durable",
+                "Réussir la transition vers une économie verts",
+                "Améliorer la gestion et la valorisation des ressources naturelles et renforcer la conservation de la biodiversité",
+                "Accélérer la mise en œuvre de la politique nationale de lutte contre le changement climatique",
+                "Accorder une vigilance particulière aux territoires sensibles",
+                "Promouvoir le développement humain et réduire les inégalités sociales et territoriales",
+                "Promouvoir une culture de développement durable",
              };
             var faker = new Faker<Axe>(DataSeeding.lang)
                 .CustomInstantiator(f => new Axe { Id = id++ })
@@ -271,7 +274,7 @@ namespace seed
 
 
 
-            axes = faker.Generate(4);
+            axes = faker.Generate(7);
             modelBuilder.Entity<Axe>().HasData(axes);
 
             return modelBuilder;
@@ -284,9 +287,9 @@ namespace seed
             list.Add(new SousAxe { Id = 1, Label = "Démocratie", IdAxe = 1 });
             list.Add(new SousAxe { Id = 2, Label = "Gouvernance", IdAxe = 1 });
             list.Add(new SousAxe { Id = 3, Label = "Droits économiques", IdAxe = 2 });
-            list.Add(new SousAxe { Id = 4, Label = "Droits sociaux", IdAxe = 2 });
-            list.Add(new SousAxe { Id = 5, Label = "Droits culturels", IdAxe = 2 });
-            list.Add(new SousAxe { Id = 6, Label = "Droits environnementaux", IdAxe = 2 });
+            list.Add(new SousAxe { Id = 4, Label = "Droits sociaux", IdAxe = 5 });
+            list.Add(new SousAxe { Id = 5, Label = "Droits culturels", IdAxe = 6 });
+            list.Add(new SousAxe { Id = 6, Label = "Droits environnementaux", IdAxe = 7 });
             list.Add(new SousAxe { Id = 7, Label = "Promotion des droits catégoriels", IdAxe = 3 });
             list.Add(new SousAxe { Id = 8, Label = "Protection des droits catégoriels", IdAxe = 3 });
             list.Add(new SousAxe { Id = 9, Label = "Cadre institutionnel", IdAxe = 4 });
@@ -453,7 +456,7 @@ namespace seed
                 .RuleFor(o => o.IdPays, f => f.Random.Number(1, 4))
                 .RuleFor(o => o.IdVisite, f => f.Random.Number(1, DataSeeding.i - 90))
                 .RuleFor(o => o.IdOrgane, f => f.Random.Number(1, 6))
-                .RuleFor(o => o.IdAxe, f => f.Random.Number(1, 4))
+                .RuleFor(o => o.IdAxe, f => f.Random.Number(1, 7))
                 .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
                 .RuleFor(o => o.Etat, f => f.PickRandom(etat))
                 .RuleFor(o => o.EtatAvancement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
