@@ -38,6 +38,14 @@ export class RecommendationService extends SuperService<Recommendation> {
   searchAndGet(o) {
     return this.http.post(`${this.urlApi}/${this.controller}/searchAndGet`, o);
   }
+
+  stateParamAxe(o) {
+    return this.http.post(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
+  }
+
+  stateParamOrganisme(o) {
+    return this.http.post(`${this.urlApi}/${this.controller}/stateParamOrganisme`, o);
+  }
   // updateRange(o) {
   //   // console.log("updating : ", o)
   //   return this.http.post(`${this.urlApi}/${this.controller}/updateRange`, o);
@@ -62,7 +70,7 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   genericByRecommendation(table: 'axe' | 'organe' | 'visite', type: 'count' | 'taux') {
-    return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/genericByRecommendation/${table}/${type}`);
+    return this.http.get<{ table: string, value: number }[]>(`${this.urlApi}/${this.controller}/genericByRecommendation/${table}/${type}`);
   }
 
   stateRecommendationByOrganisme() {
@@ -70,15 +78,15 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   stateRecommendationByMecanismeTaux() {
-    return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/stateRecommendationByMecanismeTaux`);
+    return this.http.get<{ table: string, value: number }[]>(`${this.urlApi}/${this.controller}/stateRecommendationByMecanismeTaux`);
   }
 
   stateRecommendationByMecanismePercentage() {
-    return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/stateRecommendationByMecanismePercentage`);
+    return this.http.get<{ table: string, value: number }[]>(`${this.urlApi}/${this.controller}/stateRecommendationByMecanismePercentage`);
   }
 
   stateRecommendationByAxe() {
-    return this.http.get<{table: string, value: number}[]>(`${this.urlApi}/${this.controller}/stateRecommendationByAxe`);
+    return this.http.get<{ id: number, table: string, value: number }[]>(`${this.urlApi}/${this.controller}/stateRecommendationByAxe`);
   }
 
 }

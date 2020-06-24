@@ -70,9 +70,20 @@
           <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
           </h5>
         </div> -->
-        <div class="d-flex justify-content-center mt-4 mb-4">
+        <div class="row d-flex justify-content-center mt-4 mb-4">
           <!-- {{this.axesValue | json}} -->
-          <img src="assets/axes.jpg" style="width: 750px;">
+          <div class="col-md-5 d-flex flex-column">
+            <div *ngFor="let e of axesValue; let i=index">
+              <div class="axes">
+                <p class="title">Enjeu {{e.id}} : {{e.value}} %</p>
+                <p class="axe">{{e.table}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <img src="assets/axes.jpg" style="width: 100%;">
+          </div>
         </div>
       </mat-card>
     </div>

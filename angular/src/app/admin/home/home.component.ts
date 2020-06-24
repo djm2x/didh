@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
   // pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
   list: { name: string, value: number }[] = [];
-  axesValue: { name: string, value: number }[] = [];
+  axesValue: { id: number, table: string, value: number }[] = [];
   constructor(private uow: UowService, public session: SessionService) { }
 
   ngOnInit() {

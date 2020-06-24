@@ -1,13 +1,9 @@
+
 <div class="row">
     <form [formGroup]="myForm">
-        <mat-form-field class="col-md-6">
-            <mat-label>Mecanismes</mat-label>
-            <mat-select (selectionChange)="selectChange($event.value)" value="Examen périodique universal">
-                <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
-            </mat-select>
-        </mat-form-field>
 
-        <mat-form-field class="col-md-6">
+
+        <!-- <mat-form-field class="col-md-6">
             <mat-label>Mecanisme</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
                 <mat-option value="0">...</mat-option>
@@ -37,6 +33,12 @@
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
+        </mat-form-field> -->
+        <mat-form-field class="col-md-6">
+            <mat-label>Mecanismes</mat-label>
+            <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
+                <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field class="col-md-6">
@@ -54,6 +56,14 @@
                 <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+            <mat-label>Organisme</mat-label>
+            <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
 </div>
 
@@ -68,14 +78,16 @@
         Réinitialiser
     </button>
 </div>
-<mat-card>
-    <div class="d-flex justify-content-center">
-        <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">{{title}}</h5>
-    </div>
-    <div style="display: block;">
-        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-            [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
-        </canvas>
-    </div>
+<div class="row">
+    <div class="col-md-6">
+        <app-state-pie [obs]="listAxes"></app-state-pie>
 
-</mat-card>
+    </div>
+    <div class="col-md-6">
+        <app-state-pie [obs]="listOrganisme"></app-state-pie>
+
+    </div>
+</div>
+<!-- <mat-card>
+
+</mat-card> -->

@@ -129,7 +129,7 @@ export class ListComponent implements OnInit {
       nom: this.o.nom,
       etat: this.o.etat,
       idPays: this.o.idPays,
-      idSousAxe: this.o.idCycle,
+      idSousAxe: this.o.idSousAxe,
       startIndex: this.o.startIndex,
       pageSize: this.o.pageSize,
       sortBy: this.o.sortBy,

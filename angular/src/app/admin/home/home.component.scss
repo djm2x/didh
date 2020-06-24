@@ -64,5 +64,21 @@ h3 {
   text-align: center;
 }
 
+.axes {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 5px rgb(221, 221, 221);
+  padding: 5px 5px;
+  margin-bottom: 5px;
+  p {
+    margin: 0;
+    font-size: .8em;
+  }
 
+  .title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: .9em;
+  }
+}
 

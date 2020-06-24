@@ -453,9 +453,9 @@ namespace seed
                 .RuleFor(o => o.CodeRecommendation, f => f.System.Version().ToString())
                 .RuleFor(o => o.Mecanisme, f => f.PickRandom(mecanisme))
                 .RuleFor(o => o.IdCycle, f => f.Random.Number(1, DataSeeding.i - 90))
-                .RuleFor(o => o.IdPays, f => f.Random.Number(1, 4))
                 .RuleFor(o => o.IdVisite, f => f.Random.Number(1, DataSeeding.i - 90))
                 .RuleFor(o => o.IdOrgane, f => f.Random.Number(1, 6))
+                .RuleFor(o => o.IdPays, f => f.Random.Number(1, 4))
                 .RuleFor(o => o.IdAxe, f => f.Random.Number(1, 7))
                 .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
                 .RuleFor(o => o.Etat, f => f.PickRandom(etat))
@@ -466,7 +466,16 @@ namespace seed
                 // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
                 ;
 
-            modelBuilder.Entity<Recommendation>().HasData(faker.Generate(DataSeeding.i));
+            List<Recommendation> l = faker.Generate(DataSeeding.i);
+            int i = 0;
+            l.ForEach(e => {
+                e.IdCycle = i % 3 == 0 ? null : e.IdCycle;
+                e.IdVisite = i % 3 == 1 ? null : e.IdVisite;
+                e.IdOrgane = i % 3 == 2 ? null : e.IdOrgane;
+                i++;
+            });
+
+            modelBuilder.Entity<Recommendation>().HasData(l);
 
             return modelBuilder;
         }

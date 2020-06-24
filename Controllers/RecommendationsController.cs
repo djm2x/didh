@@ -111,10 +111,59 @@ namespace Admin5.Controllers
             var list = await _context.Axes
                     .Select(e => new
                     {
+                        id = e.Id,
                         table = e.Label,
                         value = e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()
                     })
                    .ToListAsync()
+                ;
+
+
+            return Ok(list);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> StateParamAxe(Model model)
+        {
+            var list = await _context.Recommendations
+                .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
+                .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+                .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
+                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
+                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
+                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
+                // .GroupBy(e => e.IdAxe)
+                .Select(e => new
+                {
+                    table = e.Axe.Label,
+                    value = e.Axe.Recommendations.Count
+                })
+                .Distinct()
+                .ToListAsync()
+                ;
+
+
+            return Ok(list);
+        }
+
+         [HttpPost]
+        public async Task<IActionResult> StateParamOrganisme(Model model)
+        {
+            var list = await _context.Recommendations
+                .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
+                .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+                .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
+                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
+                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
+                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
+                // .GroupBy(e => e.IdAxe)
+                .Select(e => new
+                {
+                    table = e.RecomOrgs.FirstOrDefault().Organisme.Label,
+                    value = e.Axe.Recommendations.Count
+                })
+                .Distinct()
+                .ToListAsync()
                 ;
 
 

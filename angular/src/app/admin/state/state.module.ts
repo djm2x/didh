@@ -1,3 +1,4 @@
+import { TitleModule } from './../components/title/title.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +15,7 @@ import { BarConventionComponent } from './bar-convention/bar-convention.componen
 import { BarMecanismeComponent } from './bar-mecanisme/bar-mecanisme.component';
 import { ThreeComponent } from './three/three.component';
 import { DiagrammeComponent } from './diagramme/diagramme.component';
+import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { DiagrammeComponent } from './diagramme/diagramme.component';
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
+    PieChartModule,
+    TitleModule,
   ]
 })
 export class StateModule { }
