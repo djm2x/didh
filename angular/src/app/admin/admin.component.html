@@ -29,9 +29,33 @@
       <img src="../assets/logo-ddh.jpg" alt="marit logo" style="width: 250px;">
     </div>
     <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: 100%;">
-      <mat-list-item *ngFor="let e of navs; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
-        <span class="myspan" [style.width]="e.width">{{e.name}}</span>
-      </mat-list-item>
+      <div *ngFor="let e of navs; let i=index">
+        <ng-container *ngIf="e.children.length === 0; else elseTemplate">
+          <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active">
+            <span class="myspan" [style.width]="e.width">{{e.name}}</span>
+          </mat-list-item>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <mat-list-item  [matMenuTriggerFor]="i">
+            <span class="myspan" [style.width]="e.width">{{e.name}}</span>
+          </mat-list-item>
+
+          <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
+            {{session.getUser.prenom}}
+          </button> -->
+          <mat-menu #i="matMenu" xPosition="after">
+            <div *ngIf="session.isAdmin">
+              <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route" routerLinkActive="router-link-active">
+                {{c.name}}
+              </button>
+            </div>
+          </mat-menu>
+
+
+        </ng-template>
+
+
+      </div>
     </mat-nav-list>
   </mat-card>
 </nav>
@@ -76,7 +100,7 @@
         </mat-expansion-panel>
 
 
-        
+
 
         <mat-divider></mat-divider>
         <mat-list-item [routerLink]="['/admin/evenements']" routerLinkActive="router-link-active">

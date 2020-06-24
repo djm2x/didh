@@ -1,83 +1,100 @@
 
-<div class="row">
-    <form [formGroup]="myForm">
+<div class="expension">
+  <mat-accordion>
+    <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>search</mat-icon>
+          <p>Recherche</p>
+        </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider>
+      </mat-divider>
+      <form [formGroup]="myForm">
+      <div class="row m-2">
 
 
-        <!-- <mat-form-field class="col-md-6">
-            <mat-label>Mecanisme</mat-label>
-            <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <!-- <mat-form-field class="col-md-6">
+                <mat-label>Mecanisme</mat-label>
+                <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <mat-form-field *ngIf="cycleActive" class="col-md-6">
-            <mat-label>Cycle</mat-label>
-            <mat-select formControlName="idCycle">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of cycles" [value]="e.id">{{ e.label }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <mat-form-field *ngIf="cycleActive" class="col-md-6">
+                <mat-label>Cycle</mat-label>
+                <mat-select formControlName="idCycle">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of cycles" [value]="e.id">{{ e.label }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <mat-form-field *ngIf="visiteActive" class="col-md-6">
-            <mat-label>Visite</mat-label>
-            <mat-select formControlName="idVisite">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <mat-form-field *ngIf="visiteActive" class="col-md-6">
+                <mat-label>Visite</mat-label>
+                <mat-select formControlName="idVisite">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <mat-form-field *ngIf="organeActive" class="col-md-6">
-            <mat-label>Organe</mat-label>
-            <mat-select formControlName="idOrgane">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
-            </mat-select>
-        </mat-form-field> -->
-        <mat-form-field class="col-md-6">
-            <mat-label>Mecanismes</mat-label>
-            <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
-                <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <mat-form-field *ngIf="organeActive" class="col-md-6">
+                <mat-label>Organe</mat-label>
+                <mat-select formControlName="idOrgane">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+            <mat-form-field appearance="outline" class="col-md-5">
+                <mat-label>Mecanismes</mat-label>
+                <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
+                    <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-6">
-            <mat-label>Axe</mat-label>
-            <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-5">
+                <mat-label>Axe</mat-label>
+                <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-6">
-            <mat-label>Sous axe</mat-label>
-            <mat-select formControlName="idSousAxe">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-5">
+                <mat-label>Sous axe</mat-label>
+                <mat-select formControlName="idSousAxe">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <mat-form-field class="col-md-6">
-            <mat-label>Organisme</mat-label>
-            <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
-                <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </form>
+            <mat-form-field appearance="outline" class="col-md-5">
+                <mat-label>Organisme</mat-label>
+                <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
+                    <mat-option value="0">...</mat-option>
+                    <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="right">
+            <button mat-raised-button color="primary" type="button" (click)="search(myForm.value)" [disabled]="isAllEmpty">
+              <mat-icon>search</mat-icon>
+              Rechercher
+            </button>
+            &nbsp;
+            <button mat-raised-button (click)="reset()" type="button" [disabled]="isAllEmpty">
+              <mat-icon>refresh</mat-icon>
+              Réinitialiser
+            </button>
+          </div>
+        </form>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 
-<div class="right">
-    <button mat-raised-button color="primary" (click)="search(myForm.value)" [disabled]="isAllEmpty">
-        <mat-icon>search</mat-icon>
-        Rechercher
-    </button>
-    &nbsp;
-    <button mat-raised-button (click)="reset()" [disabled]="isAllEmpty">
-        <mat-icon>refresh</mat-icon>
-        Réinitialiser
-    </button>
-</div>
 <div class="row">
     <div class="col-md-6">
         <app-state-pie [obs]="listAxes"></app-state-pie>

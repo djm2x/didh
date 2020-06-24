@@ -1,4 +1,25 @@
 p {
     font-family: Lato;
   }
-  
+
+
+
+.expension {
+  margin: 20px 0;
+}
+
+.right {
+  margin: 0 20px 20px;
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 0 0 10px;
+  }
+
+  mat-icon {
+    margin-top: 5px;
+  }
+}

@@ -52,7 +52,7 @@ namespace seed
             var faker = new Faker<Evenement>(DataSeeding.lang)
                 .CustomInstantiator(f => new Evenement { Id = id++ })
                 .RuleFor(o => o.Title, f => f.Lorem.Word())
-                .RuleFor(o => o.Description, f => f.Lorem.Word())
+                .RuleFor(o => o.Description, f => f.Lorem.Paragraph(10))
                 .RuleFor(o => o.Categorie, f => "Categorie 1")
                 .RuleFor(o => o.Date, f => f.Date.Past())
                 ;
@@ -190,7 +190,7 @@ namespace seed
         public static ModelBuilder Questionnaires(this ModelBuilder modelBuilder)
         {
             var id = 1;
-            var list = new[]  { "Droits catégoriels", "Droits thématiques" };
+            var list = new[] { "Droits catégoriels", "Droits thématiques" };
             var faker = new Faker<Questionnaire>(DataSeeding.lang)
                 .CustomInstantiator(f => new Questionnaire { Id = id++ })
                 .RuleFor(o => o.Theme, f => f.PickRandom(list))
@@ -207,7 +207,7 @@ namespace seed
             var id = 1;
             var faker = new Faker<ParticipationSession>(DataSeeding.lang)
                 .CustomInstantiator(f => new ParticipationSession { Id = id++ })
-                .RuleFor(o => o.Session, f => $"Session {id -1}")
+                .RuleFor(o => o.Session, f => $"Session {id - 1}")
                 .RuleFor(o => o.Discours, f => $"")
                 .RuleFor(o => o.Documents, f => $"");
 
@@ -270,7 +270,7 @@ namespace seed
              };
             var faker = new Faker<Axe>(DataSeeding.lang)
                 .CustomInstantiator(f => new Axe { Id = id++ })
-                .RuleFor(o => o.Label, f => list[id - 2 ]);
+                .RuleFor(o => o.Label, f => list[id - 2]);
 
 
 
@@ -388,7 +388,7 @@ namespace seed
                 .RuleFor(o => o.Reference, f => f.Internet.Url())
                 .RuleFor(o => o.IdTraite, f => f.Random.Number(1, 100))
                 .RuleFor(o => o.PieceJointe, f => "")
-                
+
                 ;
             modelBuilder.Entity<Rapport>().HasData(faker.Generate(DataSeeding.i));
 
@@ -438,7 +438,7 @@ namespace seed
         {
             var id = 1;
             var mecanisme = new[] { "Examen périodique universal", "Organes de traités", "Procédure spéciale" };
-            var etat = new[] {  "Réalisé", "En cours", "En continue","Non réalisé" };
+            var etat = new[] { "Réalisé", "En cours", "En continue", "Non réalisé" };
             var list = new[]
             {
                 "Appui à la Délégation Interministérielle aux Droits de l’Homme (DIDH) pour l’intégration des droits humains dans les politiques publiques",
@@ -468,10 +468,32 @@ namespace seed
 
             List<Recommendation> l = faker.Generate(DataSeeding.i);
             int i = 0;
-            l.ForEach(e => {
-                e.IdCycle = i % 3 == 0 ? null : e.IdCycle;
-                e.IdVisite = i % 3 == 1 ? null : e.IdVisite;
-                e.IdOrgane = i % 3 == 2 ? null : e.IdOrgane;
+            l.ForEach(e =>
+            {
+                // e.IdCycle = i % 3 == 0 ? null : e.IdCycle;
+                // e.IdVisite = i % 3 == 1 ? null : e.IdVisite;
+                // e.IdOrgane = i % 3 == 2 ? null : e.IdOrgane;
+                if (i % 3 == 0)
+                {
+                    e.IdCycle = e.IdCycle;
+                    e.IdVisite = null;
+                    e.IdOrgane = null;
+                }
+                else if (i % 3 == 1)
+                {
+                     e.IdCycle = null;
+                    e.IdVisite = e.IdVisite;
+                    e.IdOrgane = null;
+                }
+                else
+                {
+                     e.IdCycle = null;
+                    e.IdVisite = null;
+                    e.IdOrgane = e.IdOrgane;
+                }
+
+
+
                 i++;
             });
 

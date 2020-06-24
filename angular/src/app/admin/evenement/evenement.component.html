@@ -1,12 +1,12 @@
-<!-- <app-title title="Evenements"></app-title>
+<app-title title="Evenements"></app-title>
 
 <div class="d-flex flex-row-reverse mt-3 mb-3">
   <button mat-raised-button color="primary" (click)="add()">
     <mat-icon>add</mat-icon> Evènement
   </button>
-</div> -->
+</div>
 
-<!-- <mat-accordion class="mt-2">
+<mat-accordion class="mt-2">
   <mat-expansion-panel [expanded]="false" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -21,7 +21,7 @@
     <mat-divider> </mat-divider>
 
     <div class="mt-2">
-      <mat-form-field appearance="fill" class="col-md-6">
+      <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Titre</mat-label>
         <input matInput [formControl]="title" required>
       </mat-form-field>
@@ -39,8 +39,9 @@
       </button>
     </div>
   </mat-expansion-panel>
-</mat-accordion> -->
-<div class="d-flex flex-row-reverse">
+</mat-accordion>
+
+<!-- <div class="d-flex flex-row-reverse">
   <div class="d-flex flex-column mb-2 mr-2">
     <div class="mt-2">
       <mat-form-field style="width: 100%;">
@@ -60,14 +61,16 @@
       </button>
     </div>
   </div>
-</div>
-<section class="section-title">
+</div> -->
+
+
+<!-- <section class="section-title">
   <h4>Evenements</h4>
   <button mat-raised-button color="primary" (click)="add()">
     <mat-icon>add</mat-icon> Evènement
   </button>
-</section>
-<mat-card style="margin-top: 0 !important; border-radius: 0;">
+</section> -->
+<mat-card style="margin-top: 20px !important; border-radius: 0;">
   <div *ngFor="let e of dataSource; let i=index" class="row">
     <div class="col-md-3 d-flex flex-row-reverse">
       <div class="d-flex flex-column justify-content-between">
@@ -99,14 +102,14 @@
     </div>
   </div>
 </mat-card>
-<!-- 
+<!--
 <div class="example-container mat-elevation-z8 mt-3">
   <div class="example-loading-shade" *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="example-table-container">
     <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
-      
+
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox (change)="$event ? masterToggle() : null"

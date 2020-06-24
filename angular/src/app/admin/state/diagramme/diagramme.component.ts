@@ -15,29 +15,30 @@ import { SessionService } from 'src/app/shared';
 export class DiagrammeComponent implements OnInit {
   @Input() obs = new Subject<IData>();
   title = '';
+  panelOpenState = false;
   // Pie
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
-    title: {
-      text: '',
-      display: false,
-    },
-    legend: {
-      position: 'chartArea',
-      display: false,
-    }
-  };
+  // public pieChartOptions: ChartOptions = {
+  //   responsive: true,
+  //   title: {
+  //     text: '',
+  //     display: false,
+  //   },
+  //   legend: {
+  //     position: 'chartArea',
+  //     display: false,
+  //   }
+  // };
 
 
 
-  pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
-  pieChartData: SingleDataSet = [/*300, 500, 100*/];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = [];
-  public pieChartColors = [
-    { backgroundColor: [], },
-  ];
+  // pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
+  // pieChartData: SingleDataSet = [/*300, 500, 100*/];
+  // public pieChartType: ChartType = 'pie';
+  // public pieChartLegend = true;
+  // public pieChartPlugins = [];
+  // public pieChartColors = [
+  //   { backgroundColor: [], },
+  // ];
 
   //
   update = new Subject();
@@ -136,7 +137,7 @@ export class DiagrammeComponent implements OnInit {
     this.idCycle.setValue(mecanisme.includes('Examen périodique universal') ? 1 : 0);
     this.idOrgane.setValue(mecanisme.includes('Organes de traités') ? 1 : 0);
     this.idVisite.setValue(mecanisme.includes('Procédure spéciale') ? 1 : 0);
-    
+
   }
 
   reset() {
