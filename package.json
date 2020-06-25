@@ -9,7 +9,7 @@
     "b": "dotnet watch run",
     "f-p": "cd angular && ng build --prod",
     "b-p": "dotnet publish -o D:/MarIT/GestionCommerciale/deploy",
-    "ci": "npm run prod-front && npm run push",
+    "ci": "npm run f-p && npm run push",
     "prod": "npm run prod-front && npm run prod-back",
     "init": "git init && git remote add origin https://github.com/djm2x/didh.git",
     "push": "git add . && git commit -m \"commit\" && git push -u origin master",
