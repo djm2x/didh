@@ -28,9 +28,9 @@ export class AdminComponent implements OnInit {
   navs = [
     { name: 'Accueil', route: ['/admin/home'], width: '70px' , children: [] },
     { name: 'Mecanisme', route: ['/admin/home'], width: '70px' , children: [
-      { name: 'Examen Périodique universelle', route: ['/admin/examen'], width: '126px' },
-      { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
-      { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
+      { name: 'Examen Périodique universelle', route: ['/admin/mecanisme/examen'], width: '126px' },
+      { name: 'Organes de Traités', route: ['/admin/mecanisme/rapport'], width: '76px' },
+      { name: 'Procédures spéciales', route: ['/admin/mecanisme/visite'], width: '70px' },
     ] },
     { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
     { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
