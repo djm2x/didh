@@ -31,6 +31,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     this.o = this.data.model;
     this.title = this.data.title;
     this.createForm();
+
     /*{imagesFrom}*/
 
     setTimeout(() => {
@@ -63,11 +64,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
   createForm() {
     this.myForm = this.fb.group({
       id: [this.o.id, [Validators.required, ]],
-title: [this.o.title, [Validators.required, ]],
-categorie: [this.o.categorie, [Validators.required, ]],
-description: [this.o.description, [Validators.required, ]],
-date: [this.o.date, [Validators.required, ]],
-
+      title: [this.o.title, [Validators.required, ]],
+      categorie: [this.o.categorie, [Validators.required, ]],
+      description: [this.o.description, [Validators.required, ]],
+      date: [this.o.date, [Validators.required, ]],
     });
   }
 
