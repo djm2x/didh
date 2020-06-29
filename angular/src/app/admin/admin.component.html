@@ -1,3 +1,41 @@
+<nav style="position: fixed; top: 0; z-index: 12;width: 100vw;" class="mat-elevation-z2">
+  <mat-card class="d-flex mat-elevation-z6 w-100 m-0 text-white align-items-center"
+    style="height: 50px;border-radius: 0; background-color: #737373 ">
+
+    <div style="margin: auto 0;">
+      <!-- <img src="../assets/logo-ddh.jpg" alt="marit logo" style="width: 250px;"> -->
+    </div>
+    <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: fit-content;">
+      <div *ngFor="let e of navs; let i=index">
+        <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
+          <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active">
+            <span class="myspan" [style.width]="e.width">{{e.name}}</span>
+          </mat-list-item>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <mat-list-item  [matMenuTriggerFor]="i">
+            <span class="myspan" [style.width]="e.width">{{e.name}}</span>
+          </mat-list-item>
+
+          <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
+            {{session.getUser.prenom}}
+          </button> -->
+          <mat-menu #i="matMenu" xPosition="after">
+            <div *ngIf="session.isAdmin">
+              <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route" routerLinkActive="router-link-active">
+                {{c.name}}
+              </button>
+            </div>
+          </mat-menu>
+
+
+        </ng-template>
+
+
+      </div>
+    </mat-nav-list>
+  </mat-card>
+</nav>
 
 
 <mat-toolbar class="mat-elevation-z6">
@@ -23,16 +61,16 @@
 </mat-toolbar>
 
 
-<nav style="padding-top: 50px !important;">
+<nav style="position: fixed; top: 100px; z-index: 10; width: 100vw;">
   <mat-card class="d-flex mat-elevation-z6 w-100 p-0 m-0 text-white align-items-center"
     style="height: 70px;border-radius: 0; background-color: var(--primary)">
 
     <div style="margin: auto 0;">
       <img src="../assets/logo-ddh.jpg" alt="marit logo" style="width: 250px;">
     </div>
-    <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: 100%;">
-      <div *ngFor="let e of navs; let i=index">
-        <ng-container *ngIf="e.children.length === 0; else elseTemplate">
+    <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: 100%; margin-right: 20px;">
+      <div *ngFor="let e of navs2; let i=index">
+        <ng-container *ngIf="true; else elseTemplate">
           <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active">
             <span class="myspan" [style.width]="e.width">{{e.name}}</span>
           </mat-list-item>
@@ -210,7 +248,7 @@
         </div>
       </div> -->
     <main class="container" [@routerTransition]="getState(o)"
-      style="margin-top: 5px; height: 100%;">
+      style="margin-top: 187px; height: 100%;">
       <router-outlet #o="outlet"></router-outlet>
     </main>
 
