@@ -15,7 +15,7 @@ body {
   height: 100%;
   background-color: #fafafa;
   --gray: #ebebeb;
-  --primary: #0f6ea8;
+  --primary: #00adef;
 }
 body {
   margin: 0;
@@ -65,5 +65,15 @@ mat-icon {
 
 mat-icon {
   // margin-top: 4px !important;
-  margin-bottom: 5px !important;
+  // margin-bottom: 5px !important;
 }
+
+// style necery for menu hover
+// .cdk-overlay-container{
+//   left:0px;
+//   top:120px;
+// }
+// .cdk-overlay-connected-position-bounding-box{
+//   top:0 !important;
+
+// }

@@ -8,7 +8,7 @@
     <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: fit-content;">
       <div *ngFor="let e of navs; let i=index">
         <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
-          <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active">
+          <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active" style="height: 50px !important;">
             <span class="myspan" [style.width]="e.width">{{e.name}}</span>
           </mat-list-item>
         </ng-container>
@@ -76,13 +76,11 @@
           </mat-list-item>
         </ng-container>
         <ng-template #elseTemplate>
-          <mat-list-item  [matMenuTriggerFor]="i">
+          <mat-list-item  [matMenuTriggerFor]="i" [ngClass]="{'router-link-active': e.route[0].includes('mecanisme')}">
             <span class="myspan" [style.width]="e.width">{{e.name}}</span>
+            &nbsp;<mat-icon style="color: white;">keyboard_arrow_down</mat-icon>
           </mat-list-item>
 
-          <!-- <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
-            {{session.getUser.prenom}}
-          </button> -->
           <mat-menu #i="matMenu" xPosition="after">
             <div *ngIf="session.isAdmin">
               <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route" routerLinkActive="router-link-active">
