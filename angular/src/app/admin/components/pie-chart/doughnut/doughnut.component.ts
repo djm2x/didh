@@ -46,28 +46,29 @@ export class DoughnutComponent implements OnInit {
   }
 
   ngOnInit() {
+    const lbs = ['Taux', 'Etat d’avancement', ''];
     this.obs.subscribe(d => {
-      if (d.type === 'stateRecommendationByMecanismeTaux' as any) {
+      if (d.type === 'stateEPU' as any) {
         this.title = d.title;
-        this.uow.recommendations.stateRecommendationByMecanismeTaux().subscribe(r => {
-          this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-          this.pieChartData = r.map(e => e.value);
+        this.uow.recommendations.stateEPU().subscribe(r => {
+          this.pieChartLabels = lbs;
+          this.pieChartData = [r.t, r.p /*- r.t*/, 100 - r.p];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
-      } else if (d.type === 'stateRecommendationByMecanismePercentage' as any) {
+      } else if (d.type === 'stateOT' as any) {
         this.title = d.title;
-        this.uow.recommendations.stateRecommendationByMecanismePercentage().subscribe(r => {
-          this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-          this.pieChartData = r.map(e => e.value);
+        this.uow.recommendations.stateOT().subscribe(r => {
+          this.pieChartLabels = lbs;
+          this.pieChartData = [r.t, r.p /*- r.t*/, 100 - r.p];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
       } else {
         this.title = d.title;
-        this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
-          this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-          this.pieChartData = r.map(e => e.value);
+        this.uow.recommendations.statePS().subscribe(r => {
+          this.pieChartLabels = lbs;
+          this.pieChartData = [r.t, r.p /*- r.t*/, 100 - r.p];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });

@@ -18,10 +18,12 @@ export class HomeComponent implements OnInit {
   //
   // displayedColumns: string[] = ['item', 'cost'];
   mecanismes = this.uow.mecanismes;
-  pieChartSubject = new BehaviorSubject<IData>(
-    { type: 'stateRecommendationByMecanismeTaux', title: 'Etat d’avancement des recommandations par mécanismes' } as any);
-  pieChartSubjectC = new BehaviorSubject<IData>(
-    { type: 'stateRecommendationByMecanismePercentage', title: 'Taux de recommandations par mécanismes' } as any);
+  // tslint:disable-next-line: max-line-length
+  pieChartSubjectEPU = new BehaviorSubject<IData>({ type: 'stateEPU', title: 'Recommandations par mécanismes / Examen Périodique universell' } as any);
+  // tslint:disable-next-line: max-line-length
+  pieChartSubjectOT = new BehaviorSubject<IData>({ type: 'stateOT', title: 'Taux de recommandations par mécanismes / Organes de Traités' } as any);
+  // tslint:disable-next-line: max-line-length
+  pieChartSubjectPS = new BehaviorSubject<IData>({ type: 'statePS', title: 'Taux de recommandations par mécanismes / Procédures spéciales' } as any);
   // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
   // pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
   list: { name: string, value: number }[] = [];

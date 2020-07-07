@@ -58,17 +58,17 @@
       <div class="row w-100">
         <div class="col-md-12">
           <div class="chart-size">
-            <app-doughnut [obs]="pieChartSubject" [pieChartType]="'doughnut'"></app-doughnut>
+            <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
-            <app-doughnut [obs]="pieChartSubjectC" [pieChartType]="'doughnut'"></app-doughnut>
+            <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
-            <app-doughnut [obs]="pieChartSubjectC" [pieChartType]="'doughnut'"></app-doughnut>
+            <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut>
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@
         </div>
       </mat-card> -->
       <div style="position: relative;height: 350px;">
-        <div class="d-flex" style="position: absolute;top: 87px;z-index: 10;">
+        <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
           <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '147.5'" style="color: white; font-weight: bold;"> 
             {{e.value}} %
           </span>
@@ -119,7 +119,7 @@
 
   <!-- <mat-divider> </mat-divider> -->
   
-  <div class="d-flex justify-content-center w-100 mt-5 mb-5">
+  <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
     <section class="super-title">
       <div>
         <h3>Etat d’avancement des recommandations – départements</h3>
@@ -127,7 +127,7 @@
     </section>
   </div>
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-md-12">
       <div>
         <!-- <div class="d-flex justify-content-center">

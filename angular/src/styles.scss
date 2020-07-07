@@ -13,14 +13,19 @@ body {
 html,
 body {
   height: 100%;
-  background-color: #fafafa;
   --gray: #ebebeb;
   --primary: #00adef;
+  --body-background: #f2f0ef;
+  background-color: var(--body-background);
 }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
+}
+
+.mat-drawer-container {
+  background-color: var(--body-background);
 }
 
 mat-dialog-container {

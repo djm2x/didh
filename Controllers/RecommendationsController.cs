@@ -146,7 +146,7 @@ namespace Admin5.Controllers
             return Ok(list);
         }
 
-         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> StateParamOrganisme(Model model)
         {
             var list = await _context.Recommendations
@@ -196,6 +196,54 @@ namespace Admin5.Controllers
 
 
             return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> stateEPU()
+        {
+            var p = await _context.Axes
+                    .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+                    .FirstOrDefaultAsync()
+                ;
+
+            var t = await _context.Axes
+                    .Select(e => e.Recommendations.Count())
+                    .FirstOrDefaultAsync()
+                ;
+
+            return Ok(new { p, t });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> stateOT()
+        {
+            var p = await _context.Organes
+                    .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+                    .FirstOrDefaultAsync()
+                ;
+
+            var t = await _context.Organes
+                    .Select(e => e.Recommendations.Count())
+                    .FirstOrDefaultAsync()
+                ;
+
+            return Ok(new { p, t });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> statePS()
+        {
+            var p = await _context.Visites
+                    .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+                    .FirstOrDefaultAsync()
+                ;
+
+            var t = await _context.Visites
+                    .Select(e => e.Recommendations.Count())
+                    .FirstOrDefaultAsync()
+                ;
+
+            return Ok(new { p, t });
         }
 
         [HttpGet]
