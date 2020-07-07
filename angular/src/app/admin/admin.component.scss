@@ -1,6 +1,10 @@
 .router-link-active {
-  background-color: #3fb545 !important;
-  color: white;
+  // background-color: #c5c5c5 !important;
+  // color: #c5c5c5;
+  .myspan {
+    color: #c5c5c5 !important;
+  }
+  border-bottom: solid 10px #c5c5c5;
 }
 
 .mywidth {

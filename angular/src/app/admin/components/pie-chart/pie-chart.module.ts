@@ -5,11 +5,12 @@ import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PieChartComponent } from './pie-chart.component';
 import { StatePieComponent } from './state/state.component';
+import { DoughnutComponent } from './doughnut/doughnut.component';
 
 
 
 @NgModule({
-  declarations: [PieChartComponent, StatePieComponent],
+  declarations: [PieChartComponent, StatePieComponent, DoughnutComponent],
   imports: [
     CommonModule,
     MatModule,
@@ -19,7 +20,8 @@ import { StatePieComponent } from './state/state.component';
   ],
   exports: [
     PieChartComponent,
-    StatePieComponent
+    StatePieComponent,
+    DoughnutComponent,
   ]
 })
 export class PieChartModule { }

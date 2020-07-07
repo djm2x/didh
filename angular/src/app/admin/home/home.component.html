@@ -30,16 +30,24 @@
   <div class="row pr-3 pl-3 pb-3">
     <img src="assets/home.jpg" alt="" srcset="" style="width: 100%; background-size: cover;">
   </div> -->
-  <app-title title="Accueil"></app-title>
+  <!-- <app-title title="Accueil"></app-title>
   <section class="mb-2">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis atque natus consequuntur quas aut iure mollitia
       nam ducimus doloribus alias.</p>
-  </section>
+  </section> -->
 
-  <h3>Système de Suivi des recommandations des mécanismes onusiens des droits de l’homme</h3>
+  <div class="d-flex justify-content-center w-100">
+    <section class="super-title">
+      <div>
+        <h3>Système de Suivi des recommandations des mécanismes onusiens des droits de l’homme</h3>
+      </div>
+    </section>
+  </div>
+  <h3 style="font-size: 1.4em;">« ﺣﻘﻮق اﻻﻧﺴﺎن ﻻ ﺗﺄتي ﻓﻘﻂ ﺑﺎﳌﻄﺎﻟﺒﺔ ﺑﻞ أﻳﻀﺎ ﺑﺄداء اﻟﻮاﺟﺐ »</h3>
 
 
-  <div class="row">
+
+  <div class="row mt-3">
     <!-- <mat-form-field class="col-md-6">
       <mat-label>Mecanismes</mat-label>
       <mat-select (selectionChange)="selectChange($event.value)" value="Examen périodique universal">
@@ -48,30 +56,41 @@
     </mat-form-field> -->
     <div class="col-md-12">
       <div class="row w-100">
-        <div class="col-md-6">
-          <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
+        <div class="col-md-12">
+          <div class="chart-size">
+            <app-doughnut [obs]="pieChartSubject" [pieChartType]="'doughnut'"></app-doughnut>
+          </div>
         </div>
         <div class="col-md-6">
-          <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+          <div class="chart-size">
+            <app-doughnut [obs]="pieChartSubjectC" [pieChartType]="'doughnut'"></app-doughnut>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-size">
+            <app-doughnut [obs]="pieChartSubjectC" [pieChartType]="'doughnut'"></app-doughnut>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 
-  <mat-divider> </mat-divider>
-  <h3>Mise en œuvre des recommandations </h3>
-
+  <!-- <mat-divider> </mat-divider> -->
+  <!-- <h3>Mise en œuvre des recommandations </h3> -->
+  <div class="d-flex justify-content-center w-100 mt-5 mb-5">
+    <section class="super-title">
+      <div>
+        <h3>Mise en œuvre des recommandations</h3>
+      </div>
+    </section>
+  </div>
 
   <div class="row">
     <div class="col-md-12">
-      <mat-card>
-        <!-- <div class="d-flex justify-content-center">
-          <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
-          </h5>
-        </div> -->
+      <!-- <mat-card>
+       
         <div class="row d-flex justify-content-center mt-4 mb-4">
-          <!-- {{this.axesValue | json}} -->
           <div class="col-md-5 d-flex flex-column">
             <div *ngFor="let e of axesValue; let i=index">
               <div class="axes">
@@ -85,17 +104,32 @@
             <img src="assets/axes.jpg" style="width: 100%;">
           </div>
         </div>
-      </mat-card>
+      </mat-card> -->
+      <div style="position: relative;height: 350px;">
+        <div class="d-flex" style="position: absolute;top: 87px;z-index: 10;">
+          <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '147.5'" style="color: white; font-weight: bold;"> 
+            {{e.value}} %
+          </span>
+        </div>
+        <img style="position: absolute;width: 1500px;" src="assets/meo.png">
+
+      </div>
     </div>
   </div>
 
-  <mat-divider> </mat-divider>
-  <h3>Etat d’avancement des recommandations – départements</h3>
-
+  <!-- <mat-divider> </mat-divider> -->
+  
+  <div class="d-flex justify-content-center w-100 mt-5 mb-5">
+    <section class="super-title">
+      <div>
+        <h3>Etat d’avancement des recommandations – départements</h3>
+      </div>
+    </section>
+  </div>
 
   <div class="row">
     <div class="col-md-12">
-      <mat-card>
+      <div>
         <!-- <div class="d-flex justify-content-center">
           <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
           </h5>
@@ -113,7 +147,7 @@
             </div>
           </div>
         </div>
-      </mat-card>
+      </div>
     </div>
   </div>
 </div>

@@ -46,12 +46,33 @@
 //   }
 // }
 
+.chart-size {
+  // width: 200px;
+}
+
+.super-title {
+  border-left: 10px solid #a19b9e;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  div {
+    background-color: #d17c36;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    h3 {
+      color: white;
+      margin: 0 0 0 0;
+      padding: 0 5px;
+    }
+  }
+}
+
 .row {
   // margin-top: 10px;
 }
 .host {
   margin: 1em !important;
-  // height: 100%;
 }
 
 ::ng-deep .mat-progress-spinner circle {

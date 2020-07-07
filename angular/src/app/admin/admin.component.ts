@@ -32,7 +32,8 @@ export class AdminComponent implements OnInit {
     //   { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
     //   { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
     // ] },
-    { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
+    
+    { name: 'sessions DH', route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
     { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
@@ -45,14 +46,14 @@ export class AdminComponent implements OnInit {
   navs2 = [
     // { name: 'Accueil', route: ['/admin/home'], width: '70px' , children: [] },
     // { name: 'Mecanisme', route: ['/admin/home'], width: '70px' , children: [
-      { name: 'Examen Périodique universelle', route: ['/admin/examen'], width: '126px' },
-      { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
-      { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
+      { name: 'Examen Périodique universelle', route: ['/admin/examen'], /*width: '126px'*/ },
+      { name: 'Organes de Traités', route: ['/admin/rapport'], /*width: '76px'*/ },
+      { name: 'Procédures spéciales', route: ['/admin/visite'], /*width: '70px'*/ },
     // ] },
     // { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
     // { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
-    { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
+    { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
     { name: 'Statistiques', route: ['/admin/state'], width: '100px' , children: [] },
     // { name: 'Documentation', route: ['documentation'], width: '100px' , children: [] },
     { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' , children: [] },

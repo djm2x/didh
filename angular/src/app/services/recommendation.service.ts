@@ -89,4 +89,17 @@ export class RecommendationService extends SuperService<Recommendation> {
     return this.http.get<{ id: number, table: string, value: number }[]>(`${this.urlApi}/${this.controller}/stateRecommendationByAxe`);
   }
 
+  //
+  stateEPU() {
+    return this.http.get<{ id: number, table: string, value: number }[]>(`${this.urlApi}/${this.controller}/stateEPU`);
+  }
+
+  stateOT() {
+    return this.http.get<{ id: number, table: string, value: number }[]>(`${this.urlApi}/${this.controller}/stateOT`);
+  }
+
+  statePS() {
+    return this.http.get<{ id: number, table: string, value: number }[]>(`${this.urlApi}/${this.controller}/statePS`);
+  }
+
 }

@@ -30,9 +30,9 @@ const routes: Routes = [
       { path: 'sous-axe', loadChildren: () => import('./sous-axe/sous-axe.module').then(m => m.SousAxeModule), canActivate: [AdminGuard] },
       { path: 'organe', loadChildren: () => import('./organe/organe.module').then(m => m.OrganeModule), canActivate: [AdminGuard] },
 
-      { path: 'mecanisme/examen', loadChildren: () => import('./examen/examen.module').then(m => m.ExamenModule), },
-      { path: 'mecanisme/rapport', loadChildren: () => import('./rapport/rapport.module').then(m => m.RapportModule), },
-      { path: 'mecanisme/visite', loadChildren: () => import('./visite/visite.module').then(m => m.VisiteModule), },
+      { path: 'examen', loadChildren: () => import('./examen/examen.module').then(m => m.ExamenModule), },
+      { path: 'rapport', loadChildren: () => import('./rapport/rapport.module').then(m => m.RapportModule), },
+      { path: 'visite', loadChildren: () => import('./visite/visite.module').then(m => m.VisiteModule), },
 
       { path: 'compte', loadChildren: () => import('./compte/compte.module').then(m => m.CompteModule), canActivate: [AdminGuard] },
       {
