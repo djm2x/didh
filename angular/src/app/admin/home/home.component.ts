@@ -29,12 +29,16 @@ export class HomeComponent implements OnInit {
   list: { name: string, p: number, t: number }[] = [];
   axesValue: { id: number, table: string, value: number }[] = [];
 
+
+
   constructor(private uow: UowService, public session: SessionService) { }
 
   ngOnInit() {
     this.stateRecommendationByOrganisme();
     this.stateRecommendationByAxe();
   }
+
+  
 
   stateRecommendationByOrganisme() {
     return this.uow.recommendations.stateRecommendationByOrganisme().subscribe(r => {

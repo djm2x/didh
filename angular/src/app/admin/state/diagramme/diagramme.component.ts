@@ -51,9 +51,15 @@ export class DiagrammeComponent implements OnInit {
   visites = this.uow.visites.get();
   organes = this.uow.organes.get();
   cycles = [];
+  etats = this.uow.etats;
   listAxes = new Subject<any>();
   listOrganisme = new Subject<any>();
 
+
+  mecanismeSubject = new Subject();
+  axesList: {name: string, p: number, t: number}[] = [];
+  departementList: {name: string, p: number, t: number}[] = [];
+  
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService) {
     monkeyPatchChartJsTooltip();
@@ -62,42 +68,47 @@ export class DiagrammeComponent implements OnInit {
 
   ngOnInit() {
 
-    // console.log(0 % 3);
-    // console.log(1 % 3);
-    // console.log(2 % 3);
-
-    // merge(...[this.update]).subscribe(r => {
-    //   this.searchAndGet(this.o);
-    // });
-
-    // this.uow.cycles.get().subscribe(r => {
-    //   this.cycles = r as any[];
-    //   if (this.cycles.length !== 0) {
-    //     this.myForm.get('idCycle').patchValue(this.cycles[0].id);
-    //   }
-    // });
-
-    // this.obs.subscribe(d => {
-    //   this.title = d.title;
-    //   this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
-    //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-    //     this.pieChartData = r.map(e => e.value);
-
-    //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-    //   });
-    // });
-
     this.createForm();
 
-    // this.pieChartOptions.title.text = this.mytitle;
-    //   this.uow.recommendations.genericByRecommendation(this.table, this.type).subscribe(r => {
-    //     console.log(r);
-    //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-    //     this.pieChartData = r.map(e => e.value);
+  }
 
-    //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-    //   });
+  searchAndGet(o: Model) {
+    // console.log(o);
+    this.o = o;
+    this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
+    this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
+      console.log(r);
 
+      this.axesList = [];
+      this.axesList = r.axe;
+      this.departementList =[];
+      this.departementList = r.department;
+      // const title = 'l’Etat d’avancement des recommandations par axe';
+      // this.listAxes.next({list: r, title});
+      // this.organeDisplay(r.macanisme)
+    });
+
+    // this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
+    //   // console.log(r);
+    //   const title = 'l’Etat d’avancement des recommandations par département';
+    //   this.listOrganisme.next({list: r, title});
+    // });
+  }
+
+  organeDisplay(r: { name: string; p: number; t: number;}[]) {
+    r = r.filter(e => e.name !== null);
+    console.log(r);
+    const barChartLabels = r.map(e => e.name);
+    const barChartData = [
+      { data: [], label: 'Etat d’avancement' },
+      { data: [], label: 'Taux' },
+    ];
+
+    r.forEach(e => {
+      barChartData[0].data.push(e.p);
+      barChartData[1].data.push(e.t);
+    });
+    this.mecanismeSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
   }
 
   createForm() {
@@ -107,6 +118,7 @@ export class DiagrammeComponent implements OnInit {
       idOrgane: this.o.idOrgane,
       idVisite: this.o.idVisite,
       idAxe: this.o.idAxe,
+      etat: this.o.etat,
       idSousAxe: this.o.idSousAxe,
       idOrganisme: this.o.idOrganisme,
     });
@@ -117,17 +129,17 @@ export class DiagrammeComponent implements OnInit {
   get idOrgane() { return this.myForm.get('idOrgane') as FormControl; }
   get idVisite() { return this.myForm.get('idVisite') as FormControl; }
 
-  // get cycleActive() {
-  //   return this.mecanisme.value === 'Examen périodique universal';
-  // }
+  get cycleActive() {
+    return this.mecanisme.value === 'Examen périodique universal';
+  }
 
-  // get visiteActive() {
-  //   return this.mecanisme.value === 'Procédure spéciale';
-  // }
+  get visiteActive() {
+    return this.mecanisme.value === 'Procédure spéciale';
+  }
 
-  // get organeActive() {
-  //   return this.mecanisme.value === 'Organes de traités';
-  // }
+  get organeActive() {
+    return this.mecanisme.value === 'Organes de traités';
+  }
 
   selectChange(mecanisme: string) {
     // this.idVisite.setValue(0);
@@ -150,22 +162,7 @@ export class DiagrammeComponent implements OnInit {
     this.searchAndGet(o);
   }
 
-  searchAndGet(o: Model) {
-    console.log(o);
-    this.o = o;
-    this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
-    this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
-      // console.log(r);
-      const title = 'l’Etat d’avancement des recommandations par axe';
-      this.listAxes.next({list: r, title});
-    });
-
-    this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
-      // console.log(r);
-      const title = 'l’Etat d’avancement des recommandations par département';
-      this.listOrganisme.next({list: r, title});
-    });
-  }
+  
 
   axeChange(idAxe: number) {
     this.uow.sousAxes.getByIdAxe(idAxe).subscribe(r => {
@@ -179,6 +176,7 @@ export class DiagrammeComponent implements OnInit {
       this.myForm.get('idCycle').value.toString() === '0' &&
       this.myForm.get('idOrgane').value.toString() === '0' &&
       this.myForm.get('idVisite').value.toString() === '0' &&
+      this.myForm.get('etat').value.toString() === '' &&
       this.myForm.get('idAxe').value.toString() === '0' &&
       this.myForm.get('idSousAxe').value.toString() === '0' &&
       this.myForm.get('idOrganisme').value.toString() === '0'
@@ -214,6 +212,7 @@ class Model {
   idOrgane = 0;
   idVisite = 0;
   idAxe = 0;
+  etat = '';
   idSousAxe = 0;
   idOrganisme = 0;
 }

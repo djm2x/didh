@@ -3,7 +3,7 @@ import { Rapport, Traite } from './../../../Models/models';
 
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge, BehaviorSubject } from 'rxjs';
+import { merge, BehaviorSubject, Subject } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { Visite, Recommendation } from 'src/app/Models/models';
@@ -54,17 +54,18 @@ export class ListComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  pieChartSubject = new BehaviorSubject<IData>({table: 'organe', type: 'count', title: 'Etat d’avancement des recommandations par organe'});
-  pieChartSubjectC = new BehaviorSubject<IData>({table: 'organe', type: 'taux', title: 'Taux de recommandations par organe'});
-  
+  pieChartSubject = new BehaviorSubject<IData>({ table: 'organe', type: 'count', title: 'Etat d’avancement des recommandations par organe' });
+  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: 'Taux de recommandations par organe' });
+
+  organePageSubject = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
 
-      // if (this.session.isPointFocal === false) {
-      //   this.columnDefs.push({ columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' })
-      // }
-    }
+    // if (this.session.isPointFocal === false) {
+    //   this.columnDefs.push({ columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' })
+    // }
+  }
 
   ngOnInit() {
     // console.log(this.columnDefs)
@@ -91,6 +92,27 @@ export class ListComponent implements OnInit {
           this.openDialog(r);
         });
       }
+    });
+
+    this.stateOrgane();
+  }
+
+  stateOrgane() {
+    this.uow.recommendations.stateOrgane().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const barChartData = [
+        { data: [], label: 'Etat d’avancement' },
+        { data: [], label: 'Taux' },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push(e.p);
+        barChartData[1].data.push(e.t);
+      });
+      this.organePageSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
     });
   }
 
@@ -151,7 +173,7 @@ export class ListComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'traite'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: { fileName, folder: 'traite' } });
   }
 
   // activeDownload(o: Traite) {

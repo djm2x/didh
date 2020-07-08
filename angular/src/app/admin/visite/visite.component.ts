@@ -2,7 +2,7 @@ import { SessionService } from './../../shared/session.service';
 import { Notification, Visite } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge, BehaviorSubject } from 'rxjs';
+import { merge, BehaviorSubject, Subject } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { HttpEventType } from '@angular/common/http';
@@ -47,6 +47,9 @@ export class VisiteComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'count', title: 'Etat d’avancement des recommandations par visite'});
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
   
+  visitePageSubject = new Subject();
+  visitePage: {name: string, p: number, t: number}[] = [];
+  
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService) { }
@@ -77,6 +80,8 @@ export class VisiteComponent implements OnInit {
         });
       }
     });
+
+    this.stateVisite();
   }
 
   openDialogDetail(o: any) {
@@ -92,12 +97,33 @@ export class VisiteComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.visites.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
       }
     );
+  }
+
+  stateVisite() {
+    this.uow.recommendations.stateVisite().subscribe(r => {
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      this.visitePage = r;
+      // r = r.filter(e => e.name !== null);
+      // console.log(r);
+      // const barChartLabels = r.map(e => e.name);
+      // const barChartData = [
+      //   { data: [], label: 'Etat d’avancement' },
+      //   { data: [], label: 'Taux' },
+      // ];
+
+      // r.forEach(e => {
+      //   barChartData[0].data.push(e.p);
+      //   barChartData[1].data.push(e.t);
+      // });
+      // this.visitePageSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
+    });
   }
 
   openDialog(o: Visite, text) {

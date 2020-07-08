@@ -97,7 +97,7 @@ namespace Admin5.Controllers
                     {
                         name = e.Label,
                         p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
-                        t =  (double.Parse(e.RecomOrgs.Count.ToString()) / recommendationsCount) * 100,
+                        t = (double.Parse(e.RecomOrgs.Count.ToString()) / recommendationsCount) * 100,
                     })
                     .Distinct()
                     .ToListAsync()
@@ -127,23 +127,113 @@ namespace Admin5.Controllers
         [HttpPost]
         public async Task<IActionResult> StateParamAxe(Model model)
         {
-            var list = await _context.Recommendations
+            int recommendationsCount = _context.Recommendations.Count();
+            var q = _context.Recommendations
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
                 .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+                .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
-                // .GroupBy(e => e.IdAxe)
+                ;
+
+
+            var epu = await q
+                .GroupBy(e => e.Cycle.Label)
                 .Select(e => new
                 {
-                    table = e.Axe.Label,
-                    value = e.Axe.Recommendations.Count
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
                 })
                 .Distinct()
                 .ToListAsync()
                 ;
 
+            var ot = await q
+                .GroupBy(e => e.Organe.Label)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .Distinct()
+                .ToListAsync()
+                ;
+
+            var ps = await q
+                .GroupBy(e => e.Visite.Mandat)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .Distinct()
+                .ToListAsync()
+                ;
+
+            var axe = await q
+                .GroupBy(e => e.Axe.Label)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .Distinct()
+                .ToListAsync()
+                ;
+
+            var department = await q
+                .Select(e => new
+                {
+                    name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
+                    p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+                    t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .Distinct()
+                .ToListAsync()
+                ;
+
+
+            return Ok(new { macanisme = new { epu, ot, ps }, axe, department });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateOrgane()
+        {
+            int recommendationsCount = _context.Recommendations.Count();
+            var list = await _context.Recommendations
+                .GroupBy(e => e.Organe.Label)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .ToListAsync()
+                ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateVisite()
+        {
+            int recommendationsCount = _context.Recommendations.Count();
+            var list = await _context.Recommendations
+                .GroupBy(e => e.Visite.Mandat)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .ToListAsync()
+                ;
 
             return Ok(list);
         }
@@ -193,9 +283,9 @@ namespace Admin5.Controllers
 
             var list = new[] { new { table = "", value = 0.0 } }.ToList();
 
-            list.Add(new { table = "Examen Périodique universelle", value = (double.Parse(axe.ToString())  / recommendationsCount) * 100 });
-            list.Add(new { table = "Organes de Traités", value = (double.Parse(organe.ToString())  / recommendationsCount) * 100 });
-            list.Add(new { table = "Procédures spéciales", value = (double.Parse(visite.ToString())  / recommendationsCount) * 100 });
+            list.Add(new { table = "Examen Périodique universelle", value = (double.Parse(axe.ToString()) / recommendationsCount) * 100 });
+            list.Add(new { table = "Organes de Traités", value = (double.Parse(organe.ToString()) / recommendationsCount) * 100 });
+            list.Add(new { table = "Procédures spéciales", value = (double.Parse(visite.ToString()) / recommendationsCount) * 100 });
 
 
             return Ok(list);

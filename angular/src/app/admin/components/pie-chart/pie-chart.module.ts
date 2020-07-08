@@ -6,11 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PieChartComponent } from './pie-chart.component';
 import { StatePieComponent } from './state/state.component';
 import { DoughnutComponent } from './doughnut/doughnut.component';
+import { BarComponent } from './bar/bar.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 
 
 @NgModule({
-  declarations: [PieChartComponent, StatePieComponent, DoughnutComponent],
+  declarations: [PieChartComponent, StatePieComponent, DoughnutComponent, BarComponent, ProgressBarComponent],
   imports: [
     CommonModule,
     MatModule,
@@ -22,6 +24,8 @@ import { DoughnutComponent } from './doughnut/doughnut.component';
     PieChartComponent,
     StatePieComponent,
     DoughnutComponent,
+    BarComponent,
+    ProgressBarComponent,
   ]
 })
 export class PieChartModule { }

@@ -11,12 +11,25 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis atque natus consequuntur quas aut iure mollitia
       nam ducimus doloribus alias.</p>
   </section>
-  <div class="row">
-    <div class="col-md-6">
+  <div class="row justify-content-center">
+    <!-- <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
     </div>
     <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+    </div> -->
+
+    <div class="col-md-10 mb-5 mt-5">
+      <div *ngFor="let e of visitePage; let i=index">
+        <app-progress-bar [widthOne]="e.p + '%'" [widthTwo]="e.t + '%'" [title]="e.name"></app-progress-bar>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center mt-4">
+        <img src="assets/line.png" height="10px" width="280px">
+        <h5 style="color: #737473; margin: 5px 0 10px 5px;">
+          Mise en œuvre des recommandations par Procédures spéciales
+        </h5>
+      </div>
     </div>
   </div>
 
@@ -40,8 +53,8 @@
           <td mat-cell *matCellDef="let row">
             <!-- {{row[columnDefs[4].columnDef]}} -->
 
-            <button mat-icon-button [disabled]="row.lienUpload === ''" [matTooltip]="row.lienUpload"
-              color="accent" (click)="showPieceJoin(row.lienUpload)">
+            <button mat-icon-button [disabled]="row.lienUpload === ''" [matTooltip]="row.lienUpload" color="accent"
+              (click)="showPieceJoin(row.lienUpload)">
               <mat-icon>cloud_download</mat-icon>
             </button>
           </td>

@@ -1,0 +1,16 @@
+<div class=" mb-3">
+    <div class="d-flex flex-column justify-content-center mt-2">
+        <img *ngIf="false" src="assets/line.png" height="10px" width="280px">
+        <h5 style="color: #737473; margin: 5px 0 10px 5px;">
+            {{title}}
+        </h5>
+    </div>
+    <div class="miniBar">
+        <!-- <div class="miniBarProgress" style="width: 20%; z-index: 3; background-color: #8a898a;"></div> -->
+        <div class="miniBarProgress" [matTooltip]="'Taux ' + widthTwo + ' %'" [style.width]="widthTwo" style="z-index: 2; background-color: #d17c36;"></div>
+        <div class="miniBarProgress" [matTooltip]="'Etat d’avancement ' + widthOne + ' %'" [style.width]="widthOne" style="z-index: 1; background-color: var(--primary);"></div>
+    </div>
+
+    
+
+</div>

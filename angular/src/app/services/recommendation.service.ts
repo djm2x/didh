@@ -40,7 +40,15 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   stateParamAxe(o) {
-    return this.http.post(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
+    return this.http.post<{
+      macanisme: {
+        epu: { name: string, p: number, t: number }[],
+        ot: { name: string, p: number, t: number }[],
+        ps: { name: string, p: number, t: number }[]
+      },
+      axe: { name: string, p: number, t: number }[],
+      department: { name: string, p: number, t: number }[]
+    }>(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
   }
 
   stateParamOrganisme(o) {
@@ -100,6 +108,14 @@ export class RecommendationService extends SuperService<Recommendation> {
 
   statePS() {
     return this.http.get<{ p: number, t: number }>(`${this.urlApi}/${this.controller}/statePS`);
+  }
+
+  stateOrgane() {
+    return this.http.get<{ name: string, p: number, t: number }[]>(`${this.urlApi}/${this.controller}/stateOrgane`);
+  }
+
+  stateVisite() {
+    return this.http.get<{ name: string, p: number, t: number }[]>(`${this.urlApi}/${this.controller}/stateVisite`);
   }
 
 }

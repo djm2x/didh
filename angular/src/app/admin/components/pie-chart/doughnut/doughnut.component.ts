@@ -112,7 +112,7 @@ export class DoughnutComponent implements OnInit {
   getColors(length) {
     // tslint:disable-next-line:max-line-length
     // const pallet = ['#0074D9', '#FF4136', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
-    const pallet = ['#d17c36', '#2d71a1', '#c5c5c500'];
+    const pallet = this.elementFromForLoop ? ['#acadb1', '#d17c36', '#c5c5c500'] : ['#d17c36', '#2d71a1', '#c5c5c500'];
     const colors = [];
 
     for (let i = 0; i < length; i++) {
