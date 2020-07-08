@@ -56,30 +56,32 @@
 
 <nav style="position: fixed; top: 0px; z-index: 10; width: 100vw;">
   <mat-card class="d-flex mat-elevation-z6 p-0 m-0 text-white align-items-center"
-    style="height: 140px;border-radius: 0;width: 100vw; background: linear-gradient(90deg, rgba(76,105,141,1) 0%, rgba(62,78,113,1) 100%);">
+    style="height: 140px;border-radius: 0;width: 100vw; background: linear-gradient(90deg, #2d71a1 0%, #245688 100%);">
 
     <div style="margin: auto 0;">
       <img src="assets/logo.png" alt="marit logo" style="height: 140px;">
     </div>
     <section class="d-flex flex-column justify-content-between mr-4 mt-2" style="height: 140px;width: 100%;">
-     
+
       <!-- first row -->
       <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: fit-content;">
         <span class="example-spacer"></span>
-        <div *ngFor="let e of navs; let i=index" style=" background-color: #aaabab;">
+        <div *ngFor="let e of navs; let i=index" style=" ">
           <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
-            <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active" style="height: 40px !important;">
+            <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active"
+              style="height: 40px !important; margin-right: 1px; background-color: #aaabab;">
               <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name}}</span>
             </mat-list-item>
           </ng-container>
           <ng-template #elseTemplate>
-            <mat-list-item  [matMenuTriggerFor]="i">
+            <mat-list-item [matMenuTriggerFor]="i">
               <span class="myspan" [style.width]="e.width">{{e.name}}</span>
             </mat-list-item>
-  
+
             <mat-menu #i="matMenu" xPosition="after">
               <div *ngIf="session.isAdmin">
-                <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route" routerLinkActive="router-link-active">
+                <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route"
+                  routerLinkActive="router-link-active">
                   {{c.name}}
                 </button>
               </div>
@@ -91,11 +93,13 @@
           <mat-icon style="color: white;">power_settings_new</mat-icon>
         </mat-list-item>
         <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item> <b>{{session.getUser.nom}} {{session.getUser.prenom}}</b> </button>
           <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
           <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
           <mat-divider></mat-divider>
           <div *ngIf="session.isAdmin">
-            <button mat-menu-item *ngFor="let e of menus; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
+            <button mat-menu-item *ngFor="let e of menus; let i=index" [routerLink]="e.route"
+              routerLinkActive="router-link-active">
               {{e.name}}
             </button>
           </div>
@@ -103,7 +107,7 @@
       </mat-nav-list>
       <!-- second row -->
       <mat-nav-list class="d-flex align-items-start justify-content-start p-0">
-        <mat-list-item [routerLink]="['/admin/home']">
+        <mat-list-item [routerLink]="['/admin/home']" routerLinkActive="router-link-active">
           <!-- Bienvenue, {{session.getUser.nom}} {{session.getUser.prenom}} -->
           <mat-icon style="color: white;">home</mat-icon>
         </mat-list-item>
@@ -281,7 +285,7 @@
           <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
         </div>
       </div> -->
-    <main class="" [@routerTransition]="getState(o)" style="margin-top: 187px; height: 100%;">
+    <main class="" [@routerTransition]="getState(o)" style="margin-top: 160px; height: 100%;">
       <router-outlet #o="outlet"></router-outlet>
     </main>
 

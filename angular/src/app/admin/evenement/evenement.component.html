@@ -1,7 +1,7 @@
 <div style="margin: 1em ">
 <app-title title="Evenements"></app-title>
 
-<div class="d-flex flex-row-reverse mt-3 mb-3">
+<div class="d-flex flex-row-reverse mt-3 mb-3" *ngIf="session.isAdmin">
   <button mat-raised-button color="primary" (click)="add()">
     <mat-icon>add</mat-icon> Evènement
   </button>

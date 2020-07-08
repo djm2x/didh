@@ -9,10 +9,11 @@
 }
 
 .mat-header-row {
-  background-color: #ebebeb  !important;
+  background-color: #a0a0a0  !important;
   .mat-sort-header-button ,.mat-header-cell {
     font-weight: bolder !important;
-    color: rgb(0, 0, 0) !important;
+    color: white !important;
+    text-transform: capitalize !important;
   }
 }
 

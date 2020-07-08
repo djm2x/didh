@@ -45,7 +45,7 @@ export class ExamenComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe'});
+  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'count', title: 'Mise en œuvre des recommandations par axe'});
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: 'Taux de recommandations par axe'});
   
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService

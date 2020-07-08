@@ -36,10 +36,18 @@
       nam ducimus doloribus alias.</p>
   </section> -->
 
+  <div class="d-flex justify-content-center w-100 mb-5">
+    <section class="super-title2">
+      <div>
+        <h3>Système de Suivi des recommandations</h3>
+      </div>
+    </section>
+  </div>
+
   <div class="d-flex justify-content-center w-100">
     <section class="super-title">
       <div>
-        <h3>Système de Suivi des recommandations des mécanismes onusiens des droits de l’homme</h3>
+        <h3>Mise en œuvre des recommandations des mécanismes onusiens des droits de l’homme</h3>
       </div>
     </section>
   </div>
@@ -81,7 +89,7 @@
   <div class="d-flex justify-content-center w-100 mt-5 mb-5">
     <section class="super-title">
       <div>
-        <h3>Mise en œuvre des recommandations</h3>
+        <h3>Mise en œuvre des axe</h3>
       </div>
     </section>
   </div>
@@ -122,7 +130,7 @@
   <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
     <section class="super-title">
       <div>
-        <h3>Etat d’avancement des recommandations – départements</h3>
+        <h3>Mise en œuvre des recommandations par départements</h3>
       </div>
     </section>
   </div>
@@ -137,14 +145,16 @@
         <div class="d-flex flex-wrap justify-content-center">
 
           <div *ngFor="let e of list; let i=index">
-            <div class="d-flex flex-column pl-2 pr-2 mb-3 mt-3">
+            <!-- <div class="d-flex flex-column pl-2 pr-2 mb-3 mt-3">
               <div style="height: 110px;" class=" pl-4 pr-4">
-                <!-- <mat-progress-spinner style="position: absolute;" mode="determinate" value="100" color="accent"></mat-progress-spinner> -->
-                <mat-progress-spinner mode="determinate" [value]="e.value !== 0 ? e.value : 1"></mat-progress-spinner>
+               
+                <mat-progress-spinner color="primary" mode="determinate" [value]="e.value !== 0 ? e.value : 1"></mat-progress-spinner>
                 <div style="position:relative; top: -60px; left: 30px;">{{e.value}} %</div>
               </div>
               <p style="width: 170px; margin: 0; font-size: .9em; text-align: center;">{{e.name}}</p>
-            </div>
+            </div> -->
+
+            <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut>
           </div>
         </div>
       </div>

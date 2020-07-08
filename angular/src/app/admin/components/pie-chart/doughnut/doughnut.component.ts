@@ -29,11 +29,15 @@ export class DoughnutComponent implements OnInit {
     }
   };
 
-
+  @Input() width = 300;
+  @Input() fontSize = .93;
+  @Input() widthText = 'auto';
 
   pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
   pieChartData: SingleDataSet = [/*300, 500, 100*/];
   @Input() public pieChartType: ChartType = 'pie';
+  @Input() public isInForLoop = false;
+  @Input() public elementFromForLoop: { name: string, p: number, t: number };
   public pieChartLegend = true;
   public pieChartPlugins = [];
   public pieChartColors = [
@@ -46,13 +50,14 @@ export class DoughnutComponent implements OnInit {
   }
 
   ngOnInit() {
-    const lbs = ['Taux', 'Etat d’avancement', ''];
+    const lbs = ['Etat d’avancement', 'Taux', ''];
     this.obs.subscribe(d => {
       if (d.type === 'stateEPU' as any) {
         this.title = d.title;
         this.uow.recommendations.stateEPU().subscribe(r => {
+          // console.log(r)
           this.pieChartLabels = lbs;
-          this.pieChartData = [r.t, r.p /*- r.t*/, 100 - r.p];
+          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
@@ -60,21 +65,38 @@ export class DoughnutComponent implements OnInit {
         this.title = d.title;
         this.uow.recommendations.stateOT().subscribe(r => {
           this.pieChartLabels = lbs;
-          this.pieChartData = [r.t, r.p /*- r.t*/, 100 - r.p];
+          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
-      } else {
+      } else if (d.type === 'statePS' as any) {
         this.title = d.title;
         this.uow.recommendations.statePS().subscribe(r => {
           this.pieChartLabels = lbs;
-          this.pieChartData = [r.t, r.p /*- r.t*/, 100 - r.p];
+          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
+
+          this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
+        });
+      } else if (d.type === 'stateDepartement' as any) {
+        this.title = d.title;
+        this.uow.recommendations.statePS().subscribe(r => {
+          this.pieChartLabels = lbs;
+          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
       }
 
+
     })
+    if (this.isInForLoop) {
+      console.log(this.elementFromForLoop)
+      this.title = this.elementFromForLoop.name;
+      this.pieChartLabels = lbs;
+      this.pieChartData = [this.elementFromForLoop.p /*- r.t*/, this.elementFromForLoop.t, 100 - this.elementFromForLoop.p];
+
+      this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
+    }
 
     // this.pieChartOptions.title.text = this.mytitle;
     //   this.uow.recommendations.genericByRecommendation(this.table, this.type).subscribe(r => {
@@ -90,7 +112,7 @@ export class DoughnutComponent implements OnInit {
   getColors(length) {
     // tslint:disable-next-line:max-line-length
     // const pallet = ['#0074D9', '#FF4136', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
-    const pallet = ['#d17c36', '#496488', '#c5c5c500'];
+    const pallet = ['#d17c36', '#2d71a1', '#c5c5c500'];
     const colors = [];
 
     for (let i = 0; i < length; i++) {
@@ -106,4 +128,5 @@ export interface IData {
   table: 'axe' | 'organe' | 'visite';
   type: 'count' | 'taux';
   title: string;
+  r: any;
 }

@@ -1,13 +1,14 @@
 <div class="d-flex flex-column align-items-center justify-content-center">
 
-  <div style="display: block; width: 300px;">
+  <div style="display: block;" [style.width.px]="width">
     <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
       [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
     </canvas>
   </div>
-  <div class="d-flex flex-column justify-content-center mt-2">
-    <img src="assets/line.png" height="10px" width="280px">
-    <h5 style="color: #737473; margin: 5px 0 10px 5px;">
+  <div class="d-flex flex-column justify-content-center mt-2" [style.width]="widthText">
+    <img *ngIf="!isInForLoop" src="assets/line.png" height="10px" width="280px">
+    <h5 style="color: #737473; margin: 5px 0 10px 5px;" [style.font-size.em]="fontSize"
+       [ngStyle]="{'text-align': isInForLoop ? 'center' : 'left'}">
       {{title}}
     </h5>
   </div>

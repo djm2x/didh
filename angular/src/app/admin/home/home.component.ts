@@ -19,15 +19,16 @@ export class HomeComponent implements OnInit {
   // displayedColumns: string[] = ['item', 'cost'];
   mecanismes = this.uow.mecanismes;
   // tslint:disable-next-line: max-line-length
-  pieChartSubjectEPU = new BehaviorSubject<IData>({ type: 'stateEPU', title: 'Recommandations par mécanismes / Examen Périodique universell' } as any);
+  pieChartSubjectEPU = new BehaviorSubject<IData>({ type: 'stateEPU', title: 'Examen Périodique universell' } as any);
   // tslint:disable-next-line: max-line-length
-  pieChartSubjectOT = new BehaviorSubject<IData>({ type: 'stateOT', title: 'Taux de recommandations par mécanismes / Organes de Traités' } as any);
+  pieChartSubjectOT = new BehaviorSubject<IData>({ type: 'stateOT', title: 'Organes de Traités' } as any);
   // tslint:disable-next-line: max-line-length
-  pieChartSubjectPS = new BehaviorSubject<IData>({ type: 'statePS', title: 'Taux de recommandations par mécanismes / Procédures spéciales' } as any);
+  pieChartSubjectPS = new BehaviorSubject<IData>({ type: 'statePS', title: 'Procédures spéciales' } as any);
   // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
   // pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
-  list: { name: string, value: number }[] = [];
+  list: { name: string, p: number, t: number }[] = [];
   axesValue: { id: number, table: string, value: number }[] = [];
+
   constructor(private uow: UowService, public session: SessionService) { }
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
 
   stateRecommendationByAxe() {
     return this.uow.recommendations.stateRecommendationByAxe().subscribe(r => {
-      console.log(r)
+      // console.log(r)
       this.axesValue = r as any;
     });
   }

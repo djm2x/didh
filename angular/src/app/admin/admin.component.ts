@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
     //   { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
     // ] },
     
-    { name: 'sessions DH', route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
+    { name: 'Sessions DH', route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
     { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },

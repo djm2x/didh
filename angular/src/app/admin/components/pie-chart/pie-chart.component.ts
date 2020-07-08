@@ -87,7 +87,23 @@ export class PieChartComponent implements OnInit {
 
   getColors(length) {
     // tslint:disable-next-line:max-line-length
-    const pallet = ['#0074D9', '#FF4136', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
+    const pallet = [
+      '#d97f2a',
+      '#2d71a1',
+      '#c2c3c6',
+      '#ba6446',
+      '#7dc460',
+      '#fdb93a',
+      '#59b8ce',
+      '#5c5c5f',
+      '#ef4f42',
+      '#a5a6aa',
+      // '#85144b', a31414
+      // '#F012BE',
+      // '#3D9970',
+      // '#111111',
+      // '#AAAAAA',
+    ];
     // const pallet = ['#d17c36', '#496488', '#84bc5b'];
     const colors = [];
 

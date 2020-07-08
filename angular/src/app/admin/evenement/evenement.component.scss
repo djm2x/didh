@@ -6,16 +6,18 @@ img {
 
 .section-date {
   margin-top: 20px;
-  background-color: var(--gray);
+  background-color: #d17c36;
   padding: 10px;
   height: fit-content;
   width: 80px;
   span {
     margin-bottom: 5px;
+    color: white;
   }
   span:nth-child(1) {
     font-size: 27px;
     font-weight: bold;
+    color: white;
   }
 }
 

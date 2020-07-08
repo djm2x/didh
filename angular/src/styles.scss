@@ -14,7 +14,7 @@ html,
 body {
   height: 100%;
   --gray: #ebebeb;
-  --primary: #00adef;
+  --primary: #2d71a1;
   --body-background: #f2f0ef;
   background-color: var(--body-background);
 }
@@ -22,6 +22,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--primary) !important;
 }
 
 .mat-drawer-container {
@@ -62,6 +66,14 @@ mat-icon {
 .mat-cell:last-child {
   width: 150px !important;
   padding-right: 0 !important;
+}
+
+.mat-row:nth-child(even){
+  background-color: #ebebeb !important;
+}
+
+.mat-row:nth-child(odd){
+  background-color:#ffffff !important;
 }
 
 // .mat-header-cell:nth-child(2),.mat-cell:nth-child(2){

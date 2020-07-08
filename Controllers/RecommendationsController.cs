@@ -91,11 +91,13 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateRecommendationByOrganisme()
         {
+            int recommendationsCount = _context.Recommendations.Count();
             var list = await _context.Organismes
                     .Select(e => new
                     {
                         name = e.Label,
-                        value = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+                        p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+                        t =  (double.Parse(e.RecomOrgs.Count.ToString()) / recommendationsCount) * 100,
                     })
                     .Distinct()
                     .ToListAsync()
@@ -173,6 +175,7 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateRecommendationByMecanismeTaux()
         {
+            int recommendationsCount = _context.Recommendations.Count();
             var axe = await _context.Axes
                     .Select(e => e.Recommendations.Count())
                    .FirstOrDefaultAsync()
@@ -188,11 +191,11 @@ namespace Admin5.Controllers
                 .FirstOrDefaultAsync()
             ;
 
-            var list = new[] { new { table = "", value = 0 } }.ToList();
+            var list = new[] { new { table = "", value = 0.0 } }.ToList();
 
-            list.Add(new { table = "Examen Périodique universelle", value = axe });
-            list.Add(new { table = "Organes de Traités", value = organe });
-            list.Add(new { table = "Procédures spéciales", value = visite });
+            list.Add(new { table = "Examen Périodique universelle", value = (double.Parse(axe.ToString())  / recommendationsCount) * 100 });
+            list.Add(new { table = "Organes de Traités", value = (double.Parse(organe.ToString())  / recommendationsCount) * 100 });
+            list.Add(new { table = "Procédures spéciales", value = (double.Parse(visite.ToString())  / recommendationsCount) * 100 });
 
 
             return Ok(list);
@@ -201,6 +204,7 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> stateEPU()
         {
+            int recommendationsCount = _context.Recommendations.Count();
             var p = await _context.Axes
                     .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
                     .FirstOrDefaultAsync()
@@ -211,12 +215,18 @@ namespace Admin5.Controllers
                     .FirstOrDefaultAsync()
                 ;
 
-            return Ok(new { p, t });
+            // var t2 = await _context.Axes
+            //         .Select(e => e.Recommendations.Count())
+            //         .FirstOrDefaultAsync()
+            //     ;
+
+            return Ok(new { p, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
         }
 
         [HttpGet]
         public async Task<IActionResult> stateOT()
         {
+            int recommendationsCount = _context.Recommendations.Count();
             var p = await _context.Organes
                     .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
                     .FirstOrDefaultAsync()
@@ -227,12 +237,13 @@ namespace Admin5.Controllers
                     .FirstOrDefaultAsync()
                 ;
 
-            return Ok(new { p, t });
+            return Ok(new { p, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
         }
 
         [HttpGet]
         public async Task<IActionResult> statePS()
         {
+            int recommendationsCount = _context.Recommendations.Count();
             var p = await _context.Visites
                     .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
                     .FirstOrDefaultAsync()
@@ -243,7 +254,7 @@ namespace Admin5.Controllers
                     .FirstOrDefaultAsync()
                 ;
 
-            return Ok(new { p, t });
+            return Ok(new { p, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
         }
 
         [HttpGet]
@@ -280,15 +291,15 @@ namespace Admin5.Controllers
         {
             //https://stackoverflow.com/questions/57131550/why-cant-i-create-a-listt-of-anonymous-type-in-c
 
-            var list = new[] { new { table = "", value = 0 } }.ToList();
-
+            var list = new[] { new { table = "", value = 0.0 } }.ToList();
+            int recommendationsCount = _context.Recommendations.Count();
             if (table == "axe")
             {
                 list = await _context.Axes
                     .Select(e => new
                     {
                         table = e.Label,
-                        value = type == "count" ? (e.Recommendations.Count()) : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                        value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
                     })
                     .Distinct()
                     .ToListAsync()
@@ -300,7 +311,7 @@ namespace Admin5.Controllers
                     .Select(e => new
                     {
                         table = e.Label,
-                        value = type == "count" ? (e.Recommendations.Count()) : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                        value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
                     })
                     .Distinct()
                     .ToListAsync()
@@ -312,7 +323,7 @@ namespace Admin5.Controllers
                     .Select(e => new
                     {
                         table = e.Mandat,
-                        value = type == "count" ? (e.Recommendations.Count()) : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                        value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
                     })
                     .Distinct()
                     .ToList()
