@@ -74,14 +74,15 @@
   display: flex;
   align-items: center;
   div {
-    background-color: #a19b9e;
+    // background-color: #a19b9e;
     height: 35px;
     display: flex;
     align-items: center;
     h3 {
-      color: white;
+      color: #a19b9e;
       margin: 0 0 0 0;
       padding: 0 5px;
+      font-size: 1.8em;
     }
   }
 }
@@ -94,7 +95,7 @@
 }
 
 ::ng-deep .mat-progress-spinner circle {
-  fill: #00000012 !important;
+  fill: #00000008 !important;
 }
 
 h3 {

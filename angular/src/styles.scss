@@ -24,8 +24,11 @@ body {
   overflow-x: hidden;
 }
 
-.mat-progress-spinner circle, .mat-spinner circle {
-  stroke: var(--primary) !important;
+// .mat-progress-spinner circle, .mat-spinner circle {
+//   stroke: var(--primary) !important;
+// }
+.mat-drawer-content {
+  overflow: hidden !important;
 }
 
 .mat-drawer-container {

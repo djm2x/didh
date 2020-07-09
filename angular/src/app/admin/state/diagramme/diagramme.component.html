@@ -26,7 +26,7 @@
                         <mat-label>Cycle</mat-label>
                         <mat-select formControlName="idCycle">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of cycles" [value]="e.id">{{ e.label }}</mat-option>
+                            <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -50,6 +50,7 @@
                         <mat-label>Etat de mis en oeuvre</mat-label>
                         <mat-select formControlName="etat">
                             <!-- <mat-option value="0">...</mat-option> -->
+                            <mat-option value="">...</mat-option>
                             <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -116,7 +117,7 @@
 
       <div class="col-md-10 mb-5 mt-5">
         <div *ngFor="let e of axesList; let i=index">
-          <app-progress-bar [widthOne]="e.p + '%'" [widthTwo]="e.t + '%'" [title]="e.name"></app-progress-bar>
+          <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
         </div>
 
         <div class="d-flex flex-column justify-content-center align-items-center mt-4">
@@ -132,7 +133,9 @@
           <div class="d-flex flex-wrap justify-content-center ">
 
             <div *ngFor="let e of departementList; let i=index">
-              <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut>
+              <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+
+              <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
             </div>
           </div>
 

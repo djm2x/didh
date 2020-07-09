@@ -8,11 +8,17 @@ import { StatePieComponent } from './state/state.component';
 import { DoughnutComponent } from './doughnut/doughnut.component';
 import { BarComponent } from './bar/bar.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { ProgressCercleComponent } from './progress-cercle/progress-cercle.component';
 
 
 
 @NgModule({
-  declarations: [PieChartComponent, StatePieComponent, DoughnutComponent, BarComponent, ProgressBarComponent],
+  declarations: [PieChartComponent,
+     StatePieComponent,
+     DoughnutComponent,
+     BarComponent,
+     ProgressBarComponent,
+     ProgressCercleComponent],
   imports: [
     CommonModule,
     MatModule,
@@ -26,6 +32,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     DoughnutComponent,
     BarComponent,
     ProgressBarComponent,
+    ProgressCercleComponent,
   ]
 })
 export class PieChartModule { }

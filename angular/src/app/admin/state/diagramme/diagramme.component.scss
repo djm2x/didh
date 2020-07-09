@@ -2,7 +2,9 @@ p {
     font-family: Lato;
   }
 
-
+  ::ng-deep .mat-progress-spinner circle {
+    fill: #00000008 !important;
+  }
 
 .expension {
   margin: 20px 0;

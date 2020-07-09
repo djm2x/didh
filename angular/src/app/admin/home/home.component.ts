@@ -29,13 +29,30 @@ export class HomeComponent implements OnInit {
   list: { name: string, p: number, t: number }[] = [];
   axesValue: { id: number, table: string, value: number }[] = [];
 
-
+  dataEpu = new Subject<{ name: string, p: number, t: number }>();
+  dataOt = new Subject<{ name: string, p: number, t: number }>();
+  dataPs = new Subject<{ name: string, p: number, t: number }>();
 
   constructor(private uow: UowService, public session: SessionService) { }
 
   ngOnInit() {
     this.stateRecommendationByOrganisme();
     this.stateRecommendationByAxe();
+    this.stateMecanisme();
+  }
+
+  stateMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      // console.log(r)
+      r.epu.name = 'Examen Périodique universell';
+      this.dataEpu.next(r.epu);
+
+      r.ot.name = 'Organes de Traités';
+      this.dataOt.next(r.ot);
+
+      r.ps.name = 'Procédures spéciales';
+      this.dataPs.next(r.ps);
+    });
   }
 
   

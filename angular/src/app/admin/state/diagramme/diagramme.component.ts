@@ -50,7 +50,7 @@ export class DiagrammeComponent implements OnInit {
   mecanismes = this.uow.mecanismes;
   visites = this.uow.visites.get();
   organes = this.uow.organes.get();
-  cycles = [];
+  cycles = this.uow.cycles.get();
   etats = this.uow.etats;
   listAxes = new Subject<any>();
   listOrganisme = new Subject<any>();
@@ -88,27 +88,29 @@ export class DiagrammeComponent implements OnInit {
       const organeList: { name: string, p: number, t: number, }[] = [];
       const epu = {
         name: 'Examen Périodique universelle',
-        p: r.macanisme.epu.map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.epu.map(e => e.t).reduce((p, c) => p + c),
+        p: r.macanisme.epu.filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.epu.filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ot = {
         name: 'Organes de Traités',
-        p: r.macanisme.ot.map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.ot.map(e => e.t).reduce((p, c) => p + c),
+        p: r.macanisme.ot.filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.ot.filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ps = {
         name: 'Procédures spéciales',
-        p: r.macanisme.ps.map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.ps.map(e => e.t).reduce((p, c) => p + c),
+        p: r.macanisme.ps.filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.ps.filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       if (r.macanisme.epu.filter(e => e.name !== null).length !== 0) {
         organeList.push(epu);
-      } else if (r.macanisme.ot.filter(e => e.name !== null).length !== 0) {
+      }
+      if (r.macanisme.ot.filter(e => e.name !== null).length !== 0) {
         organeList.push(ot);
-      } else if (r.macanisme.ps.filter(e => e.name !== null).length !== 0) {
+      }
+      if (r.macanisme.ps.filter(e => e.name !== null).length !== 0) {
         organeList.push(ps);
       }
 

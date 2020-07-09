@@ -26,6 +26,20 @@ export class DoughnutComponent implements OnInit {
     legend: {
       position: 'chartArea',
       display: false,
+    },
+    tooltips: {
+      enabled: false,
+      callbacks: {
+        label: (tooltipItem, data) => {
+          // console.log(tooltipItem, data)
+          const i = tooltipItem.index;
+          const name = data.labels[i];
+          const pFake = +data.datasets[0].data[0];
+          const tFake = +data.datasets[0].data[1];
+          const value = i === 0 ? (pFake * 100) / tFake : (tFake * 100) / (100 - pFake);
+          return `${name} : ${value.toFixed(0)}`;
+        }
+      },
     }
   };
 
@@ -57,7 +71,10 @@ export class DoughnutComponent implements OnInit {
         this.uow.recommendations.stateEPU().subscribe(r => {
           // console.log(r)
           this.pieChartLabels = lbs;
-          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
+          const p = (r.p * r.t) / 100;
+          const t = r.t - (r.p * r.t) / 100;
+          const z = 100 - r.p;
+          this.pieChartData = [p, t, z];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
@@ -65,7 +82,10 @@ export class DoughnutComponent implements OnInit {
         this.title = d.title;
         this.uow.recommendations.stateOT().subscribe(r => {
           this.pieChartLabels = lbs;
-          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
+          const p = (r.p * r.t) / 100;
+          const t = r.t - (r.p * r.t) / 100;
+          const z = 100 - r.p;
+          this.pieChartData = [p, t, z];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
@@ -73,7 +93,10 @@ export class DoughnutComponent implements OnInit {
         this.title = d.title;
         this.uow.recommendations.statePS().subscribe(r => {
           this.pieChartLabels = lbs;
-          this.pieChartData = [r.p /*- r.t*/, r.t, 100 - r.p];
+          const p = (r.p * r.t) / 100;
+          const t = r.t - (r.p * r.t) / 100;
+          const z = 100 - r.p;
+          this.pieChartData = [p, t, z];
 
           this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
         });
