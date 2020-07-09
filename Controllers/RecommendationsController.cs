@@ -145,12 +145,9 @@ namespace Admin5.Controllers
                 {
                     name = e.Key,
                     p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
-                    count = e.Count(),
-                    sum = e.Sum(r => r.EtatAvancementChiffre),
-                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                    // t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
                 })
-                .Distinct()
-                .ToListAsync()
+                .SumAsync(e => e.p)
                 ;
 
             var ot = await q
