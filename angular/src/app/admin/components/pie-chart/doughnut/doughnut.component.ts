@@ -90,7 +90,7 @@ export class DoughnutComponent implements OnInit {
 
     })
     if (this.isInForLoop) {
-      console.log(this.elementFromForLoop)
+      // console.log(this.elementFromForLoop)
       this.title = this.elementFromForLoop.name;
       this.pieChartLabels = lbs;
       this.pieChartData = [this.elementFromForLoop.p /*- r.t*/, this.elementFromForLoop.t, 100 - this.elementFromForLoop.p];

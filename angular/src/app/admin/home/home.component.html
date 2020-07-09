@@ -94,10 +94,10 @@
     </section>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-12">
       <!-- <mat-card>
-       
+
         <div class="row d-flex justify-content-center mt-4 mb-4">
           <div class="col-md-5 d-flex flex-column">
             <div *ngFor="let e of axesValue; let i=index">
@@ -113,20 +113,20 @@
           </div>
         </div>
       </mat-card> -->
-      <div style="position: relative;height: 350px;">
+      <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px;">
         <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
-          <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '147.5'" style="color: white; font-weight: bold;"> 
-            {{e.value}} %
+          <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'" style="color: white; font-weight: bold;">
+            {{e.value.toString().length >= 2 ? e.value : '0' + e.value}} %
           </span>
         </div>
-        <img style="position: absolute;width: 1500px;" src="assets/meo.png">
+        <img style="position: absolute;width: 1500px; margin: 0 auto;" src="assets/meo.png">
 
       </div>
     </div>
   </div>
 
   <!-- <mat-divider> </mat-divider> -->
-  
+
   <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
     <section class="super-title">
       <div>
@@ -147,7 +147,7 @@
           <div *ngFor="let e of list; let i=index">
             <!-- <div class="d-flex flex-column pl-2 pr-2 mb-3 mt-3">
               <div style="height: 110px;" class=" pl-4 pr-4">
-               
+
                 <mat-progress-spinner color="primary" mode="determinate" [value]="e.value !== 0 ? e.value : 1"></mat-progress-spinner>
                 <div style="position:relative; top: -60px; left: 30px;">{{e.value}} %</div>
               </div>

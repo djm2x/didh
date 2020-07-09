@@ -57,9 +57,9 @@ export class DiagrammeComponent implements OnInit {
 
 
   mecanismeSubject = new Subject();
-  axesList: {name: string, p: number, t: number}[] = [];
-  departementList: {name: string, p: number, t: number}[] = [];
-  
+  axesList: { name: string, p: number, t: number }[] = [];
+  departementList: { name: string, p: number, t: number }[] = [];
+
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService) {
     monkeyPatchChartJsTooltip();
@@ -81,11 +81,38 @@ export class DiagrammeComponent implements OnInit {
 
       this.axesList = [];
       this.axesList = r.axe;
-      this.departementList =[];
+      this.departementList = [];
       this.departementList = r.department;
       // const title = 'l’Etat d’avancement des recommandations par axe';
       // this.listAxes.next({list: r, title});
-      // this.organeDisplay(r.macanisme)
+      const organeList: { name: string, p: number, t: number, }[] = [];
+      const epu = {
+        name: 'Examen Périodique universelle',
+        p: r.macanisme.epu.map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.epu.map(e => e.t).reduce((p, c) => p + c),
+      };
+
+      const ot = {
+        name: 'Organes de Traités',
+        p: r.macanisme.ot.map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.ot.map(e => e.t).reduce((p, c) => p + c),
+      };
+
+      const ps = {
+        name: 'Procédures spéciales',
+        p: r.macanisme.ps.map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.ps.map(e => e.t).reduce((p, c) => p + c),
+      };
+
+      if (r.macanisme.epu.filter(e => e.name !== null).length !== 0) {
+        organeList.push(epu);
+      } else if (r.macanisme.ot.filter(e => e.name !== null).length !== 0) {
+        organeList.push(ot);
+      } else if (r.macanisme.ps.filter(e => e.name !== null).length !== 0) {
+        organeList.push(ps);
+      }
+
+      this.organeDisplay(organeList);
     });
 
     // this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
@@ -95,7 +122,7 @@ export class DiagrammeComponent implements OnInit {
     // });
   }
 
-  organeDisplay(r: { name: string; p: number; t: number;}[]) {
+  organeDisplay(r: { name: string, p: number, t: number, }[]) {
     r = r.filter(e => e.name !== null);
     console.log(r);
     const barChartLabels = r.map(e => e.name);
@@ -162,7 +189,7 @@ export class DiagrammeComponent implements OnInit {
     this.searchAndGet(o);
   }
 
-  
+
 
   axeChange(idAxe: number) {
     this.uow.sousAxes.getByIdAxe(idAxe).subscribe(r => {

@@ -188,11 +188,18 @@ namespace Admin5.Controllers
                 ;
 
             var department = await q
+                .GroupBy(e => e.RecomOrgs.FirstOrDefault().Organisme.Label)
+                // .Select(e => new
+                // {
+                //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
+                //     p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+                //     t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
+                // })
                 .Select(e => new
                 {
-                    name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
-                    p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
-                    t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
                 })
                 .Distinct()
                 .ToListAsync()
