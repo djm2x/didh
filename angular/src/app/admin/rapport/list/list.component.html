@@ -3,7 +3,7 @@
 
   <div class="right">
     <button *ngIf="!session.isPointFocal && !session.isSuperViseur" class="mt-3"
-      mat-raised-button color="primary" [routerLink]="['/admin/mecanisme/rapport/update', 0]">
+      mat-raised-button color="primary" [routerLink]="['/admin/rapport/update', 0]">
       <mat-icon>add</mat-icon>
       Organes de traité
     </button>
@@ -106,7 +106,7 @@
               <button mat-icon-button color="primary" (click)="openDialog(row)">
                 <mat-icon>visibility</mat-icon>
               </button>
-              <button mat-icon-button color="primary" [routerLink]="['/admin/mecanisme/rapport/update', row.id]"
+              <button mat-icon-button color="primary" [routerLink]="['/admin/rapport/update', row.id]"
                 *ngIf="!session.isPointFocal && !session.isSuperViseur">
                 <mat-icon>create</mat-icon>
               </button>
