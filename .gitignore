@@ -1,6 +1,6 @@
 **/dist
 **/e2e
-**/.vscode
+# **/.vscode
 **/node_modules
 # **/wwwroot
 **/bin

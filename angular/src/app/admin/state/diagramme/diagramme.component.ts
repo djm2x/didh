@@ -88,29 +88,29 @@ export class DiagrammeComponent implements OnInit {
       const organeList: { name: string, p: number, t: number, }[] = [];
       const epu = {
         name: 'Examen Périodique universelle',
-        p: r.macanisme.epu.filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.epu.filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
+        p: r.macanisme.epu.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.epu.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ot = {
         name: 'Organes de Traités',
-        p: r.macanisme.ot.filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.ot.filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
+        p: r.macanisme.ot.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.ot.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ps = {
         name: 'Procédures spéciales',
-        p: r.macanisme.ps.filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.ps.filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
+        p: r.macanisme.ps.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
+        t: r.macanisme.ps.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
-      if (r.macanisme.epu.filter(e => e.name !== null).length !== 0) {
+      if (r.macanisme.epu.p !== 0) {
         organeList.push(epu);
       }
-      if (r.macanisme.ot.filter(e => e.name !== null).length !== 0) {
+      if (r.macanisme.ot.p !== 0) {
         organeList.push(ot);
       }
-      if (r.macanisme.ps.filter(e => e.name !== null).length !== 0) {
+      if (r.macanisme.ps.p !== 0) {
         organeList.push(ps);
       }
 
@@ -135,7 +135,7 @@ export class DiagrammeComponent implements OnInit {
 
     r.forEach(e => {
       barChartData[0].data.push(e.p);
-      barChartData[1].data.push(e.t);
+      barChartData[1].data.push(e.t.toFixed(0));
     });
     this.mecanismeSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
   }
