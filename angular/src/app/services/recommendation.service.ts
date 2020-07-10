@@ -42,9 +42,9 @@ export class RecommendationService extends SuperService<Recommendation> {
   stateParamAxe(o) {
     return this.http.post<{
       macanisme: {
-        epu: { name: string, p: number, t: number }[],
-        ot: { name: string, p: number, t: number }[],
-        ps: { name: string, p: number, t: number }[]
+        epu: { name: string, p: number, t: number },
+        ot: { name: string, p: number, t: number },
+        ps: { name: string, p: number, t: number }
       },
       axe: { name: string, p: number, t: number }[],
       department: { name: string, p: number, t: number }[]
