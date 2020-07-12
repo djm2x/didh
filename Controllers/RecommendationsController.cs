@@ -140,19 +140,16 @@ namespace Admin5.Controllers
                 ;
 
 
-            // var epu = await q
-            //     .GroupBy(e => e.Cycle.Label)
-            //     .Select(e => new
-            //     {
-            //         name = e.Key,
-            //         p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
-            //         count = e.Count(),
-            //         sum = e.Sum(r => r.EtatAvancementChiffre),
-            //         t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
-            //     })
-            //     .Distinct()
-            //     .ToListAsync()
-            //     ;
+            var epu = await q
+                .GroupBy(e => e.Cycle.Label)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    // t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .SumAsync(e => e.p)
+                ;
 
             // var ot = await q
             //     .GroupBy(e => e.Organe.Label)
