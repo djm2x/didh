@@ -11,20 +11,20 @@
       <form [formGroup]="myForm">
         <div class="inputs">
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Titre</mat-label>
             <input matInput formControlName="titre" required>
           </mat-form-field>
 
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Référence des observations finales</mat-label>
             <input matInput formControlName="reference" required>
           </mat-form-field>
         </div>
         <div class="row">
           <div class="col-md-4">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Date rapport</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="dateDernierRapport">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -32,7 +32,7 @@
             </mat-form-field>
           </div>
           <div class="col-md-4">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Date des observations finales</mat-label>
               <input matInput [matDatepicker]="picker1" formControlName="dateObservation">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -40,7 +40,7 @@
             </mat-form-field>
           </div>
           <div class="col-md-4">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Prochain rapport</mat-label>
               <input matInput [matDatepicker]="picker2" formControlName="dateProchaineRapport">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>

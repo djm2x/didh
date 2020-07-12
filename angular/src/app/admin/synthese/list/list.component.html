@@ -22,7 +22,7 @@
         <mat-divider>
         </mat-divider>
           <div class="inputs2">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Traite</mat-label>
               <mat-select [formControl]="idTraite" (selectionChange)="selectChange($event.value)">
                 <mat-option value="0">...</mat-option>
@@ -30,7 +30,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Rapport</mat-label>
               <mat-select [formControl]="idRapport">
                 <mat-option value="0">...</mat-option>
@@ -38,7 +38,7 @@
               </mat-select>
             </mat-form-field>
 
-            <!-- <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="fill">
               <mat-label>Emetteur</mat-label>
               <mat-select [formControl]="idOrganismeEmetteur">
                 <mat-option value="0">...</mat-option>
@@ -46,7 +46,7 @@
               </mat-select>
             </mat-form-field> -->
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Emetteur</mat-label>
               <input matInput [formControl]="myAuto" [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -54,7 +54,7 @@
               </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Axe</mat-label>
               <mat-select [formControl]="idAxe" (selectionChange)="axeChange($event.value)">
                 <mat-option value="0">...</mat-option>
@@ -62,7 +62,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
               <mat-label>Sous axe</mat-label>
               <mat-select [formControl]="idSousAxe">
                 <mat-option value="0">...</mat-option>

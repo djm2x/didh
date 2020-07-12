@@ -6,12 +6,12 @@
     <form [formGroup]="myForm">
       <mat-card style="margin-top: 15px;">
         <div class="input">
-          <mat-form-field appearance="outline" style="width: 100px;">
+          <mat-form-field appearance="fill" style="width: 100px;">
             <mat-label>Code</mat-label>
             <input matInput formControlName="codeRecommendation" required [readonly]="!isAdmin">
           </mat-form-field>
 
-          <mat-form-field appearance="outline" style="width: 100%; margin-left: 5px;">
+          <mat-form-field appearance="fill" style="width: 100%; margin-left: 5px;">
             <mat-label>Nom</mat-label>
             <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
             <input matInput formControlName="nom" required [readonly]="!isAdmin">
@@ -21,7 +21,7 @@
 
 
         <div class="inputs2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Mecanisme</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
@@ -29,7 +29,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" *ngIf="cycleActive">
+          <mat-form-field appearance="fill" *ngIf="cycleActive">
             <mat-label>Cycle</mat-label>
             <mat-select formControlName="idCycle" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
@@ -37,7 +37,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" *ngIf="visiteActive">
+          <mat-form-field appearance="fill" *ngIf="visiteActive">
             <mat-label>Visite</mat-label>
             <mat-select formControlName="idVisite" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
@@ -45,7 +45,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" *ngIf="organeActive">
+          <mat-form-field appearance="fill" *ngIf="organeActive">
             <mat-label>Organe</mat-label>
             <mat-select formControlName="idOrgane" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
@@ -54,7 +54,7 @@
           </mat-form-field>
         </div>
         <div class="inputs2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Axe</mat-label>
             <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
@@ -62,7 +62,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Sous axe</mat-label>
             <mat-select formControlName="idSousAxe" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
@@ -71,7 +71,7 @@
           </mat-form-field>
         </div>
         <div class="inputs2">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Pays</mat-label>
             <mat-select formControlName="idPays" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
@@ -80,7 +80,7 @@
           </mat-form-field>
         </div>
 
-        <mat-form-field appearance="outline" style="width: 78%">
+        <mat-form-field appearance="fill" style="width: 78%">
           <mat-label>Etat de mis en oeuvre</mat-label>
           <mat-select formControlName="etat" (selectionChange)="etat($event.value)">
             <mat-option value="">...</mat-option>
@@ -88,17 +88,17 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 20%; margin-left: 2%;">
+        <mat-form-field appearance="fill" style="width: 20%; margin-left: 2%;">
           <mat-label>Etat en %</mat-label>
           <input matInput formControlName="etatAvancementChiffre" type="number" min="0" max="100" required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 100%;" *ngIf="showEtatDavancement">
+        <mat-form-field appearance="fill" style="width: 100%;" *ngIf="showEtatDavancement">
           <mat-label>Etat d'avancement</mat-label>
           <textarea matInput rows="0" formControlName="etatAvancement"></textarea>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>Observation</mat-label>
           <textarea matInput rows="0" formControlName="observation"></textarea>
         </mat-form-field>

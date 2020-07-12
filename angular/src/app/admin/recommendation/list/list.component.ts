@@ -28,16 +28,16 @@ export class ListComponent implements OnInit {
   isRateLimitReached = false;
   dataSource = [];
   columnDefs = [
-    { columnDef: 'codeRecommendation', headName: 'CODE' },
-    { columnDef: 'nom', headName: '' },
+    { columnDef: 'codeRecommendation', headName: 'code' },
+    { columnDef: 'nom', headName: 'nom' },
     { columnDef: 'etat', headName: 'Etat de mis en oeuvre' },
-    { columnDef: 'mecanisme', headName: '' },
-    { columnDef: 'axe', headName: '' },
-    { columnDef: 'sousAxe', headName: 'SOUS AXE' },
-    { columnDef: 'pieceJointe', headName: '' },
+    { columnDef: 'mecanisme', headName: 'mecanisme' },
+    { columnDef: 'axe', headName: 'Axe' },
+    { columnDef: 'sousAxe', headName: 'Sous axe' },
+    { columnDef: 'pieceJointe', headName: 'piece-Jointe' },
     { columnDef: 'option', headName: '' },
   ].map(e => {
-    e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName;
+    e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
     return e;
   });
   //

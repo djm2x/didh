@@ -1,12 +1,12 @@
 <div class="inputs2">
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="fill">
     <mat-label>Mecanismes</mat-label>
     <mat-select (selectionChange)="selectMecanismeChange($event.value)" [formControl]="selectInput">
       <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" *ngIf="cycleActive">
+  <mat-form-field appearance="fill" *ngIf="cycleActive">
     <mat-label>Cycle</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idCycle">
       <mat-option value="0">...</mat-option>
@@ -14,7 +14,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" *ngIf="visiteActive">
+  <mat-form-field appearance="fill" *ngIf="visiteActive">
     <mat-label>Visite</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idVisite">
       <mat-option value="0">...</mat-option>
@@ -22,7 +22,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" *ngIf="organeActive">
+  <mat-form-field appearance="fill" *ngIf="organeActive">
     <mat-label>Organe</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idOrgane">
       <mat-option value="0">...</mat-option>
@@ -31,7 +31,7 @@
   </mat-form-field>
 </div>
 <div class="inputs2">
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="fill">
     <mat-label>Axe</mat-label>
     <mat-select [formControl]="idAxe" (selectionChange)="axeChange($event.value)">
       <mat-option value="0">...</mat-option>
@@ -39,7 +39,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="fill">
     <mat-label>Sous axe</mat-label>
     <mat-select [formControl]="idSousAxe">
       <mat-option value="0">...</mat-option>

@@ -11,7 +11,7 @@
       <form [formGroup]="myForm">
         <div class="inputs">
 
-          <!-- <mat-form-field appearance="outline" style="width: 100%;margin-bottom: 5px;">
+          <!-- <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
             <mat-label>Organisme</mat-label>
             <mat-select formControlName="idOrganisme">
               <mat-option value="0">...</mat-option>
@@ -19,7 +19,7 @@
             </mat-select>
           </mat-form-field> -->
 
-          <mat-form-field appearance="outline" style="width: 100%;margin-bottom: 5px;">
+          <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
             <mat-label>Organisme</mat-label>
             <input matInput [formControl]="myAuto" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">

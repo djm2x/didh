@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 
 import { MatModule } from '../mat.module';
 import { MatSnackBarModule, MatProgressSpinnerModule, MAT_DATE_LOCALE } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 // import { Moment, MatMomentDateModule } from 'moment';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { MatSnackBarModule, MatProgressSpinnerModule, MAT_DATE_LOCALE } from '@a
   imports: [
     CommonModule,
     AdminRoutingModule,
+    TranslateModule,
     // HttpClientModule,
     MatModule,
     // FormsModule,
