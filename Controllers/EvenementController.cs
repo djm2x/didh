@@ -26,7 +26,7 @@ namespace Admin5.Controllers
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{title}")]
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir , string title)
         {
-            var headerValue = Request.Headers["mylang"].FirstOrDefault();
+            string headerValue = Request.Headers["mylang"].FirstOrDefault();
 
             var q = _context.Evenements
                 .Where(e => title == "*" ? true : e.Title.ToLower().Contains(title.ToLower()))
