@@ -29,6 +29,8 @@ namespace Admin5.Controllers
         public async Task<IActionResult> GetAllForSynthese(
             int startIndex, int pageSize, string sortBy, string sortDir, int idCycle, int idOrgane, int idVisite, int idAxe, int idSousAxe)
         {
+            
+
             var query = _context.Recommendations
                .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
                .Where(e => idOrgane == 0 ? true : e.IdOrgane == idOrgane)
