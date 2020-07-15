@@ -1,12 +1,12 @@
 <div class="host">
 
-  <app-title title="Recommandations"></app-title>
+  <app-title title="{{ 'admin.recommandation.list.Recommandations' | translate }}"></app-title>
 
   <div class="right">
     <button *ngIf="!session.isPointFocal && !session.isSuperViseur" class="mt-3" style="margin: 20px 0 0" mat-raised-button color="primary"
       [routerLink]="['/admin/recommendation/update', 0]">
       <mat-icon>add</mat-icon>
-      Recommandation
+      {{ 'admin.recommandation.list.Recommandation' | translate }}
     </button>
   </div>
   <div class="expension">
@@ -15,7 +15,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>search</mat-icon>
-            <p>Recherche</p>
+            <p>{{ 'admin.recommandation.list.Recherche' | translate }}</p>
           </mat-panel-title>
           <mat-panel-description>
 
@@ -24,14 +24,14 @@
         <mat-divider>
         </mat-divider>
         <form [formGroup]="myForm">
-          <mat-form-field *ngIf="!session.isPointFocal" appearance="outline" style="width: 100%;margin-bottom: 5px;">
-            <mat-label>Organisme</mat-label>
+          <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
+            <mat-label>{{ 'admin.recommandation.list.Recherche' | translate }}</mat-label>
             <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="auto complétion">
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
               <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-          <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="outline" style="width: 100%;margin-bottom: 5px;">
+          <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
             <mat-label>Organisme</mat-label>
             <mat-select formControlName="idOrganisme">
               <mat-option value="0">...</mat-option>
@@ -39,16 +39,16 @@
             </mat-select>
           </mat-form-field> -->
           <div class="inputs2">
-            <mat-form-field appearance="outline">
-              <mat-label>Pays</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.Pays' | translate }}</mat-label>
               <mat-select formControlName="idPays">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ e.nom }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Nom</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
               <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
               <input matInput formControlName="nom" required>
             </mat-form-field>
@@ -57,40 +57,40 @@
 
 
 
-            <mat-form-field appearance="outline">
-              <mat-label>Mecanisme</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
               <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" *ngIf="cycleActive">
-              <mat-label>Cycle</mat-label>
+            <mat-form-field appearance="fill" *ngIf="cycleActive">
+              <mat-label>{{ 'admin.recommandation.list.Cycle' | translate }}</mat-label>
               <mat-select formControlName="idCycle">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of cycles" [value]="e.id">{{ e.label }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" *ngIf="visiteActive">
-              <mat-label>Visite</mat-label>
+            <mat-form-field appearance="fill" *ngIf="visiteActive">
+              <mat-label>{{ 'admin.recommandation.list.Visite' | translate }}</mat-label>
               <mat-select formControlName="idVisite">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" *ngIf="organeActive"> 
-              <mat-label>Organe</mat-label>
+            <mat-form-field appearance="fill" *ngIf="organeActive">
+              <mat-label>{{ 'admin.recommandation.list.Organe' | translate }}</mat-label>
               <mat-select formControlName="idOrgane">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Etat de mis en oeuvre</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
               <mat-select formControlName="etat">
                 <!-- <mat-option value="0">...</mat-option> -->
                 <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
@@ -99,16 +99,16 @@
           </div>
           <div class="inputs2">
 
-            <mat-form-field appearance="outline">
-              <mat-label>Axe</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.Axe' | translate }}</mat-label>
               <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Sous axe</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.Sousaxe' | translate }}</mat-label>
               <mat-select formControlName="idSousAxe">
                 <mat-option value="0">...</mat-option>
                 <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
@@ -120,12 +120,12 @@
 
           <button mat-raised-button color="primary" (click)="search(myForm.value)" [disabled]="isAllEmpty">
             <mat-icon>search</mat-icon>
-            Rechercher
+            {{ 'admin.recommandation.list.Rechercher' | translate }}
           </button>
           &nbsp;
           <button mat-raised-button (click)="reset()" [disabled]="isAllEmpty">
             <mat-icon>refresh</mat-icon>
-            Réinitialiser
+            {{ 'admin.recommandation.list.Réinitialiser' | translate }}
           </button>
         </div>
 
@@ -142,33 +142,48 @@
     <div class="example-table-container">
       <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
         <ng-container [matColumnDef]="columnDefs[0].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[0].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.code' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[0].columnDef]}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.nom' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[2].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[3].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[3].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.mecanisme' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[4].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[4].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Axe' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef]}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[5].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[5].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Sousaxe' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[5].columnDef]}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[6].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[6].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.DEPARTEMENT' | translate }}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[6].columnDef]}}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[7].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[7].columnDef]}}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[8].columnDef">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.complement' | translate }}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[8].columnDef]}}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[9].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.recommandation.list.piece-Jointe' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.pieceJointe === ''" [matTooltip]="row.pieceJointe" color="accent"
               (click)="showPieceJoin(row.pieceJointe)">
@@ -184,7 +199,7 @@
               <button mat-icon-button color="primary" (click)="detail(row)">
                 <mat-icon>visibility</mat-icon>
               </button>
-              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"  *ngIf="!session.isSuperViseur">
+              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"  *ngIf="!session.isSuperViseur && !session.isPointFocal">
                 <mat-icon>create</mat-icon>
               </button>
               <button mat-icon-button color="warn" (click)="delete(row)"  *ngIf="!session.isPointFocal && !session.isSuperViseur">

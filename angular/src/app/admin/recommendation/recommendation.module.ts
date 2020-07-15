@@ -12,6 +12,7 @@ import { OrganismesComponent } from './update/organismes/organismes.component';
 import { TitleModule } from '../components/title/title.module';
 import { DetailComponent } from './detail/detail.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
     DetailComponent,
   ],
   imports: [
+    TranslateModule,
     CommonModule,
     RecommendationRoutingModule,
     HttpClientModule,

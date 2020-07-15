@@ -97,6 +97,7 @@ export class UpdateComponent implements OnInit {
       etatAvancement: [this.o.etatAvancement],
       etatAvancementChiffre: [this.o.etatAvancementChiffre],
       observation: [this.o.observation],
+      complement: [this.o.complement],
       pieceJointe: [this.o.pieceJointe],
       idPays: [this.o.idPays, Validators.required],
       // idSynthese: [this.o.idSynthese, Validators.required],

@@ -18,13 +18,13 @@
         <br> -->
         <div class="example-container mtb-2 text-center">
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" placeholder="Email address">
             <mat-error *ngIf="myForm.get('email').invalid">Email est pas valider</mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Mot de passe</mat-label>
             <input matInput formControlName="password" placeholder="Mot de passe" [type]="hide ? 'password' : 'text'">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :

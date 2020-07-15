@@ -11,18 +11,18 @@
       <ng-template matTabContent>
         <form [formGroup]="myForm">
           <div class="myForm" style="margin-top: 15px; height: 100%;">
-            <!-- <mat-form-field appearance="outline" style="width: 100%;">
+            <!-- <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Traité</mat-label>
                     <input matInput formControlName="nom" required>
                   </mat-form-field> -->
 
-            <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-form-field appearance="fill" style="width: 100%;">
               <mat-label>Convention/Protocole</mat-label>
               <textarea matInput rows="6" formControlName="nom" required></textarea>
               <!-- <input matInput formControlName="adresse" required> -->
             </mat-form-field>
 
-            <!-- <mat-form-field appearance="outline" style="width: 100%;">
+            <!-- <mat-form-field appearance="fill" style="width: 100%;">
               <mat-label>Discours du président</mat-label>
               <textarea matInput formControlName="discours" placeholder="Discours du président"></textarea>
             </mat-form-field> -->
@@ -31,14 +31,14 @@
 
 
             <div class="inputs">
-              <mat-form-field appearance="outline">
+              <mat-form-field appearance="fill">
                 <mat-label>Date Signature</mat-label>
                 <input matInput [matDatepicker]="picker5" formControlName="dateSignature">
                 <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
                 <mat-datepicker #picker5></mat-datepicker>
               </mat-form-field>
 
-              <mat-form-field appearance="outline">
+              <mat-form-field appearance="fill">
                 <mat-label>Date de ratification</mat-label>
                 <input matInput [matDatepicker]="picker0" formControlName="dateRatification">
                 <mat-datepicker-toggle matSuffix [for]="picker0"></mat-datepicker-toggle>

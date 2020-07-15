@@ -1,0 +1,68 @@
+{
+  "auth": {
+    "login": {
+    }
+  },
+  "admin": {
+    "lang": "اللغة",
+    "header": {
+      "SessionsDH": "جلسات الموارد البشرية",
+      "Questionnaires": "الاستبيانات",
+      "Documentation": "توثيق",
+      "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل",
+      "OrganesdeTraités": "هيئات المعاهدات",
+      "Procéduresspéciales": "الإجراءات الخاصة",
+
+      "Evènements": "الأحداث",
+      "Statistiques": "الإحصاء",
+      "Recommandations":"التوصيات",
+      "Synthèse": "موجز",
+      "Utilisateur": "المستعمل",
+      "Profils": "مظهر",
+      "Organisations": "المنظمات",
+      "Organedetraités": "المتقاعدون",
+      "Cycles": "دورات",
+      "Axes": "محاور",
+      "Sous axe": "المحور الفرعي",
+      "Pays": "بلد"
+    },
+    "footer": {
+      "about": "À propos",
+      "condition": "Conditions",
+      "privacy_policy": "Politique de confidentialité",
+      "faq": "FAQ"
+    },
+    "recommandation": {
+      "title":"توصية",
+      "titles":"التوصيات",
+      "update": {
+        "save": "Enregistrer"
+      },
+      "list": {
+        "Recommandations": "التوصيات",
+        "Recommandation": "توصية",
+        "Recherche": "ابحاث",
+
+        "Organisme": "هيئة",
+        "Pays": "بلد",
+        "Cycle": "دورة",
+        "Visite": "يزور",
+        "Organe": "عضو",
+
+        "Rechercher": "بحث",
+        "Réinitialiser": "إعادة تعيين",
+
+        "code": "مشفرة",
+        "nom": "الكنية",
+        "Etatdemisenoeuvre": "حالة التنفيذ",
+        "mecanisme": "آلية",
+        "Axe": "محور",
+        "Sousaxe": "المحور الفرعي",
+        "piece-Jointe": "الوثائق المرفقة"
+      },
+      "detail": {
+        "breadcrumb": "Hôtels"
+      }
+    }
+  }
+}

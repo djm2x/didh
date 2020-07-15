@@ -30,15 +30,17 @@ export class ListComponent implements OnInit {
   columnDefs = [
     { columnDef: 'codeRecommendation', headName: 'CODE' },
     { columnDef: 'nom', headName: 'INTITULE' },
-    { columnDef: 'mecanisme', headName: '' },
-    { columnDef: 'axe', headName: '' },
+    { columnDef: 'mecanisme', headName: 'mecanisme' },
+    { columnDef: 'axe', headName: 'Axe' },
     { columnDef: 'sousAxe', headName: 'SOUS AXE' }, 
     { columnDef: 'organismes', headName: 'DEPARTEMENT' }, 
     { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
+    { columnDef: 'observation', headName: '' },
+    { columnDef: 'complement', headName: '' },
     { columnDef: 'pieceJointe', headName: '' },
     { columnDef: 'option', headName: '' },
   ].map(e => {
-    e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName;
+    e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
     return e;
   });
   //

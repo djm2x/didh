@@ -9,12 +9,12 @@
     <div mat-dialog-content>
 
       <form [formGroup]="myForm">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Nom</mat-label>
           <input matInput formControlName="label" required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Axe</mat-label>
           <mat-select formControlName="idAxe">
             <mat-option *ngFor="let axe of axes | async" [value]="axe.id">{{ axe.label }}</mat-option>

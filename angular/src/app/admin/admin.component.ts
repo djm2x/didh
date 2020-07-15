@@ -5,6 +5,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { routerTransition } from '../shared/animations';
 import { SessionService } from '../shared';
 import { User } from '../Models/models';
+import { TranslateService } from '@ngx-translate/core';
+import { MyTranslateService } from '../my.translate.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -32,13 +34,13 @@ export class AdminComponent implements OnInit {
     //   { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
     //   { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
     // ] },
-    
-    { name: 'Sessions DH', route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
-    { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
+
+    { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
     // { name: 'Statistiques', route: ['/admin/state'], width: '100px' , children: [] },
-    { name: 'Documentation', route: ['documentation'], width: '100px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['documentation'], width: '100px' , children: [] },
     // { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' , children: [] },
     // { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' , children: [] },
   ];
@@ -46,32 +48,35 @@ export class AdminComponent implements OnInit {
   navs2 = [
     // { name: 'Accueil', route: ['/admin/home'], width: '70px' , children: [] },
     // { name: 'Mecanisme', route: ['/admin/home'], width: '70px' , children: [
-      { name: 'Examen Périodique universelle', route: ['/admin/examen'], /*width: '126px'*/ },
-      { name: 'Organes de Traités', route: ['/admin/rapport'], /*width: '76px'*/ },
-      { name: 'Procédures spéciales', route: ['/admin/visite'], /*width: '70px'*/ },
+      { name: this.mytranslate.getObs('admin.header.ExamenPériodiqueuniverselle'), route: ['/admin/examen'], /*width: '126px'*/ },
+      { name: this.mytranslate.getObs('admin.header.OrganesdeTraités'), route: ['/admin/rapport'], /*width: '76px'*/ },
+      { name: this.mytranslate.getObs('admin.header.Procéduresspéciales'), route: ['/admin/visite'], /*width: '70px'*/ },
     // ] },
     // { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
     // { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
-    { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
-    { name: 'Statistiques', route: ['/admin/state'], width: '100px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Evènements'), route: ['/admin/evenement'], width: '80px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Statistiques'), route: ['/admin/state'], width: '100px' , children: [] },
     // { name: 'Documentation', route: ['documentation'], width: '100px' , children: [] },
-    { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' , children: [] },
-    { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Recommandations'), route: ['/admin/recommendation'], width: '113px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Synthèse'), route: ['/admin/synthese'], width: '170px' , children: [] },
   ];
 
   menus = [
-    { name: 'Utilisateur', route: ['/admin/user'], width: '' },
-    { name: 'Profils', route: ['/admin/profil'], width: '' },
-    { name: 'Organisations', route: ['/admin/organisme'], width: '' },
-    { name: 'Organe de traités', route: ['/admin/organe'], width: '' },
-    { name: 'Cycles', route: ['/admin/cycle'], width: '' },
-    { name: 'Axes', route: ['/admin/axe'], width: '' },
-    { name: 'Sous axe', route: ['/admin/sous-axe'], width: '' },
-    { name: 'Pays', route: ['/admin/pays'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Utilisateur'), route: ['/admin/user'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Profils'), route: ['/admin/profil'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Organisations'), route: ['/admin/organisme'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Organedetraités'), route: ['/admin/organe'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Cycles'), route: ['/admin/cycle'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Axes'), route: ['/admin/axe'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Sousaxe'), route: ['/admin/sous-axe'], width: '' },
+    { name: this.mytranslate.getObs('admin.header.Pays'), route: ['/admin/pays'], width: '' },
   ];
+
+
   constructor(public session: SessionService, changeDetectorRef: ChangeDetectorRef
-    , media: MediaMatcher, public router: Router) {
+    , media: MediaMatcher, public router: Router
+    , public mytranslate: MyTranslateService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQuery.addListener((e: MediaQueryListEvent) => changeDetectorRef.detectChanges());
   }
@@ -86,6 +91,10 @@ export class AdminComponent implements OnInit {
     //   this.snav.toggle();
     // }, 300);
 
+  }
+
+  changeLanguage(currentLanguage) {
+    this.mytranslate.changeLanguage(currentLanguage);
   }
 
   get patchRoute() { return this.route.split('/'); }

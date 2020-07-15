@@ -1,0 +1,93 @@
+{
+  "auth": {
+    "login": {
+      "subtitle": "Faites-vous de nouveaux amis",
+      "subtitleNext": "during holidays",
+      "play": "En vidéo",
+      "titre": "VEUILLEZ INDIQUER VOTRE NOUVEAU MOT DE PASSE",
+      "emailLabel": "Email",
+      "emailPlaceHolder": "Votre adresse mail",
+      "passwordLabel": "Mot de passe",
+      "passPlaceHolder": "Mot de passe",
+      "indiqueHotel": "Indiquer votre hôtel",
+      "passwordOublie": "Mot de passe oublié?",
+      "resendEmail": "re-envoyer email d'activation?",
+      "cnxWith": "Connectez-vous avec",
+      "login": "Connexion",
+      "signup": "Inscription",
+      "vide": "Login ou Mot sont vide.",
+      "loginErrone": "Login érroné, vous pouvez utiliser l'option de réinitialisation de mot de passe.",
+      "motpassErrone": "Mot de passe érroné, vous pouvez utiliser l'option de réinitialisation de mot de passe.",
+      "loginPasActivee": "Veuillez consulter votre boite email pour activer votre compte.",
+      "isProNotActive": "Veuillez patienter que votre compte soit active par l'administration.",
+      "compteDesactive": "Désoler votre compte est désactive.",
+      "success": "Connection avec succès"
+    }
+  },
+  "admin": {
+    "lang": "Langage",
+    "header": {
+      "SessionsDH": "Sessions DH",
+      "Questionnaires": "Questionnaires",
+      "Documentation": "Documentation",
+      "ExamenPériodiqueuniverselle": "Examen Périodique universelle",
+      "OrganesdeTraités": "Organes de Traités",
+      "Procéduresspéciales": "Procédures spéciales",
+
+      "Evènements": "Evènements",
+      "Statistiques": "Statistiques",
+      "Recommandations":"Recommandations",
+      "Synthèse": "Compilation de suivi des recommandations",
+
+      "Utilisateur": "Utilisateur",
+      "Profils": "Profils",
+      "Organisations": "Organisations",
+      "Organedetraités": "Organe de traités",
+      "Cycles": "Cycles",
+      "Axes": "Axes",
+      "Sousaxe": "Sous axe",
+      "Pays": "Pays"
+    },
+    "footer": {
+      "about": "À propos",
+      "condition": "Conditions",
+      "privacy_policy": "Politique de confidentialité",
+      "faq": "FAQ"
+    },
+    "recommandation": {
+      "title":"Recommandation",
+      "titles":"Recommandations",
+      "update": {
+        "save": "Enregistrer"
+      },
+      "list": {
+        "Recommandations": "Recommandations",
+        "Recommandation": "Recommandation",
+        "Recherche": "Recherche",
+
+        "Organisme": "Organisme",
+        "Pays": "Pays",
+        "Cycle": "Cycle",
+        "Visite": "Visite",
+        "Organe": "Organe",
+
+        "Rechercher": "Rechercher",
+        "Réinitialiser": "Réinitialiser",
+
+        "code": "Code",
+        "nom": "Nom",
+        "Etatdemisenoeuvre": "Etat de mis en oeuvre",
+        "mecanisme": "Mecanisme",
+        "DEPARTEMENT": "DEPARTEMENT",
+        "OBSERVATIONS": "OBSERVATIONS",
+        "complement": "COMPLEMENT D’INFORMATION",
+        "Axe": "Axe",
+        "Sousaxe": "Sous axe",
+        "piece-Jointe": "Piece-Jointe"
+      },
+      "detail": {
+        "breadcrumb": "Hôtels"
+      }
+    }
+  }
+}

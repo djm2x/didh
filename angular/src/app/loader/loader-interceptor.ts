@@ -41,6 +41,7 @@ export class LoaderInterceptor implements HttpInterceptor {
         setHeaders: {
           // 'Content-Type': 'application/json',
           Authorization: `Bearer ${this.session.token}`,
+          mylang: 'ar/fr',
         }
         // this.headers = new HttpHeaders({
         //   'Content-Type': 'application/json',
