@@ -32,10 +32,11 @@ export class ListComponent implements OnInit {
     // { columnDef: 'pieceJointe', headName: 'PIECE' },
     { columnDef: 'nom', headName: 'Organes de Traités' },
     { columnDef: 'conventionPiece', headName: 'Rapport national' },
-    { columnDef: 'observationPiece', headName: `Observations finales` },
-    { columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' },
-    { columnDef: 'analytiquePiece', headName: 'Rapport analytique' },
     { columnDef: 'discours', headName: 'Discours du président' },
+    { columnDef: 'analytiquePiece', headName: 'Compte rendu analytique' },
+    { columnDef: 'observationPiece', headName: `Observations finales` },
+    { columnDef: 'rapportParallelePiece', headName: `Rapport  parallèle` },
+    { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
     { columnDef: 'option', headName: '...' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();

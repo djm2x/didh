@@ -53,7 +53,7 @@ export class UowService {
   evenements = new EvenementService();
 
 
-
+  years = [...Array(new Date().getFullYear() - 2015).keys()].map(e => 2015 + e + 1);
   mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
   etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
   monthsAlpha = [

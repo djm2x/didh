@@ -644,6 +644,7 @@ namespace Admin5.Controllers
                         Axe = e.Axe.Label,
                         SousAxe = e.SousAxe.Label,
                         PieceJointe = e.PieceJointe,
+                        organismes = e.RecomOrgs.Select(r => r.Organisme.Label)
                     })
                     .ToListAsync();
 

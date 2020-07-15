@@ -35,6 +35,7 @@ export class QuestionnaireComponent implements OnInit {
 
   dataSource = [];
   columnDefs = [
+    { columnDef: 'annee', headName: 'année' },
     { columnDef: 'theme', headName: 'Theme' },
     { columnDef: 'sousTheme', headName: 'Sous theme' },
     { columnDef: 'pieceJointe', headName: 'Documents' },

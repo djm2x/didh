@@ -69,19 +69,19 @@
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
 
-            <app-progress-cercle [data]="dataEpu"></app-progress-cercle>
+            <app-progress-cercle [transform]="50" [diameter]="140" [data]="dataEpu"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [data]="dataOt"></app-progress-cercle>
+            <app-progress-cercle [transform]="50" [diameter]="140" [data]="dataOt"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [data]="dataPs"></app-progress-cercle>
+            <app-progress-cercle [transform]="50" [diameter]="140" [data]="dataPs"></app-progress-cercle>
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@
             <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
-              <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+              <app-progress-cercle [transform]="22" [diameter]="120" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
           </div>
         </div>
       </div>

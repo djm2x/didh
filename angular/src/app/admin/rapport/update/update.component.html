@@ -49,30 +49,36 @@
             <!-- {{myForm.value | json}} -->
             <!--  -->
             <div class="row justify-content-center" style="margin-bottom: 15px;">
+
               <app-upload-select nameBtn="Discours du président" [folderToSaveInServer]="folderToSaveInServer"
-              [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
-              [eventSubmitFromParent]="eventSubmitFromParent">
-            </app-upload-select>
+                [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
+                [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
 
-                <app-upload-select nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
-                  [propertyOfParent]="conventionPieceTo" [eventSubmitToParent]="conventionPieceFrom"
-                  [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload-select>
+              <app-upload-select nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
+                [propertyOfParent]="conventionPieceTo" [eventSubmitToParent]="conventionPieceFrom"
+                [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
 
-                <app-upload-select nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
-                  [propertyOfParent]="observationPieceTo" [eventSubmitToParent]="observationPieceFrom"
-                  [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload-select>
+              <app-upload-select nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
+                [propertyOfParent]="observationPieceTo" [eventSubmitToParent]="observationPieceFrom"
+                [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
 
-                <app-upload-select nameBtn="Rapport de suivi de la mise en œuvre" [folderToSaveInServer]="folderToSaveInServer"
-                  [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
-                  [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload-select>
+              <app-upload-select nameBtn="Plan de mise en œuvre"
+                [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="miseOeuvrePieceTo"
+                [eventSubmitToParent]="miseOeuvrePieceFrom" [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
 
-                <app-upload-select nameBtn="Rapport analytique" [folderToSaveInServer]="folderToSaveInServer"
-                  [propertyOfParent]="analytiquePieceTo" [eventSubmitToParent]="analytiquePieceFrom"
-                  [eventSubmitFromParent]="eventSubmitFromParent">
-                </app-upload-select>
+              <app-upload-select nameBtn="Rapport  parallèle" [folderToSaveInServer]="folderToSaveInServer"
+                [propertyOfParent]="rapportParallelePieceTo" [eventSubmitToParent]="rapportParallelePieceFrom"
+                [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
+
+              <app-upload-select nameBtn="Rapport analytique" [folderToSaveInServer]="folderToSaveInServer"
+                [propertyOfParent]="analytiquePieceTo" [eventSubmitToParent]="analytiquePieceFrom"
+                [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
 
 
             </div>
@@ -91,9 +97,8 @@
     <!--  -->
     <mat-tab label="Rapport" [disabled]='o.id === 0'>
       <ng-template matTabContent>
-        <app-piece-jointes [idTraite]="o.id"
-        >
-        <!-- [listToParent]="dataFromChild" [listFromParent]="rapportsToChild" -->
+        <app-piece-jointes [idTraite]="o.id">
+          <!-- [listToParent]="dataFromChild" [listFromParent]="rapportsToChild" -->
         </app-piece-jointes>
       </ng-template>
     </mat-tab>

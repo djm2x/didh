@@ -29,11 +29,12 @@ export class ListComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'codeRecommendation', headName: 'CODE' },
-    { columnDef: 'nom', headName: '' },
-    { columnDef: 'etat', headName: 'Etat de mis en oeuvre' },
+    { columnDef: 'nom', headName: 'INTITULE' },
     { columnDef: 'mecanisme', headName: '' },
     { columnDef: 'axe', headName: '' },
-    { columnDef: 'sousAxe', headName: 'SOUS AXE' },
+    { columnDef: 'sousAxe', headName: 'SOUS AXE' }, 
+    { columnDef: 'organismes', headName: 'DEPARTEMENT' }, 
+    { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
     { columnDef: 'pieceJointe', headName: '' },
     { columnDef: 'option', headName: '' },
   ].map(e => {

@@ -26,7 +26,7 @@ export class UpdateComponent implements OnInit {
   eventSubmitFromParent = new Subject();
   //
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
-    , private fb: FormBuilder, private uow: UowService) { }
+    , private fb: FormBuilder, public uow: UowService) { }
 
   ngOnInit() {
     this.o = this.data.model;
@@ -49,6 +49,7 @@ export class UpdateComponent implements OnInit {
       session: [this.o.session, Validators.required],
       discours: [this.o.discours],
       documents: [this.o.documents],
+      annee: [this.o.annee],
     });
   }
 

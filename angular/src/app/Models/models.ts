@@ -33,6 +33,7 @@ export class Examen {
   observationFinale = '';
   rapportMiParcours = '';
   discours = '';
+  miseOeuvrePiece = '';
 }
 
 export class Notification {
@@ -58,6 +59,7 @@ export class Traite {
   observationPiece = '';
   analytiquePiece = '';
   discours = '';
+  rapportParallelePiece = '';
   rapports: Rapport[] = [];
   user = new User();
 }
@@ -104,6 +106,7 @@ export class Visite {
   date = new Date();
   lienRapport = '';
   lienUpload = '';
+  miseOeuvrePiece = '';
   discours = '';
 }
 
@@ -144,6 +147,7 @@ export class Recommendation {
   idCycle = 0;
   idAxe = 0;
   etat = '';
+  complement = '';
   etatAvancement = '';
   etatAvancementChiffre = 0;
   observation = '';
@@ -167,6 +171,7 @@ export class Questionnaire {
   theme = '';
   sousTheme = '';
   pieceJointe = '';
+  annee = new Date().getFullYear();
 }
 
 export class ParticipationSession {
@@ -174,6 +179,7 @@ export class ParticipationSession {
   session = '';
   discours = '';
   documents = '';
+  annee = new Date().getFullYear();
 }
 
 export class Cycle {

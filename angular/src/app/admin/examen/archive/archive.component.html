@@ -8,7 +8,7 @@
   <div class="content">
     <div mat-dialog-content>
       <div class="row">
-
+ 
         <div class="col">
           <p style="font-weight:bold;">Discours du président</p>
           <mat-list role="list">
@@ -29,7 +29,7 @@
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
-          <p style="font-weight:bold;">Compilation HCDH</p>
+          <p style="font-weight:bold;">Compilation HCDH/SOCIETE CIVILE</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.compilationHCDH)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
@@ -40,7 +40,7 @@
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
-          <p style="font-weight:bold;">Observations Finales</p>
+          <p style="font-weight:bold;">Observations finales/ADDITIFS</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.observationFinale)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
@@ -54,6 +54,17 @@
           <p style="font-weight:bold;">Rapport Mi-Parcours</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportMiParcours)">
+              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <mat-divider [vertical]="true"> </mat-divider>
+
+        <div class="col">
+          <p style="font-weight:bold;">Plan mise en œuvre </p>
+          <mat-list role="list">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.miseOeuvrePiece)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
             </mat-list-item>
           </mat-list>

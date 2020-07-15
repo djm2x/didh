@@ -3,8 +3,8 @@
 
         <div style="position: relative;width: 100%;">
             <div class="blue">
-                <mat-progress-spinner [matTooltip]="'Taux : ' + o.t + '%'"
-                    style="position: absolute; transform: translateX(50%); " [diameter]="diameter" [color]="'primary'"
+                <mat-progress-spinner [matTooltip]="'Taux : ' + o.t + '%'" style="position: absolute;"
+                    [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
                     [mode]="'determinate'" [value]="o.t">
                 </mat-progress-spinner>
             </div>
@@ -12,8 +12,8 @@
             <div class="orange">
                 <mat-progress-spinner class="orange"
                     [matTooltip]="'État d\'avancement : ' + o.p + '%' + ' - Taux : ' + o.t.toFixed(0) + '%'"
-                    style="position: absolute; transform: translateX(50%); " [diameter]="diameter" [color]="'warn'"
-                    [mode]="'determinate'" [value]="(o.p * o.t) / 100">
+                    style="position: absolute;" [style.transform]="'translateX(' + transform + '%)'"
+                    [diameter]="diameter" [color]="'warn'" [mode]="'determinate'" [value]="(o.p * o.t) / 100">
                 </mat-progress-spinner>
             </div>
         </div>

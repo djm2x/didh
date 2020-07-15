@@ -28,13 +28,18 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <app-upload-select nameBtn="Upload un fichie" [folderToSaveInServer]="folderToSaveInServer"
+        <app-upload-select nameBtn="RAPPORT NATIONAL DE LA VISITE" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="lienUploadTo" [eventSubmitToParent]="lienUploadFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
-          <app-upload-select nameBtn="Discours du président" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="RAPPORT DE LA PROCEDURE/REACTION NATIONALE" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
+
+          <app-upload-select nameBtn="PLAN DE MISE EN OEUVRE" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 

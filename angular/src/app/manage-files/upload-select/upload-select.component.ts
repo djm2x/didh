@@ -74,7 +74,7 @@ export class UploadSelectComponent implements OnInit {
       if (name.includes(e.substring(0, e.length - 2))) {
 
         let newName = this.listOfNames[i];
-        newName =  newName.substring(0, newName.length - 1);
+        newName = newName.substring(0, newName.length - 1);
 
         this.listOfNames[i] = `${newName}${isActive ? '1' : '0'}`;
 
@@ -128,23 +128,23 @@ export class UploadSelectComponent implements OnInit {
 
   async submit() {
 
+    if (this.files.length > 0) {
+      const formData = new FormData();
 
-    const formData = new FormData();
+      this.files.forEach(e => {
+        const name = this.setFileName(e);
 
-    this.files.forEach(e => {
+        formData.append(name, e, name);
+      });
 
-      const name = this.setFileName(e);
-
-      formData.append(name, e, name);
-
-    });
-
-
-    if (formData) {
       await this.filesService.uploadFiles(formData, this.folderToSaveInServer).toPromise();
       this.snackBar.notifyOk(200, 'fichier(s) uploade avec succès');
-      await this.filesService.deleteFiles(this.listToDelete, this.folderToSaveInServer).toPromise();
 
+    }
+
+    if (this.listToDelete.length > 0) {
+      await this.filesService.deleteFiles(this.listToDelete, this.folderToSaveInServer).toPromise();
+      this.snackBar.notifyOk(200, 'fichier(s) Supprimer avec succès');
     }
   }
 

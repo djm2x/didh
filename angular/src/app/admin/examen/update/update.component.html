@@ -30,12 +30,12 @@
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
-          <app-upload-select nameBtn="Compilation HCDH" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="Compilation HCDH/SOCIETE CIVILE" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="compilationHCDHTo" [eventSubmitToParent]="compilationHCDHFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
-          <app-upload-select nameBtn="Observations finales" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="Observations finales/ADDITIFS" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="observationFinaleTo" [eventSubmitToParent]="observationFinaleFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
@@ -45,6 +45,10 @@
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
+          <app-upload-select nameBtn="Plan de mise en œuvre" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
         </div>
       </form>
     </div>

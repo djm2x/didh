@@ -12,5 +12,6 @@ namespace Admin5.Models
         public string CompilationHCDH { get; set; }
         public string ObservationFinale { get; set; }
         public string RapportMiParcours { get; set; }
+        public string MiseOeuvrePiece { get; set; }
     }
 }

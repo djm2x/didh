@@ -27,7 +27,7 @@ export class UpdateComponent implements OnInit {
   eventSubmitFromParent = new Subject();
   //
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
-    , private fb: FormBuilder, private uow: UowService, private http: HttpClient) { }
+    , private fb: FormBuilder, public uow: UowService, private http: HttpClient) { }
 
   async ngOnInit() {
     this.o = this.data.model;
@@ -57,6 +57,7 @@ export class UpdateComponent implements OnInit {
       theme: [this.o.theme, Validators.required],
       sousTheme: [this.o.sousTheme],
       pieceJointe: [this.o.pieceJointe],
+      annee: [this.o.annee],
     });
   }
 

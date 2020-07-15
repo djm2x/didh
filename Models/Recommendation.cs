@@ -24,6 +24,7 @@ namespace Admin5.Models
         public string EtatAvancement { get; set; }
         public int EtatAvancementChiffre { get; set; }
         public string Observation { get; set; }
+        public string Complement  { get; set; }
         public string PieceJointe { get; set; }
         // public int IdOrganisme { get; set; }
         // public Organisme Organisme { get; set; }

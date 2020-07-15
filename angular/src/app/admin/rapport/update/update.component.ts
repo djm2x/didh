@@ -38,6 +38,9 @@ export class UpdateComponent implements OnInit {
   analytiquePieceTo = new Subject();
   analytiquePieceFrom = new Subject();
   //
+  rapportParallelePieceTo = new Subject();
+  rapportParallelePieceFrom = new Subject();
+  //
   eventSubmitFromParent = new Subject();
 
   constructor(private route: ActivatedRoute, private snack: SnackBarService
@@ -62,6 +65,7 @@ export class UpdateComponent implements OnInit {
 
         setTimeout(() => {
           this.discoursTo.next(this.o.discours);
+          this.rapportParallelePieceTo.next(this.o.rapportParallelePiece);
           this.conventionPieceTo.next(this.o.conventionPiece);
           this.observationPieceTo.next(this.o.observationPiece);
           this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
@@ -70,6 +74,7 @@ export class UpdateComponent implements OnInit {
       });
     }
 
+    this.rapportParallelePieceFrom.subscribe(r => this.myForm.get('rapportParallelePiece').setValue(r));
     this.conventionPieceFrom.subscribe(r => this.myForm.get('conventionPiece').setValue(r));
     this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.observationPieceFrom.subscribe(r => this.myForm.get('observationPiece').setValue(r));
@@ -103,6 +108,7 @@ export class UpdateComponent implements OnInit {
       observationPiece: [this.o.observationPiece],
       miseOeuvrePiece: [this.o.miseOeuvrePiece],
       analytiquePiece: [this.o.analytiquePiece],
+      rapportParallelePiece: [this.o.rapportParallelePiece],
     });
   }
 

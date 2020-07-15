@@ -16,6 +16,7 @@ namespace Admin5.Models
         public string MiseOeuvrePiece { get; set; }
         public string ObservationPiece { get; set; }
         public string AnalytiquePiece { get; set; }
+        public string RapportParallelePiece { get; set; }
         public string Discours { get; set; }
         public DateTime DateRatification { get; set; }
         public DateTime DateSignature { get; set; }

@@ -22,6 +22,9 @@ export class UpdateComponent implements OnInit {
   discoursTo = new Subject();
   discoursFrom = new Subject();
   //
+  miseOeuvrePieceTo = new Subject();
+  miseOeuvrePieceFrom = new Subject();
+  //
   eventSubmitFromParent = new Subject();
 
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
@@ -34,8 +37,10 @@ export class UpdateComponent implements OnInit {
 
     this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.lienUploadFrom.subscribe(r => this.myForm.get('lienUpload').setValue(r));
+    this.miseOeuvrePieceFrom.subscribe(r => this.myForm.get('miseOeuvrePiece').setValue(r));
 
     setTimeout(() => {
+      this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
       this.lienUploadTo.next(this.o.lienUpload);
       this.lienUploadTo.next(this.o.lienUpload);
     }, 100);
@@ -49,6 +54,7 @@ export class UpdateComponent implements OnInit {
       date: [this.o.date, Validators.required],
       lienRapport: [this.o.lienRapport],
       lienUpload: [this.o.lienUpload],
+      miseOeuvrePiece: [this.o.miseOeuvrePiece],
     });
   }
 

@@ -14,6 +14,7 @@ namespace Admin5.Models
         public string Mandat { get; set; }
         public DateTime? Date { get; set; }
         public string LienRapport { get; set; }
+        public string MiseOeuvrePiece { get; set; }
         public string Discours { get; set; }
         public string LienUpload { get; set; }
 

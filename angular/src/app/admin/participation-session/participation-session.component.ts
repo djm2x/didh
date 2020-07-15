@@ -29,8 +29,9 @@ export class ParticipationSessionComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'session', headName: 'session' },
+    { columnDef: 'annee', headName: 'Année' },
     { columnDef: 'discours', headName: 'Discours de Mr le Ministre' },
-    { columnDef: 'documents', headName: 'Documents de l\'examen' },
+    { columnDef: 'documents', headName: 'Documents de session' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();

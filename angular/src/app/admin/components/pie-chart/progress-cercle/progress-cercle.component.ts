@@ -11,6 +11,7 @@ export class ProgressCercleComponent implements OnInit {
   @Input() fontSize = .93;
   @Input() widthText = 'auto';
   @Input() diameter = 120;
+  @Input() transform = 50;
 
   @Input() public isInForLoop = false;
   @Input() public data = new Subject<{ name: string, t: number, p: number }>();

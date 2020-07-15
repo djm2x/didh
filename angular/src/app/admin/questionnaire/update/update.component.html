@@ -25,6 +25,13 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field appearance="outline">
+          <mat-label>Année</mat-label>
+          <mat-select formControlName="annee">
+            <mat-option *ngFor="let e of uow.years" [value]="e">{{ e }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div class="row justify-content-center" style="margin-bottom: 15px;">
 
           <app-upload nameBtn="Documents" [folderToSaveInServer]="folderToSaveInServer"

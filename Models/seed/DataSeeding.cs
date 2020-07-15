@@ -166,6 +166,7 @@ namespace seed
                 .RuleFor(o => o.LienRapport, f => "")
                 .RuleFor(o => o.LienUpload, f => "")
                 .RuleFor(o => o.Discours, f => $"")
+                .RuleFor(o => o.MiseOeuvrePiece, f => $"")
                 ;
 
             modelBuilder.Entity<Visite>().HasData(faker.Generate(DataSeeding.i));
@@ -195,7 +196,9 @@ namespace seed
                 .CustomInstantiator(f => new Questionnaire { Id = id++ })
                 .RuleFor(o => o.Theme, f => f.PickRandom(list))
                 .RuleFor(o => o.SousTheme, f => $"sous theme {id - 1}")
-                .RuleFor(o => o.PieceJointe, f => $"");
+                .RuleFor(o => o.PieceJointe, f => $"")
+                .RuleFor(o => o.Annee, f => 2020)
+                ;
 
             modelBuilder.Entity<Questionnaire>().HasData(faker.Generate(15));
 
@@ -209,7 +212,9 @@ namespace seed
                 .CustomInstantiator(f => new ParticipationSession { Id = id++ })
                 .RuleFor(o => o.Session, f => $"Session {id - 1}")
                 .RuleFor(o => o.Discours, f => $"")
-                .RuleFor(o => o.Documents, f => $"");
+                .RuleFor(o => o.Documents, f => $"")
+                .RuleFor(o => o.Annee, f => 2020)
+                ;
 
             modelBuilder.Entity<ParticipationSession>().HasData(faker.Generate(15));
 
@@ -227,6 +232,7 @@ namespace seed
                 .RuleFor(o => o.ObservationFinale, f => $"")
                 .RuleFor(o => o.RapportMiParcours, f => $"")
                 .RuleFor(o => o.Discours, f => $"")
+                .RuleFor(o => o.MiseOeuvrePiece, f => $"")
                 ;
 
             modelBuilder.Entity<Examen>().HasData(faker.Generate(6));
@@ -331,6 +337,7 @@ namespace seed
                 .RuleFor(o => o.ObservationPiece, "")
                 .RuleFor(o => o.Discours, f => $"")
                 .RuleFor(o => o.AnalytiquePiece, f => $"")
+                .RuleFor(o => o.RapportParallelePiece, f => $"")
 
                 ;
             modelBuilder.Entity<Traite>().HasData(faker.Generate(DataSeeding.i));
@@ -462,6 +469,7 @@ namespace seed
                 .RuleFor(o => o.EtatAvancement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
                 .RuleFor(o => o.EtatAvancementChiffre, f => f.Random.Number(0, 100))
                 .RuleFor(o => o.Observation, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+                .RuleFor(o => o.Complement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
                 .RuleFor(o => o.PieceJointe, f => "")
                 // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
                 ;

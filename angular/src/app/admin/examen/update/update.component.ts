@@ -32,6 +32,9 @@ export class UpdateComponent implements OnInit {
   rapportNationalTo = new Subject();
   rapportNationalFrom = new Subject();
   //
+  miseOeuvrePieceTo = new Subject();
+  miseOeuvrePieceFrom = new Subject();
+  //
   eventSubmitFromParent = new Subject();
   //
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
@@ -48,8 +51,10 @@ export class UpdateComponent implements OnInit {
     this.observationFinaleFrom.subscribe(r => this.myForm.get('observationFinale').setValue(r));
     this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.rapportMiParcoursFrom.subscribe(r => this.myForm.get('rapportMiParcours').setValue(r));
-
+    this.miseOeuvrePieceFrom.subscribe(r => this.myForm.get('miseOeuvrePiece').setValue(r));
+    
     setTimeout(() => {
+      this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
       this.rapportNationalTo.next(this.o.rapportNational);
       this.compilationHCDHTo.next(this.o.compilationHCDH);
       this.observationFinaleTo.next(this.o.observationFinale);
@@ -67,6 +72,7 @@ export class UpdateComponent implements OnInit {
       compilationHCDH: [this.o.compilationHCDH],
       observationFinale: [this.o.observationFinale],
       rapportMiParcours: [this.o.rapportMiParcours],
+      miseOeuvrePiece: [this.o.miseOeuvrePiece],
     });
   }
 

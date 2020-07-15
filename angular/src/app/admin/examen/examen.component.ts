@@ -30,10 +30,11 @@ export class ExamenComponent implements OnInit {
   columnDefs = [
     { columnDef: 'libelle', headName: '' },
     { columnDef: 'rapportNational', headName: 'Rapport national' },
-    { columnDef: 'compilationHCDH', headName: 'Compilation HCDH' },
-    { columnDef: 'observationFinale', headName: 'Observations finales' },
-    { columnDef: 'rapportMiParcours', headName: 'Rapport mi-parcours' },
+    { columnDef: 'compilationHCDH', headName: 'Compilation HCDH/SOCIETE CIVILE' },
     { columnDef: 'discours', headName: 'Discours du président' },
+    { columnDef: 'observationFinale', headName: 'Observations finales/ADDITIFS' },
+    { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
+    { columnDef: 'rapportMiParcours', headName: 'Rapport mi-parcours' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();

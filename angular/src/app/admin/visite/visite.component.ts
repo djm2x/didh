@@ -31,8 +31,9 @@ export class VisiteComponent implements OnInit {
   columnDefs = [
     { columnDef: 'mandat', headName: 'MANDAT' },
     { columnDef: 'date', headName: 'Date de la visite' },
-    { columnDef: 'lienUpload', headName: 'Rapport de la visite' },
-    { columnDef: 'discours', headName: 'Discours du président' },
+    { columnDef: 'lienUpload', headName: 'RAPPORT NATIONAL DE LA VISITE' },
+    { columnDef: 'discours', headName: 'RAPPORT DE LA PROCEDURE/REACTION NATIONALE' },
+    { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
