@@ -26,6 +26,8 @@
   },
   "admin": {
     "lang": "Langage",
+    "Enregistre": "Enregistre",
+    "Retour": "Retour",
     "header": {
       "SessionsDH": "Sessions DH",
       "Questionnaires": "Questionnaires",
@@ -48,17 +50,120 @@
       "Sousaxe": "Sous axe",
       "Pays": "Pays"
     },
-    "footer": {
-      "about": "À propos",
-      "condition": "Conditions",
-      "privacy_policy": "Politique de confidentialité",
-      "faq": "FAQ"
+    "home": {
+      "SystèmedeSuividesrecommandations": "Système de Suivi des recommandations",
+      "droitHomme": "Les droits de l'homme sont liés non seulement à la demande, mais aussi au devoir",
+      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "Mise en œuvre des recommandations des mécanismes onusiens des droits de l’homme",
+      "ExamenPériodiqueuniversell": "Examen Périodique universell",
+      "OrganesdeTraités": "Organes de Traités",
+      "Procéduresspéciales": "Procédures spéciales",
+      "Miseenœuvredesaxe": "Mise en œuvre des axe",
+      "Miseenœuvredesrecommandationspardépartements": "Mise en œuvre des recommandations par départements"
+    },
+    "epu": {
+      "list": {
+        "Examenpériodiqueuniversal": "Examen périodique universal",
+        "Examen": "Examen",
+        "libelle": "libelle",
+        "Rapportnational": "Rapport national",
+        "CompilationHCDHSOCIETECIVILE": "Compilation HCDH/SOCIETE CIVILE",
+        "Discoursduprésident": "Discours du président",
+        "ObservationsfinalesADDITIFS": "Observations finales/ADDITIFS",
+        "PLANDEMISEENOEUVRE": "PLAN DE MISE EN OEUVRE",
+        "Rapportmi-parcours": "Rapport mi-parcours",
+        "Miseenœuvredesrecommandationsparaxe": "Mise en œuvre des recommandations par axe",
+        "Tauxderecommandationsparaxe": "Taux de recommandations par axe",
+        "AjouterExamen": "Ajouter Examen",
+        "ModifierExamen": "Modifier Examen"
+      }
+    },
+    "organe": {
+      "Organesdetraités": "Organes de traités",
+      "Organesdetraité": "Organes de traité",
+      "situation_des_réserves": "situation des réserves",
+      "Pièce-jointe": "Pièce-jointe",
+      "Telecharger": "Telecharger",
+      "list": {
+        "OrganesdeTraités": "Organes de Traités",
+        "Rapportnational": "Rapport national",
+        "Discoursduprésident": "Discours du président",
+        "Compterenduanalytique": "Compte rendu analytique",
+        "Observationsfinales": "Observations finales",
+        "Rapportparallèle": "Rapport  parallèle",
+        "PLANDEMISEENOEUVRE": "Plan De Mise En Oeuvre",
+        "Etatavancement": "Etat d’avancement",
+        "Taux": "Taux",
+        "MiseenœuvredesrecommandationsparOrganesdeTraités": "Mise en œuvre des recommandations par Organes de Traités"
+      },
+      "update": {
+        "ConventionProtocole": "Convention/Protocole",
+        "DateSignature": "Date Signature",
+        "Datederatification": "Date de ratification",
+        "Rapport": "Rapport",
+        "Traité": "Traité",
+        "traite": {
+          "list": {
+            "PIECE": "PIECE",
+            "TITRE": "TITRE",
+            "DATEDERNIERRAPPORT": "DATE DERNIER RAPPORT",
+            "DATEOBSERVATION": "DATE OBSERVATION",
+            "DATEPROCHAINERAPPORT": "DATE PROCHAINE RAPPORT",
+            "REFERENCEDESOBSERVATIONSFINALES": "REFERENCE DES OBSERVATIONS FINALES"
+          },
+          "update": {
+            "Titre": "Titre",
+            "Référence_des_observations_finales": "Référence des observations finales",
+            "Date_rapport": "Date rapport",
+            "Date_des_observations_finales": "Date des observations finales",
+            "Prochain_rapport": "Prochain rapport",
+            "Pièce_jointe": "Pièce jointe"
+          },
+          "synthese": {
+            "Synthèse": "Synthèse",
+            "code": "Code",
+            "detail": "detail"
+          }
+        }
+      }
+    },
+    "ps": {
+      "Procédure_spéciales":"Procédure spéciales",
+      "Procédure_spéciale":"Procédure spéciale",
+      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales":"Mise en œuvre des recommandations par Procédures spéciales",
+      "list": {
+        "MANDAT":"MANDAT",
+        "Date_de_la_visite":"Date de la visite",
+        "RAPPORT_NATIONAL_DE_LA_VISITE":"RAPPORT NATIONAL DE LA VISITE",
+        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE":"RAPPORT DE LA PROCEDURE/REACTION NATIONALE",
+        "PLAN_DE_MISE_EN_OEUVRE":"PLAN DE MISE EN OEUVRE",
+        "Ajouter_Procédure_spéciale":"Ajouter Procédure spéciale",
+        "Modifier_Procédure_spéciale":"Modifier Procédure spéciale"
+      },
+      "update": {
+        "Mandat": "Mandat",
+        "Discours_du_président": "Discours du président",
+        "Date_prévue": "Date prévue",
+        "RAPPORT_NATIONAL_DE_LA_VISITE": "RAPPORT NATIONAL DE LA VISITE",
+        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": "RAPPORT DE LA PROCEDURE/REACTION NATIONALE",
+        "PLAN_DE_MISE_EN_OEUVRE": "PLAN DE MISE EN OEUVRE",
+        "Lien_externe": "Lien externe"
+      }
     },
     "recommandation": {
       "title":"Recommandation",
       "titles":"Recommandations",
       "update": {
-        "save": "Enregistrer"
+        "Cycle": "Cycle",
+        "Visite": "Visite",
+        "Organe": "Organe",
+        "Pays": "Pays",
+        "Etaten": "Etat en %",
+        "Etatdavancement": "Etat d'avancement",
+        "PieceJointe": "Piece Jointe",
+
+        "Organisme": "Organisme",
+        "ORGANISMES": "Organismes",
+        "ADRESSE": "Adresse"
       },
       "list": {
         "Recommandations": "Recommandations",

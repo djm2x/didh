@@ -7,12 +7,14 @@ import { MatModule } from 'src/app/mat.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 import { TitleModule } from '../components/title/title.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
     HomeComponent,
   ],
   imports: [
+    TranslateModule,
     CommonModule,
     HomeRoutingModule,
     HttpClientModule,

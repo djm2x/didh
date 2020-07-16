@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-progress-cercle',
@@ -14,15 +14,25 @@ export class ProgressCercleComponent implements OnInit {
   @Input() transform = 50;
 
   @Input() public isInForLoop = false;
-  @Input() public data = new Subject<{ name: string, t: number, p: number }>();
-  @Input() o = { name: '', t: 0, p: 0 };
-  @Input() public elementFromForLoop: { name: string, p: number, t: number };
+  @Input() public data = new Subject<{ name: string | Observable<string>, t: number, p: number }>();
+  @Input() o = { name: null, t: 0, p: 0 };
+  @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number };
   constructor() { }
 
   ngOnInit() {
-    this.data.subscribe(r => {
-      console.log(r)
-      this.o = r;
+    this.data.subscribe(async r => {
+
+      if (r.name instanceof Observable) {
+        r.name.subscribe(name => {
+          this.o.name = name;
+          this.o.t = r.t;
+          this.o.p = r.p;
+        })
+
+      } else {
+        this.o = r;
+      }
+
     });
   }
 

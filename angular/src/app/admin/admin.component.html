@@ -73,14 +73,14 @@
         [ngClass]="{'mr-auto': (mytranslate.lang | async) === 'ar'}"
         [ngClass]="{'ml-auto': (mytranslate.lang | async) === 'fr'}" style=" height: fit-content;">
         <span class="example-spacer"></span>
-        <!-- <mat-list-item [matMenuTriggerFor]="lang"
+        <mat-list-item [matMenuTriggerFor]="lang"
           style=" background-color: #aaabab;height: 40px !important; margin-right: 1px;">
           <span style="color: white;">{{ 'admin.lang' | translate }}</span>
         </mat-list-item>
         <mat-menu #lang="matMenu" xPosition="before">
           <button mat-menu-item (click)="changeLanguage('fr')">Fr</button>
           <button mat-menu-item (click)="changeLanguage('ar')">Ar</button>
-        </mat-menu> -->
+        </mat-menu>
 
         <div *ngFor="let e of navs; let i=index">
           <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">

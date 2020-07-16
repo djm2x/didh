@@ -10,7 +10,7 @@
 
       <form [formGroup]="myForm">
         <mat-form-field appearance="fill">
-          <mat-label>Libelle</mat-label>
+          <mat-label>{{ 'admin.epu.list.libelle' | translate }}</mat-label>
           <input matInput formControlName="libelle" required>
         </mat-form-field>
 
@@ -20,35 +20,35 @@
         </mat-form-field> -->
 
         <div class="row justify-content-center" style="margin-bottom: 15px;">
-          <app-upload-select nameBtn="Discours du président" [folderToSaveInServer]="folderToSaveInServer"
-            [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
-            [eventSubmitFromParent]="eventSubmitFromParent">
-          </app-upload-select>
 
-          <app-upload-select nameBtn="Rapport national" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="{{ 'admin.epu.list.Rapportnational' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="rapportNationalTo" [eventSubmitToParent]="rapportNationalFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
-          <app-upload-select nameBtn="Compilation HCDH/SOCIETE CIVILE" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="{{ 'admin.epu.list.CompilationHCDHSOCIETECIVILE' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="compilationHCDHTo" [eventSubmitToParent]="compilationHCDHFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
-          <app-upload-select nameBtn="Observations finales/ADDITIFS" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="{{ 'admin.epu.list.Discoursduprésident' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
+          <app-upload-select nameBtn="{{ 'admin.epu.list.ObservationsfinalesADDITIFS' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="observationFinaleTo" [eventSubmitToParent]="observationFinaleFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
+          <app-upload-select nameBtn="{{ 'admin.epu.list.PLANDEMISEENOEUVRE' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
+            [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
+            [eventSubmitFromParent]="eventSubmitFromParent">
+          </app-upload-select>
 
-          <app-upload-select nameBtn="Rapport mi-parcours" [folderToSaveInServer]="folderToSaveInServer"
+          <app-upload-select nameBtn="{{ 'admin.epu.list.Rapportmi-parcours' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
             [propertyOfParent]="rapportMiParcoursTo" [eventSubmitToParent]="rapportMiParcoursFrom"
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
-          <app-upload-select nameBtn="Plan de mise en œuvre" [folderToSaveInServer]="folderToSaveInServer"
-            [propertyOfParent]="miseOeuvrePieceTo" [eventSubmitToParent]="miseOeuvrePieceFrom"
-            [eventSubmitFromParent]="eventSubmitFromParent">
-          </app-upload-select>
         </div>
       </form>
     </div>
@@ -57,9 +57,9 @@
     <!-- {{myForm.value | json}} -->
 
     <div class="actions" mat-dialog-actions>
-      <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+      <button mat-button (click)="onNoClick()" type="button">{{ 'admin.Retour' | translate }}</button>&nbsp;&nbsp;
       <button mat-raised-button cdkFocusInitial color="primary" (click)="onOkClick(myForm.value)"
-        [disabled]="myForm.invalid">Enregistre</button>
+        [disabled]="myForm.invalid">{{ 'admin.Enregistre' | translate }}</button>
     </div>
   </div>
 </div>

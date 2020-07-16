@@ -9,16 +9,9 @@
     <div mat-dialog-content>
       <div class="row">
  
+        
         <div class="col">
-          <p style="font-weight:bold;">Discours du président</p>
-          <mat-list role="list">
-            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.discours)">
-              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
-            </mat-list-item>
-          </mat-list>
-        </div>
-        <div class="col">
-          <p style="font-weight:bold;">Rapport National</p>
+          <p style="font-weight:bold;">{{ 'admin.epu.list.Rapportnational' | translate }}</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportNational)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
@@ -29,9 +22,18 @@
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
-          <p style="font-weight:bold;">Compilation HCDH/SOCIETE CIVILE</p>
+          <p style="font-weight:bold;">{{ 'admin.epu.list.CompilationHCDHSOCIETECIVILE' | translate }}</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.compilationHCDH)">
+              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        <mat-divider [vertical]="true"> </mat-divider>
+        <div class="col">
+          <p style="font-weight:bold;">{{ 'admin.epu.list.Discoursduprésident' | translate }}</p>
+          <mat-list role="list">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.discours)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
             </mat-list-item>
           </mat-list>
@@ -40,7 +42,7 @@
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
-          <p style="font-weight:bold;">Observations finales/ADDITIFS</p>
+          <p style="font-weight:bold;">{{ 'admin.epu.list.ObservationsfinalesADDITIFS' | translate }}</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.observationFinale)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
@@ -48,23 +50,25 @@
           </mat-list>
         </div>
 
+        
+
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
-          <p style="font-weight:bold;">Rapport Mi-Parcours</p>
+          <p style="font-weight:bold;">{{ 'admin.epu.list.PLANDEMISEENOEUVRE' | translate }}</p>
           <mat-list role="list">
-            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportMiParcours)">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.miseOeuvrePiece)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
             </mat-list-item>
           </mat-list>
         </div>
-
+        
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
-          <p style="font-weight:bold;">Plan mise en œuvre </p>
+          <p style="font-weight:bold;">{{ 'admin.epu.list.Rapportmi-parcours' | translate }}</p>
           <mat-list role="list">
-            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.miseOeuvrePiece)">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportMiParcours)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
             </mat-list-item>
           </mat-list>

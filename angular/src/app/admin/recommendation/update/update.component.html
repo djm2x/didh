@@ -1,18 +1,18 @@
 <div class="host">
-  <app-title title="Recommandation"></app-title>
+  <app-title title="{{ 'admin.recommandation.list.Recommandation' | translate }}"></app-title>
   <div class="">
 
 
-    <form [formGroup]="myForm">
+    <form [formGroup]="myForm"> 
       <mat-card style="margin-top: 15px;">
         <div class="input">
-          <mat-form-field appearance="fill" style="width: 100px;">
-            <mat-label>Code</mat-label>
+          <mat-form-field appearance="fill" style="width: 20%;">
+            <mat-label>{{ 'admin.recommandation.list.code' | translate }}</mat-label>
             <input matInput formControlName="codeRecommendation" required [readonly]="!isAdmin">
           </mat-form-field>
-
-          <mat-form-field appearance="fill" style="width: 100%; margin-left: 5px;">
-            <mat-label>Nom</mat-label>
+          <span style="margin: 0 1%;"></span>
+          <mat-form-field appearance="fill" style="width: 78%;">
+            <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
             <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
             <input matInput formControlName="nom" required [readonly]="!isAdmin">
           </mat-form-field>
@@ -22,7 +22,7 @@
 
         <div class="inputs2">
           <mat-form-field appearance="fill">
-            <mat-label>Mecanisme</mat-label>
+            <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
@@ -30,7 +30,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill" *ngIf="cycleActive">
-            <mat-label>Cycle</mat-label>
+            <mat-label>{{ 'admin.recommandation.update.Cycle' | translate }}</mat-label>
             <mat-select formControlName="idCycle" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -38,7 +38,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill" *ngIf="visiteActive">
-            <mat-label>Visite</mat-label>
+            <mat-label>{{ 'admin.recommandation.update.Visite' | translate }}</mat-label>
             <mat-select formControlName="idVisite" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
@@ -46,7 +46,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill" *ngIf="organeActive">
-            <mat-label>Organe</mat-label>
+            <mat-label>{{ 'admin.recommandation.update.Organe' | translate }}</mat-label>
             <mat-select formControlName="idOrgane" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -55,7 +55,7 @@
         </div>
         <div class="inputs2">
           <mat-form-field appearance="fill">
-            <mat-label>Axe</mat-label>
+            <mat-label>{{ 'admin.recommandation.list.Axe' | translate }}</mat-label>
             <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
               <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -63,7 +63,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Sous axe</mat-label>
+            <mat-label>{{ 'admin.recommandation.list.Sousaxe' | translate }}</mat-label>
             <mat-select formControlName="idSousAxe" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
               <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
@@ -72,7 +72,7 @@
         </div>
         <div class="inputs2">
           <mat-form-field appearance="fill">
-            <mat-label>Pays</mat-label>
+            <mat-label>{{ 'admin.recommandation.update.Pays' | translate }}</mat-label>
             <mat-select formControlName="idPays" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ e.nom }}</mat-option>
@@ -81,34 +81,34 @@
         </div>
 
         <mat-form-field appearance="fill" style="width: 78%">
-          <mat-label>Etat de mis en oeuvre</mat-label>
+          <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
           <mat-select formControlName="etat" (selectionChange)="etat($event.value)">
             <mat-option value="">...</mat-option>
             <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
           </mat-select>
         </mat-form-field>
-
-        <mat-form-field appearance="fill" style="width: 20%; margin-left: 2%;">
-          <mat-label>Etat en %</mat-label>
+        <span style="margin: 0 1%;"></span>
+        <mat-form-field appearance="fill" style="width: 20%;">
+          <mat-label>{{ 'admin.recommandation.update.Etaten' | translate }}</mat-label>
           <input matInput formControlName="etatAvancementChiffre" type="number" min="0" max="100" required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="width: 100%;" *ngIf="showEtatDavancement">
-          <mat-label>Etat d'avancement</mat-label>
+          <mat-label>{{ 'admin.recommandation.update.Etatdavancement' | translate }}</mat-label>
           <textarea matInput rows="0" formControlName="etatAvancement"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="width: 100%;">
-          <mat-label>Observation</mat-label>
+          <mat-label>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</mat-label>
           <textarea matInput rows="0" formControlName="observation"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="fill" style="width: 100%;">
-          <mat-label>COMPLEMENT D’INFORMATION</mat-label>
+          <mat-label>{{ 'admin.recommandation.list.complement' | translate }}</mat-label>
           <textarea matInput rows="0" formControlName="complement"></textarea>
         </mat-form-field>
 
-        <app-upload nameBtn="Piece Jointe" [folderToSaveInServer]="folderToSaveInServer"
+        <app-upload nameBtn="{{ 'admin.recommandation.update.PieceJointe' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
           [propertyOfParent]="pieceJointeTo" [eventSubmitToParent]="pieceJointeFrom"
           [eventSubmitFromParent]="eventSubmitFromParent">
         </app-upload>
@@ -122,10 +122,10 @@
     <app-organismes (eventToParent)="updateListOrganisme($event)" [listFromParent]="eventToChild"></app-organismes>
 
     <div class="actions">
-      <button mat-button [routerLink]="['/admin/recommendation/list']" type="button">Retour</button>&nbsp;&nbsp;
+      <button mat-button [routerLink]="['/admin/recommendation/list']" type="button">{{ 'admin.Retour' | translate }}</button>&nbsp;&nbsp;
       <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
       <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm)"
-        [disabled]="myForm.invalid">Enregistre</button>
+        [disabled]="myForm.invalid">{{ 'admin.Enregistre' | translate }}</button>
     </div>
   </div>
 </div>

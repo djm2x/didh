@@ -9,6 +9,7 @@ import { DoughnutComponent } from './doughnut/doughnut.component';
 import { BarComponent } from './bar/bar.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ProgressCercleComponent } from './progress-cercle/progress-cercle.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -23,6 +24,7 @@ import { ProgressCercleComponent } from './progress-cercle/progress-cercle.compo
     CommonModule,
     MatModule,
     ChartsModule,
+    TranslateModule,
     // FormsModule,
     // ReactiveFormsModule,
   ],

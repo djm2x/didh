@@ -149,26 +149,28 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.nom' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
         </ng-container>
+       
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.mecanisme' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[3].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.mecanisme' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Axe' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
         </ng-container>
+
         <ng-container [matColumnDef]="columnDefs[4].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Axe' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Sousaxe' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef]}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[5].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Sousaxe' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.DEPARTEMENT' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[5].columnDef]}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[6].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.DEPARTEMENT' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[6].columnDef]}}</td>
         </ng-container>
 

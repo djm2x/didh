@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { UowService } from 'src/app/services/uow.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -14,7 +15,7 @@ export class PieChartComponent implements OnInit {
   // @Input() type: 'count' | 'taux' = 'taux';
   // @Input() mytitle: '';
   @Input() obs = new Subject<IData>();
-  title = '';
+  title = '' || null;
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -38,39 +39,51 @@ export class PieChartComponent implements OnInit {
   public pieChartColors = [
     { backgroundColor: [], },
   ];
+  retate = 0;
 
-  constructor(private uow: UowService) {
+  constructor(private uow: UowService, public mytranslate: MyTranslateService) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
 
   ngOnInit() {
+    this.mytranslate.lang.subscribe(lang => {
+      this.retate = lang === 'fr' ? 0 : 180;
+    });
+    
     this.obs.subscribe(d => {
-      if (d.type === 'stateRecommendationByMecanismeTaux' as any) {
-        this.title = d.title;
-        this.uow.recommendations.stateRecommendationByMecanismeTaux().subscribe(r => {
-          this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-          this.pieChartData = r.map(e => e.value);
+      // if (d.type === 'stateRecommendationByMecanismeTaux' as any) {
+      //   this.title = d.title;
+      //   this.uow.recommendations.stateRecommendationByMecanismeTaux().subscribe(r => {
+      //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
+      //     this.pieChartData = r.map(e => e.value);
 
-          this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-        });
-      } else if (d.type === 'stateRecommendationByMecanismePercentage' as any) {
-        this.title = d.title;
-        this.uow.recommendations.stateRecommendationByMecanismePercentage().subscribe(r => {
-          this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-          this.pieChartData = r.map(e => e.value);
+      //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
+      //   });
+      // } else if (d.type === 'stateRecommendationByMecanismePercentage' as any) {
+      //   this.title = d.title;
+      //   this.uow.recommendations.stateRecommendationByMecanismePercentage().subscribe(r => {
+      //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
+      //     this.pieChartData = r.map(e => e.value);
 
-          this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-        });
+      //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
+      //   });
+      // } else {
+
+      // }
+
+      if (d.title instanceof Observable) {
+        d.title.subscribe(t => this.title = t)
       } else {
         this.title = d.title;
-        this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
-          this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-          this.pieChartData = r.map(e => e.value);
-
-          this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-        });
       }
+
+      this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
+        this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
+        this.pieChartData = r.map(e => e.value);
+
+        this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
+      });
 
     })
 
@@ -119,5 +132,5 @@ export class PieChartComponent implements OnInit {
 export interface IData {
   table: 'axe' | 'organe' | 'visite';
   type: 'count' | 'taux';
-  title: string;
+  title: string | Observable<string>;
 }

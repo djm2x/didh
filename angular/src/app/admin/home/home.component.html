@@ -1,57 +1,21 @@
 <div class="host">
-  <!-- <div class="cards">
-    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple
-      style="background: #00A65A; color: white;" [routerLink]="['/admin/recommendation/update/0']">
-      <mat-icon>done_all</mat-icon>
-      <p style="margin-left: auto;">Nouvelle Recommandation</p>
-    </mat-card>
-
-    <mat-card *ngIf="!session.isPointFocal && !session.isSuperViseur" matRipple
-      style="background: #4B94BF; color: white; margin-left: 10px !important;"
-      [routerLink]="['/admin/rapport/update/0']">
-      <mat-icon>book</mat-icon>
-      <p style="margin-left: auto;">Nouveau rapport</p>
-    </mat-card>
-
-    <mat-card matRipple style="background: #4B94BF; color: white; margin-left: 10px !important;">
-      <p style="font-size: 2.5em; font-weight: bold;">
-        {{ (recommendations | async) ? (recommendations | async) : '...' }}</p>
-      <p style="margin-left: auto;">Recommandations</p>
-    </mat-card>
-
-    <mat-card matRipple style="background: #00A65A; color: white; margin-left: 10px !important;">
-      <p style="font-size: 2.5em; font-weight: bold;">{{(rapports | async) ? (rapports | async) : '...'}}</p>
-      <p style="margin-left: auto;">Conventions</p>
-    </mat-card>
-  </div>
-
-  <mat-divider></mat-divider>
-
-  <div class="row pr-3 pl-3 pb-3">
-    <img src="assets/home.jpg" alt="" srcset="" style="width: 100%; background-size: cover;">
-  </div> -->
-  <!-- <app-title title="Accueil"></app-title>
-  <section class="mb-2">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis atque natus consequuntur quas aut iure mollitia
-      nam ducimus doloribus alias.</p>
-  </section> -->
 
   <div class="d-flex justify-content-center w-100 mb-5">
     <section class="super-title2">
       <div>
-        <h3>Système de Suivi des recommandations</h3>
+        <h3>{{ 'admin.home.SystèmedeSuividesrecommandations' | translate }}</h3>
       </div>
     </section>
   </div>
 
   <div class="d-flex justify-content-center w-100">
-    <section class="super-title">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
       <div>
-        <h3>Mise en œuvre des recommandations des mécanismes onusiens des droits de l’homme</h3>
+        <h3>{{ 'admin.home.Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme' | translate }}</h3>
       </div>
     </section>
   </div>
-  <h3 style="font-size: 1.4em;">« ﺣﻘﻮق اﻻﻧﺴﺎن ﻻ ﺗﺄتي ﻓﻘﻂ ﺑﺎﳌﻄﺎﻟﺒﺔ ﺑﻞ أﻳﻀﺎ ﺑﺄداء اﻟﻮاﺟﺐ »</h3>
+  <h3 style="font-size: 1.4em;">« {{ 'admin.home.droitHomme' | translate }} »</h3>
 
 
 
@@ -69,19 +33,19 @@
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
 
-            <app-progress-cercle [transform]="50" [diameter]="140" [data]="dataEpu"></app-progress-cercle>
+            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 50 : -50" [diameter]="140" [data]="dataEpu"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="50" [diameter]="140" [data]="dataOt"></app-progress-cercle>
+            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 50 : -50" [diameter]="140" [data]="dataOt"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="50" [diameter]="140" [data]="dataPs"></app-progress-cercle>
+            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 50 : -50" [diameter]="140" [data]="dataPs"></app-progress-cercle>
           </div>
         </div>
       </div>
@@ -92,9 +56,9 @@
   <!-- <mat-divider> </mat-divider> -->
   <!-- <h3>Mise en œuvre des recommandations </h3> -->
   <div class="d-flex justify-content-center w-100 mt-5 mb-5">
-    <section class="super-title">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
       <div>
-        <h3>Mise en œuvre des axe</h3>
+        <h3>{{ 'admin.home.Miseenœuvredesaxe' | translate }}</h3>
       </div>
     </section>
   </div>
@@ -118,7 +82,7 @@
           </div>
         </div>
       </mat-card> -->
-      <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px;">
+      <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px; direction: ltr;">
         <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
           <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'"
             style="color: white; font-weight: bold;">
@@ -134,9 +98,9 @@
   <!-- <mat-divider> </mat-divider> -->
 
   <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
-    <section class="super-title">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
       <div>
-        <h3>Mise en œuvre des recommandations par départements</h3>
+        <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
       </div>
     </section>
   </div>
@@ -163,7 +127,7 @@
             <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
-              <app-progress-cercle [transform]="22" [diameter]="120" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="120" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
           </div>
         </div>
       </div>

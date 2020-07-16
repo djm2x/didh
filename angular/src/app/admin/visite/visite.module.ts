@@ -14,6 +14,7 @@ import { DetailComponent } from './detail/detail.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     VisiteComponent,
@@ -31,6 +32,7 @@ import { PieChartModule } from '../components/pie-chart/pie-chart.module';
     TitleModule,
     ManageFilesModule,
     PieChartModule,
+    TranslateModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'fr'},

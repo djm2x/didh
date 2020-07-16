@@ -13,6 +13,7 @@ import { DetailComponent } from './detail/detail.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { IData } from '../components/pie-chart/pie-chart.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-visite',
@@ -53,7 +54,8 @@ export class VisiteComponent implements OnInit {
   
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
-    , private route: ActivatedRoute, public session: SessionService) { }
+    , private route: ActivatedRoute, public session: SessionService
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300)
@@ -131,14 +133,14 @@ export class VisiteComponent implements OnInit {
     const dialogRef = this.dialog.open(UpdateComponent, {
       width: '7100px',
       disableClose: true,
-      data: { model: o, title: text }
+      data: { model: o, title: text },
     });
 
     return dialogRef.afterClosed();
   }
 
   add() {
-    this.openDialog(new Visite(), 'Ajouter Procédure spéciale').subscribe(result => {
+    this.openDialog(new Visite(), this.mytranslate.get('admin.ps.list.Ajouter_Procédure_spéciale')).subscribe(result => {
       if (result) {
         const notif: Notification = {
           id: 0,
@@ -168,7 +170,7 @@ export class VisiteComponent implements OnInit {
   }
 
   edit(o: Visite) {
-    this.openDialog(o, 'Modifier Procédure spéciale').subscribe((result: any) => {
+    this.openDialog(o, this.mytranslate.get('admin.ps.list.Modifier_Procédure_spéciale')).subscribe((result: any) => {
       if (result) {
         const notif: Notification = {
           id: 0,

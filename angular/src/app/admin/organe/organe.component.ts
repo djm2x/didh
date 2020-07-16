@@ -61,7 +61,7 @@ export class OrganeComponent implements OnInit {
     const dialogRef = this.dialog.open(UpdateComponent, {
       width: '750px',
       disableClose: true,
-      data: { model: o, title: text }
+      data: { model: o, title: text },
     });
 
     return dialogRef.afterClosed();

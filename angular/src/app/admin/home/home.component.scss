@@ -50,8 +50,11 @@
   // width: 200px;
 }
 
+.border-left {border-left: 10px solid #a19b9e;}
+.border-right {border-right: 10px solid #a19b9e;}
+
 .super-title {
-  border-left: 10px solid #a19b9e;
+  
   height: 45px;
   display: flex;
   align-items: center;

@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { IData } from '../components/pie-chart/pie-chart.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-examen',
@@ -28,7 +29,7 @@ export class ExamenComponent implements OnInit {
 
   dataSource = [];
   columnDefs = [
-    { columnDef: 'libelle', headName: '' },
+    { columnDef: 'libelle', headName: 'libelle' },
     { columnDef: 'rapportNational', headName: 'Rapport national' },
     { columnDef: 'compilationHCDH', headName: 'Compilation HCDH/SOCIETE CIVILE' },
     { columnDef: 'discours', headName: 'Discours du président' },
@@ -46,12 +47,12 @@ export class ExamenComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'count', title: 'Mise en œuvre des recommandations par axe'});
-  pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: 'Taux de recommandations par axe'});
+  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'count', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
+  pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe')});
   
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, @Inject('BASE_URL') public url: string
-    , private route: ActivatedRoute, public session: SessionService, private bottomSheet: MatBottomSheet) { }
+    , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300);
@@ -86,14 +87,15 @@ export class ExamenComponent implements OnInit {
     const dialogRef = this.dialog.open(UpdateComponent, {
       width: '80vw',
       disableClose: true,
-      data: { model: o, title: text }
+      data: { model: o, title: text },
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
     });
 
     return dialogRef.afterClosed();
   }
-
+  
   add() {
-    this.openDialog(new Examen(), 'Ajouter Examen').subscribe(result => {
+    this.openDialog(new Examen(), this.mytranslate.get('admin.epu.list.AjouterExamen')).subscribe(result => {
       if (result) {
         this.update.next(false);
       }
@@ -101,7 +103,7 @@ export class ExamenComponent implements OnInit {
   }
 
   edit(o: Examen) {
-    this.openDialog(o, 'Modifier Examen').subscribe((result: any) => {
+    this.openDialog(o, this.mytranslate.get('admin.epu.list.ModifierExamen')).subscribe((result: any) => {
       if (result) {
         this.update.next(false);
       }

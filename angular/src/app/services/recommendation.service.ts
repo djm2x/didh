@@ -1,6 +1,7 @@
 import { Recommendation } from './../Models/models';
 import { Injectable } from '@angular/core';
 import { SuperService } from './super.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,9 +54,9 @@ export class RecommendationService extends SuperService<Recommendation> {
 
   stateMecanisme() {
     return this.http.get<{
-      epu: { name: string, p: number, t: number },
-      ot: { name: string, p: number, t: number },
-      ps: { name: string, p: number, t: number }
+      epu: { name: string | Observable<string>, p: number, t: number },
+      ot: { name: string | Observable<string>, p: number, t: number },
+      ps: { name: string | Observable<string>, p: number, t: number }
     }>(`${this.urlApi}/${this.controller}/stateMecanisme`);
   }
 

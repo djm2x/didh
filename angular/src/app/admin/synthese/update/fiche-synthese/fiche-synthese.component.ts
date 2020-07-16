@@ -75,7 +75,7 @@ export class FicheSyntheseComponent implements OnInit {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '7100px',
       disableClose: true,
-      data: { model: o, title: text }
+      data: { model: o, title: text },
     });
 
     return dialogRef.afterClosed();

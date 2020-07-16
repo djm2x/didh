@@ -1,5 +1,5 @@
 
-<h3>Synthèse</h3>
+<h3>{{ 'admin.organe.update.traite.synthese.Synthèse' | translate}}</h3>
 <mat-divider></mat-divider>
 <div class="example-container mat-elevation-z8" style="margin-bottom: 20px;">
   <div class="example-loading-shade" *ngIf="isLoadingResults">
@@ -27,11 +27,11 @@
       </ng-container>
 
       <ng-container [matColumnDef]="columnDefs[1].columnDef">
-        <th mat-header-cell *matHeaderCellDef>{{columnDefs[1].headName}}</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.update.traite.synthese.code' | translate}}</th>
         <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
       </ng-container>
       <ng-container [matColumnDef]="columnDefs[2].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{columnDefs[2].headName}}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.update.traite.synthese.detail' | translate}}</th>
           <td mat-cell *matCellDef="let row"> {{subString(row[columnDefs[2].columnDef])}}</td>
         </ng-container>
 

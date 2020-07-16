@@ -1,7 +1,7 @@
 <div class="dialog">
   <h1 mat-dialog-title>
     <mat-toolbar role="toolbar" class="task-header">
-      <span>Rapport</span>
+      <span>{{ 'admin.organe.update.Rapport' | translate}}</span>
     </mat-toolbar>
     <mat-divider></mat-divider>
   </h1>
@@ -12,20 +12,20 @@
         <div class="inputs">
 
           <mat-form-field appearance="fill">
-            <mat-label>Titre</mat-label>
+            <mat-label>{{ 'admin.organe.update.traite.update.TITRE' | translate}}</mat-label>
             <input matInput formControlName="titre" required>
           </mat-form-field>
 
 
           <mat-form-field appearance="fill">
-            <mat-label>Référence des observations finales</mat-label>
+            <mat-label>{{ 'admin.organe.update.traite.update.Référence_des_observations_finales' | translate}}</mat-label>
             <input matInput formControlName="reference" required>
           </mat-form-field>
         </div>
         <div class="row">
           <div class="col-md-4">
             <mat-form-field appearance="fill">
-              <mat-label>Date rapport</mat-label>
+              <mat-label>{{ 'admin.organe.update.traite.update.Date_rapport' | translate}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="dateDernierRapport">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
@@ -33,7 +33,7 @@
           </div>
           <div class="col-md-4">
             <mat-form-field appearance="fill">
-              <mat-label>Date des observations finales</mat-label>
+              <mat-label>{{ 'admin.organe.update.traite.update.Date_des_observations_finales' | translate}}</mat-label>
               <input matInput [matDatepicker]="picker1" formControlName="dateObservation">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-md-4">
             <mat-form-field appearance="fill">
-              <mat-label>Prochain rapport</mat-label>
+              <mat-label>{{ 'admin.organe.update.traite.update.Prochain_rapport' | translate}}</mat-label>
               <input matInput [matDatepicker]="picker2" formControlName="dateProchaineRapport">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
@@ -55,7 +55,7 @@
             accept="application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             #file type="file" multiple (change)="upload(file.files)">
           <button mat-raised-button type="button" (click)="openInput(file)" color="accent">
-            Pièce jointe
+            {{ 'admin.organe.update.traite.update.Pièce_jointe' | translate}}
           </button>
 
           <!-- <button mat-raised-button color="warn" type="button" (click)="remove()">
@@ -82,9 +82,9 @@
     {{myForm.value | json}} -->
 
     <div class="actions" mat-dialog-actions>
-      <button mat-button (click)="onNoClick()" type="button">Annuler</button>&nbsp;&nbsp;
+      <button mat-button (click)="onNoClick()" type="button">{{ 'admin.Retour' | translate }}</button>&nbsp;&nbsp;
       <button mat-raised-button cdkFocusInitial color="primary" (click)="onOkClick(myForm.value)"
-        [disabled]="myForm.invalid">Enregistre</button>
+        [disabled]="myForm.invalid">{{ 'admin.Enregistre' | translate }}</button>
     </div>
   </div>
 </div>

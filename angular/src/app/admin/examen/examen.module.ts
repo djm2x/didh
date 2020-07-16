@@ -11,11 +11,13 @@ import { UpdateComponent } from './update/update.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { ArchiveComponent } from './archive/archive.component';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
   declarations: [ExamenComponent, UpdateComponent, ArchiveComponent],
   imports: [
+    TranslateModule,
     CommonModule,
     ExamenRoutingModule,
     HttpClientModule,

@@ -14,6 +14,7 @@ import { DetailComponent } from '../detail/detail.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from '../archive/archive.component';
 import { IData } from '../../components/pie-chart/pie-chart.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-list',
@@ -60,7 +61,7 @@ export class ListComponent implements OnInit {
 
   organePageSubject = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , private snack: SnackbarService, private bottomSheet: MatBottomSheet, public session: SessionService
+    , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
 
     // if (this.session.isPointFocal === false) {
@@ -105,15 +106,15 @@ export class ListComponent implements OnInit {
       console.log(r);
       const barChartLabels = r.map(e => e.name);
       const barChartData = [
-        { data: [], label: 'Etat d’avancement' },
-        { data: [], label: 'Taux' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
       ];
 
       r.forEach(e => {
         barChartData[0].data.push(e.p);
         barChartData[1].data.push(e.t);
       });
-      this.organePageSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
+      this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });
   }
 
@@ -150,6 +151,7 @@ export class ListComponent implements OnInit {
       o.observationPiece !== '' ? list.push(...this.uow.decoupe(o.observationPiece)) : list = list;
       o.discours !== '' ? list.push(...this.uow.decoupe(o.discours)) : list = list;
       o.analytiquePiece !== '' ? list.push(...this.uow.decoupe(o.analytiquePiece)) : list = list;
+      o.miseOeuvrePiece !== '' ? list.push(...this.uow.decoupe(o.miseOeuvrePiece)) : list = list;
 
 
       this.uow.files.deleteFiles(list, 'traite').subscribe(res => {

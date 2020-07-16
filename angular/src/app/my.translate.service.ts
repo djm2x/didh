@@ -7,7 +7,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 })
 export class MyTranslateService {
   lang = new BehaviorSubject(this.translate.currentLang);
-  // languageSelected = this.translate.getBrowserLang();
+  langSync = this.translate.currentLang;
 
   constructor(public translate: TranslateService) { }
 
@@ -21,6 +21,7 @@ export class MyTranslateService {
     this.translate.setDefaultLang(currentLanguage);
     this.translate.use(currentLanguage);
     localStorage.setItem('lang', currentLanguage);
+    this.langSync = currentLanguage;
   }
 
   // this function help to update our lang property, so we call it in app.componenet

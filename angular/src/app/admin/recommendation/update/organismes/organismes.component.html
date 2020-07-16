@@ -4,7 +4,7 @@
 <div class="filter">
 
   <mat-form-field appearance="fill" class="col-md-6 mt-3">
-    <mat-label>Organisme</mat-label>
+    <mat-label>{{ 'admin.recommandation.update.Organisme' | translate }}</mat-label>
     <input matInput [formControl]="myAuto" [value]="myAuto.value.label" [matAutocomplete]="auto"
       placeholder="auto complétion">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -41,7 +41,7 @@
       </ng-container>
 
       <ng-container [matColumnDef]="columnDefs[1].columnDef">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.update.ORGANISMES' | translate }}</th>
         <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
       </ng-container>
       <ng-container [matColumnDef]="columnDefs[2].columnDef">

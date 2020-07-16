@@ -9,6 +9,10 @@ import { MatSnackBarModule, MatProgressSpinnerModule, MAT_DATE_LOCALE } from '@a
 import { TranslateModule } from '@ngx-translate/core';
 // import { Moment, MatMomentDateModule } from 'moment';
 
+
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MyTranslateService } from '../my.translate.service';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -25,9 +29,15 @@ import { TranslateModule } from '@ngx-translate/core';
     MatProgressSpinnerModule,
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'fr'},
+    { provide: MAT_DATE_LOCALE, useValue: 'fr' },
+    // {
+    //   provide: MAT_DIALOG_DEFAULT_OPTIONS, 
+    //   useValue: { hasBackdrop: true, direction: mytranslate.langSync === 'fr' ? 'ltr' : 'rtl', height: '500px' }
+    // }
     // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     // {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ]
 })
-export class AdminModule { }
+export class AdminModule { 
+  constructor(public mytranslate: MyTranslateService) {}
+}

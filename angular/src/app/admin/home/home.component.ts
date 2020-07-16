@@ -2,8 +2,9 @@ import { SessionService } from 'src/app/shared';
 import { UowService } from 'src/app/services/uow.service';
 import { Component, OnInit, ViewChild, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Moment } from 'moment';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { IData } from '../components/pie-chart/pie-chart.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-home',
@@ -29,11 +30,12 @@ export class HomeComponent implements OnInit {
   list: { name: string, p: number, t: number }[] = [];
   axesValue: { id: number, table: string, value: number }[] = [];
 
-  dataEpu = new Subject<{ name: string, p: number, t: number }>();
-  dataOt = new Subject<{ name: string, p: number, t: number }>();
-  dataPs = new Subject<{ name: string, p: number, t: number }>();
+  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number }>();
+  dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number }>();
+  dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number }>();
 
-  constructor(private uow: UowService, public session: SessionService) { }
+  constructor(private uow: UowService, public session: SessionService
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     this.stateRecommendationByOrganisme();
@@ -43,14 +45,14 @@ export class HomeComponent implements OnInit {
 
   stateMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
-      // console.log(r)
-      r.epu.name = 'Examen Périodique universell';
+      // console.log(r) 
+      r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
       this.dataEpu.next(r.epu);
 
-      r.ot.name = 'Organes de Traités';
+      r.ot.name = this.mytranslate.getObs('admin.home.OrganesdeTraités');
       this.dataOt.next(r.ot);
 
-      r.ps.name = 'Procédures spéciales';
+      r.ps.name = this.mytranslate.getObs('admin.home.Procéduresspéciales');
       this.dataPs.next(r.ps);
     });
   }

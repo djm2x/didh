@@ -28,7 +28,7 @@ export class PieceJointesComponent implements OnInit {
     { columnDef: 'dateDernierRapport', headName: 'DATE DERNIER RAPPORT' },
     { columnDef: 'dateObservation', headName: 'DATE OBSERVATION' },
     { columnDef: 'dateProchaineRapport', headName: 'DATE PROCHAINE RAPPORT' },
-    { columnDef: 'reference', headName: 'REFERENCE' },
+    { columnDef: 'reference', headName: 'REFERENCE DES OBSERVATIONS FINALES' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName;
@@ -87,7 +87,7 @@ export class PieceJointesComponent implements OnInit {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '7100px',
       disableClose: true,
-      data: { model: o, title: text }
+      data: { model: o, title: text },
     });
 
     return dialogRef.afterClosed();
