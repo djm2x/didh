@@ -16,6 +16,7 @@ import { BarMecanismeComponent } from './bar-mecanisme/bar-mecanisme.component';
 import { ThreeComponent } from './three/three.component';
 import { DiagrammeComponent } from './diagramme/diagramme.component';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PieChartModule } from '../components/pie-chart/pie-chart.module';
     ReactiveFormsModule,
     PieChartModule,
     TitleModule,
+    TranslateModule,
   ]
 })
 export class StateModule { }

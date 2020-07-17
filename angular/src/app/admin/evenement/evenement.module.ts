@@ -10,10 +10,12 @@ import { UpdateComponent } from './update/update.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { TitleModule } from '../components/title/title.module';
 import { DetailComponent } from './detail/detail.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [EvenementComponent, UpdateComponent, DetailComponent],
   imports: [
+    TranslateModule,
     CommonModule,
     EvenementRoutingModule,
     HttpClientModule,

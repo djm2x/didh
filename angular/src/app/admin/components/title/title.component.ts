@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-title',
@@ -6,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./title.component.scss']
 })
 export class TitleComponent implements OnInit {
-  @Input() title = 'Pas spécifié';
-  constructor() { }
+  @Input() title = '';
+  constructor(public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
   }

@@ -5,6 +5,7 @@ import { DeleteService } from 'src/app/admin/components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { merge } from 'rxjs';
 import { PopupComponent } from './popup/popup.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-fiche-synthese',
@@ -34,7 +35,7 @@ export class FicheSyntheseComponent implements OnInit {
   dataSource = [];
 
   constructor(public dialog: MatDialog, private mydialog: DeleteService
-    , private uow: UowService, @Inject('BASE_URL') public url: string) { }
+    , private uow: UowService, @Inject('BASE_URL') public url: string, public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc', this.synthese.id);
@@ -76,6 +77,7 @@ export class FicheSyntheseComponent implements OnInit {
       width: '7100px',
       disableClose: true,
       data: { model: o, title: text },
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl'
     });
 
     return dialogRef.afterClosed();

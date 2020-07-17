@@ -35,12 +35,10 @@
       "ExamenPériodiqueuniverselle": "Examen Périodique universelle",
       "OrganesdeTraités": "Organes de Traités",
       "Procéduresspéciales": "Procédures spéciales",
-
       "Evènements": "Evènements",
       "Statistiques": "Statistiques",
-      "Recommandations":"Recommandations",
+      "Recommandations": "Recommandations",
       "Synthèse": "Compilation de suivi des recommandations",
-
       "Utilisateur": "Utilisateur",
       "Profils": "Profils",
       "Organisations": "Organisations",
@@ -127,17 +125,17 @@
       }
     },
     "ps": {
-      "Procédure_spéciales":"Procédure spéciales",
-      "Procédure_spéciale":"Procédure spéciale",
-      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales":"Mise en œuvre des recommandations par Procédures spéciales",
+      "Procédure_spéciales": "Procédure spéciales",
+      "Procédure_spéciale": "Procédure spéciale",
+      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "Mise en œuvre des recommandations par Procédures spéciales",
       "list": {
-        "MANDAT":"MANDAT",
-        "Date_de_la_visite":"Date de la visite",
-        "RAPPORT_NATIONAL_DE_LA_VISITE":"RAPPORT NATIONAL DE LA VISITE",
-        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE":"RAPPORT DE LA PROCEDURE/REACTION NATIONALE",
-        "PLAN_DE_MISE_EN_OEUVRE":"PLAN DE MISE EN OEUVRE",
-        "Ajouter_Procédure_spéciale":"Ajouter Procédure spéciale",
-        "Modifier_Procédure_spéciale":"Modifier Procédure spéciale"
+        "MANDAT": "MANDAT",
+        "Date_de_la_visite": "Date de la visite",
+        "RAPPORT_NATIONAL_DE_LA_VISITE": "RAPPORT NATIONAL DE LA VISITE",
+        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": "RAPPORT DE LA PROCEDURE/REACTION NATIONALE",
+        "PLAN_DE_MISE_EN_OEUVRE": "PLAN DE MISE EN OEUVRE",
+        "Ajouter_Procédure_spéciale": "Ajouter Procédure spéciale",
+        "Modifier_Procédure_spéciale": "Modifier Procédure spéciale"
       },
       "update": {
         "Mandat": "Mandat",
@@ -149,9 +147,50 @@
         "Lien_externe": "Lien externe"
       }
     },
+    "event": {
+      "list": {
+        "Evènement": "Evènement",
+        "Recherche": "Recherche",
+        "Titre": "Titre",
+        "Réinitialiser": "Réinitialiser",
+        "Rechercher": "Rechercher",
+        "Lireplus": "Lire plus",
+        "Ajouter_evènement": "Ajouter evènement",
+        "Modifier_evènement": "Modifier evènement",
+        "evènement": "evènement"
+      },
+      "update": {
+        "Categorie": "Categorie",
+        "title": "title",
+        "date": "date",
+        "description": "description"
+      }
+    },
+    "state": {
+      "Diagrammes_statistiques": "Diagrammes et statistiques",
+      "Recherche": "Recherche",
+      "Mecanisme": "Mecanisme",
+      "Cycle": "Cycle",
+      "Visite": "Visite",
+      "Organe": "Organe",
+      "Etat_de_mis_en_oeuvre": "Etat de mis en oeuvre",
+      "Axe": "Axe",
+      "Sous_axe": "Sous axe",
+      "Organisme": "Organisme",
+      "Rechercher": "Rechercher",
+      "Réinitialiser": "Réinitialiser",
+      "Mise_en_œuvre_des_recommandations_par_Axe": "Mise en œuvre des recommandations par Axe",
+      "Mise_en_œuvre_des_recommandations_par_départements": "Mise en œuvre des recommandations par départements",
+      "Examen_Périodique_universelle": "Examen Périodique universelle",
+      "Organes_de_Traités": "Organes de Traités",
+      "Procédures_spéciales": "Procédures spéciales",
+      "Etat_avancement": "Etat d’avancement",
+      "Taux": "Taux",
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "Mise en œuvre des recommandations par Organes de Traités"
+    },
     "recommandation": {
-      "title":"Recommandation",
-      "titles":"Recommandations",
+      "title": "Recommandation",
+      "titles": "Recommandations",
       "update": {
         "Cycle": "Cycle",
         "Visite": "Visite",
@@ -160,7 +199,6 @@
         "Etaten": "Etat en %",
         "Etatdavancement": "Etat d'avancement",
         "PieceJointe": "Piece Jointe",
-
         "Organisme": "Organisme",
         "ORGANISMES": "Organismes",
         "ADRESSE": "Adresse"
@@ -169,16 +207,13 @@
         "Recommandations": "Recommandations",
         "Recommandation": "Recommandation",
         "Recherche": "Recherche",
-
         "Organisme": "Organisme",
         "Pays": "Pays",
         "Cycle": "Cycle",
         "Visite": "Visite",
         "Organe": "Organe",
-
         "Rechercher": "Rechercher",
         "Réinitialiser": "Réinitialiser",
-
         "code": "Code",
         "nom": "Nom",
         "Etatdemisenoeuvre": "Etat de mis en oeuvre",
@@ -192,6 +227,81 @@
       },
       "detail": {
         "breadcrumb": "Hôtels"
+      }
+    },
+    "synthese": {
+      "list": {
+        "Synthèses": "Synthèses",
+        "Synthèse": "Synthèse",
+        "Recherche": "Recherche",
+        "Traite": "Traite",
+        "Rapport": "Rapport",
+        "Emetteur": "Emetteur",
+        "Axe": "Axe",
+        "Sous_axe": "Sous axe",
+        "Rechercher": "Rechercher",
+        "Réinitialiser": "Réinitialiser",
+        "CODE": "CODE",
+        "DETAIL": "DETAIL"
+      },
+      "update": {
+        "Code": "Code",
+        "Synthèse": "Synthèse",
+        "Recommandations": "Recommandations",
+        "Fiches_organismes": "Fiches organismes",
+        "Mecanismes": "Mecanismes",
+        "Cycle": "Cycle",
+        "Visite": "Visite",
+        "Organe": "Organe",
+        "Axe": "Axe",
+        "Sous_axe": "Sous axe",
+        "Rechercher": "Rechercher",
+        "RECOMMENDATION": "RECOMMENDATION",
+        "Fiche_organisme": "Fiche organisme",
+        "organisme": "organisme",
+        "synthese": "synthèse",
+        "Pièce_jointe": "Pièce jointe"
+      }
+    },
+    "session": {
+      "list": {
+        "Participation_au_session_des_DH": "Participation au session des DH",
+        "Participation": "Participation",
+        "Recherche": "Recherche",
+        "Session": "Session",
+        "Rechercher": "Rechercher",
+        "Réinitialiser": "Réinitialiser",
+        "session": "session",
+        "Année": "Année",
+        "Discours_de_Mr_le_Ministre": "Discours de Mr le Ministre",
+        "Documents_de_session": "Documents de session",
+        "Ajouter_ParticipationSession":"Ajouter ParticipationSession",
+        "Modifier_Participation_Session":"Modifier Participation Session",
+        "Participation_Session":"Participation Session"
+      },
+      "update": {
+        "Session": "Session",
+        "Année": "Année",
+        "Discours_de_Mr_le_Ministre": "Discours de Mr le Ministre",
+        "Documents_de_examen": "Documents de l'examen"
+      }
+    },
+    "questionnaire": {
+      "list": {
+        "Questionnaires": "Questionnaires",
+        "Questionnaire": "Questionnaire",
+        "Recherche": "Recherche",
+        "Theme": "Theme",
+        "Sous_Theme": "Sous Theme",
+        "Rechercher": "Rechercher",
+        "Réinitialiser": "Réinitialiser",
+        "année": "année",
+        "Documents": "Documents",
+        "Ajouter_Questionnaire":"Ajouter Questionnaire",
+        "Modifier_Questionnaire":"Modifier Questionnaire"
+      },
+      "update": {
+
       }
     }
   }

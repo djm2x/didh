@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { startWith } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class ParticipationSessionComponent implements OnInit {
   panelOpenState = false;
   sessionF = new FormControl('');
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , @Inject('BASE_URL') public url: string
+    , @Inject('BASE_URL') public url: string, public mytranslate: MyTranslateService
     , public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
@@ -93,13 +94,14 @@ export class ParticipationSessionComponent implements OnInit {
       width: '80vw',
       disableClose: true,
       data: { model: o, title: text },
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
     });
 
     return dialogRef.afterClosed();
   }
 
   add() {
-    this.openDialog(new ParticipationSession(), 'Ajouter ParticipationSession').subscribe(result => {
+    this.openDialog(new ParticipationSession(), this.mytranslate.get('admin.session.list.Ajouter_ParticipationSession')).subscribe(result => {
       if (result) {
         this.update.next(false);
       }
@@ -107,7 +109,7 @@ export class ParticipationSessionComponent implements OnInit {
   }
 
   edit(o: ParticipationSession) {
-    this.openDialog(o, 'Modifier Participation Session').subscribe((result: any) => {
+    this.openDialog(o, this.mytranslate.get('admin.session.list.Modifier_Participation_Session')).subscribe((result: any) => {
       if (result) {
         this.update.next(false);
       }
@@ -116,7 +118,7 @@ export class ParticipationSessionComponent implements OnInit {
 
 
   async delete(o: ParticipationSession) {
-    const r = await this.mydialog.openDialog('Participation Session').toPromise();
+    const r = await this.mydialog.openDialog(this.mytranslate.get('admin.session.list.Participation_Session')).toPromise();
     if (r === 'ok') {
       // console.log(o);
       let list = [];

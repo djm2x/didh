@@ -3,7 +3,7 @@
 </section> -->
 
 <div class="d-flex w-100 mb-3">
-  <section class="super-title">
+  <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
     <div>
       <h3>{{title}}</h3>
     </div>

@@ -12,6 +12,7 @@ import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/down
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 
 @Component({
@@ -51,7 +52,7 @@ export class QuestionnaireComponent implements OnInit {
   formData = new FormData();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private http: HttpClient, @Inject('BASE_URL') public url: string
-    , private route: ActivatedRoute, public session: SessionService, private bottomSheet: MatBottomSheet) { }
+    , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   async ngOnInit() {
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
@@ -100,7 +101,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   add() {
-    this.openDialog(new Questionnaire(), 'Ajouter Questionnaire').subscribe(result => {
+    this.openDialog(new Questionnaire(), this.mytranslate.get('admin.questionnaire.list.Ajouter_Questionnaire')).subscribe(result => {
       if (result) {
         this.update.next(false);
       }
@@ -108,7 +109,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   edit(o: Questionnaire) {
-    this.openDialog(o, 'Modifier Questionnaire').subscribe((result: any) => {
+    this.openDialog(o, this.mytranslate.get('admin.questionnaire.list.Modifier_Questionnaire')).subscribe((result: any) => {
       if (result) {
         this.update.next(false);
       }
@@ -127,7 +128,7 @@ export class QuestionnaireComponent implements OnInit {
 
 
   async delete(o: Questionnaire) {
-    const r = await this.mydialog.openDialog('Questionnaire').toPromise();
+    const r = await this.mydialog.openDialog(this.mytranslate.get('admin.questionnaire.list.Questionnaire')).toPromise();
     if (r === 'ok') {
 
       let list = [];

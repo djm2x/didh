@@ -13,6 +13,7 @@ import { RecommendationsComponent } from './update/recommendations/recommendatio
 import { DetailComponent } from './detail/detail.component';
 import { FicheSyntheseComponent } from './update/fiche-synthese/fiche-synthese.component';
 import { PopupComponent } from './update/fiche-synthese/popup/popup.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { PopupComponent } from './update/fiche-synthese/popup/popup.component';
     FormsModule,
     ReactiveFormsModule,
     TitleModule,
+    TranslateModule,
   ],
   entryComponents: [
     DetailComponent,

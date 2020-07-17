@@ -11,6 +11,7 @@ import { startWith } from 'rxjs/operators';
 import { DeleteService } from '../components/delete/delete.service';
 import { Evenement } from 'src/app/Models/models';
 import { DetailComponent } from './detail/detail.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-evenement',
@@ -41,7 +42,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
 
   constructor(private uow: UowService, public dialog: MatDialog
     , private mydialog: DeleteService, @Inject('BASE_URL') private url: string 
-    , public session: SessionService) { }
+    , public session: SessionService, public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     const sub = merge(...[/*this.sort.sortChange, */this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
@@ -74,7 +75,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
     const d = new Date(d1);
     return {
       day: d.getDate().toString().length === 1 ? `0${d.getDate()}` : d.getDate(),
-      month: this.uow.monthsAlpha[d.getMonth()].name,
+      month: this.mytranslate.langSync === 'fr' ? this.uow.monthsAlpha[d.getMonth()].name : this.uow.monthsAlpha[d.getMonth()].nameAr,
       year: d.getFullYear()
     }
   }
@@ -115,13 +116,14 @@ export class EvenementComponent implements OnInit, OnDestroy {
       width: '750px',
       disableClose: true,
       data: { model: o, title: text },
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
     });
 
     return dialogRef.afterClosed();
   }
 
   add() {
-    this.openDialog(new Evenement(), 'Ajouter evènement').subscribe(result => {
+    this.openDialog(new Evenement(), this.mytranslate.get('admin.event.list.Ajouter_evènement')).subscribe(result => {
       if (result) {
         this.update.next(true);
       }
@@ -129,7 +131,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   }
 
   edit(o: Evenement) {
-    this.openDialog(o, 'Modifier evènement').subscribe((result: Evenement) => {
+    this.openDialog(o, this.mytranslate.get('admin.event.list.Modifier_evènement')).subscribe((result: Evenement) => {
       if (result) {
         this.update.next(true);
       }
@@ -137,7 +139,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   }
 
   async delete(id: number) {
-    const r = await this.mydialog.openDialog('evènement').toPromise();
+    const r = await this.mydialog.openDialog(this.mytranslate.get('admin.event.list.evènement')).toPromise();
     if (r === 'ok') {
       const sub = this.uow.evenements.delete(id).subscribe(() => this.update.next(true));
 

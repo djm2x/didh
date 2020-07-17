@@ -6,6 +6,7 @@ import { UowService } from 'src/app/services/uow.service';
 import { Subject, merge, BehaviorSubject } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-diagramme',
@@ -61,7 +62,8 @@ export class DiagrammeComponent implements OnInit {
   departementList: { name: string, p: number, t: number }[] = [];
 
 
-  constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService) {
+  constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService
+    , public mytranslate: MyTranslateService) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
@@ -78,7 +80,7 @@ export class DiagrammeComponent implements OnInit {
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
       console.log(r);
-
+      this.mytranslate.get('admin.event.list.Ajouter_evènement')
       this.axesList = [];
       this.axesList = r.axe;
       this.departementList = [];
@@ -87,19 +89,19 @@ export class DiagrammeComponent implements OnInit {
       // this.listAxes.next({list: r, title});
       const organeList: { name: string, p: number, t: number, }[] = [];
       const epu = {
-        name: 'Examen Périodique universelle',
+        name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
         p: r.macanisme.epu.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.epu.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ot = {
-        name: 'Organes de Traités',
+        name: this.mytranslate.get('admin.state.Organes_de_Traités'),
         p: r.macanisme.ot.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.ot.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ps = {
-        name: 'Procédures spéciales',
+        name: this.mytranslate.get('admin.state.Procédures_spéciales'),
         p: r.macanisme.ps.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.ps.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
@@ -129,15 +131,15 @@ export class DiagrammeComponent implements OnInit {
     console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: 'Etat d’avancement' },
-      { data: [], label: 'Taux' },
+      { data: [], label: this.mytranslate.get('admin.state.Etat_avancement') },
+      { data: [], label: this.mytranslate.get('admin.state.Taux') },
     ];
 
     r.forEach(e => {
       barChartData[0].data.push(e.p);
       barChartData[1].data.push(e.t.toFixed(0));
     });
-    this.mecanismeSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
+    this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
   }
 
   createForm() {

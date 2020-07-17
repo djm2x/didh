@@ -9,12 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TitleModule } from '../components/title/title.module';
 import { UpdateComponent } from './update/update.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
   declarations: [ParticipationSessionComponent, UpdateComponent],
   imports: [
     CommonModule,
+    TranslateModule,
     ParticipationSessionRoutingModule,
     HttpClientModule,
     MatModule,

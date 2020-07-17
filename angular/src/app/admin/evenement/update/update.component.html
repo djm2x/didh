@@ -10,25 +10,26 @@
 
       <form [formGroup]="myForm">
         <mat-form-field appearance="fill" class="col-md-12">
-          <mat-label>Categorie</mat-label>
+          <mat-label>{{ 'admin.event.update.Categorie' | translate }}</mat-label>
           <mat-select formControlName="categorie">
             <mat-option *ngFor="let e of categories | async" [value]="e.name">{{ e.name }}</mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field appearance="fill" class="col-md-12">
-          <mat-label>title</mat-label>
+          <mat-label>{{ 'admin.event.update.title' | translate }}</mat-label>
           <input matInput formControlName="title" required>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-md-12">
-          <mat-label>date</mat-label>
+          <mat-label>{{ 'admin.event.update.date' | translate }}</mat-label>
           <input matInput [matDatepicker]="picker3" formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="col-md-12">
-          <mat-label>description</mat-label>
+          <mat-label>{{ 'admin.event.update.description' | translate }}</mat-label>
           <textarea matInput rows="6" formControlName="description" required></textarea>
         </mat-form-field>
 
@@ -38,9 +39,9 @@
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
-      <button mat-button (click)="onNoClick()" type="button">Annuler</button>
+      <button mat-button (click)="onNoClick()" type="button">{{ 'admin.Retour' | translate }}</button>
       <button mat-raised-button color="primary" (click)="onOkClick(myForm.value)" [disabled]="myForm.invalid"
-        cdkFocusInitial>Enregistre</button>
+        cdkFocusInitial>{{ 'admin.Enregistre' | translate }}</button>
     </mat-dialog-actions>
   </div>
 </div>

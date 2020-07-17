@@ -4,7 +4,7 @@
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>search</mat-icon>
-                    <p>Recherche</p>
+                    <p>{{ 'admin.state.Recherche' | translate }}</p>
                 </mat-panel-title>
                 <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
@@ -15,7 +15,7 @@
 
 
                     <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>Mecanisme</mat-label>
+                        <mat-label>{{ 'admin.state.Mecanisme' | translate }}</mat-label>
                         <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
@@ -23,7 +23,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" *ngIf="cycleActive" class="col-md-5">
-                        <mat-label>Cycle</mat-label>
+                        <mat-label>{{ 'admin.state.Cycle' | translate }}</mat-label>
                         <mat-select formControlName="idCycle">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -31,7 +31,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" *ngIf="visiteActive" class="col-md-5">
-                        <mat-label>Visite</mat-label>
+                        <mat-label>{{ 'admin.state.Visite' | translate }}</mat-label>
                         <mat-select formControlName="idVisite">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
@@ -39,7 +39,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" *ngIf="organeActive" class="col-md-5">
-                        <mat-label>Organe</mat-label>
+                        <mat-label>{{ 'admin.state.Organe' | translate }}</mat-label>
                         <mat-select formControlName="idOrgane">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -47,7 +47,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>Etat de mis en oeuvre</mat-label>
+                        <mat-label>{{ 'admin.state.Etat_de_mis_en_oeuvre' | translate }}</mat-label>
                         <mat-select formControlName="etat">
                             <!-- <mat-option value="0">...</mat-option> -->
                             <mat-option value="">...</mat-option>
@@ -62,7 +62,7 @@
                     </mat-form-field> -->
 
                     <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>Axe</mat-label>
+                        <mat-label>{{ 'admin.state.Axe' | translate }}</mat-label>
                         <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -70,7 +70,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>Sous axe</mat-label>
+                        <mat-label>{{ 'admin.state.Sous_axe' | translate }}</mat-label>
                         <mat-select formControlName="idSousAxe">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
@@ -78,7 +78,7 @@
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>Organisme</mat-label>
+                        <mat-label>{{ 'admin.state.Organisme' | translate }}</mat-label>
                         <mat-select formControlName="idOrganisme" (selectionChange)="axeChange($event.value)">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -90,12 +90,12 @@
                     <button mat-raised-button color="primary" type="button" (click)="search(myForm.value)"
                         [disabled]="isAllEmpty">
                         <mat-icon>search</mat-icon>
-                        Rechercher
+                        {{ 'admin.state.Rechercher' | translate }}
                     </button>
                     &nbsp;
                     <button mat-raised-button (click)="reset()" type="button" [disabled]="isAllEmpty">
                         <mat-icon>refresh</mat-icon>
-                        Réinitialiser
+                        {{ 'admin.state.Réinitialiser' | translate }}
                     </button>
                 </div>
             </form>
@@ -123,7 +123,7 @@
         <div class="d-flex flex-column justify-content-center align-items-center mt-4">
           <img src="assets/line.png" height="10px" width="280px">
           <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-            Mise en œuvre des recommandations par Axe
+            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}
           </h5>
         </div>
       </div>
@@ -142,7 +142,7 @@
           <div class="d-flex flex-column justify-content-center align-items-center mt-4">
             <img src="assets/line.png" height="10px" width="280px">
             <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-                Mise en œuvre des recommandations par départements
+                {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}
             </h5>
           </div>
 

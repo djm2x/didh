@@ -3,7 +3,7 @@
 
 <div class="d-flex flex-row-reverse mt-3 mb-3" *ngIf="session.isAdmin">
   <button mat-raised-button color="primary" (click)="add()">
-    <mat-icon>add</mat-icon> Evènement
+    <mat-icon>add</mat-icon> {{ 'admin.event.list.Evènement' | translate }}
   </button>
 </div>
 
@@ -12,7 +12,7 @@
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon>search</mat-icon>
-        <p>Recherche</p>
+        <p>{{ 'admin.event.list.Recherche' | translate }}</p>
       </mat-panel-title>
       <mat-panel-description>
 
@@ -23,7 +23,7 @@
 
     <div class="mt-2">
       <mat-form-field appearance="fill" class="col-md-6">
-        <mat-label>Titre</mat-label>
+        <mat-label>{{ 'admin.event.list.Titre' | translate }}</mat-label>
         <input matInput [formControl]="title" required>
       </mat-form-field>
     </div>
@@ -31,12 +31,12 @@
     <div class="d-flex flex-row-reverse mb-2 mr-2">
       <button mat-raised-button (click)="reset()">
         <mat-icon>refresh</mat-icon>
-        Réinitialiser
+        {{ 'admin.event.list.Réinitialiser' | translate }}
       </button>
       &nbsp;&nbsp;
       <button mat-raised-button color="primary" (click)="search()">
         <mat-icon>search</mat-icon>
-        Rechercher
+        {{ 'admin.event.list.Rechercher' | translate }}
       </button>
     </div>
   </mat-expansion-panel>
@@ -97,7 +97,7 @@
     <div class="col-md-9">
       <h4>{{e.title}}</h4>
       <p>{{e.description.substring(0, 400)}}...</p>
-      <a (click)="detail(e)" style="font-weight: bold; cursor: pointer; margin-bottom: 10px;">Lire plus</a>
+      <a (click)="detail(e)" style="font-weight: bold; cursor: pointer; margin-bottom: 10px;">{{ 'admin.event.list.Lireplus' | translate }}</a>
       <!-- <mat-divider></mat-divider> -->
       <mat-divider [inset]="true" style="margin-top: 15px;"></mat-divider>
     </div>

@@ -1,7 +1,7 @@
 <div class="dialog">
   <h1 mat-dialog-title>
     <mat-toolbar role="toolbar" class="task-header">
-      <span>Fiche organisme</span>
+      <span>{{ 'admin.event.update.Fiche_organisme' | translate }}</span>
     </mat-toolbar>
     <mat-divider></mat-divider>
   </h1>
@@ -20,7 +20,7 @@
           </mat-form-field> -->
 
           <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
-            <mat-label>Organisme</mat-label>
+            <mat-label>{{ 'admin.event.update.organisme' | translate }}</mat-label>
             <input matInput [formControl]="myAuto" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
               <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
@@ -34,7 +34,7 @@
             accept="application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             #file type="file" multiple="false" (change)="upload(file.files)">
           <button mat-raised-button type="button" (click)="openInput(file)" color="accent">
-            Pièce jointe
+            {{ 'admin.event.update.Pièce_jointe' | translate }}
           </button>
 
           <!-- <button mat-raised-button color="warn" type="button" (click)="remove()">
