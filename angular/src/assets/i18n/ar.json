@@ -1,7 +1,4 @@
 {
-  "auth": {
-    "login": {}
-  },
   "admin": {
     "lang": "اللغة",
     "Enregistre": "تم تسجيل الوصول",
@@ -125,6 +122,47 @@
         "Lien_externe": "رابط خارجي"
       }
     },
+    "event": {
+      "list": {
+        "Evènement": "حدث",
+        "Recherche": "ابحاث",
+        "Titre": "عنوان",
+        "Réinitialiser": "إعادة تعيين",
+        "Rechercher": "بحث",
+        "Lireplus": "قراءة المزيد",
+        "Ajouter_evènement": "أضف حدث",
+        "Modifier_evènement": "تعديل الحدث",
+        "evènement": "حدث"
+      },
+      "update": {
+        "Categorie": "الفئة",
+        "title": "عنوان",
+        "date": "بتاريخ",
+        "description": "وصف"
+      }
+    },
+    "state": {
+      "Diagrammes_statistiques": "الرسوم البيانية والإحصائيات",
+      "Recherche": "ابحاث",
+      "Mecanisme": "آلية",
+      "Cycle": "دورة",
+      "Visite": "يزور",
+      "Organe": "عضو",
+      "Etat_de_mis_en_oeuvre": "حالة التنفيذ",
+      "Axe": "محور",
+      "Sous_axe": "المحور الفرعي",
+      "Organisme": "هيئة",
+      "Rechercher": "بحث",
+      "Réinitialiser": "إعادة تعيين",
+      "Mise_en_œuvre_des_recommandations_par_Axe": "تنفيذ توصيات المحور",
+      "Mise_en_œuvre_des_recommandations_par_départements": "تنفيذ التوصيات من قبل الدائرة",
+      "Examen_Périodique_universelle": "الاستعراض الدوري الشامل",
+      "Organes_de_Traités": "هيئات المعاهدات",
+      "Procédures_spéciales": "الإجراءات الخاصة",
+      "Etat_avancement": "تقدم",
+      "Taux": "معدل",
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ توصيات هيئات المعاهدات"
+    },
     "recommandation": {
       "title": "توصية",
       "titles": "التوصيات",
@@ -165,6 +203,80 @@
       "detail": {
         "breadcrumb": "Hôtels"
       }
-    }
+    },
+    "synthese": {
+      "list": {
+        "Synthèses": "ملخصات",
+        "Synthèse": "نتيجة الجمع بين الطريحة والنقيضة",
+        "Recherche": "ابحاث",
+        "Traite": "يعامل",
+        "Rapport": "نقل",
+        "Emetteur": "جهاز الإرسال",
+        "Axe": "محور",
+        "Sous_axe": "المحور الفرعي",
+        "Rechercher": "بحث",
+        "Réinitialiser": "إعادة تعيين",
+        "CODE": "مشفر",
+        "DETAIL": "التفاصيل"
+      },
+      "update": {
+        "Code": "مشفر",
+        "Synthèse": "نتيجة الجمع بين الطريحة والنقيضة",
+        "Recommandations": "التوصيات",
+        "Fiches_organismes": "ملفات المؤسسة",
+        "Mecanismes": "الآليات",
+        "Cycle": "دورة",
+        "Visite": "يزور",
+        "Organe": "عضو",
+        "Axe": "محور",
+        "Sous_axe": "المحور الفرعي",
+        "Rechercher": "بحث",
+        "RECOMMENDATION": "توصية",
+        "Fiche_organisme": "ورقة التنظيم",
+        "organisme": "هيئة",
+        "synthese": "نتيجة الجمع بين الطريحة والنقيضة",
+        "Pièce_jointe": "الوثائق المرفقة"
+      }
+    },
+    "session": {
+      "list": {
+        "Participation_au_session_des_DH": "المشاركة في جلسة DH",
+        "Participation": "مشاركة",
+        "Recherche": "ابحاث",
+        "Session": "جلسة",
+        "Rechercher": "بحث",
+        "Réinitialiser": "إعادة تعيين",
+        "session": "جلسة",
+        "Année": "عام",
+        "Discours_de_Mr_le_Ministre": "كلمة الوزير",
+        "Documents_de_session": "وثائق الجلسة",
+        "Ajouter_ParticipationSession":"إضافة جلسة المشاركة",
+        "Modifier_Participation_Session":"تعديل المشاركة في الجلسة",
+        "Participation_Session":"جلسة المشاركة"
+      },
+      "update": {
+        "Session": "جلسة",
+        "Année": "عام",
+        "Discours_de_Mr_le_Ministre": "كلمة الوزير",
+        "Documents_de_examen": "وثائق الامتحان"
+      }
+    },
+    "questionnaire": {
+      "list": {
+        "Questionnaires": "الاستبيانات",
+        "Questionnaire": "الدراسة الاستقصائية",
+        "Recherche": "ابحاث",
+        "Theme": "موضوع",
+        "Sous_Theme": "تحت الموضوع",
+        "Rechercher": "بحث",
+        "Réinitialiser": "إعادة تعيين",
+        "année": "عام",
+        "Documents": "مستندات",
+        "Ajouter_Questionnaire":"إضافة استبيان",
+        "Modifier_Questionnaire":"تحرير الاستبيان"
+      },
+      "update": {
+
+      }
   }
 }

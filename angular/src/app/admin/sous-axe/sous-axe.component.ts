@@ -5,6 +5,7 @@ import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { SousAxe } from 'src/app/Models/models';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-sous-axe',
@@ -22,13 +23,15 @@ export class SousAxeComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'label', headName: 'NOM' },
+    { columnDef: 'labelAr', headName: 'NOM AR' },
     { columnDef: 'axe', headName: 'AXE' },
     { columnDef: 'option', headName: 'OPTION' },
   ];
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
 
-  constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService, ) { }
+  constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc');

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { PaysService } from './pays.service';
 import { SituationReserveService } from './situation-reserve.service';
 import { OrganeService } from './organe.service';
@@ -54,26 +55,29 @@ export class UowService {
 
 
   years = [...Array(new Date().getFullYear() - 2015).keys()].map(e => 2015 + e + 1);
-  mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
-  etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
+  // mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
+  // etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
+  mecanismes = this.http.get<{ name: string, nameAr: string }[]>('assets/json/mecanisme.json');
+  etats = this.http.get<{ name: string, nameAr: string }[]>('assets/json/etats.json');
+
   monthsAlpha = [
-    {name: 'Janvier', nameAr: 'يناير'},
-    {name: 'Fevrier', nameAr: 'فبراير'},
-    {name: 'Mars', nameAr: 'مارس'},
-    {name: 'Avril', nameAr: 'أبريل'},
-    {name: 'Mai', nameAr: 'ماي'},
-    {name: 'Juin', nameAr: 'يونيو'},
-    {name: 'Juillet', nameAr: 'يوليو'},
-    {name: 'Août', nameAr: 'غشت'},
-    {name: 'Septembre', nameAr: 'شتنبر'},
-    {name: 'Octobre', nameAr: 'اكتوبر'},
-    {name: 'Novembre', nameAr: 'نونبر'},
-    {name: 'Décembre', nameAr: 'دجنبر'},
+    { name: 'Janvier', nameAr: 'يناير' },
+    { name: 'Fevrier', nameAr: 'فبراير' },
+    { name: 'Mars', nameAr: 'مارس' },
+    { name: 'Avril', nameAr: 'أبريل' },
+    { name: 'Mai', nameAr: 'ماي' },
+    { name: 'Juin', nameAr: 'يونيو' },
+    { name: 'Juillet', nameAr: 'يوليو' },
+    { name: 'Août', nameAr: 'غشت' },
+    { name: 'Septembre', nameAr: 'شتنبر' },
+    { name: 'Octobre', nameAr: 'اكتوبر' },
+    { name: 'Novembre', nameAr: 'نونبر' },
+    { name: 'Décembre', nameAr: 'دجنبر' },
   ].map((e, i) => {
     return { id: i + 1, name: e.name, nameAr: e.nameAr };
   });
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   valideDate(date: Date): Date {
     date = new Date(date);

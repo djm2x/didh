@@ -287,7 +287,7 @@ namespace seed
             var faker = new Faker<Organe>(DataSeeding.lang)
                 .CustomInstantiator(f => new Organe { Id = id++ })
                 .RuleFor(o => o.Label, f => list[id - 2])
-                .RuleFor(o => o.LabelAr, f => list[id - 2])
+                .RuleFor(o => o.LabelAr, f => listAr[id - 2])
                 ;
 
             modelBuilder.Entity<Organe>().HasData(faker.Generate(6));

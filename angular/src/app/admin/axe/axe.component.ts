@@ -22,13 +22,14 @@ export class AxeComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'label', headName: 'NOM' },
+    { columnDef: 'labelAr', headName: 'NOM AR' },
     { columnDef: 'option', headName: 'OPTION' },
   ];
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
 
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService 
-    , public mytranslate: MyTranslateService) { }
+    ) { }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc');

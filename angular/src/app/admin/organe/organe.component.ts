@@ -21,6 +21,7 @@ export class OrganeComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'label', headName: 'NOM' },
+    { columnDef: 'labelAr', headName: 'NOM AR' },
     { columnDef: 'option', headName: 'OPTION' },
   ];
 

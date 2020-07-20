@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SessionService } from 'src/app/shared';
 import { switchMap } from 'rxjs/operators';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-list',
@@ -65,7 +66,7 @@ export class ListComponent implements OnInit {
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , private snack: SnackbarService, private fb: FormBuilder, public session: SessionService
+    , public mytranslate: MyTranslateService, private fb: FormBuilder, public session: SessionService
     , private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {

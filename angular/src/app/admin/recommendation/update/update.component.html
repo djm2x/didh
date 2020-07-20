@@ -25,7 +25,7 @@
             <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+              <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -49,7 +49,7 @@
             <mat-label>{{ 'admin.recommandation.update.Organe' | translate }}</mat-label>
             <mat-select formControlName="idOrgane" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
+              <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -58,7 +58,7 @@
             <mat-label>{{ 'admin.recommandation.list.Axe' | translate }}</mat-label>
             <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
-              <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
+              <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -66,7 +66,7 @@
             <mat-label>{{ 'admin.recommandation.list.Sousaxe' | translate }}</mat-label>
             <mat-select formControlName="idSousAxe" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
-              <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
+              <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -75,7 +75,7 @@
             <mat-label>{{ 'admin.recommandation.update.Pays' | translate }}</mat-label>
             <mat-select formControlName="idPays" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ e.nom }}</mat-option>
+              <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.nom : e.nomAr }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -84,7 +84,7 @@
           <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
           <mat-select formControlName="etat" (selectionChange)="etat($event.value)">
             <mat-option value="">...</mat-option>
-            <mat-option *ngFor="let e of etats" [value]="e">{{ e }}</mat-option>
+            <mat-option *ngFor="let e of etats | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
           </mat-select>
         </mat-form-field>
         <span style="margin: 0 1%;"></span>

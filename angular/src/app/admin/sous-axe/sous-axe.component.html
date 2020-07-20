@@ -22,8 +22,12 @@
           <td mat-cell *matCellDef="let row">{{row[columnDefs[0].columnDef]}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{columnDefs[1].headName}}</th>
-          <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef].label}}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{columnDefs[1].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
+        </ng-container>
+        <ng-container [matColumnDef]="columnDefs[2].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{columnDefs[2].headName}}</th>
+          <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.axe.label : row.axe.labelAr}}</td>
         </ng-container>
         <ng-container matColumnDef="option" style="flex-direction: row-reverse;">
           <th mat-header-cell *matHeaderCellDef> </th>

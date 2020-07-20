@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Admin5.Providers;
 
 namespace Admin5.Controllers
 {
@@ -18,15 +19,22 @@ namespace Admin5.Controllers
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}")]
         public override async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir)
         {
-            var tableName = "SousAxes";
-            var list = await _context.SousAxes
-                .FromSqlRaw($"SELECT * FROM dbo.[{tableName}] order by {sortBy} {sortDir} OFFSET {startIndex} ROWS FETCH NEXT {pageSize} ROWS ONLY")
-                // .FromSqlRaw(@"SELECT * FROM dbo.[{0}] ORDER BY {1} '{2}' OFFSET {3} ROWS FETCH NEXT {4} ROWS ONLY"
-                // , tableName, sortBy, sortDir, startIndex, pageSize)
-                // .Skip(startIndex)
-                // .Take(pageSize)
+            // var tableName = "SousAxes";
+            // var list0 = await _context.SousAxes
+            //     .FromSqlRaw($"SELECT * FROM dbo.[{tableName}] order by {sortBy} {sortDir} OFFSET {startIndex} ROWS FETCH NEXT {pageSize} ROWS ONLY")
+            //     // .FromSqlRaw(@"SELECT * FROM dbo.[{0}] ORDER BY {1} '{2}' OFFSET {3} ROWS FETCH NEXT {4} ROWS ONLY"
+            //     // , tableName, sortBy, sortDir, startIndex, pageSize)
+            //     // .Skip(startIndex)
+            //     // .Take(pageSize)
+            //     .Include(e => e.Axe)
+            //     .ToListAsync();
+
+            var list = await _context.SousAxes.OrderByName<SousAxe>(sortBy, sortDir == "desc")
+                .Skip(startIndex)
+                .Take(pageSize)
                 .Include(e => e.Axe)
-                .ToListAsync();
+                .ToListAsync()
+                ;
 
             int count = await _context.SousAxes.CountAsync();
 
