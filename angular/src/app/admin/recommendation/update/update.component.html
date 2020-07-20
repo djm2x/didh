@@ -41,7 +41,7 @@
             <mat-label>{{ 'admin.recommandation.update.Visite' | translate }}</mat-label>
             <mat-select formControlName="idVisite" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.mandat }}</mat-option>
+              <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.mandat : e.mandatAr }}</mat-option>
             </mat-select>
           </mat-form-field>
 

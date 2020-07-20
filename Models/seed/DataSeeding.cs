@@ -55,9 +55,9 @@ namespace seed
                 .RuleFor(o => o.Description, f => f.Lorem.Paragraph(10))
                 .RuleFor(o => o.Categorie, f => "Categorie 1")
 
-                .RuleFor(o => o.TitleAr, f => new Bogus.DataSets.Lorem("ar").Word())
-                .RuleFor(o => o.DescriptionAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(10))
-                .RuleFor(o => o.CategorieAr, f => "الفئة 1")
+                // .RuleFor(o => o.TitleAr, f => new Bogus.DataSets.Lorem("ar").Word())
+                // .RuleFor(o => o.DescriptionAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(10))
+                // .RuleFor(o => o.CategorieAr, f => "الفئة 1")
                 .RuleFor(o => o.Date, f => f.Date.Past())
                 ;
             modelBuilder.Entity<Evenement>().HasData(faker.Generate(10));
@@ -176,7 +176,7 @@ namespace seed
                 .RuleFor(o => o.Discours, f => f.Lorem.Paragraph())
 
                 .RuleFor(o => o.MandatAr, f => f.PickRandom(listAr))
-                .RuleFor(o => o.DiscoursAr, f =>  new Bogus.DataSets.Lorem("ar").Paragraph())
+                // .RuleFor(o => o.DiscoursAr, f =>  new Bogus.DataSets.Lorem("ar").Paragraph())
 
                 .RuleFor(o => o.Date, (f, u) => f.Date.Past())
                 .RuleFor(o => o.LienRapport, f => "")
@@ -213,8 +213,8 @@ namespace seed
                 .RuleFor(o => o.Theme, f => f.PickRandom(list))
                 .RuleFor(o => o.SousTheme, f => $"sous theme {id - 1}")
 
-                .RuleFor(o => o.ThemeAr, f => f.PickRandom(listAr))
-                .RuleFor(o => o.SousThemeAr, f => $"تحت الموضوع {id - 1}")
+                // .RuleFor(o => o.ThemeAr, f => f.PickRandom(listAr))
+                // .RuleFor(o => o.SousThemeAr, f => $"تحت الموضوع {id - 1}")
 
                 .RuleFor(o => o.PieceJointe, f => $"")
                 .RuleFor(o => o.Annee, f => 2020)
@@ -386,7 +386,7 @@ namespace seed
                 .CustomInstantiator(f => new Traite { Id = id++ })
                 .RuleFor(o => o.Nom, f => f.PickRandom(list))
 
-                .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
+                // .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
 
                 .RuleFor(o => o.Discours, f => $"")
                 .RuleFor(o => o.DateRatification, f => f.Date.Past())
@@ -449,8 +449,8 @@ namespace seed
                 .RuleFor(o => o.Titre, f => f.Lorem.Word())
                 .RuleFor(o => o.Reference, f => f.Internet.Url())
 
-                .RuleFor(o => o.TitreAr, f => new Bogus.DataSets.Lorem("ar").Word())
-                .RuleFor(o => o.ReferenceAr, f => new Bogus.DataSets.Internet("ar").Url())
+                // .RuleFor(o => o.TitreAr, f => new Bogus.DataSets.Lorem("ar").Word())
+                // .RuleFor(o => o.ReferenceAr, f => new Bogus.DataSets.Internet("ar").Url())
 
                 .RuleFor(o => o.DateDernierRapport, f => f.Date.Soon())
                 .RuleFor(o => o.DateObservation, f => f.Date.Soon())
@@ -507,8 +507,8 @@ namespace seed
                 .RuleFor(o => o.Code, f => f.Lorem.Word())
                 .RuleFor(o => o.Detail, f => f.PickRandom(list))
 
-                .RuleFor(o => o.CodeAr, f => new Bogus.DataSets.Lorem("ar").Word())
-                .RuleFor(o => o.DetailAr, f => f.PickRandom(listAr))
+                // .RuleFor(o => o.CodeAr, f => new Bogus.DataSets.Lorem("ar").Word())
+                // .RuleFor(o => o.DetailAr, f => f.PickRandom(listAr))
 
                 .RuleFor(o => o.IdRapport, f => f.Random.Number(1, 100))
                 .RuleFor(o => o.IdUser, f => f.Random.Number(1, 3));
@@ -569,13 +569,13 @@ namespace seed
                 .RuleFor(o => o.Observation, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
                 .RuleFor(o => o.Complement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
 
-                .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
-                .RuleFor(o => o.CodeRecommendationAr, f => new Bogus.DataSets.System("ar").Version().ToString())
-                .RuleFor(o => o.MecanismeAr, f => f.PickRandom(mecanismeAr))
-                .RuleFor(o => o.EtatAr, f => f.PickRandom(etatAr))
-                .RuleFor(o => o.EtatAvancementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
-                .RuleFor(o => o.ObservationAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
-                .RuleFor(o => o.ComplementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
+                // .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
+                // .RuleFor(o => o.CodeRecommendationAr, f => new Bogus.DataSets.System("ar").Version().ToString())
+                // .RuleFor(o => o.MecanismeAr, f => f.PickRandom(mecanismeAr))
+                // .RuleFor(o => o.EtatAr, f => f.PickRandom(etatAr))
+                // .RuleFor(o => o.EtatAvancementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
+                // .RuleFor(o => o.ObservationAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
+                // .RuleFor(o => o.ComplementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
 
                 .RuleFor(o => o.IdCycle, f => f.Random.Number(1, DataSeeding.i - 90))
                 .RuleFor(o => o.IdVisite, f => f.Random.Number(1, DataSeeding.i - 90))

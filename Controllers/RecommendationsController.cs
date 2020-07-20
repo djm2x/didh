@@ -36,8 +36,8 @@ namespace Admin5.Controllers
             var query = _context.Recommendations
                 // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
-                .Where(e => model.Nom == "" ? true : (lng == "fr" ? e.Nom.ToLower().Contains(model.Nom.ToLower()) : e.NomAr.ToLower().Contains(model.Nom.ToLower())))
-                .Where(e => model.Etat == "" ? true : (lng == "fr" ? e.Etat.ToLower().Contains(model.Etat.ToLower()) : e.EtatAr.ToLower().Contains(model.Etat.ToLower())))
+                .Where(e => model.Nom == "" ? true : e.Nom.ToLower().Contains(model.Nom.ToLower()))
+                .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)

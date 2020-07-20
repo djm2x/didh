@@ -26,10 +26,10 @@ namespace Admin5.Controllers
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{title}")]
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir , string title)
         {
-            string lng = Request.Headers["mylang"].FirstOrDefault();
+            string headerValue = Request.Headers["mylang"].FirstOrDefault();
 
             var q = _context.Evenements
-                .Where(e => title == "*" ? true : (lng == "fr" ? e.Title.ToLower().Contains(title.ToLower()) : e.TitleAr.ToLower().Contains(title.ToLower())))
+                .Where(e => title == "*" ? true : e.Title.ToLower().Contains(title.ToLower()))
                 ;
 
             int count = await q.CountAsync();
@@ -44,9 +44,8 @@ namespace Admin5.Controllers
                     categorie = e.Categorie,
                     title = e.Title,
                     description = e.Description,
-                    titleAr = e.TitleAr,
-                    descriptionAr = e.DescriptionAr,
                     date = e.Date,
+
                 })
                 .ToListAsync()
                 ;

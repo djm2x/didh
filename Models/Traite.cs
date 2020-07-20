@@ -12,13 +12,12 @@ namespace Admin5.Models
 
         public int Id { get; set; }
         public string Nom { get; set; }
-        public string NomAr { get; set; }
-        public string Discours { get; set; }
         public string ConventionPiece { get; set; }
         public string MiseOeuvrePiece { get; set; }
         public string ObservationPiece { get; set; }
         public string AnalytiquePiece { get; set; }
         public string RapportParallelePiece { get; set; }
+        public string Discours { get; set; }
         public DateTime DateRatification { get; set; }
         public DateTime DateSignature { get; set; }
         public virtual ICollection<Rapport> Rapports { get; set; }

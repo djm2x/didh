@@ -20,6 +20,7 @@ export class User {
 export class Organisme {
   id = 0;
   label = '';
+  labelAr = '';
   adresse = '';
   tel = '';
   users: User[] = [];
@@ -28,6 +29,7 @@ export class Organisme {
 export class Examen {
   id = 0;
   libelle = '';
+  // libelleAr = '';
   rapportNational = '';
   compilationHCDH = '';
   observationFinale = '';
@@ -51,6 +53,7 @@ export class Notification {
 export class Traite {
   id = 0;
   nom = '';
+  // nomAr = '';
   dateSignature = new Date();
   dateRatification = new Date();
   idUser = 0;
@@ -77,10 +80,10 @@ export class FicheSynthese {
 export class Rapport {
   id = 0;
   titre = '';
+  reference = '';
   dateDernierRapport = new Date();
   dateObservation = new Date();
   dateProchaineRapport = new Date();
-  reference = '';
   pieceJointe = '';
   idTraite = 0;
   traite = new Traite();
@@ -103,11 +106,12 @@ export class Visite {
   id = 0;
   // objet = '';
   mandat = '';
+  discours = '';
+  mandatAr = '';
   date = new Date();
   lienRapport = '';
   lienUpload = '';
   miseOeuvrePiece = '';
-  discours = '';
 }
 
 export class Evenement {
@@ -122,6 +126,7 @@ export class Evenement {
 export class Profil {
   id = 0;
   label = '';
+  labelAr = '';
 }
 
 export class RecomOrg {
@@ -143,15 +148,16 @@ export class Recommendation {
   id = 0;
   codeRecommendation = '';
   nom = '';
-  mecanisme = '';
-  idCycle = 0;
-  idAxe = 0;
   etat = '';
   complement = '';
   etatAvancement = '';
-  etatAvancementChiffre = 0;
   observation = '';
+  mecanisme = '';
+
+  idCycle = 0;
+  idAxe = 0;
   pieceJointe = '';
+  etatAvancementChiffre = 0;
   idOrgane = null;
   idVisite = null;
   idSousAxe = null;
@@ -190,17 +196,20 @@ export class Cycle {
 export class Axe {
   id = 0;
   label = '';
+  labelAr = '';
 }
 
 export class Organe {
   id = 0;
   label = '';
+  labelAr = '';
   recommandations: Recommendation[] = [];
 }
 
 export class SousAxe {
   id = 0;
   label = '';
+  labelAr = '';
   idAxe = 0;
   axe = new Axe();
 }
@@ -213,4 +222,5 @@ export class SituationReserve {
 export class Pays {
   id = 0;
   nom = '';
+  nomAr = '';
 }

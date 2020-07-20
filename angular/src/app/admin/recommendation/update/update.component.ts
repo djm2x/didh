@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UowService } from 'src/app/services/uow.service';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-update',
@@ -38,7 +39,8 @@ export class UpdateComponent implements OnInit {
   title = 'Nouveau utilisateur';
   listOrganisme: Organisme[] = [];
   constructor(private route: ActivatedRoute, private router: Router,
-    private uow: UowService, private fb: FormBuilder, private session: SessionService) { }
+    private uow: UowService, private fb: FormBuilder, private session: SessionService
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
 

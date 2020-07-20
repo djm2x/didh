@@ -12,12 +12,10 @@ namespace Admin5.Models
 
         public int Id { get; set; }
         public string Titre { get; set; }
-        public string TitreAr { get; set; }
-        public string Reference { get; set; }
-        public string ReferenceAr { get; set; }
         public DateTime? DateDernierRapport { get; set; }
         public DateTime? DateObservation { get; set; }
         public DateTime? DateProchaineRapport { get; set; }
+        public string Reference { get; set; }
         public string PieceJointe { get; set; }
         public int? IdTraite { get; set; }
         
