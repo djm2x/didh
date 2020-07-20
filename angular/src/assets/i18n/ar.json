@@ -100,17 +100,17 @@
       }
     },
     "ps": {
-      "Procédure_spéciales":"الإجراءات الخاصة",
-      "Procédure_spéciale":"إجراء خاص",
-      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales":"تنفيذ توصيات الإجراءات الخاصة",
+      "Procédure_spéciales": "الإجراءات الخاصة",
+      "Procédure_spéciale": "إجراء خاص",
+      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ توصيات الإجراءات الخاصة",
       "list": {
-        "MANDAT":"امر رسمى",
-        "Date_de_la_visite":"تاريخ الزيارة",
-        "RAPPORT_NATIONAL_DE_LA_VISITE":"تقرير الزيارة الوطني",
-        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE":"تقرير الإجراء / رد الفعل الوطني",
-        "PLAN_DE_MISE_EN_OEUVRE":"خطة التنفيذ",
-        "Ajouter_Procédure_spéciale":"إضافة إجراء خاص",
-        "Modifier_Procédure_spéciale":"تحرير إجراء خاص"
+        "MANDAT": "امر رسمى",
+        "Date_de_la_visite": "تاريخ الزيارة",
+        "RAPPORT_NATIONAL_DE_LA_VISITE": "تقرير الزيارة الوطني",
+        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": "تقرير الإجراء / رد الفعل الوطني",
+        "PLAN_DE_MISE_EN_OEUVRE": "خطة التنفيذ",
+        "Ajouter_Procédure_spéciale": "إضافة إجراء خاص",
+        "Modifier_Procédure_spéciale": "تحرير إجراء خاص"
       },
       "update": {
         "Mandat": "امر رسمى",
@@ -250,9 +250,9 @@
         "Année": "عام",
         "Discours_de_Mr_le_Ministre": "كلمة الوزير",
         "Documents_de_session": "وثائق الجلسة",
-        "Ajouter_ParticipationSession":"إضافة جلسة المشاركة",
-        "Modifier_Participation_Session":"تعديل المشاركة في الجلسة",
-        "Participation_Session":"جلسة المشاركة"
+        "Ajouter_ParticipationSession": "إضافة جلسة المشاركة",
+        "Modifier_Participation_Session": "تعديل المشاركة في الجلسة",
+        "Participation_Session": "جلسة المشاركة"
       },
       "update": {
         "Session": "جلسة",
@@ -272,11 +272,10 @@
         "Réinitialiser": "إعادة تعيين",
         "année": "عام",
         "Documents": "مستندات",
-        "Ajouter_Questionnaire":"إضافة استبيان",
-        "Modifier_Questionnaire":"تحرير الاستبيان"
+        "Ajouter_Questionnaire": "إضافة استبيان",
+        "Modifier_Questionnaire": "تحرير الاستبيان"
       },
-      "update": {
-
-      }
+      "update": {}
+    }
   }
 }
