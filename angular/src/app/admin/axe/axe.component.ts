@@ -5,6 +5,7 @@ import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { Axe } from 'src/app/Models/models';
+import { MyTranslateService } from 'src/app/my.translate.service';
 @Component({
   selector: 'app-axe',
   templateUrl: './axe.component.html',
@@ -26,7 +27,8 @@ export class AxeComponent implements OnInit {
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
 
-  constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService, ) { }
+  constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService 
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc');

@@ -25,6 +25,57 @@ namespace Admin5.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+         [HttpPost]
+        public async Task<IActionResult> SearchAndGet(Model model)
+        {
+            int idUser = HttpContext.GetIdUser();
+            int role = HttpContext.GetRoleUser();
+            bool hasAcess = (role == 1 || role == 4) ? true : false;
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+            
+            var query = _context.Recommendations
+                // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
+                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
+                .Where(e => model.Nom == "" ? true : (lng == "fr" ? e.Nom.ToLower().Contains(model.Nom.ToLower()) : e.NomAr.ToLower().Contains(model.Nom.ToLower())))
+                .Where(e => model.Etat == "" ? true : (lng == "fr" ? e.Etat.ToLower().Contains(model.Etat.ToLower()) : e.EtatAr.ToLower().Contains(model.Etat.ToLower())))
+                .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
+                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
+                .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
+                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
+                .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
+                .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
+                .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+            ;
+
+            var count = await query.CountAsync();
+
+            var list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
+                    .Skip(model.StartIndex)
+                    .Take(model.PageSize)
+                    // .Include(e => e.RecomOrgs)
+                    // .Include(e => e.Axe)
+                    // .Include(e => e.Organe)
+                    // .Include(e => e.Visite)
+                    // .Include(e => e.SousAxe)
+                    .Select(e => new
+                    {
+                        id = e.Id,
+                        CodeRecommendation = e.CodeRecommendation,
+                        Nom = e.Nom,
+                        Etat = e.Etat,
+                        Mecanisme = e.Mecanisme,
+                        Axe = e.Axe.Label,
+                        SousAxe = e.SousAxe.Label,
+                        Observation = e.Observation,
+                        Complement = e.Complement,
+                        PieceJointe = e.PieceJointe,
+                        organismes = e.RecomOrgs.Select(r => r.Organisme.Label)
+                    })
+                    .ToListAsync();
+
+            return Ok(new { list = list, count = count });
+        }
+
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{idCycle}/{idOrgane}/{idVisite}/{idAxe}/{idSousAxe}")]
         public async Task<IActionResult> GetAllForSynthese(
             int startIndex, int pageSize, string sortBy, string sortDir, int idCycle, int idOrgane, int idVisite, int idAxe, int idSousAxe)
@@ -93,11 +144,13 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateRecommendationByOrganisme()
         {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
             int recommendationsCount = _context.Recommendations.Count();
             var list = await _context.Organismes
                     .Select(e => new
                     {
-                        name = e.Label,
+                        name = (lng == "fr" ? e.Label : e.LabelAr),
                         p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
                         t = (double.Parse(e.RecomOrgs.Count.ToString()) / recommendationsCount) * 100,
                     })
@@ -538,122 +591,74 @@ namespace Admin5.Controllers
             return Ok(list);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SearchAndGet2(Model model)
-        {
-            int idUser = HttpContext.GetIdUser();
-            int role = HttpContext.GetRoleUser();
-            bool hasAcess = (role == 1 || role == 4) ? true : false;
+        // [HttpPost]
+        // public async Task<IActionResult> SearchAndGet2(Model model)
+        // {
+        //     int idUser = HttpContext.GetIdUser();
+        //     int role = HttpContext.GetRoleUser();
+        //     bool hasAcess = (role == 1 || role == 4) ? true : false;
 
-            var query = _context.Recommendations
-                // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
-                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
-                .Where(e => model.Nom == "" ? true : e.Nom.ToLower().Contains(model.Nom.ToLower()))
-                .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
-                .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
-                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
-                .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
-                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
-                .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
-                .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
-                .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
-            ;
+        //     var query = _context.Recommendations
+        //         // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
+        //         .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
+        //         .Where(e => model.Nom == "" ? true : e.Nom.ToLower().Contains(model.Nom.ToLower()))
+        //         .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
+        //         .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
+        //         .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
+        //         .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
+        //         .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
+        //         .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
+        //         .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
+        //         .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+        //     ;
 
-            int count = 0;
-            var list = new List<Recommendation>();
-            if (model.IsAllEmpty())
-            {
-                count = await _context.Recommendations.CountAsync();
+        //     int count = 0;
+        //     var list = new List<Recommendation>();
+        //     if (model.IsAllEmpty())
+        //     {
+        //         count = await _context.Recommendations.CountAsync();
 
-                list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
-                    .Skip(model.StartIndex)
-                    .Take(model.PageSize)
-                    // .Include(e => e.RecomOrgs)
-                    .Include(e => e.Axe)
-                    // .Include(e => e.Organe)
-                    // .Include(e => e.Visite)
-                    .Include(e => e.SousAxe)
-                    // .Select(e => new {
-                    //     id = e.Id,
-                    //     CodeRecommendation = e.CodeRecommendation,
-                    //     Nom = e.Nom,
-                    //     Etat = e.Etat,
-                    //     Mecanisme = e.Mecanisme,
-                    //     Axe = e.Axe,
-                    //     SousAxe = e.SousAxe,
-                    //     PieceJointe = e.PieceJointe,
-                    // })
-                    .ToListAsync();
-                ;
-            }
-            else
-            {
-                count = await query.CountAsync();
+        //         list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
+        //             .Skip(model.StartIndex)
+        //             .Take(model.PageSize)
+        //             // .Include(e => e.RecomOrgs)
+        //             .Include(e => e.Axe)
+        //             // .Include(e => e.Organe)
+        //             // .Include(e => e.Visite)
+        //             .Include(e => e.SousAxe)
+        //             // .Select(e => new {
+        //             //     id = e.Id,
+        //             //     CodeRecommendation = e.CodeRecommendation,
+        //             //     Nom = e.Nom,
+        //             //     Etat = e.Etat,
+        //             //     Mecanisme = e.Mecanisme,
+        //             //     Axe = e.Axe,
+        //             //     SousAxe = e.SousAxe,
+        //             //     PieceJointe = e.PieceJointe,
+        //             // })
+        //             .ToListAsync();
+        //         ;
+        //     }
+        //     else
+        //     {
+        //         count = await query.CountAsync();
 
-                list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
-                    .Skip(model.StartIndex)
-                    .Take(model.PageSize)
-                    // .Include(e => e.RecomOrgs)
-                    .Include(e => e.Axe)
-                    // .Include(e => e.Organe)
-                    // .Include(e => e.Visite)
-                    .Include(e => e.SousAxe)
-                    .ToListAsync();
-                ;
-            }
+        //         list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
+        //             .Skip(model.StartIndex)
+        //             .Take(model.PageSize)
+        //             // .Include(e => e.RecomOrgs)
+        //             .Include(e => e.Axe)
+        //             // .Include(e => e.Organe)
+        //             // .Include(e => e.Visite)
+        //             .Include(e => e.SousAxe)
+        //             .ToListAsync();
+        //         ;
+        //     }
 
-            return Ok(new { list = list, count = count });
-        }
+        //     return Ok(new { list = list, count = count });
+        // }
 
-        [HttpPost]
-        public async Task<IActionResult> SearchAndGet(Model model)
-        {
-            int idUser = HttpContext.GetIdUser();
-            int role = HttpContext.GetRoleUser();
-            bool hasAcess = (role == 1 || role == 4) ? true : false;
-
-            var query = _context.Recommendations
-                // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
-                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
-                .Where(e => model.Nom == "" ? true : e.Nom.ToLower().Contains(model.Nom.ToLower()))
-                .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
-                .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
-                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
-                .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
-                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
-                .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
-                .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
-                .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
-            ;
-
-            var count = await query.CountAsync();
-
-            var list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
-                    .Skip(model.StartIndex)
-                    .Take(model.PageSize)
-                    // .Include(e => e.RecomOrgs)
-                    // .Include(e => e.Axe)
-                    // .Include(e => e.Organe)
-                    // .Include(e => e.Visite)
-                    // .Include(e => e.SousAxe)
-                    .Select(e => new
-                    {
-                        id = e.Id,
-                        CodeRecommendation = e.CodeRecommendation,
-                        Nom = e.Nom,
-                        Etat = e.Etat,
-                        Mecanisme = e.Mecanisme,
-                        Axe = e.Axe.Label,
-                        SousAxe = e.SousAxe.Label,
-                        Observation = e.Observation,
-                        Complement = e.Complement,
-                        PieceJointe = e.PieceJointe,
-                        organismes = e.RecomOrgs.Select(r => r.Organisme.Label)
-                    })
-                    .ToListAsync();
-
-            return Ok(new { list = list, count = count });
-        }
+       
 
         // [HttpGet("{id}")]
         // public async Task<ActionResult<Recommendation>> GetByIdCycle(int id)

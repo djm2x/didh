@@ -5,6 +5,7 @@ import { LoaderService } from './loader.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from './snack-bar.service';
 import { SessionService } from '../shared';
+import { MyTranslateService } from '../my.translate.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,8 @@ export class LoaderInterceptor implements HttpInterceptor {
   cachedRequests: Array<HttpRequest<any>> = [];
 
   constructor(private loaderService: LoaderService, public router: Router
-    , public snackBar: SnackBarService
-    // , private toast: MyToastrService
-    , private session: SessionService) {
+    , public snackBar: SnackBarService, private session: SessionService
+    , public mytranslate: MyTranslateService) {
       console.log(this.session.token);
     }
 
@@ -41,7 +41,7 @@ export class LoaderInterceptor implements HttpInterceptor {
         setHeaders: {
           // 'Content-Type': 'application/json',
           Authorization: `Bearer ${this.session.token}`,
-          mylang: 'ar/fr',
+          mylang: this.mytranslate.langSync,
         }
         // this.headers = new HttpHeaders({
         //   'Content-Type': 'application/json',

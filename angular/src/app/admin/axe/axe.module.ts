@@ -7,6 +7,7 @@ import { UpdateComponent } from './update/update.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatModule } from 'src/app/mat.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MatModule } from 'src/app/mat.module';
     MatModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
   entryComponents: [
     UpdateComponent

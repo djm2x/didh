@@ -13,6 +13,7 @@ namespace Admin5.Models
 
         public int Id { get; set; }
         public string Label { get; set; }
+        public string LabelAr { get; set; }
         
         // [JsonIgnore]
         public virtual ICollection<Recommendation> Recommendations { get; set; }

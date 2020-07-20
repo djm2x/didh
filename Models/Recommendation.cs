@@ -12,8 +12,11 @@ namespace Admin5.Models
         }
         public int Id { get; set; }
         public string Nom { get; set; }
+        public string NomAr { get; set; }
         public string CodeRecommendation { get; set; }
+        public string CodeRecommendationAr { get; set; }
         public string Mecanisme { get; set; }
+        public string MecanismeAr { get; set; }
         public int? IdCycle { get; set; }
         public int IdAxe { get; set; }
         public int IdSousAxe { get; set; }
@@ -21,10 +24,14 @@ namespace Admin5.Models
         public int? IdVisite { get; set; }
         public int? IdPays { get; set; }
         public string Etat { get; set; }
+        public string EtatAr { get; set; }
         public string EtatAvancement { get; set; }
+        public string EtatAvancementAr { get; set; }
         public int EtatAvancementChiffre { get; set; }
         public string Observation { get; set; }
-        public string Complement  { get; set; }
+        public string ObservationAr { get; set; }
+        public string Complement { get; set; }
+        public string ComplementAr { get; set; }
         public string PieceJointe { get; set; }
         // public int IdOrganisme { get; set; }
         // public Organisme Organisme { get; set; }

@@ -8,6 +8,7 @@ namespace Admin5.Models
         public int Id { get; set; }
         public int Annee { get; set; }
         public string Session { get; set; }
+        public string SessionAr { get; set; }
         public string Discours { get; set; }
         public string Documents { get; set; }
     }

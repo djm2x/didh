@@ -7,7 +7,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 })
 export class MyTranslateService {
   lang = new BehaviorSubject(this.translate.currentLang);
-  langSync = this.translate.currentLang;
+  langSync = 'fr';
 
   constructor(public translate: TranslateService) { }
 

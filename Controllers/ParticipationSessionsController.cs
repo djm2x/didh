@@ -17,8 +17,10 @@ namespace Admin5.Controllers
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{session}")]
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, string session)
         {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+            
             var query = _context.ParticipationSessions
-               .Where(e => session == "*" ? true : e.Session.Contains(session))
+               .Where(e => session == "*" ? true : (lng == "fr" ? e.Session.Contains(session) : e.SessionAr.Contains(session)))
                ;
 
             int count = await query.CountAsync();

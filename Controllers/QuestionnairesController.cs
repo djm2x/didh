@@ -17,9 +17,11 @@ namespace Admin5.Controllers
          [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{theme}/{sousTheme}")]
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, string theme, string sousTheme)
         {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
             var q = _context.Questionnaires
-                .Where(e => theme == "*" ? true : e.Theme.Contains(theme))
-                .Where(e => sousTheme == "*" ? true : e.SousTheme.Contains(sousTheme))
+                .Where(e => theme == "*" ? true : (lng == "fr" ? e.Theme.Contains(theme) : e.ThemeAr.Contains(theme)))
+                .Where(e => sousTheme == "*" ? true : (lng == "fr" ? e.SousTheme.Contains(sousTheme) : e.SousThemeAr.Contains(sousTheme)))
                 
                 ;
 

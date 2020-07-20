@@ -12,7 +12,9 @@ namespace Admin5.Models
         }
         public int Id { get; set; }
         public string Code { get; set; }
+        public string CodeAr { get; set; }
         public string Detail { get; set; }
+        public string DetailAr { get; set; }
         public int? IdRapport { get; set; }
         public int IdUser { get; set; }
         public Rapport Rapport { get; set; }
@@ -20,6 +22,6 @@ namespace Admin5.Models
 
         public virtual ICollection<FicheSynthese> FicheSyntheses { get; set; }
         public virtual ICollection<SyntheseRecommandation> SyntheseRecommandations { get; set; }
-        
+
     }
 }

@@ -37,9 +37,6 @@ export class EvenementComponent implements OnInit, OnDestroy {
 
   title = new FormControl('');
 
-  
-
-
   constructor(private uow: UowService, public dialog: MatDialog
     , private mydialog: DeleteService, @Inject('BASE_URL') private url: string 
     , public session: SessionService, public mytranslate: MyTranslateService) { }
