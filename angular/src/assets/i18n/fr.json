@@ -57,7 +57,7 @@
       "Pièce-jointe": "Pièce-jointe",
       "Telecharger": "Telecharger",
       "list": {
-        "OrganesdeTraités": "Organes de Traités",
+        "Organesdetraité": "Organes de Traités",
         "Rapportnational": "Rapport national",
         "Discoursduprésident": "Discours du président",
         "Compterenduanalytique": "Compte rendu analytique",
@@ -84,7 +84,7 @@
             "REFERENCEDESOBSERVATIONSFINALES": "REFERENCE DES OBSERVATIONS FINALES"
           },
           "update": {
-            "Titre": "Titre",
+            "TITRE": "Titre",
             "Référence_des_observations_finales": "Référence des observations finales",
             "Date_rapport": "Date rapport",
             "Date_des_observations_finales": "Date des observations finales",
@@ -114,6 +114,7 @@
       },
       "update": {
         "Mandat": "Mandat",
+        "MandatAr": "ولاية",
         "Discours_du_président": "Discours du président",
         "Date_prévue": "Date prévue",
         "RAPPORT_NATIONAL_DE_LA_VISITE": "RAPPORT NATIONAL DE LA VISITE",
@@ -124,6 +125,7 @@
     },
     "event": {
       "list": {
+        "Evènements": "Evènements",
         "Evènement": "Evènement",
         "Recherche": "Recherche",
         "Titre": "Titre",

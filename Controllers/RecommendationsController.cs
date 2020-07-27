@@ -315,9 +315,10 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateOrgane()
         {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
             int recommendationsCount = _context.Recommendations.Count();
             var list = await _context.Recommendations
-                .GroupBy(e => e.Organe.Label)
+                .GroupBy(e => lng == "fr" ? e.Organe.Label : e.Organe.LabelAr)
                 .Select(e => new
                 {
                     name = e.Key,

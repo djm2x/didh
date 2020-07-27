@@ -1,281 +1,283 @@
 {
   "admin": {
-    "lang": "اللغة",
-    "Enregistre": "تم تسجيل الوصول",
-    "Retour": "إرجاع",
-    "header": {
-      "SessionsDH": "جلسات الموارد البشرية",
-      "Questionnaires": "الاستبيانات",
-      "Documentation": "توثيق",
-      "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل",
-      "OrganesdeTraités": "هيئات المعاهدات",
-      "Procéduresspéciales": "الإجراءات الخاصة",
-      "Evènements": "الأحداث",
-      "Statistiques": "الإحصاء",
-      "Recommandations": "التوصيات",
-      "Synthèse": "موجز",
-      "Utilisateur": "المستعمل",
-      "Profils": "مظهر",
-      "Organisations": "المنظمات",
-      "Organedetraités": "المتقاعدون",
-      "Cycles": "دورات",
-      "Axes": "محاور",
-      "Sous axe": "المحور الفرعي",
-      "Pays": "بلد"
+    "lang": "لغة", 
+    "Enregistre": "حفظ", 
+    "Retour": "عودة", 
+    "header": { 
+      "SessionsDH": "دورات  مجلس حقوق الانسان", 
+      "Questionnaires": "استبيانات", 
+      "Documentation": "توثيق", 
+      "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل", 
+      "OrganesdeTraités": "هيئات المعاهدات", 
+      "Procéduresspéciales": "الاجراءات الخاصة", 
+      "Evènements": "تظاهرات", 
+      "Statistiques": "إحصائيات", 
+      "Recommandations": "توصيات", 
+      "Synthèse": "تجميع متابعة التوصيات", 
+      "Utilisateur": "مستخدم", 
+      "Profils": "ملفات شخصية", 
+      "Organisations": "منظمات", 
+      "Organedetraités": "هيئات المعاهدات", 
+      "Cycles": "دورات", 
+      "Axes": "محاور",  
+      "Sousaxe": "المحور الفرعي", 
+      "Pays": "البلد" 
     },
-    "home": {
-      "SystèmedeSuividesrecommandations": "نظام تتبع التوصيات",
-      "droitHomme": "ﺣﻘﻮق اﻻﻧﺴﺎن ﻻ ﺗﺄتي ﻓﻘﻂ ﺑﺎﳌﻄﺎﻟﺒﺔ ﺑﻞ أﻳﻀﺎ ﺑﺄداء اﻟﻮاﺟﺐ",
-      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "تنفيذ توصيات آليات الأمم المتحدة لحقوق الإنسان",
-      "ExamenPériodiqueuniversell": "الاستعراض الدوري الشامل",
-      "OrganesdeTraités": "هيئات المعاهدات",
-      "Procéduresspéciales": "الإجراءات الخاصة",
-      "Miseenœuvredesaxe": "تنفيذ المحاور",
-      "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات من قبل الدائرة"
+    "home": { 
+      "SystèmedeSuividesrecommandations": "نظام تتبع تنفيذ  التوصيات",  
+      "droitHomme": "حقوق الإنسان لا ترتبط فقط بالطلب ، ولكن أيضا بالواجب",  
+      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "تفعيل توصيات آليات الأمم المتحدة لحقوق الإنسان", 
+      "ExamenPériodiqueuniversell": "الاستعراض الدوري الشام", 
+      "OrganesdeTraités": "هيئات المعاهدا", 
+      "Procéduresspéciales": "الإجراءات الخاص", 
+      "Miseenœuvredesaxe": "تفعيل المحاو", 
+      "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا"   
     },
-    "epu": {
-      "list": {
-        "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
-        "Examen": "امتحان",
-        "libelle": "الصياغة",
-        "Rapportnational": "التقرير الوطني",
-        "CompilationHCDHSOCIETECIVILE": "تجميع المفوضية / المجتمع المدني",
-        "Discoursduprésident": "خطاب الرئيس",
-        "ObservationsfinalesADDITIFS": "ملاحظات ختامية / إضافات",
-        "PLANDEMISEENOEUVRE": "خطة التنفيذ",
-        "Rapportmi-parcours": "تقرير منتصف المدة",
-        "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحور",
-        "Tauxderecommandationsparaxe": "معدل التوصية حسب المحور",
-        "AjouterExamen": "إضافة مراجعة",
-        "ModifierExamen": "تحرير الاختبار"
+    "epu": { 
+      "list": { 
+        "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل", 
+        "Examen": "استعراض", 
+        "libelle": "الصياغة", 
+        "Rapportnational": "التقرير الوطني", 
+        "CompilationHCDHSOCIETECIVILE": "تجميع  مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني", 
+        "Discoursduprésident": "كلمة رئيس الوفد", 
+        "ObservationsfinalesADDITIFS": "التوصيات /آراء بشأن الاستنتاجات و/أو التوصيات",  
+        "PLANDEMISEENOEUVRE": "مخطط التنفيذ", 
+        "Rapportmi-parcours": "التقرير نصف المرحلي", 
+        "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور", 
+        "Tauxderecommandationsparaxe": "نسبة التوصيات حسب المحور", 
+        "AjouterExamen": "إضافة إستعراض", 
+        "ModifierExamen": "نعديل إستعراض" 
       }
     },
     "organe": {
-      "Organesdetraités": "هيئات المعاهدات",
-      "Organesdetraité": "هيئات المعاهدات",
-      "situation_des_réserves": "وضع الاحتياطي",
-      "Pièce-jointe": "الوثائق المرفقة",
-      "Telecharger": "تحميل",
-      "list": {
-        "OrganesdeTraités": "هيئات المعاهدات",
-        "Rapportnational": "التقرير الوطني",
-        "Discoursduprésident": "خطاب الرئيس",
-        "Compterenduanalytique": "تقرير تحليلي",
-        "Observationsfinales": "ملاحظات ختامية",
-        "Rapportparallèle": "تقرير موازي",
-        "PLANDEMISEENOEUVRE": "خطة التنفيذ",
-        "Etatavancement": "تقدم",
-        "Taux": "معدل",
-        "MiseenœuvredesrecommandationsparOrganesdeTraités": "تنفيذ توصيات هيئات المعاهدات"
-      },
-      "update": {
-        "ConventionProtocole": "الاتفاقية / البروتوكول",
-        "DateSignature": "تاريخ التوقيع",
-        "Datederatification": "تاريخ التصديق",
-        "Rapport": "التقارير",
-        "Traité": "المعاهدات",
-        "traite": {
-          "list": {
-            "PIECE": "غرفة",
-            "TITRE": "عنوان",
-            "DATEDERNIERRAPPORT": "آخر تقرير",
-            "DATEOBSERVATION": "مراقبة التاريخ",
-            "DATEPROCHAINERAPPORT": "تاريخ التقرير التالي",
-            "REFERENCEDESOBSERVATIONSFINALES": "مرجع الملاحظات النهائية"
+      "Organesdetraités": " هيئات المعاهدات",
+      "Organesdetraité": " هيئات المعاهدات",
+      "situation_des_réserves": " وضعية التحفظات",
+      "Pièce-jointe": " المرفقات",
+      "Telecharger": " تحميل",
+      "list": { 
+        "Organesdetraité": " هيئات المعاهدات",
+        "Rapportnational": " التقرير الوطني",
+        "Discoursduprésident": " كلمة رئيس الوفد",
+        "Compterenduanalytique": " تقرير تحليلي",
+        "Observationsfinales": " الملاحظات النهائية",
+        "Rapportparallèle": " تقرير موازي",
+        "PLANDEMISEENOEUVRE": " مخطط التنفيذ",
+        "Etatavancement": " التقدم المحرز",
+        "Taux": " نسبة",
+        "MiseenœuvredesrecommandationsparOrganesdeTraités": "تنفيذ التوصيات حسب هيئات المعاهدات"
+      }, 
+      "update": { 
+        "ConventionProtocole": " إتفاقية/بروتوكول",
+        "DateSignature": " تاريخ التوقيع",
+        "Datederatification": " تاريخ المصادقة ",
+        "Rapport": " تقرير",
+        "Traité": " معاهدة",
+        "traite": { 
+          "list": { 
+            "PIECE": " قطعة",
+            "TITRE": " عنوان",
+            "DATEDERNIERRAPPORT": " تاريخ آخر تقرير",
+            "DATEOBSERVATION": " تاريخ الملاحظة",
+            "DATEPROCHAINERAPPORT": " تاريخ تقديم التقرير القادم",
+            "REFERENCEDESOBSERVATIONSFINALES": "مرجع الملاحظات النهائية" 
           },
-          "update": {
-            "TITRE": "العنوان",
-            "Référence_des_observations_finales": "مرجع الملاحظات الختامية",
-            "Date_rapport": "تقرير التاريخ",
-            "Date_des_observations_finales": "تاريخ الملاحظات الختامية",
-            "Prochain_rapport": "التقرير التالي",
-            "Pièce_jointe": "الوثائق المرفقة"
+          "update": { 
+            "TITRE": " عنوان",
+            "Référence_des_observations_finales": " مرجع الملاحظات النهائية",
+            "Date_rapport": " تاريخ التقرير",
+            "Date_des_observations_finales": " تاريخ الملاحظات النهائية",
+            "Prochain_rapport": " التقرير القادم",
+            "Pièce_jointe": "المرفقات" 
           },
-          "synthese": {
-            "Synthèse": "نتيجة الجمع بين الطريحة والنقيضة",
-            "code": "مشفر",
-            "detail": "التفاصيل"
+          "synthese": { 
+            "Synthèse": "موجز", 
+            "code": "رمز", 
+            "detail": "تفاصيل" 
           }
         }
       }
     },
     "ps": {
-      "Procédure_spéciales": "الإجراءات الخاصة",
-      "Procédure_spéciale": "إجراء خاص",
-      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ توصيات الإجراءات الخاصة",
-      "list": {
-        "MANDAT": "امر رسمى",
-        "Date_de_la_visite": "تاريخ الزيارة",
-        "RAPPORT_NATIONAL_DE_LA_VISITE": "تقرير الزيارة الوطني",
-        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": "تقرير الإجراء / رد الفعل الوطني",
-        "PLAN_DE_MISE_EN_OEUVRE": "خطة التنفيذ",
-        "Ajouter_Procédure_spéciale": "إضافة إجراء خاص",
-        "Modifier_Procédure_spéciale": "تحرير إجراء خاص"
+      "Procédure_spéciales": "الاجراءات الخاصة", 
+      "Procédure_spéciale": "الاجراء الخاص", 
+      "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ التوصيات حسب الاجراءات الخاصة",
+      "list": { 
+        "MANDAT": " ولاية",
+        "Date_de_la_visite": " تاريخ الزيارة",
+        "RAPPORT_NATIONAL_DE_LA_VISITE": " التقرير الوطني للزيارة",
+        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": " تقرير الزيارة / الاستجابة الوطنية",
+        "PLAN_DE_MISE_EN_OEUVRE": " خطة التنفيذ",
+        "Ajouter_Procédure_spéciale": " ‘إضافة إجراء خاص",
+        "Modifier_Procédure_spéciale": " تعديل إجراء خاص"
       },
-      "update": {
-        "Mandat": "امر رسمى",
-        "Discours_du_président": "خطاب الرئيس",
-        "Date_prévue": "تاريخ",
-        "RAPPORT_NATIONAL_DE_LA_VISITE": "تقرير الزيارة الوطني",
-        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": "تقرير الإجراء / رد الفعل الوطني",
-        "PLAN_DE_MISE_EN_OEUVRE": "خطة التنفيذ",
-        "Lien_externe": "رابط خارجي"
+      "update": { 
+        "Mandat": "Mandat",
+        "MandatAr": "ولاية",
+        "Discours_du_président": " كلمة رئيس الوفد",
+        "Date_prévue": " التاريخ المرتقب",
+        "RAPPORT_NATIONAL_DE_LA_VISITE": " التقرير الوطني للزيارة",
+        "RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE": " تقرير المسطرة/الاستجابة الوطنية",
+        "PLAN_DE_MISE_EN_OEUVRE": " خطة التنفيذ",
+        "Lien_externe": " رابط خارجي"
       }
     },
     "event": {
       "list": {
-        "Evènement": "حدث",
-        "Recherche": "ابحاث",
-        "Titre": "عنوان",
-        "Réinitialiser": "إعادة تعيين",
-        "Rechercher": "بحث",
-        "Lireplus": "قراءة المزيد",
-        "Ajouter_evènement": "أضف حدث",
-        "Modifier_evènement": "تعديل الحدث",
-        "evènement": "حدث"
+        "Evènements": "تظاهرات",
+        "Evènement": " تظاهرة",
+        "Recherche": " بحث",
+        "Titre": " عنوان",
+        "Réinitialiser": " إعادة الضبط",
+        "Rechercher": " بحث",
+        "Lireplus": " أقرأ المزيد",
+        "Ajouter_evènement": " إضافة تظاهرة",
+        "Modifier_evènement": " تعديل تظاهرة",
+        "evènement": " تظاهرة"
       },
-      "update": {
-        "Categorie": "الفئة",
-        "title": "عنوان",
-        "date": "بتاريخ",
-        "description": "وصف"
+      "update": { 
+        "Categorie": " صنف",
+        "title": " عنوان",
+        "date": " تاريخ",
+        "description": " وصف"
       }
     },
-    "state": {
-      "Diagrammes_statistiques": "الرسوم البيانية والإحصائيات",
-      "Recherche": "ابحاث",
-      "Mecanisme": "آلية",
-      "Cycle": "دورة",
-      "Visite": "يزور",
-      "Organe": "عضو",
-      "Etat_de_mis_en_oeuvre": "حالة التنفيذ",
-      "Axe": "محور",
-      "Sous_axe": "المحور الفرعي",
-      "Organisme": "هيئة",
-      "Rechercher": "بحث",
-      "Réinitialiser": "إعادة تعيين",
-      "Mise_en_œuvre_des_recommandations_par_Axe": "تنفيذ توصيات المحور",
-      "Mise_en_œuvre_des_recommandations_par_départements": "تنفيذ التوصيات من قبل الدائرة",
-      "Examen_Périodique_universelle": "الاستعراض الدوري الشامل",
-      "Organes_de_Traités": "هيئات المعاهدات",
-      "Procédures_spéciales": "الإجراءات الخاصة",
-      "Etat_avancement": "تقدم",
-      "Taux": "معدل",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ توصيات هيئات المعاهدات"
-    },
-    "recommandation": {
+    "state": { 
+      "Diagrammes_statistiques": " الرسوم البيانية والإحصائيات",
+      "Recherche": " بحث",
+      "Mecanisme": " آلية",
+      "Cycle": " دورة ",
+      "Visite": " زيارة",
+      "Organe": " هيئة",
+      "Etat_de_mis_en_oeuvre": " حالة التنفيذ",
+      "Axe": " محور",
+      "Sous_axe": " محور فرعي",
+      "Organisme": " منظمة",
+      "Rechercher": " بحث",
+      "Réinitialiser": " إعادة الضبط",
+      "Mise_en_œuvre_des_recommandations_par_Axe": " تنفيذ التوصيات حسب المحاور",
+      "Mise_en_œuvre_des_recommandations_par_départements": "تنفيذ التوصيات حسب القطاعات",
+      "Examen_Périodique_universelle": " الاستعراض الدوري الشامل",
+      "Organes_de_Traités": " هيئات المعاهدات",
+      "Procédures_spéciales": " اللأجراءات الخاصة",
+      "Etat_avancement": " التقدم المحرز",
+      "Taux": " نسبة",
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ التوصيات حسب هيئات المعاهدات"
+    }, 
+    "recommandation": { 
       "title": "توصية",
-      "titles": "التوصيات",
-      "update": {
-        "Cycle": "دورة",
-        "Visite": "يزور",
-        "Organe": "عضو",
-        "Pays": "بلد",
-        "Etaten": "الدولة في٪",
-        "Etatdavancement": "تقدم",
-        "PieceJointe": "الوثائق المرفقة",
-        "Organisme": "هيئة",
-        "ORGANISMES": "المنظمات",
-        "ADRESSE": "عنوان"
+      "titles": "توصيات", 
+      "update": { 
+        "Cycle": "دورة", 
+        "Visite": "زيارة", 
+        "Organe": "هيئة", 
+        "Pays": "بلد", 
+        "Etaten": " الحالة بالنسبة المئوية",
+        "Etatdavancement": " التقدم المحرز",
+        "PieceJointe": " المرفقات",
+        "Organisme": " منظمة",
+        "ORGANISMES": " منظمات",
+        "ADRESSE": " عنوان"
       },
-      "list": {
-        "Recommandations": "التوصيات",
-        "Recommandation": "توصية",
-        "Recherche": "ابحاث",
-        "Organisme": "هيئة",
-        "Pays": "بلد",
-        "Cycle": "دورة",
-        "Visite": "يزور",
-        "Organe": "عضو",
+      "list": { 
+        "Recommandations": "توصيات", 
+        "Recommandation": "توصية", 
+        "Recherche": "بحث", 
+        "Organisme": "منظمة", 
+        "Pays": "بلد", 
+        "Cycle": "دورة", 
+        "Visite": "زيارة", 
+        "Organe": "عضو", 
         "Rechercher": "بحث",
         "Réinitialiser": "إعادة تعيين",
-        "code": "مشفرة",
+        "code": "رمز", 
         "nom": "الكنية",
         "Etatdemisenoeuvre": "حالة التنفيذ",
         "mecanisme": "آلية",
         "DEPARTEMENT": "قسم",
         "OBSERVATIONS": "ملاحظات",
-        "complement": "معلومة اضافية",
-        "Axe": "محور",
-        "Sousaxe": "المحور الفرعي",
+        "complement": "معلومات إضافية", 
+        "Axe": "محور", 
+        "Sousaxe": "محور فرعي", 
         "piece-Jointe": "الوثائق المرفقة"
+      }
+    }, 
+    "synthese": {  
+      "list": { 
+        "Synthèses": " تقارير توليفية",
+        "Synthèse": " تقرير توليفي",
+        "Recherche": " بحث",
+        "Traite": " معاهدة",
+        "Rapport": " تقرير",
+        "Emetteur": " المرسل",
+        "Axe": " محور",
+        "Sous_axe": " محور فرعي",
+        "Rechercher": " بحث",
+        "Réinitialiser": " إعادة الضبط",
+        "CODE": " رمز",
+        "DETAIL": " تفصيل"
       },
-      "detail": {
-        "breadcrumb": "Hôtels"
+      "update": { 
+        "Code": " رمز",
+        "Synthèse": " تقرير توليفي",
+        "Recommandations": " توصيات",
+        "Fiches_organismes": " ورقة المنظمات",
+        "Mecanismes": " آلية",
+        "Cycle": " دورة",
+        "Visite": " زيارة",
+        "Organe": " هيئة",
+        "Axe": " محور",
+        "Sous_axe": " محور فرعي",
+        "Rechercher": " بحث",
+        "RECOMMENDATION": " توصية",
+        "Fiche_organisme": " ورقة المنظمة",
+        "organisme": " منظمة",
+        "synthese": " تقرير توليفي",
+        "Pièce_jointe": " المرفقات"
       }
     },
-    "synthese": {
-      "list": {
-        "Synthèses": "ملخصات",
-        "Synthèse": "نتيجة الجمع بين الطريحة والنقيضة",
-        "Recherche": "ابحاث",
-        "Traite": "يعامل",
-        "Rapport": "نقل",
-        "Emetteur": "جهاز الإرسال",
-        "Axe": "محور",
-        "Sous_axe": "المحور الفرعي",
-        "Rechercher": "بحث",
-        "Réinitialiser": "إعادة تعيين",
-        "CODE": "مشفر",
-        "DETAIL": "التفاصيل"
+    "session": { 
+      "list": { 
+        "Participation_au_session_des_DH": " المشاركة في دورات حقوق الانسان",
+        "Participation": " المشاركة",
+        "Recherche": " بحث",
+        "Session": " دورة",
+        "Rechercher": " بحث",
+        "Réinitialiser": " إعادة الضبط",
+        "session": " دورة",
+        "Année": " سنة",
+        "Discours_de_Mr_le_Ministre": " كلمة السيد الرئيس",
+        "Documents_de_session": " ملف الدورة ",
+        "Ajouter_ParticipationSession": " إضافة مشاركة في الدورة",
+        "Modifier_Participation_Session": " تعديل مشاركة في الدورة",
+        "Participation_Session": " مشاركة في الدورة"
       },
-      "update": {
-        "Code": "مشفر",
-        "Synthèse": "نتيجة الجمع بين الطريحة والنقيضة",
-        "Recommandations": "التوصيات",
-        "Fiches_organismes": "ملفات المؤسسة",
-        "Mecanismes": "الآليات",
-        "Cycle": "دورة",
-        "Visite": "يزور",
-        "Organe": "عضو",
-        "Axe": "محور",
-        "Sous_axe": "المحور الفرعي",
-        "Rechercher": "بحث",
-        "RECOMMENDATION": "توصية",
-        "Fiche_organisme": "ورقة التنظيم",
-        "organisme": "هيئة",
-        "synthese": "نتيجة الجمع بين الطريحة والنقيضة",
-        "Pièce_jointe": "الوثائق المرفقة"
-      }
-    },
-    "session": {
-      "list": {
-        "Participation_au_session_des_DH": "المشاركة في جلسة DH",
-        "Participation": "مشاركة",
-        "Recherche": "ابحاث",
-        "Session": "جلسة",
-        "Rechercher": "بحث",
-        "Réinitialiser": "إعادة تعيين",
-        "session": "جلسة",
-        "Année": "عام",
-        "Discours_de_Mr_le_Ministre": "كلمة الوزير",
-        "Documents_de_session": "وثائق الجلسة",
-        "Ajouter_ParticipationSession": "إضافة جلسة المشاركة",
-        "Modifier_Participation_Session": "تعديل المشاركة في الجلسة",
-        "Participation_Session": "جلسة المشاركة"
-      },
-      "update": {
-        "Session": "جلسة",
-        "Année": "عام",
-        "Discours_de_Mr_le_Ministre": "كلمة الوزير",
-        "Documents_de_examen": "وثائق الامتحان"
+      "update": { 
+        "Session": "دورة", 
+        "Année": "سنة", 
+        "Discours_de_Mr_le_Ministre": "كامة السيد الرئيس", 
+        "Documents_de_examen": "ملف الاستعراض" 
       }
     },
     "questionnaire": {
       "list": {
-        "Questionnaires": "الاستبيانات",
-        "Questionnaire": "الدراسة الاستقصائية",
-        "Recherche": "ابحاث",
-        "Theme": "موضوع",
-        "Sous_Theme": "تحت الموضوع",
-        "Rechercher": "بحث",
-        "Réinitialiser": "إعادة تعيين",
-        "année": "عام",
-        "Documents": "مستندات",
-        "Ajouter_Questionnaire": "إضافة استبيان",
-        "Modifier_Questionnaire": "تحرير الاستبيان"
+        "Questionnaires": " استبيانات",
+        "Questionnaire": " استبيان",
+        "Recherche": " بحث",
+        "Theme": " موضوع",
+        "Sous_Theme": " موضوع محوري",
+        "Rechercher": " بحث",
+        "Réinitialiser": " إعادة الضبط",
+        "année": " سنة",
+        "Documents": " ملف",
+        "Ajouter_Questionnaire": " إضافة استبيان",
+        "Modifier_Questionnaire": " تعديل استبيان"
       },
-      "update": {}
+      "update": { 
+
+      }
     }
   }
+
 }
