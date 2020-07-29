@@ -51,6 +51,7 @@ export class VisiteComponent implements OnInit {
   
   visitePageSubject = new Subject();
   visitePage: {name: string, p: number, t: number}[] = [];
+  retate = 0;
   
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
@@ -58,6 +59,10 @@ export class VisiteComponent implements OnInit {
     , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
+    this.mytranslate.lang.subscribe(lang => {
+      this.retate = lang === 'fr' ? 0 : 180;
+    });
+    
     setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300)
       ;
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(

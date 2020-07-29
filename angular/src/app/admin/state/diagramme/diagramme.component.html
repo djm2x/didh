@@ -18,7 +18,7 @@
                         <mat-label>{{ 'admin.state.Mecanisme' | translate }}</mat-label>
                         <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of mecanismes | async" [value]="mytranslate.langSync === 'fr' ? e.name : e.nameAr">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
+                            <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -26,7 +26,7 @@
                         <mat-label>{{ 'admin.state.Cycle' | translate }}</mat-label>
                         <mat-select formControlName="idCycle">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                            <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -51,7 +51,7 @@
                         <mat-select formControlName="etat">
                             <!-- <mat-option value="0">...</mat-option> -->
                             <mat-option value="">...</mat-option>
-                            <mat-option *ngFor="let e of etats | async" [value]="mytranslate.langSync === 'fr' ? e.name : e.nameAr">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
+                            <mat-option *ngFor="let e of etats | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <!-- <mat-form-field appearance="fill" class="col-md-5">
@@ -121,7 +121,7 @@
         </div>
 
         <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-          <img src="assets/line.png" height="10px" width="280px">
+          <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' +  rotateY + 'deg)'" >
           <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
             {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}
           </h5>
@@ -133,14 +133,15 @@
           <div class="d-flex flex-wrap justify-content-center ">
 
             <div *ngFor="let e of departementList; let i=index">
-              <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+              <!-- <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle> -->
+              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="120" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
 
               <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
             </div>
           </div>
 
           <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-            <img src="assets/line.png" height="10px" width="280px">
+            <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' +  rotateY + 'deg)'" >
             <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
                 {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}
             </h5>

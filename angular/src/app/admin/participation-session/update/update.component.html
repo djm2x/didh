@@ -14,7 +14,7 @@
           <input matInput formControlName="session" required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>{{ 'admin.session.update.Année' | translate }}</mat-label>
           <mat-select formControlName="annee">
             <mat-option *ngFor="let e of uow.years" [value]="e">{{ e }}</mat-option>

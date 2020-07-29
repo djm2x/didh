@@ -60,6 +60,7 @@ export class ListComponent implements OnInit {
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: 'Taux de recommandations par organe' });
 
   organePageSubject = new Subject();
+  
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {

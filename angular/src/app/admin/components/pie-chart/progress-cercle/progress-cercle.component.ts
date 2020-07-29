@@ -19,9 +19,15 @@ export class ProgressCercleComponent implements OnInit {
   @Input() o = { name: null, t: 0, p: 0 };
   @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number };
 
+  retate = 0;
+
   constructor(public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
+    this.mytranslate.lang.subscribe(lang => {
+      this.retate = lang === 'fr' ? 0 : 180;
+    });
+    
     this.data.subscribe(async r => {
 
       if (r.name instanceof Observable) {
@@ -36,6 +42,15 @@ export class ProgressCercleComponent implements OnInit {
       }
 
     });
+  }
+
+  tooltipMsg(prc: number, taux: number) {
+    if (this.mytranslate.langSync === 'fr') {
+      return 'État d\'avancement : ' + prc + '%' + ' - Taux : ' + taux.toFixed(0) + '%';
+    }
+
+    return `التقدم المحرز : ${prc} % - نسبة ${taux.toFixed(0)} %    `;
+    // return ` % ${taux.toFixed(0)} : نسبة - % ${prc} التقدم المحرز`;
   }
 
 }

@@ -60,6 +60,7 @@ export class DiagrammeComponent implements OnInit {
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
   departementList: { name: string, p: number, t: number }[] = [];
+  rotateY = 0;
 
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService
@@ -72,9 +73,13 @@ export class DiagrammeComponent implements OnInit {
 
     this.createForm();
 
+    this.mytranslate.lang.subscribe(r => {
+      this.rotateY = r === 'fr' ? 0 : 180;
+    });
+
   }
 
-  searchAndGet(o: Model) {
+  searchAndGet(o: Model) { 
     // console.log(o);
     this.o = o;
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;

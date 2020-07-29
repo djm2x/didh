@@ -182,6 +182,7 @@ namespace Admin5.Controllers
         [HttpPost]
         public async Task<IActionResult> StateParamAxe(Model model)
         {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
             int recommendationsCount = _context.Recommendations.Count();
             var q = _context.Recommendations
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
@@ -231,7 +232,7 @@ namespace Admin5.Controllers
             //     ;
 
             var axe = await q
-                .GroupBy(e => e.Axe.Label)
+                .GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -243,7 +244,7 @@ namespace Admin5.Controllers
                 ;
 
             var department = await q
-                .GroupBy(e => e.RecomOrgs.FirstOrDefault().Organisme.Label)
+                .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
                 // .Select(e => new
                 // {
                 //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
@@ -334,9 +335,10 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateVisite()
         {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
             int recommendationsCount = _context.Recommendations.Count();
             var list = await _context.Recommendations
-                .GroupBy(e => e.Visite.Mandat)
+                .GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -489,7 +491,7 @@ namespace Admin5.Controllers
         public async Task<IActionResult> GenericByRecommendation(string table, string type)
         {
             //https://stackoverflow.com/questions/57131550/why-cant-i-create-a-listt-of-anonymous-type-in-c
-
+            string lng = Request.Headers["mylang"].FirstOrDefault();
             var list = new[] { new { table = "", value = 0.0 } }.ToList();
             int recommendationsCount = _context.Recommendations.Count();
             if (table == "axe")
@@ -497,37 +499,37 @@ namespace Admin5.Controllers
                 list = await _context.Axes
                     .Select(e => new
                     {
-                        table = e.Label,
+                        table = lng == "fr" ? e.Label : e.LabelAr,
                         value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
                     })
                     .Distinct()
                     .ToListAsync()
                 ;
             }
-            else if (table == "organe")
-            {
-                list = await _context.Organes
-                    .Select(e => new
-                    {
-                        table = e.Label,
-                        value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
-                    })
-                    .Distinct()
-                    .ToListAsync()
-                ;
-            }
-            else
-            {
-                list = _context.Visites
-                    .Select(e => new
-                    {
-                        table = e.Mandat,
-                        value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
-                    })
-                    .Distinct()
-                    .ToList()
-                ;
-            }
+            // else if (table == "organe")
+            // {
+            //     list = await _context.Organes
+            //         .Select(e => new
+            //         {
+            //             table = e.Label,
+            //             value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+            //         })
+            //         .Distinct()
+            //         .ToListAsync()
+            //     ;
+            // }
+            // else
+            // {
+            //     list = _context.Visites
+            //         .Select(e => new
+            //         {
+            //             table = e.Mandat,
+            //             value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+            //         })
+            //         .Distinct()
+            //         .ToList()
+            //     ;
+            // }
 
             return Ok(list);
         }

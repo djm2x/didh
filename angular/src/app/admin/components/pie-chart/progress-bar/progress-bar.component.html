@@ -5,7 +5,8 @@
             {{title}}
         </h5>
     </div>
-    <div class="miniBar" [matTooltip]="'Etat d’avancement ' + widthOne + '% - Taux ' + widthTwo + '%'">
+    <div class="miniBar"  [style.transform]="'rotateY(' +  rotateY + 'deg)'" 
+    [matTooltip]="tooltipMsg(widthOne, widthTwo)">
         <!-- <div class="miniBarProgress" style="width: 20%; z-index: 3; background-color: #8a898a;"></div> -->
         <div class="miniBarProgress" [style.width.%]="widthTwo" style="z-index: 1; background-color: var(--primary);"></div>
         <div class="miniBarProgress" [style.width.%]="(widthOne * widthTwo) / 100" style="z-index: 2; background-color: #d17c36;"></div>

@@ -3,6 +3,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { UowService } from 'src/app/services/uow.service';
 import { Subject } from 'rxjs';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-bar',
@@ -42,10 +43,15 @@ export class BarComponent implements OnInit {
   ];
 
   @Input() dataSubject = new Subject();
+  retate = 0;
 
-  constructor() { }
+  constructor(public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
+    this.mytranslate.lang.subscribe(lang => {
+      this.retate = lang === 'fr' ? 0 : 180;
+    });
+
     this.dataSubject.subscribe((r: { barChartLabels: Label[], barChartData: ChartDataSets[], title: string }) => {
       this.title = r.title;
       this.barChartLabels = r.barChartLabels;

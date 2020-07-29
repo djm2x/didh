@@ -28,9 +28,9 @@
       "droitHomme": "حقوق الإنسان لا ترتبط فقط بالطلب ، ولكن أيضا بالواجب",  
       "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "تفعيل توصيات آليات الأمم المتحدة لحقوق الإنسان", 
       "ExamenPériodiqueuniversell": "الاستعراض الدوري الشام", 
-      "OrganesdeTraités": "هيئات المعاهدا", 
+      "OrganesdeTraités": "هيئات المعاهدات", 
       "Procéduresspéciales": "الإجراءات الخاص", 
-      "Miseenœuvredesaxe": "تفعيل المحاو", 
+      "Miseenœuvredesaxe": "تفعيل المحاور", 
       "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا"   
     },
     "epu": { 
@@ -47,7 +47,7 @@
         "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور", 
         "Tauxderecommandationsparaxe": "نسبة التوصيات حسب المحور", 
         "AjouterExamen": "إضافة إستعراض", 
-        "ModifierExamen": "نعديل إستعراض" 
+        "ModifierExamen": "تعديل إستعراض" 
       }
     },
     "organe": {

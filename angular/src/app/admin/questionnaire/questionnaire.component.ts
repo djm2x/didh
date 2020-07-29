@@ -91,6 +91,7 @@ export class QuestionnaireComponent implements OnInit {
       width: '80vw',
       disableClose: true,
       data: { model: o, title: text },
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
     });
 
     return dialogRef.afterClosed();

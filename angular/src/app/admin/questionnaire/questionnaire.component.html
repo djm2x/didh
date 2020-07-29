@@ -1,10 +1,10 @@
 <div class="host">
-  <app-title title="{{ 'admin.event.list.Questionnaires' | translate }}"></app-title>
+  <app-title title="{{ 'admin.questionnaire.list.Questionnaires' | translate }}"></app-title>
 
 
   <div class="d-flex flex-row-reverse mt-3 mb-3">
     <button mat-raised-button color="primary" (click)="add()">
-      <mat-icon>add</mat-icon> {{ 'admin.event.list.Questionnaire' | translate }}
+      <mat-icon>add</mat-icon> {{ 'admin.questionnaire.list.Questionnaire' | translate }}
     </button>
   </div>
 
@@ -14,7 +14,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>search</mat-icon>
-            <p>{{ 'admin.event.list.Recherche' | translate }}</p>
+            <p>{{ 'admin.questionnaire.list.Recherche' | translate }}</p>
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -22,7 +22,7 @@
         </mat-divider>
         <div class="row m-2">
           <mat-form-field appearance="fill" class="col-md-5">
-            <mat-label>{{ 'admin.event.list.Theme' | translate }}</mat-label>
+            <mat-label>{{ 'admin.questionnaire.list.Theme' | translate }}</mat-label>
             <mat-select [formControl]="theme" (selectionChange)="selectChange($event.value)">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of themes" [value]="e.name">{{ e.name }}</mat-option>
@@ -30,7 +30,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="col-md-5">
-            <mat-label>{{ 'admin.event.list.Sous_Theme' | translate }}</mat-label>
+            <mat-label>{{ 'admin.questionnaire.list.Sous_Theme' | translate }}</mat-label>
             <mat-select [formControl]="sousTheme">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of sousThemes" [value]="e">{{ e }}</mat-option>
@@ -41,12 +41,12 @@
         <div class="right">
           <button mat-raised-button color="primary" (click)="search()" [disabled]="theme.value === ''">
             <mat-icon>search</mat-icon>
-            {{ 'admin.event.list.Rechercher' | translate }}
+            {{ 'admin.questionnaire.list.Rechercher' | translate }}
           </button>
           &nbsp;
           <button mat-raised-button (click)="reset()">
             <mat-icon>refresh</mat-icon>
-            {{ 'admin.event.list.Réinitialiser' | translate }}
+            {{ 'admin.questionnaire.list.Réinitialiser' | translate }}
           </button>
         </div>
 
