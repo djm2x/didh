@@ -7,3 +7,7 @@
 ::ng-deep .blue .mat-progress-spinner circle, .mat-spinner circle {
     stroke: var(--primary) !important;
 }
+
+::ng-deep .gray .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: gray !important;
+}

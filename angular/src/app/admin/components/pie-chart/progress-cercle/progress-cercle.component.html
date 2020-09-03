@@ -2,6 +2,8 @@
     <div class="d-flex justify-content-center" style="height: 300px;">
 
         <div style="position: relative;width: 100%;">
+           
+
             <div class="blue">
                 <mat-progress-spinner [matTooltip]="'Taux : ' + o.t + '%'" style="position: absolute;"
                     [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
@@ -11,9 +13,16 @@
 
             <div class="orange">
                 <mat-progress-spinner class="orange"
-                    [matTooltip]="tooltipMsg(o.p, o.t)"
+                    [matTooltip]="tooltipMsg(o.p, o.r, o.t)"
                     style="position: absolute;" [style.transform]="'translateX(' + transform + '%)'"
                     [diameter]="diameter" [color]="'warn'" [mode]="'determinate'" [value]="(o.p * o.t) / 100">
+                </mat-progress-spinner>
+            </div>
+
+            <div class="gray">
+                <mat-progress-spinner [matTooltip]="tooltipMsg(o.p, o.r, o.t)" style="position: absolute;"
+                    [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
+                    [mode]="'determinate'" [value]="(o.r * o.t) / 100">
                 </mat-progress-spinner>
             </div>
         </div>

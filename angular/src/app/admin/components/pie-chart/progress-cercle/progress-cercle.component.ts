@@ -15,9 +15,9 @@ export class ProgressCercleComponent implements OnInit {
   @Input() transform = 50;
 
   @Input() public isInForLoop = false;
-  @Input() public data = new Subject<{ name: string | Observable<string>, t: number, p: number }>();
-  @Input() o = { name: null, t: 0, p: 0 };
-  @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number };
+  @Input() public data = new Subject<{ name: string | Observable<string>, t: number, p: number, r: number }>();
+  @Input() o = { name: null, t: 0, p: 0, r:0 };
+  @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number, r: number };
 
   retate = 0;
 
@@ -35,6 +35,9 @@ export class ProgressCercleComponent implements OnInit {
           this.o.name = name;
           this.o.t = r.t;
           this.o.p = r.p;
+          this.o.r = r.r;
+
+          console.log(this.o)
         });
 
       } else {
@@ -44,9 +47,9 @@ export class ProgressCercleComponent implements OnInit {
     });
   }
 
-  tooltipMsg(prc: number, taux: number) {
+  tooltipMsg(prc: number, realise: number, taux: number) {
     if (this.mytranslate.langSync === 'fr') {
-      return 'État d\'avancement : ' + prc + '%' + ' - Taux : ' + taux.toFixed(0) + '%';
+      return 'État d\'avancement : ' + prc + '% - Réaliser : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
     }
 
     return `التقدم المحرز : ${prc} % - نسبة ${taux.toFixed(0)} %    `;

@@ -50,7 +50,7 @@ export class VisiteComponent implements OnInit {
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
   
   visitePageSubject = new Subject();
-  visitePage: {name: string, p: number, t: number}[] = [];
+  visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
   
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
@@ -116,21 +116,7 @@ export class VisiteComponent implements OnInit {
   stateVisite() {
     this.uow.recommendations.stateVisite().subscribe(r => {
       r = r.filter(e => e.name !== null);
-      console.log(r);
       this.visitePage = r;
-      // r = r.filter(e => e.name !== null);
-      // console.log(r);
-      // const barChartLabels = r.map(e => e.name);
-      // const barChartData = [
-      //   { data: [], label: 'Etat d’avancement' },
-      //   { data: [], label: 'Taux' },
-      // ];
-
-      // r.forEach(e => {
-      //   barChartData[0].data.push(e.p);
-      //   barChartData[1].data.push(e.t);
-      // });
-      // this.visitePageSubject.next({ barChartLabels, barChartData, title: 'Mise en œuvre des recommandations par Organes de Traités' });
     });
   }
 

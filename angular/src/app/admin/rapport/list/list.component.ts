@@ -109,11 +109,13 @@ export class ListComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
         { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
       ];
 
       r.forEach(e => {
         barChartData[0].data.push(e.p);
         barChartData[1].data.push(e.t);
+        barChartData[2].data.push(e.r);
       });
       this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });

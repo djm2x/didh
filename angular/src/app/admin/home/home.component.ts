@@ -27,12 +27,12 @@ export class HomeComponent implements OnInit {
   pieChartSubjectPS = new BehaviorSubject<IData>({ type: 'statePS', title: 'Procédures spéciales' } as any);
   // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'count', title: 'Etat d’avancement des recommandations par axe' });
   // pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: 'Taux de recommandations par axe' });
-  list: { name: string, p: number, t: number }[] = [];
+  list: { name: string, p: number, t: number, r: number }[] = [];
   axesValue: { id: number, table: string, value: number }[] = [];
 
-  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number }>();
-  dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number }>();
-  dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number }>();
+  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+  dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+  dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
 
   constructor(private uow: UowService, public session: SessionService
     , public mytranslate: MyTranslateService) { }

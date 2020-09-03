@@ -40,6 +40,7 @@ export class BarComponent implements OnInit {
     // { backgroundColor: ['#d17c36', '#2d71a1'], },
     { backgroundColor: '#d17c36' },
     { backgroundColor: '#2d71a1' },
+    { backgroundColor: 'gray' },
   ];
 
   @Input() dataSubject = new Subject();
