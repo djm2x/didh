@@ -9,6 +9,7 @@ import { MyTranslateService } from 'src/app/my.translate.service';
 export class ProgressBarComponent implements OnInit {
   @Input() widthOne = 0;
   @Input() widthTwo = 0;
+  @Input() widthThree = 0;
   @Input() title = '';
 
   rotateY = 0;
@@ -20,12 +21,12 @@ export class ProgressBarComponent implements OnInit {
     });
   }
 
-  tooltipMsg(prc: number, taux: number) {
+  tooltipMsg(prc: number, realise: number, taux: number) {
     if (this.mytranslate.langSync === 'fr') {
-      return 'État d\'avancement : ' + prc + '%' + ' - Taux : ' + taux.toFixed(0) + '%';
+      return 'État d\'avancement : ' + prc + '% - Réaliser : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
     }
 
-    return `التقدم المحرز : ${prc} % - نسبة ${taux.toFixed(0)} %    `;
+    return `التقدم المحرز : ${prc} % - منجز : ${realise} % - نسبة ${taux.toFixed(0)} %    `;
     // return ` % ${taux.toFixed(0)} : نسبة - % ${prc} التقدم المحرز`;
   }
 

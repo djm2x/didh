@@ -1,8 +1,8 @@
 <div class="host">
-  <app-title title="{{ 'admin.event.list.Synthèse' | translate }}"></app-title>
+  <app-title title="{{ 'admin.synthese.list.Synthèse' | translate }}"></app-title>
 
   <mat-tab-group class="example-stretched-tabs mat-elevation-z4" #matgroup style="margin-top: 15px;">
-    <mat-tab label="{{ 'admin.event.list.Synthèse' | translate }}" [disabled]='false'>
+    <mat-tab label="{{ 'admin.synthese.list.Synthèse' | translate }}" [disabled]='false'>
       <ng-template matTabContent>
         <form [formGroup]="myForm">
           <div class="myForm" style="margin: 15px; height: 100%;">
@@ -13,12 +13,12 @@
 
             <div class="inputs">
               <mat-form-field appearance="fill">
-                <mat-label>{{ 'admin.event.update.Code' | translate }}</mat-label>
+                <mat-label>{{ 'admin.synthese.update.Code' | translate }}</mat-label>
                 <input matInput formControlName="code" required>
               </mat-form-field>
 
               <mat-form-field appearance="fill">
-                <mat-label>{{ 'admin.event.update.Synthèse' | translate }}</mat-label>
+                <mat-label>{{ 'admin.synthese.update.Synthèse' | translate }}</mat-label>
                 <textarea matInput rows="6" formControlName="detail" required></textarea>
                 <!-- <input matInput formControlName="adresse" required> -->
               </mat-form-field>
@@ -41,7 +41,7 @@
 
     </mat-tab>
     <!--  -->
-    <mat-tab label="{{ 'admin.event.update.Recommandations' | translate }}" [disabled]='o.id === 0'>
+    <mat-tab label="{{ 'admin.synthese.update.Recommandations' | translate }}" [disabled]='o.id === 0'>
       <ng-template matTabContent>
         <div style="margin: 15px;">
             <app-recommendations [listFromParent]="listRecommendation" [isEdit]="id !== 0" [synthese]="o">
@@ -50,7 +50,7 @@
       </ng-template>
     </mat-tab>
 
-    <mat-tab label="{{ 'admin.event.update.Fiches_organismes' | translate }}" [disabled]='o.id === 0'>
+    <mat-tab label="{{ 'admin.synthese.update.Fiches_organismes' | translate }}" [disabled]='o.id === 0'>
       <ng-template matTabContent>
         <app-fiche-synthese [synthese]="o"></app-fiche-synthese>
       </ng-template>

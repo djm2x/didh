@@ -301,13 +301,13 @@ namespace Admin5.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> StateVisite()
+        public async Task<IActionResult> StateVisite() // used
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
             int recommendationsCount = _context.Recommendations.Count();
 
-            var list = await _context.Recommendations.Where(e => e.Visite != null).ToListAsync();
+            var list = await _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite).ToListAsync();
 
             var list2 = list.GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
                 .Select(e => new
@@ -459,7 +459,7 @@ namespace Admin5.Controllers
 
 
         [HttpGet("{table}/{type}")]
-        public async Task<IActionResult> GenericByRecommendation(string table, string type)
+        public async Task<IActionResult> GenericByRecommendation(string table, string type) // used
         {
             //https://stackoverflow.com/questions/57131550/why-cant-i-create-a-listt-of-anonymous-type-in-c
             string lng = Request.Headers["mylang"].FirstOrDefault();
@@ -471,7 +471,12 @@ namespace Admin5.Controllers
                     .Select(e => new
                     {
                         table = lng == "fr" ? e.Label : e.LabelAr,
-                        value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                        value = type == "taux" ? 
+                            (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
+                            (type == "etat" ? 
+                                e.Recommendations.Where(s => s.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count() : 
+                                e.Recommendations.Where(s => s.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()
+                            ),
                     })
                     .Distinct()
                     .ToListAsync()

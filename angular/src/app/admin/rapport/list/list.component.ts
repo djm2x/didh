@@ -56,7 +56,7 @@ export class ListComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  pieChartSubject = new BehaviorSubject<IData>({ table: 'organe', type: 'count', title: 'Etat d’avancement des recommandations par organe' });
+  pieChartSubject = new BehaviorSubject<IData>({ table: 'organe', type: 'etat', title: 'Etat d’avancement des recommandations par organe' });
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: 'Taux de recommandations par organe' });
 
   organePageSubject = new Subject();

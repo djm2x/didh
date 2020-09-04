@@ -46,7 +46,7 @@ export class VisiteComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'count', title: 'Etat d’avancement des recommandations par visite'});
+  pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'etat', title: 'Etat d’avancement des recommandations par visite'});
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
   
   visitePageSubject = new Subject();

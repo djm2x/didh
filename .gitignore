@@ -5,5 +5,5 @@
 # **/wwwroot
 **/bin
 **/obj
-*.docx
+# *.docx
 *.xlsx

@@ -24,20 +24,21 @@
       "Pays": "Pays"
     },
     "home": {
-      "SystèmedeSuividesrecommandations": "Système de Suivi des recommandations",
+      "SystèmedeSuividesrecommandations": "Système de Suivi des recommandations issues des mécanismes onusiens des droits de l'homme",
       "droitHomme": "Les droits de l'homme sont liés non seulement à la demande, mais aussi au devoir",
-      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "Mise en œuvre des recommandations des mécanismes onusiens des droits de l’homme",
+      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "Mise en œuvre des recommandations par mécanismes",
       "ExamenPériodiqueuniversell": "Examen Périodique universell",
       "OrganesdeTraités": "Organes de Traités",
       "Procéduresspéciales": "Procédures spéciales",
-      "Miseenœuvredesaxe": "Mise en œuvre des axe",
+      "Miseenœuvredesaxe": "Mise en œuvre des axe", 
       "Miseenœuvredesrecommandationspardépartements": "Mise en œuvre des recommandations par départements"
     },
     "epu": {
       "list": {
-        "Examenpériodiqueuniversal": "Examen périodique universal",
+        "Examenpériodiqueuniversal": "Examen périodique universel",
         "Examen": "Examen",
         "libelle": "libelle",
+        "Realisé": "Recommandations realisé par axe",
         "Rapportnational": "Rapport national",
         "CompilationHCDHSOCIETECIVILE": "Compilation HCDH/SOCIETE CIVILE",
         "Discoursduprésident": "Discours du président",
@@ -66,6 +67,7 @@
         "PLANDEMISEENOEUVRE": "Plan De Mise En Oeuvre",
         "Etatavancement": "Etat d’avancement",
         "Taux": "Taux",
+        "Réalisé": "Réalisé",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "Mise en œuvre des recommandations par Organes de Traités"
       },
       "update": {

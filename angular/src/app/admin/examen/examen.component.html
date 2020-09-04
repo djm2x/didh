@@ -9,12 +9,11 @@
   <section>
     <!-- <h3>Accueil</h3> -->
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis atque natus consequuntur quas aut iure mollitia
-        nam ducimus doloribus alias.</p>
+      <p>à communiquer par Mme jihane.</p>
     </ng-container>
     <ng-template #elseTemplate>
       <p>
-        لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه
+        لتتواصل معه السيدة جيهان
       </p>
     </ng-template>
     
@@ -23,11 +22,14 @@
 
   </section>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+    </div>
+    <div class="col-md-4">
+      <app-pie-chart [obs]="pieChartSubjectR"></app-pie-chart>
     </div>
   </div>
 

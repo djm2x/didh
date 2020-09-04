@@ -1,13 +1,13 @@
 <div class="inputs2">
   <mat-form-field appearance="fill">
-    <mat-label>{{ 'admin.event.update.Mecanismes' | translate }}</mat-label>
+    <mat-label>{{ 'admin.synthese.update.Mecanismes' | translate }}</mat-label>
     <mat-select (selectionChange)="selectMecanismeChange($event.value)" [formControl]="selectInput">
       <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill" *ngIf="cycleActive">
-    <mat-label>{{ 'admin.event.update.Cycle' | translate }}</mat-label>
+    <mat-label>{{ 'admin.synthese.update.Cycle' | translate }}</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idCycle">
       <mat-option value="0">...</mat-option>
       <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -15,7 +15,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill" *ngIf="visiteActive">
-    <mat-label>{{ 'admin.event.update.Visite' | translate }}</mat-label>
+    <mat-label>{{ 'admin.synthese.update.Visite' | translate }}</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idVisite">
       <mat-option value="0">...</mat-option>
       <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.objet }}</mat-option>
@@ -23,7 +23,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill" *ngIf="organeActive">
-    <mat-label>{{ 'admin.event.update.Organe' | translate }}</mat-label>
+    <mat-label>{{ 'admin.synthese.update.Organe' | translate }}</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idOrgane">
       <mat-option value="0">...</mat-option>
       <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -32,7 +32,7 @@
 </div>
 <div class="inputs2">
   <mat-form-field appearance="fill">
-    <mat-label>{{ 'admin.event.update.Axe' | translate }}</mat-label>
+    <mat-label>{{ 'admin.synthese.update.Axe' | translate }}</mat-label>
     <mat-select [formControl]="idAxe" (selectionChange)="axeChange($event.value)">
       <mat-option value="0">...</mat-option>
       <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ e.label }}</mat-option>
@@ -40,7 +40,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>{{ 'admin.event.update.Sous_axe' | translate }}</mat-label>
+    <mat-label>{{ 'admin.synthese.update.Sous_axe' | translate }}</mat-label>
     <mat-select [formControl]="idSousAxe">
       <mat-option value="0">...</mat-option>
       <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ e.label }}</mat-option>
@@ -51,7 +51,7 @@
 
   <button mat-raised-button color="primary" (click)="search()">
     <mat-icon>search</mat-icon>
-    {{ 'admin.event.update.Rechercher' | translate }}
+    {{ 'admin.synthese.update.Rechercher' | translate }}
   </button>
   <!-- &nbsp;
   <button mat-raised-button (click)="reset()">
@@ -85,7 +85,7 @@
       </ng-container>
 
       <ng-container [matColumnDef]="columnDefs[1].columnDef">
-        <th mat-header-cell *matHeaderCellDef>{{ 'admin.event.update.RECOMMENDATION' | translate }}</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'admin.synthese.update.RECOMMENDATION' | translate }}</th>
         <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef]}}</td>
       </ng-container>
 

@@ -35,9 +35,10 @@
     },
     "epu": { 
       "list": { 
-        "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل", 
+        "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",  
         "Examen": "استعراض", 
         "libelle": "الصياغة", 
+        "Realisé": "منجز ",
         "Rapportnational": "التقرير الوطني", 
         "CompilationHCDHSOCIETECIVILE": "تجميع  مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني", 
         "Discoursduprésident": "كلمة رئيس الوفد", 
@@ -66,6 +67,7 @@
         "PLANDEMISEENOEUVRE": " مخطط التنفيذ",
         "Etatavancement": " التقدم المحرز",
         "Taux": " نسبة",
+        "Réalisé": "منجز",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "تنفيذ التوصيات حسب هيئات المعاهدات"
       }, 
       "update": { 

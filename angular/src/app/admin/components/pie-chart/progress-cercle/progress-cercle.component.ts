@@ -52,7 +52,7 @@ export class ProgressCercleComponent implements OnInit {
       return 'État d\'avancement : ' + prc + '% - Réaliser : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
     }
 
-    return `التقدم المحرز : ${prc} % - نسبة ${taux.toFixed(0)} %    `;
+    return `التقدم المحرز : ${prc} % - منجز : ${realise} % - نسبة ${taux.toFixed(0)} %    `;
     // return ` % ${taux.toFixed(0)} : نسبة - % ${prc} التقدم المحرز`;
   }
 

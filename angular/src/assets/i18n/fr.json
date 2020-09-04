@@ -30,14 +30,15 @@
       "ExamenPériodiqueuniversell": "Examen Périodique universell",
       "OrganesdeTraités": "Organes de Traités",
       "Procéduresspéciales": "Procédures spéciales",
-      "Miseenœuvredesaxe": "Mise en œuvre des axe",
+      "Miseenœuvredesaxe": "Mise en œuvre des axe", 
       "Miseenœuvredesrecommandationspardépartements": "Mise en œuvre des recommandations par départements"
     },
     "epu": {
       "list": {
-        "Examenpériodiqueuniversal": "Examen périodique universal",
+        "Examenpériodiqueuniversal": "Examen périodique universel",
         "Examen": "Examen",
         "libelle": "libelle",
+        "Realisé": "Recommandations realisé par axe",
         "Rapportnational": "Rapport national",
         "CompilationHCDHSOCIETECIVILE": "Compilation HCDH/SOCIETE CIVILE",
         "Discoursduprésident": "Discours du président",
