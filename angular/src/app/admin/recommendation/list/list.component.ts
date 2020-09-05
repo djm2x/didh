@@ -253,7 +253,7 @@ export class ListComponent implements OnInit {
 
 }
 
-class Model {
+export class Model {
   idAxe = 0;
   idSousAxe = 0;
   idOrganisme = 0;

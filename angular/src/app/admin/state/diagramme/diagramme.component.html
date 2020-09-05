@@ -39,15 +39,23 @@
                         </mat-select>
                     </mat-form-field> -->
 
-                    <mat-form-field appearance="fill" *ngIf="idCycle.value === 1" class="col-md-5">
+                    <mat-form-field appearance="fill" *ngIf="selectedIndex === 0" class="col-md-5">
                         <mat-label>{{ 'admin.state.Cycle' | translate }}</mat-label>
                         <mat-select formControlName="idCycle">
                             <mat-option value="0">...</mat-option>
                             <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
                         </mat-select>
                     </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="selectedIndex === 1" class="col-md-5">
+                        <mat-label>{{ 'admin.state.Organe' | translate }}</mat-label>
+                        <mat-select formControlName="idOrgane">
+                            <mat-option value="0">...</mat-option>
+                            <mat-option *ngFor="let e of organes | async" [value]="e.id">
+                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-                    <mat-form-field appearance="fill" *ngIf="idOrgane.value === 1" class="col-md-5">
+                    <mat-form-field appearance="fill" *ngIf="selectedIndex === 2" class="col-md-5">
                         <mat-label>{{ 'admin.state.Visite' | translate }}</mat-label>
                         <mat-select formControlName="idVisite">
                             <mat-option value="0">...</mat-option>
@@ -56,14 +64,6 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field appearance="fill" *ngIf="idVisite.value === 1" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Organe' | translate }}</mat-label>
-                        <mat-select formControlName="idOrgane">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of organes | async" [value]="e.id">
-                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
 
                     <mat-form-field appearance="fill" class="col-md-5">
                         <mat-label>{{ 'admin.state.Etat_de_mis_en_oeuvre' | translate }}</mat-label>
@@ -130,6 +130,10 @@
             </form>
 
             <mat-divider> </mat-divider>
+
+            <div class="col-md-10">
+                <app-recomm [fromParent]="toChild"></app-recomm>
+            </div>
 
 
             <div class="row justify-content-center">

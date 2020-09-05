@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { MatTabGroup } from '@angular/material';
+import { Model } from '../../recommendation/list/list.component';
 
 @Component({
   selector: 'app-diagramme',
@@ -64,6 +65,7 @@ export class DiagrammeComponent implements OnInit {
   departementList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
+  toChild = new Subject<Model>();
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService
     , public mytranslate: MyTranslateService) {
@@ -81,36 +83,41 @@ export class DiagrammeComponent implements OnInit {
 
   }
 
-  searchAndGet(o: Model) { 
+  searchAndGet(o: Model) {
     // console.log(o);
+    o.mecanisme = this.o.mecanisme;
+    this.toChild.next(o);
     this.o = o;
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
       console.log(r);
-      this.mytranslate.get('admin.event.list.Ajouter_evènement')
+      // this.mytranslate.get('admin.event.list.Ajouter_evènement')
       this.axesList = [];
       this.axesList = r.axe;
       this.departementList = [];
       this.departementList = r.department;
       // const title = 'l’Etat d’avancement des recommandations par axe';
       // this.listAxes.next({list: r, title});
-      const organeList: { name: string, p: number, t: number, }[] = [];
+      const organeList: { name: string, p: number, t: number, r: number }[] = [];
       const epu = {
         name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
         p: r.macanisme.epu.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.epu.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
+        r: r.macanisme.epu.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ot = {
         name: this.mytranslate.get('admin.state.Organes_de_Traités'),
         p: r.macanisme.ot.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.ot.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
+        r: r.macanisme.ot.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       const ps = {
         name: this.mytranslate.get('admin.state.Procédures_spéciales'),
         p: r.macanisme.ps.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.ps.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
+        r: r.macanisme.ps.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
       if (r.macanisme.epu.p !== 0) {
@@ -133,26 +140,37 @@ export class DiagrammeComponent implements OnInit {
     // });
   }
 
+  // tslint:disable-next-line: member-ordering
+  selectedIndex = 0;
+
   selectedTabChange(o: MatTabGroup) {
     console.log(o.selectedIndex)
+
+    this.selectedIndex = o.selectedIndex;
+    this.o.mecanisme = o.selectedIndex === 0 ? 'Examen périodique universal' : (o.selectedIndex === 1 ? 'Organes de traités' : 'Procédure spéciale')
+
+
 
     this.idCycle.setValue(o.selectedIndex === 0 ? 1 : 0);
     this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
     this.idVisite.setValue(o.selectedIndex === 2 ? 1 : 0);
+
   }
 
-  organeDisplay(r: { name: string, p: number, t: number, }[]) {
+  organeDisplay(r: { name: string, p: number, t: number, r: number }[]) {
     r = r.filter(e => e.name !== null);
     console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.state.Etat_avancement') },
       { data: [], label: this.mytranslate.get('admin.state.Taux') },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
     ];
 
     r.forEach(e => {
       barChartData[0].data.push(e.p);
       barChartData[1].data.push(e.t.toFixed(0));
+      barChartData[2].data.push(e.r);
     });
     this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
   }
@@ -219,15 +237,15 @@ export class DiagrammeComponent implements OnInit {
   get isAllEmpty(): boolean {
     if (
       this.myForm.get('mecanisme').value.toString() === '' &&
-      this.myForm.get('idCycle').value.toString() === '0' &&
-      this.myForm.get('idOrgane').value.toString() === '0' &&
-      this.myForm.get('idVisite').value.toString() === '0' &&
+      // this.myForm.get('idCycle').value.toString() === '0' &&
+      // this.myForm.get('idOrgane').value.toString() === '0' &&
+      // this.myForm.get('idVisite').value.toString() === '0' &&
       this.myForm.get('etat').value.toString() === '' &&
       this.myForm.get('idAxe').value.toString() === '0' &&
       this.myForm.get('idSousAxe').value.toString() === '0' &&
       this.myForm.get('idOrganisme').value.toString() === '0'
     ) {
-      return true;
+      return false;
     }
     return false;
   }
@@ -252,13 +270,13 @@ export interface IData {
   title: string;
 }
 
-class Model {
-  mecanisme = '';
-  idCycle = 0;
-  idOrgane = 0;
-  idVisite = 0;
-  idAxe = 0;
-  etat = '';
-  idSousAxe = 0;
-  idOrganisme = 0;
-}
+// class Model {
+//   mecanisme = '';
+//   idCycle = 0;
+//   idOrgane = 0;
+//   idVisite = 0;
+//   idAxe = 0;
+//   etat = '';
+//   idSousAxe = 0;
+//   idOrganisme = 0;
+// }

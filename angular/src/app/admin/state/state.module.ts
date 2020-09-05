@@ -17,6 +17,7 @@ import { ThreeComponent } from './three/three.component';
 import { DiagrammeComponent } from './diagramme/diagramme.component';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { ListComponent } from './recommandation/list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TranslateModule } from '@ngx-translate/core';
     BarMecanismeComponent,
     ThreeComponent,
     DiagrammeComponent,
+    ListComponent,
   ],
   imports: [
     CommonModule,
