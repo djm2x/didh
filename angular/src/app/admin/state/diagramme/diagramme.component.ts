@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { UowService } from 'src/app/services/uow.service';
@@ -7,6 +7,7 @@ import { Subject, merge, BehaviorSubject } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { MatTabGroup } from '@angular/material';
 
 @Component({
   selector: 'app-diagramme',
@@ -14,6 +15,7 @@ import { MyTranslateService } from 'src/app/my.translate.service';
   styleUrls: ['./diagramme.component.scss']
 })
 export class DiagrammeComponent implements OnInit {
+  // @ViewChild('matgroup', { static: true }) matTab: MatTabGroup;
   @Input() obs = new Subject<IData>();
   title = '';
   panelOpenState = false;
@@ -72,7 +74,7 @@ export class DiagrammeComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
-
+    this.idCycle.setValue(1)
     this.mytranslate.lang.subscribe(r => {
       this.rotateY = r === 'fr' ? 0 : 180;
     });
@@ -129,6 +131,14 @@ export class DiagrammeComponent implements OnInit {
     //   const title = 'l’Etat d’avancement des recommandations par département';
     //   this.listOrganisme.next({list: r, title});
     // });
+  }
+
+  selectedTabChange(o: MatTabGroup) {
+    console.log(o.selectedIndex)
+
+    this.idCycle.setValue(o.selectedIndex === 0 ? 1 : 0);
+    this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
+    this.idVisite.setValue(o.selectedIndex === 2 ? 1 : 0);
   }
 
   organeDisplay(r: { name: string, p: number, t: number, }[]) {

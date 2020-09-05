@@ -1,28 +1,45 @@
 <div class="expension">
     <mat-accordion>
         <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
+            <!-- <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>search</mat-icon>
                     <p>{{ 'admin.state.Recherche' | translate }}</p>
                 </mat-panel-title>
                 <mat-panel-description> </mat-panel-description>
-            </mat-expansion-panel-header>
+            </mat-expansion-panel-header> -->
             <mat-divider>
             </mat-divider>
+            <mat-tab-group class="example-stretched-tabs" #matgroup (selectedTabChange)="selectedTabChange(matgroup)">
+                <mat-tab label="{{ 'admin.epu.list.Examenpériodiqueuniversal' | translate }}">
+                    <ng-template matTabContent>
+                    </ng-template>
+                </mat-tab>
+
+                <mat-tab label="{{ 'admin.organe.list.Organesdetraité' | translate }}">
+                    <ng-template matTabContent>
+                    </ng-template>
+                </mat-tab>
+
+                <mat-tab label="{{ 'admin.ps.Procédure_spéciale' | translate }}">
+                    <ng-template matTabContent>
+
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
             <form [formGroup]="myForm">
                 <div class="row m-2">
 
-
-                    <mat-form-field appearance="fill" class="col-md-5">
+                    <!-- <mat-form-field appearance="fill" class="col-md-5">
                         <mat-label>{{ 'admin.state.Mecanisme' | translate }}</mat-label>
                         <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
+                            <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">
+                                {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
-                    <mat-form-field appearance="fill" *ngIf="cycleActive" class="col-md-5">
+                    <mat-form-field appearance="fill" *ngIf="idCycle.value === 1" class="col-md-5">
                         <mat-label>{{ 'admin.state.Cycle' | translate }}</mat-label>
                         <mat-select formControlName="idCycle">
                             <mat-option value="0">...</mat-option>
@@ -30,19 +47,21 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field appearance="fill" *ngIf="visiteActive" class="col-md-5">
+                    <mat-form-field appearance="fill" *ngIf="idOrgane.value === 1" class="col-md-5">
                         <mat-label>{{ 'admin.state.Visite' | translate }}</mat-label>
                         <mat-select formControlName="idVisite">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.mandat : e.mandatAr }}</mat-option>
+                            <mat-option *ngFor="let e of visites | async" [value]="e.id">
+                                {{ mytranslate.langSync === 'fr' ? e.mandat : e.mandatAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field appearance="fill" *ngIf="organeActive" class="col-md-5">
+                    <mat-form-field appearance="fill" *ngIf="idVisite.value === 1" class="col-md-5">
                         <mat-label>{{ 'admin.state.Organe' | translate }}</mat-label>
                         <mat-select formControlName="idOrgane">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                            <mat-option *ngFor="let e of organes | async" [value]="e.id">
+                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -51,7 +70,8 @@
                         <mat-select formControlName="etat">
                             <!-- <mat-option value="0">...</mat-option> -->
                             <mat-option value="">...</mat-option>
-                            <mat-option *ngFor="let e of etats | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
+                            <mat-option *ngFor="let e of etats | async" [value]="e.name">
+                                {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <!-- <mat-form-field appearance="fill" class="col-md-5">
@@ -65,7 +85,8 @@
                         <mat-label>{{ 'admin.state.Axe' | translate }}</mat-label>
                         <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                            <mat-option *ngFor="let e of axes | async" [value]="e.id">
+                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -73,7 +94,8 @@
                         <mat-label>{{ 'admin.state.Sous_axe' | translate }}</mat-label>
                         <mat-select formControlName="idSousAxe">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                            <mat-option *ngFor="let e of sousAxes" [value]="e.id">
+                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -81,10 +103,15 @@
                         <mat-label>{{ 'admin.state.Organisme' | translate }}</mat-label>
                         <mat-select formControlName="idOrganisme" (selectionChange)="axeChange($event.value)">
                             <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                            <mat-option *ngFor="let e of organismes | async" [value]="e.id">
+                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
+
+                <!-- {{this.matTab.selectedIndex}} -->
+
+                
 
                 <div class="right">
                     <button mat-raised-button color="primary" type="button" (click)="search(myForm.value)"
@@ -98,57 +125,63 @@
                         {{ 'admin.state.Réinitialiser' | translate }}
                     </button>
                 </div>
+
+
             </form>
 
-        </mat-expansion-panel>
-    </mat-accordion>
-</div>
+            <mat-divider> </mat-divider>
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <app-bar [dataSubject]="mecanismeSubject"></app-bar>
-        <!-- <div class="d-flex flex-column justify-content-center mt-4">
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <app-bar [dataSubject]="mecanismeSubject"></app-bar>
+                    <!-- <div class="d-flex flex-column justify-content-center mt-4">
             <img src="assets/line.png" height="10px" width="280px">
             <h5 style="color: #737473; margin: 5px 0 10px 5px;">
                 Mise en œuvre des recommandations par Mecanisme
             </h5>
           </div> -->
-      </div>
+                </div>
 
-      <div class="col-md-10 mb-5 mt-5">
-        <div *ngFor="let e of axesList; let i=index">
-          <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
-        </div>
+                <div class="col-md-10 mb-5 mt-5">
+                    <div *ngFor="let e of axesList; let i=index">
+                        <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
+                    </div>
 
-        <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-          <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' +  rotateY + 'deg)'" >
-          <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}
-          </h5>
-        </div>
-      </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+                        <img src="assets/line.png" height="10px" width="280px"
+                            [style.transform]="'rotateY(' +  rotateY + 'deg)'">
+                        <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
+                            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}
+                        </h5>
+                    </div>
+                </div>
 
-      <div class="col-md-10 mt-5">
+                <div class="col-md-10 mt-5">
 
-          <div class="d-flex flex-wrap justify-content-center ">
+                    <div class="d-flex flex-wrap justify-content-center ">
 
-            <div *ngFor="let e of departementList; let i=index">
-              <!-- <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle> -->
-              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="120" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+                        <div *ngFor="let e of departementList; let i=index">
+                            <!-- <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle> -->
+                            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10"
+                                [diameter]="120" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7"
+                                [width]="170" [o]="e">
+                            </app-progress-cercle>
 
-              <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
-            </div>
-          </div>
+                            <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
+                        </div>
+                    </div>
 
-          <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-            <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' +  rotateY + 'deg)'" >
-            <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-                {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}
-            </h5>
-          </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+                        <img src="assets/line.png" height="10px" width="280px"
+                            [style.transform]="'rotateY(' +  rotateY + 'deg)'">
+                        <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
+                            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}
+                        </h5>
+                    </div>
 
-      </div>
-    <!-- <div class="col-md-5">
+                </div>
+                <!-- <div class="col-md-5">
         <app-state-pie [obs]="listAxes"></app-state-pie>
 
     </div>
@@ -156,7 +189,10 @@
         <app-state-pie [obs]="listOrganisme"></app-state-pie>
 
     </div> -->
-</div>
-<!-- <mat-card>
+            </div>
+            <!-- <mat-card>
 
 </mat-card> -->
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

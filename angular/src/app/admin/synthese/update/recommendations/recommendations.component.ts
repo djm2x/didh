@@ -7,6 +7,7 @@ import { UowService } from 'src/app/services/uow.service';
 import { SelectionModel, SelectionChange } from '@angular/cdk/collections';
 import { Recommendation } from 'src/app/Models/models';
 import { TabNavigationService } from '../tab-navigation.service';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-recommendations',
@@ -56,7 +57,8 @@ export class RecommendationsComponent implements OnInit {
   displayedColumns = this.columnDefs.map(e => e.columnDef);
   synRecm: SyntheseRecommandation[] = [];
   selection = new SelectionModel<Recommendation>(true, []);
-  constructor(private uow: UowService, private navTab: TabNavigationService) { }
+  constructor(private uow: UowService, private navTab: TabNavigationService
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     // console.log(this.selection.hasValue());

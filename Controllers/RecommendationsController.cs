@@ -94,7 +94,7 @@ namespace Admin5.Controllers
 
             int count = await query.CountAsync();
 
-            var list = query.OrderByName<Recommendation>(sortBy, sortDir == "desc")
+            var list = await query.OrderByName<Recommendation>(sortBy, sortDir == "desc")
                 .Skip(startIndex)
                 .Take(pageSize)
                 // .Select(e => new {

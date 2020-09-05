@@ -2,7 +2,7 @@
   <mat-form-field appearance="fill">
     <mat-label>{{ 'admin.synthese.update.Mecanismes' | translate }}</mat-label>
     <mat-select (selectionChange)="selectMecanismeChange($event.value)" [formControl]="selectInput">
-      <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+      <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -18,7 +18,7 @@
     <mat-label>{{ 'admin.synthese.update.Visite' | translate }}</mat-label>
     <mat-select (selectionChange)="selectChange($event.value)" [formControl]="idVisite">
       <mat-option value="0">...</mat-option>
-      <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ e.objet }}</mat-option>
+      <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.mandat : e.mandatAr }}</mat-option>
     </mat-select>
   </mat-form-field>
 
