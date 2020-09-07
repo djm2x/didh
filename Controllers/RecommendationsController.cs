@@ -239,8 +239,27 @@ namespace Admin5.Controllers
                 
                 ;
 
+            var pays0 = await q.Include(e => e.Pays).ToListAsync();
+            var pays = pays0.GroupBy(e => lng == "fr" ? e.Pays.Nom : e.Pays.NomAr)
+                // .Select(e => new
+                // {
+                //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
+                //     p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+                //     t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
+                // })
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .ToList()
+                
+                ;
 
-            return Ok(new { macanisme = await Calc(q), axe, department });
+
+            return Ok(new { macanisme = await Calc(q), axe, department, pays });
         }
 
         private async Task<object> Calc(IQueryable<Recommendation> q) {

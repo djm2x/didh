@@ -49,6 +49,7 @@ export class RecommendationService extends SuperService<Recommendation> {
       },
       axe: { name: string, p: number, t: number, r: number }[],
       department: { name: string, p: number, t: number, r: number }[]
+      pays: { name: string, p: number, t: number, r: number }[]
     }>(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
   }
 

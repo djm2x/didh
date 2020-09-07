@@ -74,7 +74,7 @@
         [ngClass]="{'ml-auto': (mytranslate.lang | async) === 'fr'}" style=" height: fit-content;">
         <span class="example-spacer"></span>
         <mat-list-item [matMenuTriggerFor]="lang"
-          style=" background-color: #aaabab;height: 40px !important; margin-right: 1px;">
+          style=" background-color: #aaabab00;height: 40px !important; margin-right: 1px;">
           <span style="color: white;">
             <!-- {{ 'admin.lang' | translate }} -->
             <mat-icon>language</mat-icon>
@@ -108,7 +108,7 @@
           </ng-template>
         </div>
         <mat-list-item [matMenuTriggerFor]="beforeMenu"
-          style=" opacity: .6;background-color: #aaabab;height: 40px !important;margin-right: 1px;">
+          style="background-color: #aaabab00;height: 40px !important;margin-right: 1px;">
           <!-- Bienvenue, {{session.getUser.nom}} {{session.getUser.prenom}} -->
           <mat-icon style="color: white;">power_settings_new</mat-icon>
         </mat-list-item>

@@ -63,6 +63,7 @@ export class DiagrammeComponent implements OnInit {
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
   departementList: { name: string, p: number, t: number }[] = [];
+  payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
   toChild = new Subject<Model>();
@@ -100,6 +101,8 @@ export class DiagrammeComponent implements OnInit {
       this.axesList = r.axe;
       this.departementList = [];
       this.departementList = r.department;
+      this.payeList = [];
+      this.payeList = r.pays;
       // const title = 'l’Etat d’avancement des recommandations par axe';
       // this.listAxes.next({list: r, title});
       const barList: { name: string, p: number, t: number, r: number }[] = [];
