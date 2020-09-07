@@ -8,14 +8,19 @@ import { MyTranslateService } from 'src/app/my.translate.service';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  o = { name: '', t: 0, p: 0, r:0 };
+  o: { name: '', t: 0, p: 0, r: 0 } = { name: '', t: 0, p: 0, r: 0 };
+  list: { name: '', t: 0, p: 0, r: 0 }[] | {name: string, value: number}[] = [];
   type = '';
+  title = '';
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
-  , public mytranslate: MyTranslateService) { }
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
-    this.o = this.data.model;
+    // this.o = this.data.model;
     this.type = this.data.type;
+    this.title = this.data.title;
+
+    this.data.type === 'cercle' ? this.o = this.data.model : this.list = this.data.model;
     // this.title = this.data.title;
     console.log(this.o);
 

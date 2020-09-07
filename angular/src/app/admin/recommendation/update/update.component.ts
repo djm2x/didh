@@ -201,10 +201,10 @@ export class UpdateComponent implements OnInit {
     let v = this.myForm.get('etatAvancementChiffre').value;
     if (etat.includes('Réalisé')) {
       v = 100;
-      this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
+      // this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
     } else if (etat.includes('Non')){
       v = 0;
-      this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
+      // this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
     } else if (etat.includes('cours')){
       v = v > 5 ? v : 5;
       this.myForm.get('etatAvancementChiffre').enable();
@@ -212,7 +212,7 @@ export class UpdateComponent implements OnInit {
       this.myForm.get('etatAvancementChiffre').enable();
     }
 
-    this.myForm.get('etatAvancementChiffre').patchValue(v);
+    this.myForm.get('etatAvancementChiffre').setValue(v);
   }
 
   selectChange(mecanisme) {

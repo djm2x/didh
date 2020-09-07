@@ -597,18 +597,21 @@ namespace seed
                 // e.IdOrgane = i % 3 == 2 ? null : e.IdOrgane;
                 if (i % 3 == 0)
                 {
+                    e.Mecanisme = "Examen périodique universal";
                     e.IdCycle = e.IdCycle;
                     e.IdVisite = null;
                     e.IdOrgane = null;
                 }
                 else if (i % 3 == 1)
                 {
+                    e.Mecanisme = "Procédure spéciale";
                     e.IdCycle = null;
                     e.IdVisite = e.IdVisite;
                     e.IdOrgane = null;
                 }
                 else
                 {
+                    e.Mecanisme = "Organes de traités";
                     e.IdCycle = null;
                     e.IdVisite = null;
                     e.IdOrgane = e.IdOrgane;

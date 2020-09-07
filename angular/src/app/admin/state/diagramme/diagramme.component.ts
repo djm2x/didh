@@ -81,6 +81,10 @@ export class DiagrammeComponent implements OnInit {
       this.rotateY = r === 'fr' ? 0 : 180;
     });
 
+    setTimeout(() => {
+      this.reset();
+    }, 300);
+
   }
 
   searchAndGet(o: Model) {
@@ -98,7 +102,7 @@ export class DiagrammeComponent implements OnInit {
       this.departementList = r.department;
       // const title = 'l’Etat d’avancement des recommandations par axe';
       // this.listAxes.next({list: r, title});
-      const organeList: { name: string, p: number, t: number, r: number }[] = [];
+      const barList: { name: string, p: number, t: number, r: number }[] = [];
       const epu = {
         name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
         p: r.macanisme.epu.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
@@ -121,16 +125,16 @@ export class DiagrammeComponent implements OnInit {
       };
 
       if (r.macanisme.epu.p !== 0) {
-        organeList.push(epu);
+        barList.push(epu);
       }
       if (r.macanisme.ot.p !== 0) {
-        organeList.push(ot);
+        barList.push(ot);
       }
       if (r.macanisme.ps.p !== 0) {
-        organeList.push(ps);
+        barList.push(ps);
       }
 
-      this.organeDisplay(organeList);
+      this.handleDisplayBar(barList);
     });
 
     // this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
@@ -157,7 +161,7 @@ export class DiagrammeComponent implements OnInit {
 
   }
 
-  organeDisplay(r: { name: string, p: number, t: number, r: number }[]) {
+  handleDisplayBar(r: { name: string, p: number, t: number, r: number }[]) {
     r = r.filter(e => e.name !== null);
     console.log(r);
     const barChartLabels = r.map(e => e.name);
@@ -220,6 +224,7 @@ export class DiagrammeComponent implements OnInit {
     this.o = new Model();
     this.createForm();
     this.searchAndGet(this.o);
+    this.toChild.next(this.o);
   }
 
   search(o: Model) {

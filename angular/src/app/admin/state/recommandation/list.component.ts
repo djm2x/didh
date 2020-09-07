@@ -28,15 +28,15 @@ export class ListComponent implements OnInit {
   isRateLimitReached = false;
   dataSource = [];
   columnDefs = [
-    { columnDef: 'codeRecommendation', headName: 'CODE' },
+    // { columnDef: 'codeRecommendation', headName: 'CODE' },
     { columnDef: 'nom', headName: 'INTITULE' },
     { columnDef: 'mecanisme', headName: 'mecanisme' },
     { columnDef: 'axe', headName: 'Axe' },
     { columnDef: 'sousAxe', headName: 'SOUS AXE' },
     { columnDef: 'organismes', headName: 'DEPARTEMENT' },
     { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
-    { columnDef: 'observation', headName: '' },
-    { columnDef: 'complement', headName: '' },
+    // { columnDef: 'observation', headName: '' },
+    // { columnDef: 'complement', headName: '' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
     return e;
@@ -46,33 +46,64 @@ export class ListComponent implements OnInit {
 
   @Input() fromParent = new Subject<Model>();
 
+  o = new Model();
+
   constructor(private uow: UowService, public session: SessionService) { }
 
   ngOnInit() {
     this.isLoadingResults = false;
     // this.searchAndGet(this.o);
-    this.fromParent.subscribe(o => {
-      o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : o.idOrganisme;
+    // this.fromParent.subscribe(o => {
+    //   o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : o.idOrganisme;
 
-      o.startIndex = 0;
-      o.pageSize = 10;
-      o.sortBy = 'id';
-      o.sortDir = 'desc';
-      o.nom = '';
-      o.idPays = 0;
+    //   o.startIndex = 0;
+    //   o.pageSize = 10;
+    //   o.sortBy = 'id';
+    //   o.sortDir = 'desc';
+    //   o.nom = '';
+    //   o.idPays = 0;
 
-      console.log(o.mecanisme)
+    //   console.log(o.mecanisme)
 
-      this.uow.recommendations.searchAndGet(o).subscribe((r: any) => {
-        console.log(r.list);
-        this.dataSource = r.list;
-        this.resultsLength = r.count;
-        this.isLoadingResults = false;
-      }, e => this.isLoadingResults = false,
-      );
-    }
+    //   this.uow.recommendations.searchAndGet(o).subscribe((r: any) => {
+    //     console.log(r.list);
+    //     this.dataSource = r.list;
+    //     this.resultsLength = r.count;
+    //     this.isLoadingResults = false;
+    //   });
+    // });
+
+    merge(...[this.sort.sortChange, this.paginator.page, this.fromParent]).subscribe(
+      o => {
+
+        
+        if (o.mecanisme !== undefined) {
+          this.o = o;
+          console.log(this.o)
+        }
+        // r === true ? this.paginator.pageIndex = 0 : r = r;
+        !this.paginator.pageSize ? this.paginator.pageSize = 10 : o = o;
+        // this.o = new Model();
+        this.o.startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+        this.o.pageSize = this.paginator.pageSize;
+        this.o.sortBy = this.sort.active ? this.sort.active : 'id';
+        this.o.sortDir = this.sort.direction ? this.sort.direction : 'desc';
+        this.o.nom = '';
+        this.o.idPays = 0;
+        this.isLoadingResults = true;
+        this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : o.idOrganisme;
+
+        this.uow.recommendations.searchAndGet(this.o).subscribe((r: any) => {
+          console.log(r.list);
+          this.dataSource = r.list;
+          this.resultsLength = r.count;
+          this.isLoadingResults = false;
+        });
+      }
     );
   }
+
+  
 
 
 }

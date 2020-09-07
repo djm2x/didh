@@ -62,7 +62,7 @@ export class ProgressCercleComponent implements OnInit {
     const conf = {
       width: '7100px',
       disableClose: false,
-      data: { model: this.o, type: 'cercle' }
+      data: { model: this.o, type: 'cercle' , title: this.o.name}
     };
 
     this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {

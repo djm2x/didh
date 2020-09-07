@@ -4,6 +4,8 @@ import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLege
 import { UowService } from 'src/app/services/uow.service';
 import { Subject, Observable } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { DetailComponent } from './detail/detail.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-pie-chart',
@@ -39,9 +41,11 @@ export class PieChartComponent implements OnInit {
   public pieChartColors = [
     { backgroundColor: [], },
   ];
+  list: { name: string, value: number }[] = [];
   retate = 0;
 
-  constructor(private uow: UowService, public mytranslate: MyTranslateService) {
+  constructor(private uow: UowService, public mytranslate: MyTranslateService
+    , public dialog: MatDialog) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
@@ -50,7 +54,7 @@ export class PieChartComponent implements OnInit {
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });
-    
+
     this.obs.subscribe(d => {
       // if (d.type === 'stateRecommendationByMecanismeTaux' as any) {
       //   this.title = d.title;
@@ -83,9 +87,21 @@ export class PieChartComponent implements OnInit {
         this.pieChartData = r.map(e => e.value);
 
         this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
+
+        this.pieChartLabels.forEach((e, i) => {
+          const value = this.pieChartData[i] as number;
+
+          if (value !== 0) {
+            this.list.push({
+              name: e.toString(),
+              value: this.pieChartData[i] as number,
+            });
+          }
+        });
+
       });
 
-    })
+    });
 
     // this.pieChartOptions.title.text = this.mytitle;
     //   this.uow.recommendations.genericByRecommendation(this.table, this.type).subscribe(r => {
@@ -96,6 +112,18 @@ export class PieChartComponent implements OnInit {
     //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
     //   });
 
+  }
+
+  openDialog() {
+    const conf = {
+      width: '7100px',
+      disableClose: false,
+      data: { model: this.list, type: 'pie', title: this.title }
+    };
+
+    this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
+      console.log(r);
+    });
   }
 
   getColors(length) {

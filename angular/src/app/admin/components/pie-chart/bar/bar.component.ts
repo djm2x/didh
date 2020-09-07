@@ -4,6 +4,8 @@ import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLege
 import { UowService } from 'src/app/services/uow.service';
 import { Subject } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { DetailComponent } from '../detail/detail.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-bar',
@@ -46,9 +48,9 @@ export class BarComponent implements OnInit {
   @Input() dataSubject = new Subject();
   retate = 0;
 
-  list: { name: string, t: 0, p: 0, r: 0 }[] = [];
+  list: { name: string, t: number, p: number, r: number }[] = [];
 
-  constructor(public mytranslate: MyTranslateService) { }
+  constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.mytranslate.lang.subscribe(lang => {
@@ -62,17 +64,27 @@ export class BarComponent implements OnInit {
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
-      console.log(this.barChartData, r.barChartLabels)
 
-      // r.barChartLabels.forEach((e, i) => {
-      //   this.barChartData.forEach((b, j) => {
+      this.barChartLabels.forEach((e, i) => {
+          this.list.push({
+            name: e.toString(),
+            p: this.barChartData.find(f => f.label === 'Etat d’avancement').data[i] as number,
+            t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
+            r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
+          });
+      });
+    });
+  }
 
-      //     this.list.push({
-      //       name: e.toString(),
-      //       p: b.data[i]
-      //     })
-      //   })
-      // });
+  openDialog() {
+    const conf = {
+      width: '7100px',
+      disableClose: false,
+      data: { model: this.list, type: 'bar', title: this.title }
+    };
+
+    this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
+      console.log(r);
     });
   }
 

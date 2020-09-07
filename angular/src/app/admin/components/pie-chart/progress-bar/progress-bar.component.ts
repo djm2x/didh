@@ -36,7 +36,7 @@ export class ProgressBarComponent implements OnInit {
     const conf = {
       width: '7100px',
       disableClose: false,
-      data: { model: { name: this.title, t: this.widthTwo, p: this.widthTwo, r: this.widthThree }, type: 'cercle' }
+      data: { model: { name: this.title, t: this.widthTwo, p: this.widthTwo, r: this.widthThree }, type: 'cercle', title: this.title }
     };
 
     this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
