@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject, Observable, of } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { MatDialog } from '@angular/material';
+import { DetailComponent } from '../detail/detail.component';
 
 @Component({
   selector: 'app-progress-cercle',
@@ -21,7 +23,7 @@ export class ProgressCercleComponent implements OnInit {
 
   retate = 0;
 
-  constructor(public mytranslate: MyTranslateService) { }
+  constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.mytranslate.lang.subscribe(lang => {
@@ -54,6 +56,18 @@ export class ProgressCercleComponent implements OnInit {
 
     return `التقدم المحرز : ${prc} % - منجز : ${realise} % - نسبة ${taux.toFixed(0)} %    `;
     // return ` % ${taux.toFixed(0)} : نسبة - % ${prc} التقدم المحرز`;
+  }
+
+  openDialog() {
+    const conf = {
+      width: '7100px',
+      disableClose: false,
+      data: { model: this.o, type: 'cercle' }
+    };
+
+    this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
+      console.log(r);
+    });
   }
 
 }

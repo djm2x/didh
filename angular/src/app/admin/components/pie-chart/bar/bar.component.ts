@@ -46,6 +46,8 @@ export class BarComponent implements OnInit {
   @Input() dataSubject = new Subject();
   retate = 0;
 
+  list: { name: string, t: 0, p: 0, r: 0 }[] = [];
+
   constructor(public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
@@ -60,7 +62,17 @@ export class BarComponent implements OnInit {
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
-      // console.log(this.barChartData)
+      console.log(this.barChartData, r.barChartLabels)
+
+      // r.barChartLabels.forEach((e, i) => {
+      //   this.barChartData.forEach((b, j) => {
+
+      //     this.list.push({
+      //       name: e.toString(),
+      //       p: b.data[i]
+      //     })
+      //   })
+      // });
     });
   }
 

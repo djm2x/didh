@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { MatDialog } from '@angular/material';
+import { DetailComponent } from '../detail/detail.component';
 
 @Component({
   selector: 'app-progress-bar',
@@ -13,7 +15,7 @@ export class ProgressBarComponent implements OnInit {
   @Input() title = '';
 
   rotateY = 0;
-  constructor(public mytranslate: MyTranslateService) { }
+  constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.mytranslate.lang.subscribe(r => {
@@ -28,6 +30,18 @@ export class ProgressBarComponent implements OnInit {
 
     return `التقدم المحرز : ${prc} % - منجز : ${realise} % - نسبة ${taux.toFixed(0)} %    `;
     // return ` % ${taux.toFixed(0)} : نسبة - % ${prc} التقدم المحرز`;
+  }
+
+  openDialog() {
+    const conf = {
+      width: '7100px',
+      disableClose: false,
+      data: { model: { name: this.title, t: this.widthTwo, p: this.widthTwo, r: this.widthThree }, type: 'cercle' }
+    };
+
+    this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
+      console.log(r);
+    });
   }
 
 }

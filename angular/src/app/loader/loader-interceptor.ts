@@ -19,7 +19,7 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private loaderService: LoaderService, public router: Router
     , public snackBar: SnackBarService, private session: SessionService
     , public mytranslate: MyTranslateService) {
-      console.log(this.session.token);
+      // console.log(this.session.token);
     }
 
   removeRequest(req: HttpRequest<any>) {

@@ -54,9 +54,9 @@ export class SessionService {
 
   // this methode is for our auth guard
   get isSignedIn(): boolean {
-    console.log(!!localStorage.getItem(USER) ||
-    !!localStorage.getItem(TOKEN) ||
-    !!localStorage.getItem(ROLE));
+    // console.log(!!localStorage.getItem(USER) ||
+    // !!localStorage.getItem(TOKEN) ||
+    // !!localStorage.getItem(ROLE));
     return !!localStorage.getItem(USER) ||
       !!localStorage.getItem(TOKEN) ||
       !!localStorage.getItem(ROLE)

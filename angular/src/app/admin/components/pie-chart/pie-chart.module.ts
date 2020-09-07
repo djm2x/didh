@@ -10,6 +10,7 @@ import { BarComponent } from './bar/bar.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ProgressCercleComponent } from './progress-cercle/progress-cercle.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DetailComponent } from './detail/detail.component';
 
 
 
@@ -19,7 +20,9 @@ import { TranslateModule } from '@ngx-translate/core';
      DoughnutComponent,
      BarComponent,
      ProgressBarComponent,
-     ProgressCercleComponent],
+     ProgressCercleComponent,
+     DetailComponent,
+    ],
   imports: [
     CommonModule,
     MatModule,
@@ -35,6 +38,9 @@ import { TranslateModule } from '@ngx-translate/core';
     BarComponent,
     ProgressBarComponent,
     ProgressCercleComponent,
+  ],
+  entryComponents: [
+    DetailComponent,
   ]
 })
 export class PieChartModule { }

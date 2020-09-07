@@ -19,7 +19,7 @@ export class SnackBarService {
   }
 
   manageStatusCode(code: number) {
-    console.log(code);
+    // console.log(code);
     switch (code) {
       case 200: break;
       case 199: this.notifyOk(code, this.listMessage(code)); break;
