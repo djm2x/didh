@@ -50,7 +50,7 @@ export class ExamenComponent implements OnInit {
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe')});
   pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
   pieChartSubjectR = new BehaviorSubject<IData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
-  
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
@@ -94,7 +94,25 @@ export class ExamenComponent implements OnInit {
 
     return dialogRef.afterClosed();
   }
-  
+
+  openDialog2(title, text) {
+    const dialogRef = this.dialog.open(UpdateComponent, {
+      width: '80vw',
+      disableClose: true,
+      data: { textAsaisir: title, title: text },
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
+    });
+
+    return dialogRef.afterClosed();
+  }
+
+
+  moreInfo() {
+    this.openDialog2("dddd", "kk").subscribe(result => {
+
+    });
+  }
+
   add() {
     this.openDialog(new Examen(), this.mytranslate.get('admin.epu.list.AjouterExamen')).subscribe(result => {
       if (result) {
