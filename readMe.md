@@ -9,4 +9,4 @@
 
 # https://github.com/anuraj/dotnetcore-buildpack
 asp angular
-<!-- test elmahdi => return array-->
+test elmahdi => return array
