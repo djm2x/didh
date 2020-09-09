@@ -388,7 +388,7 @@ namespace Admin5.Controllers
 
             var list = new[] { new { table = "", value = 0.0 } }.ToList();
 
-            list.Add(new { table = "Examen Périodique universelle", value = (double.Parse(axe.ToString()) / recommendationsCount) * 100 });
+            list.Add(new { table = "Examen Périodique universel", value = (double.Parse(axe.ToString()) / recommendationsCount) * 100 });
             list.Add(new { table = "Organes de Traités", value = (double.Parse(organe.ToString()) / recommendationsCount) * 100 });
             list.Add(new { table = "Procédures spéciales", value = (double.Parse(visite.ToString()) / recommendationsCount) * 100 });
 
@@ -469,7 +469,7 @@ namespace Admin5.Controllers
 
             var list = new[] { new { table = "", value = 0 } }.ToList();
 
-            list.Add(new { table = "Examen Périodique universelle", value = axe });
+            list.Add(new { table = "Examen Périodique universel", value = axe });
             list.Add(new { table = "Organes de Traités", value = organe });
             list.Add(new { table = "Procédures spéciales", value = visite });
 

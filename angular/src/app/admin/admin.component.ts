@@ -30,7 +30,7 @@ export class AdminComponent implements OnInit {
   navs = [
     // { name: 'Accueil', route: ['/admin/home'], width: '70px' , children: [] },
     // { name: 'Mecanisme', route: ['/admin/home'], width: '70px' , children: [
-    //   { name: 'Examen Périodique universelle', route: ['/admin/examen'], width: '126px' },
+    //   { name: 'Examen Périodique universel', route: ['/admin/examen'], width: '126px' },
     //   { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
     //   { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
     // ] },
@@ -111,7 +111,7 @@ export class AdminComponent implements OnInit {
   get routes() {
     return [
       { name: 'Accueil', route: '/admin/home' },
-      { name: 'Examen Périodique universelle', route: '/admin/examen' },
+      { name: 'Examen Périodique universel', route: '/admin/examen' },
       // { name: 'Organes de Traités', route: '/admin/rapport' },
       // { name: 'Procédures spéciales', route: '/admin/visite' },
       // { name: 'Evènements ', route: '/admin/evenements' },

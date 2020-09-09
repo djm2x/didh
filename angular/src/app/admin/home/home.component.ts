@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   // displayedColumns: string[] = ['item', 'cost'];
   mecanismes = this.uow.mecanismes;
   // tslint:disable-next-line: max-line-length
-  pieChartSubjectEPU = new BehaviorSubject<IData>({ type: 'stateEPU', title: 'Examen Périodique universell' } as any);
+  pieChartSubjectEPU = new BehaviorSubject<IData>({ type: 'stateEPU', title: 'Examen Périodique universel' } as any);
   // tslint:disable-next-line: max-line-length
   pieChartSubjectOT = new BehaviorSubject<IData>({ type: 'stateOT', title: 'Organes de Traités' } as any);
   // tslint:disable-next-line: max-line-length
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   stateMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
-      // console.log(r) 
+      // console.log(r)
       r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
       this.dataEpu.next(r.epu);
 
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  
+
 
   stateRecommendationByOrganisme() {
     return this.uow.recommendations.stateRecommendationByOrganisme().subscribe(r => {

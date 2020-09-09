@@ -9,7 +9,15 @@
   <section>
     <!-- <h3>Accueil</h3> -->
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <p>à communiquer par Mme jihane.</p>
+      <p>Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
+        de la situation spécifique d’un pays ou des questions thématiques relatives aux des droits de l’homme.
+        Les mandats des procédures spéciales chargent en général les titulaires de ces mandats d’examiner, de
+        superviser, conseiller et faire rapport sur les situations des droits de l’homme dans des pays ou territoires
+        donnés ( mandats par pays), ou sur des questions thématiques relatives aux droits de l’homme dans le monde
+        entier ( mandats thématiques). Les titulaires des mandats sont des experts indépendants qui peuvent s’appeler
+        rapporteurs spéciaux, représentants, représentants spéciaux, experts indépendants ou membres de groupes de
+        travail.
+      </p>
     </ng-container>
     <ng-template #elseTemplate>
       <p>
@@ -17,6 +25,12 @@
       </p>
     </ng-template>
   </section>
+  <div class="right">
+    <button mat-raised-button>
+      <mat-icon>add</mat-icon>
+      Lire la suite
+    </button>
+  </div>
   <div class="row justify-content-center">
     <!-- <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
@@ -27,7 +41,7 @@
 
     <div class="col-md-10 mb-5 mt-5">
       <div *ngFor="let e of visitePage; let i=index">
-        <app-progress-bar  [widthThree]="e.r" [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
+        <app-progress-bar [widthThree]="e.r" [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
       </div>
 
       <div class="d-flex flex-column justify-content-center mt-4">
@@ -68,7 +82,8 @@
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[3].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.ps.list.RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE' | translate}}</th>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'admin.ps.list.RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE' | translate}}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.discours === ''" [matTooltip]="row.discours" color="accent"
               (click)="showPieceJoin(row.discours)">
