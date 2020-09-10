@@ -13,6 +13,7 @@ import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/down
 import { ArchiveComponent } from './archive/archive.component';
 import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-examen',
@@ -95,11 +96,35 @@ export class ExamenComponent implements OnInit {
     return dialogRef.afterClosed();
   }
 
-  openDialog2(title, text) {
-    const dialogRef = this.dialog.open(UpdateComponent, {
+  // moreInfo() {
+  //   const conf = {
+  //     width: '7100px',
+  //     disableClose: false,
+  //     data: { model: 'ddddddd', type: 'cercle' , title: 'Examen'}
+  //   };
+
+  //   this.dialog.open(Examen, conf).afterClosed().subscribe(r => {
+  //     console.log(r);
+  //   });
+  // }
+
+
+  // moreInfol() {
+  //   const conf = {
+  //     width: '7100px',
+  //     disableClose: false,
+  //     data: { model: 'gggg', type: 'pie', title: '222' }
+  //   };
+
+  //   this.dialog.open('fffffffffffffffffffffff', conf).afterClosed().subscribe(r => {
+  //     console.log(r);
+  //   });
+  // }
+
+  moreInfo() {
+    const dialogRef = this.dialog.open(ModalComponent, {
       width: '80vw',
       disableClose: true,
-      data: { textAsaisir: title, title: text },
       direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
     });
 
@@ -107,11 +132,6 @@ export class ExamenComponent implements OnInit {
   }
 
 
-  moreInfo() {
-    this.openDialog2("dddd", "kk").subscribe(result => {
-
-    });
-  }
 
   add() {
     this.openDialog(new Examen(), this.mytranslate.get('admin.epu.list.AjouterExamen')).subscribe(result => {

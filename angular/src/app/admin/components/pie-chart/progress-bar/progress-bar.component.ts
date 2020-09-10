@@ -25,7 +25,7 @@ export class ProgressBarComponent implements OnInit {
 
   tooltipMsg(prc: number, realise: number, taux: number) {
     if (this.mytranslate.langSync === 'fr') {
-      return 'État d\'avancement : ' + prc + '% - Réaliser : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
+      return 'En cours : ' + prc + '% - Réalisé : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
     }
 
     return `التقدم المحرز : ${prc} % - منجز : ${realise} % - نسبة ${taux.toFixed(0)} %    `;

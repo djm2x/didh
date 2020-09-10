@@ -107,7 +107,7 @@ export class DiagrammeComponent implements OnInit {
       // this.listAxes.next({list: r, title});
       const barList: { name: string, p: number, t: number, r: number }[] = [];
       const epu = {
-        name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
+        name: this.mytranslate.get('fff'),
         p: r.macanisme.epu.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
         t: r.macanisme.epu.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
         r: r.macanisme.epu.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),

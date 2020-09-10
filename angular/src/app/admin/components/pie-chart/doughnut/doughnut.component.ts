@@ -64,7 +64,7 @@ export class DoughnutComponent implements OnInit {
   }
 
   ngOnInit() {
-    const lbs = ['Etat d’avancement', 'Taux', ''];
+    const lbs = ['En cours', 'Taux', ''];
     this.obs.subscribe(d => {
       if (d.type === 'stateEPU' as any) {
         this.title = d.title;

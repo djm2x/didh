@@ -15,6 +15,7 @@ import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/down
 import { ArchiveComponent } from '../archive/archive.component';
 import { IData } from '../../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-list',
@@ -60,7 +61,7 @@ export class ListComponent implements OnInit {
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: 'Taux de recommandations par organe' });
 
   organePageSubject = new Subject();
-  
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
@@ -139,6 +140,16 @@ export class ListComponent implements OnInit {
       width: '7100px',
       disableClose: true,
       data: { model: o, title: 'Rapport' }
+    });
+
+    return dialogRef.afterClosed();
+  }
+
+  moreInfo() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '80vw',
+      disableClose: true,
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
     });
 
     return dialogRef.afterClosed();

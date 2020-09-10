@@ -68,7 +68,7 @@ export class BarComponent implements OnInit {
       this.barChartLabels.forEach((e, i) => {
           this.list.push({
             name: e.toString(),
-            p: this.barChartData.find(f => f.label === 'Etat d’avancement').data[i] as number,
+            p: this.barChartData.find(f => f.label === 'En cours').data[i] as number,
             t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
             r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
           });

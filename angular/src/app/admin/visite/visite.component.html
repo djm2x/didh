@@ -9,15 +9,15 @@
   <section>
     <!-- <h3>Accueil</h3> -->
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <p>Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
+      <h5 style="color: #737473; margin: 5px 0 10px 5px;">Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
         de la situation spécifique d’un pays ou des questions thématiques relatives aux des droits de l’homme.
         Les mandats des procédures spéciales chargent en général les titulaires de ces mandats d’examiner, de
         superviser, conseiller et faire rapport sur les situations des droits de l’homme dans des pays ou territoires
         donnés ( mandats par pays), ou sur des questions thématiques relatives aux droits de l’homme dans le monde
         entier ( mandats thématiques). Les titulaires des mandats sont des experts indépendants qui peuvent s’appeler
         rapporteurs spéciaux, représentants, représentants spéciaux, experts indépendants ou membres de groupes de
-        travail.
-      </p>
+        travail. <b style="color: #286293; cursor: pointer;" (click)="moreInfo()">  Lire la suite</b>
+      </h5>
     </ng-container>
     <ng-template #elseTemplate>
       <p>
@@ -25,12 +25,7 @@
       </p>
     </ng-template>
   </section>
-  <div class="right">
-    <button mat-raised-button>
-      <mat-icon>add</mat-icon>
-      Lire la suite
-    </button>
-  </div>
+
   <div class="row justify-content-center">
     <!-- <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>

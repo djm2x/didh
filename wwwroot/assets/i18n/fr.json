@@ -25,7 +25,8 @@
     },
     "home": {
       "SystèmedeSuividesrecommandations": "Système de Suivi des recommandations issues des mécanismes onusiens des droits de l'homme",
-      "droitHomme": "Les droits de l'homme sont liés non seulement à la demande, mais aussi au devoir",
+      "droitHomme": "Nous voulons léguer à nos enfants un monde guidé par les valeurs consacrées dans la Charte des Nations Unies : la paix, la justice, le respect, les droits de l’homme, la tolérance et la solidarité. Ce sont là des valeurs communes à toutes les grandes religions, et nous nous employons à les concrétiser dans notre vie quotidienne",
+      "sousTitreDroitHomme": "Extrait du discours du Secrétaire général désigné, António Guterres, prononcé à l'occasion de sa prestation de serment le 12 décembre 2016",
       "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "Mise en œuvre des recommandations par mécanismes",
       "ExamenPériodiqueuniversell": "Examen Périodique universel",
       "OrganesdeTraités": "Organes de Traités",
@@ -65,7 +66,7 @@
         "Observationsfinales": "Observations finales",
         "Rapportparallèle": "Rapport  parallèle",
         "PLANDEMISEENOEUVRE": "Plan De Mise En Oeuvre",
-        "Etatavancement": "Etat d’avancement",
+        "Etatavancement": "En cours",
         "Taux": "Taux",
         "Réalisé": "Réalisé",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "Mise en œuvre des recommandations par Organes de Traités"
@@ -164,7 +165,7 @@
       "Examen_Périodique_universelle": "Examen Périodique universel",
       "Organes_de_Traités": "Organes de Traités",
       "Procédures_spéciales": "Procédures spéciales",
-      "Etat_avancement": "Etat d’avancement",
+      "Etat_avancement": "En cours",
       "Taux": "Taux",
       "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "Mise en œuvre des recommandations par Organes de Traités"
     },
@@ -177,7 +178,7 @@
         "Organe": "Organe",
         "Pays": "Pays",
         "Etaten": "Etat en %",
-        "Etatdavancement": "Etat d'avancement",
+        "Etatdavancement": "En cours",
         "PieceJointe": "Piece Jointe",
         "Organisme": "Organisme",
         "ORGANISMES": "Organismes",

@@ -20,6 +20,7 @@ import { SituationReserveComponent } from './situation-reserve/situation-reserve
 import { ArchiveComponent } from './archive/archive.component';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DetailRapportComponent,
     SituationReserveComponent,
     ArchiveComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { TranslateModule } from '@ngx-translate/core';
     DetailComponent,
     PopupComponent,
     DetailRapportComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    ModalComponent
   ]
 })
 export class RapportModule { }

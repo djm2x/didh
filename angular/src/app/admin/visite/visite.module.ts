@@ -15,12 +15,15 @@ import { ArchiveComponent } from './archive/archive.component';
 import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { ModalComponent } from './modal/modal.component';
+
 @NgModule({
   declarations: [
     VisiteComponent,
     UpdateComponent,
     DetailComponent,
     ArchiveComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { TranslateModule } from '@ngx-translate/core';
     UpdateComponent,
     DetailComponent,
     ArchiveComponent,
+    ModalComponent
   ]
 })
 export class VisiteModule { }

@@ -14,6 +14,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-visite',
@@ -48,11 +49,11 @@ export class VisiteComponent implements OnInit {
 
   pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'etat', title: 'Etat d’avancement des recommandations par visite'});
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
-  
+
   visitePageSubject = new Subject();
   visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
-  
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService
@@ -62,7 +63,7 @@ export class VisiteComponent implements OnInit {
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });
-    
+
     setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300)
       ;
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
@@ -101,7 +102,15 @@ export class VisiteComponent implements OnInit {
 
     return dialogRef.afterClosed();
   }
+  moreInfo() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '80vw',
+      disableClose: true,
+      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
+    });
 
+    return dialogRef.afterClosed();
+  }
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.visites.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {

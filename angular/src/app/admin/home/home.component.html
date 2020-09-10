@@ -16,6 +16,11 @@
     </section>
   </div>
   <h3 style="font-size: 1.4em;">« {{ 'admin.home.droitHomme' | translate }} »</h3>
+  <h3 style="font-size: 0.9em; color: black;">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
+
+
+
+
 
 
 
@@ -26,26 +31,25 @@
         <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
       </mat-select>
     </mat-form-field> -->
-    
+
     <div class="col-md-12">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
-
-            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 50 : -50" [diameter]="140" [data]="dataEpu"></app-progress-cercle>
+            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="140" [data]="dataEpu"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 50 : -50" [diameter]="140" [data]="dataOt"></app-progress-cercle>
+            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="140" [data]="dataOt"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 50 : -50" [diameter]="140" [data]="dataPs"></app-progress-cercle>
+            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="140" [data]="dataPs"></app-progress-cercle>
           </div>
         </div>
       </div>

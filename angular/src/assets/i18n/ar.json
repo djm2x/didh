@@ -1,54 +1,55 @@
 {
   "admin": {
-    "lang": "لغة", 
-    "Enregistre": "حفظ", 
-    "Retour": "عودة", 
-    "header": { 
-      "SessionsDH": "دورات  مجلس حقوق الانسان", 
-      "Questionnaires": "استبيانات", 
-      "Documentation": "توثيق", 
-      "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل", 
-      "OrganesdeTraités": "هيئات المعاهدات", 
-      "Procéduresspéciales": "الاجراءات الخاصة", 
-      "Evènements": "تظاهرات", 
-      "Statistiques": "إحصائيات", 
-      "Recommandations": "توصيات", 
-      "Synthèse": "تجميع متابعة التوصيات", 
-      "Utilisateur": "مستخدم", 
-      "Profils": "ملفات شخصية", 
-      "Organisations": "منظمات", 
-      "Organedetraités": "هيئات المعاهدات", 
-      "Cycles": "دورات", 
-      "Axes": "محاور",  
-      "Sousaxe": "المحور الفرعي", 
-      "Pays": "البلد" 
+    "lang": "لغة",
+    "Enregistre": "حفظ",
+    "Retour": "عودة",
+    "header": {
+      "SessionsDH": "دورات  مجلس حقوق الانسان",
+      "Questionnaires": "استبيانات",
+      "Documentation": "توثيق",
+      "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل",
+      "OrganesdeTraités": "هيئات المعاهدات",
+      "Procéduresspéciales": "الاجراءات الخاصة",
+      "Evènements": "تظاهرات",
+      "Statistiques": "إحصائيات",
+      "Recommandations": "توصيات",
+      "Synthèse": "تجميع متابعة التوصيات",
+      "Utilisateur": "مستخدم",
+      "Profils": "ملفات شخصية",
+      "Organisations": "منظمات",
+      "Organedetraités": "هيئات المعاهدات",
+      "Cycles": "دورات",
+      "Axes": "محاور",
+      "Sousaxe": "المحور الفرعي",
+      "Pays": "البلد"
     },
-    "home": { 
-      "SystèmedeSuividesrecommandations": "نظام تتبع تنفيذ  التوصيات",  
-      "droitHomme": "حقوق الإنسان لا ترتبط فقط بالطلب ، ولكن أيضا بالواجب",  
-      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "تفعيل توصيات آليات الأمم المتحدة لحقوق الإنسان", 
-      "ExamenPériodiqueuniversell": "الاستعراض الدوري الشام", 
-      "OrganesdeTraités": "هيئات المعاهدات", 
-      "Procéduresspéciales": "الإجراءات الخاص", 
-      "Miseenœuvredesaxe": "تفعيل المحاور", 
-      "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا"   
+    "home": {
+      "SystèmedeSuividesrecommandations": "نظام تتبع تنفيذ  التوصيات",
+      "droitHomme": "نريد للعالم الذي يرثه أطفالنا أن يقوم على أساس القيم المجسدة في ميثاق الأمم المتحدة، وهي: السلام والعدل والاحترام وحقوق الإنسان والتسامح والتضامن. وهذه قيم تعتنقها جميع الأديان الكبرى، ونسعى نحن لجعلها تتجلى في حياتنا اليومية ",
+      "sousTitreDroitHomme": "مقتطف من خطاب الأمين العام للأمم المتحدة، أنطونيو غوتيريش، في مراسم أداء اليمين يوم 12 دجنبر 2016",
+      "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "تفعيل توصيات آليات الأمم المتحدة لحقوق الإنسان",
+      "ExamenPériodiqueuniversell": "الاستعراض الدوري الشام",
+      "OrganesdeTraités": "هيئات المعاهدات",
+      "Procéduresspéciales": "الإجراءات الخاص",
+      "Miseenœuvredesaxe": "تفعيل المحاور",
+      "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا"
     },
-    "epu": { 
-      "list": { 
-        "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",  
-        "Examen": "استعراض", 
-        "libelle": "الصياغة", 
+    "epu": {
+      "list": {
+        "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
+        "Examen": "استعراض",
+        "libelle": "الصياغة",
         "Realisé": "منجز ",
-        "Rapportnational": "التقرير الوطني", 
-        "CompilationHCDHSOCIETECIVILE": "تجميع  مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني", 
-        "Discoursduprésident": "كلمة رئيس الوفد", 
-        "ObservationsfinalesADDITIFS": "التوصيات /آراء بشأن الاستنتاجات و/أو التوصيات",  
-        "PLANDEMISEENOEUVRE": "مخطط التنفيذ", 
-        "Rapportmi-parcours": "التقرير نصف المرحلي", 
-        "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور", 
-        "Tauxderecommandationsparaxe": "نسبة التوصيات حسب المحور", 
-        "AjouterExamen": "إضافة إستعراض", 
-        "ModifierExamen": "تعديل إستعراض" 
+        "Rapportnational": "التقرير الوطني",
+        "CompilationHCDHSOCIETECIVILE": "تجميع  مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني",
+        "Discoursduprésident": "كلمة رئيس الوفد",
+        "ObservationsfinalesADDITIFS": "التوصيات /آراء بشأن الاستنتاجات و/أو التوصيات",
+        "PLANDEMISEENOEUVRE": "مخطط التنفيذ",
+        "Rapportmi-parcours": "التقرير نصف المرحلي",
+        "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور",
+        "Tauxderecommandationsparaxe": "نسبة التوصيات حسب المحور",
+        "AjouterExamen": "إضافة إستعراض",
+        "ModifierExamen": "تعديل إستعراض"
       }
     },
     "organe": {
@@ -57,7 +58,7 @@
       "situation_des_réserves": " وضعية التحفظات",
       "Pièce-jointe": " المرفقات",
       "Telecharger": " تحميل",
-      "list": { 
+      "list": {
         "Organesdetraité": " هيئات المعاهدات",
         "Rapportnational": " التقرير الوطني",
         "Discoursduprésident": " كلمة رئيس الوفد",
@@ -69,43 +70,43 @@
         "Taux": " نسبة",
         "Réalisé": "منجز",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "تنفيذ التوصيات حسب هيئات المعاهدات"
-      }, 
-      "update": { 
+      },
+      "update": {
         "ConventionProtocole": " إتفاقية/بروتوكول",
         "DateSignature": " تاريخ التوقيع",
         "Datederatification": " تاريخ المصادقة ",
         "Rapport": " تقرير",
         "Traité": " معاهدة",
-        "traite": { 
-          "list": { 
+        "traite": {
+          "list": {
             "PIECE": " قطعة",
             "TITRE": " عنوان",
             "DATEDERNIERRAPPORT": " تاريخ آخر تقرير",
             "DATEOBSERVATION": " تاريخ الملاحظة",
             "DATEPROCHAINERAPPORT": " تاريخ تقديم التقرير القادم",
-            "REFERENCEDESOBSERVATIONSFINALES": "مرجع الملاحظات النهائية" 
+            "REFERENCEDESOBSERVATIONSFINALES": "مرجع الملاحظات النهائية"
           },
-          "update": { 
+          "update": {
             "TITRE": " عنوان",
             "Référence_des_observations_finales": " مرجع الملاحظات النهائية",
             "Date_rapport": " تاريخ التقرير",
             "Date_des_observations_finales": " تاريخ الملاحظات النهائية",
             "Prochain_rapport": " التقرير القادم",
-            "Pièce_jointe": "المرفقات" 
+            "Pièce_jointe": "المرفقات"
           },
-          "synthese": { 
-            "Synthèse": "موجز", 
-            "code": "رمز", 
-            "detail": "تفاصيل" 
+          "synthese": {
+            "Synthèse": "موجز",
+            "code": "رمز",
+            "detail": "تفاصيل"
           }
         }
       }
     },
     "ps": {
-      "Procédure_spéciales": "الاجراءات الخاصة", 
-      "Procédure_spéciale": "الاجراء الخاص", 
+      "Procédure_spéciales": "الاجراءات الخاصة",
+      "Procédure_spéciale": "الاجراء الخاص",
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ التوصيات حسب الاجراءات الخاصة",
-      "list": { 
+      "list": {
         "MANDAT": " ولاية",
         "Date_de_la_visite": " تاريخ الزيارة",
         "RAPPORT_NATIONAL_DE_LA_VISITE": " التقرير الوطني للزيارة",
@@ -114,7 +115,7 @@
         "Ajouter_Procédure_spéciale": " ‘إضافة إجراء خاص",
         "Modifier_Procédure_spéciale": " تعديل إجراء خاص"
       },
-      "update": { 
+      "update": {
         "Mandat": "Mandat",
         "MandatAr": "ولاية",
         "Discours_du_président": " كلمة رئيس الوفد",
@@ -138,14 +139,14 @@
         "Modifier_evènement": " تعديل تظاهرة",
         "evènement": " تظاهرة"
       },
-      "update": { 
+      "update": {
         "Categorie": " صنف",
         "title": " عنوان",
         "date": " تاريخ",
         "description": " وصف"
       }
     },
-    "state": { 
+    "state": {
       "Diagrammes_statistiques": " الرسوم البيانية والإحصائيات",
       "Recherche": " بحث",
       "Mecanisme": " آلية",
@@ -167,15 +168,15 @@
       "Etat_avancement": " التقدم المحرز",
       "Taux": " نسبة",
       "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ التوصيات حسب هيئات المعاهدات"
-    }, 
-    "recommandation": { 
+    },
+    "recommandation": {
       "title": "توصية",
-      "titles": "توصيات", 
-      "update": { 
-        "Cycle": "دورة", 
-        "Visite": "زيارة", 
-        "Organe": "هيئة", 
-        "Pays": "بلد", 
+      "titles": "توصيات",
+      "update": {
+        "Cycle": "دورة",
+        "Visite": "زيارة",
+        "Organe": "هيئة",
+        "Pays": "بلد",
         "Etaten": " الحالة بالنسبة المئوية",
         "Etatdavancement": " التقدم المحرز",
         "PieceJointe": " المرفقات",
@@ -183,31 +184,31 @@
         "ORGANISMES": " منظمات",
         "ADRESSE": " عنوان"
       },
-      "list": { 
-        "Recommandations": "توصيات", 
-        "Recommandation": "توصية", 
-        "Recherche": "بحث", 
-        "Organisme": "منظمة", 
-        "Pays": "بلد", 
-        "Cycle": "دورة", 
-        "Visite": "زيارة", 
-        "Organe": "عضو", 
+      "list": {
+        "Recommandations": "توصيات",
+        "Recommandation": "توصية",
+        "Recherche": "بحث",
+        "Organisme": "منظمة",
+        "Pays": "بلد",
+        "Cycle": "دورة",
+        "Visite": "زيارة",
+        "Organe": "عضو",
         "Rechercher": "بحث",
         "Réinitialiser": "إعادة تعيين",
-        "code": "رمز", 
+        "code": "رمز",
         "nom": "الكنية",
         "Etatdemisenoeuvre": "حالة التنفيذ",
         "mecanisme": "آلية",
         "DEPARTEMENT": "قسم",
         "OBSERVATIONS": "ملاحظات",
-        "complement": "معلومات إضافية", 
-        "Axe": "محور", 
-        "Sousaxe": "محور فرعي", 
+        "complement": "معلومات إضافية",
+        "Axe": "محور",
+        "Sousaxe": "محور فرعي",
         "piece-Jointe": "الوثائق المرفقة"
       }
-    }, 
-    "synthese": {  
-      "list": { 
+    },
+    "synthese": {
+      "list": {
         "Synthèses": " تقارير توليفية",
         "Synthèse": " تقرير توليفي",
         "Recherche": " بحث",
@@ -221,7 +222,7 @@
         "CODE": " رمز",
         "DETAIL": " تفصيل"
       },
-      "update": { 
+      "update": {
         "Code": " رمز",
         "Synthèse": " تقرير توليفي",
         "Recommandations": " توصيات",
@@ -240,8 +241,8 @@
         "Pièce_jointe": " المرفقات"
       }
     },
-    "session": { 
-      "list": { 
+    "session": {
+      "list": {
         "Participation_au_session_des_DH": " المشاركة في دورات حقوق الانسان",
         "Participation": " المشاركة",
         "Recherche": " بحث",
@@ -256,11 +257,11 @@
         "Modifier_Participation_Session": " تعديل مشاركة في الدورة",
         "Participation_Session": " مشاركة في الدورة"
       },
-      "update": { 
-        "Session": "دورة", 
-        "Année": "سنة", 
-        "Discours_de_Mr_le_Ministre": "كامة السيد الرئيس", 
-        "Documents_de_examen": "ملف الاستعراض" 
+      "update": {
+        "Session": "دورة",
+        "Année": "سنة",
+        "Discours_de_Mr_le_Ministre": "كامة السيد الرئيس",
+        "Documents_de_examen": "ملف الاستعراض"
       }
     },
     "questionnaire": {
@@ -277,7 +278,7 @@
         "Ajouter_Questionnaire": " إضافة استبيان",
         "Modifier_Questionnaire": " تعديل استبيان"
       },
-      "update": { 
+      "update": {
 
       }
     }
