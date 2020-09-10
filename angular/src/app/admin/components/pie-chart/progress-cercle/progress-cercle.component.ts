@@ -12,7 +12,7 @@ import { DetailComponent } from '../detail/detail.component';
 export class ProgressCercleComponent implements OnInit {
   @Input() width = 300;
   @Input() fontSize = .93;
-  @Input() widthText = 'auto';
+  @Input() widthText = '';
   @Input() diameter = 120;
   @Input() transform = 50;
 
@@ -29,7 +29,7 @@ export class ProgressCercleComponent implements OnInit {
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });
-    
+
     this.data.subscribe(async r => {
 
       if (r.name instanceof Observable) {

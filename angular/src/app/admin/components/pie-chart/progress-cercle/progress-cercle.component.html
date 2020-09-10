@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center" style="height: 230px; cursor: pointer;" (click)="openDialog()">
+<div class="d-flex justify-content-center" style="height: 230px; cursor: pointer;margin-right: 70px;" (click)="openDialog()">
     <div class="d-flex justify-content-center" style="height: 300px;">
 
         <div style="position: relative;width: 100%;">
@@ -30,7 +30,7 @@
 
     <div class="d-flex flex-column justify-content-center mt-2" style="height: 180%;" [style.width]="widthText">
         <img *ngIf="!isInForLoop" src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' + retate + 'deg)'">
-        <h5 style="color: #737473; margin: 5px 0 10px 5px;" [style.font-size.em]="fontSize"
+        <h5 style="color: #737473; margin: 5px -107px 10px 5px;" [style.font-size.em]="fontSize"
             [ngStyle]="{'text-align': isInForLoop ? 'center' : (retate === 0  ? 'left' : 'right')}">
             {{o.name}}
         </h5>
