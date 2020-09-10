@@ -1,3 +1,10 @@
+<style>
+  .ValeurGraph
+  {
+    margin-top: 10%;
+    color: #fff;
+  }
+</style>
 <div class="mb-3" style="cursor: pointer;" (click)="openDialog()">
     <!-- <div class="d-flex justify-centent-center align-items-center mb-3"> -->
     <div class="d-flex flex-column justify-content-center mt-2">
@@ -11,11 +18,17 @@
         [matTooltip]="tooltipMsg(widthOne, widthThree, widthTwo)">
         <!-- <div class="miniBarProgress" style="width: 20%; z-index: 3; background-color: #8a898a;"></div> -->
         <div class="miniBarProgress" [style.width.%]="widthTwo" style="z-index: 1; background-color: var(--primary);">
+          <!-- <h6 class="ValeurGraph">{{ widthTwo }}%</h6> -->
         </div>
-        <div class="miniBarProgress" [style.width.%]="(widthOne * widthTwo) / 100"
-            style="z-index: 2; background-color: #d17c36;"></div>
-        <div class="miniBarProgress" [style.width.%]="(widthThree * widthTwo) / 100"
-            style="z-index: 2; background-color:gray;"></div>
+
+        <div class="miniBarProgress" [style.width.%]="(widthOne * widthTwo) / 100" style="z-index: 2; background-color: #d17c36;">
+            <!-- <h6 class="ValeurGraph">{{ (widthOne * widthTwo) / 100 }}%</h6> -->
+          </div>
+
+
+        <div class="miniBarProgress" [style.width.%]="(widthThree * widthTwo) / 100" style="z-index: 2; background-color:gray;">
+            <!-- <h6 class="ValeurGraph">{{ (widthThree * widthTwo) / 100 }}%</h6> -->
+          </div>
     </div>
 
 
