@@ -258,7 +258,7 @@
                         <div *ngFor="let e of departementList; let i=index">
                             <!-- <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle> -->
                             <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10"
-                                [diameter]="200" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7"
+                                [diameter]="150" [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7"
                                 [width]="170" [o]="e">
                             </app-progress-cercle>
 
@@ -281,7 +281,7 @@
                     <div class="d-flex flex-wrap justify-content-center ">
                         <div *ngFor="let e of payeList; let i=index">
                             <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10"
-                                [diameter]="200" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7"
+                                [diameter]="150" [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7"
                                 [width]="170" [o]="e">
                             </app-progress-cercle>
                         </div>
