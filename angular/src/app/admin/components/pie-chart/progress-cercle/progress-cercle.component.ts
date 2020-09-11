@@ -22,7 +22,6 @@ export class ProgressCercleComponent implements OnInit {
   @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number, r: number };
 
   retate = 0;
-
   constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) { }
 
   ngOnInit() {
