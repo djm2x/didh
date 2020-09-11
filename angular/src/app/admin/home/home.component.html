@@ -7,22 +7,16 @@
       </div>
     </section>
   </div>
-  <br>
-  <br>
-  <div class="d-flex justify-content-center w-100">
+
+  <div class="d-flex justify-content-center w-100" style="margin-top: 2%;">
     <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
       <div>
         <h3>{{ 'admin.home.Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme' | translate }}</h3>
       </div>
     </section>
   </div>
-  <h3 style="font-size: 1.4em;">« {{ 'admin.home.droitHomme' | translate }} »</h3>
-  <h3 style="font-size: 0.9em; color: black;">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
-  <br>
-
-
-
-
+  <h3 style="margin-top: 2%;font-size: 1.4em;font-family:'Satisfy', cursive;">« {{ 'admin.home.droitHomme' | translate }} »</h3>
+  <h3 style="margin-bottom: 2%;font-size: 0.9em; color:#00000070;font-family:'Satisfy', cursive;text-align: right;">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
 
 
   <div class="row mt-3 justify-content-center">
@@ -132,7 +126,7 @@
             <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
-              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="200" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="140" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
           </div>
         </div>
       </div>

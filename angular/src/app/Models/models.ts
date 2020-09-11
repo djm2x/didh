@@ -162,6 +162,7 @@ export class Recommendation {
   idVisite = null;
   idSousAxe = null;
   idPays = null;
+  annee = null;
   recomOrgs: RecomOrg[] = [];
   organe = new Organe();
   visite = new Visite();

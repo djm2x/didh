@@ -205,6 +205,7 @@ namespace Admin5.Models
                 entity.Property(e => e.EtatAvancementChiffre);
                 entity.Property(e => e.IdAxe).IsRequired();
                 entity.Property(e => e.IdSousAxe);
+                entity.Property(e => e.Annee);
                 entity.Property(e => e.Etat).IsRequired();
                 // entity.Property(e => e.IdOrganisme).IsRequired();
                 // entity.HasOne(d => d.Organisme).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdOrganisme);

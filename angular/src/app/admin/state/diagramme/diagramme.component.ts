@@ -3,11 +3,11 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { UowService } from 'src/app/services/uow.service';
-import { Subject, merge, BehaviorSubject } from 'rxjs';
+import { Subject, merge, BehaviorSubject, Observable } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { MatTabGroup } from '@angular/material';
+import { MatTabGroup, MatAutocompleteSelectedEvent } from '@angular/material';
 import { Model } from '../../recommendation/list/list.component';
 
 @Component({
@@ -58,7 +58,10 @@ export class DiagrammeComponent implements OnInit {
   etats = this.uow.etats;
   listAxes = new Subject<any>();
   listOrganisme = new Subject<any>();
+  pays = this.uow.pays.get();
 
+  myAuto = new FormControl('');
+  filteredOptions: Observable<any>;
 
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
@@ -73,7 +76,12 @@ export class DiagrammeComponent implements OnInit {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
-
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const o = event.option.value as any;
+    console.log(o);
+    this.myAuto.setValue(o.label);
+    (this.myForm.get('idOrganisme') as FormControl).setValue(o.id);
+  }
   ngOnInit() {
 
     this.createForm();
@@ -157,7 +165,6 @@ export class DiagrammeComponent implements OnInit {
     this.o.mecanisme = o.selectedIndex === 0 ? 'Examen périodique universal' : (o.selectedIndex === 1 ? 'Organes de traités' : 'Procédure spéciale')
 
 
-
     this.idCycle.setValue(o.selectedIndex === 0 ? 1 : 0);
     this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
     this.idVisite.setValue(o.selectedIndex === 2 ? 1 : 0);
@@ -179,21 +186,29 @@ export class DiagrammeComponent implements OnInit {
       barChartData[1].data.push(e.t.toFixed(0));
       barChartData[2].data.push(e.r);
     });
+    // tslint:disable-next-line:max-line-length
     this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
   }
 
   createForm() {
     this.myForm = this.fb.group({
+      idOrganisme: this.o.idOrganisme,
       mecanisme: this.o.mecanisme,
       idCycle: this.o.idCycle,
       idOrgane: this.o.idOrgane,
       idVisite: this.o.idVisite,
       idAxe: this.o.idAxe,
+      nom: this.o.nom,
       etat: this.o.etat,
+      idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
-      idOrganisme: this.o.idOrganisme,
+      startIndex: this.o.startIndex,
+      pageSize: this.o.pageSize,
+      sortBy: this.o.sortBy,
+      sortDir: this.o.sortDir,
     });
   }
+
 
   get mecanisme() { return this.myForm.get('mecanisme') as FormControl; }
   get idCycle() { return this.myForm.get('idCycle') as FormControl; }

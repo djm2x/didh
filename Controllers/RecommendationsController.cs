@@ -63,6 +63,7 @@ namespace Admin5.Controllers
                         CodeRecommendation = e.CodeRecommendation,
                         Nom = e.Nom,
                         Etat = e.Etat,
+                        Annee = e.Annee,
                         Mecanisme = e.Mecanisme,
                         Axe = e.Axe.Label,
                         SousAxe = e.SousAxe.Label,
@@ -804,6 +805,8 @@ namespace Admin5.Controllers
         public int IdOrgane { get; set; }
         public int IdVisite { get; set; }
         public string Mecanisme { get; set; }
+        public int Annee { get; set; }
+
         public int StartIndex { get; set; }
         public int PageSize { get; set; }
         public string SortBy { get; set; }

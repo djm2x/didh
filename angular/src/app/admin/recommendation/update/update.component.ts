@@ -69,7 +69,7 @@ export class UpdateComponent implements OnInit {
       });
     }
 
-    
+
   }
 
   get isAdmin() {
@@ -102,6 +102,8 @@ export class UpdateComponent implements OnInit {
       complement: [this.o.complement],
       pieceJointe: [this.o.pieceJointe],
       idPays: [this.o.idPays, Validators.required],
+      annee: [this.o.annee],
+
       // idSynthese: [this.o.idSynthese, Validators.required],
     });
   }

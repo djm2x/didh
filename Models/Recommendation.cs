@@ -26,6 +26,9 @@ namespace Admin5.Models
         public string Observation { get; set; }
         public string Complement  { get; set; }
         public string PieceJointe { get; set; }
+
+        public int? Annee { get; set; }
+
         // public int IdOrganisme { get; set; }
         // public Organisme Organisme { get; set; }
         public Visite Visite { get; set; }
