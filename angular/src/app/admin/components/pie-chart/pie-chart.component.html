@@ -1,9 +1,12 @@
 <div class="d-flex flex-column align-items-center justify-content-center mb-3" style="cursor: pointer;" (click)="openDialog()">
 
-  <div style="display: block; width: 700px;">
-    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+  <div style="display: block; width: 900px;">
+    <canvas class="chart chart-pie"   baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
       [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
     </canvas>
+
+
+
   </div>
   <!-- <div class="d-flex justify-content-center">
     <img src="assets/line.png" height="10px" width="280px" (mytranslate.lang | async) === 'fr' ? 22 : -10>

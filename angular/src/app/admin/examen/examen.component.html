@@ -29,15 +29,19 @@
 
 
   <div class="row">
-    <div class="col-md-4">
-      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
-    </div>
-    <div class="col-md-4">
-      <app-pie-chart [obs]="pieChartSubjectR"></app-pie-chart>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-12">
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
+  </div>
+  <div class="row" style="margin-top: -5%; margin-bottom: 0%;">
+
+    <div class="col-md-6">
+      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
+    </div>
+    <div class="col-md-6">
+      <app-pie-chart [obs]="pieChartSubjectR"></app-pie-chart>
+    </div>
+
   </div>
 
 
