@@ -238,20 +238,37 @@
                 </div>
 
                 <div class="col-md-10 mb-5 mt-5">
+
+                  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
+                    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+                      <div>
+                        <h3>{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}</h3>
+                      </div>
+                    </section>
+                  </div>
+
                     <div *ngFor="let e of axesList; let i=index">
                         <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
                     </div>
-
+<!--
                     <div class="d-flex flex-column justify-content-center align-items-center mt-4">
                         <img src="assets/line.png" height="10px" width="280px"
                             [style.transform]="'rotateY(' +  rotateY + 'deg)'">
                         <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
                             {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}
                         </h5>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-md-10 mt-5">
+
+                  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%; ">
+                    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+                      <div>
+                        <h3>{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}</h3>
+                      </div>
+                    </section>
+                  </div>
 
                     <div class="d-flex flex-wrap justify-content-center ">
 
@@ -265,18 +282,27 @@
                             <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
                         </div>
                     </div>
-
+<!--
                     <div class="d-flex flex-column justify-content-center align-items-center mt-4">
                         <img src="assets/line.png" height="10px" width="280px"
                             [style.transform]="'rotateY(' +  rotateY + 'deg)'">
                         <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
                             {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}
                         </h5>
-                    </div>
+                    </div> -->
 
                 </div>
 
                 <div class="col-md-10 mt-5">
+
+
+                  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%;">
+                    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+                      <div>
+                        <h3>{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_pays' | translate }}</h3>
+                      </div>
+                    </section>
+                  </div>
 
                     <div class="d-flex flex-wrap justify-content-center ">
                         <div *ngFor="let e of payeList; let i=index">
@@ -287,13 +313,13 @@
                         </div>
                     </div>
 
-                    <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+                    <!-- <div class="d-flex flex-column justify-content-center align-items-center mt-4">
                         <img src="assets/line.png" height="10px" width="280px"
                             [style.transform]="'rotateY(' +  rotateY + 'deg)'">
                         <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
                             {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_pays' | translate }}
                         </h5>
-                    </div>
+                    </div> -->
 
                 </div>
 

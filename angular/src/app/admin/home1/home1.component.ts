@@ -7,11 +7,11 @@ import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-home1',
+  templateUrl: './home1.component.html',
+  styleUrls: ['./home1.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class Home1Component implements OnInit {
   // rapports = this.session.isPointFocal ?
   //   this.uow.traites.getCount(this.session.user.idOrganisme) : this.uow.traites.count();
   // recommendations = this.session.isPointFocal ?

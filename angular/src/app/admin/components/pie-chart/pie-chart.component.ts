@@ -17,6 +17,9 @@ export class PieChartComponent implements OnInit {
   // @Input() type: 'count' | 'taux' = 'taux';
   // @Input() mytitle: '';
   @Input() obs = new Subject<IData>();
+  @Input() public showLegend = false;
+
+
   title = '' || null;
   // Pie
   public pieChartOptions: ChartOptions = {
@@ -57,6 +60,7 @@ export class PieChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pieChartOptions.legend.display = this.showLegend;
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });

@@ -9,7 +9,7 @@
   <section>
     <!-- <h3>Accueil</h3> -->
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <h5 style="color: #737473; margin: 5px 0 10px 5px;">Etabli par la résolution 60/251 de l’Assemblée générale des
+      <h5 style="color: #737473; margin: 5px 0 10px 5px;text-indent:1cm;">Etabli par la résolution 60/251 de l’Assemblée générale des
         Nations Unies, adoptée le 15 mars 2006, l’Examen
         Périodique Universel (EPU) est un processus mené par les Etats, dans le cadre des travaux du Groupe de travail
         sur l’Examen périodique universel constitué des 47 États membres du Conseil des droits de l’Homme, qui a pour
@@ -29,16 +29,16 @@
 
   <div class="row">
     <div class="col-md-12">
-      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+      <app-pie-chart  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
   </div>
   <div class="row" style="margin-top: -5%; margin-bottom: 0%;">
 
     <div class="col-md-6">
-      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
+      <app-pie-chart  [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
     </div>
     <div class="col-md-6">
-      <app-pie-chart [obs]="pieChartSubjectR"></app-pie-chart>
+      <app-pie-chart  [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
     </div>
 
   </div>
