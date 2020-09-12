@@ -70,6 +70,18 @@ export class DiagrammeComponent implements OnInit {
   rotateY = 0;
 
   toChild = new Subject<Model>();
+  pieChartSubjectC = new BehaviorSubject<IPieData>({table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe')});
+  pieChartSubject = new BehaviorSubject<IPieData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
+  pieChartSubjectR = new BehaviorSubject<IPieData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
+
+
+  organePageSubject = new Subject();
+
+  @Input() widthOne = 0;
+  @Input() widthTwo = 0;
+  @Input() widthThree = 0;
+  @Input() title2 = '';
+  visitePage: {name: string, p: number, t: number, r: number}[] = [];
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService
     , public mytranslate: MyTranslateService) {
@@ -163,7 +175,6 @@ export class DiagrammeComponent implements OnInit {
 
     this.selectedIndex = o.selectedIndex;
     this.o.mecanisme = o.selectedIndex === 0 ? 'Examen périodique universal' : (o.selectedIndex === 1 ? 'Organes de traités' : 'Procédure spéciale')
-
 
     this.idCycle.setValue(o.selectedIndex === 0 ? 1 : 0);
     this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
@@ -291,6 +302,12 @@ export interface IData {
   table: 'axe' | 'organe' | 'visite';
   type: 'count' | 'taux';
   title: string;
+}
+
+export interface IPieData {
+  table: 'axe' | 'organe' | 'visite';
+  type: 'taux' | 'etat' | 'realise';
+  title: string | Observable<string>;
 }
 
 // class Model {
