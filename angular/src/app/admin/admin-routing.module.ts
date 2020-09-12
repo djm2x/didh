@@ -10,6 +10,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule), },
+      { path: 'home1', loadChildren: () => import('./home1/home1.module').then(m => m.Home1Module), },
       {
         path: 'participation-session', loadChildren: () =>
           import('./participation-session/participation-session.module').then(m => m.ParticipationSessionModule),

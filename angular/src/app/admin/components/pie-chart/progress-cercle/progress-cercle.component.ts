@@ -15,7 +15,7 @@ export class ProgressCercleComponent implements OnInit {
   @Input() widthText = '';
   @Input() diameter = 120;
   @Input() transform = 50;
-
+  @Input() public showLegend = false;
   @Input() public isInForLoop = false;
   @Input() public data = new Subject<{ name: string | Observable<string>, t: number, p: number, r: number }>();
   @Input() o = { name: null, t: 0, p: 0, r:0 };
@@ -28,6 +28,7 @@ export class ProgressCercleComponent implements OnInit {
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });
+    // this.showLegend = this.showLegend;
 
     this.data.subscribe(async r => {
 
