@@ -17,23 +17,32 @@ export class PieChartComponent implements OnInit {
   // @Input() type: 'count' | 'taux' = 'taux';
   // @Input() mytitle: '';
   @Input() obs = new Subject<IData>();
+  @Input() public showLegend = false;
+
+
   title = '' || null;
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
     title: {
       text: '',
-      display: false,
+      display: true,
+    },
+    tooltips: {
+      enabled: true
     },
     legend: {
-      position: 'chartArea',
-      display: false,
-    }
+      // position: 'chartArea',
+      position: 'right',
+      display: true,
+    },
+
+
+
   };
 
 
-
-  pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
+  public pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
   pieChartData: SingleDataSet = [/*300, 500, 100*/];
   @Input() public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
@@ -51,6 +60,7 @@ export class PieChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pieChartOptions.legend.display = this.showLegend;
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });
@@ -85,12 +95,10 @@ export class PieChartComponent implements OnInit {
       this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
         this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
         this.pieChartData = r.map(e => e.value);
-
         this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
 
         this.pieChartLabels.forEach((e, i) => {
           const value = this.pieChartData[i] as number;
-
           if (value !== 0) {
             this.list.push({
               name: e.toString(),

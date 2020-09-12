@@ -1,59 +1,54 @@
-<style>
-.legend { list-style: none; }
-.legend li {  margin-right: 10px; }
-.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
-/* your colors */
-.legend .superawesome { background-color: #2b6a97; }
-.legend .awesome { background-color: #ca7834; }
-.legend .kindaawesome { background-color: #808080; }
-.legend{
-  height:10px;
-  width:190px;
-  margin: 5px -263px 0px 79px;}
-</style>
-<div class="d-flex justify-content-center" style="height: 230px; cursor: pointer;margin-right: 70px;" (click)="openDialog()">
+<div class="d-flex justify-content-center" style="height: 230px; cursor: pointer;margin-right: 70px;"
+  (click)="openDialog()">
+
+  <div class="d-flex justify-content-center" style="height: 300px;">
+
+    <div style="position: relative;width: 100%;">
+
+      <div class="blue">
+        <mat-progress-spinner [matTooltip]="'Taux : ' + o.t + '%'" style="position: absolute;"
+          [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
+          [mode]="'determinate'" [value]="o.t">
+        </mat-progress-spinner>
+      </div>
+
+      <div class="orange">
+        <mat-progress-spinner class="orange" [matTooltip]="tooltipMsg(o.p, o.r, o.t)" style="position: absolute;"
+          [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'warn'"
+          [mode]="'determinate'" [value]="(o.p * o.t) / 100">
+        </mat-progress-spinner>
+      </div>
+
+      <div class="gray">
+        <mat-progress-spinner [matTooltip]="tooltipMsg(o.p, o.r, o.t)" style="position: absolute;"
+          [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
+          [mode]="'determinate'" [value]="(o.r * o.t) / 100">
+
+        </mat-progress-spinner>
 
 
-  <div class="d-flex flex-column justify-content-center mt-2" style="height: 54%;" [style.width]="widthText">
-    <ul class="legend">
-      <li><span class="superawesome"></span>Taux [{{ (o.t).toFixed(0) }}%]</li>
-      <li><span class="awesome"></span> En cours [{{ ((o.p * o.t) / 100).toFixed(0) }}%]</li>
-      <li><span class="kindaawesome"></span> Réalisé [{{ ((o.r * o.t) / 100).toFixed(0) }}%]</li>
-  </ul>
-</div>
-    <div class="d-flex justify-content-center" style="height: 300px;">
-
-        <div style="position: relative;width: 100%;">
-
-            <div class="blue">
-                <mat-progress-spinner [matTooltip]="'Taux : ' + o.t + '%'" style="position: absolute;"
-                    [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
-                    [mode]="'determinate'" [value]="o.t">
-                </mat-progress-spinner>
-            </div>
-
-            <div class="orange">
-                <mat-progress-spinner class="orange"
-                    [matTooltip]="tooltipMsg(o.p, o.r, o.t)"
-                    style="position: absolute;" [style.transform]="'translateX(' + transform + '%)'"
-                    [diameter]="diameter" [color]="'warn'" [mode]="'determinate'" [value]="(o.p * o.t) / 100">
-                </mat-progress-spinner>
-            </div>
-
-            <div class="gray">
-                <mat-progress-spinner [matTooltip]="tooltipMsg(o.p, o.r, o.t)" style="position: absolute;"
-                    [style.transform]="'translateX(' + transform + '%)'" [diameter]="diameter" [color]="'primary'"
-                    [mode]="'determinate'" [value]="(o.r * o.t) / 100">
-                </mat-progress-spinner>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="d-flex flex-column justify-content-center mt-2" style="height: 180%;" [style.width]="widthText">
-        <img *ngIf="!isInForLoop" src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' + retate + 'deg)'">
-        <h5 style="color: #737473; margin: 5px -107px 10px 5px;" [style.font-size.em]="fontSize"
-            [ngStyle]="{'text-align': isInForLoop ? 'center' : (retate === 0  ? 'left' : 'right')}">
-            {{o.name}}
-        </h5>
-    </div>
+  <div class="d-flex flex-column justify-content-center mt-2" style="height: 180%;" [style.width]="widthText">
+    <img *ngIf="!isInForLoop" src="assets/line.png" height="10px" width="280px"
+      [style.transform]="'rotateY(' + retate + 'deg)'">
+    <h5 class="h5Title" [style.font-size.em]="fontSize"
+      [ngStyle]="{'text-align': isInForLoop ? 'center' : (retate === 0  ? 'left' : 'right')}">
+      {{o.name}}
+    </h5>
+  </div>
+
+
+
+  <div *ngIf="showLegend" class="d-flex flex-column justify-content-center mt-2 divLegend"
+    [style.width]="widthText">
+    <ul  class="legend" height="10px" width="280px" >
+      <li><span class="superawesome"></span>Taux [{{ (o.t).toFixed(0) }}%] </li>
+      <li><span class="awesome"></span> En cours [{{ ((o.p)).toFixed(0) }}%]</li>
+      <li><span class="kindaawesome"></span> Réalisé [{{ ((o.r)).toFixed(0) }}%]</li>
+    </ul>
+  </div>
+
 </div>

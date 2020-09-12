@@ -15,20 +15,20 @@ export class ProgressCercleComponent implements OnInit {
   @Input() widthText = '';
   @Input() diameter = 120;
   @Input() transform = 50;
-
+  @Input() public showLegend = false;
   @Input() public isInForLoop = false;
   @Input() public data = new Subject<{ name: string | Observable<string>, t: number, p: number, r: number }>();
   @Input() o = { name: null, t: 0, p: 0, r:0 };
   @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number, r: number };
 
   retate = 0;
-
   constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });
+    // this.showLegend = this.showLegend;
 
     this.data.subscribe(async r => {
 
@@ -51,7 +51,7 @@ export class ProgressCercleComponent implements OnInit {
 
   tooltipMsg(prc: number, realise: number, taux: number) {
     if (this.mytranslate.langSync === 'fr') {
-      return 'État d\'avancement : ' + prc + '% - Réaliser : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
+      return 'En cours : ' + prc + '% - Réalisé : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';
     }
 
     return `التقدم المحرز : ${prc} % - منجز : ${realise} % - نسبة ${taux.toFixed(0)} %    `;

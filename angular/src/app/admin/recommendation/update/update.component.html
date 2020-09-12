@@ -3,7 +3,7 @@
   <div class="">
 
 
-    <form [formGroup]="myForm"> 
+    <form [formGroup]="myForm">
       <mat-card style="margin-top: 15px;">
         <div class="input">
           <mat-form-field appearance="fill" style="width: 20%;">
@@ -70,15 +70,22 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="inputs2">
-          <mat-form-field appearance="fill">
+        <!-- <div class="inputs2"> -->
+          <mat-form-field appearance="fill" style="width: 78%">
             <mat-label>{{ 'admin.recommandation.update.Pays' | translate }}</mat-label>
             <mat-select formControlName="idPays" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.nom : e.nomAr }}</mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
+          <span style="margin: 0 1%;"></span>
+          <mat-form-field appearance="fill" style="width: 20%">
+            <mat-label>{{ 'admin.recommandation.update.Annee' | translate }}</mat-label>
+            <input type="number" min="0" matInput formControlName="annee" [readonly]="!isAdmin">
+
+          </mat-form-field>
+
+        <!-- </div> -->
 
         <mat-form-field appearance="fill" style="width: 78%">
           <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
@@ -113,7 +120,7 @@
           [eventSubmitFromParent]="eventSubmitFromParent">
         </app-upload>
 
-        {{myForm.value | json}}
+        <!-- {{myForm.value | json}} -->
         <!--  (eventToParent)="updateListOrganisme($event)  [selectedList]="listOrganisme""-->
 
       </mat-card>

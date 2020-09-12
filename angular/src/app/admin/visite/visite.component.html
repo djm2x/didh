@@ -9,7 +9,7 @@
   <section>
     <!-- <h3>Accueil</h3> -->
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <h5 style="color: #737473; margin: 5px 0 10px 5px;">Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
+      <h5 style="color: #737473; margin: 5px 0 10px 5px;text-indent:1cm;">Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
         de la situation spécifique d’un pays ou des questions thématiques relatives aux des droits de l’homme.
         Les mandats des procédures spéciales chargent en général les titulaires de ces mandats d’examiner, de
         superviser, conseiller et faire rapport sur les situations des droits de l’homme dans des pays ou territoires
@@ -34,17 +34,26 @@
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div> -->
 
+
+  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+      <div>
+        <h3>{{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}</h3>
+      </div>
+    </section>
+  </div>
+
     <div class="col-md-10 mb-5 mt-5">
       <div *ngFor="let e of visitePage; let i=index">
         <app-progress-bar [widthThree]="e.r" [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
       </div>
 
-      <div class="d-flex flex-column justify-content-center mt-4">
+      <!-- <div class="d-flex flex-column justify-content-center mt-4">
         <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' + retate + 'deg)'">
         <h5 style="color: #737473; margin: 5px 0 10px 5px;">
           {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate}}
         </h5>
-      </div>
+      </div> -->
     </div>
   </div>
 

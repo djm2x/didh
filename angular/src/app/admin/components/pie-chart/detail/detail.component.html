@@ -9,7 +9,7 @@
     <div mat-dialog-content>
 
       <ul *ngIf="type === 'cercle'">
-        <li>État d'avancement : {{o.p.toFixed(2)}}</li>
+        <li>En cours : {{o.p.toFixed(2)}}</li>
         <li>Réaliser : {{o.r.toFixed(2)}}</li>
         <li>Taux : {{o.t.toFixed(2)}}</li>
       </ul>
@@ -17,7 +17,7 @@
       <div *ngIf="type === 'bar'">
         <ul *ngFor="let e of list; let i=index">
           <li style="font-weight: bold;">{{e.name}}</li>
-          <li>État d'avancement : {{e.p.toFixed(2)}}</li>
+          <li>En cours : {{e.p.toFixed(2)}}</li>
           <li>Réaliser : {{e.r.toFixed(2)}}</li>
           <li>Taux : {{e.t.toFixed(2)}}</li>
         </ul>

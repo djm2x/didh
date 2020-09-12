@@ -21,7 +21,8 @@
       "Cycles": "Cycles",
       "Axes": "Axes",
       "Sousaxe": "Sous axe",
-      "Pays": "Pays"
+      "Pays": "Pays",
+      "Annee": "Année"
     },
     "home": {
       "SystèmedeSuividesrecommandations": "Système de Suivi des recommandations issues des mécanismes onusiens des droits de l'homme",
@@ -167,7 +168,7 @@
       "Procédures_spéciales": "Procédures spéciales",
       "Etat_avancement": "En cours",
       "Taux": "Taux",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "Mise en œuvre des recommandations par Organes de Traités"
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "Mise en œuvre des recommandations par mécanisme"
     },
     "recommandation": {
       "title": "Recommandation",
@@ -177,6 +178,7 @@
         "Visite": "Visite",
         "Organe": "Organe",
         "Pays": "Pays",
+        "Annee": "Année",
         "Etaten": "Etat en %",
         "Etatdavancement": "En cours",
         "PieceJointe": "Piece Jointe",
@@ -190,6 +192,7 @@
         "Recherche": "Recherche",
         "Organisme": "Organisme",
         "Pays": "Pays",
+        "Annee": "Année",
         "Cycle": "Cycle",
         "Visite": "Visite",
         "Organe": "Organe",

@@ -1,0 +1,144 @@
+<div class="host">
+
+  <div class="d-flex justify-content-center w-100 mb-5">
+    <section class="super-title2">
+      <div>
+        <h3 style="font-size: 20px;">{{ 'admin.home.SystèmedeSuividesrecommandations' | translate }}</h3>
+      </div>
+    </section>
+  </div>
+
+  <div style="background-color: #0000003b;color: #fff; padding: 1%;">
+    <h3 style="margin-top: 2%;font-size: 1.4em;color: #fff;font-weight: 200;">«
+      {{ 'admin.home.droitHomme' | translate }} »</h3>
+    <h3 class="textSouTitre ">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
+  </div>
+
+  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+      <div>
+        <h3>{{ 'admin.home.Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme' | translate }}</h3>
+      </div>
+    </section>
+  </div>
+
+  <div class="row mt-3 justify-content-center">
+    <!-- <mat-form-field class="col-md-6">
+      <mat-label>Mecanismes</mat-label>
+      <mat-select (selectionChange)="selectChange($event.value)" value="Examen périodique universal">
+        <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+
+    <div class="col-md-12">
+      <div class="row w-100">
+        <div class="col-md-12">
+          <div class="chart-size">
+            <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
+            <app-progress-cercle [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+              [data]="dataEpu"></app-progress-cercle>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-size">
+            <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
+            <app-progress-cercle [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+              [data]="dataOt"></app-progress-cercle>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-size">
+            <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
+            <app-progress-cercle [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+              [data]="dataPs"></app-progress-cercle>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <mat-divider> </mat-divider> -->
+  <!-- <h3>Mise en œuvre des recommandations </h3> -->
+  <div class="d-flex justify-content-center w-100 mt-5 mb-5">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+      <div>
+        <h3>{{ 'admin.home.Miseenœuvredesaxe' | translate }}</h3>
+      </div>
+    </section>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <!-- <mat-card>
+
+        <div class="row d-flex justify-content-center mt-4 mb-4">
+          <div class="col-md-5 d-flex flex-column">
+            <div *ngFor="let e of axesValue; let i=index">
+              <div class="axes">
+                <p class="title">Enjeu {{e.id}} : {{e.value}} %</p>
+                <p class="axe">{{e.table}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <img src="assets/axes.jpg" style="width: 100%;">
+          </div>
+        </div>
+      </mat-card> -->
+      <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px; direction: ltr;">
+        <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
+          <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'"
+            style="color: white; font-weight: bold;">
+            {{e.value.toString().length >= 2 ? e.value : '0' + e.value}} %
+          </span>
+        </div>
+        <img style="position: absolute;width: 1500px; margin: 0 auto;" src="assets/meo.png">
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <mat-divider> </mat-divider> -->
+
+  <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+      <div>
+        <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
+      </div>
+    </section>
+  </div>
+
+  <div class="row mb-10">
+    <div class="col-md-12">
+      <div>
+        <!-- <div class="d-flex justify-content-center">
+          <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
+          </h5>
+        </div> -->
+        <div class="d-flex flex-wrap justify-content-center">
+
+          <div *ngFor="let e of list; let i=index">
+            <!-- <div class="d-flex flex-column pl-2 pr-2 mb-3 mt-3">
+              <div style="height: 110px;" class=" pl-4 pr-4">
+
+                <mat-progress-spinner color="primary" mode="determinate" [value]="e.value !== 0 ? e.value : 1"></mat-progress-spinner>
+                <div style="position:relative; top: -60px; left: 30px;">{{e.value}} %</div>
+              </div>
+              <p style="width: 170px; margin: 0; font-size: .9em; text-align: center;">{{e.name}}</p>
+            </div> -->
+
+            <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
+              [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
+
+
+            <app-progress-cercle [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+              [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

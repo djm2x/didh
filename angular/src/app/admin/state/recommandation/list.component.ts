@@ -29,14 +29,16 @@ export class ListComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     // { columnDef: 'codeRecommendation', headName: 'CODE' },
+    { columnDef: 'codeRecommendation', headName: 'CODE' },
     { columnDef: 'nom', headName: 'INTITULE' },
     { columnDef: 'mecanisme', headName: 'mecanisme' },
     { columnDef: 'axe', headName: 'Axe' },
     { columnDef: 'sousAxe', headName: 'SOUS AXE' },
     { columnDef: 'organismes', headName: 'DEPARTEMENT' },
     { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
-    // { columnDef: 'observation', headName: '' },
-    // { columnDef: 'complement', headName: '' },
+    { columnDef: 'observation', headName: '' },
+    { columnDef: 'complement', headName: '' },
+    { columnDef: 'pieceJointe', headName: '' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
     return e;
@@ -47,8 +49,25 @@ export class ListComponent implements OnInit {
   @Input() fromParent = new Subject<Model>();
 
   o = new Model();
-
-  constructor(private uow: UowService, public session: SessionService) { }
+  panelOpenState = false;
+  //
+  organismes = this.uow.organismes.get();
+  axes = this.uow.axes.get();
+  sousAxes = [];
+  mecanismes = this.uow.mecanismes;
+  visites = this.uow.visites.get();
+  organes = this.uow.organes.get();
+  pays = this.uow.pays.get();
+  cycles = [];
+  etats = this.uow.etats;
+  myForm: FormGroup;
+  //
+  progress = 0;
+  message: any;
+  formData = new FormData();
+  myAuto = new FormControl('');
+  filteredOptions: Observable<any>;
+  constructor(private uow: UowService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.isLoadingResults = false;
@@ -76,7 +95,7 @@ export class ListComponent implements OnInit {
     merge(...[this.sort.sortChange, this.paginator.page, this.fromParent]).subscribe(
       o => {
 
-        
+
         if (o.mecanisme !== undefined) {
           this.o = o;
           console.log(this.o)
@@ -103,7 +122,12 @@ export class ListComponent implements OnInit {
     );
   }
 
-  
+  showPieceJoin(fileName) {
+    // const url = `${this.url}/examen/${fileName}`;
+    // window.open(url);
+    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'recommandation'}});
+  }
+
 
 
 }

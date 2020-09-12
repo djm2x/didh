@@ -3,27 +3,24 @@
   <div class="d-flex justify-content-center w-100 mb-5">
     <section class="super-title2">
       <div>
-        <h3>{{ 'admin.home.SystèmedeSuividesrecommandations' | translate }}</h3>
+        <h3 style="font-size: 20px;">{{ 'admin.home.SystèmedeSuividesrecommandations' | translate }}</h3>
       </div>
     </section>
   </div>
-  <br>
-  <br>
-  <div class="d-flex justify-content-center w-100">
+
+  <div class="justify-content-center" style="background-color: #0000003b;color: #fff; padding: 1%; width: 60%; margin-left: 20%;">
+    <h3 style="margin-top: 2%;font-size: 1.4em;color: #fff;font-weight: 200;">«
+      {{ 'admin.home.droitHomme' | translate }} »</h3>
+    <h3 class="textSouTitre ">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
+  </div>
+
+  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
     <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
       <div>
         <h3>{{ 'admin.home.Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme' | translate }}</h3>
       </div>
     </section>
   </div>
-  <h3 style="font-size: 1.4em;">« {{ 'admin.home.droitHomme' | translate }} »</h3>
-  <h3 style="font-size: 0.9em; color: black;">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
-  <br>
-
-
-
-
-
 
   <div class="row mt-3 justify-content-center">
     <!-- <mat-form-field class="col-md-6">
@@ -33,24 +30,28 @@
       </mat-select>
     </mat-form-field> -->
 
+
     <div class="col-md-12">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataEpu"></app-progress-cercle>
+            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+              [data]="dataEpu"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataOt"></app-progress-cercle>
+            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+              [data]="dataOt"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataPs"></app-progress-cercle>
+            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+              [data]="dataPs"></app-progress-cercle>
           </div>
         </div>
       </div>
@@ -132,7 +133,9 @@
             <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
-              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="200" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+
+            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+              [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
           </div>
         </div>
       </div>

@@ -585,6 +585,8 @@ namespace seed
                 .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
                 .RuleFor(o => o.EtatAvancementChiffre, f => f.Random.Number(0, 100))
                 .RuleFor(o => o.PieceJointe, f => "")
+                .RuleFor(o => o.Annee, f => f.Random.Number(2014, 2020))
+
                 // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
                 ;
 

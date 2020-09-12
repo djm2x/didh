@@ -21,7 +21,8 @@
       "Cycles": "دورات",
       "Axes": "محاور",
       "Sous axe": "المحور الفرعي",
-      "Pays": "بلد"
+      "Pays": "بلد",
+      "Annee": "سنة"
     },
     "home": {
       "SystèmedeSuividesrecommandations": "نظام تتبع التوصيات",
@@ -172,6 +173,7 @@
         "Visite": "يزور",
         "Organe": "عضو",
         "Pays": "بلد",
+        "Annee": "سنة",
         "Etaten": "الدولة في٪",
         "Etatdavancement": "تقدم",
         "PieceJointe": "الوثائق المرفقة",
@@ -185,6 +187,7 @@
         "Recherche": "ابحاث",
         "Organisme": "هيئة",
         "Pays": "بلد",
+        "Annee": "سنة",
         "Cycle": "دورة",
         "Visite": "يزور",
         "Organe": "عضو",
