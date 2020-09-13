@@ -60,7 +60,7 @@ export class PieChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pieChartOptions.legend.display = this.showLegend;
+    this.pieChartOptions.legend.display = false// this.showLegend;
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
     });

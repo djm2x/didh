@@ -99,13 +99,13 @@
             </form> -->
 
       <form [formGroup]="myForm">
-        <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
+        <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
           <mat-label>{{ 'admin.recommandation.list.Recherche' | translate }}</mat-label>
           <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="auto complétion">
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
           </mat-autocomplete>
-        </mat-form-field>
+        </mat-form-field> -->
         <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
                 <mat-label>Organisme</mat-label>
                 <mat-select formControlName="idOrganisme">
@@ -123,6 +123,8 @@
             </mat-select>
           </mat-form-field>
 
+          <!-- {{myForm.get('idPays').value}} -->
+
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
             <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
@@ -132,7 +134,7 @@
         <div class="inputs2">
 
 
-
+<!-- 
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
@@ -140,7 +142,7 @@
               <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">
                 {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field appearance="fill" *ngIf="cycleActive">
             <mat-label>{{ 'admin.recommandation.list.Cycle' | translate }}</mat-label>

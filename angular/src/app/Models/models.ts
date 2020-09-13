@@ -147,7 +147,9 @@ export class SyntheseRecommandation {
 export class Recommendation {
   id = 0;
   codeRecommendation = '';
+  codeRecommendationAr = '';
   nom = '';
+  nomAr = '';
   etat = '';
   complement = '';
   etatAvancement = '';

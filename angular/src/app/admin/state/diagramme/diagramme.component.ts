@@ -110,12 +110,16 @@ export class DiagrammeComponent implements OnInit {
 
   searchAndGet(o: Model) {
     // console.log(o);
-    o.mecanisme = this.o.mecanisme;
-    this.toChild.next(o);
-    this.o = o;
+    // o.mecanisme = this.o.mecanisme;
+    // console.log(o)
+    
+    this.toChild.next(Object.assign(new Model(), o));
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
+    this.o = o;
+    console.log(this.o)
+
     this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
-      console.log(r);
+      // console.log(r);
       // this.mytranslate.get('admin.event.list.Ajouter_evènement')
       this.axesList = [];
       this.axesList = r.axe;
@@ -147,15 +151,17 @@ export class DiagrammeComponent implements OnInit {
         r: r.macanisme.ps.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
       };
 
-      if (r.macanisme.epu.p !== 0) {
+      if (r.macanisme.epu.t !== 0) {
         barList.push(epu);
       }
-      if (r.macanisme.ot.p !== 0) {
+      if (r.macanisme.ot.t !== 0) {
         barList.push(ot);
       }
-      if (r.macanisme.ps.p !== 0) {
+      if (r.macanisme.ps.t !== 0) {
         barList.push(ps);
       }
+
+      // console.log(r.macanisme)
 
       this.handleDisplayBar(barList);
     });
@@ -180,11 +186,13 @@ export class DiagrammeComponent implements OnInit {
     this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
     this.idVisite.setValue(o.selectedIndex === 2 ? 1 : 0);
 
+    this.searchAndGet(this.o) 
   }
 
   handleDisplayBar(r: { name: string, p: number, t: number, r: number }[]) {
     r = r.filter(e => e.name !== null);
     console.log(r);
+    // r = [r[this.selectedIndex]];
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.state.Etat_avancement') },
@@ -253,10 +261,12 @@ export class DiagrammeComponent implements OnInit {
     this.o = new Model();
     this.createForm();
     this.searchAndGet(this.o);
-    this.toChild.next(this.o);
+    // this.toChild.next(this.o);
   }
 
   search(o: Model) {
+    // console.log(o.idPays, this.myForm.get('idPays').value, o)
+    
     this.searchAndGet(o);
   }
 

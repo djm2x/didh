@@ -22,6 +22,7 @@ export class PaysComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'nom', headName: 'NOM' },
+    { columnDef: 'nomAr', headName: 'NOM Ar' },
     { columnDef: 'option', headName: 'OPTION' },
   ];
 
