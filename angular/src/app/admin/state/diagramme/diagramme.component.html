@@ -218,19 +218,16 @@
       <mat-tab-group class="example-stretched-tabs" #matgroup (selectedTabChange)="selectedTabChange(matgroup)">
 
         <mat-tab label="{{ 'admin.epu.list.Examenpériodiqueuniversal' | translate }}">
-          <ng-template matTabContent style="overflow: hidden;">
-            <div class="row">
+          <ng-template matTabContent>
+            <div class="col-md-12">
+              <app-pie-chart [withGraphe]="900" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
+            </div>
 
-              <div class="col-md-4 p-0">
-                <app-pie-chart [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
-              </div>
-              
-              <div class="col-md-4 p-0">
-                <app-pie-chart [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
-              </div>
-              <div class="col-md-4 p-0">
-                <app-pie-chart [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
-              </div>
+            <div class="col-md-12">
+              <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
+            </div>
+            <div class="col-md-12">
+              <app-pie-chart  [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
             </div>
 
           </ng-template>

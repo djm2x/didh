@@ -8,8 +8,8 @@
     </section>
   </div>
 
-  <div class="justify-content-center" style="background-color: #0000003b;color: #fff; padding: 1%; width: 60%; margin-left: 20%;">
-    <h3 style="margin-top: 2%;font-size: 1.4em;color: #fff;font-weight: 200;">«
+  <div class="justify-content-center" style="background-color: #0000001f;color: #fff; padding: 1%;margin-top: -1%;">
+    <h3 style="margin-top: 2%;font-size: 1.1em;color: #fff;font-weight: 200; text-align: left;">«
       {{ 'admin.home.droitHomme' | translate }} »</h3>
     <h3 class="textSouTitre ">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
   </div>
@@ -36,21 +36,21 @@
         <div class="col-md-12">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+            <app-progress-cercle [showLegend]="true" [marginLegend] = "'12px 15px -179px -208px'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
               [data]="dataEpu"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+            <app-progress-cercle [showLegend]="true" [marginLegend] = "'12px 15px -179px -208px'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
               [data]="dataOt"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+            <app-progress-cercle [showLegend]="true" [marginLegend] = "'12px 15px -179px -208px'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
               [data]="dataPs"></app-progress-cercle>
           </div>
         </div>
@@ -134,7 +134,7 @@
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
 
-            <app-progress-cercle [showLegend]="false" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+            <app-progress-cercle [marginLegend] = "'12px 15px -106px -196px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
               [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
           </div>
         </div>

@@ -13,6 +13,9 @@ export class ProgressCercleComponent implements OnInit {
   @Input() width = 300;
   @Input() fontSize = .93;
   @Input() widthText = '';
+  @Input() marginLegend = '';
+
+
   @Input() diameter = 120;
   @Input() transform = 50;
   @Input() public showLegend = false;

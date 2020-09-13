@@ -3,9 +3,9 @@
 .legend li {  margin-right: 10px; }
 .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
 /* your colors */
-.legend .superawesome { background-color: #2b6a97; }
-.legend .awesome { background-color: #ca7834; }
-.legend .kindaawesome { background-color: #808080; }
+.legend .superawesome { background-color: #2b6a97;width: 40px; height: 20px; font-size: small; padding: 2%; }
+.legend .awesome { background-color: #ca7834; width: 40px; height: 20px; font-size: small; padding: 2%;}
+.legend .kindaawesome { background-color: #808080; width: 40px; height: 20px; font-size: small; padding: 2%;}
 // .legend{
 //   height:10px;
 //   // width:190px;
@@ -18,12 +18,15 @@
   }
   .divLegend
   {
-    height: 54%;
-    margin: 4px 0 0 -190px;
+    // height: 54%;
+    // margin: 4px 0 0 -190px;
+
+    // height: 208%;
+    margin: 12px 15px -171px -196px;
   }
 .h5Title
 {
-  color: #737473; margin: 5px -0px 10px 5px;
+  color: #737473; margin: -38px -0px 10px 5px;
 }
 ::ng-deep .orange .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #d17c36 !important;

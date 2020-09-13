@@ -5,15 +5,21 @@
     color: #fff;
   }
 </style>
+
+
 <div class="mb-3" style="cursor: pointer;" (click)="openDialog()">
     <!-- <div class="d-flex justify-centent-center align-items-center mb-3"> -->
+      <div class="row">
+
+        <div class="col-md-5">
     <div class="d-flex flex-column justify-content-center mt-2">
         <img *ngIf="false" src="assets/line.png" height="10px" width="280px">
         <h5 style="color: #737473; margin: 5px 0 10px 5px;">
-          <li style="list-style-type: disc;">
             {{title}}
-          </li></h5>
+          </h5>
     </div>
+  </div>
+  <div class="col-md-7">
 
     <div style="height: 30px; margin-left: 3%;" class="miniBar" [style.transform]="'rotateY(' +  rotateY + 'deg)'"
         [matTooltip]="tooltipMsg(widthOne, widthThree, widthTwo)">
@@ -30,7 +36,9 @@
             <!-- <h6 class="ValeurGraph">{{ (widthThree * widthTwo) / 100 }}%</h6> -->
           </div>
     </div>
+  </div>
 
+  </div>
 
 
 </div>
