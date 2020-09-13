@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "f": "cd angular && ng serve --port 4204",
-    "m": "node ./remove-script.js && dotnet ef migrations add first && dotnet ef database drop -f && dotnet ef database update && dotnet watch run",
+    "m0": "node ./remove-script.js && dotnet ef migrations add first && dotnet ef database drop -f && dotnet ef database update && dotnet watch run",
+    "m": "dotnet ef migrations add first && dotnet ef database update && dotnet watch run",
     "b": "dotnet watch run",
     "f-p": "cd angular && ng build --prod",
     "b-p": "dotnet publish -o D:/MarIT/GestionCommerciale/deploy",

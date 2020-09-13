@@ -62,6 +62,8 @@ namespace Admin5.Controllers
                         id = e.Id,
                         CodeRecommendation = e.CodeRecommendation,
                         Nom = e.Nom,
+                        CodeRecommendationAr = e.CodeRecommendationAr,
+                        NomAr = e.NomAr,
                         Etat = e.Etat,
                         Annee = e.Annee,
                         Mecanisme = e.Mecanisme,
@@ -192,6 +194,7 @@ namespace Admin5.Controllers
                 .Where(e => model.Mecanisme == "" ? true : e.Mecanisme.Contains(model.Mecanisme))
                 .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
+                .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
@@ -222,7 +225,9 @@ namespace Admin5.Controllers
                 ;
 
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
-            var department = department0.GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
+            var department = department0
+                .Where(e => e.RecomOrgs.Count > 0)
+                .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
                 // .Select(e => new
                 // {
                 //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
@@ -241,13 +246,16 @@ namespace Admin5.Controllers
                 ;
 
             var pays0 = await q.Include(e => e.Pays).ToListAsync();
-            var pays = pays0.GroupBy(e => lng == "fr" ? e.Pays.Nom : e.Pays.NomAr)
+            var pays = pays0
+                .Where(e => e.Pays != null)
+                .GroupBy(e => lng == "fr" ? e.Pays.Nom : e.Pays.NomAr)
                 // .Select(e => new
                 // {
                 //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
                 //     p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
                 //     t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
                 // })
+                // .Where(e => ((double.Parse(e.Count().ToString()) / recommendationsCount) * 100) > 0)
                 .Select(e => new
                 {
                     name = e.Key,

@@ -67,7 +67,8 @@ export class ListComponent implements OnInit {
   formData = new FormData();
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
-  constructor(private uow: UowService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
+  constructor(private uow: UowService, public session: SessionService, private bottomSheet: MatBottomSheet
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     this.isLoadingResults = false;
@@ -98,7 +99,7 @@ export class ListComponent implements OnInit {
 
         if (o.mecanisme !== undefined) {
           this.o = o;
-          console.log(this.o)
+          // console.log(this.o)
         }
         // r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : o = o;
@@ -113,7 +114,7 @@ export class ListComponent implements OnInit {
         this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : o.idOrganisme;
 
         this.uow.recommendations.searchAndGet(this.o).subscribe((r: any) => {
-          console.log(r.list);
+          // console.log(r.list);
           this.dataSource = r.list;
           this.resultsLength = r.count;
           this.isLoadingResults = false;

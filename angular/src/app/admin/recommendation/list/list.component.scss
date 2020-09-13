@@ -48,3 +48,10 @@ mat-panel-title {
     margin-top: 5px;
   }
 }
+
+.mat-header-cell:nth-child(2),
+.mat-cell:nth-child(2) {
+  width: 30vw !important;
+  min-width: 30vw;
+  padding-right: 0 !important;
+}

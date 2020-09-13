@@ -18,7 +18,7 @@ namespace Admin5.Models
         public string Mecanisme { get; set; }
         public int? IdCycle { get; set; }
         public int IdAxe { get; set; }
-        public int IdSousAxe { get; set; }
+        public int? IdSousAxe { get; set; }
         public int? IdOrgane { get; set; }
         public int? IdVisite { get; set; }
         public int? IdPays { get; set; }

@@ -31,20 +31,20 @@ namespace seed
             return modelBuilder;
         }
 
-        public static ModelBuilder Organismes(this ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Organisme>().HasData(new Organisme[]{
-                new Organisme {Id = 1, Label = "Ministère des Affaires Étrangères et de la Coopération", LabelAr = "وزارة الخارجية والتعاون"},
-                new Organisme {Id = 2, Label = "Ministère de la Justice et des Libertés", LabelAr = "وزارة العدل والحريات"},
-                new Organisme {Id = 3, Label = "Ministère de la Fonction Publique et de la Modernisation de l'Administration", LabelAr = "وزارة الخدمة المدنية وتحديث الإدارة"},
-                new Organisme {Id = 4, Label = "Ministère de l'Equipement et du Transport", LabelAr = "وزارة التجهيز والنقل"},
-                new Organisme {Id = 5, Label = "Ministère de la Communication", LabelAr = "وزارة الاتصالات"},
-                new Organisme {Id = 6, Label = "Ministère de la Santé", LabelAr = "وزارة الصحة"},
-                new Organisme {Id = 7, Label = "Délégation interministérielle aux droits de l'Homme", LabelAr = "الوفد الوزاري لحقوق الإنسان"},
-            });
+        // public static ModelBuilder Organismes(this ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<Organisme>().HasData(new Organisme[]{
+        //         new Organisme {Id = 1, Label = "Ministère des Affaires Étrangères et de la Coopération", LabelAr = "وزارة الخارجية والتعاون"},
+        //         new Organisme {Id = 2, Label = "Ministère de la Justice et des Libertés", LabelAr = "وزارة العدل والحريات"},
+        //         new Organisme {Id = 3, Label = "Ministère de la Fonction Publique et de la Modernisation de l'Administration", LabelAr = "وزارة الخدمة المدنية وتحديث الإدارة"},
+        //         new Organisme {Id = 4, Label = "Ministère de l'Equipement et du Transport", LabelAr = "وزارة التجهيز والنقل"},
+        //         new Organisme {Id = 5, Label = "Ministère de la Communication", LabelAr = "وزارة الاتصالات"},
+        //         new Organisme {Id = 6, Label = "Ministère de la Santé", LabelAr = "وزارة الصحة"},
+        //         new Organisme {Id = 7, Label = "Délégation interministérielle aux droits de l'Homme", LabelAr = "الوفد الوزاري لحقوق الإنسان"},
+        //     });
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
         public static ModelBuilder Evenements(this ModelBuilder modelBuilder)
         {
@@ -152,56 +152,56 @@ namespace seed
             return modelBuilder;
         }
 
-        public static ModelBuilder Visites(this ModelBuilder modelBuilder)
-        {
-            var id = 1;
-            var list = new[]
-            {
-                "Visite de la Rapporteuse Spéciale sur les droits fondamentaux des victimes de la Traite des personnes, en particulier les femmes et les enfants",
-                "Investiture des membres de la commission nationale de lutte et de prévention contre la traite des êtres humains",
-                "Visit of the United Nations Special Rapporteur on Trafficking in Persons, Especially Women and Children June 17th and 21st, 2013",
-                "Visite du Rapporteur spécial des Nations Unies sur la traite des êtres humains",
-             };
+        // public static ModelBuilder Visites(this ModelBuilder modelBuilder)
+        // {
+        //     var id = 1;
+        //     var list = new[]
+        //     {
+        //         "Visite de la Rapporteuse Spéciale sur les droits fondamentaux des victimes de la Traite des personnes, en particulier les femmes et les enfants",
+        //         "Investiture des membres de la commission nationale de lutte et de prévention contre la traite des êtres humains",
+        //         "Visit of the United Nations Special Rapporteur on Trafficking in Persons, Especially Women and Children June 17th and 21st, 2013",
+        //         "Visite du Rapporteur spécial des Nations Unies sur la traite des êtres humains",
+        //      };
 
-             var listAr = new[]
-            {
-                "زيارة المقرر الخاص المعني بحقوق الإنسان لضحايا الاتجار بالأشخاص , ولا سيما النساء والأطفال" ,
-                 "استثمار أعضاء اللجنة الوطنية لمكافحة ومنع الاتجار بالبشر" ,
-                 "زيارة مقرر الأمم المتحدة الخاص المعني بالاتجار بالأشخاص , وخاصة النساء والأطفال , يومي 17 و 21 حزيران (يونيو) 2013" ,
-                 "زيارة مقرر الأمم المتحدة الخاص المعني بالاتجار بالبشر" ,
-             };
-            var faker = new Faker<Visite>(DataSeeding.lang)
-                .CustomInstantiator(f => new Visite { Id = id++ })
-                .RuleFor(o => o.Mandat, f => f.PickRandom(list))
-                .RuleFor(o => o.Discours, f => f.Lorem.Paragraph())
+        //      var listAr = new[]
+        //     {
+        //         "زيارة المقرر الخاص المعني بحقوق الإنسان لضحايا الاتجار بالأشخاص , ولا سيما النساء والأطفال" ,
+        //          "استثمار أعضاء اللجنة الوطنية لمكافحة ومنع الاتجار بالبشر" ,
+        //          "زيارة مقرر الأمم المتحدة الخاص المعني بالاتجار بالأشخاص , وخاصة النساء والأطفال , يومي 17 و 21 حزيران (يونيو) 2013" ,
+        //          "زيارة مقرر الأمم المتحدة الخاص المعني بالاتجار بالبشر" ,
+        //      };
+        //     var faker = new Faker<Visite>(DataSeeding.lang)
+        //         .CustomInstantiator(f => new Visite { Id = id++ })
+        //         .RuleFor(o => o.Mandat, f => f.PickRandom(list))
+        //         .RuleFor(o => o.Discours, f => f.Lorem.Paragraph())
 
-                .RuleFor(o => o.MandatAr, f => f.PickRandom(listAr))
-                // .RuleFor(o => o.DiscoursAr, f =>  new Bogus.DataSets.Lorem("ar").Paragraph())
+        //         .RuleFor(o => o.MandatAr, f => f.PickRandom(listAr))
+        //         // .RuleFor(o => o.DiscoursAr, f =>  new Bogus.DataSets.Lorem("ar").Paragraph())
 
-                .RuleFor(o => o.Date, (f, u) => f.Date.Past())
-                .RuleFor(o => o.LienRapport, f => "")
-                .RuleFor(o => o.LienUpload, f => "")
-                .RuleFor(o => o.MiseOeuvrePiece, f => $"")
-                ;
+        //         .RuleFor(o => o.Date, (f, u) => f.Date.Past())
+        //         .RuleFor(o => o.LienRapport, f => "")
+        //         .RuleFor(o => o.LienUpload, f => "")
+        //         .RuleFor(o => o.MiseOeuvrePiece, f => $"")
+        //         ;
 
-            modelBuilder.Entity<Visite>().HasData(faker.Generate(DataSeeding.i));
+        //     modelBuilder.Entity<Visite>().HasData(faker.Generate(DataSeeding.i));
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
-        public static ModelBuilder Cycles(this ModelBuilder modelBuilder)
-        {
-            var id = 1;
-            int y1 = 2000;
-            int y2 = 2005;
-            var faker = new Faker<Cycle>(DataSeeding.lang)
-                .CustomInstantiator(f => new Cycle { Id = id++ })
-                .RuleFor(o => o.Label, f => $"{y1 += 5}-{y2 += 5}");
+        // public static ModelBuilder Cycles(this ModelBuilder modelBuilder)
+        // {
+        //     var id = 1;
+        //     int y1 = 2000;
+        //     int y2 = 2005;
+        //     var faker = new Faker<Cycle>(DataSeeding.lang)
+        //         .CustomInstantiator(f => new Cycle { Id = id++ })
+        //         .RuleFor(o => o.Label, f => $"{y1 += 5}-{y2 += 5}");
 
-            modelBuilder.Entity<Cycle>().HasData(faker.Generate(DataSeeding.i - 90));
+        //     modelBuilder.Entity<Cycle>().HasData(faker.Generate(DataSeeding.i - 90));
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
         public static ModelBuilder Questionnaires(this ModelBuilder modelBuilder)
         {
@@ -261,108 +261,108 @@ namespace seed
 
             return modelBuilder;
         }
-        static List<Axe> axes = new List<Axe>();
+        // static List<Axe> axes = new List<Axe>();
 
-        public static ModelBuilder Organes(this ModelBuilder modelBuilder)
-        {
-            var id = 1;
-            var list = new[]
-            {
-                "Comité CEDAW",
-                "Comité contre la torture",
-                "Comité des disparitions forcées",
-                "Comité des droits de l’Homme",
-                "Comité des droits de l’enfant",
-                "Comité des droits des personnes handicapés",
-             };
-            var listAr = new[]
-          {
-                "لجنة سيداو" ,
-                 "لجنة مناهضة التعذيب" ,
-                 "لجنة الاختفاء القسري" ,
-                 "لجنة حقوق الإنسان" ,
-                 "لجنة حقوق الطفل" ,
-                 "اللجنة المعنية بحقوق الأشخاص ذوي الإعاقة" ,
-             };
-            var faker = new Faker<Organe>(DataSeeding.lang)
-                .CustomInstantiator(f => new Organe { Id = id++ })
-                .RuleFor(o => o.Label, f => list[id - 2])
-                .RuleFor(o => o.LabelAr, f => listAr[id - 2])
-                ;
+        // public static ModelBuilder Organes(this ModelBuilder modelBuilder)
+        // {
+        //     var id = 1;
+        //     var list = new[]
+        //     {
+        //         "Comité CEDAW",
+        //         "Comité contre la torture",
+        //         "Comité des disparitions forcées",
+        //         "Comité des droits de l’Homme",
+        //         "Comité des droits de l’enfant",
+        //         "Comité des droits des personnes handicapés",
+        //      };
+        //     var listAr = new[]
+        //   {
+        //         "لجنة سيداو" ,
+        //          "لجنة مناهضة التعذيب" ,
+        //          "لجنة الاختفاء القسري" ,
+        //          "لجنة حقوق الإنسان" ,
+        //          "لجنة حقوق الطفل" ,
+        //          "اللجنة المعنية بحقوق الأشخاص ذوي الإعاقة" ,
+        //      };
+        //     var faker = new Faker<Organe>(DataSeeding.lang)
+        //         .CustomInstantiator(f => new Organe { Id = id++ })
+        //         .RuleFor(o => o.Label, f => list[id - 2])
+        //         .RuleFor(o => o.LabelAr, f => listAr[id - 2])
+        //         ;
 
-            modelBuilder.Entity<Organe>().HasData(faker.Generate(6));
+        //     modelBuilder.Entity<Organe>().HasData(faker.Generate(6));
 
-            return modelBuilder;
-        }
-        public static ModelBuilder Axes(this ModelBuilder modelBuilder)
-        {
-            var id = 1;
-            var list = new[]
-            {
-                "Consolider la gouvernance du développement durable",
-                "Réussir la transition vers une économie verts",
-                "Améliorer la gestion et la valorisation des ressources naturelles et renforcer la conservation de la biodiversité",
-                "Accélérer la mise en œuvre de la politique nationale de lutte contre le changement climatique",
-                "Accorder une vigilance particulière aux territoires sensibles",
-                "Promouvoir le développement humain et réduire les inégalités sociales et territoriales",
-                "Promouvoir une culture de développement durable",
-                "Cadre institutionnel des DH",
-             };
-            var listAr = new[]
-           {
-                "توطيد حوكمة التنمية المستدامة",
-                 "الانتقال الناجح إلى الاقتصاد الأخضر",
-                 "تحسين إدارة وتنمية الموارد الطبيعية وتعزيز حفظ التنوع البيولوجي",
-                 "تسريع تنفيذ السياسة الوطنية لمكافحة تغير المناخ",
-                 "انتبه بشكل خاص للمناطق الحساسة",
-                 "تعزيز التنمية البشرية والحد من التفاوتات الاجتماعية والإقليمية",
-                 "تعزيز ثقافة التنمية المستدامة",
-                 "الإطار المؤسسي للموارد البشرية",
-             };
-            var faker = new Faker<Axe>(DataSeeding.lang)
-                .CustomInstantiator(f => new Axe { Id = id++ })
-                .RuleFor(o => o.Label, f => list[id - 2])
-                .RuleFor(o => o.LabelAr, f => listAr[id - 2])
-                ;
+        //     return modelBuilder;
+        // }
+        // public static ModelBuilder Axes(this ModelBuilder modelBuilder)
+        // {
+        //     var id = 1;
+        //     var list = new[]
+        //     {
+        //         "Consolider la gouvernance du développement durable",
+        //         "Réussir la transition vers une économie verts",
+        //         "Améliorer la gestion et la valorisation des ressources naturelles et renforcer la conservation de la biodiversité",
+        //         "Accélérer la mise en œuvre de la politique nationale de lutte contre le changement climatique",
+        //         "Accorder une vigilance particulière aux territoires sensibles",
+        //         "Promouvoir le développement humain et réduire les inégalités sociales et territoriales",
+        //         "Promouvoir une culture de développement durable",
+        //         "Cadre institutionnel des DH",
+        //      };
+        //     var listAr = new[]
+        //    {
+        //         "توطيد حوكمة التنمية المستدامة",
+        //          "الانتقال الناجح إلى الاقتصاد الأخضر",
+        //          "تحسين إدارة وتنمية الموارد الطبيعية وتعزيز حفظ التنوع البيولوجي",
+        //          "تسريع تنفيذ السياسة الوطنية لمكافحة تغير المناخ",
+        //          "انتبه بشكل خاص للمناطق الحساسة",
+        //          "تعزيز التنمية البشرية والحد من التفاوتات الاجتماعية والإقليمية",
+        //          "تعزيز ثقافة التنمية المستدامة",
+        //          "الإطار المؤسسي للموارد البشرية",
+        //      };
+        //     var faker = new Faker<Axe>(DataSeeding.lang)
+        //         .CustomInstantiator(f => new Axe { Id = id++ })
+        //         .RuleFor(o => o.Label, f => list[id - 2])
+        //         .RuleFor(o => o.LabelAr, f => listAr[id - 2])
+        //         ;
 
 
 
-            axes = faker.Generate(7);
-            modelBuilder.Entity<Axe>().HasData(axes);
+        //     axes = faker.Generate(7);
+        //     modelBuilder.Entity<Axe>().HasData(axes);
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
-        public static ModelBuilder SousAxes(this ModelBuilder modelBuilder)
-        {
-            // var id = 1;
-            var list = new List<SousAxe>();
-            list.Add(new SousAxe { Id = 1, Label = "Démocratie", LabelAr = "ديمقراطية", IdAxe = 1 });
-            list.Add(new SousAxe { Id = 2, Label = "Gouvernance", LabelAr = "الحكم", IdAxe = 1 });
-            list.Add(new SousAxe { Id = 3, Label = "Droits économiques", LabelAr = "الحقوق الاقتصادية", IdAxe = 2 });
-            list.Add(new SousAxe { Id = 4, Label = "Droits sociaux", LabelAr = "الحقوق الاجتماعية", IdAxe = 5 });
-            list.Add(new SousAxe { Id = 5, Label = "Droits culturels", LabelAr = "الحقوق الثقافية", IdAxe = 6 });
-            list.Add(new SousAxe { Id = 6, Label = "Droits environnementaux", LabelAr = "الحقوق البيئية", IdAxe = 7 });
-            list.Add(new SousAxe { Id = 7, Label = "Promotion des droits catégoriels", LabelAr = "تعزيز حقوق الفئة", IdAxe = 3 });
-            list.Add(new SousAxe { Id = 8, Label = "Protection des droits catégoriels", LabelAr = "حماية حقوق الفئة", IdAxe = 3 });
-            list.Add(new SousAxe { Id = 9, Label = "Cadre institutionnel", LabelAr = "الإطار المؤسسي", IdAxe = 4 });
-            list.Add(new SousAxe { Id = 10,Label = "Cadre juridique", LabelAr = "الإطار القانوني", IdAxe = 4 });
+        // public static ModelBuilder SousAxes(this ModelBuilder modelBuilder)
+        // {
+        //     // var id = 1;
+        //     var list = new List<SousAxe>();
+        //     list.Add(new SousAxe { Id = 1, Label = "Démocratie", LabelAr = "ديمقراطية", IdAxe = 1 });
+        //     list.Add(new SousAxe { Id = 2, Label = "Gouvernance", LabelAr = "الحكم", IdAxe = 1 });
+        //     list.Add(new SousAxe { Id = 3, Label = "Droits économiques", LabelAr = "الحقوق الاقتصادية", IdAxe = 2 });
+        //     list.Add(new SousAxe { Id = 4, Label = "Droits sociaux", LabelAr = "الحقوق الاجتماعية", IdAxe = 5 });
+        //     list.Add(new SousAxe { Id = 5, Label = "Droits culturels", LabelAr = "الحقوق الثقافية", IdAxe = 6 });
+        //     list.Add(new SousAxe { Id = 6, Label = "Droits environnementaux", LabelAr = "الحقوق البيئية", IdAxe = 7 });
+        //     list.Add(new SousAxe { Id = 7, Label = "Promotion des droits catégoriels", LabelAr = "تعزيز حقوق الفئة", IdAxe = 3 });
+        //     list.Add(new SousAxe { Id = 8, Label = "Protection des droits catégoriels", LabelAr = "حماية حقوق الفئة", IdAxe = 3 });
+        //     list.Add(new SousAxe { Id = 9, Label = "Cadre institutionnel", LabelAr = "الإطار المؤسسي", IdAxe = 4 });
+        //     list.Add(new SousAxe { Id = 10,Label = "Cadre juridique", LabelAr = "الإطار القانوني", IdAxe = 4 });
 
-            // var idAxe = 0;
-            // var faker = new Faker<SousAxe>(DataSeeding.lang)
-            //     .CustomInstantiator(f => new SousAxe { Id = id++ })
-            //     .RuleFor(o => o.Label, (f, o) =>
-            //     {
-            //         var sa = f.PickRandom(list);
-            //         idAxe = sa.IdAxe;
-            //         return sa.Label;
-            //     })
-            //     .RuleFor(o => o.IdAxe, f => idAxe)
-            //     ;
-            modelBuilder.Entity<SousAxe>().HasData(list);
+        //     // var idAxe = 0;
+        //     // var faker = new Faker<SousAxe>(DataSeeding.lang)
+        //     //     .CustomInstantiator(f => new SousAxe { Id = id++ })
+        //     //     .RuleFor(o => o.Label, (f, o) =>
+        //     //     {
+        //     //         var sa = f.PickRandom(list);
+        //     //         idAxe = sa.IdAxe;
+        //     //         return sa.Label;
+        //     //     })
+        //     //     .RuleFor(o => o.IdAxe, f => idAxe)
+        //     //     ;
+        //     modelBuilder.Entity<SousAxe>().HasData(list);
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
         public static ModelBuilder Traites(this ModelBuilder modelBuilder)
         {
@@ -418,17 +418,17 @@ namespace seed
             return modelBuilder;
         }
 
-        public static ModelBuilder Pays(this ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Pays>().HasData(new Pays[]{
-                new Pays {Id = 1, Nom = "Maroc", NomAr = "المملكة المغربية"},
-                new Pays {Id = 2, Nom = "France", NomAr = "فرنسا"},
-                new Pays {Id = 3, Nom = "Allemagne", NomAr = "ألمانيا"},
-                new Pays {Id = 4, Nom = "Espagnole", NomAr = "الأسبانية"},
-            });
+        // public static ModelBuilder Pays(this ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<Pays>().HasData(new Pays[]{
+        //         new Pays {Id = 1, Nom = "Maroc", NomAr = "المملكة المغربية"},
+        //         new Pays {Id = 2, Nom = "France", NomAr = "فرنسا"},
+        //         new Pays {Id = 3, Nom = "Allemagne", NomAr = "ألمانيا"},
+        //         new Pays {Id = 4, Nom = "Espagnole", NomAr = "الأسبانية"},
+        //     });
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
         public static ModelBuilder Rapports(this ModelBuilder modelBuilder)
         {
@@ -518,160 +518,160 @@ namespace seed
             return modelBuilder;
         }
 
-        public static ModelBuilder Recommendations(this ModelBuilder modelBuilder)
-        {
-            var id = 1;
-            var mecanisme = new[] {
-                "Examen périodique universal", 
-                "Organes de traités", 
-                "Procédure spéciale"
-                };
-            var mecanismeAr = new[] {
-                "الاستعراض الدوري الشامل",
-                 "هيئات المعاهدات" ,
-                 "الإجراءات الخاصة"
-            };
-            var etat = new[] {
-                "Réalisé",
-                "En cours",
-                "En continue",
-                "Non réalisé"
-                };
-            var etatAr = new[] {
-                "أدرك",
-                 "الجاري",
-                 "مستمر",
-                 "غير محققة"
-             };
-            var list = new[]
-            {
-                "Appui à la Délégation Interministérielle aux Droits de l’Homme (DIDH) pour l’intégration des droits humains dans les politiques publiques",
-                "Initiative régionale pour le renforcement des capacités des communes rurales de la région de Tanger Tétouan en matière de genre et d’égalité des chances",
-                "Appui à l’amélioration de l’accueil des usagers dans le service publics",
-                "Programme d’appui à la mise en œuvre de la stratégie de la Délégation Générale à l’Administration Pénitentiaire et à la Réinsertion",
-             };
+        // public static ModelBuilder Recommendations(this ModelBuilder modelBuilder)
+        // {
+        //     var id = 1;
+        //     var mecanisme = new[] {
+        //         "Examen périodique universal", 
+        //         "Organes de traités", 
+        //         "Procédure spéciale"
+        //         };
+        //     var mecanismeAr = new[] {
+        //         "الاستعراض الدوري الشامل",
+        //          "هيئات المعاهدات" ,
+        //          "الإجراءات الخاصة"
+        //     };
+        //     var etat = new[] {
+        //         "Réalisé",
+        //         "En cours",
+        //         "En continue",
+        //         "Non réalisé"
+        //         };
+        //     var etatAr = new[] {
+        //         "أدرك",
+        //          "الجاري",
+        //          "مستمر",
+        //          "غير محققة"
+        //      };
+        //     var list = new[]
+        //     {
+        //         "Appui à la Délégation Interministérielle aux Droits de l’Homme (DIDH) pour l’intégration des droits humains dans les politiques publiques",
+        //         "Initiative régionale pour le renforcement des capacités des communes rurales de la région de Tanger Tétouan en matière de genre et d’égalité des chances",
+        //         "Appui à l’amélioration de l’accueil des usagers dans le service publics",
+        //         "Programme d’appui à la mise en œuvre de la stratégie de la Délégation Générale à l’Administration Pénitentiaire et à la Réinsertion",
+        //      };
 
-            var listAr = new[]
-           {
-                "دعم البعثة الوزارية لحقوق الإنسان (DIDH) لإدماج حقوق الإنسان في السياسات العامة" ,
-                 "مبادرة إقليمية لتعزيز قدرات المجتمعات الريفية في منطقة طنجة تطوان من حيث الجنس وتكافؤ الفرص" ,
-                 "دعم تحسين استقبال المستخدمين في الخدمة العامة" ,
-                 "برنامج دعم تنفيذ إستراتيجية الوفد العام لإدارة السجون وإعادة الإدماج" ,
-             };
+        //     var listAr = new[]
+        //    {
+        //         "دعم البعثة الوزارية لحقوق الإنسان (DIDH) لإدماج حقوق الإنسان في السياسات العامة" ,
+        //          "مبادرة إقليمية لتعزيز قدرات المجتمعات الريفية في منطقة طنجة تطوان من حيث الجنس وتكافؤ الفرص" ,
+        //          "دعم تحسين استقبال المستخدمين في الخدمة العامة" ,
+        //          "برنامج دعم تنفيذ إستراتيجية الوفد العام لإدارة السجون وإعادة الإدماج" ,
+        //      };
 
-            var faker = new Faker<Recommendation>(DataSeeding.lang)
-                .CustomInstantiator(f => new Recommendation { Id = id++ })
-                .RuleFor(o => o.Nom, f => f.PickRandom(list))
-                .RuleFor(o => o.CodeRecommendation, f => f.System.Version().ToString())
-                .RuleFor(o => o.Mecanisme, f => f.PickRandom(mecanisme))
-                .RuleFor(o => o.Etat, f => f.PickRandom(etat))
-                .RuleFor(o => o.EtatAvancement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
-                .RuleFor(o => o.Observation, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
-                .RuleFor(o => o.Complement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+        //     var faker = new Faker<Recommendation>(DataSeeding.lang)
+        //         .CustomInstantiator(f => new Recommendation { Id = id++ })
+        //         .RuleFor(o => o.Nom, f => f.PickRandom(list))
+        //         .RuleFor(o => o.CodeRecommendation, f => f.System.Version().ToString())
+        //         .RuleFor(o => o.Mecanisme, f => f.PickRandom(mecanisme))
+        //         .RuleFor(o => o.Etat, f => f.PickRandom(etat))
+        //         .RuleFor(o => o.EtatAvancement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+        //         .RuleFor(o => o.Observation, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
+        //         .RuleFor(o => o.Complement, f => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, excepturi!")
 
-                // .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
-                // .RuleFor(o => o.CodeRecommendationAr, f => new Bogus.DataSets.System("ar").Version().ToString())
-                // .RuleFor(o => o.MecanismeAr, f => f.PickRandom(mecanismeAr))
-                // .RuleFor(o => o.EtatAr, f => f.PickRandom(etatAr))
-                // .RuleFor(o => o.EtatAvancementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
-                // .RuleFor(o => o.ObservationAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
-                // .RuleFor(o => o.ComplementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
+        //         // .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
+        //         // .RuleFor(o => o.CodeRecommendationAr, f => new Bogus.DataSets.System("ar").Version().ToString())
+        //         // .RuleFor(o => o.MecanismeAr, f => f.PickRandom(mecanismeAr))
+        //         // .RuleFor(o => o.EtatAr, f => f.PickRandom(etatAr))
+        //         // .RuleFor(o => o.EtatAvancementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
+        //         // .RuleFor(o => o.ObservationAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
+        //         // .RuleFor(o => o.ComplementAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(1))
 
-                .RuleFor(o => o.IdCycle, f => f.Random.Number(1, DataSeeding.i - 90))
-                .RuleFor(o => o.IdVisite, f => f.Random.Number(1, DataSeeding.i - 90))
-                .RuleFor(o => o.IdOrgane, f => f.Random.Number(1, 6))
-                .RuleFor(o => o.IdPays, f => f.Random.Number(1, 4))
-                .RuleFor(o => o.IdAxe, f => f.Random.Number(1, 7))
-                .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
-                .RuleFor(o => o.EtatAvancementChiffre, f => f.Random.Number(0, 100))
-                .RuleFor(o => o.PieceJointe, f => "")
-                .RuleFor(o => o.Annee, f => f.Random.Number(2014, 2020))
+        //         .RuleFor(o => o.IdCycle, f => f.Random.Number(1, DataSeeding.i - 90))
+        //         .RuleFor(o => o.IdVisite, f => f.Random.Number(1, DataSeeding.i - 90))
+        //         .RuleFor(o => o.IdOrgane, f => f.Random.Number(1, 6))
+        //         .RuleFor(o => o.IdPays, f => f.Random.Number(1, 4))
+        //         .RuleFor(o => o.IdAxe, f => f.Random.Number(1, 7))
+        //         .RuleFor(o => o.IdSousAxe, f => f.Random.Number(1, 10))
+        //         .RuleFor(o => o.EtatAvancementChiffre, f => f.Random.Number(0, 100))
+        //         .RuleFor(o => o.PieceJointe, f => "")
+        //         .RuleFor(o => o.Annee, f => f.Random.Number(2014, 2020))
 
-                // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
-                ;
+        //         // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
+        //         ;
 
-            List<Recommendation> l = faker.Generate(DataSeeding.i);
-            int i = 0;
-            l.ForEach(e =>
-            {
-                // e.IdCycle = i % 3 == 0 ? null : e.IdCycle;
-                // e.IdVisite = i % 3 == 1 ? null : e.IdVisite;
-                // e.IdOrgane = i % 3 == 2 ? null : e.IdOrgane;
-                if (i % 3 == 0)
-                {
-                    e.Mecanisme = "Examen périodique universal";
-                    e.IdCycle = e.IdCycle;
-                    e.IdVisite = null;
-                    e.IdOrgane = null;
-                }
-                else if (i % 3 == 1)
-                {
-                    e.Mecanisme = "Procédure spéciale";
-                    e.IdCycle = null;
-                    e.IdVisite = e.IdVisite;
-                    e.IdOrgane = null;
-                }
-                else
-                {
-                    e.Mecanisme = "Organes de traités";
-                    e.IdCycle = null;
-                    e.IdVisite = null;
-                    e.IdOrgane = e.IdOrgane;
-                }
+        //     List<Recommendation> l = faker.Generate(DataSeeding.i);
+        //     int i = 0;
+        //     l.ForEach(e =>
+        //     {
+        //         // e.IdCycle = i % 3 == 0 ? null : e.IdCycle;
+        //         // e.IdVisite = i % 3 == 1 ? null : e.IdVisite;
+        //         // e.IdOrgane = i % 3 == 2 ? null : e.IdOrgane;
+        //         if (i % 3 == 0)
+        //         {
+        //             e.Mecanisme = "Examen périodique universal";
+        //             e.IdCycle = e.IdCycle;
+        //             e.IdVisite = null;
+        //             e.IdOrgane = null;
+        //         }
+        //         else if (i % 3 == 1)
+        //         {
+        //             e.Mecanisme = "Procédure spéciale";
+        //             e.IdCycle = null;
+        //             e.IdVisite = e.IdVisite;
+        //             e.IdOrgane = null;
+        //         }
+        //         else
+        //         {
+        //             e.Mecanisme = "Organes de traités";
+        //             e.IdCycle = null;
+        //             e.IdVisite = null;
+        //             e.IdOrgane = e.IdOrgane;
+        //         }
 
 
 
-                i++;
-            });
+        //         i++;
+        //     });
 
-            modelBuilder.Entity<Recommendation>().HasData(l);
+        //     modelBuilder.Entity<Recommendation>().HasData(l);
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
-        public static ModelBuilder Notifications(this ModelBuilder modelBuilder)
-        {
-            var id = 1;
-            var tables = new[]
-            {
-                new { table = "recommandation", notif = "Nouvelle recommandation a été ajoutée"},
-                new { table = "visite", notif = "Nouvelle visite a été ajouter"},
-                new { table = "traite", notif = "Nouveau traité a été ajoutée"},
-                new { table = "synthese", notif = "Nouveau synthèse a été ajoutée"}
-            };
-            int index = 0;
-            var faker = new Faker<Notification>(DataSeeding.lang)
-                .CustomInstantiator(f => new Notification { Id = id++ })
-                .RuleFor(o => o.IdConcerner, f => id - 1)
-                .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
-                .RuleFor(o => o.TableConcerner, f =>
-                {
-                    index = f.Random.Number(0, 3);
-                    return tables[index].table;
-                })
-                .RuleFor(o => o.Message, f => tables[index].notif)
-                .RuleFor(o => o.Date, f => f.Date.Past())
-                .RuleFor(o => o.Destinataire, f => $"{f.Random.Number(0, 1)},{f.Random.Number(2, 3)},{f.Random.Number(4, 6)}")
-                .RuleFor(o => o.Vu, f => f.Random.Bool())
-                .RuleFor(o => o.Priorite, f => f.Random.Number(1, 4))
-                ;
-            modelBuilder.Entity<Notification>().HasData(faker.Generate(DataSeeding.i));
+        // public static ModelBuilder Notifications(this ModelBuilder modelBuilder)
+        // {
+        //     var id = 1;
+        //     var tables = new[]
+        //     {
+        //         new { table = "recommandation", notif = "Nouvelle recommandation a été ajoutée"},
+        //         new { table = "visite", notif = "Nouvelle visite a été ajouter"},
+        //         new { table = "traite", notif = "Nouveau traité a été ajoutée"},
+        //         new { table = "synthese", notif = "Nouveau synthèse a été ajoutée"}
+        //     };
+        //     int index = 0;
+        //     var faker = new Faker<Notification>(DataSeeding.lang)
+        //         .CustomInstantiator(f => new Notification { Id = id++ })
+        //         .RuleFor(o => o.IdConcerner, f => id - 1)
+        //         .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
+        //         .RuleFor(o => o.TableConcerner, f =>
+        //         {
+        //             index = f.Random.Number(0, 3);
+        //             return tables[index].table;
+        //         })
+        //         .RuleFor(o => o.Message, f => tables[index].notif)
+        //         .RuleFor(o => o.Date, f => f.Date.Past())
+        //         .RuleFor(o => o.Destinataire, f => $"{f.Random.Number(0, 1)},{f.Random.Number(2, 3)},{f.Random.Number(4, 6)}")
+        //         .RuleFor(o => o.Vu, f => f.Random.Bool())
+        //         .RuleFor(o => o.Priorite, f => f.Random.Number(1, 4))
+        //         ;
+        //     modelBuilder.Entity<Notification>().HasData(faker.Generate(DataSeeding.i));
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
-        public static ModelBuilder RecomOrgs(this ModelBuilder modelBuilder)
-        {
-            int i = 1;
-            var faker = new Faker<RecomOrg>(DataSeeding.lang)
-                .RuleFor(o => o.IdRecommendation, f => i++)
-                .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
-                .RuleFor(o => o.Date, f => f.Date.Past())
-                ;
-            modelBuilder.Entity<RecomOrg>().HasData(faker.Generate(DataSeeding.i));
+        // public static ModelBuilder RecomOrgs(this ModelBuilder modelBuilder)
+        // {
+        //     int i = 1;
+        //     var faker = new Faker<RecomOrg>(DataSeeding.lang)
+        //         .RuleFor(o => o.IdRecommendation, f => i++)
+        //         .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
+        //         .RuleFor(o => o.Date, f => f.Date.Past())
+        //         ;
+        //     modelBuilder.Entity<RecomOrg>().HasData(faker.Generate(DataSeeding.i));
 
-            return modelBuilder;
-        }
+        //     return modelBuilder;
+        // }
 
         public static ModelBuilder SyntheseRecommandations(this ModelBuilder modelBuilder)
         {

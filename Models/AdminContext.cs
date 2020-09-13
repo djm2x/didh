@@ -320,26 +320,31 @@ namespace Admin5.Models
 
             OnModelCreatingPartial(modelBuilder);
 
-            modelBuilder.Profils()
-                .Organismes()
-                .Users()
+            modelBuilder
+                // .Profils()
+                // .Users()
                 .Visites()
                 .Cycles()
                 .Organes()
                 .Axes()
-                .SousAxes()
-                .Traites()
-                .Rapports()
-                .Syntheses()
                 .Pays()
+                .SousAxes()
+                .Organismes()
                 .Recommendations()
-                .Notifications()
+                // .Traites()
+                // .Rapports()
+                // .Syntheses()
+                // .FicheSyntheses()
+                // .Questionnaires()
+                // .ParticipationSessions()
+                // .Examens()
+                // .Evenements()
+
+
                 .RecomOrgs()
-                .FicheSyntheses()
-                .Questionnaires()
-                .ParticipationSessions()
-                .Examens()
-                .Evenements()
+
+
+                // .Notifications()
             ;
 
 

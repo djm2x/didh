@@ -18,6 +18,19 @@
           </mat-form-field>
         </div>
 
+        <div class="input">
+          <mat-form-field appearance="fill" style="width: 20%;">
+            <mat-label>{{ 'admin.recommandation.list.codeAr' | translate }}</mat-label>
+            <input matInput formControlName="codeRecommendationAr" required [readonly]="!isAdmin">
+          </mat-form-field>
+          <span style="margin: 0 1%;"></span>
+          <mat-form-field appearance="fill" style="width: 78%;">
+            <mat-label>{{ 'admin.recommandation.list.nomAr' | translate }}</mat-label>
+            <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
+            <input matInput formControlName="nomAr" required [readonly]="!isAdmin">
+          </mat-form-field>
+        </div>
+
 
 
         <div class="inputs2">
