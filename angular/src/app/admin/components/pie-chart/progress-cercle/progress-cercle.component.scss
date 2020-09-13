@@ -3,9 +3,9 @@
 .legend li {  margin-right: 10px; }
 .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
 /* your colors */
-.legend .superawesome { background-color: #2b6a97;width: 40px; height: 20px; font-size: small; padding: 2%; }
-.legend .awesome { background-color: #ca7834; width: 40px; height: 20px; font-size: small; padding: 2%;}
-.legend .kindaawesome { background-color: #808080; width: 40px; height: 20px; font-size: small; padding: 2%;}
+.legend .superawesome { background-color: #2b6a97;width: 40px; height: 22px; font-size: small; padding: 2%; }
+.legend .awesome { background-color: #ca7834; width: 40px; height: 22px; font-size: small; padding: 2%;}
+.legend .kindaawesome { background-color: #808080; width: 40px; height: 22px; font-size: small; padding: 2%;}
 // .legend{
 //   height:10px;
 //   // width:190px;
@@ -26,7 +26,7 @@
   }
 .h5Title
 {
-  color: #737473; margin: -38px -0px 10px 5px;
+  color: #737473;
 }
 ::ng-deep .orange .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #d17c36 !important;

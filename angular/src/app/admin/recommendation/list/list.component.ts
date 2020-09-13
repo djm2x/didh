@@ -160,7 +160,7 @@ export class ListComponent implements OnInit {
 
   selectChange(mecanisme) {
     this.idVisite.setValue(0);
-    this.idCycle.setValue(this.cycles[0].id);
+    this.idCycle.setValue(0);
     this.idOrgane.setValue(0);
     // if (this.cycleActive) {
     //   this.idCycle.setValue(null);

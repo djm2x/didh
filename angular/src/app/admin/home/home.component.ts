@@ -67,7 +67,8 @@ export class HomeComponent implements OnInit {
 
   stateRecommendationByAxe() {
     return this.uow.recommendations.stateRecommendationByAxe().subscribe(r => {
-      // console.log(r)
+      console.log(r)
+      r.pop()
       this.axesValue = r as any;
     });
   }

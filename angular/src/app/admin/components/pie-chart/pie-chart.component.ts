@@ -32,9 +32,10 @@ export class PieChartComponent implements OnInit {
       enabled: true
     },
     legend: {
-      // position: 'chartArea',
-      position: 'right',
+       //position: 'chartArea',
+      position: 'top',
       display: true,
+      align: "center",
     },
 
 
@@ -60,10 +61,12 @@ export class PieChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pieChartOptions.legend.display = false// this.showLegend;
     this.mytranslate.lang.subscribe(lang => {
+
       this.retate = lang === 'fr' ? 0 : 180;
     });
+
+    this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(d => {
       // if (d.type === 'stateRecommendationByMecanismeTaux' as any) {

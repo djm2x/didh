@@ -1,6 +1,9 @@
+
 <div class="expension">
+
   <mat-accordion>
-    <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+
+    <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="box-sizing: border-box;">
       <!-- <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>search</mat-icon>
@@ -8,6 +11,8 @@
                 </mat-panel-title>
                 <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header> -->
+
+
       <mat-divider>
       </mat-divider>
 
@@ -134,7 +139,7 @@
         <div class="inputs2">
 
 
-<!-- 
+          <!--
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
@@ -220,14 +225,14 @@
         <mat-tab label="{{ 'admin.epu.list.Examenpériodiqueuniversal' | translate }}">
           <ng-template matTabContent>
             <div class="col-md-12">
-              <app-pie-chart [withGraphe]="900" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
+              <app-pie-chart [withGraphe]="1000" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
             </div>
 
             <div class="col-md-12">
               <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
             </div>
             <div class="col-md-12">
-              <app-pie-chart  [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
+              <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
             </div>
 
           </ng-template>
@@ -281,7 +286,7 @@
 
         <div class="col-md-10 mb-5 mt-5">
 
-          <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
+          <div class="d-flex justify-content-center w-100" style="margin-top: 2%;margin-bottom: 2%; ">
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
               <div>
@@ -289,6 +294,9 @@
               </div>
             </section>
           </div>
+
+
+
 
           <div *ngFor="let e of axesList; let i=index">
             <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
@@ -318,7 +326,7 @@
 
             <div *ngFor="let e of departementList; let i=index">
               <!-- <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle> -->
-              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+              <app-progress-cercle [marginLegend] = "'12px 15px -106px -210px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
                 [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e">
               </app-progress-cercle>
 
@@ -350,11 +358,12 @@
 
           <div class="d-flex flex-wrap justify-content-center ">
             <div *ngFor="let e of payeList; let i=index">
-              <app-progress-cercle [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
-                [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e">
+              <app-progress-cercle  [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+                [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e" [marginLegend] = "'12px 15px -106px -210px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true">
               </app-progress-cercle>
             </div>
           </div>
+
 
           <!-- <div class="d-flex flex-column justify-content-center align-items-center mt-4">
                         <img src="assets/line.png" height="10px" width="280px"

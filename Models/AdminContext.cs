@@ -331,6 +331,7 @@ namespace Admin5.Models
                 .SousAxes()
                 .Organismes()
                 .Recommendations()
+
                 .Traites()
                 .Rapports()
                 .Syntheses()
@@ -338,7 +339,8 @@ namespace Admin5.Models
                 .Questionnaires()
                 .ParticipationSessions()
                 .Examens()
-                .Evenements()
+                 .Evenements()
+
 
 
                 .RecomOrgs()
