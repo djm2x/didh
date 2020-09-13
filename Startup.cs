@@ -99,8 +99,8 @@ namespace Admin5
             {
                 // options.UseSqlServer(Configuration.GetConnectionString("asus"));
                 //options.UseSqlServer(Configuration.GetConnectionString("db"));
-                options.EnableSensitiveDataLogging();
                 options.UseSqlite(Configuration.GetConnectionString("sqlite"));
+                options.EnableSensitiveDataLogging();
             });
 
 
