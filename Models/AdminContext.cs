@@ -338,7 +338,7 @@ namespace Admin5.Models
                 // .Questionnaires()
                 // .ParticipationSessions()
                 // .Examens()
-                // .Evenements()
+                 .Evenements()
 
 
                 .RecomOrgs()
