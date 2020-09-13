@@ -195,18 +195,18 @@ namespace Admin5.Models
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-                entity.Property(e => e.Nom).IsRequired();
-                entity.Property(e => e.CodeRecommendation).IsRequired();
-                entity.Property(e => e.Mecanisme).IsRequired();
+                entity.Property(e => e.Nom);
+                entity.Property(e => e.CodeRecommendation);
+                entity.Property(e => e.Mecanisme);
                 entity.Property(e => e.IdCycle);
                 entity.Property(e => e.IdVisite);
                 entity.Property(e => e.IdOrgane);
                 entity.Property(e => e.EtatAvancement);
                 entity.Property(e => e.EtatAvancementChiffre);
-                entity.Property(e => e.IdAxe).IsRequired();
+                entity.Property(e => e.IdAxe);
                 entity.Property(e => e.IdSousAxe);
                 entity.Property(e => e.Annee);
-                entity.Property(e => e.Etat).IsRequired();
+                entity.Property(e => e.Etat);
                 // entity.Property(e => e.IdOrganisme).IsRequired();
                 // entity.HasOne(d => d.Organisme).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdOrganisme);
                 entity.HasOne(d => d.Axe).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdAxe);
@@ -321,8 +321,8 @@ namespace Admin5.Models
             OnModelCreatingPartial(modelBuilder);
 
             modelBuilder
-                // .Profils()
-                // .Users()
+                .Profils()
+                .Users()
                 .Visites()
                 .Cycles()
                 .Organes()
@@ -331,14 +331,14 @@ namespace Admin5.Models
                 .SousAxes()
                 .Organismes()
                 .Recommendations()
-                // .Traites()
-                // .Rapports()
-                // .Syntheses()
-                // .FicheSyntheses()
-                // .Questionnaires()
-                // .ParticipationSessions()
-                // .Examens()
-                // .Evenements()
+                .Traites()
+                .Rapports()
+                .Syntheses()
+                .FicheSyntheses()
+                .Questionnaires()
+                .ParticipationSessions()
+                .Examens()
+                .Evenements()
 
 
                 .RecomOrgs()
