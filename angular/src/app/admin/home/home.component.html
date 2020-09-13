@@ -36,21 +36,21 @@
         <div class="col-md-12">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="true" [marginLegend] = "'12px 15px -179px -208px'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-38px -5px -14px 5px'" [marginLegend] = "'12px 15px -200px -208px'"  [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
               [data]="dataEpu"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="true" [marginLegend] = "'12px 15px -179px -208px'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-38px -5px -14px 5px'" [marginLegend] = "'12px 15px -200px -208px'"  [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
               [data]="dataOt"></app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="true" [marginLegend] = "'12px 15px -179px -208px'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
+            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-38px -5px -14px 5px'" [marginLegend] = "'12px 15px -200px -208px'"  [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
               [data]="dataPs"></app-progress-cercle>
           </div>
         </div>
@@ -134,7 +134,7 @@
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
 
-            <app-progress-cercle [marginLegend] = "'12px 15px -106px -196px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+            <app-progress-cercle [marginLegend] = "'12px 15px -106px -196px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
               [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
           </div>
         </div>
