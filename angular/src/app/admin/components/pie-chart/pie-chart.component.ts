@@ -18,7 +18,7 @@ export class PieChartComponent implements OnInit {
   // @Input() mytitle: '';
   @Input() obs = new Subject<IData>();
   @Input() public showLegend = false;
-
+  @Input() withGraphe = 0;
 
   title = '' || null;
   // Pie
@@ -94,7 +94,7 @@ export class PieChartComponent implements OnInit {
 
       this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
         this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-        this.pieChartData = r.map(e => e.value);
+        this.pieChartData = r.map(e => e.value.toFixed(0));
         this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
 
         this.pieChartLabels.forEach((e, i) => {
