@@ -147,8 +147,28 @@ h3 {
 {
   text-align: right;
   // margin-bottom: 2%;
-  font-size: 0.9em; 
+  font-size: 0.9em;
   color:#00000070;
   //font-family:'Satisfy', cursive;
 
 }
+
+
+
+.legend { list-style: none;height: 10px;width: 280px; }
+.legend li {  margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .superawesome { background-color: #2b6a97;width: 40px; height: 22px; font-size: small; padding: 2%; }
+.legend .awesome { background-color: #ca7834; width: 40px; height: 22px; font-size: small; padding: 2%;}
+.legend .kindaawesome { background-color: #808080; width: 40px; height: 22px; font-size: small; padding: 2%;}
+// .legend{
+//   height:10px;
+//   // width:190px;
+//   margin: 5px -263px 0px 79px;
+// }
+  .legend li
+  {
+    font-size: 14px;
+    font-weight: 100;
+  }

@@ -8,7 +8,8 @@
     </section>
   </div>
 
-  <div class="justify-content-center p-2" style="background-color: #00000040;color: #fff; padding: 0px;margin-top: -1%; padding-left: 6px;padding-right: 6px;">
+  <div class="justify-content-center p-2"
+    style="background-color: #00000040;color: #fff; padding: 0px;margin-top: -1%; padding-left: 6px;padding-right: 6px;">
     <h3 style="font-size: 1.1em;color: #fff;font-weight: 200; text-align: left;">«
       {{ 'admin.home.droitHomme' | translate }} »</h3>
     <h3 class="textSouTitre ">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
@@ -36,42 +37,69 @@
         <div class="col-md-12">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'" [marginLegend] = "'12px 15px -200px -271px'" [marginLeftTitle]="'3.9%'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
-              [data]="dataEpu"></app-progress-cercle>
+            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
+              [marginLegend]="'12px 15px -200px -271px'" [marginLeftTitle]="'3.9%'"
+              [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataEpu">
+            </app-progress-cercle>
           </div>
         </div>
         <div class="col-md-6">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'" [marginLegend] = "'12px 15px -200px -237px'" [marginLeftTitle]="'3.9%'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
-              [data]="dataOt"></app-progress-cercle>
+            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
+              [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'3.9%'"
+              [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataOt">
+            </app-progress-cercle>
           </div>
         </div>
         <div class="col-md-4">
           <div class="chart-size">
             <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
-            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'" [marginLegend] = "'12px 15px -200px -237px'" [marginLeftTitle]="'6%'" [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200"
-              [data]="dataPs"></app-progress-cercle>
+            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
+              [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'6%'"
+              [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataPs">
+            </app-progress-cercle>
           </div>
         </div>
+
+        <!-- <div class="col-md-12">
+          <div class="d-flex flex-column justify-content-center mt-2 "
+          style="width: 200px;margin:0 0 0 0 ;">
+          <ul class="legend" >
+            <span class="superawesome"></span>Taux de recommandation par mécanisme
+
+            <span class="awesome"> </span>Taux de recommandation En cours de réalisation par mécanisme
+
+            <span class="kindaawesome"></span>Taux de recommandation réalisé par mécanisme
+          </ul>
+        </div>
+        </div> -->
+
       </div>
     </div>
 
-  </div>
 
-  <!-- <mat-divider> </mat-divider> -->
-  <!-- <h3>Mise en œuvre des recommandations </h3> -->
-  <div class="d-flex justify-content-center w-100 mt-5 mb-5">
-    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-      <div>
-        <h3>{{ 'admin.home.Miseenœuvredesaxe' | translate }}</h3>
-      </div>
-    </section>
-  </div>
 
-  <div class="row justify-content-center">
-    <div class="col-md-12">
-      <!-- <mat-card>
+
+
+
+
+    </div>
+
+    <!-- <mat-divider> </mat-divider> -->
+    <!-- <h3>Mise en œuvre des recommandations </h3> -->
+    <div class="d-flex justify-content-center w-100 mt-5 mb-5">
+      <section
+        [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+        <div>
+          <h3>{{ 'admin.home.Miseenœuvredesaxe' | translate }}</h3>
+        </div>
+      </section>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <!-- <mat-card>
 
         <div class="row d-flex justify-content-center mt-4 mb-4">
           <div class="col-md-5 d-flex flex-column">
@@ -88,40 +116,41 @@
           </div>
         </div>
       </mat-card> -->
-      <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px; direction: ltr;">
-        <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
-          <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'"
-            style="color: white; font-weight: bold;">
-            {{e.value.toString().length >= 2 ? e.value.toFixed(0) : '0' + e.value.toFixed(0)}} %
-          </span>
-        </div>
-        <img style="position: absolute;width: 1500px; margin: 0 auto;" src="assets/meo.png">
+        <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px; direction: ltr;">
+          <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
+            <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'"
+              style="color: white; font-weight: bold;">
+              {{e.value.toString().length >= 2 ? e.value.toFixed(0) : '0' + e.value.toFixed(0)}} %
+            </span>
+          </div>
+          <img style="position: absolute;width: 1500px; margin: 0 auto;" src="assets/meo.png">
 
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- <mat-divider> </mat-divider> -->
+    <!-- <mat-divider> </mat-divider> -->
 
-  <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
-    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-      <div>
-        <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
-      </div>
-    </section>
-  </div>
+    <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
+      <section
+        [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+        <div>
+          <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
+        </div>
+      </section>
+    </div>
 
-  <div class="row mb-10">
-    <div class="col-md-12">
-      <div>
-        <!-- <div class="d-flex justify-content-center">
+    <div class="row mb-10">
+      <div class="col-md-12">
+        <div>
+          <!-- <div class="d-flex justify-content-center">
           <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
           </h5>
         </div> -->
-        <div class="d-flex flex-wrap justify-content-center">
+          <div class="d-flex flex-wrap justify-content-center">
 
-          <div *ngFor="let e of list; let i=index">
-            <!-- <div class="d-flex flex-column pl-2 pr-2 mb-3 mt-3">
+            <div *ngFor="let e of list; let i=index">
+              <!-- <div class="d-flex flex-column pl-2 pr-2 mb-3 mt-3">
               <div style="height: 110px;" class=" pl-4 pr-4">
 
                 <mat-progress-spinner color="primary" mode="determinate" [value]="e.value !== 0 ? e.value : 1"></mat-progress-spinner>
@@ -130,15 +159,16 @@
               <p style="width: 170px; margin: 0; font-size: .9em; text-align: center;">{{e.name}}</p>
             </div> -->
 
-            <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
+              <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170"
               [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
 
 
-            <app-progress-cercle [marginLegend] = "'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
-              [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+              <app-progress-cercle [marginLegend]="'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'"
+                [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+                [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
