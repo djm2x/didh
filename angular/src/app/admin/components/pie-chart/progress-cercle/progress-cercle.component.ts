@@ -16,6 +16,7 @@ export class ProgressCercleComponent implements OnInit {
   @Input() marginh5Title = '';
 
   @Input() marginLegend = '';
+  @Input() marginLeftTitle = '';
 
 
   @Input() diameter = 120;

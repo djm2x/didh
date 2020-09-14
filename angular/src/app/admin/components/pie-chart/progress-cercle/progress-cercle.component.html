@@ -31,13 +31,14 @@
     </div>
   </div>
 
-  <div class="d-flex flex-column justify-content-center mt-2" style="height: 214%;" [style.width]="widthText">
-    <img *ngIf="!isInForLoop" src="assets/line.png" height="10px" width="280px"
-      [style.transform]="'rotateY(' + retate + 'deg)'">
+  <div class="d-flex flex-column justify-content-center mt-2" style="height: 218%;" [style.margin-left]="marginLeftTitle" [style.width]="widthText">
+
     <h5 class="h5Title" [style.margin]="marginh5Title" [style.font-size.em]="fontSize"
       [ngStyle]="{'text-align': isInForLoop ? 'center' : (retate === 0  ? 'left' : 'right')}">
       {{o.name}}
     </h5>
+    <img *ngIf="!isInForLoop" src="assets/line.png" height="10px" width="280px"
+      [style.transform]="'rotateY(' + retate + 'deg)'">
   </div>
 
 
