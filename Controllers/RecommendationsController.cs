@@ -150,17 +150,34 @@ namespace Admin5.Controllers
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
             int recommendationsCount = _context.Recommendations.Count();
-            var list = await _context.Organismes
-                    .Select(e => new
-                    {
-                        name = (lng == "fr" ? e.Label : e.LabelAr),
-                        r = e.RecomOrgs.Where(e => e.Recommendation.EtatAvancementChiffre == 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
-                        p = e.RecomOrgs.Where(e => e.Recommendation.EtatAvancementChiffre != 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
-                        t = (double.Parse(e.RecomOrgs.Count.ToString()) / recommendationsCount) * 100,
-                    })
-                    .Distinct()
-                    .ToListAsync()
-                ;
+            // var list = await _context.Organismes
+            //         .Select(e => new
+            //         {
+            //             name = (lng == "fr" ? e.Label : e.LabelAr),
+            //             r = e.RecomOrgs.Where(e => e.Recommendation.EtatAvancementChiffre == 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+            //             p = e.RecomOrgs.Where(e => e.Recommendation.EtatAvancementChiffre != 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
+            //             t = (double.Parse(e.RecomOrgs.Count.ToString()) / recommendationsCount) * 100,
+            //         })
+            //         .Distinct()
+            //         .ToListAsync()
+            //     ;
+
+            var list0 = await _context.Recommendations
+                    .Where(e => e.RecomOrgs.Count > 0)
+                    .Include(e => e.RecomOrgs)
+                    .ThenInclude(e => e.Organisme)
+                    .ToListAsync();
+
+            var list = list0.GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
+              
+                .Select(e => new
+                {
+                    name = e.Key,
+                    p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .ToList();
 
 
             return Ok(list);
@@ -169,12 +186,14 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateRecommendationByAxe()
         {
+            int recommendationsCount = _context.Recommendations.Count();
             var list = await _context.Axes
                     .Select(e => new
                     {
                         id = e.Id,
                         table = e.Label,
-                        value = e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()
+                        // value = e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count(),
+                        value = (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100,
                     })
                    .ToListAsync()
                 ;
@@ -213,7 +232,7 @@ namespace Admin5.Controllers
             //     ;
 
             var axe0 = await q.Include(e => e.Axe).ToListAsync();
-            var axe =     axe0.GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
+            var axe =     axe0.Where(e => e.Axe != null).GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
                 .Select(e => new
                 {
                     name = e.Key,

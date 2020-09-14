@@ -17,7 +17,7 @@ namespace Admin5.Models
         public string CodeRecommendationAr { get; set; }
         public string Mecanisme { get; set; }
         public int? IdCycle { get; set; }
-        public int IdAxe { get; set; }
+        public int? IdAxe { get; set; }
         public int? IdSousAxe { get; set; }
         public int? IdOrgane { get; set; }
         public int? IdVisite { get; set; }

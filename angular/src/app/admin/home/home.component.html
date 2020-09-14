@@ -8,7 +8,7 @@
     </section>
   </div>
 
-  <div class="justify-content-center" style="background-color: #00000040;color: #fff; padding: 0px;margin-top: -1%; padding-left: 6px;padding-right: 6px;">
+  <div class="justify-content-center p-2" style="background-color: #00000040;color: #fff; padding: 0px;margin-top: -1%; padding-left: 6px;padding-right: 6px;">
     <h3 style="font-size: 1.1em;color: #fff;font-weight: 200; text-align: left;">«
       {{ 'admin.home.droitHomme' | translate }} »</h3>
     <h3 class="textSouTitre ">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
@@ -92,7 +92,7 @@
         <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
           <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'"
             style="color: white; font-weight: bold;">
-            {{e.value.toString().length >= 2 ? e.value : '0' + e.value}} %
+            {{e.value.toString().length >= 2 ? e.value.toFixed(0) : '0' + e.value.toFixed(0)}} %
           </span>
         </div>
         <img style="position: absolute;width: 1500px; margin: 0 auto;" src="assets/meo.png">
