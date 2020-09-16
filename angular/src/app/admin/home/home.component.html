@@ -133,8 +133,6 @@
           <div class="d-flex flex-wrap justify-content-center">
             <div *ngFor="let e of list; let i=index">
 
-              <!-- <app-bar [dataSubject]="e"></app-bar> -->
-
               <app-progress-cercle [marginLegend]="'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'"
                 [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
                 [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
