@@ -86,25 +86,6 @@ export class HomeComponent implements OnInit {
     // this.pieChartSubject.next({ table: tableS, type: 'taux', title: `Taux de recommandations par ${e}` });
   }
 
-  handleDisplayBar(r: { name: string, p: number, t: number, r: number }[]) {
-    r = r.filter(e => e.name !== null);
-    console.log(r);
-    // r = [r[this.selectedIndex]];
-    const barChartLabels = r.map(e => e.name);
-    const barChartData = [
-      { data: [], label: this.mytranslate.get('admin.state.Etat_avancement') },
-      { data: [], label: this.mytranslate.get('admin.state.Taux') },
-      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
-    ];
-
-    r.forEach(e => {
-      barChartData[0].data.push(e.p);
-      barChartData[1].data.push(e.t.toFixed(0));
-      barChartData[2].data.push(e.r);
-    });
-    // tslint:disable-next-line:max-line-length
-    this.e.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
-  }
 
 
 }
