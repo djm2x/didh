@@ -240,18 +240,17 @@
 
         <mat-tab label="{{ 'admin.organe.list.Organesdetraité' | translate }}">
           <ng-template matTabContent>
-            <!-- <div class="row mb-4 justify-content-center">
-
+            <div class="row mb-4 justify-content-center">
               <div class="col-md-12">
                 <app-bar [dataSubject]="organePageSubject"></app-bar>
               </div>
-
-            </div> -->
+            </div>
           </ng-template>
         </mat-tab>
 
         <mat-tab label="{{ 'admin.ps.Procédure_spéciale' | translate }}">
           <ng-template matTabContent>
+      <app-bar [dataSubject]="visitePageSubject"></app-bar>
 
             <!-- <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
               <section

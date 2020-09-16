@@ -74,8 +74,8 @@ export class DiagrammeComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IPieData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
   pieChartSubjectR = new BehaviorSubject<IPieData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
 
-
   organePageSubject = new Subject();
+  visitePageSubject = new Subject();
 
   @Input() widthOne = 0;
   @Input() widthTwo = 0;
@@ -105,14 +105,13 @@ export class DiagrammeComponent implements OnInit {
     setTimeout(() => {
       this.reset();
     }, 300);
-
   }
 
   searchAndGet(o: Model) {
     // console.log(o);
     // o.mecanisme = this.o.mecanisme;
     // console.log(o)
-    
+
     this.toChild.next(Object.assign(new Model(), o));
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.o = o;
@@ -164,6 +163,8 @@ export class DiagrammeComponent implements OnInit {
       // console.log(r.macanisme)
 
       this.handleDisplayBar(barList);
+      this.stateOrgane();
+      this.stateVisite();
     });
 
     // this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
@@ -186,7 +187,7 @@ export class DiagrammeComponent implements OnInit {
     this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
     this.idVisite.setValue(o.selectedIndex === 2 ? 1 : 0);
 
-    this.searchAndGet(this.o) 
+    this.searchAndGet(this.o)
   }
 
   handleDisplayBar(r: { name: string, p: number, t: number, r: number }[]) {
@@ -246,6 +247,8 @@ export class DiagrammeComponent implements OnInit {
     return this.mecanisme.value === 'Organes de traités';
   }
 
+
+
   selectChange(mecanisme: string) {
     // this.idVisite.setValue(0);
     // this.idCycle.setValue(this.cycles[0].id);
@@ -266,7 +269,7 @@ export class DiagrammeComponent implements OnInit {
 
   search(o: Model) {
     // console.log(o.idPays, this.myForm.get('idPays').value, o)
-    
+
     this.searchAndGet(o);
   }
 
@@ -306,6 +309,50 @@ export class DiagrammeComponent implements OnInit {
     return colors;
   }
 
+
+  stateOrgane() {
+    this.uow.recommendations.stateOrgane().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push(e.p);
+        barChartData[1].data.push(e.t);
+        barChartData[2].data.push(e.r);
+      });
+      this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
+    });
+  }
+
+  stateVisite() {
+    this.uow.visites.stateVisites().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push(e.p);
+        barChartData[1].data.push(e.t);
+        barChartData[2].data.push(e.r);
+      });
+      // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
+      this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
+    });
+  }
+
 }
 
 export interface IData {
@@ -319,6 +366,7 @@ export interface IPieData {
   type: 'taux' | 'etat' | 'realise';
   title: string | Observable<string>;
 }
+
 
 // class Model {
 //   mecanisme = '';
