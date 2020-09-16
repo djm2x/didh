@@ -67,7 +67,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
   stateRecommendationByAxe() {
     return this.uow.recommendations.stateRecommendationByAxe().subscribe(r => {
       console.log(r)
