@@ -2,7 +2,7 @@ import { SessionService } from './../../shared/session.service';
 import { Notification, Visite } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge, BehaviorSubject, Subject } from 'rxjs';
+import { merge, BehaviorSubject, Subject, Observable } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { HttpEventType } from '@angular/common/http';
@@ -47,14 +47,13 @@ export class VisiteComponent implements OnInit {
   message: any;
   formData = new FormData();
 
+  dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+
   pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'etat', title: 'Etat d’avancement des recommandations par visite'});
   pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
-
   visitePageSubject = new Subject();
   visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
-
-  examenPageSubject = new Subject();
 
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
@@ -94,6 +93,15 @@ export class VisiteComponent implements OnInit {
 
     //this.stateVisite();
     this.stateGraphe();
+    this.stateMecanisme();
+  }
+
+
+  stateMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      r.ps.name = this.mytranslate.getObs('admin.home.Procéduresspéciales');
+      this.dataPs.next(r.ps);
+    });
   }
 
   openDialogDetail(o: any) {

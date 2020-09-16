@@ -30,13 +30,13 @@ export class HomeComponent implements OnInit {
   list: { name: string, p: number, t: number, r: number }[] = [];
   axesValue: { id: number, table: string, value: number }[] = [];
 
+  listSubject: { name: string, p: number, t: number, r: number }[] = [];
+
   dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
 
-
-  mecanismeSubject = new Subject();
-
+  e = new Subject();
 
   constructor(private uow: UowService, public session: SessionService
     , public mytranslate: MyTranslateService) { }
@@ -61,15 +61,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-
-
-
   stateRecommendationByOrganisme() {
     return this.uow.recommendations.stateRecommendationByOrganisme().subscribe(r => {
       this.list = r as any;
     });
   }
+
 
   stateRecommendationByAxe() {
     return this.uow.recommendations.stateRecommendationByAxe().subscribe(r => {
@@ -107,7 +104,8 @@ export class HomeComponent implements OnInit {
       barChartData[2].data.push(e.r);
     });
     // tslint:disable-next-line:max-line-length
-    this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
+    this.e.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
   }
+
 
 }

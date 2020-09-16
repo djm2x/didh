@@ -3,7 +3,7 @@ import { Rapport, Traite } from './../../../Models/models';
 
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge, BehaviorSubject, Subject } from 'rxjs';
+import { merge, BehaviorSubject, Subject, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { Visite, Recommendation } from 'src/app/Models/models';
@@ -62,6 +62,8 @@ export class ListComponent implements OnInit {
 
   organePageSubject = new Subject();
 
+  dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
@@ -99,7 +101,18 @@ export class ListComponent implements OnInit {
     });
 
     this.stateOrgane();
+    this.stateMecanisme();
+
   }
+
+
+  stateMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      r.ot.name = this.mytranslate.getObs('admin.home.OrganesdeTraités');
+      this.dataOt.next(r.ot);
+    });
+  }
+
 
   stateOrgane() {
     this.uow.recommendations.stateOrgane().subscribe(r => {

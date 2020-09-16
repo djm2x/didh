@@ -42,7 +42,7 @@
     </section>
   </div> -->
 
-    <div class="col-md-10 mb-5 mt-5">
+    <div class="col-md-9 mb-5 mt-5">
       <app-bar [dataSubject]="visitePageSubject"></app-bar>
 
       <!-- <div *ngFor="let e of visitePage; let i=index">
@@ -56,6 +56,14 @@
         </h5>
       </div> -->
     </div>
+    <div class="col-md-3 mb-5 mt-5">
+      <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
+      [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'6%'"
+      [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataPs">
+    </app-progress-cercle>
+      </div>
+
+
   </div>
 
   <div class="example-container mat-elevation-z8">
