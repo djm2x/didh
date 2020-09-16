@@ -2,7 +2,7 @@ import { SessionService } from './../../shared/session.service';
 import {  Examen } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
-import { merge, Subject, BehaviorSubject } from 'rxjs';
+import { merge, Subject, BehaviorSubject, Observable } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { HttpEventType } from '@angular/common/http';
@@ -52,11 +52,17 @@ export class ExamenComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
   pieChartSubjectR = new BehaviorSubject<IData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
 
+  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+
+  examenPageSubject = new Subject();
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
+    this.stateMecanisme();
+    this.stateAxe();
     setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
@@ -179,6 +185,38 @@ export class ExamenComponent implements OnInit {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
     this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'examen'}});
+  }
+
+
+  stateMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      // console.log(r)
+      r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
+      this.dataEpu.next(r.epu);
+
+    });
+  }
+
+  stateAxe() {
+    this.uow.axes.stateAxes().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push(e.p);
+        barChartData[1].data.push(e.t);
+        barChartData[2].data.push(e.r);
+      });
+      // tslint:disable-next-line:max-line-length
+      this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') });
+    });
   }
 
 }

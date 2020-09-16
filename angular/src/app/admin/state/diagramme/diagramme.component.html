@@ -276,12 +276,6 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <app-bar [dataSubject]="mecanismeSubject"></app-bar>
-          <!-- <div class="d-flex flex-column justify-content-center mt-4">
-            <img src="assets/line.png" height="10px" width="280px">
-            <h5 style="color: #737473; margin: 5px 0 10px 5px;">
-                Mise en œuvre des recommandations par Mecanisme
-            </h5>
-          </div> -->
         </div>
 
         <div class="col-md-10 mb-5 mt-5">
@@ -294,9 +288,6 @@
               </div>
             </section>
           </div>
-
-
-
 
           <div *ngFor="let e of axesList; let i=index">
             <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
@@ -344,7 +335,7 @@
 
         </div>
 
-        <div class="col-md-10 mt-5">
+        <!-- <div class="col-md-10 mt-5">
 
 
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%;">
@@ -365,15 +356,8 @@
           </div>
 
 
-          <!-- <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-                        <img src="assets/line.png" height="10px" width="280px"
-                            [style.transform]="'rotateY(' +  rotateY + 'deg)'">
-                        <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-                            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_pays' | translate }}
-                        </h5>
-                    </div> -->
 
-        </div>
+        </div> -->
 
         <div class="mx-2 mt-2">
           <app-recomm [fromParent]="toChild"></app-recomm>

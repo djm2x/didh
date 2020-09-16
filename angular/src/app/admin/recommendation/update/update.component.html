@@ -118,17 +118,17 @@
           <textarea matInput rows="0" formControlName="etatAvancement"></textarea>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" style="width: 100%;">
+        <!-- <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</mat-label>
           <textarea matInput rows="0" formControlName="observation"></textarea>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>{{ 'admin.recommandation.list.complement' | translate }}</mat-label>
           <textarea matInput rows="0" formControlName="complement"></textarea>
         </mat-form-field>
 
-        <app-upload nameBtn="{{ 'admin.recommandation.update.PieceJointe' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
+        <app-upload nameBtn="{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
           [propertyOfParent]="pieceJointeTo" [eventSubmitToParent]="pieceJointeFrom"
           [eventSubmitFromParent]="eventSubmitFromParent">
         </app-upload>

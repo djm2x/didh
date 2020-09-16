@@ -28,11 +28,29 @@
   </section>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-7">
       <app-pie-chart [withGraphe]="1000"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
+
+    <div class="col-md-5">
+      <div class="chart-size">
+        <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
+        <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
+          [marginLegend]="'0 0 -199px -227px'" [marginLeftTitle]="'3.9%'"
+          [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataEpu">
+        </app-progress-cercle>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="chart-size">
+        <app-bar [dataSubject]="examenPageSubject"></app-bar>
+      </div>
+    </div>
+
+
   </div>
-  <div class="row" style="margin-top: -5%; margin-bottom: 0%;">
+  <!-- <div class="row" style="margin-top: -5%; margin-bottom: 0%;">
 
     <div class="col-md-6">
       <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
@@ -41,7 +59,7 @@
       <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
     </div>
 
-  </div>
+  </div> -->
 
 
   <div class="example-container mat-elevation-z8 mt-3">

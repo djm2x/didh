@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center" style="height: 230px; cursor: pointer;margin-right: 70px;"
+<div class="d-flex justify-content-center" style="height: 230px; cursor: pointer;"
   (click)="openDialog()">
 
   <div class="d-flex justify-content-center" style="height: 300px;">
@@ -45,7 +45,7 @@
 
   <div *ngIf="showLegend" class="d-flex flex-column justify-content-center mt-2 "
     [style.width]="widthText" [style.margin]="marginLegend">
-    <ul  class="legend" height="10px" width="280px" >
+    <ul  class="legend" >
       <span class="superawesome">{{ (o.t).toFixed(0) }}%</span>
 
       <span class="awesome">{{ ((o.p)).toFixed(0) }}%</span>

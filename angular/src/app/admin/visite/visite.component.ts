@@ -54,6 +54,8 @@ export class VisiteComponent implements OnInit {
   visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
 
+  examenPageSubject = new Subject();
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService
@@ -90,7 +92,8 @@ export class VisiteComponent implements OnInit {
       }
     });
 
-    this.stateVisite();
+    //this.stateVisite();
+    this.stateGraphe();
   }
 
   openDialogDetail(o: any) {
@@ -227,6 +230,28 @@ export class VisiteComponent implements OnInit {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
     this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'visite'}});
+  }
+
+  stateGraphe() {
+    this.uow.visites.stateVisites().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push(e.p);
+        barChartData[1].data.push(e.t);
+        barChartData[2].data.push(e.r);
+      });
+      // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
+      this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
+    });
   }
 
 }

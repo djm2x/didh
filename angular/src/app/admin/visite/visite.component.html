@@ -34,18 +34,20 @@
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div> -->
 
-  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
+  <!-- <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
     <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
       <div>
         <h3>{{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}</h3>
       </div>
     </section>
-  </div>
+  </div> -->
 
     <div class="col-md-10 mb-5 mt-5">
-      <div *ngFor="let e of visitePage; let i=index">
+      <app-bar [dataSubject]="visitePageSubject"></app-bar>
+
+      <!-- <div *ngFor="let e of visitePage; let i=index">
         <app-progress-bar [widthThree]="e.r" [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
-      </div>
+      </div> -->
 
       <!-- <div class="d-flex flex-column justify-content-center mt-4">
         <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' + retate + 'deg)'">

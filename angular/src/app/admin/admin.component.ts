@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
     // { name: 'Statistiques', route: ['/admin/state'], width: '100px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['documentation'], width: '100px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['/admin/evenement'], width: '100px' , children: [] },
     // { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' , children: [] },
     // { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' , children: [] },
   ];
@@ -55,7 +55,7 @@ export class AdminComponent implements OnInit {
     // { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
     // { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
-    { name: this.mytranslate.getObs('admin.header.Evènements'), route: ['/admin/evenement'], width: '80px' , children: [] },
+    // { name: this.mytranslate.getObs('admin.header.Evènements'), route: ['/admin/evenement'], width: '80px' , children: [] },
     { name: this.mytranslate.getObs('admin.header.Statistiques'), route: ['/admin/state'], width: '100px' , children: [] },
     // { name: 'Documentation', route: ['documentation'], width: '100px' , children: [] },
     { name: this.mytranslate.getObs('admin.header.Recommandations'), route: ['/admin/recommendation'], width: '113px' , children: [] },
