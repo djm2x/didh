@@ -327,6 +327,7 @@ export class DiagrammeComponent implements OnInit {
         barChartData[1].data.push(e.t);
         barChartData[2].data.push(e.r);
       });
+      // tslint:disable-next-line:max-line-length
       this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });
   }
