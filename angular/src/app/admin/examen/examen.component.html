@@ -28,9 +28,7 @@
   </section>
 
   <div class="row">
-    <div class="col-md-7">
-      <app-pie-chart [withGraphe]="1000"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
-    </div>
+
 
     <div class="col-md-5">
       <div class="chart-size">
@@ -40,6 +38,10 @@
           [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataEpu">
         </app-progress-cercle>
       </div>
+    </div>
+
+    <div class="col-md-7">
+      <app-pie-chart [withGraphe]="900"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
 
     <div class="col-md-12">
