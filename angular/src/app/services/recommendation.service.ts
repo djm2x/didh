@@ -55,9 +55,9 @@ export class RecommendationService extends SuperService<Recommendation> {
 
   stateMecanisme() {
     return this.http.get<{
-      epu: { name: string | Observable<string>,p: number, t: number, r: number },
-      ot: { name: string | Observable<string>, p: number, t: number, r: number },
-      ps: { name: string | Observable<string>, p: number, t: number, r: number }
+      epu: { name: string | Observable<string>,p: number, t: number, r: number, nbt: number, nbp: number, nbr: number },
+      ot: { name: string | Observable<string>, p: number, t: number, r: number , nbt: number, nbp: number, nbr: number},
+      ps: { name: string | Observable<string>, p: number, t: number, r: number , nbt: number, nbp: number, nbr: number}
     }>(`${this.urlApi}/${this.controller}/stateMecanisme`);
   }
 

@@ -11,21 +11,26 @@
       <form [formGroup]="myForm">
         <div class="inputs">
 
-          <!-- <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
-            <mat-label>Organisme</mat-label>
+          <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
+            <mat-label>{{ 'admin.synthese.update.organisme' | translate }}</mat-label>
             <mat-select formControlName="idOrganisme">
-              <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
-          </mat-form-field> -->
+          </mat-form-field>
 
-          <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
+          <!-- <mat-form-field appearance="fill" style="width: 100%;margin-bottom: 5px;">
             <mat-label>{{ 'admin.synthese.update.organisme' | translate }}</mat-label>
             <input matInput [formControl]="myAuto" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
               <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
             </mat-autocomplete>
-          </mat-form-field>
+          </mat-form-field> -->
+
+
+
+
+
+
         </div>
 
         <div class="" style="margin-bottom: 15px;">

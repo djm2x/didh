@@ -149,7 +149,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.nom' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.nom : row.nomAr}}</td>
         </ng-container>
-       
+
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.mecanisme' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[2].columnDef]}}</td>
@@ -174,18 +174,18 @@
           <td mat-cell *matCellDef="let row">{{row[columnDefs[6].columnDef]}}</td>
         </ng-container>
 
-        <ng-container [matColumnDef]="columnDefs[7].columnDef">
+        <!-- <ng-container [matColumnDef]="columnDefs[7].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[7].columnDef]}}</td>
-        </ng-container>
+        </ng-container> -->
 
-        <ng-container [matColumnDef]="columnDefs[8].columnDef">
+        <ng-container [matColumnDef]="columnDefs[7].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.complement' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[8].columnDef]}}</td>
         </ng-container>
 
-        <ng-container [matColumnDef]="columnDefs[9].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.recommandation.list.piece-Jointe' | translate }}</th>
+        <ng-container [matColumnDef]="columnDefs[8].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.pieceJointe === ''" [matTooltip]="row.pieceJointe" color="accent"
               (click)="showPieceJoin(row.pieceJointe)">

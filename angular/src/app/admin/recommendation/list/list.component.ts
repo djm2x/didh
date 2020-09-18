@@ -33,10 +33,10 @@ export class ListComponent implements OnInit {
     { columnDef: 'nom', headName: 'INTITULE' },
     { columnDef: 'mecanisme', headName: 'mecanisme' },
     { columnDef: 'axe', headName: 'Axe' },
-    { columnDef: 'sousAxe', headName: 'SOUS AXE' }, 
-    { columnDef: 'organismes', headName: 'DEPARTEMENT' }, 
+    { columnDef: 'sousAxe', headName: 'SOUS AXE' },
+    { columnDef: 'organismes', headName: 'DEPARTEMENT' },
     { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
-    { columnDef: 'observation', headName: '' },
+    // { columnDef: 'observation', headName: '' },
     { columnDef: 'complement', headName: '' },
     { columnDef: 'pieceJointe', headName: '' },
     { columnDef: 'option', headName: '' },
@@ -264,6 +264,7 @@ export class Model {
   nom = '';
   etat = '';
   idPays = 0;
+  idDepartement = 0;
   startIndex = 0;
   pageSize = 10;
   sortBy = 'id';

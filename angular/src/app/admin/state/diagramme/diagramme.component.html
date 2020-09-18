@@ -201,6 +201,16 @@
                 {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Departement</mat-label>
+            <mat-select formControlName="idDepartement">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of departementList" [value]="e.name">
+                {{ mytranslate.langSync === 'fr' ? e.name : e.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </form>
       <div class="right">

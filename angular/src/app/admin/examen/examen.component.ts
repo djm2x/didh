@@ -52,7 +52,7 @@ export class ExamenComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
   pieChartSubjectR = new BehaviorSubject<IData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
 
-  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, nbt: number, nbp: number, nbr: number }>();
 
   examenPageSubject = new Subject();
 

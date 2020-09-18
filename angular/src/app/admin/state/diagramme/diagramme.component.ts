@@ -59,7 +59,6 @@ export class DiagrammeComponent implements OnInit {
   listAxes = new Subject<any>();
   listOrganisme = new Subject<any>();
   pays = this.uow.pays.get();
-
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
 
@@ -222,6 +221,8 @@ export class DiagrammeComponent implements OnInit {
       etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
+      idDepartement: this.o.idDepartement,
+
       startIndex: this.o.startIndex,
       pageSize: this.o.pageSize,
       sortBy: this.o.sortBy,

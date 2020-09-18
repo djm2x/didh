@@ -3,9 +3,9 @@
 .legend li {  margin-right: 10px; }
 .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
 /* your colors */
-.legend .superawesome { background-color: #2b6a97;width: 40px; height: 22px; font-size: small; padding: 2%; }
-.legend .awesome { background-color: #ca7834; width: 40px; height: 22px; font-size: small; padding: 2%;}
-.legend .kindaawesome { background-color: #7dc460; width: 40px; height: 22px; font-size: small; padding: 2%;}
+.legend .superawesome { background-color: #2b6a97;width: 40px; height: 17px; font-size: small; padding: 2%; }
+.legend .awesome { background-color: #ca7834; width: 40px; height: 17px; font-size: small; padding: 2%;}
+.legend .kindaawesome { background-color: #7dc460; width: 40px; height: 17px; font-size: small; padding: 2%;}
 // .legend{
 //   height:10px;
 //   // width:190px;
@@ -38,4 +38,30 @@
 
 ::ng-deep .gray .mat-progress-spinner circle, .mat-spinner circle {
     stroke:#7dc460 !important;
+}
+
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  font-size: x-small;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }
