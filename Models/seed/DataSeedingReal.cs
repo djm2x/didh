@@ -111,15 +111,15 @@ namespace seed
         public static ModelBuilder Organes(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Organe>().HasData(new Organe[]{
-               new Organe {Id = 1, Label = "Le Comité pour l’élimination de la discrimination raciale (CERD)", LabelAr = "لجنة القضاء على التمييز العنصري (CERD)" },
-                new Organe {Id = 2, Label = "Le Comité contre la torture (CAT)", LabelAr = "لجنة مناهضة التعذيب (CAT)" },
-                new Organe {Id = 3, Label = "Le Comité des droits de l'homme (CCPR)", LabelAr = "اللجنة المعنية بحقوق الإنسان (CCPR)" },
-                new Organe {Id = 4, Label = "Le Comité des droits économiques, sociaux et culturels  (CESCR)", LabelAr = "لجنة الحقوق الاقتصادية والاجتماعية والثقافية (CESCR)" },
-                new Organe {Id = 5, Label = "Le Comité des travailleurs migrants (CMW)", LabelAr = "اللجنة المعنية بالعمال المهاجرين (CMW)" },
-                new Organe {Id = 6, Label = "Le Comité pour l'élimination de la discrimination à l'égard des femmes (CEDAW)", LabelAr = "لجنة القضاء على التمييز ضد المرأة (CEDAW)" },
-                new Organe {Id = 7, Label = "Le Comité des droits de l'enfant (CRC)", LabelAr = "لجنة حقوق الطفل (CRC)" },
-                new Organe {Id = 8, Label = "Comité des droits des personnes handicapées (CRPD)", LabelAr = "اللجنة المعنية بحقوق الأشخاص ذوي الإعاقة (CRPD)" },
-                new Organe {Id = 9, Label = "Le Sous-Comité pour la prévention de la torture (SPT)", LabelAr = "اللجنة الفرعية لمنع التعذيب (SPT)" },
+               new Organe {Id = 1, Label = "Le Comité pour l’élimination de la discrimination raciale (CERD)", LabelAr = "لجنة القضاء على التمييز العنصري (CERD)", Abv="CERD", AbvAr="CERD" },
+                new Organe {Id = 2, Label = "Le Comité contre la torture (CAT)", LabelAr = "لجنة مناهضة التعذيب (CAT)", Abv="CAT", AbvAr="CAT"  },
+                new Organe {Id = 3, Label = "Le Comité des droits de l'homme (CCPR)", LabelAr = "اللجنة المعنية بحقوق الإنسان (CCPR)", Abv="CCPR", AbvAr="CCPR" },
+                new Organe {Id = 4, Label = "Le Comité des droits économiques, sociaux et culturels  (CESCR)", LabelAr = "لجنة الحقوق الاقتصادية والاجتماعية والثقافية (CESCR)", Abv="CESCR", AbvAr="CESCR" },
+                new Organe {Id = 5, Label = "Le Comité des travailleurs migrants (CMW)", LabelAr = "اللجنة المعنية بالعمال المهاجرين (CMW)", Abv="CMW", AbvAr="CMW" },
+                new Organe {Id = 6, Label = "Le Comité pour l'élimination de la discrimination à l'égard des femmes (CEDAW)", LabelAr = "لجنة القضاء على التمييز ضد المرأة (CEDAW)", Abv="CEDAW", AbvAr="CEDAW" },
+                new Organe {Id = 7, Label = "Le Comité des droits de l'enfant (CRC)", LabelAr = "لجنة حقوق الطفل (CRC)", Abv="CRC", AbvAr="CRC" },
+                new Organe {Id = 8, Label = "Comité des droits des personnes handicapées (CRPD)", LabelAr = "اللجنة المعنية بحقوق الأشخاص ذوي الإعاقة (CRPD)", Abv="CRPD", AbvAr="CRPD" },
+                new Organe {Id = 9, Label = "Le Sous-Comité pour la prévention de la torture (SPT)", LabelAr = "اللجنة الفرعية لمنع التعذيب (SPT)", Abv="SPT", AbvAr="SPT" },
             });
 
             return modelBuilder;
@@ -127,15 +127,15 @@ namespace seed
         public static ModelBuilder Axes(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Axe>().HasData(new Axe[]{
-               new Axe {Id = 1, Label = "la promotion, le développement démocratique et la primauté du droit", LabelAr = "تعزيز البناء الديمقراطي وسيادة القانون" },
-                new Axe {Id = 2, Label = "l’interaction avec le système onusien des droits de l'homme", LabelAr = "مواصلة الانخراط والتعاون مع المنظومة الأممية لحقوق الإنسان" },
-                new Axe {Id = 3, Label = "la promotion et la protection des droits de l'homme, à travers la législation et l’harmonisation avec les normes internationales, constitué d’un sous-thème se rapportant à la législation", LabelAr = "النهوض بحقوق الإنسان وحمايتها عبر التشريع والملاءمة مع المعايير الدولية" },
-                new Axe {Id = 4, Label = "la promotion des droits économiques, sociaux, culturels et environnementaux", LabelAr = "النهوض بالحقوق الاقتصادية والاجتماعية والثقافية والبيئية" },
-                new Axe {Id = 5, Label = "la protection et la promotion des droits civils et politiques", LabelAr = "حماية الحقوق المدنية والسياسية والنهوض بها" },
-                new Axe {Id = 6, Label = "la promotion et la protection des droits catégoriels", LabelAr = "النهوض بالحقوق الفئوية وحمايتها" },
-                new Axe {Id = 7, Label = "la promotion de la culture des droits de l'homme par l'éducation et la formation", LabelAr = "النهوض بثقافة حقوق الإنسان من خلال التربية والتكوين" },
-                new Axe {Id = 8, Label = "la promotion du cadre institutionnel pour la protection et la promotion des droits de l'homme", LabelAr = "الإطار المؤسساتي لحماية حقوق الإنسان والنهوض بها" },
-                new Axe {Id = 9, Label = "des recommandations d'ordre général", LabelAr = "التوصيات العامة" },
+                new Axe {Id = 1, Label = "la promotion, le développement démocratique et la primauté du droit", LabelAr = "تعزيز البناء الديمقراطي وسيادة القانون", Abv="Développement démocratique et primauté du Droit", AbvAr=""},
+                new Axe {Id = 2, Label = "l’interaction avec le système onusien des droits de l'homme", LabelAr = "مواصلة الانخراط والتعاون مع المنظومة الأممية لحقوق الإنسان", Abv="Interaction avec SNU des DH", AbvAr="" },
+                new Axe {Id = 3, Label = "la promotion et la protection des droits de l'homme, à travers la législation et l’harmonisation avec les normes internationales, constitué d’un sous-thème se rapportant à la législation", LabelAr = "النهوض بحقوق الإنسان وحمايتها عبر التشريع والملاءمة مع المعايير الدولية", Abv="Harmonisation Juridique", AbvAr="" },
+                new Axe {Id = 4, Label = "la promotion des droits économiques, sociaux, culturels et environnementaux", LabelAr = "النهوض بالحقوق الاقتصادية والاجتماعية والثقافية والبيئية", Abv="DESC", AbvAr="" },
+                new Axe {Id = 5, Label = "la protection et la promotion des droits civils et politiques", LabelAr = "حماية الحقوق المدنية والسياسية والنهوض بها", Abv="Droits civils et Politiques", AbvAr="" },
+                new Axe {Id = 6, Label = "la promotion et la protection des droits catégoriels", LabelAr = "النهوض بالحقوق الفئوية وحمايتها", Abv="Droits Catégoriels ", AbvAr="" },
+                new Axe {Id = 7, Label = "la promotion de la culture des droits de l'homme par l'éducation et la formation", LabelAr = "النهوض بثقافة حقوق الإنسان من خلال التربية والتكوين", Abv="Education et culture des DH", AbvAr="" },
+                new Axe {Id = 8, Label = "la promotion du cadre institutionnel pour la protection et la promotion des droits de l'homme", LabelAr = "الإطار المؤسساتي لحماية حقوق الإنسان والنهوض بها", Abv="Cadre institutionnel des DH", AbvAr="" },
+                new Axe {Id = 9, Label = "des recommandations d'ordre général", LabelAr = "التوصيات العامة", Abv="Recommandations d'ordre général", AbvAr="" },
             });
 
             return modelBuilder;

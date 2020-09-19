@@ -1,12 +1,13 @@
+<div class="d-flex justify-content-left w-100" style="margin-top: 2%;">
+  <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+    <div>
+      <h3>{{title === '' ? '.......' : title}}</h3>
+    </div>
+  </section>
+</div>
+
 <div class="d-flex flex-column align-items-center justify-content-center" style="cursor: pointer;" (click)="openDialog()">
 
-  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
-    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-      <div>
-        <h3>{{title === '' ? '.......' : title}}</h3>
-      </div>
-    </section>
-  </div>
   <div class="col-md-8" style="display: block; width: 80vw;">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
       [legend]="barChartLegend" [chartType]="barChartType" [colors]="pieChartColors" (chartHover)="chartHovered($event)"

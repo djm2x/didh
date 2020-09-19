@@ -17,7 +17,7 @@ import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-examen',
-  templateUrl: './examen.component.html', 
+  templateUrl: './examen.component.html',
   styleUrls: ['./examen.component.scss']
 })
 export class ExamenComponent implements OnInit {
@@ -215,7 +215,7 @@ export class ExamenComponent implements OnInit {
         barChartData[2].data.push(e.r);
       });
       // tslint:disable-next-line:max-line-length
-      this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') });
+      this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
     });
   }
 

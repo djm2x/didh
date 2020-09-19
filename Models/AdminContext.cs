@@ -245,6 +245,8 @@ namespace Admin5.Models
                entity.HasKey(e => e.Id);
                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                entity.Property(e => e.Label);
+               entity.Property(e => e.Abv);
+               entity.Property(e => e.AbvAr);
                entity.HasMany(d => d.Recommendations).WithOne(p => p.Organe).HasForeignKey(d => d.IdOrgane)
                // .OnDelete(DeleteBehavior.Cascade)
                ;
@@ -258,6 +260,8 @@ namespace Admin5.Models
                 entity.HasMany(d => d.Recommendations).WithOne(p => p.Axe)
                 .HasForeignKey(d => d.IdAxe)
                 .OnDelete(DeleteBehavior.Cascade);
+                entity.Property(e => e.Abv);
+                entity.Property(e => e.AbvAr);
                 entity.HasMany(d => d.SousAxes).WithOne(p => p.Axe).HasForeignKey(d => d.IdAxe)
                 // .OnDelete(DeleteBehavior.Cascade)
                 ;

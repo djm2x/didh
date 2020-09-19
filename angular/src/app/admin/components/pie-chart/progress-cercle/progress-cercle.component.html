@@ -55,7 +55,7 @@
 
 
   <div class="d-flex flex-column justify-content-center mt-2 "
-    [style.width]="widthText" style="margin:3px -3px -448px -174px;" *ngIf="showTable">
+    [style.width]="widthText" style="margin:3px -3px -448px -174px;" *ngIf="showTable" >
 
 <table id="customers">
   <tr>
@@ -65,23 +65,23 @@
   </tr>
   <tr>
     <td>Taux</td>
-    <td>{{ (o.nbt) }}</td>
+    <td>11</td>
     <td>{{ (o.t).toFixed(0) }}%</td>
   </tr>
   <tr>
     <td>En cours</td>
-    <td>{{ (o.nbp) }}</td>
+    <td>0</td>
     <td>{{ ((o.p)).toFixed(0) }}%</td>
   </tr>
   <tr>
     <td>Réalisé</td>
-    <td>{{ (o.nbr) }}</td>
+    <td>0</td>
     <td>{{ ((o.r)).toFixed(0) }}%</td>
   </tr>
   <tr>
     <td>Non Réalisé</td>
-    <td>0</td>
-    <td>{{ ((o.r)).toFixed(0) }}%</td>
+    <td>29</td>
+    <td>74%</td>
   </tr>
 
 </table>
