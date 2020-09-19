@@ -22,6 +22,7 @@ export class ProgressCercleComponent implements OnInit {
   @Input() diameter = 120;
   @Input() transform = 50;
   @Input() public showLegend = false;
+  @Input() public showTable = false;
   @Input() public isInForLoop = false;
   @Input() public data = new Subject<{ name: string | Observable<string>, t: number, p: number, r: number, nbt: number, nbp: number, nbr: number }>();
   @Input() o = { name: null, t: 0, p: 0, r:0, nbt: 0, nbp:0, nbr: 0 };
