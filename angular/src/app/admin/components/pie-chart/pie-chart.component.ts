@@ -100,15 +100,15 @@ export class PieChartComponent implements OnInit {
         this.pieChartData = r.map(e => +e.value.toFixed(0));
         this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
 
-        this.pieChartLabels.forEach((e, i) => {
-          const value = this.pieChartData[i] as number;
-          if (value !== 0) {
-            this.list.push({
-              name: e.toString(),
-              value: this.pieChartData[i] as number,
-            });
-          }
-        });
+        // this.pieChartLabels.forEach((e, i) => {
+        //   const value = this.pieChartData[i] as number;
+        //   if (value !== 0) {
+        //     this.list.push({
+        //       name: e.toString(),
+        //       value: this.pieChartData[i] as number,
+        //     });
+        //   }
+        // });
 
       });
 

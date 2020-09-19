@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
+  dataMec = new Subject();
+  dataMec1 = new Subject();
 
   e = new Subject();
 
@@ -45,9 +47,99 @@ export class HomeComponent implements OnInit {
     this.stateRecommendationByOrganisme();
     this.stateRecommendationByAxe();
     this.stateMecanisme();
+    this.stateMecanisme1();
+  }
+
+  stateMecanisme1() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+
+      // console.log('>>>>>>>>>>>>>>>>>');
+      // console.log(r);
+      // console.log('>>>>>>>>>>>>>>>>>');
+
+      const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle'))
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraités'))
+      chartLabels.push(this.mytranslate.get('admin.header.Procéduresspéciales'))
+      // r = r.filter(e => e.name !== null);
+      // const barChartLabels = r.map(e => e.name);
+      const chartData = [];
+      const dataToShowInTable = [];
+
+      chartData.push(r.epu.t);
+
+      chartData.push(r.ot.t);
+
+      chartData.push(r.ps.t);
+
+      const chartColors = [];
+      // for (let i = 0; i < 3; i++) {
+      chartColors.push('#ca7834')
+      chartColors.push('#7dc460')
+      chartColors.push('#2d71a1');
+
+      // }
+
+
+      this.dataMec1.next({ chartLabels, chartData, chartColors, dataToShowInTable, title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') });
+
+    });
   }
 
   stateMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+
+      // console.log('>>>>>>>>>>>>>>>>>');
+      // console.log(r);
+      // console.log('>>>>>>>>>>>>>>>>>');
+
+      const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleEnCours'))
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleRealise'))
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleNonRealise'))
+
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésEnCours'))
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésRealise'))
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésNonRealise'))
+
+      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesEnCours'))
+      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesRealise'))
+      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesNonRealise'))
+      // r = r.filter(e => e.name !== null);
+      // const barChartLabels = r.map(e => e.name);
+      const chartData = [];
+      const dataToShowInTable = [];
+
+      chartData.push(r.epu.p !== 0 ? r.epu.p : 1);
+      chartData.push(r.epu.r !== 0 ? r.epu.p : 2);
+      chartData.push(r.epu.t - r.epu.r);
+      dataToShowInTable.push((r.epu.t - r.epu.r) * 100 / r.epu.t);
+
+      chartData.push(r.ot.p !== 0 ? r.epu.p : 1);
+      chartData.push(r.ot.r !== 0 ? r.epu.p : 2);
+      chartData.push(r.ot.t - r.ot.r);
+      dataToShowInTable.push((r.ot.t - r.ot.r) * 100 / r.ot.t);
+
+      chartData.push(r.ps.p !== 0 ? r.epu.p : 1);
+      chartData.push(r.ps.r !== 0 ? r.epu.p : 2);
+      chartData.push(r.ps.t - r.ps.r);
+      dataToShowInTable.push((r.ps.t - r.ps.r) * 100 / r.ps.t);
+
+      const chartColors = [];
+      for (let i = 0; i < 3; i++) {
+        chartColors.push('#ca7834')
+        chartColors.push('#7dc460')
+        chartColors.push('#c2c3c6');
+
+      }
+
+
+      this.dataMec.next({ chartLabels, chartData, chartColors, dataToShowInTable, title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') });
+
+    });
+  }
+
+  stateMecanisme0() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       // console.log(r)
       r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
@@ -69,7 +161,7 @@ export class HomeComponent implements OnInit {
 
   stateRecommendationByAxe() {
     return this.uow.recommendations.stateRecommendationByAxe().subscribe(r => {
-      console.log(r)
+      // console.log(r)
       r.pop()
       this.axesValue = r as any;
     });
