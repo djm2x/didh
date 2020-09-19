@@ -11,6 +11,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ProgressCercleComponent } from './progress-cercle/progress-cercle.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DetailComponent } from './detail/detail.component';
+import { PieComponent } from './pie/pie.component';
 
 
 
@@ -22,6 +23,7 @@ import { DetailComponent } from './detail/detail.component';
      ProgressBarComponent,
      ProgressCercleComponent,
      DetailComponent,
+     PieComponent,
     ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { DetailComponent } from './detail/detail.component';
     BarComponent,
     ProgressBarComponent,
     ProgressCercleComponent,
+    PieComponent,
   ],
   entryComponents: [
     DetailComponent,

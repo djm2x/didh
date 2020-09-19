@@ -33,9 +33,9 @@
 
     <div class="col-md-12">
       <div class="row w-100">
-        <div class="col-md-12">
+
+        <!-- <div class="col-md-12">
           <div class="chart-size">
-            <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
             <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
               [marginLegend]="'12px 15px -200px -271px'" [marginLeftTitle]="'3.9%'"
               [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataEpu">
@@ -44,7 +44,6 @@
         </div>
         <div class="col-md-6">
           <div class="chart-size">
-            <!-- <app-doughnut [obs]="pieChartSubjectOT" [pieChartType]="'doughnut'"></app-doughnut> -->
             <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
               [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'3.9%'"
               [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataOt">
@@ -53,12 +52,19 @@
         </div>
         <div class="col-md-6">
           <div class="chart-size">
-            <!-- <app-doughnut [obs]="pieChartSubjectPS" [pieChartType]="'doughnut'"></app-doughnut> -->
             <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
               [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'6%'"
               [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataPs">
             </app-progress-cercle>
           </div>
+        </div> -->
+
+        <div class="col-md-6">
+          <app-pie [withGraphe]="900"  [showLegend]="true" [obs]="dataMec"></app-pie>
+        </div>
+
+        <div class="col-md-6">
+          <app-pie [withGraphe]="900"  [showLegend]="true" [obs]="dataMec1"></app-pie>
         </div>
 
         <!-- <div class="col-md-12">
