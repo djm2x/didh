@@ -232,7 +232,7 @@ namespace Admin5.Controllers
             //     ;
 
             var axe0 = await q.Include(e => e.Axe).ToListAsync();
-            var axe =     axe0.Where(e => e.Axe != null).GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
+            var axe =     axe0.Where(e => e.Axe != null).GroupBy(e => lng == "fr" ? e.Axe.Id : e.Axe.Id)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -518,7 +518,7 @@ namespace Admin5.Controllers
                 list = await _context.Axes
                     .Select(e => new
                     {
-                        table = lng == "fr" ? e.Label : e.LabelAr,
+                        table = lng == "fr" ? e.Abv : e.AbvAr,
                         value = type == "taux" ? 
                             (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
                             (type == "etat" ? 
@@ -530,30 +530,51 @@ namespace Admin5.Controllers
                     .ToListAsync()
                 ;
             }
-            // else if (table == "organe")
-            // {
-            //     list = await _context.Organes
-            //         .Select(e => new
-            //         {
-            //             table = e.Label,
-            //             value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
-            //         })
-            //         .Distinct()
-            //         .ToListAsync()
-            //     ;
-            // }
-            // else
-            // {
-            //     list = _context.Visites
-            //         .Select(e => new
-            //         {
-            //             table = e.Mandat,
-            //             value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
-            //         })
-            //         .Distinct()
-            //         .ToList()
-            //     ;
-            // }
+            else if (table == "organe")
+            {
+                list = await _context.Organes
+                    // .Select(e => new
+                    // {
+                    //     table = e.Abv,
+                    //     value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                    // })
+
+                    .Select(e => new
+                    {
+                        table = lng == "fr" ? e.Abv : e.AbvAr,
+                        value = type == "taux" ? 
+                            (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
+                            (type == "etat" ? 
+                                e.Recommendations.Where(s => s.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count() : 
+                                e.Recommendations.Where(s => s.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()
+                            ),
+                    })
+                    .Distinct()
+                    .ToListAsync()
+                ;
+            }
+            else
+            {
+                list = _context.Visites
+                    // .Select(e => new
+                    // {
+                    //     table = e.Mandat,
+                    //     value = type == "count" ? (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : (e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()),
+                    // })
+                     .Select(e => new
+                    {
+                        table = e.Mandat,
+                        value = type == "taux" ? 
+                            (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
+                            (type == "etat" ? 
+                                e.Recommendations.Where(s => s.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count() : 
+                                e.Recommendations.Where(s => s.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count()
+                            ),
+                    })
+                    .Distinct()
+                    .ToList()
+                ;
+            }
 
             return Ok(list);
         }

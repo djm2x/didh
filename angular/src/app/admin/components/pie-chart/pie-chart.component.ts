@@ -19,9 +19,11 @@ export class PieChartComponent implements OnInit {
   @Input() obs = new Subject<IData>();
   @Input() public showLegend = false;
   @Input() withGraphe = 0;
+  @Input() public positionLegendBottom = false;
 
   title = '' || null;
   // Pie
+
   public pieChartOptions: ChartOptions = {
     responsive: true,
     title: {
@@ -33,9 +35,9 @@ export class PieChartComponent implements OnInit {
     },
     legend: {
        //position: 'chartArea',
-      position: 'top',
+      position: 'right',
       display: true,
-      align: "center",
+      align: "start",
     },
 
 
@@ -65,7 +67,7 @@ export class PieChartComponent implements OnInit {
 
       this.retate = lang === 'fr' ? 0 : 180;
     });
-
+    this.pieChartOptions.legend.position =  this.positionLegendBottom === false ? 'right' : 'bottom';
     this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(d => {

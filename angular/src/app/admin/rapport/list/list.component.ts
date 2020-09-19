@@ -45,6 +45,7 @@ export class ListComponent implements OnInit {
     return e;
   });
 
+  // tslint:disable-next-line:max-line-length
 
 
   // . Convention/Protocole

@@ -30,16 +30,21 @@
     <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div> -->
-    <div class="col-md-9">
-      <app-bar [dataSubject]="organePageSubject"></app-bar>
-    </div>
-
-    <div class="col-md-3">
-      <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
+    <div class="col-md-5" style="margin-bottom: 10%;">
+      <app-progress-cercle [showTable]="true" [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
       [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'3.9%'"
       [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataOt">
     </app-progress-cercle>
     </div>
+    <div class="col-md-7">
+      <app-pie-chart [withGraphe]="550"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
+    </div>
+
+    <div class="col-md-12">
+      <app-bar [dataSubject]="organePageSubject"></app-bar>
+    </div>
+
+
 
   </div>
 

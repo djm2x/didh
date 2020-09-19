@@ -200,12 +200,16 @@ export class Axe {
   id = 0;
   label = '';
   labelAr = '';
+  abv = '';
+  abvAr = '';
 }
 
 export class Organe {
   id = 0;
   label = '';
   labelAr = '';
+  abv = '';
+  abvAr = '';
   recommandations: Recommendation[] = [];
 }
 
