@@ -145,8 +145,7 @@ export class PieComponent implements OnInit {
   }
 
   toStr(i: any) {
-    // console.log(i)
-    return  (this.toInt(i) * this.count / 100).toFixed(0);
+    return  (parseInt((i).toFixed(0), 10) * this.count / 100).toFixed(0);
   }
 
 }
