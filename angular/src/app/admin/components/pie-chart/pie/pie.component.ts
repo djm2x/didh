@@ -69,7 +69,7 @@ export class PieComponent implements OnInit {
   ];
   list: { name: string, value: number }[] = [];
   retate = 0;
-  arr = [];
+  arr: bigint[] = [];
   constructor(private uow: UowService, public mytranslate: MyTranslateService
     , public dialog: MatDialog) {
     monkeyPatchChartJsTooltip();

@@ -41,8 +41,8 @@ export class BarComponent implements OnInit {
   public pieChartColors = [
     // { backgroundColor: ['#d17c36', '#2d71a1'], },
     { backgroundColor: '#d17c36' },
-    { backgroundColor: '#2d71a1' },
     { backgroundColor: '#7dc460' },
+    { backgroundColor: '#2d71a1' },
   ];
 
   @Input() dataSubject = new Subject();
@@ -62,6 +62,7 @@ export class BarComponent implements OnInit {
       this.barChartLabels = r.barChartLabels;
       this.barChartData = r.barChartData;
 
+
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
 
@@ -69,8 +70,8 @@ export class BarComponent implements OnInit {
           this.list.push({
             name: e.toString(),
             p: this.barChartData.find(f => f.label === 'En cours').data[i] as number,
-            t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
             r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
+            t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
           });
       });
     });
@@ -103,7 +104,7 @@ export class BarComponent implements OnInit {
 
   getColors(length) {
     // tslint:disable-next-line:max-line-length
-    const pallet = ['#0074D9', '#FF4136', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
+    const pallet = ['#0074D9', '#2ECC40', '#FF4136', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
     // const pallet = ['#d17c36', '#2d71a1'];
     const colors = [];
 

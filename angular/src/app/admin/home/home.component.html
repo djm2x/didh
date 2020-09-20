@@ -59,12 +59,12 @@
           </div>
         </div> -->
 
-        <div class="col-md-6">
-          <app-pie [withGraphe]="900"  [showLegend]="true" [obs]="dataMec"></app-pie>
-        </div>
 
         <div class="col-md-6">
-          <app-pie [withGraphe]="900"  [showLegend]="true" [obs]="dataMec1"></app-pie>
+          <app-pie [withGraphe]="900" [showLegend]="true" [obs]="dataMec1"></app-pie>
+        </div>
+        <div class="col-md-6">
+          <app-pie [withGraphe]="900" [showLegend]="true" [obs]="dataMec"></app-pie>
         </div>
 
         <!-- <div class="col-md-12">
@@ -81,13 +81,13 @@
       </div>
     </div>
 
-    </div>
+  </div>
 
-    <!-- <mat-divider> </mat-divider> -->
-    <!-- <h3>Mise en œuvre des recommandations </h3> -->
+  <!-- <mat-divider> </mat-divider> -->
+  <!-- <h3>Mise en œuvre des recommandations </h3> -->
 
 
-    <!-- <div class="d-flex justify-content-center w-100 mt-5 mb-5">
+  <!-- <div class="d-flex justify-content-center w-100 mt-5 mb-5">
       <section
         [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
         <div>
@@ -112,34 +112,33 @@
       </div>
     </div> -->
 
-    <!-- <mat-divider> </mat-divider> -->
+  <!-- <mat-divider> </mat-divider> -->
 
-    <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
-      <section
-        [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-        <div>
-          <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
-        </div>
-      </section>
-    </div>
+  <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
+    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
+      <div>
+        <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
+      </div>
+    </section>
+  </div>
 
-    <div class="row mb-10">
-      <div class="col-md-12">
-        <div>
+  <div class="row mb-10">
+    <div class="col-md-12">
+      <div>
         <!-- <div class="d-flex justify-content-center">
           <h5 style="color: rgb(94, 94, 94); margin: 0 0 10px 0;">Etat d’avancement des recommandations – départements
           </h5>
         </div> -->
-          <div class="d-flex flex-wrap justify-content-center">
-            <div *ngFor="let e of list; let i=index">
+        <div class="d-flex flex-wrap justify-content-center">
+          <div *ngFor="let e of list; let i=index">
 
-              <app-progress-cercle [marginLegend]="'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'"
-                [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
-                [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
+            <app-progress-cercle [marginLegend]="'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'"
+              [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
+              [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
 
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

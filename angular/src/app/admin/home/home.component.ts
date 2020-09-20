@@ -81,7 +81,10 @@ export class HomeComponent implements OnInit {
       // }
 
 
-      this.dataMec1.next({ chartLabels, chartData, chartColors, dataToShowInTable, title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') });
+      this.dataMec1.next({ chartLabels, chartData, chartColors, dataToShowInTable
+        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') 
+        , title: 'Mise en œuvre des recommandations par mécanismes' 
+      });
 
     });
   }
@@ -110,20 +113,20 @@ export class HomeComponent implements OnInit {
       const chartData = [];
       const dataToShowInTable = [];
 
-      chartData.push(r.epu.p !== 0 ? r.epu.p : 1);
-      chartData.push(r.epu.r !== 0 ? r.epu.p : 2);
-      chartData.push(r.epu.t - r.epu.r);
-      dataToShowInTable.push((r.epu.t - r.epu.r) * 100 / r.epu.t);
+      chartData.push(r.epu.p * r.epu.t / 100);
+      chartData.push(r.epu.r * r.epu.t / 100);
+      chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
+      dataToShowInTable.push(chartData[2]);
 
-      chartData.push(r.ot.p !== 0 ? r.epu.p : 1);
-      chartData.push(r.ot.r !== 0 ? r.epu.p : 2);
-      chartData.push(r.ot.t - r.ot.r);
-      dataToShowInTable.push((r.ot.t - r.ot.r) * 100 / r.ot.t);
+      chartData.push(r.ot.p * r.ot.t / 100);
+      chartData.push(r.ot.r * r.ot.t / 100);
+      chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
+      dataToShowInTable.push(chartData[5]);
 
-      chartData.push(r.ps.p !== 0 ? r.epu.p : 1);
-      chartData.push(r.ps.r !== 0 ? r.epu.p : 2);
-      chartData.push(r.ps.t - r.ps.r);
-      dataToShowInTable.push((r.ps.t - r.ps.r) * 100 / r.ps.t);
+      chartData.push(r.ps.p * r.ps.t / 100);
+      chartData.push(r.ps.r * r.ps.t / 100);
+      chartData.push(r.ps.t - (r.ps.p * r.ps.t / 100) - (r.ps.r * r.ps.t / 100));
+      dataToShowInTable.push(chartData[8]);
 
       const chartColors = [];
       for (let i = 0; i < 3; i++) {
@@ -134,7 +137,10 @@ export class HomeComponent implements OnInit {
       }
 
 
-      this.dataMec.next({ chartLabels, chartData, chartColors, dataToShowInTable, title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') });
+      this.dataMec.next({ chartLabels, chartData, chartColors, dataToShowInTable
+        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') 
+        , title: 'Mise en œuvre des recommandations par mécanismes Detailée'
+      });
 
     });
   }

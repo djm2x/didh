@@ -69,9 +69,9 @@ export class DiagrammeComponent implements OnInit {
   rotateY = 0;
 
   toChild = new Subject<Model>();
-  pieChartSubjectC = new BehaviorSubject<IPieData>({table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe')});
-  pieChartSubject = new BehaviorSubject<IPieData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
-  pieChartSubjectR = new BehaviorSubject<IPieData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
+  pieChartSubjectC = new BehaviorSubject<IPieData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
+  pieChartSubject = new BehaviorSubject<IPieData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
+  pieChartSubjectR = new BehaviorSubject<IPieData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
 
   organePageSubject = new Subject();
   visitePageSubject = new Subject();
@@ -80,7 +80,7 @@ export class DiagrammeComponent implements OnInit {
   @Input() widthTwo = 0;
   @Input() widthThree = 0;
   @Input() title2 = '';
-  visitePage: {name: string, p: number, t: number, r: number}[] = [];
+  visitePage: { name: string, p: number, t: number, r: number }[] = [];
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService
     , public mytranslate: MyTranslateService) {
@@ -195,15 +195,15 @@ export class DiagrammeComponent implements OnInit {
     // r = [r[this.selectedIndex]];
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('admin.state.Etat_avancement') },
-      { data: [], label: this.mytranslate.get('admin.state.Taux') },
-      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      { data: [], label: this.mytranslate.get('admin.state.Etat_avancement'), stack: 'a' },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
+      { data: [], label: this.mytranslate.get('admin.state.Taux'), stack: 'a' },
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push(e.p);
-      barChartData[1].data.push(e.t.toFixed(0));
-      barChartData[2].data.push(e.r);
+      barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+      barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+      barChartData[2].data.push(e.t.toFixed(0));
     });
     // tslint:disable-next-line:max-line-length
     this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });

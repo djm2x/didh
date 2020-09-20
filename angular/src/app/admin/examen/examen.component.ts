@@ -202,17 +202,17 @@ export class ExamenComponent implements OnInit {
 
       r = r.filter(e => e.name !== null);
       console.log(r);
-      const barChartLabels = r.map(e => e.name);
+      const barChartLabels = r.map(e => e.name); 
       const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux'), stack: 'a' },
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push(e.p);
-        barChartData[1].data.push(e.t);
-        barChartData[2].data.push(e.r);
+        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+        barChartData[2].data.push(e.t.toFixed(0));
       });
       // tslint:disable-next-line:max-line-length
       this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
