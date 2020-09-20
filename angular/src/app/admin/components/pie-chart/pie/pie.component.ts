@@ -138,4 +138,8 @@ export class PieComponent implements OnInit {
     return colors;
   }
 
+  toInt(i: number) {
+    return parseInt(((i / 3) - 1).toFixed(0), 10);
+  }
+
 }
