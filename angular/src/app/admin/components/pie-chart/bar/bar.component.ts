@@ -46,6 +46,7 @@ export class BarComponent implements OnInit {
   ];
 
   @Input() dataSubject = new Subject();
+  @Input() col = 8;
   retate = 0;
 
   list: { name: string, t: number, p: number, r: number }[] = [];

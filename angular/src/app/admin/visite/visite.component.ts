@@ -100,6 +100,7 @@ export class VisiteComponent implements OnInit {
   stateMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       r.ps.name = this.mytranslate.getObs('admin.home.Procéduresspéciales');
+      (r.ps as any).count = r.count;
       this.dataPs.next(r.ps);
     });
   }

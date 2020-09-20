@@ -8,7 +8,7 @@
 
 <div class="d-flex flex-column align-items-center justify-content-center" style="cursor: pointer;" (click)="openDialog()">
 
-  <div class="col-md-8" style="display: block; width: 80vw;">
+  <div [class]="'col-md-' + col" style="display: block; width: 80vw;">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
       [legend]="barChartLegend" [chartType]="barChartType" [colors]="pieChartColors" (chartHover)="chartHovered($event)"
       (chartClick)="chartClicked($event)"></canvas>

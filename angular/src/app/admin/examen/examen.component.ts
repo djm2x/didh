@@ -192,13 +192,16 @@ export class ExamenComponent implements OnInit {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       // console.log(r)
       r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
+      (r.epu as any).count = r.count;
       this.dataEpu.next(r.epu);
-
+      // r.epu.p = +(r.epu.p * r.epu.t / 100).toFixed(0);
+      // r.epu.r = +(r.epu.r * r.epu.t / 100).toFixed(0);
+      console.log({r: r.epu,});
     });
   }
 
   stateAxe() {
-    this.uow.axes.stateAxes().subscribe(r => {
+    this.uow.axes.stateAxes().subscribe(r => { 
 
       r = r.filter(e => e.name !== null);
       console.log(r);

@@ -313,7 +313,7 @@ namespace Admin5.Controllers
 
             var ps =  new { p = p / (t == 0 ? 1 : t), r = r / (t == 0 ? 1 : t), t = (double.Parse(t.ToString()) / recommendationsCount) * 100 };
 
-            return new { epu, ot, ps };
+            return new { epu, ot, ps, count = recommendationsCount };
 
         }
 

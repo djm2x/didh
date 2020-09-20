@@ -29,6 +29,7 @@ export class ProgressCercleComponent implements OnInit {
   @Input() public elementFromForLoop: { name: string | Observable<string>, p: number, t: number, r: number };
 
   retate = 0;
+  count = 0;
   constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -45,10 +46,13 @@ export class ProgressCercleComponent implements OnInit {
           this.o.t = r.t;
           this.o.p = r.p;
           this.o.r = r.r;
+          this.count = (r as any).count;
+
+          console.log((r as any).count)
 
           this.o.nbt = r.nbt;
           this.o.nbp = r.nbp;
-          this.o.nbr = r.nbr;
+          this.o.nbr = r.nbr; 
 
 
           console.log(this.o)

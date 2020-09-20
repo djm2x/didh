@@ -110,6 +110,7 @@ export class ListComponent implements OnInit {
   stateMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       r.ot.name = this.mytranslate.getObs('admin.home.OrganesdeTraités');
+      (r.ot as any).count = r.count;
       this.dataOt.next(r.ot);
     });
   }

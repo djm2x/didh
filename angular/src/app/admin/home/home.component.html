@@ -64,7 +64,7 @@
           <app-pie [withGraphe]="900" [showLegend]="true" [obs]="dataMec1"></app-pie>
         </div>
         <div class="col-md-6">
-          <app-pie [withGraphe]="900" [showLegend]="true" [obs]="dataMec"></app-pie>
+          <app-pie [withGraphe]="900" [showLegend]="false" [obs]="dataMec"></app-pie>
         </div>
 
         <!-- <div class="col-md-12">
@@ -138,6 +138,13 @@
 
           </div>
         </div>
+
+        <div class="col-md-12">
+          <div class="chart-size">
+            <app-bar [col]="12" [dataSubject]="departementSubject"></app-bar>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

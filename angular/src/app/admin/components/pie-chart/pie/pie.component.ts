@@ -36,7 +36,7 @@ export class PieComponent implements OnInit {
           const dataLabel = data.labels[tooltipItem.index];
           const value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
 
-          console.log(dataLabel, value)
+          // console.log(dataLabel, value)
 
           return dataLabel;
         }
@@ -70,6 +70,7 @@ export class PieComponent implements OnInit {
   list: { name: string, value: number }[] = [];
   retate = 0;
   arr: bigint[] = [];
+  count: number; // count recommandations
   constructor(private uow: UowService, public mytranslate: MyTranslateService
     , public dialog: MatDialog) {
     monkeyPatchChartJsTooltip();
@@ -82,13 +83,14 @@ export class PieComponent implements OnInit {
       this.retate = lang === 'fr' ? 0 : 180;
     });
 
-    // this.pieChartOptions.legend.display = this.showLegend;
+    this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(r => {
       this.title = r.title;
       this.pieChartLabels = r.chartLabels;
       this.pieChartData = r.chartData.map((e: number) => +e.toFixed(0));
       this.dataToShowInTable = r.dataToShowInTable.map((e: number) => +e.toFixed(0));
+      this.count = r.count;
       // console.log(this.pieChartData, this.pieChartLabels);
       this.pieChartColors[0].backgroundColor = r.chartColors; // this.getColors(this.pieChartLabels.length);
 
@@ -140,6 +142,10 @@ export class PieComponent implements OnInit {
 
   toInt(i: number) {
     return parseInt(((i / 3) - 1).toFixed(0), 10);
+  }
+
+  toStr(i: any) {
+    return  (this.toInt(i) * this.count / 100).toFixed(0);
   }
 
 }

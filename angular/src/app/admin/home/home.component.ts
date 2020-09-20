@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataMec = new Subject();
   dataMec1 = new Subject();
-
+  departementSubject = new Subject();
   e = new Subject();
 
   constructor(private uow: UowService, public session: SessionService
@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
     this.stateRecommendationByAxe();
     this.stateMecanisme();
     this.stateMecanisme1();
+    this.stateDepartement();
   }
 
   stateMecanisme1() {
@@ -74,16 +75,17 @@ export class HomeComponent implements OnInit {
 
       const chartColors = [];
       // for (let i = 0; i < 3; i++) {
-      chartColors.push('#ca7834')
-      chartColors.push('#7dc460')
-      chartColors.push('#2d71a1');
+      chartColors.push('#f4cf3b'); // jeunne
+      chartColors.push('#838383'); // gris
+      chartColors.push('#ec6e62'); // rouge
 
       // }
 
 
-      this.dataMec1.next({ chartLabels, chartData, chartColors, dataToShowInTable
+      this.dataMec1.next({
+        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
         // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') 
-        , title: 'Mise en œuvre des recommandations par mécanismes' 
+        , title: 'Mise en œuvre des recommandations par mécanismes'
       });
 
     });
@@ -93,7 +95,7 @@ export class HomeComponent implements OnInit {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
 
       // console.log('>>>>>>>>>>>>>>>>>');
-      // console.log(r);
+      // console.log(r.count);
       // console.log('>>>>>>>>>>>>>>>>>');
 
       const chartLabels = [];
@@ -129,15 +131,17 @@ export class HomeComponent implements OnInit {
       dataToShowInTable.push(chartData[8]);
 
       const chartColors = [];
+      const arrParent = ['#f4cf3b', '#838383', '#ec6e62'];
       for (let i = 0; i < 3; i++) {
-        chartColors.push('#ca7834')
+        chartColors.push('#d17c36')
         chartColors.push('#7dc460')
-        chartColors.push('#c2c3c6');
+        chartColors.push(arrParent[i]);
 
       }
 
 
-      this.dataMec.next({ chartLabels, chartData, chartColors, dataToShowInTable
+      this.dataMec.next({
+        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
         // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') 
         , title: 'Mise en œuvre des recommandations par mécanismes Detailée'
       });
@@ -162,6 +166,31 @@ export class HomeComponent implements OnInit {
   stateRecommendationByOrganisme() {
     return this.uow.recommendations.stateRecommendationByOrganisme().subscribe(r => {
       this.list = r as any;
+      // console.log(r)
+    });
+  }
+
+  stateDepartement() {
+    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r:{name: string, p: number, r: number, t: number}[]) => {
+
+      r = r.filter(e => e.name !== null);
+      // console.log(r);
+      const barChartLabels = r.map(e => e.name); 
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux'), stack: 'a' },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+        barChartData[2].data.push(e.t.toFixed(0));
+      });
+      // tslint:disable-next-line:max-line-length
+      this.departementSubject.next({ barChartLabels, barChartData
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') 
+      });
     });
   }
 
