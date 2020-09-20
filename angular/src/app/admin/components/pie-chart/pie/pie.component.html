@@ -26,7 +26,7 @@
         <ng-container *ngIf="dataToShowInTable.length !== 0; else elseTemplate">
           <!-- 1 et 2 eme collonne -->
           <!-- nomber -->
-          <td *ngIf="((i + 1) % 3) !== 0">{{ toStr(pieChartData[toInt(i)])  }}</td>
+          <td *ngIf="((i + 1) % 3) !== 0">{{ toStr(pieChartData[i])  }}</td>
 
           <td *ngIf="((i + 1) % 3) !== 0">{{pieChartData[i]}} %</td>
 
@@ -38,7 +38,7 @@
         </ng-container>
         <ng-template #elseTemplate>
           <!-- nombre -->
-          <td>{{ toStr(pieChartData[toInt(i)])}} </td>
+          <td>{{ toStr(pieChartData[i])}} </td>
 
           <td>{{pieChartData[i]}} %</td>
         </ng-template>
