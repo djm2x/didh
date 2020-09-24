@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
 
       this.dataMec1.next({
         chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') 
+        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
         , title: 'Mise en œuvre des recommandations par mécanismes'
       });
 
@@ -143,7 +143,7 @@ export class HomeComponent implements OnInit {
 
       this.dataMec.next({
         chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe') 
+        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
         , title: 'Mise en œuvre des recommandations par mécanismes Detailée'
       });
 
@@ -236,24 +236,25 @@ export class HomeComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
 
       const barChartData1 = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
+
 
       r.forEach(e => {
         if (list.includes(e.name)) {
           barChartData[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartData[1].data.push((e.r * e.t / 100).toFixed(2));
-          barChartData[2].data.push(e.t.toFixed(2));
+          barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
         } else if (list1.includes(e.name)) {
           barChartData1[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartData1[1].data.push((e.r * e.t / 100).toFixed(2));
-          barChartData1[2].data.push(e.t.toFixed(2));
+          barChartData1[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
         }
       });
       // tslint:disable-next-line:max-line-length
