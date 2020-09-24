@@ -30,18 +30,21 @@
   <div class="row">
 
 
-    <div class="col-md-5" style="margin-bottom: 10%;">
+    <!-- <div class="col-md-5" style="margin-bottom: 10%;">
       <div class="chart-size">
-        <!-- <app-doughnut [obs]="pieChartSubjectEPU" [pieChartType]="'doughnut'"></app-doughnut> -->
         <app-progress-cercle  [showTable]="true" [showLegend]="true" [marginh5Title]="'19px 7px -24px 64px'"
           [marginLegend]="'0px 27px -261px -236px'" [marginLeftTitle]="'3.9%'"
           [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataEpu">
         </app-progress-cercle>
       </div>
+    </div> -->
+
+    <div class="col-md-6">
+      <app-pie [withGraphe]="600" [showLegend]="true" [obs]="dataEpuPie"></app-pie>
     </div>
 
-    <div class="col-md-7">
-      <app-pie-chart [withGraphe]="550"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
+    <div class="col-md-6">
+      <app-pie-chart [withGraphe]="600"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
 
     <div class="col-md-12">

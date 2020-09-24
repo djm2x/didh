@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
   dataMec = new Subject();
   dataMec1 = new Subject();
   departementSubject = new Subject();
+  departementSubject1 = new Subject();
   e = new Subject();
 
   constructor(private uow: UowService, public session: SessionService
@@ -171,25 +172,99 @@ export class HomeComponent implements OnInit {
   }
 
   stateDepartement() {
-    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r:{name: string, p: number, r: number, t: number}[]) => {
+    const list = [
+      'Affaires Etrangères',
+      'CNDH',
+      'Communication',
+      'Présidence du Ministère Public',
+      'Chef du Gouvernement',
+      'Commerce et Industrie',
+      'Conseil Supérieur de l’Autorité Judiciaire ',
+      'Culture',
+      'Défense Nationale',
+      'Développement Social et Solidarité',
+      'DGAPR',
+      'DGSN',
+      'Droits de l’Homme',
+      'Eau',
+      'Economie et Finances',
+      'Emploi',
+      'Energie et Mines',
+      'Equipement',
+      'Fonction Publique',
+      'Gendarmerie Royale',
+      'Habitat',
+      'Habous et des Affaires Islamiques',
+      'HACA',
+      'Intérieur',
+      'Jeunesse et Sports',
+      'Justice',
+      'Marocains Résidant à l’Etranger',
+      'Médiateur',
+      'IRCAM'
+    ];
+
+    const list1 = [
+      'Relations avec parlement',
+      'Agriculture',
+      'Education nationale',
+      'Formation professionnelle',
+      'Enseignement supérieur',
+      'ANELCA',
+      'Conseil Supérieur de l’Education, de la Formation et de la Recherche Scientifique ',
+      'Conseil Economique Social et Environnemental',
+      'Environnement',
+      'Pêche maritime',
+      'Conseil de la communauté marocaine à l’étranger',
+      'ONGs',
+      'Partis Politiques',
+      'Affaires générales du gouvernement',
+      'Rabita Mohammedia des Oulémas',
+
+    ]
+    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number }[]) => {
 
       r = r.filter(e => e.name !== null);
       // console.log(r);
-      const barChartLabels = r.map(e => e.name); 
+      const barChartLabels = r.filter(e => list.includes(e.name)).map(e => e.name);
+
+      const barChartLabels1 = r.filter(e => list1.includes(e.name)).map(e => e.name);
+
+      console.log(barChartLabels)
+      console.log(barChartLabels1)
+
       const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement'), stack: 'a' },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
+      ];
+
+      const barChartData1 = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push(e.t.toFixed(0));
+        if (list.includes(e.name)) {
+          barChartData[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartData[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartData[2].data.push(e.t.toFixed(2));
+        } else if (list1.includes(e.name)) {
+          barChartData1[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartData1[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartData1[2].data.push(e.t.toFixed(2));
+        }
       });
       // tslint:disable-next-line:max-line-length
-      this.departementSubject.next({ barChartLabels, barChartData
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') 
+      this.departementSubject.next({
+        barChartLabels, barChartData
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements')
+      });
+
+      this.departementSubject1.next({
+        barChartLabels: barChartLabels1, barChartData: barChartData1
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements')
       });
     });
   }

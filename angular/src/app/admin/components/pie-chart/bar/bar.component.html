@@ -10,7 +10,7 @@
 
   <div [class]="'col-md-' + col" style="display: block; width: 80vw;">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-      [legend]="barChartLegend" [chartType]="barChartType" [colors]="pieChartColors" (chartHover)="chartHovered($event)"
+      [legend]="barChartLegend" [chartType]="barChartType" [plugins]="pieChartPlugins" [colors]="pieChartColors" (chartHover)="chartHovered($event)"
       (chartClick)="chartClicked($event)"></canvas>
 
     <!-- <button class="m-1" mat-mini-fab color="accent" (click)="randomize()"><mat-icon>compare_arrows</mat-icon></button> -->

@@ -64,7 +64,7 @@ export class ListComponent implements OnInit {
   organePageSubject = new Subject();
 
   dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
-
+  dataPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet, public session: SessionService
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
@@ -103,7 +103,38 @@ export class ListComponent implements OnInit {
 
     this.stateOrgane();
     this.stateMecanisme();
+    this.stateOneOFMecanisme();
 
+  }
+
+  stateOneOFMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésEnCours'))
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésRealise'))
+      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésNonRealise'))
+
+      // chartLabels.push('')
+      
+      const chartData = [];
+      const dataToShowInTable = [];
+
+      chartData.push(r.ot.p * r.ot.t / 100);
+      chartData.push(r.ot.r * r.ot.t / 100);
+      chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
+      
+
+      chartData.push(100 - r.ot.t);
+      
+
+      const chartColors = ['#d17c36', '#2d71a1', '#7dc460', '#ffffff'];
+
+      this.dataPie.next({
+        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+        , title: this.mytranslate.get('admin.home.OrganesdeTraités') 
+      });
+
+    });
   }
 
 
@@ -123,9 +154,9 @@ export class ListComponent implements OnInit {
       console.log(r);
       const barChartLabels = r.map(e => e.name);
       const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement'), stack: 'a' },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {

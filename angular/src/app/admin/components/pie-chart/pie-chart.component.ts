@@ -6,7 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from './detail/detail.component';
 import { MatDialog } from '@angular/material';
-
+import * as pluginLabels from 'chartjs-plugin-labels';
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
@@ -26,6 +26,7 @@ export class PieChartComponent implements OnInit {
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    cutoutPercentage: 50,
     title: {
       text: '',
       display: true,
@@ -34,23 +35,36 @@ export class PieChartComponent implements OnInit {
       enabled: true
     },
     legend: {
-       //position: 'chartArea',
+      //position: 'chartArea',
       position: 'right',
       display: true,
       align: "start",
+
     },
-
-
-
+    plugins: {
+      labels: {
+        fontColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white',],
+        precision: 2,
+        render: 'percentage',
+      },
+      pieceLabel: {
+        render: (args) => {
+          const label = args.label;
+          const value = args.value;
+          return label + ': ' + value;
+        }
+      }
+    }
   };
 
 
   public pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
   pieChartData: SingleDataSet = [/*300, 500, 100*/];
-  @Input() public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = [];
-  public pieChartColors = [
+
+  @Input() pieChartType: ChartType = 'pie';
+  pieChartLegend = true;
+  pieChartPlugins = [pluginLabels];
+  pieChartColors = [
     { backgroundColor: [], },
   ];
   list: { name: string, value: number }[] = [];
@@ -67,7 +81,7 @@ export class PieChartComponent implements OnInit {
 
       this.retate = lang === 'fr' ? 0 : 180;
     });
-    this.pieChartOptions.legend.position =  this.positionLegendBottom === false ? 'right' : 'bottom';
+    this.pieChartOptions.legend.position = this.positionLegendBottom === false ? 'right' : 'bottom';
     this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(d => {

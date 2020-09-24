@@ -6,7 +6,7 @@ import { Subject, Observable } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { UowService } from 'src/app/services/uow.service';
 import { DetailComponent } from '../detail/detail.component';
-import { IData } from '../pie-chart.component';
+import * as pluginLabels from 'chartjs-plugin-labels';
 
 @Component({
   selector: 'app-pie',
@@ -25,12 +25,13 @@ export class PieComponent implements OnInit {
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    cutoutPercentage: 50,
     title: {
       text: '',
       display: true,
     },
-    tooltips: { 
-      enabled: true ,
+    tooltips: {
+      enabled: true,
       callbacks: {
         label: (tooltipItem, data) => {
           const dataLabel = data.labels[tooltipItem.index];
@@ -40,20 +41,33 @@ export class PieComponent implements OnInit {
 
           return dataLabel;
         }
-    }
+      }
     },
     hover: {
       mode: 'nearest',
       intersect: false,
-      onHover: (e, item) => {}
+      onHover: (e, item) => { }
     },
     legend: {
       //position: 'chartArea',
-      position: 'top',
+      position: 'right',
       display: false,
-      align: "center",
+      align: 'center',
     },
-
+    plugins: {
+      labels: {
+        fontColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white',],
+        precision: 0,
+        render: 'percentage',
+      },
+      pieceLabel: {
+        render: (args) => {
+          const label = args.label;
+          const value = args.value;
+          return label + ': ' + value;
+        }
+      }
+    }
 
 
   };
@@ -63,7 +77,7 @@ export class PieComponent implements OnInit {
   pieChartData: SingleDataSet = [/*300, 500, 100*/];
   @Input() public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-  public pieChartPlugins = [];
+  public pieChartPlugins = [pluginLabels];
   public pieChartColors = [
     { backgroundColor: [], },
   ];
@@ -145,6 +159,6 @@ export class PieComponent implements OnInit {
   }
 
   toStr(i: any) {
-    return  (parseInt((i).toFixed(0), 10) * this.count / 100).toFixed(0);
+    return (parseInt((i).toFixed(0), 10) * this.count / 100).toFixed(0);
   }
 }

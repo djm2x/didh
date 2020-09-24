@@ -53,16 +53,17 @@ export class ExamenComponent implements OnInit {
   pieChartSubjectR = new BehaviorSubject<IData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
 
   dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, nbt: number, nbp: number, nbr: number }>();
-
+ 
   examenPageSubject = new Subject();
-
+  dataEpuPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
-    this.stateMecanisme();
+    // this.stateMecanisme();
     this.stateAxe();
+    this.stateOneOFMecanisme();
     setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
@@ -89,6 +90,36 @@ export class ExamenComponent implements OnInit {
         this.isLoadingResults = false;
       }
     );
+  }
+
+  stateOneOFMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleEnCours'))
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleRealise'))
+      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleNonRealise'))
+
+      // chartLabels.push('')
+      
+      const chartData = [];
+      const dataToShowInTable = [];
+
+      chartData.push(r.epu.p * r.epu.t / 100);
+      chartData.push(r.epu.r * r.epu.t / 100);
+      chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
+      
+
+      chartData.push(100 - r.epu.t);
+      
+
+      const chartColors = ['#d17c36', '#2d71a1', '#7dc460', '#ffffff'];
+
+      this.dataEpuPie.next({
+        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+        , title: this.mytranslate.get('admin.home.ExamenPériodiqueuniversell') 
+      });
+
+    });
   }
 
   openDialog(o: Examen, text) {
@@ -207,9 +238,9 @@ export class ExamenComponent implements OnInit {
       console.log(r);
       const barChartLabels = r.map(e => e.name); 
       const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement'), stack: 'a' },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux'), stack: 'a' },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {

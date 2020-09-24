@@ -11,9 +11,11 @@
   <section>
     <!-- <h3>Accueil</h3> -->
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <h5 style="color: #737473; margin: 5px 0 10px 5px;text-indent:1cm;">Les organes de traités sont des comités d’experts indépendants qui surveillent l’application des principaux
+      <h5 style="color: #737473; margin: 5px 0 10px 5px;text-indent:1cm;">Les organes de traités sont des comités
+        d’experts indépendants qui surveillent l’application des principaux
         traités internationaux relatifs aux droits de l’homme et de leurs protocoles facultatifs. Ils ont été créés en
-        fonction de l’instrument qu’ils sont chargés de superviser l’application. <b style="color: #286293; cursor: pointer;" (click)="moreInfo()">  Lire la suite</b>
+        fonction de l’instrument qu’ils sont chargés de superviser l’application. <b
+          style="color: #286293; cursor: pointer;" (click)="moreInfo()"> Lire la suite</b>
       </h5>
     </ng-container>
     <ng-template #elseTemplate>
@@ -30,14 +32,17 @@
     <div class="col-md-6">
       <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
     </div> -->
-    <div class="col-md-5" style="margin-bottom: 10%;">
-      <app-progress-cercle [showTable]="true" [showLegend]="true"  [marginh5Title]="'19px 7px -24px 64px'"
-      [marginLegend]="'0px 27px -261px -236px'" [marginLeftTitle]="'3.9%'"
-      [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataOt">
-    </app-progress-cercle>
+    <!-- <div class="col-md-5" style="margin-bottom: 10%;">
+      <app-progress-cercle [showTable]="true" [showLegend]="true" [marginh5Title]="'19px 7px -24px 64px'"
+        [marginLegend]="'0px 27px -261px -236px'" [marginLeftTitle]="'3.9%'"
+        [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataOt">
+      </app-progress-cercle>
+    </div> -->
+    <div class="col-md-6">
+      <app-pie [withGraphe]="600" [showLegend]="true" [obs]="dataPie"></app-pie>
     </div>
-    <div class="col-md-7">
-      <app-pie-chart [withGraphe]="550"  [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
+    <div class="col-md-6">
+      <app-pie-chart [withGraphe]="550" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
 
     <div class="col-md-12">

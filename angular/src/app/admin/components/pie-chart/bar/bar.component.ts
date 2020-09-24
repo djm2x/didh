@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from '../detail/detail.component';
 import { MatDialog } from '@angular/material';
-
+import * as pluginLabels from 'chartjs-plugin-labels';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
@@ -28,11 +28,25 @@ export class BarComponent implements OnInit {
         }
       }]
     },
+    plugins: {
+      labels: {
+        // fontColor: ['#00000000',],
+        precision: 0,
+        render: 'value',
+      },
+      pieceLabel: {
+        render: (args) => {
+          const label = args.label;
+          const value = args.value;
+          return  label + ': ' + value;
+        }
+      }
+    }
   };
   public barChartLabels: Label[] = [/*'2006', '2007', '2008', '2009', '2010', '2011', '2012'*/];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-
+  pieChartPlugins = [pluginLabels];
   public barChartData: ChartDataSets[] = [
     { data: [/*65, 59, 80, 81, 56, 55, 40*/], label: '' },
     // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }

@@ -54,7 +54,7 @@ export class VisiteComponent implements OnInit {
   visitePageSubject = new Subject();
   visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
-
+  dataPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService
@@ -94,6 +94,37 @@ export class VisiteComponent implements OnInit {
     //this.stateVisite();
     this.stateGraphe();
     this.stateMecanisme();
+    this.stateOneOFMecanisme();
+  }
+
+  stateOneOFMecanisme() {
+    this.uow.recommendations.stateMecanisme().subscribe(r => {
+      const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesEnCours'))
+      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesRealise'))
+      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesNonRealise'))
+
+      // chartLabels.push('')
+      
+      const chartData = [];
+      const dataToShowInTable = [];
+
+      chartData.push(r.ps.p * r.ps.t / 100);
+      chartData.push(r.ps.r * r.ps.t / 100);
+      chartData.push(r.ps.t - (r.ps.p * r.ps.t / 100) - (r.ps.r * r.ps.t / 100));
+      
+
+      chartData.push(100 - r.ps.t);
+      
+
+      const chartColors = ['#d17c36', '#2d71a1', '#7dc460', '#ffffff'];
+
+      this.dataPie.next({
+        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+        , title: this.mytranslate.get('admin.home.OrganesdeTraités') 
+      });
+
+    });
   }
 
 
@@ -254,9 +285,9 @@ export class VisiteComponent implements OnInit {
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push(e.p);
-        barChartData[1].data.push(e.t);
-        barChartData[2].data.push(e.r);
+        barChartData[0].data.push(+e.p.toFixed(0));
+        barChartData[1].data.push(+e.t.toFixed(0));
+        barChartData[2].data.push(+e.r.toFixed(0));
       });
       // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
       this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
