@@ -53,7 +53,7 @@ export class ExamenComponent implements OnInit {
   pieChartSubjectR = new BehaviorSubject<IData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
 
   dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, nbt: number, nbp: number, nbr: number }>();
- 
+
   examenPageSubject = new Subject();
   dataEpuPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
@@ -95,28 +95,28 @@ export class ExamenComponent implements OnInit {
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
-      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleEnCours'))
-      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleRealise'))
-      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselleNonRealise'))
+      chartLabels.push('Recommandation en cours de réalisation');
+      chartLabels.push('Recommandation réalisé');
+      chartLabels.push('Recommandation non réalisé');
 
       // chartLabels.push('')
-      
+
       const chartData = [];
       const dataToShowInTable = [];
 
       chartData.push(r.epu.p * r.epu.t / 100);
       chartData.push(r.epu.r * r.epu.t / 100);
       chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
-      
+
 
       chartData.push(100 - r.epu.t);
-      
 
-      const chartColors = ['#d17c36', '#2d71a1', '#7dc460', '#ffffff'];
+
+      const chartColors = ['#f7801e', '#2b960b', '#db0707', '#ffffff'];
 
       this.dataEpuPie.next({
         chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        , title: this.mytranslate.get('admin.home.ExamenPériodiqueuniversell') 
+        , title: this.mytranslate.get('admin.home.ExamenPériodiqueuniversell')
       });
 
     });
@@ -232,21 +232,24 @@ export class ExamenComponent implements OnInit {
   }
 
   stateAxe() {
-    this.uow.axes.stateAxes().subscribe(r => { 
+    this.uow.axes.stateAxes().subscribe(r => {
 
       r = r.filter(e => e.name !== null);
       console.log(r);
-      const barChartLabels = r.map(e => e.name); 
+      const barChartLabels = r.map(e => e.name);
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {
         barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
         barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push(e.t.toFixed(0));
+        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        // r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100)
+        // barChartData[2].data.push(((e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        // (r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100))
       });
       // tslint:disable-next-line:max-line-length
       this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });

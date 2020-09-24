@@ -115,23 +115,23 @@ export class ListComponent implements OnInit {
       chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésNonRealise'))
 
       // chartLabels.push('')
-      
+
       const chartData = [];
       const dataToShowInTable = [];
 
       chartData.push(r.ot.p * r.ot.t / 100);
       chartData.push(r.ot.r * r.ot.t / 100);
       chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
-      
+
 
       chartData.push(100 - r.ot.t);
-      
 
-      const chartColors = ['#d17c36', '#2d71a1', '#7dc460', '#ffffff'];
+
+      const chartColors = ['#f7801e', '#2b960b', '#db0707',  '#ffffff'];
 
       this.dataPie.next({
         chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        , title: this.mytranslate.get('admin.home.OrganesdeTraités') 
+        , title: this.mytranslate.get('admin.home.OrganesdeTraités')
       });
 
     });
@@ -156,13 +156,14 @@ export class ListComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Taux')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {
         barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
         barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push(e.t.toFixed(0));
+        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        // barChartData[2].data.push(e.t.toFixed(0));
       });
       this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });

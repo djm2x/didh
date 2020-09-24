@@ -52,11 +52,12 @@ export class BarComponent implements OnInit {
     // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
+
   public pieChartColors = [
     // { backgroundColor: ['#d17c36', '#2d71a1'], },
     { backgroundColor: '#d17c36' },
     { backgroundColor: '#7dc460' },
-    { backgroundColor: '#2d71a1' },
+    { backgroundColor: '#db0707' },
   ];
 
   @Input() dataSubject = new Subject();

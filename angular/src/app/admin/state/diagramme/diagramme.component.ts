@@ -197,14 +197,17 @@ export class DiagrammeComponent implements OnInit {
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.state.Etat_avancement'), stack: 'a' },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
-      { data: [], label: this.mytranslate.get('admin.state.Taux'), stack: 'a' },
+      { data: [], label: 'Non réalisé', stack: 'a' },
     ];
 
     r.forEach(e => {
       barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
       barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-      barChartData[2].data.push(e.t.toFixed(0));
+      barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
     });
+
+
+
     // tslint:disable-next-line:max-line-length
     this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
   }
@@ -320,14 +323,18 @@ export class DiagrammeComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
         { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+        { data: [], label: 'Non réalisé' },
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push(e.p);
-        barChartData[1].data.push(e.t);
-        barChartData[2].data.push(e.r);
+        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
       });
+
+
+
+
       // tslint:disable-next-line:max-line-length
       this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });
@@ -342,14 +349,16 @@ export class DiagrammeComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
         { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+        { data: [], label: 'Non réalisé'},
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push(e.p);
-        barChartData[1].data.push(e.t);
-        barChartData[2].data.push(e.r);
+        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
       });
+
+
       // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
       this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
     });
