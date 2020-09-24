@@ -61,6 +61,7 @@ export class PieComponent implements OnInit {
         render: 'percentage',
       },
       pieceLabel: {
+        // fontColor: '#000',
         render: (args) => {
           const label = args.label;
           const value = args.value;
