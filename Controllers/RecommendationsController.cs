@@ -145,6 +145,16 @@ namespace Admin5.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> RecommandationValues()
+        {
+            var realise = await _context.Recommendations.Where(e => e.EtatAvancementChiffre == 100).CountAsync();
+            var nonRealise = await _context.Recommendations.Where(e => e.EtatAvancementChiffre == 0).CountAsync();
+            var enCours = await _context.Recommendations.Where(e => e.EtatAvancementChiffre != 0 && e.EtatAvancementChiffre != 100).CountAsync();
+            var count = await _context.Recommendations.CountAsync();
+            return Ok(new {realise, nonRealise, enCours, count});
+        }
+
+        [HttpGet]
         public async Task<IActionResult> StateRecommendationByOrganisme() // userd
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();

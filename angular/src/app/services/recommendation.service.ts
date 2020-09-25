@@ -12,6 +12,10 @@ export class RecommendationService extends SuperService<Recommendation> {
     super('recommendations');
   }
 
+  recommandationValues() {
+    return this.http.get(`${this.urlApi}/${this.controller}/recommandationValues`);
+  }
+
   getCount(idOrganisme) {
     return this.http.get(`${this.urlApi}/${this.controller}/getCount/${idOrganisme}`);
   }

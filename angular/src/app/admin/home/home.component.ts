@@ -37,8 +37,13 @@ export class HomeComponent implements OnInit {
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataMec = new Subject();
   dataMec1 = new Subject();
-  departementSubject = new Subject();
-  departementSubject1 = new Subject();
+  dataValues = new Subject();
+
+  departementSubjectPE = new Subject();
+  departementSubjectAutre = new Subject();
+  departementSubjectIN = new Subject();
+  departementSubjectPJ = new Subject();
+
   e = new Subject();
 
   constructor(private uow: UowService, public session: SessionService
@@ -47,9 +52,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.stateRecommendationByOrganisme();
     this.stateRecommendationByAxe();
-    this.stateMecanisme();
+    // this.stateMecanisme();
     this.stateMecanisme1();
     this.stateDepartement();
+    this.RecommandationValues();
   }
 
   stateMecanisme1() {
@@ -76,9 +82,9 @@ export class HomeComponent implements OnInit {
 
       const chartColors = [];
       // for (let i = 0; i < 3; i++) {
-      chartColors.push('#f4cf3b'); // jeunne
-      chartColors.push('#838383'); // gris
-      chartColors.push('#ec6e62'); // rouge
+      chartColors.push('#f47942'); // jeunne
+      chartColors.push('#95979a'); // gris
+      chartColors.push('#0070a3'); // rouge
 
       // }
 
@@ -150,6 +156,40 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  RecommandationValues() {
+    this.uow.recommendations.recommandationValues().subscribe((r: any) => {
+      const chartLabels = [];
+      chartLabels.push('Recommandations réalisées');
+      chartLabels.push('Recommandations en cours de réalisation');
+      chartLabels.push('Recommandations non réalisées');
+      // r = r.filter(e => e.name !== null);
+      // const barChartLabels = r.map(e => e.name);
+      const chartData = [];
+      const dataToShowInTable = [];
+      // realise, nonRealise, enCours, count
+      chartData.push(r.realise * r.count / 100);
+
+      chartData.push(r.enCours * r.count / 100);
+
+      chartData.push(r.nonRealise * r.count / 100);
+
+      const chartColors = [];
+      // for (let i = 0; i < 3; i++) {
+      chartColors.push('#14933f'); // jeunne
+      chartColors.push('#fcb534'); // gris
+      chartColors.push('#c12a1b'); // rouge
+
+      // }
+
+
+      this.dataValues.next({
+        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
+        , title: 'Mise en œuvre des recommandations par mécanismes'
+      });
+    })
+  }
+
   stateMecanisme0() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       // console.log(r)
@@ -172,14 +212,11 @@ export class HomeComponent implements OnInit {
   }
 
   stateDepartement() {
-    const list = [
+    const pe = [
       'Affaires Etrangères',
-      'CNDH',
       'Communication',
-      'Présidence du Ministère Public',
       'Chef du Gouvernement',
       'Commerce et Industrie',
-      'Conseil Supérieur de l’Autorité Judiciaire ',
       'Culture',
       'Défense Nationale',
       'Développement Social et Solidarité',
@@ -200,72 +237,111 @@ export class HomeComponent implements OnInit {
       'Jeunesse et Sports',
       'Justice',
       'Marocains Résidant à l’Etranger',
-      'Médiateur',
-      'IRCAM'
-    ];
-
-    const list1 = [
+      'Santé',
+      'Tourisme',
+      'Transport ',
       'Relations avec parlement',
       'Agriculture',
       'Education nationale',
       'Formation professionnelle',
       'Enseignement supérieur',
-      'ANELCA',
-      'Conseil Supérieur de l’Education, de la Formation et de la Recherche Scientifique ',
-      'Conseil Economique Social et Environnemental',
       'Environnement',
       'Pêche maritime',
+      'Eaux et Forets ',
+    ];
+
+    const inn = [
+      'INPPLC',
+      'CNDH',
+      'Médiateur',
+      'IRCAM',
+      'Conseil Supérieur de l’Education, de la Formation et de la Recherche Scientifique ',
+      'Conseil Economique Social et Environnemental',
       'Conseil de la communauté marocaine à l’étranger',
-      'ONGs',
-      'Partis Politiques',
-      'Affaires générales du gouvernement',
-      'Rabita Mohammedia des Oulémas',
+
+    ];
+
+    const pj = [
+      'Conseil de la communauté marocaine à l’étranger'
+
+    ]
+
+    const autre = [
+      'HCP',
+      'Observatoire National des Droits de l’Enfant',
+      'Parlement',
+      'ANELCA',
+
 
     ]
     this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number }[]) => {
 
       r = r.filter(e => e.name !== null);
       // console.log(r);
-      const barChartLabels = r.filter(e => list.includes(e.name)).map(e => e.name);
+      const barChartLabelsPE = r.filter(e => pe.includes(e.name)).map(e => e.name);
 
-      const barChartLabels1 = r.filter(e => list1.includes(e.name)).map(e => e.name);
+      const barChartLabelsIN = r.filter(e => inn.includes(e.name)).map(e => e.name);
+      const barChartLabelsPG = r.filter(e => pj.includes(e.name)).map(e => e.name);
+      const barChartLabelsAutre = r.filter(e => autre.includes(e.name)).map(e => e.name);
 
-      console.log(barChartLabels)
-      console.log(barChartLabels1)
+      // console.log(barChartLabels)
+      // console.log(barChartLabels1)
 
-      const barChartData = [
+      const barChartDataPE = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
         { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
 
-      const barChartData1 = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
-      ];
+      const barChartDataIN = barChartDataPE;
+      const barChartDataPJ = barChartDataPE;
+      const barChartDataAutre = barChartDataPE;
+
+      // const barChartData1 = [
+      //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+      //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+      //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      // ];
 
 
       r.forEach(e => {
-        if (list.includes(e.name)) {
-          barChartData[0].data.push((e.p * e.t / 100).toFixed(2));
-          barChartData[1].data.push((e.r * e.t / 100).toFixed(2));
-          barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        } else if (list1.includes(e.name)) {
-          barChartData1[0].data.push((e.p * e.t / 100).toFixed(2));
-          barChartData1[1].data.push((e.r * e.t / 100).toFixed(2));
-          barChartData1[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        if (pe.includes(e.name)) {
+          barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        } else if (autre.includes(e.name)) {
+          barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        } else if (inn.includes(e.name)) {
+          barChartDataIN[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataIN[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataIN[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        } else if (pj.includes(e.name)) {
+          barChartDataPJ[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataPJ[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
         }
       });
       // tslint:disable-next-line:max-line-length
-      this.departementSubject.next({
-        barChartLabels, barChartData
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements')
+      this.departementSubjectAutre.next({
+        barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
       });
 
-      this.departementSubject1.next({
-        barChartLabels: barChartLabels1, barChartData: barChartData1
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements')
+      this.departementSubjectPE.next({
+        barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
+      });
+
+      this.departementSubjectPJ.next({
+        barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
+      });
+
+      this.departementSubjectIN.next({
+        barChartLabels: barChartLabelsIN, barChartData: barChartDataIN
+        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
       });
     });
   }

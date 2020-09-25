@@ -87,7 +87,8 @@ export class BarComponent implements OnInit {
             name: e.toString(),
             p: this.barChartData.find(f => f.label === 'En cours').data[i] as number,
             r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
-            t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
+            t: this.barChartData.find(f => f.label === 'Non réalisé').data[i] as number,
+            // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
           });
       });
     });
