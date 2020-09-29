@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 
 <div class="host">
-  <div >
+  <div>
     <app-title title="Utilisateur"></app-title>
     <!-- right column -->
     <form (ngSubmit)="submit(myForm)" [formGroup]="myForm">
@@ -92,15 +92,16 @@
           </mat-card>
           <div class="actions">
             <button style="margin-top: 20px;"
-            [disabled]="this.myForm.invalid || this.myForm.get('password').value !== this.myForm.get('password2').value" mat-raised-button
-            color="primary" type="submit">
-            Enregister
-          </button>
+              [disabled]="this.myForm.invalid || this.myForm.get('password').value !== this.myForm.get('password2').value"
+              mat-raised-button color="primary" type="submit">
+              Enregister
+            </button>
 
-          <button style="margin-top: 20px; margin-right: 20px;" [routerLink]="['/admin/user']" mat-raised-button type="button">
-          Retout
-        </button>
-        </div>
+            <button style="margin-top: 20px; margin-right: 20px;" [routerLink]="['/admin/user']" mat-raised-button
+              type="button">
+              Retout
+            </button>
+          </div>
 
 
         </div>
