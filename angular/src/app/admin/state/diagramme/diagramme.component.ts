@@ -73,8 +73,14 @@ export class DiagrammeComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IPieData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
   pieChartSubjectR = new BehaviorSubject<IPieData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
 
+  examenPageSubject = new Subject();
   organePageSubject = new Subject();
   visitePageSubject = new Subject();
+
+  departementSubjectPE = new Subject();
+  departementSubjectAutre = new Subject();
+  departementSubjectIN = new Subject();
+  departementSubjectPJ = new Subject();
 
   @Input() widthOne = 0;
   @Input() widthTwo = 0;
@@ -162,8 +168,10 @@ export class DiagrammeComponent implements OnInit {
       // console.log(r.macanisme)
 
       this.handleDisplayBar(barList);
+      this.stateAxe();
       this.stateOrgane();
       this.stateVisite();
+      this.stateDepartement();
     });
 
     // this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
@@ -195,9 +203,9 @@ export class DiagrammeComponent implements OnInit {
     // r = [r[this.selectedIndex]];
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('admin.state.Etat_avancement'), stack: 'a' },
-      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé'), stack: 'a' },
-      { data: [], label: 'Non réalisé', stack: 'a' },
+      { data: [], label: this.mytranslate.get('admin.state.Etat_avancement')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
@@ -340,6 +348,31 @@ export class DiagrammeComponent implements OnInit {
     });
   }
 
+  stateAxe() {
+    this.uow.axes.stateAxes().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        // r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100)
+        // barChartData[2].data.push(((e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        // (r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100))
+      });
+      // tslint:disable-next-line:max-line-length
+      this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
+    });
+  }
+
   stateVisite() {
     this.uow.visites.stateVisites().subscribe(r => {
 
@@ -361,6 +394,112 @@ export class DiagrammeComponent implements OnInit {
 
       // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
       this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
+    });
+  }
+
+  stateDepartement() {
+    const listToDeletePE = [
+      'DGSN',
+      'Fonction Public',
+      'pêche',
+      'Eau',
+      'Environnement',
+      'Culture',
+      'gendarmerie',
+      'chef de gouvernement',
+    ]
+
+    const listToShowPE = [
+      'Intérieur et DGSN',
+      'Finance et Fonction Public',
+      'Agriculture et pêche',
+      'Equipement, Eau et Environnement',
+      'Communication et Culture',
+      'Défense et gendarmerie',
+      'Droits de l’Homme et Relations avec le parlement',
+      'Développement social et solidarité',
+      'Supprimer le chef de gouvernement',
+      'Supprimer l’Observatoire des droits de l’homme',
+    ]
+
+    const listToDeleteAutre = [
+      'Observatoire des droits de l’homme',
+    ]
+
+    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
+
+      r = r.filter(e => e.name !== null);
+      console.log(r);
+
+      // r = r.filter(e => ).map(e => {
+
+      //   return e;
+      // })
+      const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
+
+      const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
+      const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
+      const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
+
+      // console.log(barChartLabels)
+      // console.log(barChartLabels1)
+
+      const barChartDataPE = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      ];
+
+      const barChartDataIN = barChartDataPE;
+      const barChartDataPJ = barChartDataPE;
+      const barChartDataAutre = barChartDataPE;
+
+      // const barChartData1 = [
+      //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+      //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+      //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      // ];
+
+
+      r.forEach(e => {
+        if (e.type === 'PE') {
+          barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        } else if (e.type === 'Autre') {
+          barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        } else if (e.type === 'IN') {
+          barChartDataIN[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataIN[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataIN[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        } else if (e.type === 'PJ') {
+          barChartDataPJ[0].data.push((e.p * e.t / 100).toFixed(2));
+          barChartDataPJ[1].data.push((e.r * e.t / 100).toFixed(2));
+          barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        }
+      });
+      // tslint:disable-next-line:max-line-length
+      this.departementSubjectAutre.next({
+        barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
+      });
+
+      this.departementSubjectPE.next({
+        barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
+      });
+
+      this.departementSubjectPJ.next({
+        barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
+      });
+
+      this.departementSubjectIN.next({
+        barChartLabels: barChartLabelsIN, barChartData: barChartDataIN
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
+      });
     });
   }
 

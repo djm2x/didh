@@ -17,6 +17,7 @@ namespace Admin5.Models
         public string LabelAr { get; set; }
         public string Adresse { get; set; }
         public string Tel { get; set; }
+        public string Type { get; set; }
         // [System.Text.Json.Serialization.JsonIgnore]
         public virtual ICollection<User> User { get; set; }
         public virtual ICollection<FicheSynthese> FicheSynthese { get; set; }

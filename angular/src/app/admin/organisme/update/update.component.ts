@@ -35,6 +35,7 @@ export class UpdateComponent implements OnInit {
       label: [this.o.label, Validators.required],
       adresse: [this.o.adresse, Validators.required],
       tel: [this.o.tel, Validators.required],
+      type: [this.o.type],
     });
   }
 

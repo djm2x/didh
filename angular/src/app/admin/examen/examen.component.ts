@@ -104,12 +104,16 @@ export class ExamenComponent implements OnInit {
       const chartData = [];
       const dataToShowInTable = [];
 
-      chartData.push(r.epu.p * r.epu.t / 100);
-      chartData.push(r.epu.r * r.epu.t / 100);
-      chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
+      // chartData.push(r.epu.p * r.epu.t / 100);
+      // chartData.push(r.epu.r * r.epu.t / 100);
+      // chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
+
+      chartData.push(r.epu.p);
+      chartData.push(r.epu.r);
+      chartData.push(r.epu.t - (r.epu.p) - (r.epu.r));
 
 
-      chartData.push(100 - r.epu.t);
+      // chartData.push(100 - r.epu.t);
 
 
       const chartColors = ['#f7801e', '#2b960b', '#db0707', '#ffffff'];

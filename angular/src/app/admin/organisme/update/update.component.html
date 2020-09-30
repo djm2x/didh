@@ -23,6 +23,13 @@
           <!-- <input matInput formControlName="adresse" required> -->
         </mat-form-field>
 
+        <mat-form-field appearance="fill">
+          <mat-label>Axe</mat-label>
+          <mat-select formControlName="idAxe">
+            <mat-option *ngFor="let e of ['', 'PE', 'PJ', 'IN', 'Autre']" [value]="e">{{ e }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </form>
     </div>
 

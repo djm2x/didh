@@ -23,6 +23,7 @@ export class Organisme {
   labelAr = '';
   adresse = '';
   tel = '';
+  type = '';
   users: User[] = [];
 }
 

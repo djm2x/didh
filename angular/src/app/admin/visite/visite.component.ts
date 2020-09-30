@@ -109,12 +109,16 @@ export class VisiteComponent implements OnInit {
       const chartData = [];
       const dataToShowInTable = [];
 
-      chartData.push(r.ps.p * r.ps.t / 100);
-      chartData.push(r.ps.r * r.ps.t / 100);
-      chartData.push(r.ps.t - (r.ps.p * r.ps.t / 100) - (r.ps.r * r.ps.t / 100));
+      // chartData.push(r.ps.p * r.ps.t / 100);
+      // chartData.push(r.ps.r * r.ps.t / 100);
+      // chartData.push(r.ps.t - (r.ps.p * r.ps.t / 100) - (r.ps.r * r.ps.t / 100));
+
+      chartData.push(r.ps.p);
+      chartData.push(r.ps.r);
+      chartData.push(r.ps.t - (r.ps.p) - (r.ps.r));
 
 
-      chartData.push(100 - r.ps.t);
+      // chartData.push(100 - r.ps.t);
 
 
       const chartColors = ['#f7801e', '#2b960b', '#db0707', '#ffffff'];

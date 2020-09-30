@@ -230,9 +230,10 @@
 
       <mat-tab-group class="example-stretched-tabs" #matgroup (selectedTabChange)="selectedTabChange(matgroup)">
 
+        <!-- Etat d'avancement des recommandations par axe -->
         <mat-tab label="{{ 'admin.epu.list.Examenpériodiqueuniversal' | translate }}">
           <ng-template matTabContent>
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
               <app-pie-chart [withGraphe]="1000" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
             </div>
 
@@ -241,6 +242,12 @@
             </div>
             <div class="col-md-12">
               <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
+            </div> -->
+            
+            <div class="col-md-12">
+              <div class="chart-size">
+                <app-bar [dataSubject]="examenPageSubject"></app-bar> 
+              </div>
             </div>
 
           </ng-template>
@@ -262,6 +269,8 @@
           </ng-template>
         </mat-tab>
       </mat-tab-group>
+
+      <!-- Mise en œuvre des recommandations par mécanisme -->
 
       <div class="row justify-content-center">
         <div class="col-md-8">
@@ -293,7 +302,7 @@
         </div>
 
         <div class="col-md-10 mt-5">
-
+          <!-- Mise en œuvre des recommandations par départements -->
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%; ">
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
@@ -305,13 +314,34 @@
 
           <div class="d-flex flex-wrap justify-content-center ">
 
-            <div *ngFor="let e of departementList; let i=index">
-              <!-- <app-progress-cercle [diameter]="90" [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle> -->
+            <!-- <div *ngFor="let e of departementList; let i=index">
               <app-progress-cercle [marginLegend] = "'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
                 [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e">
               </app-progress-cercle>
+            </div> -->
 
-              <!-- <app-doughnut [isInForLoop]="true" [widthText]="'160px'" [fontSize]=".7" [width]="170" [elementFromForLoop]="e" [pieChartType]="'doughnut'"></app-doughnut> -->
+            <div class="col-md-12">
+              <div class="chart-size">
+                <app-bar [col]="12" [dataSubject]="departementSubjectPE"></app-bar>
+              </div>
+            </div>
+    
+            <div class="col-md-12">
+              <div class="chart-size">
+                <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>
+              </div>
+            </div>
+    
+            <div class="col-md-12">
+              <div class="chart-size">
+                <app-bar [col]="12" [dataSubject]="departementSubjectIN"></app-bar>
+              </div>
+            </div>
+    
+            <div class="col-md-12">
+              <div class="chart-size">
+                <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>
+              </div>
             </div>
           </div>
           <!--

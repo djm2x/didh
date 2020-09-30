@@ -212,77 +212,48 @@ export class HomeComponent implements OnInit {
   }
 
   stateDepartement() {
-    const pe = [
-      'Affaires Etrangères',
-      'Communication',
-      'Chef du Gouvernement',
-      'Commerce et Industrie',
-      'Culture',
-      'Défense Nationale',
-      'Développement Social et Solidarité',
-      'DGAPR',
+    const listToDeletePE = [
       'DGSN',
-      'Droits de l’Homme',
+      'Fonction Public',
+      'pêche',
       'Eau',
-      'Economie et Finances',
-      'Emploi',
-      'Energie et Mines',
-      'Equipement',
-      'Fonction Publique',
-      'Gendarmerie Royale',
-      'Habitat',
-      'Habous et des Affaires Islamiques',
-      'HACA',
-      'Intérieur',
-      'Jeunesse et Sports',
-      'Justice',
-      'Marocains Résidant à l’Etranger',
-      'Santé',
-      'Tourisme',
-      'Transport ',
-      'Relations avec parlement',
-      'Agriculture',
-      'Education nationale',
-      'Formation professionnelle',
-      'Enseignement supérieur',
       'Environnement',
-      'Pêche maritime',
-      'Eaux et Forets ',
-    ];
-
-    const inn = [
-      'INPPLC',
-      'CNDH',
-      'Médiateur',
-      'IRCAM',
-      'Conseil Supérieur de l’Education, de la Formation et de la Recherche Scientifique ',
-      'Conseil Economique Social et Environnemental',
-      'Conseil de la communauté marocaine à l’étranger',
-
-    ];
-
-    const pj = [
-      'Conseil de la communauté marocaine à l’étranger'
-
+      'Culture',
+      'gendarmerie',
+      'chef de gouvernement',
     ]
 
-    const autre = [
-      'HCP',
-      'Observatoire National des Droits de l’Enfant',
-      'Parlement',
-      'ANELCA',
-
-
+    const listToShowPE = [
+      'Intérieur et DGSN',
+      'Finance et Fonction Public',
+      'Agriculture et pêche',
+      'Equipement, Eau et Environnement',
+      'Communication et Culture',
+      'Défense et gendarmerie',
+      'Droits de l’Homme et Relations avec le parlement',
+      'Développement social et solidarité',
+      'Supprimer le chef de gouvernement',
+      'Supprimer l’Observatoire des droits de l’homme',
     ]
-    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number }[]) => {
+
+    const listToDeleteAutre = [
+      'Observatoire des droits de l’homme',
+    ]
+
+    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
       r = r.filter(e => e.name !== null);
-      // console.log(r);
-      const barChartLabelsPE = r.filter(e => pe.includes(e.name)).map(e => e.name);
+      console.log(r);
 
-      const barChartLabelsIN = r.filter(e => inn.includes(e.name)).map(e => e.name);
-      const barChartLabelsPG = r.filter(e => pj.includes(e.name)).map(e => e.name);
-      const barChartLabelsAutre = r.filter(e => autre.includes(e.name)).map(e => e.name);
+      // r = r.filter(e => ).map(e => {
+
+      //   return e;
+      // })
+      const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
+
+      const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
+      const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
+      const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
 
       // console.log(barChartLabels)
       // console.log(barChartLabels1)
@@ -305,19 +276,19 @@ export class HomeComponent implements OnInit {
 
 
       r.forEach(e => {
-        if (pe.includes(e.name)) {
+        if (e.type === 'PE') {
           barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
           barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        } else if (autre.includes(e.name)) {
+        } else if (e.type === 'Autre') {
           barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
           barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        } else if (inn.includes(e.name)) {
+        } else if (e.type === 'IN') {
           barChartDataIN[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataIN[1].data.push((e.r * e.t / 100).toFixed(2));
           barChartDataIN[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        } else if (pj.includes(e.name)) {
+        } else if (e.type === 'PJ') {
           barChartDataPJ[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataPJ[1].data.push((e.r * e.t / 100).toFixed(2));
           barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
@@ -326,22 +297,22 @@ export class HomeComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       this.departementSubjectAutre.next({
         barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
       });
 
       this.departementSubjectPE.next({
         barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
       });
 
       this.departementSubjectPJ.next({
         barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
       });
 
       this.departementSubjectIN.next({
         barChartLabels: barChartLabelsIN, barChartData: barChartDataIN
-        , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
+        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
       });
     });
   }

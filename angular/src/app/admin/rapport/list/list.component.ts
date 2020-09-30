@@ -119,12 +119,15 @@ export class ListComponent implements OnInit {
       const chartData = [];
       const dataToShowInTable = [];
 
-      chartData.push(r.ot.p * r.ot.t / 100);
-      chartData.push(r.ot.r * r.ot.t / 100);
-      chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
+      // chartData.push(r.ot.p * r.ot.t / 100);
+      // chartData.push(r.ot.r * r.ot.t / 100);
+      // chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
 
+      chartData.push(r.ot.p);
+      chartData.push(r.ot.r);
+      chartData.push(r.ot.t - (r.ot.p) - (r.ot.r));
 
-      chartData.push(100 - r.ot.t);
+      // chartData.push(100 - r.ot.t);
 
 
       const chartColors = ['#f7801e', '#2b960b', '#db0707',  '#ffffff'];
