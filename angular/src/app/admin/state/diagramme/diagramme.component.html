@@ -4,120 +4,9 @@
   <mat-accordion>
 
     <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="box-sizing: border-box;">
-      <!-- <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon>search</mat-icon>
-                    <p>{{ 'admin.state.Recherche' | translate }}</p>
-                </mat-panel-title>
-                <mat-panel-description> </mat-panel-description>
-            </mat-expansion-panel-header> -->
-
-
       <mat-divider>
       </mat-divider>
-
-      <!-- <form [formGroup]="myForm">
-                <div class="row m-2">
-
-                    <mat-form-field appearance="fill" *ngIf="selectedIndex === 0" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Cycle' | translate }}</mat-label>
-                        <mat-select formControlName="idCycle">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill" *ngIf="selectedIndex === 1" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Organe' | translate }}</mat-label>
-                        <mat-select formControlName="idOrgane">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of organes | async" [value]="e.id">
-                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill" *ngIf="selectedIndex === 2" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Visite' | translate }}</mat-label>
-                        <mat-select formControlName="idVisite">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of visites | async" [value]="e.id">
-                                {{ mytranslate.langSync === 'fr' ? e.mandat : e.mandatAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-
-                    <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Etat_de_mis_en_oeuvre' | translate }}</mat-label>
-                        <mat-select formControlName="etat">
-
-                            <mat-option value="">...</mat-option>
-                            <mat-option *ngFor="let e of etats | async" [value]="e.name">
-                                {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Axe' | translate }}</mat-label>
-                        <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of axes | async" [value]="e.id">
-                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Sous_axe' | translate }}</mat-label>
-                        <mat-select formControlName="idSousAxe">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of sousAxes" [value]="e.id">
-                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="fill" class="col-md-5">
-                        <mat-label>{{ 'admin.state.Organisme' | translate }}</mat-label>
-                        <mat-select formControlName="idOrganisme" (selectionChange)="axeChange($event.value)">
-                            <mat-option value="0">...</mat-option>
-                            <mat-option *ngFor="let e of organismes | async" [value]="e.id">
-                                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
-
-
-
-
-                <div class="right">
-                    <button mat-raised-button color="primary" type="button" (click)="search(myForm.value)"
-                        [disabled]="isAllEmpty">
-                        <mat-icon>search</mat-icon>
-                        {{ 'admin.state.Rechercher' | translate }}
-                    </button>
-                    &nbsp;
-                    <button mat-raised-button (click)="reset()" type="button" [disabled]="isAllEmpty">
-                        <mat-icon>refresh</mat-icon>
-                        {{ 'admin.state.Réinitialiser' | translate }}
-                    </button>
-                </div>
-
-
-            </form> -->
-
       <form [formGroup]="myForm">
-        <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
-          <mat-label>{{ 'admin.recommandation.list.Recherche' | translate }}</mat-label>
-          <input matInput [formControl]="myAuto" [matAutocomplete]="auto" placeholder="auto complétion">
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let e of filteredOptions | async" [value]="e">{{ e.label }} </mat-option>
-          </mat-autocomplete>
-        </mat-form-field> -->
-        <!-- <mat-form-field *ngIf="!session.isPointFocal" appearance="fill" style="width: 100%;margin-bottom: 5px;">
-                <mat-label>Organisme</mat-label>
-                <mat-select formControlName="idOrganisme">
-                  <mat-option value="0">...</mat-option>
-                  <mat-option *ngFor="let e of organismes | async" [value]="e.id">{{ e.label }}</mat-option>
-                </mat-select>
-              </mat-form-field> -->
         <div class="inputs2">
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.Pays' | translate }}</mat-label>
@@ -128,11 +17,8 @@
             </mat-select>
           </mat-form-field>
 
-          <!-- {{myForm.get('idPays').value}} -->
-
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
-            <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
             <input matInput formControlName="nom" required>
           </mat-form-field>
         </div>
@@ -151,7 +37,7 @@
             <mat-label>{{ 'admin.recommandation.list.Cycle' | translate }}</mat-label>
             <mat-select formControlName="idCycle">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of cycles" [value]="e.id">{{ e.label }}</mat-option>
+              <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -176,7 +62,6 @@
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
             <mat-select formControlName="etat">
-              <!-- <mat-option value="0">...</mat-option> -->
               <mat-option *ngFor="let e of etats | async" [value]="e.name">
                 {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
             </mat-select>
@@ -201,7 +86,6 @@
                 {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
-
 
           <mat-form-field appearance="fill">
             <mat-label>Departement</mat-label>
@@ -233,23 +117,11 @@
         <!-- Etat d'avancement des recommandations par axe -->
         <mat-tab label="{{ 'admin.epu.list.Examenpériodiqueuniversal' | translate }}">
           <ng-template matTabContent>
-            <!-- <div class="col-md-12">
-              <app-pie-chart [withGraphe]="1000" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
-            </div>
-
-            <div class="col-md-12">
-              <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
-            </div>
-            <div class="col-md-12">
-              <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
-            </div> -->
-            
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [dataSubject]="examenPageSubject"></app-bar> 
               </div>
             </div>
-
           </ng-template>
         </mat-tab>
 
@@ -278,7 +150,6 @@
         </div>
 
         <div class="col-md-10 mb-5 mt-5">
-
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%;margin-bottom: 2%; ">
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
@@ -291,14 +162,6 @@
           <div *ngFor="let e of axesList; let i=index">
             <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
           </div>
-          <!--
-                    <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-                        <img src="assets/line.png" height="10px" width="280px"
-                            [style.transform]="'rotateY(' +  rotateY + 'deg)'">
-                        <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-                            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}
-                        </h5>
-                    </div> -->
         </div>
 
         <div class="col-md-10 mt-5">
@@ -313,13 +176,6 @@
           </div>
 
           <div class="d-flex flex-wrap justify-content-center ">
-
-            <!-- <div *ngFor="let e of departementList; let i=index">
-              <app-progress-cercle [marginLegend] = "'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
-                [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e">
-              </app-progress-cercle>
-            </div> -->
-
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectPE"></app-bar>
@@ -344,57 +200,13 @@
               </div>
             </div>
           </div>
-          <!--
-                    <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-                        <img src="assets/line.png" height="10px" width="280px"
-                            [style.transform]="'rotateY(' +  rotateY + 'deg)'">
-                        <h5 style="color: #737473; margin: 5px 0 10px 5px; text-align: center;">
-                            {{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}
-                        </h5>
-                    </div> -->
 
         </div>
-
-        <!-- <div class="col-md-10 mt-5">
-
-
-          <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%;">
-            <section
-              [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-              <div>
-                <h3>{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_pays' | translate }}</h3>
-              </div>
-            </section>
-          </div>
-
-          <div class="d-flex flex-wrap justify-content-center ">
-            <div *ngFor="let e of payeList; let i=index">
-              <app-progress-cercle  [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
-                [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e" [marginLegend] = "'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'" [showLegend]="true">
-              </app-progress-cercle>
-            </div>
-          </div>
-
-
-
-        </div> -->
 
         <div class="mx-2 mt-2">
           <app-recomm [fromParent]="toChild"></app-recomm>
         </div>
-
-        <!-- <div class="col-md-5">
-        <app-state-pie [obs]="listAxes"></app-state-pie>
-
-    </div>
-    <div class="col-md-5">
-        <app-state-pie [obs]="listOrganisme"></app-state-pie>
-
-    </div> -->
       </div>
-      <!-- <mat-card>
-
-</mat-card> -->
     </mat-expansion-panel>
   </mat-accordion>
 </div>

@@ -102,13 +102,13 @@ export class DiagrammeComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
-    this.idCycle.setValue(1)
     this.mytranslate.lang.subscribe(r => {
       this.rotateY = r === 'fr' ? 0 : 180;
     });
-
+    
     setTimeout(() => {
       this.reset();
+      this.idCycle.setValue(1);
     }, 300);
   }
 
@@ -185,16 +185,27 @@ export class DiagrammeComponent implements OnInit {
   selectedIndex = 0;
 
   selectedTabChange(o: MatTabGroup) {
-    console.log(o.selectedIndex)
-
     this.selectedIndex = o.selectedIndex;
-    this.o.mecanisme = o.selectedIndex === 0 ? 'Examen périodique universal' : (o.selectedIndex === 1 ? 'Organes de traités' : 'Procédure spéciale')
+    this.o.mecanisme = o.selectedIndex === 0 ? 'Examen périodique universal' 
+    : (o.selectedIndex === 1 ? 'Organes de traités' : 'Procédure spéciale')
 
     this.idCycle.setValue(o.selectedIndex === 0 ? 1 : 0);
     this.idOrgane.setValue(o.selectedIndex === 1 ? 1 : 0);
     this.idVisite.setValue(o.selectedIndex === 2 ? 1 : 0);
 
+    this.myForm.get('mecanisme').setValue(this.o.mecanisme);
+
     this.searchAndGet(this.o)
+  }
+
+  selectChange(mecanisme: string) {
+    // this.idVisite.setValue(0);
+    // this.idCycle.setValue(this.cycles[0].id);
+    // this.idOrgane.setValue(0);
+
+    this.idCycle.setValue(mecanisme.includes('Examen périodique universal') ? 1 : 0);
+    this.idOrgane.setValue(mecanisme.includes('Organes de traités') ? 1 : 0);
+    this.idVisite.setValue(mecanisme.includes('Procédure spéciale') ? 1 : 0);
   }
 
   handleDisplayBar(r: { name: string, p: number, t: number, r: number }[]) {
@@ -260,20 +271,10 @@ export class DiagrammeComponent implements OnInit {
   }
 
 
-
-  selectChange(mecanisme: string) {
-    // this.idVisite.setValue(0);
-    // this.idCycle.setValue(this.cycles[0].id);
-    // this.idOrgane.setValue(0);
-
-    this.idCycle.setValue(mecanisme.includes('Examen périodique universal') ? 1 : 0);
-    this.idOrgane.setValue(mecanisme.includes('Organes de traités') ? 1 : 0);
-    this.idVisite.setValue(mecanisme.includes('Procédure spéciale') ? 1 : 0);
-
-  }
-
   reset() {
     this.o = new Model();
+    this.o.mecanisme = 'Examen périodique universal';
+    this.o.idCycle = 1;
     this.createForm();
     this.searchAndGet(this.o);
     // this.toChild.next(this.o);
