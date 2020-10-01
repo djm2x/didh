@@ -163,11 +163,16 @@ export class ListComponent implements OnInit {
       ];
 
       r.forEach(e => {
+        // tslint:disable-next-line:no-var-keyword
+        //var T = (e.t + (e.p * e.t / 100) + (e.r * e.t / 100)).toFixed(0);
+        // var T = ((e.p * e.t) + (e.r * e.t )).toFixed(0);
         barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
         barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
         barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+
         // barChartData[2].data.push(e.t.toFixed(0));
       });
+      // tslint:disable-next-line:max-line-length
       this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });
   }
@@ -182,8 +187,6 @@ export class ListComponent implements OnInit {
       }
     );
   }
-
-
 
   openDialog(o: any) {
     const dialogRef = this.dialog.open(DetailComponent, {

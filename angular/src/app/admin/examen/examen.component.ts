@@ -95,9 +95,9 @@ export class ExamenComponent implements OnInit {
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
-      chartLabels.push('Recommandation en cours de réalisation');
-      chartLabels.push('Recommandation réalisé');
-      chartLabels.push('Recommandation non réalisé');
+      chartLabels.push('En cours de réalisation');
+      chartLabels.push('Réalisé');
+      chartLabels.push('Non réalisé');
 
       // chartLabels.push('')
 

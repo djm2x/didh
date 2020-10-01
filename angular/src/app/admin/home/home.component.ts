@@ -274,7 +274,6 @@ export class HomeComponent implements OnInit {
       //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       // ];
 
-
       r.forEach(e => {
         if (e.type === 'PE') {
           barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));

@@ -114,6 +114,15 @@
                 <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
               </mat-select>
             </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Département</mat-label>
+              <mat-select formControlName="idOrganisme">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of organismes | async" [value]="e.id">
+                  {{ mytranslate.langSync === 'fr' ? e.label : e.label }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </form>
         <div class="right">
