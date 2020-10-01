@@ -77,6 +77,7 @@ export class BarComponent implements OnInit {
       this.title = r.title;
       this.barChartLabels = r.barChartLabels;
       this.barChartData = r.barChartData;
+      //this.dataSubject.setMargins(new int[] { 20 ,60,  -20, 60 });
 
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);

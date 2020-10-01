@@ -166,6 +166,7 @@ export class ListComponent implements OnInit {
         barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
         barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
         barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+
         // barChartData[2].data.push(e.t.toFixed(0));
       });
       this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });

@@ -58,6 +58,9 @@ export class ListComponent implements OnInit {
   etats = this.uow.etats;
   myForm: FormGroup;
   //
+
+  departementList: { name: string, p: number, r: number, t: number, type: string }[] = [];
+
   displayedColumns = this.columnDefs.map(e => e.columnDef);
   progress = 0;
   message: any;
@@ -134,6 +137,7 @@ export class ListComponent implements OnInit {
       etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
+      idDepartement: this.o.idDepartement,
       startIndex: this.o.startIndex,
       pageSize: this.o.pageSize,
       sortBy: this.o.sortBy,
@@ -194,7 +198,92 @@ export class ListComponent implements OnInit {
 
     return dialogRef.afterClosed();
   }
+  stateDepartement(r: { name: string, p: number, r: number, t: number, type: string }[]) {
+    console.log(r);
+    const listToDeletePE = [
+      'DGSN',
+      'Fonction Public',
+      'pêche',
+      'Eau',
+      'Environnement',
+      'Culture',
+      'gendarmerie',
+      'chef de gouvernement',
+    ]
 
+    const listToShowPE = [
+      'Intérieur et DGSN',
+      'Finance et Fonction Public',
+      'Agriculture et pêche',
+      'Equipement, Eau et Environnement',
+      'Communication et Culture',
+      'Défense et gendarmerie',
+      'Droits de l’Homme et Relations avec le parlement',
+      'Développement social et solidarité',
+      'Supprimer le chef de gouvernement',
+      'Supprimer l’Observatoire des droits de l’homme',
+    ]
+
+    const listToDeleteAutre = [
+      'Observatoire des droits de l’homme',
+    ]
+
+    // this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
+
+    r = r.filter(e => e.name !== null);
+    // console.log(r);
+
+    // r = r.filter(e => ).map(e => {
+
+    //   return e;
+    // })
+    const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
+
+    const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
+    const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
+    const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
+
+    // console.log(barChartLabels)
+    // console.log(barChartLabels1)
+
+    const barChartDataPE = [
+      { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+    ];
+
+    const barChartDataIN = barChartDataPE;
+    const barChartDataPJ = barChartDataPE;
+    const barChartDataAutre = barChartDataPE;
+
+    // const barChartData1 = [
+    //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+    //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+    //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+    // ];
+
+
+    r.forEach(e => {
+      if (e.type === 'PE') {
+        barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
+        barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
+        barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+      } else if (e.type === 'Autre') {
+        barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
+        barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
+        barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+      } else if (e.type === 'IN') {
+        barChartDataIN[0].data.push((e.p * e.t / 100).toFixed(2));
+        barChartDataIN[1].data.push((e.r * e.t / 100).toFixed(2));
+        barChartDataIN[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+      } else if (e.type === 'PJ') {
+        barChartDataPJ[0].data.push((e.p * e.t / 100).toFixed(2));
+        barChartDataPJ[1].data.push((e.r * e.t / 100).toFixed(2));
+        barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+      }
+    });
+
+  }
   searchAndGet(o: Model) {
     console.log(o);
     this.o = o;
@@ -205,6 +294,8 @@ export class ListComponent implements OnInit {
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
+        this.stateDepartement(this.departementList);
+
       }, e => this.isLoadingResults = false,
     );
   }
@@ -270,5 +361,8 @@ export class Model {
   sortBy = 'id';
   sortDir = 'desc';
 }
+
+
+
 
 

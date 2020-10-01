@@ -41,6 +41,7 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   searchAndGet(o) {
+    // tslint:disable-next-line:max-line-length
     return this.http.post(`${this.urlApi}/${this.controller}/searchAndGet`, o);
   }
 
