@@ -7,6 +7,7 @@ import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from '../detail/detail.component';
 import { MatDialog } from '@angular/material';
 import * as pluginLabels from 'chartjs-plugin-labels';
+import * as Chart from 'chart.js';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
@@ -43,6 +44,8 @@ export class BarComponent implements OnInit {
       }
     }
   };
+
+
   public barChartLabels: Label[] = [/*'2006', '2007', '2008', '2009', '2010', '2011', '2012'*/];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
@@ -73,26 +76,30 @@ export class BarComponent implements OnInit {
       this.retate = lang === 'fr' ? 0 : 180;
     });
 
+    // Chart.Legend.prototype.afterFit = function() {
+    //   this.height = this.height + 50;
+    // };
+
     this.dataSubject.subscribe((r: { barChartLabels: Label[], barChartData: ChartDataSets[], title: string }) => {
       this.title = r.title;
       this.barChartLabels = r.barChartLabels;
       this.barChartData = r.barChartData;
-      //this.dataSubject.setMargins(new int[] { 20 ,60,  -20, 60 });
-
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
       // console.log(this.barChartData)
 
-      this.barChartLabels.forEach((e, i) => {
-          this.list.push({
-            name: e.toString(),
-            p: this.barChartData.find(f => f.label === 'En cours').data[i] as number,
-            r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
-            t: this.barChartData.find(f => f.label === 'Non réalisé').data[i] as number,
-            // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
-          });
-      });
+      // this.barChartLabels.forEach((e, i) => {
+      //     this.list.push({
+      //       name: e.toString(),
+      //       p: this.barChartData.find(f => f.label === 'En cours').data[i] as number,
+      //       r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
+      //       t: this.barChartData.find(f => f.label === 'Non réalisé').data[i] as number,
+      //       // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
+      //     });
+      // });
+
+
     });
   }
 
