@@ -221,7 +221,7 @@ namespace Admin5.Controllers
             var q = _context.Recommendations
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
                 .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
-                .Where(e => model.Mecanisme == "" ? true : e.Mecanisme.Contains(model.Mecanisme))
+                .Where(e => model.Mecanisme == "" ? true : e.Mecanisme.ToLower().Equals(model.Mecanisme.ToLower()))
                 .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
@@ -243,7 +243,7 @@ namespace Admin5.Controllers
             //     ;
 
             var axe0 = await q.Include(e => e.Axe).ToListAsync();
-            var axe =     axe0.Where(e => e.Axe != null).GroupBy(e => lng == "fr" ? e.Axe.Id : e.Axe.Id)
+            var axe =     axe0.Where(e => e.Axe != null).GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -267,6 +267,7 @@ namespace Admin5.Controllers
                 .Select(e => new
                 {
                     name = e.Key,
+                    type = e.First().RecomOrgs.First().Organisme.Type,
                     p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
@@ -275,30 +276,56 @@ namespace Admin5.Controllers
                 
                 ;
 
-            var pays0 = await q.Include(e => e.Pays).ToListAsync();
-            var pays = pays0
-                .Where(e => e.Pays != null)
-                .GroupBy(e => lng == "fr" ? e.Pays.Nom : e.Pays.NomAr)
-                // .Select(e => new
-                // {
-                //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
-                //     p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
-                //     t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
-                // })
-                // .Where(e => ((double.Parse(e.Count().ToString()) / recommendationsCount) * 100) > 0)
+            var organe0 = await q.Where(e => e.Organe != null).Include(e => e.Organe).ToListAsync();
+
+            var organe = organe0
+                .GroupBy(e => lng == "fr" ? e.Organe.Label : e.Organe.LabelAr)
                 .Select(e => new
                 {
                     name = e.Key,
-                    p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
                 })
                 .ToList()
-                
                 ;
 
+             var visite0 = await q.Where(e => e.Visite != null).Include(e => e.Visite).ToListAsync();
 
-            return Ok(new { macanisme = await Calc(q), axe, department, pays });
+            var visite = visite0
+                .GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                })
+                .ToList()
+                ;
+
+            // var pays0 = await q.Include(e => e.Pays).ToListAsync();
+            // var pays = pays0
+            //     .Where(e => e.Pays != null)
+            //     .GroupBy(e => lng == "fr" ? e.Pays.Nom : e.Pays.NomAr)
+            //     .Select(e => new
+            //     {
+            //         name = e.Key,
+            //         p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+            //         r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+            //         t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+            //     })
+            //     .ToList()
+                
+            //     ;
+
+            var realise = await q.Where(e => e.EtatAvancementChiffre == 100).CountAsync();
+            var nonRealise = await q.Where(e => e.EtatAvancementChiffre == 0).CountAsync();
+            var enCours = await q.Where(e => e.EtatAvancementChiffre != 0 && e.EtatAvancementChiffre != 100).CountAsync();
+            var count = await q.CountAsync();
+
+
+            return Ok(new { macanisme = await Calc(q),organe, visite, axe, department, pays = 1, recommandationValues = new {realise, nonRealise, enCours, count} });
         }
 
         private async Task<object> Calc(IQueryable<Recommendation> q) {

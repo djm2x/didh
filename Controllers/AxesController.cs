@@ -28,8 +28,8 @@ namespace Admin5.Controllers
                 .Select(e => new
                 {
                     name = e.Key,
-                    r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
+                    r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
                 })
                 .ToList()

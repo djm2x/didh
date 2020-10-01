@@ -81,6 +81,7 @@ export class BarComponent implements OnInit {
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
+      // console.log(this.barChartData)
 
       this.barChartLabels.forEach((e, i) => {
           this.list.push({
