@@ -29,6 +29,12 @@ export class BarComponent implements OnInit {
         }
       }]
     },
+    legend: {
+      //position: 'chartArea',
+      position: 'right',
+      // display: false,
+      align: 'center',
+    },
     plugins: {
       labels: {
         // fontColor: ['#00000000',],

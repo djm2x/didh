@@ -162,10 +162,11 @@ export class ListComponent implements OnInit {
         { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
 
-      r.forEach(e => {
-        // tslint:disable-next-line:no-var-keyword
-        //var T = (e.t + (e.p * e.t / 100) + (e.r * e.t / 100)).toFixed(0);
-        // var T = ((e.p * e.t) + (e.r * e.t )).toFixed(0);
+      r.forEach(e => {;
+        // barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+        // barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+        // barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+
         barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
         barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
         barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
@@ -180,7 +181,7 @@ export class ListComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir, idOrganisme) {
     this.uow.traites.getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;

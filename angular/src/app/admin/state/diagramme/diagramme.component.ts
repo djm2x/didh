@@ -261,7 +261,7 @@ export class DiagrammeComponent implements OnInit {
       etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
-      idDepartement: this.o.idDepartement,
+      // idDepartement: this.o.idDepartement,
 
       startIndex: this.o.startIndex,
       pageSize: this.o.pageSize,
@@ -456,7 +456,7 @@ export class DiagrammeComponent implements OnInit {
 
     //   return e;
     // })
-    const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
+    const barChartLabelsPE = r.filter(e => e.type === 'PE' || true).map(e => e.name);
 
     const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
     const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
@@ -483,7 +483,7 @@ export class DiagrammeComponent implements OnInit {
 
 
     r.forEach(e => {
-      if (e.type === 'PE') {
+      if (e.type === 'PE' || true) {
         barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
         barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
         barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));

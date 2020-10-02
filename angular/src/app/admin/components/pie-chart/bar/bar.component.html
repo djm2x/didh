@@ -1,7 +1,7 @@
 <div *ngIf="title && title !== ''" class="d-flex justify-content-left w-100" style="margin-top: 2%;">
   <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
     <div>
-      <h3>{{title === '' ? '.......' : title}}</h3>
+      <h3 style="font-size: 1.2em;">{{title === '' ? '.......' : title}}</h3>
     </div>
   </section>
 </div>

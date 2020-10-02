@@ -591,7 +591,7 @@ namespace Admin5.Controllers
                     .ToListAsync()
                 ;
             }
-            else
+            else if (table == "visite")
             {
                 list = _context.Visites
                     // .Select(e => new

@@ -212,50 +212,66 @@ export class HomeComponent implements OnInit {
   }
 
   stateDepartement() {
-    const listToDeletePE = [
-      'DGSN',
-      'Fonction Public',
-      'pêche',
-      'Eau',
-      'Environnement',
-      'Culture',
-      'gendarmerie',
-      'chef de gouvernement',
-    ]
 
     const listToShowPE = [
       'Intérieur et DGSN',
-      'Finance et Fonction Public',
-      'Agriculture et pêche',
+      'Economie et Finances et Fonction Public',
+      'Agriculture et Pêche maritime',
       'Equipement, Eau et Environnement',
       'Communication et Culture',
-      'Défense et gendarmerie',
-      'Droits de l’Homme et Relations avec le parlement',
-      'Développement social et solidarité',
-      'Supprimer le chef de gouvernement',
-      'Supprimer l’Observatoire des droits de l’homme',
+      'Défense Nationale et Gendarmerie Royale',
+      'Droits de l’Homme et Relations avec parlement',
+      'Développement Social et Solidarité',
     ]
 
-    const listToDeleteAutre = [
-      'Observatoire des droits de l’homme',
+    const listToDelete = [
+      'Chef du Gouvernement',
+      'Observatoire National des Droits de l’Enfant',
     ]
+
+    const listToWorkWith: { name: string, p: number, r: number, t: number, type: string, }[] = [];
+
 
     this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
-      r = r.filter(e => e.name !== null);
-      console.log(r);
+      r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
+      // console.log(r);
+
+      r.forEach(e => {
+        listToShowPE.forEach(p => {
+          if (p.includes(e.name)) {
+            const o = {
+              name: p,
+              p: e.p,
+              r: e.r,
+              t: e.t,
+              type: e.type
+            };
+            const i = listToWorkWith.findIndex(w => w.name.includes(o.name));
+            if (i !== -1) {
+              listToWorkWith[i].p += o.p;
+              listToWorkWith[i].r += o.r;
+              listToWorkWith[i].t += o.t;
+            } else {
+              listToWorkWith.push(o)
+            }
+          }
+        });
+      });
+
+      // console.log(listToWorkWith)
 
       // r = r.filter(e => ).map(e => {
 
       //   return e;
       // })
-      const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
+      const barChartLabelsPE = listToWorkWith.filter(e => e.type === 'PE').map(e => e.name);
 
       const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
-      const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
+      const barChartLabelsPG = r.filter(e => e.type === 'PJ').map(e => e.name);
       const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
 
-      // console.log(barChartLabels)
+      // console.log(barChartLabelsIN)
       // console.log(barChartLabels1)
 
       const barChartDataPE = [
@@ -264,9 +280,27 @@ export class HomeComponent implements OnInit {
         { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       ];
 
-      const barChartDataIN = barChartDataPE;
-      const barChartDataPJ = barChartDataPE;
-      const barChartDataAutre = barChartDataPE;
+      const barChartDataIN = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      ];
+
+      const barChartDataPJ = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      ];
+
+      const barChartDataAutre = [
+        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      ];
+
+      // const barChartDataIN = barChartDataPE;
+      // const barChartDataPJ = barChartDataPE;
+      // const barChartDataAutre = barChartDataPE;
 
       // const barChartData1 = [
       //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
@@ -274,12 +308,25 @@ export class HomeComponent implements OnInit {
       //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
       // ];
 
-      r.forEach(e => {
+      listToWorkWith.forEach(e => {
         if (e.type === 'PE') {
           barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
-          barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        } else if (e.type === 'Autre') {
+          const s = e.t - (e.p * e.t / 100) - (e.r * e.t / 100);
+          barChartDataPE[2].data.push((s >= 0 ? s : -s).toFixed(0));
+          console.log('PE')
+        } 
+      })
+
+      r.forEach(e => {
+        // console.log(e.type === 'PE') 
+        // if (e.type === 'PE') {
+        //   barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
+        //   barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
+        //   barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        //   console.log('PE')
+        // } 
+        if (e.type === 'Autre') {
           barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
           barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
@@ -293,25 +340,31 @@ export class HomeComponent implements OnInit {
           barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
         }
       });
+
+      // console.log(barChartDataIN)
       // tslint:disable-next-line:max-line-length
       this.departementSubjectAutre.next({
         barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre
         // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
+        , title: 'Parlement'
       });
 
       this.departementSubjectPE.next({
         barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
         // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
+        , title: 'Départements gouvernementaux'
       });
 
       this.departementSubjectPJ.next({
         barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
         // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
+        , title: 'Département à pouvoir judiciaire'
       });
 
       this.departementSubjectIN.next({
         barChartLabels: barChartLabelsIN, barChartData: barChartDataIN
         // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
+        , title: 'Institutions Nationales'
       });
     });
   }

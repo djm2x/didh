@@ -89,10 +89,10 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Departement</mat-label>
-            <mat-select formControlName="idDepartement">
+            <mat-select formControlName="idOrganisme">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of departementList" [value]="e.name">
-                {{ mytranslate.langSync === 'fr' ? e.name : e.name }}</mat-option>
+              <mat-option *ngFor="let e of organismes | async" [value]="e.id">
+                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -162,7 +162,7 @@
           <app-bar [dataSubject]="mecanismeSubject"></app-bar>
         </div> -->
 
-        <div class="col-md-12 mb-5 mt-5">
+        <!-- <div class="col-md-12 mb-5 mt-5">
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%;margin-bottom: 2%; ">
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
@@ -175,13 +175,13 @@
           <div *ngFor="let e of axesList; let i=index">
             <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
           </div>
-        </div>
+        </div> -->
 
 
 
         
         <!-- Mise en œuvre des recommandations par départements -->
-        <div class="col-md-10 mt-5">
+        <div class="col-md-12 mt-5">
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%; ">
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
@@ -197,7 +197,7 @@
                 <app-bar [col]="12" [dataSubject]="departementSubjectPE"></app-bar>
               </div>
             </div>
-    
+<!--     
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>
@@ -214,7 +214,7 @@
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>
               </div>
-            </div>
+            </div> -->
           </div>
 
         </div>

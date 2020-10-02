@@ -137,7 +137,7 @@ export class ListComponent implements OnInit {
       etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
-      idDepartement: this.o.idDepartement,
+      // idDepartement: this.o.idDepartement,
       startIndex: this.o.startIndex,
       pageSize: this.o.pageSize,
       sortBy: this.o.sortBy,
@@ -355,7 +355,7 @@ export class Model {
   nom = '';
   etat = '';
   idPays = 0;
-  idDepartement = 0;
+  // idDepartement = 0;
   startIndex = 0;
   pageSize = 10;
   sortBy = 'id';
