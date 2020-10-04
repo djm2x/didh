@@ -49,7 +49,7 @@
 
     <div class="col-md-12">
       <div class="chart-size">
-        <app-bar [dataSubject]="examenPageSubject"></app-bar> 
+        <app-bar [dataSubject]="examenPageSubject"></app-bar>  
       </div>
     </div>
 
@@ -99,7 +99,7 @@
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[3].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Discoursduprésident' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.ObservationsfinalesADDITIFS' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.observationFinale === ''" [matTooltip]="row.observationFinale"
               color="accent" (click)="showPieceJoin(row.observationFinale)">
@@ -109,7 +109,7 @@
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[4].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.ObservationsfinalesADDITIFS' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Rapportmi-parcours' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.rapportMiParcours === ''" [matTooltip]="row.rapportMiParcours"
               color="accent" (click)="showPieceJoin(row.rapportMiParcours)">
@@ -119,7 +119,7 @@
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[5].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.PLANDEMISEENOEUVRE' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Discoursduprésident' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.discours === ''" [matTooltip]="row.discours" color="accent"
               (click)="showPieceJoin(row.discours)">
@@ -129,7 +129,7 @@
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[6].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Rapportmi-parcours' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.PLANDEMISEENOEUVRE' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button class="center" mat-icon-button [disabled]="row.miseOeuvrePiece === ''"
               [matTooltip]="row.miseOeuvrePiece" color="accent" (click)="showPieceJoin(row.miseOeuvrePiece)">

@@ -235,7 +235,7 @@ export class HomeComponent implements OnInit {
     this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
       r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
-      // console.log(r);
+      console.log(r);
 
       r.forEach(e => {
         listToShowPE.forEach(p => {
@@ -245,7 +245,8 @@ export class HomeComponent implements OnInit {
               p: e.p,
               r: e.r,
               t: e.t,
-              type: e.type
+              type: e.type,
+              nameAr: (e as any).nameAr
             };
             const i = listToWorkWith.findIndex(w => w.name.includes(o.name));
             if (i !== -1) {
@@ -265,11 +266,15 @@ export class HomeComponent implements OnInit {
 
       //   return e;
       // })
-      const barChartLabelsPE = listToWorkWith.filter(e => e.type === 'PE').map(e => e.name);
+      const barChartLabelsPE = listToWorkWith.filter(e => e.type === 'PE')
+        .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
 
-      const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
-      const barChartLabelsPG = r.filter(e => e.type === 'PJ').map(e => e.name);
-      const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
+      const barChartLabelsIN = r.filter(e => e.type === 'IN')
+        .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
+      const barChartLabelsPG = r.filter(e => e.type === 'PJ')
+        .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
+      const barChartLabelsAutre = r.filter(e => e.type === 'Autre')
+        .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
 
       // console.log(barChartLabelsIN)
       // console.log(barChartLabels1)
@@ -277,25 +282,25 @@ export class HomeComponent implements OnInit {
       const barChartDataPE = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
       const barChartDataIN = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
       const barChartDataPJ = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
       const barChartDataAutre = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
       // const barChartDataIN = barChartDataPE;
@@ -305,7 +310,7 @@ export class HomeComponent implements OnInit {
       // const barChartData1 = [
       //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
       //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-      //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      //   { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       // ];
 
       listToWorkWith.forEach(e => {
@@ -345,26 +350,22 @@ export class HomeComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       this.departementSubjectAutre.next({
         barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre
-        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
-        , title: 'Parlement'
+        , title: this.mytranslate.get('admin.home.Parlement')
       });
 
       this.departementSubjectPE.next({
         barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
-        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
-        , title: 'Départements gouvernementaux'
+        , title: this.mytranslate.get('admin.home.Départementsgouvernementaux') 
       });
 
       this.departementSubjectPJ.next({
         barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
-        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
-        , title: 'Département à pouvoir judiciaire'
+       , title: this.mytranslate.get('admin.home.Départementàpouvoirjudiciaire')
       });
 
       this.departementSubjectIN.next({
         barChartLabels: barChartLabelsIN, barChartData: barChartDataIN
-        // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
-        , title: 'Institutions Nationales'
+        , title: this.mytranslate.get('admin.home.InstitutionsNationales')
       });
     });
   }

@@ -42,7 +42,12 @@
       "OrganesdeTraités": "Organes de Traités",
       "Procéduresspéciales": "Procédures spéciales",
       "Miseenœuvredesaxe": "Mise en œuvre des recommandations par axe",
-      "Miseenœuvredesrecommandationspardépartements": "Mise en œuvre des recommandations par départements"
+      "Miseenœuvredesrecommandationspardépartements": "Mise en œuvre des recommandations par départements",
+      "Etatdavancementdesrecommandations–départements": "Etat d’avancement des recommandations – départements",
+      "Parlement": "Parlement",
+      "Départementsgouvernementaux": "Départements gouvernementaux",
+      "Départementàpouvoirjudiciaire": "Département à pouvoir judiciaire",
+      "InstitutionsNationales": "Institutions Nationales"
     },
     "epu": {
       "list": {
@@ -70,6 +75,7 @@
       "Pièce-jointe": "Pièce-jointe",
       "Telecharger": "Telecharger",
       "list": {
+        "Tauxderecommandationsparorgane": "Taux de recommandations par organe",
         "Organesdetraité": "Organes de Traités",
         "Rapportnational": "Rapport national",
         "Discoursduprésident": "Discours du président",
@@ -79,8 +85,9 @@
         "PLANDEMISEENOEUVRE": "Plan De Mise En Oeuvre",
         "Etatavancement": "En cours",
         "Taux": "Taux",
+        "EnCours": "En cours",
         "Réalisé": "Réalisé",
-        "NonRéalisé": "NonRéalisé",
+        "NonRéalisé": "Non Réalisé",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "Mise en œuvre des recommandations par Organes de Traités"
       },
       "update": {
@@ -119,6 +126,7 @@
       "Procédure_spéciale": "Procédure spéciale",
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "Mise en œuvre des recommandations par Procédures spéciales",
       "list": {
+        "Tauxderecommandationsparvisite": "Taux de recommandations par visite",
         "MANDAT": "MANDAT",
         "Date_de_la_visite": "Date de la visite",
         "RAPPORT_NATIONAL_DE_LA_VISITE": "RAPPORT NATIONAL DE LA VISITE",

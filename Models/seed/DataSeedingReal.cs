@@ -82,15 +82,14 @@ namespace seed
         public static ModelBuilder Visites(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Visite>().HasData(new Visite[]{
-                new Visite {Id = 1, Mandat = "la Rapporteuse spéciale sur le droit à l’alimentation", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 2, Mandat = "Rapporteuse spéciale sur les formes contemporaines de racisme, de discrimination raciale, de xénophobie et de l’intolérance qui y est associée", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 3, Mandat = "Rapporteur spécial sur la torture et autres peines ou traitements cruels, inhumains ou dégradants", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 4, Mandat = "la Rapporteuse spéciale sur la traite des êtres humains, en particulier les femmes et les enfants", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 5, Mandat = "Rapporteuse spéciale sur les formes contemporaines de racisme, de discrimination raciale, de xénophobie et de l’intolérance qui y est associée", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 6, Mandat = "GT Disc femme 2012", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 7, Mandat = "Recommandations du Groupe de travail sur la détention arbitraire", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 8, Mandat = "l’experte indépendante dans le domaine des droits culturels", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
-                new Visite {Id = 9, Mandat = "EI solidarité inle", MandatAr = "", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 1, Mandat = "la Rapporteuse spéciale sur le droit à l’alimentation", MandatAr = "المقررة الخاصة المعنية بالحق في الغذاء", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 2, Mandat = "La Rapporteuse spéciale sur les formes contemporaines de racisme, de discrimination raciale, de xénophobie et de l’intolérance qui y est associée", MandatAr = "المقررة الخاصة المعنية بالأشكال المعاصرة للعنصرية والتمييز العنصري وكره الأجانب وما يتصل بذلك من تعصب", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 3, Mandat = "Rapporteur spécial sur la torture et autres peines ou traitements cruels, inhumains ou dégradants", MandatAr = "المقرر الخاص المعني بالتعذيب وغيره من ضروب المعاملة أو العقوبة القاسية", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 4, Mandat = "la Rapporteuse spéciale sur la traite des êtres humains, en particulier les femmes et les enfants", MandatAr = "المقررة الخاصة المعنية بالاتجار بالأشخاص، لا سيما النساء والأطفال", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 6, Mandat = "Le groupe de travail chargé de la question de la discrimination à l’égard des femmes, dans la législation et dans la pratique", MandatAr = "العامل المعني بمسألة التمييز ضد المرأة في القانون والممارسة", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 7, Mandat = "Le groupe de travail sur la détention arbitraire", MandatAr = "الفريق العامل المعني بالاحتجاز التعسفي", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 8, Mandat = "La rapporteuse spéciale dans le domaine des droits culturels", MandatAr = "المقررة الخاصة في مجال الحقوق الثقافية", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
+                new Visite {Id = 9, Mandat = "l’Experte indépendante sur les droits de l’homme et la solidarité internationale", MandatAr = "الخبيرة المستقلة المعنية بحقوق الإنسان والتضامن الدولي", Discours = "" , Date = DateTime.Now, LienRapport = "", MiseOeuvrePiece = "", LienUpload = "" },
             });
 
             return modelBuilder;
@@ -127,15 +126,51 @@ namespace seed
         public static ModelBuilder Axes(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Axe>().HasData(new Axe[]{
-                new Axe {Id = 1, Label = "la promotion, le développement démocratique et la primauté du droit", LabelAr = "تعزيز البناء الديمقراطي وسيادة القانون", Abv="Développement démocratique et primauté du Droit", AbvAr=""},
-                new Axe {Id = 2, Label = "l’interaction avec le système onusien des droits de l'homme", LabelAr = "مواصلة الانخراط والتعاون مع المنظومة الأممية لحقوق الإنسان", Abv="Interaction avec SNU des DH", AbvAr="" },
-                new Axe {Id = 3, Label = "la promotion et la protection des droits de l'homme, à travers la législation et l’harmonisation avec les normes internationales, constitué d’un sous-thème se rapportant à la législation", LabelAr = "النهوض بحقوق الإنسان وحمايتها عبر التشريع والملاءمة مع المعايير الدولية", Abv="Harmonisation Juridique", AbvAr="" },
-                new Axe {Id = 4, Label = "la promotion des droits économiques, sociaux, culturels et environnementaux", LabelAr = "النهوض بالحقوق الاقتصادية والاجتماعية والثقافية والبيئية", Abv="DESC", AbvAr="" },
-                new Axe {Id = 5, Label = "la protection et la promotion des droits civils et politiques", LabelAr = "حماية الحقوق المدنية والسياسية والنهوض بها", Abv="Droits civils et Politiques", AbvAr="" },
-                new Axe {Id = 6, Label = "la promotion et la protection des droits catégoriels", LabelAr = "النهوض بالحقوق الفئوية وحمايتها", Abv="Droits Catégoriels ", AbvAr="" },
-                new Axe {Id = 7, Label = "la promotion de la culture des droits de l'homme par l'éducation et la formation", LabelAr = "النهوض بثقافة حقوق الإنسان من خلال التربية والتكوين", Abv="Education et culture des DH", AbvAr="" },
-                new Axe {Id = 8, Label = "la promotion du cadre institutionnel pour la protection et la promotion des droits de l'homme", LabelAr = "الإطار المؤسساتي لحماية حقوق الإنسان والنهوض بها", Abv="Cadre institutionnel des DH", AbvAr="" },
-                new Axe {Id = 9, Label = "des recommandations d'ordre général", LabelAr = "التوصيات العامة", Abv="Recommandations d'ordre général", AbvAr="" },
+                new Axe {
+                            Id = 1
+                            , Label = "la promotion, le développement démocratique et la primauté du droit"
+                            , LabelAr = "تعزيز البناء الديمقراطي وسيادة القانون", Abv="Développement démocratique et primauté du Droit", AbvAr=""
+                            },
+                new Axe {
+                            Id = 2
+                            , Label = "l’interaction avec le système onusien des droits de l'homme"
+                            , LabelAr = "مواصلة الانخراط والتعاون مع المنظومة الأممية لحقوق الإنسان", Abv="Interaction avec SNU des DH", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 3
+                            , Label = "la promotion et la protection des droits de l'homme, à travers la législation et l’harmonisation avec les normes internationales, constitué d’un sous-thème se rapportant à la législation"
+                            , LabelAr = "النهوض بحقوق الإنسان وحمايتها عبر التشريع والملاءمة مع المعايير الدولية", Abv="Harmonisation Juridique", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 4
+                            , Label = "la promotion des droits économiques, sociaux, culturels et environnementaux"
+                            , LabelAr = "النهوض بالحقوق الاقتصادية والاجتماعية والثقافية والبيئية", Abv="DESC", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 5
+                            , Label = "la protection et la promotion des droits civils et politiques"
+                            , LabelAr = "حماية الحقوق المدنية والسياسية والنهوض بها", Abv="Droits civils et Politiques", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 6
+                            , Label = "la promotion et la protection des droits catégoriels"
+                            , LabelAr = "النهوض بالحقوق الفئوية وحمايتها", Abv="Droits Catégoriels ", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 7
+                            , Label = "la promotion de la culture des droits de l'homme par l'éducation et la formation"
+                            , LabelAr = "النهوض بثقافة حقوق الإنسان من خلال التربية والتكوين", Abv="Education et culture des DH", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 8
+                            , Label = "la promotion du cadre institutionnel pour la protection et la promotion des droits de l'homme"
+                            , LabelAr = "الإطار المؤسساتي لحماية حقوق الإنسان والنهوض بها", Abv="Cadre institutionnel des DH", AbvAr="" 
+                            },
+                new Axe {
+                            Id = 9
+                            , Label = "des recommandations d'ordre général"
+                            , LabelAr = "التوصيات العامة", Abv="Recommandations d'ordre général", AbvAr="" 
+                            },
             });
 
             return modelBuilder;
@@ -286,9 +321,9 @@ namespace seed
                 new Pays {Id = 96, Nom = "Viet Nam", NomAr = "فييت نام" },
                 new Pays {Id = 97, Nom = "Yémen", NomAr = "اليمن" },
                 new Pays {Id = 98, Nom = "Zambie", NomAr = "زامبيا" },
-                new Pays {Id = 99, Nom = "Sri Lanka", NomAr = "" },
-                new Pays {Id = 100, Nom = "Arménie", NomAr = "" },
-                new Pays {Id = 101, Nom = "Irlande", NomAr = "" },
+                new Pays {Id = 99, Nom = "Sri Lanka", NomAr = "سيريلانكا" },
+                new Pays {Id = 100, Nom = "Arménie", NomAr = "أرمينيا" },
+                new Pays {Id = 101, Nom = "Irlande", NomAr = "أيرلندا" },
             });
 
             return modelBuilder;
@@ -940,7 +975,7 @@ new Recommendation {Id = 578, Nom = @"- Consulter largement la société civile 
 new Recommendation {Id = 579, Nom = @"- Accepter, d’ici le 4 novembre 2017, la procédure simplifiée d’établissement des rapports, qui consiste pour le Comité à transmettre une liste de points à l’État partie avant que celui-ci ne soumette le rapport périodique. Les réponses de l’État partie à cette liste constitueront dès lors le prochain rapport périodique devant être soumis conformément à l’article 40 du Pacte.", NomAr = @"-          القبول، بحلول 4 تشرين الثاني/نوفمبر 2017، الإجراء المبسط لتقديم التقارير الذي يتمثل في إحالة اللجنة قائمة مسائل إلى الدولة الطرف قبل أن تقدم تقريرها الدوري. وهكذا، تكون ردود الدولة الطرف على قائمة المسائل هذه بمثابة التقرير الدوري المقبل الذي يقدم بموجب المادة 40 من العهد.", CodeRecommendation = "R53", CodeRecommendationAr = "ت.53", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 2, IdSousAxe = 7, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 580, Nom = @"Rappelant l’observation générale no 29 (2001) sur les dérogations au Pacte en période d’état d’urgence, le Royaume du Maroc est appelé à :", NomAr = @"سنّ تشريع يتضمن أحكاماً واضحة عن حالة الطوارئ بحيث لا يمكن تعطيل العمل بالحقوق التي تحميها الفقرة 2 من المادة 4 من العهد بأي حال من الأحوال، وكفالة تَوافق مقتضيات أي استثناء من ذلك مع العهد، عملا بما جاء في التعليق العام للجنة رقم 29(2001) بشأن عدم التقيّد بأحكام العهد أثناء حالات الطوارئ.", CodeRecommendation = "R8", CodeRecommendationAr = "ت.8", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 581, Nom = @"- Elaborer une 9 comportant des dispositions claires sur l’état d’exception, de façon à ce que les droits protégés par le paragraphe 2 de l’article 4 du Pacte ne puissent être suspendus en aucune circonstance,", NomAr = @"سنّ تشريع يتضمن أحكاماً واضحة عن حالة الطوارئ بحيث لا يمكن تعطيل العمل بالحقوق التي تحميها الفقرة 2 من المادة 4 من العهد بأي حال من الأحوال، وكفالة تَوافق مقتضيات أي استثناء من ذلك مع العهد، عملا بما جاء في التعليق العام للجنة رقم 29(2001) بشأن عدم التقيّد بأحكام العهد أثناء حالات الطوارئ.", CodeRecommendation = "R8", CodeRecommendationAr = "ت.8", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
-new Recommendation {Id = 582, Nom = @"- Veiller à ce que les conditions requises pour une dérogation soient conformes au Pacte.", NomAr = @"سنّ تشريع يتضمن أحكاماً واضحة عن حالة الطوارئ بحيث لا يمكن تعطيل العمل بالحقوق التي تحميها الفقرة 2 من المادة 4 من العهد بأي حال من الأحوال، وكفالة تَوافق مقتضيات أي استثناء من ذلك مع العهد، عملا بما جاء في التعليق العام للجنة رقم 29(2001) بشأن عدم التقيّد بأحكام العهد أثناء حالات الطوارئ.", CodeRecommendation = "R8", CodeRecommendationAr = "ت.8", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
+new Recommendation {Id = 582, Nom = @"- Veiller à ce que les conditions requises pour une dérogation soient conformes au Pacte.", NomAr = @"سنّ تشريع يتضمن أحكاماً واضحة عن حالة الطوارئ بحيث لا يمكن تعطيل العمل با��حقوق التي تحميها الفقرة 2 من المادة 4 من العهد بأي حال من الأحوال، وكفالة تَوافق مقتضيات أي استثناء من ذلك مع العهد، عملا بما جاء في التعليق العام للجنة رقم 29(2001) بشأن عدم التقيّد بأحكام العهد أثناء حالات الطوارئ.", CodeRecommendation = "R8", CodeRecommendationAr = "ت.8", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 583, Nom = @"L’État partie devrait veiller à ce que la réforme législative en cours fixe la durée normale de la garde à vue à quarante-huit heures et garantisse à toute personne arrêtée l’accès immédiat à un avocat dès le début de la détention.", NomAr = @"الحرص على أن يحدد الإصلاح التشريعي الجاري المدة العادية للاحتجاز لدى الشرطة بـ 48 ساعة، ويتيح  لكل شخص يلقى عليه القبض إمكانية توكيل محام منذ بداية الاحتجاز.", CodeRecommendation = "R26", CodeRecommendationAr = "ت.26", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 584, Nom = @"f)…….. adopter un cadre juridique pour prévenir l’apatridie.", NomAr = @"-           (و)  ........اعتماد إطار قانوني لمنع انعدام الجنسية", CodeRecommendation = "R36 P9", CodeRecommendationAr = "ت.36.ف.9", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 585, Nom = @"Accélérer la réforme législative visant à garantir la pleine conformité du droit interne avec les traités internationaux dûment ratifiés", NomAr = @"تسريع الإصلاح التشريعي الذي يهدف إلى جعل القانون المحلي يتوافق كلياً مع المعاهدات الدولية التي صدقت عليها وفق الأصول؛", CodeRecommendation = "R6P2", CodeRecommendationAr = "ت.6.ف.2", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 10, IdOrgane = 3, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
@@ -1197,7 +1232,7 @@ new Recommendation {Id = 696, Nom = @"appliquer، de manière systématique et c
 - le Maroc doit axer ses activités de mise en œuvre sur ces questions et à faire rapport sur les mesures prises et les résultats obtenus dans son prochain rapport périodique. 
 - le Maroc doit soumettre les présentes observations finales à tous les ministères compétents, au 32et aux autorités judiciaires afin d’en assurer l’application pleine et entière.
 -  le Maroc est encouragé à poursuivre ses réformes en concertation avec la société civile, en particulier les organisations de femmes.", NomAr = @"تذكر اللجنة بالتزام المغرب بتنفيذ جميع أحكام الاتفاقية على نحو منهجي ومستمر، 
-- ترى اللجنة أن الشواغل والتوصيات المحددة في هذه التعليقات الختامية تتطلب الأولوية من حيث العناية من الآن وإلى حين تقديم التقرير المرحلي المقبل. وعليه، فإن  
+- ترى اللجنة أن الشواغل والتوصيات المحددة في هذه ا��تعليقات الختامية تتطلب الأولوية من حيث العناية من الآن وإلى حين تقديم التقرير المرحلي المقبل. وعليه، فإن  
 - تدعو اللجنة   إلى أن يتم التركيز على المجالات التي حددتها في أنشطة التنفيذ التي تضطلع بها، وأن تبلغ المملكة المغربية في تقريرها الدوري المقبل عن الإجراءات المتخذة والنتائج المحققة. 
 -تدعو اللجنة المغرب إلى عرض هذه التعليقات الختامية على البرلمان وكافة الوزارات الحكومية المعنية والسلطات القضائية لكفالة تنفيذها تنفيذا كاملا.", CodeRecommendation = "R9", CodeRecommendationAr = "ت.9", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 2, IdSousAxe = 7, IdOrgane = 6, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 697, Nom = @"Fournir, dans son prochain rapport périodique, des renseignements détaillés concernant les voies de recours disponibles en cas de discrimination, les affaires de discrimination portées devant le Médiateur et les tribunaux et les suites qui leur sont données", NomAr = @"- تضمين التقرير الدوري المقبل معلومات مفصلة عن سبل الانتصاف المتاحة في حالات التمييز، وعن الشكاوى المقدمة في الحالات المتصلة بالتمييز ضد المرأة أمام ديوان المظالم والمحاكم، وعن النتائج التي أسفرت عنها.", CodeRecommendation = "R17P3", CodeRecommendationAr = "ت.17.ف.3", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 2, IdSousAxe = 7, IdOrgane = 6, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
@@ -1309,7 +1344,7 @@ new Recommendation {Id = 747, Nom = @"Soumettre un document de base actualisé c
 - يصل الحد الأقصى لعدد الكلمات في الوثيقة الأساسية المشتركة إلى 400 42 كلمة، وفقاً لما حددته الجمعية العامة في قرارها رقم 68/268 (الفقرة 16).", CodeRecommendation = "R79", CodeRecommendationAr = "ت.79", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 2, IdSousAxe = 7, IdOrgane = 7, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 748, Nom = @"Poursuivre et renforcer les efforts pour mettre l’ensemble de la législation, en particulier le Code de la famille, en conformité avec la Convention et pour abroger rapidement toutes les dispositions qui sont discriminatoires à l’égard des filles et des femmes et nuisent à tous les enfants, telles que celles concernant l’héritage et la polygamie. 
 - Songer à élaborer un code de l’enfance qui englobe tous les domaines de la Convention et à faire en sorte que les ressources humaines, financières et techniques nécessaires soient effectivement affectées à l’application de la législation relative aux enfants", NomAr = @"مواصلة وتعزيز الجهود الرامية إلى جعل جميع التشريعات الوطنية، وبخاصة مدونة الأسرة، تتوافق مع الاتفاقية، 
-- الإسراع بإلغاء جميع الأحكام التي تنطوي على تمييز في حق الفتيات والنساء وتضر بجميع الأطفال، من قبيل أحكام الميراث وتعدد الزوجات. وتشجعها على النظر في وضع قانون للطفل يشمل جميع مجالات الاتفاقية، والتأكد من أن الموارد البشرية والمالية والتقنية اللازمة تُرصد فعلاً لتنفيذ التشريعات المتعلقة بالأطفال", CodeRecommendation = "R11", CodeRecommendationAr = "ت.11", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 7, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
+- الإسراع بإلغاء جميع الأحكام التي تنطوي على تمييز في حق الفتيات والنساء وتضر بجميع الأطفال، من قبيل أحك��م الميراث وتعدد الزوجات. وتشجعها على النظر في وضع قانون للطفل يشمل جميع مجالات الاتفاقية، والتأكد من أن الموارد البشرية والمالية والتقنية اللازمة تُرصد فعلاً لتنفيذ التشريعات المتعلقة بالأطفال", CodeRecommendation = "R11", CodeRecommendationAr = "ت.11", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 7, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 749, Nom = @"b) veiller à ce que les lois qui interdisent l’emploi d’enfants âgés de moins de 15 ans et les formes dangereuses de travail des enfants âgés de moins de 18 ans, y compris le travail domestique, soient effectivement appliquées et que les personnes qui exploitent les enfants soient dûment sanctionnées;", NomAr = @"-           (ب) السهر على إنفاذ فعال للقوانين التي تحظر تشغيل الأطفال دون             سن 15 وأشكال عمل الأطفال دون سن 18 المحفوفة بالمخاطر، بما في ذلك الخدمة المنزلية، ومعاقبة من يستغلون الأطفال وفق القانون.", CodeRecommendation = "R65 P2", CodeRecommendationAr = "ت.65.ف.2", Mecanisme = "Organes de traités", IdCycle = null, IdAxe = 3, IdSousAxe = 9, IdOrgane = 7, IdVisite = null, IdPays = null, Etat = "Non réalisé", EtatAvancement = "", EtatAvancementChiffre = 0, Observation = "", Complement = "", PieceJointe = "" },
 new Recommendation {Id = 750, Nom = @"Le Comité appelle l’attention du Maroc sur son Observation générale no 16 (2013) sur les obligations des États concernant les incidences du secteur des entreprises sur les droits de l’enfant et, en particulier, lui recommande :
 a) D’examiner et d’adapter son cadre législatif concernant la responsabilité juridique des entreprises commerciales et de leurs filiales gérées dans l’État partie ou ayant des activités sur son territoire, en particulier dans le secteur du tourisme", NomAr = @"تلفت اللجنة انتباه المملكة المغربية إلى تعليقها العام رقم 16(2013) بشأن التزامات الدولة المتعلقة بالآثار التي يحدثها قطاع الأعمال على حقوق الأطفال، وتوصيها خاصة بالآتي: 

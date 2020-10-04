@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using seed;
@@ -354,6 +354,10 @@ namespace Admin5.Models
             ;
 
 
+
+            // Database.ExecuteSqlRaw("update recommendations set etat = 'Réalisé', EtatAvancementChiffre = 100 where id % 3 = 0;");
+            // Database.ExecuteSqlRaw("update recommendations set etat = 'En cours', EtatAvancementChiffre = 50 where id % 3 = 1;");
+            // Database.ExecuteSqlRaw("update recommendations set etat = 'Non réalisé', EtatAvancementChiffre = 0 where id % 3 = 2;");
 
         }
 

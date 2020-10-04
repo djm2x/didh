@@ -59,7 +59,7 @@ export class ListComponent implements OnInit {
   formData = new FormData();
 
   pieChartSubject = new BehaviorSubject<IData>({ table: 'organe', type: 'etat', title: 'Etat d’avancement des recommandations par organe' });
-  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: 'Taux de recommandations par organe' });
+  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: this.mytranslate.getObs('admin.organe.list.Tauxderecommandationsparorgane') });
 
   organePageSubject = new Subject();
 
@@ -110,9 +110,9 @@ export class ListComponent implements OnInit {
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
-      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésEnCours'))
-      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésRealise'))
-      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraitésNonRealise'))
+      chartLabels.push(this.mytranslate.get('admin.organe.list.Etatavancement'));
+      chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
+      chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
 
       // chartLabels.push('')
 
@@ -159,7 +159,7 @@ export class ListComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {;

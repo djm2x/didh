@@ -95,9 +95,9 @@ export class ExamenComponent implements OnInit {
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
-      chartLabels.push('En cours de réalisation');
-      chartLabels.push('Réalisé');
-      chartLabels.push('Non réalisé');
+      chartLabels.push(this.mytranslate.get('admin.organe.list.EnCours'));
+      chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
+      chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
 
       // chartLabels.push('')
 
@@ -120,7 +120,7 @@ export class ExamenComponent implements OnInit {
 
       this.dataEpuPie.next({
         chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        , title: this.mytranslate.get('admin.home.ExamenPériodiqueuniversell')
+        , title: this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle')
       });
 
     });
@@ -244,7 +244,7 @@ export class ExamenComponent implements OnInit {
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
       r.forEach(e => {

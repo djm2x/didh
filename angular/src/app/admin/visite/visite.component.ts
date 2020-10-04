@@ -50,7 +50,7 @@ export class VisiteComponent implements OnInit {
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
 
   pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'etat', title: 'Etat d’avancement des recommandations par visite'});
-  pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: 'Taux de recommandations par visite'});
+  pieChartSubjectC = new BehaviorSubject<IData>({table: 'visite', type: 'taux', title: this.mytranslate.get('admin.ps.list.Tauxderecommandationsparvisite')});
   visitePageSubject = new Subject();
   visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
@@ -100,9 +100,10 @@ export class VisiteComponent implements OnInit {
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
-      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesEnCours'))
-      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesRealise'))
-      chartLabels.push(this.mytranslate.get('admin.header.ProcéduresspécialesNonRealise'))
+      
+      chartLabels.push(this.mytranslate.get('admin.organe.list.Etatavancement'));
+      chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
+      chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
 
       // chartLabels.push('')
 
@@ -125,7 +126,7 @@ export class VisiteComponent implements OnInit {
 
       this.dataPie.next({
         chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        , title: this.mytranslate.get('admin.home.OrganesdeTraités')
+        , title: this.mytranslate.get('admin.home.Procéduresspéciales')
       });
 
     });
@@ -281,15 +282,16 @@ export class VisiteComponent implements OnInit {
 
       r = r.filter(e => e.name !== null);
       console.log(r);
-      const barChartLabels = r.map(e => e.name);
+      const barChartLabels = r.map(e => e.name.substring(0, 50) + '...');
       const barChartData = [
         // { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
         // { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },
         // { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
+
 
       r.forEach(e => {
         // barChartData[0].data.push(+e.p.toFixed(0));

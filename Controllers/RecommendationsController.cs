@@ -178,12 +178,15 @@ namespace Admin5.Controllers
                     .ThenInclude(e => e.Organisme)
                     .ToListAsync();
 
-            var list = list0.GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
+            var list = list0
+            // .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
+            .GroupBy(e => e.RecomOrgs.FirstOrDefault().Organisme.Label)
               
                 .Select(e => new
                 {
                     name = e.Key,
                     type = e.First().RecomOrgs.First().Organisme.Type,
+                    nameAr = e.First().RecomOrgs.First().Organisme.LabelAr,
                     p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
                     t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
@@ -257,7 +260,7 @@ namespace Admin5.Controllers
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
             var department = department0
                 .Where(e => e.RecomOrgs.Count > 0)
-                .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
+                .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.Label)
                 // .Select(e => new
                 // {
                 //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
@@ -556,7 +559,7 @@ namespace Admin5.Controllers
                 list = await _context.Axes
                     .Select(e => new
                     {
-                        table = lng == "fr" ? e.Abv : e.AbvAr,
+                        table = lng == "fr" ? e.Abv : e.LabelAr,
                         value = type == "taux" ? 
                             (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
                             (type == "etat" ? 
@@ -579,7 +582,7 @@ namespace Admin5.Controllers
 
                     .Select(e => new
                     {
-                        table = lng == "fr" ? e.Abv : e.AbvAr,
+                        table = lng == "fr" ? e.Abv : e.LabelAr,
                         value = type == "taux" ? 
                             (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
                             (type == "etat" ? 
@@ -601,7 +604,7 @@ namespace Admin5.Controllers
                     // })
                      .Select(e => new
                     {
-                        table = e.Mandat,
+                        table = lng == "fr" ? e.Mandat : e.MandatAr,
                         value = type == "taux" ? 
                             (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100 : 
                             (type == "etat" ? 

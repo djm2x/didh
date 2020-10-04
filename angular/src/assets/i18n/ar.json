@@ -10,15 +10,15 @@
       "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل",
       "OrganesdeTraités": "هيئات المعاهدات",
       "Procéduresspéciales": "الاجراءات الخاصة",
-      "ExamenPériodiqueuniverselleRealise": "Epu : Réalisé",
-      "ExamenPériodiqueuniverselleNonRealise": "Epu : Non Réalisé",
-      "ExamenPériodiqueuniverselleEnCours": "Epu : EnCours",
-      "OrganesdeTraitésRealise": "Organes de Traités : Réalisé",
-      "OrganesdeTraitésNonRealise": "Organes de Traités : Non Réalisé",
-      "OrganesdeTraitésEnCours": "Organes de Traités : EnCours",
-      "ProcéduresspécialesRealise": "Procédures spéciales : Réalisé",
-      "ProcéduresspécialesNonRealise": "Procédures spéciales : Non Réalisé",
-      "ProcéduresspécialesEnCours": "Procédures spéciales : EnCours",
+      "ExamenPériodiqueuniverselleRealise": "Réalisé",
+      "ExamenPériodiqueuniverselleNonRealise": "Non Réalisé",
+      "ExamenPériodiqueuniverselleEnCours": "EnCours",
+      "OrganesdeTraitésRealise": "Réalisé",
+      "OrganesdeTraitésNonRealise": "Non Réalisé",
+      "OrganesdeTraitésEnCours": "EnCours",
+      "ProcéduresspécialesRealise": "Réalisé",
+      "ProcéduresspécialesNonRealise": "Non Réalisé",
+      "ProcéduresspécialesEnCours": "EnCours",
       "Evènements": "تظاهرات",
       "Statistiques": "إحصائيات",
       "Recommandations": "توصيات",
@@ -42,7 +42,12 @@
       "OrganesdeTraités": "هيئات المعاهدات",
       "Procéduresspéciales": "الإجراءات الخاص",
       "Miseenœuvredesaxe": "تفعيل المحاور",
-      "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا"
+      "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا",
+      "Etatdavancementdesrecommandations–départements": "مركز التوصيات - الإدارات",
+      "Parlement": "البرلمان",
+      "Départementsgouvernementaux": "الدوائر الحكومية",
+      "Départementàpouvoirjudiciaire": "دائرة ذات سلطة قضائية",
+      "InstitutionsNationales": "المؤسسات الوطنية"
     },
     "epu": {
       "list": {
@@ -57,6 +62,7 @@
         "PLANDEMISEENOEUVRE": "مخطط التنفيذ",
         "Rapportmi-parcours": "التقرير نصف المرحلي",
         "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور",
+        "EtatAvancementderecommandationsparaxe": "تقدم التوصيات حسب المحور",
         "Tauxderecommandationsparaxe": "نسبة التوصيات حسب المحور",
         "AjouterExamen": "إضافة إستعراض",
         "ModifierExamen": "تعديل إستعراض"
@@ -69,6 +75,7 @@
       "Pièce-jointe": " المرفقات",
       "Telecharger": " تحميل",
       "list": {
+        "Tauxderecommandationsparorgane": "معدل التوصيات حسب الهيئة",
         "Organesdetraité": " هيئات المعاهدات",
         "Rapportnational": " التقرير الوطني",
         "Discoursduprésident": " كلمة رئيس الوفد",
@@ -79,6 +86,8 @@
         "Etatavancement": " التقدم المحرز",
         "Taux": " نسبة",
         "Réalisé": "منجز",
+        "NonRéalisé": "غير منجز",
+        "EnCours": "جارية",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "تنفيذ التوصيات حسب هيئات المعاهدات"
       },
       "update": {
@@ -117,6 +126,7 @@
       "Procédure_spéciale": "الاجراء الخاص",
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ التوصيات حسب الاجراءات الخاصة",
       "list": {
+        "Tauxderecommandationsparvisite": "معدل التوصية لكل زيارة",
         "MANDAT": " ولاية",
         "Date_de_la_visite": " تاريخ الزيارة",
         "RAPPORT_NATIONAL_DE_LA_VISITE": " التقرير الوطني للزيارة",

@@ -24,7 +24,7 @@ namespace Admin5.Controllers
             var list = await _context.Recommendations.Where(e => e.Axe != null).Include(e => e.Axe).ToListAsync();
 
             var list2 = list
-                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
+                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.LabelAr)
                 .Select(e => new
                 {
                     name = e.Key,
