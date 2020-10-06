@@ -33,8 +33,8 @@ export class UpdateComponent implements OnInit {
     this.myForm = this.fb.group({
       id: this.o.id,
       label: [this.o.label, Validators.required],
-      adresse: [this.o.adresse, Validators.required],
-      tel: [this.o.tel, Validators.required],
+      adresse: [this.o.adresse],
+      tel: [this.o.tel],
       type: [this.o.type],
     });
   }

@@ -54,6 +54,7 @@
         "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
         "Examen": "استعراض",
         "libelle": "الصياغة",
+        "libelleAr": "الصياغة عربي",
         "Realisé": "منجز ",
         "Rapportnational": "التقرير الوطني",
         "CompilationHCDHSOCIETECIVILE": "تجميع  مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني",
@@ -92,6 +93,7 @@
       },
       "update": {
         "ConventionProtocole": " إتفاقية/بروتوكول",
+        "ConventionProtocoleAr": "عربي إتفاقية/بروتوكول",
         "DateSignature": " تاريخ التوقيع",
         "Datederatification": " تاريخ المصادقة ",
         "Rapport": " تقرير",
@@ -249,6 +251,7 @@
       "update": {
         "Code": " رمز",
         "Synthèse": " تقرير توليفي",
+        "SynthèseAr": "عربي تقرير توليفي",
         "Recommandations": " توصيات",
         "Fiches_organismes": " ورقة المنظمات",
         "Mecanismes": " آلية",

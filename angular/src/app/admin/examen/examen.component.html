@@ -49,7 +49,7 @@
 
     <div class="col-md-12">
       <div class="chart-size">
-        <app-bar [dataSubject]="examenPageSubject"></app-bar>  
+        <app-bar [dataSubject]="examenPageSubject"></app-bar>
       </div>
     </div>
 
@@ -75,7 +75,7 @@
       <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
         <ng-container [matColumnDef]="columnDefs[0].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.epu.list.libelle' | translate }}</th>
-          <td mat-cell *matCellDef="let row">{{row[columnDefs[0].columnDef]}}</td>
+          <td mat-cell *matCellDef="let row">{{(mytranslate.langSync) === 'fr' ? row.libelle : row.libelleAr}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[1].columnDef">

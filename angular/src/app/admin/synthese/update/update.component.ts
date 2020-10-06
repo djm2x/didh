@@ -59,6 +59,7 @@ export class UpdateComponent implements OnInit {
       id: this.o.id,
       code: [this.o.code, Validators.required],
       detail: [this.o.detail, Validators.required],
+      detailAr: [this.o.detailAr, Validators.required],
       idUser: [this.o.idUser, Validators.required],
     });
   }

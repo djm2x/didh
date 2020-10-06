@@ -234,8 +234,9 @@ export class HomeComponent implements OnInit {
 
     this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
-      r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
       console.log(r);
+      // return
+      r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
 
       r.forEach(e => {
         listToShowPE.forEach(p => {
@@ -320,17 +321,16 @@ export class HomeComponent implements OnInit {
           const s = e.t - (e.p * e.t / 100) - (e.r * e.t / 100);
           barChartDataPE[2].data.push((s >= 0 ? s : -s).toFixed(0));
           console.log('PE')
-        } 
+        }
       })
 
       r.forEach(e => {
-        // console.log(e.type === 'PE') 
         // if (e.type === 'PE') {
         //   barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
         //   barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
         //   barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
         //   console.log('PE')
-        // } 
+        // }
         if (e.type === 'Autre') {
           barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
           barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
@@ -355,7 +355,7 @@ export class HomeComponent implements OnInit {
 
       this.departementSubjectPE.next({
         barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
-        , title: this.mytranslate.get('admin.home.Départementsgouvernementaux') 
+        , title: this.mytranslate.get('admin.home.Départementsgouvernementaux')
       });
 
       this.departementSubjectPJ.next({

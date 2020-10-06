@@ -99,7 +99,7 @@
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.synthese.list.DETAIL' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            {{subString(row[columnDefs[1].columnDef])}}
+            {{(mytranslate.langSync) === 'fr' ? subString(row.detail) : subString(row.detailAr)}}
           </td>
         </ng-container>
 

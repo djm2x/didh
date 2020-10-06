@@ -52,7 +52,7 @@ export class UpdateComponent implements OnInit {
     this.discoursFrom.subscribe(r => this.myForm.get('discours').setValue(r));
     this.rapportMiParcoursFrom.subscribe(r => this.myForm.get('rapportMiParcours').setValue(r));
     this.miseOeuvrePieceFrom.subscribe(r => this.myForm.get('miseOeuvrePiece').setValue(r));
-    
+
     setTimeout(() => {
       this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
       this.rapportNationalTo.next(this.o.rapportNational);
@@ -67,6 +67,7 @@ export class UpdateComponent implements OnInit {
     this.myForm = this.fb.group({
       id: this.o.id,
       libelle: [this.o.libelle, Validators.required],
+      libelleAr: [this.o.libelleAr, Validators.required],
       rapportNational: [this.o.rapportNational],
       discours: [this.o.discours],
       compilationHCDH: [this.o.compilationHCDH],

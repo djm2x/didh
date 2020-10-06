@@ -12,6 +12,7 @@ namespace Admin5.Models
 
         public int Id { get; set; }
         public string Nom { get; set; }
+        public string NomAr { get; set; }
         public string ConventionPiece { get; set; }
         public string MiseOeuvrePiece { get; set; }
         public string ObservationPiece { get; set; }

@@ -14,21 +14,21 @@
           <input matInput formControlName="label" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Tel</mat-label>
-          <input matInput formControlName="tel" required>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Adresse</mat-label>
-          <textarea matInput rows="6" formControlName="adresse" required></textarea>
-          <!-- <input matInput formControlName="adresse" required> -->
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Axe</mat-label>
-          <mat-select formControlName="idAxe">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
             <mat-option *ngFor="let e of ['', 'PE', 'PJ', 'IN', 'Autre']" [value]="e">{{ e }}</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Tel</mat-label>
+          <input matInput formControlName="tel" >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Adresse</mat-label>
+          <textarea matInput rows="6" formControlName="adresse" ></textarea>
+          <!-- <input matInput formControlName="adresse" required> -->
+        </mat-form-field>
+
 
       </form>
     </div>

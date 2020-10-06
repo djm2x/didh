@@ -88,7 +88,7 @@
         <div *ngFor="let e of navs; let i=index">
           <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
             <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active"
-              style="height: 40px !important; margin-right: 1px; background-color: #aaabab;">
+              style="height: 40px !important; margin-right: 1px; background-color: #aaabab; font-weight: bold;">
               <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span>
             </mat-list-item>
           </ng-container>

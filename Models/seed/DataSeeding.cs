@@ -248,7 +248,7 @@ namespace seed
             var faker = new Faker<Examen>(DataSeeding.lang)
                 .CustomInstantiator(f => new Examen { Id = id++ })
                 .RuleFor(o => o.Libelle, f => $"Examen-{id}")
-                .RuleFor(o => o.Libelle, f => $"مراجعة-{id}")
+                .RuleFor(o => o.LibelleAr, f => $"مراجعة-{id}")
                 .RuleFor(o => o.RapportNational, f => $"")
                 .RuleFor(o => o.CompilationHCDH, f => $"")
                 .RuleFor(o => o.ObservationFinale, f => $"")
@@ -386,7 +386,7 @@ namespace seed
                 .CustomInstantiator(f => new Traite { Id = id++ })
                 .RuleFor(o => o.Nom, f => f.PickRandom(list))
 
-                // .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
+                .RuleFor(o => o.NomAr, f => f.PickRandom(listAr))
 
                 .RuleFor(o => o.Discours, f => $"")
                 .RuleFor(o => o.DateRatification, f => f.Date.Past())
@@ -508,7 +508,7 @@ namespace seed
                 .RuleFor(o => o.Detail, f => f.PickRandom(list))
 
                 // .RuleFor(o => o.CodeAr, f => new Bogus.DataSets.Lorem("ar").Word())
-                // .RuleFor(o => o.DetailAr, f => f.PickRandom(listAr))
+                .RuleFor(o => o.DetailAr, f => f.PickRandom(listAr))
 
                 .RuleFor(o => o.IdRapport, f => f.Random.Number(1, 100))
                 .RuleFor(o => o.IdUser, f => f.Random.Number(1, 3));

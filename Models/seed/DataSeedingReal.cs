@@ -20,7 +20,7 @@ namespace seed
         public static ModelBuilder Organismes(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Organisme>().HasData(new Organisme[]{
-                new Organisme {Type = "Autre", Id = 1, Label = "HCP", LabelAr = "المندوبية السامية للتخطيط", Adresse = "", Tel = "" },
+                new Organisme {Type = "IN", Id = 1, Label = "HCP", LabelAr = "المندوبية السامية للتخطيط", Adresse = "", Tel = "" },
                 new Organisme {Type = "IN", Id = 2, Label = "INPPLC", LabelAr = "الهيئة الوطنية للنزاهة و الوقاية من الرشوة و محاربتها", Adresse = "", Tel = "" },
                 new Organisme {Type = "PE", Id = 3, Label = "Affaires Etrangères", LabelAr = "الشؤون الخارجية", Adresse = "", Tel = "" },
                 new Organisme {Type = "IN", Id = 4, Label = "CNDH", LabelAr = "المجلس الوطني لحقوق الإنسان", Adresse = "", Tel = "" },

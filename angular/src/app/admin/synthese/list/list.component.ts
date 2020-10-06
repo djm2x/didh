@@ -11,6 +11,7 @@ import { DetailComponent } from '../detail/detail.component';
 import { FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
 import { switchMap } from 'rxjs/operators';
+import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
   selector: 'app-list',
@@ -47,7 +48,8 @@ export class ListComponent implements OnInit {
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , private snack: SnackbarService, private route: ActivatedRoute, public session: SessionService) { }
+    , private snack: SnackbarService, private route: ActivatedRoute, public session: SessionService
+    , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc', this.session.user.idOrganisme, 0, 0, 0, 0, 0);

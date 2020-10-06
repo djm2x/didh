@@ -54,6 +54,7 @@
         "Examenpériodiqueuniversal": "Examen périodique universel",
         "Examen": "Examen",
         "libelle": "libelle",
+        "libelleAr": "libelle Ar",
         "Realisé": "Taux de recommandations realisé par axe",
         "Rapportnational": "Rapport national",
         "CompilationHCDHSOCIETECIVILE": "Compilation HCDH/SOCIETE CIVILE",
@@ -92,6 +93,7 @@
       },
       "update": {
         "ConventionProtocole": "Convention/Protocole",
+        "ConventionProtocoleAr": "Convention/Protocole Ar",
         "DateSignature": "Date Signature",
         "Datederatification": "Date de ratification",
         "Rapport": "Rapport",
@@ -252,6 +254,7 @@
       "update": {
         "Code": "Code",
         "Synthèse": "Synthèse",
+        "SynthèseAr": "Synthèse Ar",
         "Recommandations": "Recommandations",
         "Fiches_organismes": "Fiches organismes",
         "Mecanismes": "Mecanismes",

@@ -30,7 +30,7 @@ export class Organisme {
 export class Examen {
   id = 0;
   libelle = '';
-  // libelleAr = '';
+  libelleAr = '';
   rapportNational = '';
   compilationHCDH = '';
   observationFinale = '';
@@ -54,7 +54,7 @@ export class Notification {
 export class Traite {
   id = 0;
   nom = '';
-  // nomAr = '';
+  nomAr = '';
   dateSignature = new Date();
   dateRatification = new Date();
   idUser = 0;
@@ -96,6 +96,7 @@ export class Synthese {
   id = 0;
   code = '';
   detail = '';
+  detailAr = '';
   idRapport = null;
   idUser = 0;
   user = new User();
