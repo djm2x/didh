@@ -57,7 +57,7 @@ export class ListComponent implements OnInit {
   <li> Les mécanismes de communications individuelles </li>
 
   <li> Les observations générales</li>`;
-  text2 = this.text.substring(0, 300);
+  text2 = this.text.substring(0, 600);
 
   // tslint:disable-next-line:max-line-length
 
@@ -221,9 +221,9 @@ export class ListComponent implements OnInit {
     // });
 
     // return dialogRef.afterClosed();
-    const isSmall = this.text2.length === 300;
+    const isSmall = this.text2.length === 600;
 
-    this.text2 = isSmall ? this.text : this.text.substring(0, 300);
+    this.text2 = isSmall ? this.text : this.text.substring(0, 600);
   }
 
 

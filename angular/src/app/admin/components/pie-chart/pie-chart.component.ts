@@ -38,7 +38,7 @@ export class PieChartComponent implements OnInit {
       //position: 'chartArea',
       position: 'right',
       display: true,
-      align: "start",
+      align: 'center',
 
     },
     plugins: {

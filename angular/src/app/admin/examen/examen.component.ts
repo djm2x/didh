@@ -71,7 +71,7 @@ export class ExamenComponent implements OnInit {
   Aussi, dans le cadre de son engagement volontaire devant le Conseil des droits, consacré pour la deuxième
   fois après avoir présenté un premier rapport à mi-parcours en 2014, le Maroc a présenté son rapport à mi
   parcours relatif au suivi de la mise en œuvre des recommandations issues du 3ème cycle de l’EPU en 2019.`
-  text2 = this.text.substring(0, 300);
+  text2 = this.text.substring(0, 600);
   dataSource = [];
   columnDefs = [
     { columnDef: 'libelle', headName: 'libelle' },
@@ -214,9 +214,9 @@ export class ExamenComponent implements OnInit {
     // });
 
     // return dialogRef.afterClosed();
-    const isSmall = this.text2.length === 300;
+    const isSmall = this.text2.length === 600;
 
-    this.text2 = isSmall ? this.text : this.text.substring(0, 300);
+    this.text2 = isSmall ? this.text : this.text.substring(0, 600);
   }
 
 

@@ -224,6 +224,17 @@ export class HomeComponent implements OnInit {
       'Développement Social et Solidarité',
     ]
 
+    const listToShowPEAr = [
+      'الداخلية و DGSN',
+      'الاقتصاد والمالية والخدمة العامة',
+      'الزراعة ومصايد الأسماك البحرية',
+      'المعدات والمياه والبيئة',
+      'التواصل والثقافة',
+      'الدفاع الوطني والدرك الملكي',
+      'حقوق الإنسان والعلاقات مع البرلمان',
+      'التنمية الاجتماعية والتضامن',
+    ];
+
     const listToDelete = [
       'Chef du Gouvernement',
       'Observatoire National des Droits de l’Enfant',
@@ -239,7 +250,7 @@ export class HomeComponent implements OnInit {
       r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
 
       r.forEach(e => {
-        listToShowPE.forEach(p => {
+        listToShowPE.forEach((p, index) => {
           if (p.includes(e.name)) {
             const o = {
               name: p,
@@ -247,7 +258,7 @@ export class HomeComponent implements OnInit {
               r: e.r,
               t: e.t,
               type: e.type,
-              nameAr: (e as any).nameAr
+              nameAr: listToShowPEAr[index], // (e as any).nameAr
             };
             const i = listToWorkWith.findIndex(w => w.name.includes(o.name));
             if (i !== -1) {

@@ -88,7 +88,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Departement</mat-label>
+            <mat-label>{{ 'admin.recommandation.list.DEPARTEMENT' | translate }}</mat-label>
             <mat-select formControlName="idOrganisme">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of organismes | async" [value]="e.id">
@@ -132,7 +132,7 @@
           <ng-template matTabContent>
             <div class="col-md-12">
               <div class="chart-size">
-                <app-bar [col]="12" [dataSubject]="examenPageSubject"></app-bar> 
+                <app-bar [col]="12" [dataSubject]="examenPageSubject"></app-bar>
               </div>
             </div>
           </ng-template>
@@ -179,7 +179,7 @@
 
 
 
-        
+
         <!-- Mise en œuvre des recommandations par départements -->
         <div class="col-md-12 mt-5">
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%; margin-bottom: 2%; ">
@@ -197,19 +197,19 @@
                 <app-bar [col]="12" [dataSubject]="departementSubjectPE"></app-bar>
               </div>
             </div>
-<!--     
+<!--
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>
               </div>
             </div>
-    
+
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectIN"></app-bar>
               </div>
             </div>
-    
+
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>

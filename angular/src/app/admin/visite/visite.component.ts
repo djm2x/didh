@@ -61,7 +61,7 @@ export class VisiteComponent implements OnInit {
   sur les droits de l’homme. Elles présentent des rapports annuels au Conseil des droits de l’homme et
   présentent aussi des rapports à l’Assemblée générale des Nations Unies.`;
 
-  text2 = this.text.substring(0, 300);
+  text2 = this.text.substring(0, 600);
 
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
 
@@ -174,9 +174,9 @@ export class VisiteComponent implements OnInit {
     // });
 
     // return dialogRef.afterClosed();
-    const isSmall = this.text2.length === 300;
+    const isSmall = this.text2.length === 600;
 
-    this.text2 = isSmall ? this.text : this.text.substring(0, 300);
+    this.text2 = isSmall ? this.text : this.text.substring(0, 600);
   }
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.visites.getList(startIndex, pageSize, sortBy, sortDir).subscribe(

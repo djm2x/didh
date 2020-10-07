@@ -11,7 +11,7 @@
     <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
       <h5 style="color: #737473; margin: 5px 0 10px 5px;text-indent:1cm;" >
         <span [innerHTML]="text2"></span>
-         <b style="color: #286293; cursor: pointer;" (click)="moreInfo()">  {{text2.length === 300 ? 'Lire la suite' : 'Réduire'}}</b>
+         <b style="color: #286293; cursor: pointer;" (click)="moreInfo()">  {{text2.length === 600 ? 'Lire la suite' : 'Réduire'}}</b>
       </h5>
     </ng-container>
     <ng-template #elseTemplate>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="col-md-6">
-      <app-pie-chart [positionLegendBottom]="true" [withGraphe]="800" [showLegend]="true" [obs]="pieChartSubjectC">
+      <app-pie-chart [positionLegendBottom]="(mytranslate.lang | async) === 'fr' ? true : false" [withGraphe]="800" [showLegend]="true" [obs]="pieChartSubjectC">
       </app-pie-chart>
     </div>
 

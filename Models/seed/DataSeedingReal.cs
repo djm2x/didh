@@ -67,11 +67,11 @@ namespace seed
                 new Organisme {Type = "PE", Id = 46, Label = "Environnement", LabelAr = "البيئة", Adresse = "", Tel = "" },
                 new Organisme {Type = "PE", Id = 47, Label = "Pêche maritime", LabelAr = "الصيد البحري", Adresse = "", Tel = "" },
                 new Organisme {Type = "IN", Id = 48, Label = "Conseil de la communauté marocaine à l’étranger", LabelAr = "مجلس الجالية المغربية بالخارج", Adresse = "", Tel = "" },
-                new Organisme {Type = "", Id = 49, Label = "ONGs", LabelAr = "undefined", Adresse = "", Tel = "" },
-                new Organisme {Type = "", Id = 50, Label = "Partis Politiques", LabelAr = "undefined", Adresse = "", Tel = "" },
-                new Organisme {Type = "", Id = 51, Label = "Affaires générales du gouvernement", LabelAr = "undefined", Adresse = "", Tel = "" },
-                new Organisme {Type = "", Id = 52, Label = "Rabita Mohammedia des Oulémas", LabelAr = "undefined", Adresse = "", Tel = "" },
-                new Organisme {Type = "PE", Id = 53, Label = "Eaux et Forets", LabelAr = "undefined", Adresse = "", Tel = "" },
+                new Organisme {Type = "", Id = 49, Label = "ONGs", LabelAr = "المنظمات غير الحكومية", Adresse = "", Tel = "" },
+                new Organisme {Type = "", Id = 50, Label = "Partis Politiques", LabelAr = "أحزاب سياسية", Adresse = "", Tel = "" },
+                new Organisme {Type = "", Id = 51, Label = "Affaires générales du gouvernement", LabelAr = "شؤون الحكومة العامة", Adresse = "", Tel = "" },
+                new Organisme {Type = "", Id = 52, Label = "Rabita Mohammedia des Oulémas", LabelAr = "الرابطة المحمدية للعلماء", Adresse = "", Tel = "" },
+                new Organisme {Type = "PE", Id = 53, Label = "Eaux et Forets", LabelAr = "المياه والغابات", Adresse = "", Tel = "" },
             });
 
             return modelBuilder;
