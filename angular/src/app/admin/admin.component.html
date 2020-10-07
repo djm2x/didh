@@ -88,13 +88,15 @@
         <div *ngFor="let e of navs; let i=index">
           <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
             <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active"
-              style="height: 40px !important; margin-right: 1px; background-color: #aaabab; font-weight: bold;">
-              <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span>
+              style="height: 40px !important; margin-right: 1px; background-color: #aaabab;">
+              <!-- <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span> -->
+              <span class="myspan" >{{e.name | async | translate}}</span>
             </mat-list-item>
           </ng-container>
           <ng-template #elseTemplate>
             <mat-list-item [matMenuTriggerFor]="i">
-              <span class="myspan" [style.width]="e.width">{{e.name | async | translate}}</span>
+              <!-- <span class="myspan" [style.width]="e.width">{{e.name | async | translate}}</span> -->
+              <span class="myspan" >{{e.name | async | translate}}</span>
             </mat-list-item>
 
             <mat-menu #i="matMenu" xPosition="after">
@@ -134,12 +136,14 @@
         <div *ngFor="let e of navs2; let i=index">
           <ng-container *ngIf="true; else elseTemplate">
             <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active">
-              <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span>
+              <!-- <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span> -->
+              <span class="myspan">{{e.name | async | translate}}</span>
             </mat-list-item>
           </ng-container>
           <ng-template #elseTemplate>
             <mat-list-item [matMenuTriggerFor]="i" [ngClass]="{'router-link-active': e.route[0].includes('mecanisme')}">
-              <span class="myspan" [style.width]="e.width">{{e.name}}</span>
+              <!-- <span class="myspan" [style.width]="e.width">{{e.name}}</span> -->
+              <span class="myspan">{{e.name}}</span>
               &nbsp;<mat-icon style="color: white;">keyboard_arrow_down</mat-icon>
             </mat-list-item>
 

@@ -47,6 +47,22 @@ export class VisiteComponent implements OnInit {
   message: any;
   formData = new FormData();
 
+  text = `Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
+  de la situation spécifique d’un pays ou des questions thématiques relatives aux des droits de l’homme.
+  Les mandats des procédures spéciales chargent en général les titulaires de ces mandats d’examiner, de
+  superviser, conseiller et faire rapport sur les situations des droits de l’homme dans des pays ou territoires
+  donnés ( mandats par pays), ou sur des questions thématiques relatives aux droits de l’homme dans le monde
+  entier ( mandats thématiques). Les titulaires des mandats sont des experts indépendants qui peuvent s’appeler
+  rapporteurs spéciaux, représentants, représentants spéciaux, experts indépendants ou membres de groupes de
+  travail.
+
+  les procédures spéciales effectuent des visites dans les pays (missions d’enquête), réalisent des études
+  thématiques, organisent des consultations d’experts et contribuent à l’élaboration des normes internationales
+  sur les droits de l’homme. Elles présentent des rapports annuels au Conseil des droits de l’homme et
+  présentent aussi des rapports à l’Assemblée générale des Nations Unies.`;
+
+  text2 = this.text.substring(0, 300);
+
   dataPs = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
 
   pieChartSubject = new BehaviorSubject<IData>({table: 'visite', type: 'etat', title: 'Etat d’avancement des recommandations par visite'});
@@ -100,7 +116,7 @@ export class VisiteComponent implements OnInit {
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
-      
+
       chartLabels.push(this.mytranslate.get('admin.organe.list.Etatavancement'));
       chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
       chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
@@ -151,13 +167,16 @@ export class VisiteComponent implements OnInit {
     return dialogRef.afterClosed();
   }
   moreInfo() {
-    const dialogRef = this.dialog.open(ModalComponent, {
-      width: '80vw',
-      disableClose: true,
-      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
-    });
+    // const dialogRef = this.dialog.open(ModalComponent, {
+    //   width: '80vw',
+    //   disableClose: true,
+    //   direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
+    // });
 
-    return dialogRef.afterClosed();
+    // return dialogRef.afterClosed();
+    const isSmall = this.text2.length === 300;
+
+    this.text2 = isSmall ? this.text : this.text.substring(0, 300);
   }
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.visites.getList(startIndex, pageSize, sortBy, sortDir).subscribe(

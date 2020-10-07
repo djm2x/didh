@@ -36,11 +36,11 @@ export class AdminComponent implements OnInit {
     // ] },
 
     { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'], width: '95px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'], /*width: '95px' , */children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
     // { name: 'Statistiques', route: ['/admin/state'], width: '100px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['/admin/evenement'], width: '100px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['/admin/evenement'], /*width: '100px' ,*/ children: [] },
     // { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' , children: [] },
     // { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' , children: [] },
   ];
@@ -56,10 +56,10 @@ export class AdminComponent implements OnInit {
     // { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: this.mytranslate.getObs('admin.header.Evènements'), route: ['/admin/evenement'], width: '80px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Statistiques'), route: ['/admin/state'], width: '100px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Statistiques'), route: ['/admin/state'], /*width: '150px' , */children: [] },
     // { name: 'Documentation', route: ['documentation'], width: '100px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Recommandations'), route: ['/admin/recommendation'], width: '113px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Synthèse'), route: ['/admin/synthese'], width: '170px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.Recommandations'), route: ['/admin/recommendation'], /*width: '150px' ,*/ children: [] },
+    { name: this.mytranslate.getObs('admin.header.Synthèse'), route: ['/admin/synthese'], /*width: '170px' ,*/ children: [] },
   ];
 
   menus = [

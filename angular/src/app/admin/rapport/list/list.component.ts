@@ -45,6 +45,20 @@ export class ListComponent implements OnInit {
     return e;
   });
 
+  text = `Les organes de traités sont des comités d’experts indépendants qui surveillent l’application des principaux
+  traités internationaux relatifs aux droits de l’homme et de leurs protocoles facultatifs. Ils ont été créés en
+  fonction de l’instrument qu’ils sont chargés de superviser l’application.
+
+  La surveillance de la mise en œuvre des traités internationaux des droits de l’Homme par les organes de
+  traités comprend trois missions principales:
+
+  <li> L’examen des rapports périodiques </li>
+
+  <li> Les mécanismes de communications individuelles </li>
+
+  <li> Les observations générales</li>`;
+  text2 = this.text.substring(0, 300);
+
   // tslint:disable-next-line:max-line-length
 
 
@@ -200,13 +214,16 @@ export class ListComponent implements OnInit {
   }
 
   moreInfo() {
-    const dialogRef = this.dialog.open(ModalComponent, {
-      width: '80vw',
-      disableClose: true,
-      direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
-    });
+    // const dialogRef = this.dialog.open(ModalComponent, {
+    //   width: '80vw',
+    //   disableClose: true,
+    //   direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
+    // });
 
-    return dialogRef.afterClosed();
+    // return dialogRef.afterClosed();
+    const isSmall = this.text2.length === 300;
+
+    this.text2 = isSmall ? this.text : this.text.substring(0, 300);
   }
 
 
