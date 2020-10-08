@@ -11,7 +11,7 @@
       <ul *ngIf="type === 'cercle'">
         <li>En cours : {{o.p.toFixed(2)}}</li>
         <li>Réaliser : {{o.r.toFixed(2)}}</li>
-        <li>Taux : {{o.t.toFixed(2)}}</li>
+        <li>Non réalisé' : {{o.t.toFixed(2)}}</li>
       </ul>
 
       <div *ngIf="type === 'bar'">
@@ -19,7 +19,7 @@
           <li style="font-weight: bold;">{{e.name}}</li>
           <li>En cours : {{e.p.toFixed(2)}}</li>
           <li>Réaliser : {{e.r.toFixed(2)}}</li>
-          <li>Taux : {{e.t.toFixed(2)}}</li>
+          <li>Non réalisé' : {{e.t.toFixed(2)}}</li>
         </ul>
       </div>
 

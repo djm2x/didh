@@ -54,7 +54,7 @@ export class ListComponent implements OnInit {
   visites = this.uow.visites.get();
   organes = this.uow.organes.get();
   pays = this.uow.pays.get();
-  cycles = [];
+  cycles = this.uow.cycles.get();
   etats = this.uow.etats;
   myForm: FormGroup;
   //
@@ -91,12 +91,12 @@ export class ListComponent implements OnInit {
       }
     );
 
-    this.uow.cycles.get().subscribe(r => {
-      this.cycles = r as any[];
-      if (this.cycles.length !== 0) {
-        this.myForm.get('idCycle').patchValue(this.cycles[0].id);
-      }
-    });
+    // this.uow.cycles.get().subscribe(r => {
+    //   this.cycles = r as any[];
+    //   if (this.cycles.length !== 0) {
+    //     this.myForm.get('idCycle').patchValue(this.cycles[0].id);
+    //   }
+    // });
 
     this.route.queryParams.subscribe(params => {
       const id = params['data'];

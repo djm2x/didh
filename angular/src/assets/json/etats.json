@@ -1,6 +1,5 @@
 [
     {"name": "Réalisé", "nameAr": "منجز" },
     {"name": "En cours", "nameAr": "في طور" },
-    {"name": "En continue", "nameAr": "مستمر" },
     {"name": "Non réalisé", "nameAr": "غير منجز" }
 ]

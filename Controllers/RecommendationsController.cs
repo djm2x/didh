@@ -159,7 +159,7 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            int recommendationsCount = _context.Recommendations.Count();
+            // int recommendationsCount = _context.Recommendations.Count();
 
             // var list0 = await _context.Recommendations
             //         .Where(e => e.RecomOrgs.Count > 0)
@@ -195,14 +195,23 @@ namespace Admin5.Controllers
                 name = e.Key,
                 type = e.First().Organisme.Type,
                 nameAr = e.First().Organisme.LabelAr,
-                p = e.Where(s => s.Recommendation.EtatAvancementChiffre != 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.Count(),
-                r = e.Where(s => s.Recommendation.EtatAvancementChiffre == 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.Count(),
-                t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                // p = e.Where(s => s.Recommendation.EtatAvancementChiffre < 100 && s.Recommendation.EtatAvancementChiffre > 0).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.Count(),
+                // r = e.Where(s => s.Recommendation.EtatAvancementChiffre == 100).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.Count(),
+                // n = e.Where(s => s.Recommendation.EtatAvancementChiffre == 0).Sum(r => r.Recommendation.EtatAvancementChiffre) / e.Count(),
+
+                p = e.Where(s => s.Recommendation.EtatAvancementChiffre < 100 && s.Recommendation.EtatAvancementChiffre > 0).Count(),
+                r = e.Where(s => s.Recommendation.EtatAvancementChiffre == 100).Count(),
+                n = e.Where(s => s.Recommendation.EtatAvancementChiffre == 0).Count(),
+
+
+                // t = (double.Parse(e.Count().ToString()) * 100) / recommendationsCount,
+                t = e.Count(),
             })
             .ToList();
 
 
-            return Ok(list.Where(e => e.r != 0));
+            return Ok(list);
+            // return Ok(new {list, count = recommendationsCount});
         }
 
         [HttpGet]

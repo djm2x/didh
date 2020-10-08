@@ -53,7 +53,7 @@ export class BarComponent implements OnInit {
         render: (args) => {
           const label = args.label;
           const value = args.value;
-          return  label + ': ' + value;
+          return label + ': ' + value;
         }
       }
     }
@@ -97,23 +97,25 @@ export class BarComponent implements OnInit {
 
     this.dataSubject.subscribe((r: { barChartLabels: Label[], barChartData: ChartDataSets[], title: string }) => {
       this.title = r.title;
-      this.barChartLabels = r.barChartLabels;
+      this.barChartLabels = r.barChartLabels.map(e => e.toString().substring(0, 35) + ' ...');
       this.barChartData = r.barChartData;
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
       // console.log(this.barChartData)
 
-      // this.barChartLabels.forEach((e, i) => {
-      //     this.list.push({
-      //       name: e.toString(),
-      //       p: this.barChartData.find(f => f.label === 'En cours').data[i] as number,
-      //       r: this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
-      //       t: this.barChartData.find(f => f.label === 'Non réalisé').data[i] as number,
-      //       // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
-      //     });
-      // });
+      r.barChartLabels.forEach((e, i) => {
+        this.list.push({
+          name: e.toString(),
+          p: +this.barChartData.find(f => f.label === 'En cours').data[i] as number,
+          r: +this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
+          t: +this.barChartData.find(f => f.label.toLowerCase() === 'Non réalisé'.toLowerCase()).data[i] as number,
+          // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
+        });
+      });
 
+
+      // console.log(this.list)
 
     });
   }
