@@ -1,11 +1,11 @@
 import { SessionService } from './../../shared/session.service';
-import {  Examen } from 'src/app/Models/models';
+import { Examen } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
 import { merge, Subject, BehaviorSubject, Observable } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
-import { HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { ActivatedRoute } from '@angular/router';
@@ -28,49 +28,7 @@ export class ExamenComponent implements OnInit {
   resultsLength = 0;
   isRateLimitReached = false;
 
-  text = `Etabli par la résolution 60/251 de l’Assemblée générale des Nations Unies, adoptée le 15 mars 2006, l’Examen
-  Périodique Universel (EPU) est un processus mené par les Etats, dans le cadre des travaux du Groupe de
-  travail sur l’Examen périodique universel constitué des 47 États membres du Conseil des droits de l’Homme,
-  qui a pour fonction d’examiner et de promouvoir le suivi des obligations et des engagements de tous les
-  États membres des Nations Unies dans le domaine du respect, de la promotion et de la réalisation effective
-  de tous les droits de l’Homme sur le terrain, et ce tous les quatre ans et demi.
-
-  Ce mécanisme consiste à examiner le degré de mise en œuvre des obligations des Etats à la lumière notamment
-  de la Charte des Nations Unies, la Déclaration universelle des droits de l’Homme (DUDH) et des instruments
-  relatifs aux droits de l’Homme auxquelles l’État examiné est partie. Il se base sur trois sources
-  d’information :
-  <li> un rapport présenté par l’État examiné (vingt pages) ; </li>
-  <li> une compilation établie par le Haut-Commissariat des Nations Unies aux droits de l’homme (HCDH) sur la
-    base des informations fournies par les organes de traités, les procédures spéciales et les agences des
-    Nations Unies (dix pages) ; </li>
-  <li> et un résumé établi par le HCDH des communications présentées par d’autres parties prenantes notamment
-    les organisations de la société civile et les institutions nationales des droits de l’Homme (dix pages).
-  </li>
-  L’examen au sein du Groupe de travail sur l’EPU se déroule à Genève en trois étapes :
-  <li> le dialogue interactif d’une durée de trois heures et demi qui a lieu lors des sessions du Groupe de
-    travail sur l’EPU qui se tiennent trois fois par an en janvier, avril et octobre, à raison de 14 États
-    examinés par session. </li>
-  <li> L’adoption « technique » du rapport final de l’EPU, élaboré par la troïka, listant les recommandations
-    faites à l’État examiné lors de la session du Groupe de travail de l’EPU. Ce rapport comprend les
-    questions, les observations et les recommandations formulées par les États au pays examiné, ainsi que les
-    réponses de ce dernier. L’État examiné a la possibilité de formuler des commentaires préliminaires sur les
-    recommandations en choisissant de les accepter ou d’en prendre note. Les recommandations acceptées et
-    celles notées sont incluses dans le rapport.</li>
-  <li> l’adoption du document final lors d’une séance plénière du Conseil des droits de l’Homme. Au cours de
-    cette séance, l’État examiné peut répondre aux questions et aux points qui n’ont pas été suffisamment
-    traités par le Groupe de travail et donner suite aux recommandations qui ont été formulées par les États
-    au cours de l’examen. A cette étape, les États Membres, les institutions nationales des droits de l’homme,
-    et les ONG peuvent exprimer leur opinion sur le document final. Le résultat de chaque examen est un
-    "document final".</li>
-  Les recommandations acceptées doivent être mises en œuvre et faire ainsi l’objet d’un suivi de la part de
-  l’Etat examiné durant la période considérée et qui sépare les deux examens.
-  Le Maroc a été examiné par le mécanisme de l’EPU en 2008 au titre son premier cycle, en 2012 au titre de
-  son second cycle et en 2017 au titre de son troisième cycle. le Maroc a fait l’objet de 148
-  recommandations dont 140 ont été acceptées à l’issue du 2ème cycle de l’EPU, et de 244 recommandations
-  dont 191 ont été accepté, et 44 notées et 9 refusées au titre du 3ème cycle de l’EPU.
-  Aussi, dans le cadre de son engagement volontaire devant le Conseil des droits, consacré pour la deuxième
-  fois après avoir présenté un premier rapport à mi-parcours en 2014, le Maroc a présenté son rapport à mi
-  parcours relatif au suivi de la mise en œuvre des recommandations issues du 3ème cycle de l’EPU en 2019.`
+  text = '';
   text2 = this.text.substring(0, 600);
   dataSource = [];
   columnDefs = [
@@ -92,19 +50,21 @@ export class ExamenComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  pieChartSubjectC = new BehaviorSubject<IData>({table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe')});
-  pieChartSubject = new BehaviorSubject<IData>({table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe')});
-  pieChartSubjectR = new BehaviorSubject<IData>({table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé')});
+  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
+  pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
+  pieChartSubjectR = new BehaviorSubject<IData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
 
   dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, nbt: number, nbp: number, nbr: number }>();
 
   examenPageSubject = new Subject();
   dataEpuPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , private snack: SnackbarService, @Inject('BASE_URL') public url: string
+    , private http: HttpClient, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
+
+
     // this.stateMecanisme();
     this.stateAxe();
     this.stateOneOFMecanisme();
@@ -266,7 +226,7 @@ export class ExamenComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'examen'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: { fileName, folder: 'examen' } });
   }
 
 
@@ -278,7 +238,7 @@ export class ExamenComponent implements OnInit {
       this.dataEpu.next(r.epu);
       // r.epu.p = +(r.epu.p * r.epu.t / 100).toFixed(0);
       // r.epu.r = +(r.epu.r * r.epu.t / 100).toFixed(0);
-      console.log({r: r.epu,});
+      console.log({ r: r.epu, });
     });
   }
 

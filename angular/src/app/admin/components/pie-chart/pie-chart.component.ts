@@ -18,8 +18,9 @@ export class PieChartComponent implements OnInit {
   // @Input() mytitle: '';
   @Input() obs = new Subject<IData>();
   @Input() public showLegend = false;
-  @Input() withGraphe = 0;
+  @Input() withGraphe = 1000;
   @Input() public positionLegendBottom = false;
+  @Input() canvasHeight = 400;
 
   title = '' || null;
   // Pie
@@ -39,7 +40,10 @@ export class PieChartComponent implements OnInit {
       position: 'right',
       display: true,
       align: 'center',
-
+      fullWidth: true,
+      labels: {
+        fontSize: 16,
+      }
     },
     plugins: {
       labels: {
@@ -113,19 +117,19 @@ export class PieChartComponent implements OnInit {
 
       this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
         // console.log(r)
-        this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
+        this.pieChartLabels = r.map(e => e.table.substring(0, 40) + ' ...');
         this.pieChartData = r.map(e => +e.value.toFixed(0));
         this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
 
-        // this.pieChartLabels.forEach((e, i) => {
-        //   const value = this.pieChartData[i] as number;
-        //   if (value !== 0) {
-        //     this.list.push({
-        //       name: e.toString(),
-        //       value: this.pieChartData[i] as number,
-        //     });
-        //   }
-        // });
+        this.pieChartLabels.forEach((e, i) => {
+          const value = this.pieChartData[i] as number;
+          if (value !== 0) {
+            this.list.push({
+              name: r[i].table.toString(),
+              value: this.pieChartData[i] as number,
+            });
+          }
+        });
 
       });
 

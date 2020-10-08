@@ -1,4 +1,4 @@
-{
+﻿{
   "admin": {
     "lang": "Langage",
     "Enregistre": "Enregistre",
@@ -46,7 +46,7 @@
       "Etatdavancementdesrecommandations–départements": "Etat d’avancement des recommandations – départements",
       "Parlement": "Parlement",
       "Départementsgouvernementaux": "Départements gouvernementaux",
-      "Départementàpouvoirjudiciaire": "Département à pouvoir judiciaire",
+      "Départementàpouvoirjudiciaire": "Pouvoir Judiciaire",
       "InstitutionsNationales": "Institutions Nationales"
     },
     "epu": {

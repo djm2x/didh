@@ -53,6 +53,9 @@ export class PieComponent implements OnInit {
       position: 'right',
       display: false,
       align: 'center',
+      labels: {
+        fontSize: 16,
+      }
     },
     plugins: {
       labels: {
@@ -110,6 +113,16 @@ export class PieComponent implements OnInit {
       this.pieChartColors[0].backgroundColor = r.chartColors; // this.getColors(this.pieChartLabels.length);
 
       this.arr = r.chartData.map((e, i) => i);
+      console.log(r)
+      this.pieChartLabels.forEach((e, i) => {
+        const value = this.pieChartData[i] as number;
+        if (value !== 0) {
+          this.list.push({
+            name: e.toString(),
+            value: this.pieChartData[i] as number,
+          });
+        }
+      });
     });
 
   }

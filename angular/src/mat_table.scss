@@ -13,8 +13,13 @@
   .mat-sort-header-button ,.mat-header-cell {
     font-weight: bolder !important;
     color: white !important;
+    font-size: 0.95em;
     text-transform: capitalize !important;
   }
+}
+
+.mat-cell {
+  font-size: 17px;
 }
 
 // .mat-header-row .mat-sort-header-button {

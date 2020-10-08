@@ -1,4 +1,4 @@
-{
+﻿{
   "admin": {
     "lang": "لغة",
     "Enregistre": "حفظ",
@@ -6,7 +6,7 @@
     "header": {
       "SessionsDH": "دورات  مجلس حقوق الانسان",
       "Questionnaires": "استبيانات",
-      "Documentation": "توثيق",
+      "Documentation": "أجندة الفحص",
       "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل",
       "OrganesdeTraités": "هيئات المعاهدات",
       "Procéduresspéciales": "الاجراءات الخاصة",
@@ -43,17 +43,17 @@
       "Procéduresspéciales": "الإجراءات الخاص",
       "Miseenœuvredesaxe": "تفعيل المحاور",
       "Miseenœuvredesrecommandationspardépartements": "تنفيذ التوصيات حسب القطاعا",
-      "Etatdavancementdesrecommandations–départements": "مركز التوصيات - الإدارات",
+      "Etatdavancementdesrecommandations–départements": "وضعية التنفيذ حسب المؤسسات",
       "Parlement": "البرلمان",
-      "Départementsgouvernementaux": "الدوائر الحكومية",
-      "Départementàpouvoirjudiciaire": "دائرة ذات سلطة قضائية",
+      "Départementsgouvernementaux": "القطاعات الحكومية",
+      "Départementàpouvoirjudiciaire": "السلطة القضائية",
       "InstitutionsNationales": "المؤسسات الوطنية"
     },
     "epu": {
       "list": {
         "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
         "Examen": "استعراض",
-        "libelle": "الصياغة",
+        "libelle": "الدورة",
         "libelleAr": "الصياغة عربي",
         "Realisé": "منجز ",
         "Rapportnational": "التقرير الوطني",
@@ -63,8 +63,8 @@
         "PLANDEMISEENOEUVRE": "مخطط التنفيذ",
         "Rapportmi-parcours": "التقرير نصف المرحلي",
         "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور",
-        "EtatAvancementderecommandationsparaxe": "تقدم التوصيات حسب المحور",
-        "Tauxderecommandationsparaxe": "نسبة التوصيات حسب المحور",
+        "EtatAvancementderecommandationsparaxe": "وضعية التنفيذ حسب المحاور",
+        "Tauxderecommandationsparaxe": "التوصيات حسب المحاور",
         "AjouterExamen": "إضافة إستعراض",
         "ModifierExamen": "تعديل إستعراض"
       }
@@ -76,7 +76,7 @@
       "Pièce-jointe": " المرفقات",
       "Telecharger": " تحميل",
       "list": {
-        "Tauxderecommandationsparorgane": "معدل التوصيات حسب الهيئة",
+        "Tauxderecommandationsparorgane": "التوصيات حسب الهيئات",
         "Organesdetraité": " هيئات المعاهدات",
         "Rapportnational": " التقرير الوطني",
         "Discoursduprésident": " كلمة رئيس الوفد",
@@ -84,12 +84,12 @@
         "Observationsfinales": " الملاحظات النهائية",
         "Rapportparallèle": " تقرير موازي",
         "PLANDEMISEENOEUVRE": " مخطط التنفيذ",
-        "Etatavancement": " التقدم المحرز",
+        "Etatavancement": " في طور الإنجاز",
         "Taux": " نسبة",
         "Réalisé": "منجز",
         "NonRéalisé": "غير منجز",
-        "EnCours": "جارية",
-        "MiseenœuvredesrecommandationsparOrganesdeTraités": "تنفيذ التوصيات حسب هيئات المعاهدات"
+        "EnCours": "في طور الإنجاز",
+        "MiseenœuvredesrecommandationsparOrganesdeTraités": "وضعية التنفيذ حسب هيئات المعاهدات"
       },
       "update": {
         "ConventionProtocole": " إتفاقية/بروتوكول",

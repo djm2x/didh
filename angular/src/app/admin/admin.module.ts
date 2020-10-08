@@ -31,13 +31,13 @@ import { MyTranslateService } from '../my.translate.service';
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr' },
     // {
-    //   provide: MAT_DIALOG_DEFAULT_OPTIONS, 
+    //   provide: MAT_DIALOG_DEFAULT_OPTIONS,
     //   useValue: { hasBackdrop: true, direction: mytranslate.langSync === 'fr' ? 'ltr' : 'rtl', height: '500px' }
     // }
     // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     // {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ]
 })
-export class AdminModule { 
+export class AdminModule {
   constructor(public mytranslate: MyTranslateService) {}
 }

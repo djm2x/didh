@@ -47,19 +47,7 @@ export class VisiteComponent implements OnInit {
   message: any;
   formData = new FormData();
 
-  text = `Les procédures spéciales sont des mécanismes mis en place par le Conseil des droits de l’Homme qui s’occupent
-  de la situation spécifique d’un pays ou des questions thématiques relatives aux des droits de l’homme.
-  Les mandats des procédures spéciales chargent en général les titulaires de ces mandats d’examiner, de
-  superviser, conseiller et faire rapport sur les situations des droits de l’homme dans des pays ou territoires
-  donnés ( mandats par pays), ou sur des questions thématiques relatives aux droits de l’homme dans le monde
-  entier ( mandats thématiques). Les titulaires des mandats sont des experts indépendants qui peuvent s’appeler
-  rapporteurs spéciaux, représentants, représentants spéciaux, experts indépendants ou membres de groupes de
-  travail.
-
-  les procédures spéciales effectuent des visites dans les pays (missions d’enquête), réalisent des études
-  thématiques, organisent des consultations d’experts et contribuent à l’élaboration des normes internationales
-  sur les droits de l’homme. Elles présentent des rapports annuels au Conseil des droits de l’homme et
-  présentent aussi des rapports à l’Assemblée générale des Nations Unies.`;
+  text = ``;
 
   text2 = this.text.substring(0, 600);
 
@@ -301,7 +289,8 @@ export class VisiteComponent implements OnInit {
 
       r = r.filter(e => e.name !== null);
       console.log(r);
-      const barChartLabels = r.map(e => e.name.substring(0, 50) + '...');
+      // const barChartLabels = r.map(e => e.name.substring(0, 50) + '...');
+      const barChartLabels = r.map(e => e.name);
       const barChartData = [
         // { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
         // { data: [], label: this.mytranslate.get('admin.organe.list.Taux') },

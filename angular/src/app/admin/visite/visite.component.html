@@ -6,20 +6,7 @@
       {{ 'admin.ps.Procédure_spéciale' | translate}}
     </button>
   </div>
-  <section>
-    <!-- <h3>Accueil</h3> -->
-    <ng-container *ngIf="(mytranslate.langSync) === 'fr'; else elseTemplate">
-      <h5 style="color: #737473; margin: 5px 0 10px 5px;text-indent:1cm;" >
-        <span [innerHTML]="text2"></span>
-         <b style="color: #286293; cursor: pointer;" (click)="moreInfo()">  {{text2.length === 600 ? 'Lire la suite' : 'Réduire'}}</b>
-      </h5>
-    </ng-container>
-    <ng-template #elseTemplate>
-      <p>
-        لتتواصل معه السيدة جيهان
-      </p>
-    </ng-template>
-  </section>
+  <app-intros mecanisme="ps"></app-intros>
 
   <div class="row justify-content-center">
     <!-- <div class="col-md-6">
@@ -47,12 +34,13 @@
       </app-progress-cercle>
     </div> -->
 
-    <div class="col-md-6">
-      <app-pie [withGraphe]="600" [showLegend]="true" [obs]="dataPie"></app-pie>
+    <div class="col-md-5">
+      <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataPie"></app-pie>
     </div>
-
-    <div class="col-md-6">
-      <app-pie-chart [positionLegendBottom]="(mytranslate.lang | async) === 'fr' ? true : false" [withGraphe]="800" [showLegend]="true" [obs]="pieChartSubjectC">
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="col-md-5">
+      <!-- <app-pie-chart [positionLegendBottom]="(mytranslate.lang | async) === 'fr' ? true : false" [withGraphe]="800" [showLegend]="true" [obs]="pieChartSubjectC"> -->
+        <app-pie-chart [withGraphe]="'100%'" [positionLegendBottom]="false"  [showLegend]="true" [obs]="pieChartSubjectC">
       </app-pie-chart>
     </div>
 

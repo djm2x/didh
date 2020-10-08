@@ -23,9 +23,14 @@ export class BarComponent implements OnInit {
     },
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      xAxes: [{}], yAxes: [{
+      xAxes: [{
         ticks: {
-          beginAtZero: true
+          fontSize: 16,
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
         }
       }]
     },
@@ -34,6 +39,9 @@ export class BarComponent implements OnInit {
       position: 'right',
       // display: false,
       align: 'center',
+      labels: {
+        fontSize: 16
+      }
     },
     plugins: {
       labels: {
@@ -70,7 +78,7 @@ export class BarComponent implements OnInit {
   ];
 
   @Input() dataSubject = new Subject();
-  @Input() col = 8;
+  @Input() col = 12;
   retate = 0;
 
   list: { name: string, t: number, p: number, r: number }[] = [];
@@ -80,6 +88,7 @@ export class BarComponent implements OnInit {
   ngOnInit() {
     this.mytranslate.lang.subscribe(lang => {
       this.retate = lang === 'fr' ? 0 : 180;
+      this.barChartOptions.legend.position = lang === 'fr' ? 'right' : 'left';
     });
 
     // Chart.Legend.prototype.afterFit = function() {
