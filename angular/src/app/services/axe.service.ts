@@ -12,7 +12,7 @@ export class AxeService  extends SuperService<Axe> {
   }
 
   stateAxes() {
-    return this.http.get<{ name: string, p: number, t: number, r: number }[]>(`${this.urlApi}/${this.controller}/stateAxes`);
+    return this.http.get<{ name: string, p: number, t: number, r: number, n: number }[]>(`${this.urlApi}/${this.controller}/stateAxes`);
   }
 
 }

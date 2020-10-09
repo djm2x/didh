@@ -54,7 +54,7 @@ export class ExamenComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
   pieChartSubjectR = new BehaviorSubject<IData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
 
-  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, nbt: number, nbp: number, nbr: number }>();
+  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, n: number }>();
 
   examenPageSubject = new Subject();
   dataEpuPie = new Subject();
@@ -88,7 +88,7 @@ export class ExamenComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.examens.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -103,7 +103,7 @@ export class ExamenComponent implements OnInit {
       chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
       chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
 
-      // chartLabels.push('')
+      console.log(r)
 
       const chartData = [];
       const dataToShowInTable = [];
@@ -112,9 +112,9 @@ export class ExamenComponent implements OnInit {
       // chartData.push(r.epu.r * r.epu.t / 100);
       // chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
 
-      chartData.push(r.epu.p);
-      chartData.push(r.epu.r);
-      chartData.push(r.epu.t - (r.epu.p) - (r.epu.r));
+      chartData.push(r.epu.p * 100 / r.epu.t);
+      chartData.push(r.epu.r * 100 / r.epu.t);
+      chartData.push(r.epu.n * 100 / r.epu.t);
 
 
       // chartData.push(100 - r.epu.t);
@@ -140,46 +140,6 @@ export class ExamenComponent implements OnInit {
 
     return dialogRef.afterClosed();
   }
-
-  // moreInfo() {
-  //   const conf = {
-  //     width: '7100px',
-  //     disableClose: false,
-  //     data: { model: 'ddddddd', type: 'cercle' , title: 'Examen'}
-  //   };
-
-  //   this.dialog.open(Examen, conf).afterClosed().subscribe(r => {
-  //     console.log(r);
-  //   });
-  // }
-
-
-  // moreInfol() {
-  //   const conf = {
-  //     width: '7100px',
-  //     disableClose: false,
-  //     data: { model: 'gggg', type: 'pie', title: '222' }
-  //   };
-
-  //   this.dialog.open('fffffffffffffffffffffff', conf).afterClosed().subscribe(r => {
-  //     console.log(r);
-  //   });
-  // }
-
-  moreInfo() {
-    // const dialogRef = this.dialog.open(ModalComponent, {
-    //   width: '80vw',
-    //   disableClose: true,
-    //   direction: this.mytranslate.langSync === 'fr' ? 'ltr' : 'rtl',
-    // });
-
-    // return dialogRef.afterClosed();
-    const isSmall = this.text2.length === 600;
-
-    this.text2 = isSmall ? this.text : this.text.substring(0, 600);
-  }
-
-
 
   add() {
     this.openDialog(new Examen(), this.mytranslate.get('admin.epu.list.AjouterExamen')).subscribe(result => {
@@ -246,7 +206,7 @@ export class ExamenComponent implements OnInit {
     this.uow.axes.stateAxes().subscribe(r => {
 
       r = r.filter(e => e.name !== null);
-      console.log(r);
+      // console.log(r);
       const barChartLabels = r.map(e => e.name);
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
@@ -255,12 +215,9 @@ export class ExamenComponent implements OnInit {
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        // r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100)
-        // barChartData[2].data.push(((e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        // (r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100))
+        barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+        barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+        barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
       });
       // tslint:disable-next-line:max-line-length
       this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });

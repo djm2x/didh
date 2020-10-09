@@ -78,7 +78,7 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            int recommendationsCount = await _context.Recommendations.CountAsync();
+            // int recommendationsCount = await _context.Recommendations.CountAsync();
 
             var list = await _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite).ToListAsync();
 
@@ -87,9 +87,10 @@ namespace Admin5.Controllers
                 .Select(e => new
                 {
                     name = e.Key,
-                    r = e.Where(e => e.EtatAvancementChiffre == 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
-                    p = e.Where(e => e.EtatAvancementChiffre != 100).Sum(r => r.EtatAvancementChiffre) / e.Count(),
-                    t = (double.Parse(e.Count().ToString()) / recommendationsCount) * 100,
+                    p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
+                    r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
+                    n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
+                    t = e.Count(),
                 })
                 .ToList()
                 ;

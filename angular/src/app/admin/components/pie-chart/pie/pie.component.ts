@@ -107,13 +107,23 @@ export class PieComponent implements OnInit {
       this.title = r.title;
       this.pieChartLabels = r.chartLabels;
       this.pieChartData = r.chartData.map((e: number) => +e.toFixed(0));
+      this.pieChartColors[0].backgroundColor = r.chartColors; // this.getColors(this.pieChartLabels.length);
+
+      const rest = 100 - r.chartData.map((e: number) => +e.toFixed(0)).reduce((c, p) => c + p);
+
+      if (rest > 10) {
+        this.pieChartLabels.push('');
+        this.pieChartData.push(rest);
+        this.pieChartColors[0].backgroundColor.push('#fff')
+
+        console.log('there is alot of space here', rest)
+      }
       this.dataToShowInTable = r.dataToShowInTable.map((e: number) => +e.toFixed(0));
       this.count = r.count;
       // console.log(this.pieChartData, this.pieChartLabels);
-      this.pieChartColors[0].backgroundColor = r.chartColors; // this.getColors(this.pieChartLabels.length);
 
       this.arr = r.chartData.map((e, i) => i);
-      console.log(r)
+      this.list = [];
       this.pieChartLabels.forEach((e, i) => {
         const value = this.pieChartData[i] as number;
         if (value !== 0) {

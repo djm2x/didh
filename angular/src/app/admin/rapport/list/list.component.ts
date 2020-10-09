@@ -126,9 +126,9 @@ export class ListComponent implements OnInit {
       // chartData.push(r.ot.r * r.ot.t / 100);
       // chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
 
-      chartData.push(r.ot.p);
-      chartData.push(r.ot.r);
-      chartData.push(r.ot.t - (r.ot.p) - (r.ot.r));
+      chartData.push(r.ot.p * 100 / r.ot.t);
+      chartData.push(r.ot.r * 100 / r.ot.t);
+      chartData.push(r.ot.n * 100 / r.ot.t);
 
       // chartData.push(100 - r.ot.t);
 
@@ -165,14 +165,14 @@ export class ListComponent implements OnInit {
         { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
       ];
 
-      r.forEach(e => {;
+      r.forEach(e => {
         // barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
         // barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
         // barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
 
-        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+        barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+        barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
 
         // barChartData[2].data.push(e.t.toFixed(0));
       });

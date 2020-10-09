@@ -47,25 +47,26 @@ export class RecommendationService extends SuperService<Recommendation> {
 
   stateParamAxe(o) {
     return this.http.post<{
-      macanisme: {
-        epu: { name: string, p: number, t: number, r: number },
-        ot: { name: string, p: number, t: number, r: number },
-        ps: { name: string, p: number, t: number, r: number }
+      count: number,
+      mecanisme: {
+        epu: { name: string, p: number, t: number, r: number, n: number },
+        ot: { name: string, p: number, t: number, r: number, n: number },
+        ps: { name: string, p: number, t: number, r: number, n: number }
       },
       recommandationValues: {realise: number, nonRealise: number, enCours: number, count: number}
       axe: { name: string, p: number, t: number, r: number }[],
       visite: { name: string, p: number, t: number, r: number }[],
       organe: { name: string, p: number, t: number, r: number }[],
-      department: { name: string, p: number, t: number, r: number, type: string }[]
+      department: { name: string, p: number, t: number, r: number, n: number, type: string }[]
       pays: { name: string, p: number, t: number, r: number }[]
     }>(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
   }
 
   stateMecanisme() {
     return this.http.get<{
-      epu: { name: string | Observable<string>,p: number, t: number, r: number, nbt: number, nbp: number, nbr: number },
-      ot: { name: string | Observable<string>, p: number, t: number, r: number , nbt: number, nbp: number, nbr: number},
-      ps: { name: string | Observable<string>, p: number, t: number, r: number , nbt: number, nbp: number, nbr: number},
+      epu: { name: string | Observable<string>, p: number, t: number, r: number, n: number},
+      ot: { name: string | Observable<string>, p: number, t: number, r: number , n: number},
+      ps: { name: string | Observable<string>, p: number, t: number, r: number , n: number},
       count: number,
     }>(`${this.urlApi}/${this.controller}/stateMecanisme`);
   }
@@ -130,11 +131,11 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   stateOrgane() {
-    return this.http.get<{ name: string, p: number, t: number, r: number }[]>(`${this.urlApi}/${this.controller}/stateOrgane`);
+    return this.http.get<{ name: string, p: number, t: number, r: number, n: number }[]>(`${this.urlApi}/${this.controller}/stateOrgane`);
   }
 
   stateVisite() {
-    return this.http.get<{ name: string, p: number, t: number, r: number  }[]>(`${this.urlApi}/${this.controller}/stateVisite`);
+    return this.http.get<{ name: string, p: number, t: number, r: number, n: number  }[]>(`${this.urlApi}/${this.controller}/stateVisite`);
   }
 
 }

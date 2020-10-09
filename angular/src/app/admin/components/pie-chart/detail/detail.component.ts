@@ -8,8 +8,8 @@ import { MyTranslateService } from 'src/app/my.translate.service';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  o: { name: '', t: 0, p: 0, r: 0 } = { name: '', t: 0, p: 0, r: 0 };
-  list: { name: '', t: 0, p: 0, r: 0 }[] | {name: string, value: number}[] = [];
+  o: { name: '', t: 0, p: 0, r: 0, n: 0 } = { name: '', t: 0, p: 0, r: 0, n: 0 };
+  list: { name: '', t: 0, p: 0, r: 0, n: 0 }[] | { name: string, value: number }[] = [];
   type = '';
   title = '';
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any

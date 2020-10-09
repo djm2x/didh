@@ -16,7 +16,7 @@ export class VisiteService  extends SuperService<Visite> {
   }
 
   stateVisites() {
-    return this.http.get<{ name: string, p: number, t: number, r: number }[]>(`${this.urlApi}/${this.controller}/stateVisites`);
+    return this.http.get<{ name: string, p: number, t: number, r: number, n: number }[]>(`${this.urlApi}/${this.controller}/stateVisites`);
   }
 
 }

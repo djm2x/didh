@@ -64,7 +64,7 @@ export class DiagrammeComponent implements OnInit {
 
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
-  departementList: { name: string, p: number, r: number, t: number, type: string }[] = [];
+  departementList: { name: string, p: number, r: number, t: number, n: number, type: string }[] = [];
   payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
@@ -136,49 +136,52 @@ export class DiagrammeComponent implements OnInit {
       this.departementList = r.department;
       this.payeList = [];
       this.payeList = r.pays;
+
+
       // const title = 'l’Etat d’avancement des recommandations par axe';
       // this.listAxes.next({list: r, title});
-      const barList: { name: string, p: number, t: number, r: number }[] = [];
-      const epu = {
-        name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
-        p: r.macanisme.epu.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.epu.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
-        r: r.macanisme.epu.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
-      };
+      // const barList: { name: string, p: number, t: number, r: number, n: number }[] = [];
+      // const epu = {
+      //   name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
+      //   p: r.mecanisme.epu.p * 100 / r.mecanisme.epu.t,
+      //   n: r.mecanisme.epu.n * 100 / r.mecanisme.epu.t,
+      //   r: r.mecanisme.epu.r * 100 / r.mecanisme.epu.t,
+      // };
 
-      const ot = {
-        name: this.mytranslate.get('admin.state.Organes_de_Traités'),
-        p: r.macanisme.ot.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.ot.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
-        r: r.macanisme.ot.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
-      };
+      // const ot = {
+      //   name: this.mytranslate.get('admin.state.Organes_de_Traités'),
+      //   p: r.mecanisme.ot.p * 100 / r.mecanisme.ot.t,
+      //   n: r.mecanisme.ot.n * 100 / r.mecanisme.ot.t,
+      //   r: r.mecanisme.ot.r * 100 / r.mecanisme.ot.t,
+      // };
 
-      const ps = {
-        name: this.mytranslate.get('admin.state.Procédures_spéciales'),
-        p: r.macanisme.ps.p, // .filter(e => e.name !== null).map(e => e.p).reduce((p, c) => p + c),
-        t: r.macanisme.ps.t, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
-        r: r.macanisme.ps.r, // .filter(e => e.name !== null).map(e => e.t).reduce((p, c) => p + c),
-      };
+      // const ps = {
+      //   name: this.mytranslate.get('admin.state.Procédures_spéciales'),
+      //   p: r.mecanisme.ps.p * 100 / r.mecanisme.ps.t,
+      //   n: r.mecanisme.ps.n * 100 / r.mecanisme.ps.t,
+      //   r: r.mecanisme.ps.r * 100 / r.mecanisme.ps.t,
+      // };
 
-      if (r.macanisme.epu.t !== 0) {
-        barList.push(epu);
-      }
-      if (r.macanisme.ot.t !== 0) {
-        barList.push(ot);
-      }
-      if (r.macanisme.ps.t !== 0) {
-        barList.push(ps);
-      }
+      // if (r.mecanisme.epu.t !== 0) {
+      //   barList.push(epu as any);
+      // }
+      // if (r.mecanisme.ot.t !== 0) {
+      //   barList.push(ot as any);
+      // }
+      // if (r.mecanisme.ps.t !== 0) {
+      //   barList.push(ps as any);
+      // }
 
       // console.log(this.axesList)
 
-      this.allMecanismeBar(barList);
+      // this.allMecanismeBar(barList);
       this.stateAxe(this.axesList);
       this.stateOrgane(r.organe);
       this.stateVisite(r.visite);
+
       this.stateDepartement(this.departementList);
-      this.stateMecanisme1(r.macanisme);
-      this.RecommandationValues(r.recommandationValues);
+      this.stateMecanisme1(r.mecanisme, r.count);
+      this.RecommandationValues(r.recommandationValues, r.count);
     });
 
     // this.uow.recommendations.stateParamOrganisme(this.o).subscribe((r: any) => {
@@ -345,255 +348,191 @@ export class DiagrammeComponent implements OnInit {
   stateOrgane(r) {
     // this.uow.recommendations.stateOrgane().subscribe(r => {
 
-      r = r.filter(e => e.name !== null);
-      // console.log(r);
-      const barChartLabels = r.map(e => e.name);
-      const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
-        { data: [], label: 'Non réalisé' },
-      ];
+    r = r.filter(e => e.name !== null);
+    // console.log(r);
+    const barChartLabels = r.map(e => e.name);
+    const barChartData = [
+      { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      { data: [], label: 'Non réalisé' },
+    ];
 
-      r.forEach(e => {
-        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      });
-
-
+    r.forEach(e => {
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+    });
 
 
-      // tslint:disable-next-line:max-line-length
-      this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
+
+
+    // tslint:disable-next-line:max-line-length
+    this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     // });
   }
 
   stateAxe(r) {
     // this.uow.axes.stateAxes().subscribe(r => {
 
-      r = r.filter(e => e.name !== null);
-      console.log(r);
-      const barChartLabels = r.map(e => e.name);
-      const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
-      ];
+    r = r.filter(e => e.name !== null);
+    // console.log(r);
+    const barChartLabels = r.map(e => e.name);
+    const barChartData = [
+      { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+    ];
 
-      r.forEach(e => {
-        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        // r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100)
-        // barChartData[2].data.push(((e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-        // (r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100))
-      });
-      // tslint:disable-next-line:max-line-length
-      this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
+    r.forEach(e => {
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+    });
+    // tslint:disable-next-line:max-line-length
+    this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
     // });
   }
 
   stateVisite(r) {
     // this.uow.visites.stateVisites().subscribe(r => {
 
-      r = r.filter(e => e.name !== null);
-      // console.log(r);
-      const barChartLabels = r.map(e => e.name);
-      const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
-        { data: [], label: 'Non réalisé' },
-      ];
+    r = r.filter(e => e.name !== null);
+    // console.log(r);
+    const barChartLabels = r.map(e => e.name);
+    const barChartData = [
+      { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
+      { data: [], label: 'Non réalisé' },
+    ];
 
-      r.forEach(e => {
-        barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      });
+    r.forEach(e => {
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+    });
 
 
-      // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
-      this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
+    // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
+    this.visitePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales') });
     // });
   }
 
-  stateDepartement(r: { name: string, p: number, r: number, t: number, type: string }[]) {
-    console.log(r);
-    const listToDeletePE = [
-      'DGSN',
-      'Fonction Public',
-      'pêche',
-      'Eau',
-      'Environnement',
-      'Culture',
-      'gendarmerie',
-      'chef de gouvernement',
-    ]
+  stateDepartement(r: { name: string, p: number, r: number, t: number, n: number, type: string }[]) {
 
-    const listToShowPE = [
-      'Intérieur et DGSN',
-      'Finance et Fonction Public',
-      'Agriculture et pêche',
-      'Equipement, Eau et Environnement',
-      'Communication et Culture',
-      'Défense et gendarmerie',
-      'Droits de l’Homme et Relations avec le parlement',
-      'Développement social et solidarité',
-      'Supprimer le chef de gouvernement',
-      'Supprimer l’Observatoire des droits de l’homme',
-    ]
-
-    const listToDeleteAutre = [
-      'Observatoire des droits de l’homme',
-    ]
-
-    // this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
     r = r.filter(e => e.name !== null);
-    // console.log(r);
-
-    // r = r.filter(e => ).map(e => {
-
-    //   return e;
-    // })
-    const barChartLabelsPE = r.filter(e => e.type === 'PE' || true).map(e => e.name);
-
-    const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
-    const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
-    const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
-
-    // console.log(barChartLabels)
-    // console.log(barChartLabels1)
+    const barChartLabelsPE = r.map(e => e.name);
 
     const barChartDataPE = [
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
     ];
 
-    const barChartDataIN = barChartDataPE;
-    const barChartDataPJ = barChartDataPE;
-    const barChartDataAutre = barChartDataPE;
+    if (this.o.etat === 'En cours') {
+      r.forEach(e => {
+        barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
+        barChartDataPE[1].data.push(0);
+        barChartDataPE[2].data.push(0);
+      });
+    } else if (this.o.etat === 'Réalisé') {
+      r.forEach(e => {
+        barChartDataPE[0].data.push(0);
+        barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
+        barChartDataPE[2].data.push(0);
+      });
+    } else if (this.o.etat === 'Non réalisé') {
+      r.forEach(e => {
+        barChartDataPE[0].data.push(0);
+        barChartDataPE[1].data.push(0);
+        barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
+      });
+    } else {
+      r.forEach(e => {
+        barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
+        barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
+        barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
+      });
+    }
 
-    // const barChartData1 = [
-    //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-    //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-    //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
-    // ];
 
-
-    r.forEach(e => {
-      if (e.type === 'PE' || true) {
-        barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(2));
-        barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(2));
-        barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      } else if (e.type === 'Autre') {
-        barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(2));
-        barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(2));
-        barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      } else if (e.type === 'IN') {
-        barChartDataIN[0].data.push((e.p * e.t / 100).toFixed(2));
-        barChartDataIN[1].data.push((e.r * e.t / 100).toFixed(2));
-        barChartDataIN[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      } else if (e.type === 'PJ') {
-        barChartDataPJ[0].data.push((e.p * e.t / 100).toFixed(2));
-        barChartDataPJ[1].data.push((e.r * e.t / 100).toFixed(2));
-        barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      }
-    });
-    // tslint:disable-next-line:max-line-length
-    this.departementSubjectAutre.next({
-      barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre
-      // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / Autre'
-    });
 
     this.departementSubjectPE.next({
       barChartLabels: barChartLabelsPE, barChartData: barChartDataPE
       // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PE'
     });
-
-    this.departementSubjectPJ.next({
-      barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
-      // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / PJ'
-    });
-
-    this.departementSubjectIN.next({
-      barChartLabels: barChartLabelsIN, barChartData: barChartDataIN
-      // , title: this.mytranslate.get('admin.home.Miseenœuvredesrecommandationspardépartements') + ' / IN'
-    });
-    // });
   }
 
-  RecommandationValues(r) {
+  RecommandationValues(r, count: number) {
     // this.uow.recommendations.recommandationValues().subscribe((r: any) => {
-      const chartLabels = [];
-      chartLabels.push('Recommandations réalisées');
-      chartLabels.push('Recommandations en cours de réalisation');
-      chartLabels.push('Recommandations non réalisées');
-      // r = r.filter(e => e.name !== null);
-      // const barChartLabels = r.map(e => e.name);
-      const chartData = [];
-      const dataToShowInTable = [];
-      // realise, nonRealise, enCours, count
-      chartData.push(r.realise * r.count / 100);
+    const chartLabels = [];
+    chartLabels.push('Recommandations réalisées');
+    chartLabels.push('Recommandations en cours de réalisation');
+    chartLabels.push('Recommandations non réalisées');
+    // r = r.filter(e => e.name !== null);
+    // const barChartLabels = r.map(e => e.name);
+    const chartData = [];
+    const dataToShowInTable = [];
+    // realise, nonRealise, enCours, count
+    chartData.push(r.realise * 100 / count);
 
-      chartData.push(r.enCours * r.count / 100);
+    chartData.push(r.enCours * 100 / count);
 
-      chartData.push(r.nonRealise * r.count / 100);
+    chartData.push(r.nonRealise * 100 / count);
 
-      const chartColors = [];
-      // for (let i = 0; i < 3; i++) {
-      chartColors.push('#14933f'); // jeunne
-      chartColors.push('#fcb534'); // gris
-      chartColors.push('#c12a1b'); // rouge
+    const chartColors = [];
+    // for (let i = 0; i < 3; i++) {
+    chartColors.push('#14933f'); // jeunne
+    chartColors.push('#fcb534'); // gris
+    chartColors.push('#c12a1b'); // rouge
 
-      // }
+    // }
 
 
-      this.dataValues.next({
-        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
-        , title: 'Mise en œuvre des recommandations par mécanismes'
-      });
+    this.dataValues.next({
+      chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+      // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
+      , title: 'Mise en œuvre des recommandations par mécanismes'
+    });
     // })
   }
 
-  stateMecanisme1(r) {
+  stateMecanisme1(r, count: number) {
     // this.uow.recommendations.stateMecanisme().subscribe(r => {
 
-      // console.log('>>>>>>>>>>>>>>>>>');
-      // console.log(r);
-      // console.log('>>>>>>>>>>>>>>>>>');
+    // console.log('>>>>>>>>>>>>>>>>>');
+    // console.log(r);
+    // console.log('>>>>>>>>>>>>>>>>>');
 
-      const chartLabels = [];
-      chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle'))
-      chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraités'))
-      chartLabels.push(this.mytranslate.get('admin.header.Procéduresspéciales'))
-      // r = r.filter(e => e.name !== null);
-      // const barChartLabels = r.map(e => e.name);
-      const chartData = [];
-      const dataToShowInTable = [];
+    const chartLabels = [];
+    chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle'))
+    chartLabels.push(this.mytranslate.get('admin.header.OrganesdeTraités'))
+    chartLabels.push(this.mytranslate.get('admin.header.Procéduresspéciales'))
+    // r = r.filter(e => e.name !== null);
+    // const barChartLabels = r.map(e => e.name);
+    const chartData = [];
+    const dataToShowInTable = [];
 
-      chartData.push(r.epu.t);
+    chartData.push(+r.epu.t * 100 / count);
 
-      chartData.push(r.ot.t);
+    chartData.push(+r.ot.t * 100 / count);
 
-      chartData.push(r.ps.t);
+    chartData.push(+r.ps.t * 100 / count);
 
-      const chartColors = [];
-      // for (let i = 0; i < 3; i++) {
-      chartColors.push('#f47942'); // jeunne
-      chartColors.push('#95979a'); // gris
-      chartColors.push('#0070a3'); // rouge
+    const chartColors = [];
+    // for (let i = 0; i < 3; i++) {
+    chartColors.push('#f47942'); // jeunne
+    chartColors.push('#95979a'); // gris
+    chartColors.push('#0070a3'); // rouge
 
-      // }
+    // }
 
 
-      this.dataMec1.next({
-        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
-        , title: 'Mise en œuvre des recommandations par mécanismes'
-      });
+    this.dataMec1.next({
+      chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+      // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
+      , title: 'Mise en œuvre des recommandations par mécanismes'
+    });
 
     // });
   }
