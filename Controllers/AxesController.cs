@@ -14,14 +14,19 @@ namespace Admin5.Controllers
         { }
 
 
-        [HttpGet]
-        public async Task<IActionResult> StateAxes() // used
+        [HttpGet("{mecanisme}")]
+        public async Task<IActionResult> StateAxes(string mecanisme) // used
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
             // int recommendationsCount = await _context.Recommendations.CountAsync();
 
-            var list = await _context.Recommendations.Where(e => e.Axe != null).Include(e => e.Axe).ToListAsync();
+            var list = await _context.Recommendations
+                .Where(e => e.Axe != null)
+                .Where(e => mecanisme == "" ? true : e.IdCycle != null)
+                .Include(e => e.Axe)
+                .ToListAsync()
+                ;
 
             var list2 = list
                 .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.LabelAr)

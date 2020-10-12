@@ -203,7 +203,7 @@ export class ExamenComponent implements OnInit {
   }
 
   stateAxe() {
-    this.uow.axes.stateAxes().subscribe(r => {
+    this.uow.axes.stateAxes('epu').subscribe(r => {
 
       r = r.filter(e => e.name !== null);
       // console.log(r);
