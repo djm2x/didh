@@ -33,8 +33,6 @@ export class DiagrammeComponent implements OnInit {
   //   }
   // };
 
-
-
   // pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
   // pieChartData: SingleDataSet = [/*300, 500, 100*/];
   // public pieChartType: ChartType = 'pie';
@@ -89,6 +87,7 @@ export class DiagrammeComponent implements OnInit {
   @Input() widthTwo = 0;
   @Input() widthThree = 0;
   @Input() title2 = '';
+
   visitePage: { name: string, p: number, t: number, r: number }[] = [];
 
   constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService

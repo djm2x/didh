@@ -155,7 +155,7 @@ namespace Admin5.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> StateRecommendationByOrganisme() // userd
+        public async Task<IActionResult> StateRecommendationByOrganisme() // userd home 
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
@@ -182,10 +182,9 @@ namespace Admin5.Controllers
             //     })
             //     .ToList();
 
-            var list0 = await _context.RecomOrgs
-                .Include(e => e.Organisme)
-                .Include(e => e.Recommendation)
-                .ToListAsync();
+            var q = _context.RecomOrgs.Include(e => e.Organisme).Include(e => e.Recommendation);
+            var list0 = await q.ToListAsync();
+            var count = await _context.Recommendations.Where(e => e.RecomOrgs.Count != 0).CountAsync();
 
             var list = list0
             // .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
@@ -205,7 +204,7 @@ namespace Admin5.Controllers
 
 
                 // t = (double.Parse(e.Count().ToString()) * 100) / recommendationsCount,
-                t = e.Count(),
+                t = count,
             })
             .ToList();
 
@@ -250,7 +249,7 @@ namespace Admin5.Controllers
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
                 ;
 
-
+            var countR = await q.CountAsync();
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
             var department = department0
                 .Where(e => e.RecomOrgs.Count > 0)
@@ -265,16 +264,18 @@ namespace Admin5.Controllers
                 {
                     name = e.Key,
                     type = e.First().RecomOrgs.First().Organisme.Type,
+                    nameAr = e.First().RecomOrgs.First().Organisme.LabelAr,
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = e.Count(),
+                    t = countR,
                 })
                 .ToList()
 
                 ;
 
             q = q.Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat));
+            countR = await q.CountAsync();
             // var epu = await q
             //     .GroupBy(e => e.Cycle.Label)
             //     .Select(e => new
@@ -294,7 +295,7 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = e.Count(),
+                    t = countR,
                 })
                 .ToList()
                 ;
@@ -311,7 +312,7 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = e.Count(),
+                    t = countR,
                 })
                 .ToList()
                 ;
@@ -326,7 +327,7 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = e.Count(),
+                    t = countR,
                 })
                 .ToList()
                 ;
@@ -426,9 +427,11 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            int recommendationsCount = await _context.Recommendations.CountAsync();
+            // int recommendationsCount = await _context.Recommendations.CountAsync();
 
-            var list = await _context.Recommendations.Where(e => e.Organe != null).Include(e => e.Organe).ToListAsync();
+            var q = _context.Recommendations.Where(e => e.Organe != null).Include(e => e.Organe);
+            var list = await q.ToListAsync();
+            var count = await q.CountAsync();
 
             var list2 = list
                 .GroupBy(e => lng == "fr" ? e.Organe.Label : e.Organe.LabelAr)
@@ -438,7 +441,7 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = e.Count(),
+                    t = count,
                 })
                 .ToList()
                 ;
@@ -451,9 +454,11 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            int recommendationsCount = _context.Recommendations.Count();
+            // int recommendationsCount = _context.Recommendations.Count();
 
-            var list = await _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite).ToListAsync();
+            var q = _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite);
+            var list = await q.ToListAsync();
+            var count = await q.CountAsync();
 
             var list2 = list.GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
                 .Select(e => new
@@ -462,7 +467,7 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = e.Count(),
+                    t = count,
                 })
                 .ToList()
                 ;
@@ -684,14 +689,15 @@ namespace Admin5.Controllers
             //https://stackoverflow.com/questions/57131550/why-cant-i-create-a-listt-of-anonymous-type-in-c
             string lng = Request.Headers["mylang"].FirstOrDefault();
             var list = new[] { new { table = "", value = 0 } }.ToList();
-            int recommendationsCount = _context.Recommendations.Count();
+            int recommendationsCount = 0;
             if (table == "axe")
             {
-                list = await _context.Axes
+                recommendationsCount = await _context.Recommendations.Where(r => r.IdCycle != null).CountAsync();
+                list = await _context.Axes.Where(e => e.Recommendations.Any(r => r.IdCycle != null))
                     .Select(e => new
                     {
                         table = lng == "fr" ? e.Abv : e.LabelAr,
-                        value = e.Recommendations.Count() * 100 / recommendationsCount
+                        value = e.Recommendations.Where(r => r.IdCycle != null).Count() * 100 / recommendationsCount,
                     })
                     .Distinct()
                     .ToListAsync()
@@ -699,11 +705,12 @@ namespace Admin5.Controllers
             }
             else if (table == "organe")
             {
+                recommendationsCount = await _context.Recommendations.Where(r => r.IdOrgane != null).CountAsync();
                 list = await _context.Organes
                     .Select(e => new
                     {
                         table = lng == "fr" ? e.Abv : e.LabelAr,
-                        value = e.Recommendations.Count() * 100 / recommendationsCount,
+                        value = e.Recommendations.Where(r => r.IdOrgane != null).Count() * 100 / recommendationsCount,
                     })
                     .Distinct()
                     .ToListAsync()
@@ -711,11 +718,12 @@ namespace Admin5.Controllers
             }
             else if (table == "visite")
             {
+                recommendationsCount = await _context.Recommendations.Where(r => r.IdVisite != null).CountAsync();
                 list = _context.Visites
                      .Select(e => new
                      {
                          table = lng == "fr" ? e.Mandat : e.MandatAr,
-                         value = e.Recommendations.Count() * 100 / recommendationsCount,
+                         value = e.Recommendations.Where(r => r.IdVisite != null).Count() * 100 / recommendationsCount,
                      })
                     .Distinct()
                     .ToList()
