@@ -23,16 +23,16 @@
         [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataOt">
       </app-progress-cercle>
     </div> -->
-    <div class="col-md-5">
+    <div class="col-md-6">
       <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataPie"></app-pie>
     </div>
-    <mat-divider [vertical]="true"></mat-divider>
-    <div class="col-md-5">
+    <!-- <mat-divider [vertical]="true"></mat-divider> -->
+    <div class="col-md-6">
       <app-pie-chart [withGraphe]="'100%'" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
 
     <div class="col-md-12">
-      <app-bar [dataSubject]="organePageSubject"></app-bar>
+      <app-bar [dataSubject]="organePageSubject" [height]="'70vh'"></app-bar>
     </div>
 
 

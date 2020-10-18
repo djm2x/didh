@@ -20,11 +20,16 @@ export class PieComponent implements OnInit {
   @Input() obs = new Subject<any>();
   @Input() public showLegend = false;
   @Input() withGraphe = 0;
+  @Input() height = '62vh';
   dataToShowInTable = [];
   title = '' || null;
+
+  arr2 = new Subject();
+  index = 0;
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     cutoutPercentage: 50,
     title: {
       text: '',
@@ -49,8 +54,8 @@ export class PieComponent implements OnInit {
       onHover: (e, item) => { }
     },
     legend: {
-      //position: 'chartArea',
-      position: 'right',
+      position: 'bottom',
+      // position: 'right',
       display: false,
       align: 'center',
       labels: {
@@ -61,13 +66,22 @@ export class PieComponent implements OnInit {
       labels: {
         fontColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white',],
         precision: 0,
-        render: 'percentage',
+        fontSize: 14,
+        fontStyle: 'bold',
+        // render: 'percentage',
+        render: (args, i) => {
+          const label = args.label;
+          const value = args.value;
+
+          return `${value} % / (${this.dataToShowInTable[args.index]}) `;
+        }
       },
       pieceLabel: {
         // fontColor: '#000',
         render: (args) => {
           const label = args.label;
           const value = args.value;
+          this.arr2.next(args);
           return label + ': ' + value;
         }
       }
@@ -88,6 +102,7 @@ export class PieComponent implements OnInit {
   list: { name: string, value: number }[] = [];
   retate = 0;
   arr: bigint[] = [];
+
   count: number; // count recommandations
   constructor(private uow: UowService, public mytranslate: MyTranslateService
     , public dialog: MatDialog) {
@@ -118,7 +133,7 @@ export class PieComponent implements OnInit {
 
         console.log('there is alot of space here', rest)
       }
-      this.dataToShowInTable = r.dataToShowInTable.map((e: number) => +e.toFixed(0));
+      this.dataToShowInTable = r.dataToShowInTable.map((e: number) => e);
       this.count = r.count;
       // console.log(this.pieChartData, this.pieChartLabels);
 

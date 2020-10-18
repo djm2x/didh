@@ -114,8 +114,12 @@
 
       <mat-tab-group #myTab class="example-stretched-tabs" #matgroup (selectedTabChange)="selectedTabChange(matgroup)">
         <mat-tab label="Global">
+          <ng-template mat-tab-label >
+            <span (click)="hide()">{{ mytranslate.langSync === 'fr' ? 'Global' : 'شامل'}}</span>
+            <!-- {{hideGlobalGraph}} {{indexTohideGlobalGraph}} -->
+          </ng-template>
           <ng-template matTabContent>
-            <div class="col-md-12">
+            <div class="col-md-12" [style.display]="hideGlobalGraph ? 'none' : 'block'">
               <div class="row w-100">
                 <div class="col-md-6">
                   <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataMec1"></app-pie>
@@ -194,7 +198,7 @@
           <div class="d-flex flex-wrap justify-content-center ">
             <div class="col-md-12">
               <div class="chart-size">
-                <app-bar [col]="12" [dataSubject]="departementSubjectPE"></app-bar>
+                <app-bar [col]="12" [dataSubject]="departementSubjectPE" [height]="'70vh'"></app-bar>
               </div>
             </div>
 <!--

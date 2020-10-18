@@ -27,6 +27,7 @@ export class PieChartComponent implements OnInit {
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     cutoutPercentage: 50,
     title: {
       text: '',
@@ -37,7 +38,7 @@ export class PieChartComponent implements OnInit {
     },
     legend: {
       //position: 'chartArea',
-      position: 'right',
+      position: 'bottom',
       display: true,
       align: 'center',
       fullWidth: true,
@@ -50,6 +51,8 @@ export class PieChartComponent implements OnInit {
         fontColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white',],
         precision: 2,
         render: 'percentage',
+        fontSize: 14,
+        fontStyle: 'bold',
       },
       pieceLabel: {
         render: (args) => {
@@ -85,7 +88,7 @@ export class PieChartComponent implements OnInit {
 
       this.retate = lang === 'fr' ? 0 : 180;
     });
-    this.pieChartOptions.legend.position = this.positionLegendBottom === false ? 'right' : 'bottom';
+    // this.pieChartOptions.legend.position = this.positionLegendBottom === false ? 'right' : 'bottom';
     this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(d => {
@@ -117,7 +120,7 @@ export class PieChartComponent implements OnInit {
 
       this.uow.recommendations.genericByRecommendation(d.table, d.type).subscribe(r => {
         console.log(r)
-        this.pieChartLabels = r.map(e => e.table.substring(0, 40) + ' ...');
+        this.pieChartLabels = r.map(e => e.table/*.substring(0, 40) + ' ...'*/);
         this.pieChartData = r.map(e => +e.value.toFixed(0));
         this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
 

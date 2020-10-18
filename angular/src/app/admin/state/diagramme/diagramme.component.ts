@@ -62,7 +62,7 @@ export class DiagrammeComponent implements OnInit {
 
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
-  departementList: { name: string, p: number, r: number, t: number, n: number, type: string }[] = [];
+  departementList: { name: string, nameAr: string, p: number, r: number, t: number, n: number, type: string }[] = [];
   payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
@@ -87,6 +87,9 @@ export class DiagrammeComponent implements OnInit {
   @Input() widthTwo = 0;
   @Input() widthThree = 0;
   @Input() title2 = '';
+
+  hideGlobalGraph = true;
+  indexTohideGlobalGraph = 0;
 
   visitePage: { name: string, p: number, t: number, r: number }[] = [];
 
@@ -416,43 +419,45 @@ export class DiagrammeComponent implements OnInit {
     // });
   }
 
-  stateDepartement(r: { name: string, p: number, r: number, t: number, n: number, type: string }[]) {
+  stateDepartement(r: { name: string, nameAr: string, p: number, r: number, t: number, n: number, type: string }[]) {
 
 
     r = r.filter(e => e.name !== null);
-    const barChartLabelsPE = r.map(e => e.name);
+    const barChartLabelsPE = r.map(e => this.mytranslate.langSync === 'fr' ? e.name : e.nameAr);
 
     const barChartDataPE = [
+      // { data: [], label: this.mytranslate.langSync === 'fr' ? 'Nombre' : 'عدد' },
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
     ];
 
-    if (this.o.etat === 'En cours') {
-      r.forEach(e => {
-        barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
-        barChartDataPE[1].data.push(0);
-        barChartDataPE[2].data.push(0);
-      });
-    } else if (this.o.etat === 'Réalisé') {
-      r.forEach(e => {
-        barChartDataPE[0].data.push(0);
-        barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
-        barChartDataPE[2].data.push(0);
-      });
-    } else if (this.o.etat === 'Non réalisé') {
-      r.forEach(e => {
-        barChartDataPE[0].data.push(0);
-        barChartDataPE[1].data.push(0);
-        barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
-      });
-    } else {
-      r.forEach(e => {
-        barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
-        barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
-        barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
-      });
-    }
+    // if (this.o.etat === 'En cours') {
+    //   r.forEach(e => {
+    //     barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(2));
+    //     barChartDataPE[1].data.push(0);
+    //     barChartDataPE[2].data.push(0);
+    //   });
+    // } else if (this.o.etat === 'Réalisé') {
+    //   r.forEach(e => {
+    //     barChartDataPE[0].data.push(0);
+    //     barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(2));
+    //     barChartDataPE[2].data.push(0);
+    //   });
+    // } else if (this.o.etat === 'Non réalisé') {
+    //   r.forEach(e => {
+    //     barChartDataPE[0].data.push(0);
+    //     barChartDataPE[1].data.push(0);
+    //     barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(2));
+    //   });
+    // } else {
+    // }
+    r.forEach(e => {
+      // barChartDataPE[0].data.push(e.t);
+      barChartDataPE[0].data.push((e.p/* * 100 / e.t*/).toFixed(0));
+      barChartDataPE[1].data.push((e.r/* * 100 / e.t*/).toFixed(0));
+      barChartDataPE[2].data.push((e.n/* * 100 / e.t*/).toFixed(0));
+    });
 
 
 
@@ -487,6 +492,8 @@ export class DiagrammeComponent implements OnInit {
 
     // }
 
+    dataToShowInTable.push(r.realise, r.enCours, r.nonRealise);
+
 
     this.dataValues.next({
       chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
@@ -494,6 +501,15 @@ export class DiagrammeComponent implements OnInit {
       , title: 'Mise en œuvre des recommandations par mécanismes'
     });
     // })
+  }
+
+  hide() {
+    this.indexTohideGlobalGraph++;
+    if (this.indexTohideGlobalGraph === 5) {
+      this.indexTohideGlobalGraph = 5;
+      this.hideGlobalGraph = !this.hideGlobalGraph;
+      this.indexTohideGlobalGraph = 0;
+    }
   }
 
   stateMecanisme1(r, count: number) {
@@ -525,7 +541,7 @@ export class DiagrammeComponent implements OnInit {
     chartColors.push('#0070a3'); // rouge
 
     // }
-
+    dataToShowInTable.push(r.epu.t, r.ot.t, r.ps.t);
 
     this.dataMec1.next({
       chartLabels, chartData, chartColors, dataToShowInTable, count: r.count

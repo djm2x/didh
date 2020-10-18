@@ -79,6 +79,9 @@ namespace Admin5.Models
 
                 entity.Property(e => e.Adresse);
                 entity.Property(e => e.Label);
+                entity.Property(e => e.LabelAr);
+                entity.Property(e => e.Abr);
+                entity.Property(e => e.AbrAr);
                 entity.Property(e => e.Tel);
                 entity.HasMany(d => d.RecomOrgs).WithOne(p => p.Organisme).HasForeignKey(d => d.IdOrganisme);
                 entity.HasMany(d => d.FicheSynthese).WithOne(p => p.Organisme).HasForeignKey(d => d.IdOrganisme);

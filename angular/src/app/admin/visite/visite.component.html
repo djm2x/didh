@@ -34,18 +34,18 @@
       </app-progress-cercle>
     </div> -->
 
-    <div class="col-md-5">
+    <div class="col-md-6">
       <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataPie"></app-pie>
     </div>
-    <mat-divider [vertical]="true"></mat-divider>
-    <div class="col-md-5">
+    <!-- <mat-divider [vertical]="true"></mat-divider> -->
+    <div class="col-md-6">
       <!-- <app-pie-chart [positionLegendBottom]="(mytranslate.lang | async) === 'fr' ? true : false" [withGraphe]="800" [showLegend]="true" [obs]="pieChartSubjectC"> -->
         <app-pie-chart [withGraphe]="'100%'" [positionLegendBottom]="false"  [showLegend]="true" [obs]="pieChartSubjectC">
       </app-pie-chart>
     </div>
 
     <div class="col-md-12 mb-5 mt-5">
-      <app-bar [dataSubject]="visitePageSubject"></app-bar>
+      <app-bar [dataSubject]="visitePageSubject" [height]="'70vh'"></app-bar>
 
       <!-- <div *ngFor="let e of visitePage; let i=index">
         <app-progress-bar [widthThree]="e.r" [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>

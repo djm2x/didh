@@ -24,6 +24,8 @@ export class OrganismeComponent implements OnInit {
   columnDefs = [
     { columnDef: 'label', headName: 'NOM' },
     { columnDef: 'labelAr', headName: 'NOM Ar' },
+    { columnDef: 'abr', headName: 'abr' },
+    { columnDef: 'abrAr', headName: 'abrAr' },
     { columnDef: 'adresse', headName: 'ADRESSE' },
     { columnDef: 'tel', headName: 'TEL' },
     { columnDef: 'type', headName: 'type' },

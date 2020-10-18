@@ -21,6 +21,8 @@ export class Organisme {
   id = 0;
   label = '';
   labelAr = '';
+  abr = '';
+  abrAr = '';
   adresse = '';
   tel = '';
   type = '';

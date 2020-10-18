@@ -116,6 +116,8 @@ export class ExamenComponent implements OnInit {
       chartData.push(r.epu.r * 100 / r.epu.t);
       chartData.push(r.epu.n * 100 / r.epu.t);
 
+      dataToShowInTable.push(r.epu.p, r.epu.r, r.epu.n);
+
 
       // chartData.push(100 - r.epu.t);
 
@@ -208,6 +210,7 @@ export class ExamenComponent implements OnInit {
       r = r.filter(e => e.name !== null);
       // console.log(r);
       const barChartLabels = r.map(e => e.name);
+      const dataToShowInTable = []
       const barChartData = [
         { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
         { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
@@ -215,10 +218,12 @@ export class ExamenComponent implements OnInit {
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
-        barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
-        barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+        barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
+        barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
+        barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
       });
+
+
       // tslint:disable-next-line:max-line-length
       this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
     });

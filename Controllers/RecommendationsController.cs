@@ -67,12 +67,12 @@ namespace Admin5.Controllers
                         Etat = e.Etat,
                         Annee = e.Annee,
                         Mecanisme = e.Mecanisme,
-                        Axe = e.Axe.Label,
-                        SousAxe = e.SousAxe.Label,
+                        Axe = lng == "fr" ? e.Axe.Label : e.Axe.LabelAr,
+                        SousAxe = lng == "fr" ? e.SousAxe.Label : e.SousAxe.LabelAr,
                         Observation = e.Observation,
                         Complement = e.Complement,
                         PieceJointe = e.PieceJointe,
-                        organismes = e.RecomOrgs.Select(r => r.Organisme.Label)
+                        organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr)
                     })
                     .ToListAsync();
 
@@ -250,6 +250,9 @@ namespace Admin5.Controllers
                 ;
 
             var countR = await q.CountAsync();
+            
+            q = q.Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat));
+
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
             var department = department0
                 .Where(e => e.RecomOrgs.Count > 0)
@@ -274,7 +277,7 @@ namespace Admin5.Controllers
 
                 ;
 
-            q = q.Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat));
+            
             countR = await q.CountAsync();
             // var epu = await q
             //     .GroupBy(e => e.Cycle.Label)

@@ -15,6 +15,8 @@ namespace Admin5.Models
         public int Id { get; set; }
         public string Label { get; set; }
         public string LabelAr { get; set; }
+        public string Abr { get; set; }
+        public string AbrAr { get; set; }
         public string Adresse { get; set; }
         public string Tel { get; set; }
         public string Type { get; set; }
