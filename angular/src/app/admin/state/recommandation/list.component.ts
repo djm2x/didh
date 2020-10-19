@@ -130,7 +130,6 @@ export class ListComponent implements OnInit {
   }
 
   displayMulti(mc: string, et: string) {
-    // console.log(mc, et)
     const etat = [
       { fr: 'Réalisé', ar: 'منجز' },
       { fr: 'Non Réalisé', ar: 'غير منجز' },
