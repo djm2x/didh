@@ -11,7 +11,7 @@
       "ExamenPériodiqueuniverselleRealise": "Epu : Réalisé",
       "ExamenPériodiqueuniverselleNonRealise": "Epu : Non Réalisé",
       "ExamenPériodiqueuniverselleEnCours": "Epu : EnCours",
-      "OrganesdeTraités": "Organes de Traités",
+      "OrganesdeTraités": "Organes de traités",
       "OrganesdeTraitésRealise": "Réalisé",
       "OrganesdeTraitésNonRealise": "Non Réalisé",
       "OrganesdeTraitésEnCours": "En cours de réalisation",
@@ -290,6 +290,7 @@
       "update": {
         "Session": "Session",
         "Année": "Année",
+        "SessionAr": "Session Ar",
         "Discours_de_Mr_le_Ministre": "Discours de Mr le Ministre",
         "Documents_de_examen": "Documents de l'examen"
       }

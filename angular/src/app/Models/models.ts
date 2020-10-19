@@ -190,6 +190,7 @@ export class Questionnaire {
 export class ParticipationSession {
   id = 0;
   session = '';
+  sessionAr = '';
   discours = '';
   documents = '';
   annee = new Date().getFullYear();

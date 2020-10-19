@@ -286,6 +286,7 @@
       },
       "update": {
         "Session": "دورة",
+        "SessionAr": "عربى دورة",
         "Année": "سنة",
         "Discours_de_Mr_le_Ministre": "كامة السيد الرئيس",
         "Documents_de_examen": "ملف الاستعراض"

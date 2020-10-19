@@ -9,6 +9,9 @@ namespace Admin5.Models
         public int Annee { get; set; }
         public string Theme { get; set; }
         public string SousTheme { get; set; }
+
+        public string ThemeAr { get; set; }
+        public string SousThemeAr { get; set; }
         public string PieceJointe { get; set; }
     }
 }

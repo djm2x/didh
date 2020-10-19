@@ -59,6 +59,7 @@ export class ListComponent implements OnInit {
   myForm: FormGroup;
   //
 
+
   departementList: { name: string, p: number, r: number, t: number, type: string }[] = [];
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
@@ -108,6 +109,30 @@ export class ListComponent implements OnInit {
     });
 
     this.autoComplete();
+  }
+
+  displayMulti(mc: string, et: string) {
+    // console.log(mc, et)
+    const etat = [
+      { fr: 'Réalisé', ar: 'منجز' },
+      { fr: 'Non Réalisé', ar: 'غير منجز' },
+      { fr: 'En cours', ar: 'في طور الإنجاز' }
+    ];
+
+    const mecanisme = [
+      { fr: 'Examen périodique universal', ar: 'الاستعراض الدوري الشامل' },
+      { fr: 'Organes de Traités', ar: 'هيئات المعاهدات' },
+      { fr: 'Procédures spéciales', ar: 'الاجراءات الخاصة' },
+    ];
+
+    if (this.mytranslate.langSync === 'fr') {
+      return {m: mc, e: et};
+    } else {
+      return {
+        m: mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6))).ar,
+        e: etat.find(o => o.fr.toLowerCase() === et.toLowerCase()).ar,
+      };
+    }
   }
 
   autoComplete() {
@@ -317,7 +342,7 @@ export class ListComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'recommandation'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: { fileName, folder: 'recommandation' } });
   }
 
   axeChange(idAxe: number) {
