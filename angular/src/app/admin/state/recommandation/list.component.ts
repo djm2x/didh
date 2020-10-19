@@ -129,7 +129,29 @@ export class ListComponent implements OnInit {
     this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'recommandation'}});
   }
 
+  displayMulti(mc: string, et: string) {
+    // console.log(mc, et)
+    const etat = [
+      { fr: 'Réalisé', ar: 'منجز' },
+      { fr: 'Non Réalisé', ar: 'غير منجز' },
+      { fr: 'En cours', ar: 'في طور الإنجاز' }
+    ];
 
+    const mecanisme = [
+      { fr: 'Examen périodique universal', ar: 'الاستعراض الدوري الشامل' },
+      { fr: 'Organes de Traités', ar: 'هيئات المعاهدات' },
+      { fr: 'Procédures spéciales', ar: 'الاجراءات الخاصة' },
+    ];
+
+    if (this.mytranslate.langSync === 'fr') {
+      return {m: mc, e: et};
+    } else {
+      return {
+        m: mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6))).ar,
+        e: etat.find(o => o.fr.toLowerCase() === et.toLowerCase()).ar,
+      };
+    }
+  }
 
 }
 
