@@ -56,7 +56,7 @@
       "list": {
         "Examenpériodiqueuniversal": "Examen périodique universel",
         "Examen": "Examen",
-        "libelle": "libelle",
+        "libelle": "Examen",
         "libelleAr": "libelle Ar",
         "Realisé": "Taux de recommandations realisé par axe",
         "Rapportnational": "Rapport national",
@@ -167,8 +167,10 @@
       "update": {
         "Categorie": "Categorie",
         "title": "title",
+        "titleAr": "title Ar",
         "date": "date",
-        "description": "description"
+        "description": "description",
+        "descriptionAr": "description Ar"
       }
     },
     "state": {
@@ -304,6 +306,8 @@
         "Questionnaire": "Questionnaire",
         "Recherche": "Recherche",
         "Theme": "Theme",
+        "Reporter": "Reporter",
+        "ReporterAr": "ReporterAr",
         "Sous_Theme": "Sous Theme",
         "Rechercher": "Rechercher",
         "Réinitialiser": "Réinitialiser",

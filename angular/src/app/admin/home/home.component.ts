@@ -329,36 +329,36 @@ export class HomeComponent implements OnInit {
 
       listToWorkWith.forEach(e => {
         if (e.type === 'PE') {
-          barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(2));
-          barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(2));
-          barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(2));
+          barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
+          barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
+          barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
           // const s = e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t);
-          // barChartDataPE[2].data.push((s >= 0 ? s : -s).toFixed(2));
+          // barChartDataPE[2].data.push((s >= 0 ? s : -s).toFixed(0));
           // console.log('PE')
         }
       })
 
       r.forEach(e => {
         // if (e.type === 'PE') {
-        //   barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(2));
-        //   barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(2));
-        //   barChartDataPE[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(2));
+        //   barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
+        //   barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
+        //   barChartDataPE[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
         //   console.log('PE')
         // }
         if (e.type === 'Autre') {
-          barChartDataAutre[0].data.push((e.p * 100 / e.t).toFixed(2));
-          barChartDataAutre[1].data.push((e.r * 100 / e.t).toFixed(2));
-          barChartDataAutre[2].data.push((e.n * 100 / e.t).toFixed(2));
-          // barChartDataAutre[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(2));
+          barChartDataAutre[0].data.push((e.p * 100 / e.t).toFixed(0));
+          barChartDataAutre[1].data.push((e.r * 100 / e.t).toFixed(0));
+          barChartDataAutre[2].data.push((e.n * 100 / e.t).toFixed(0));
+          // barChartDataAutre[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
         } else if (e.type === 'IN') {
-          barChartDataIN[0].data.push((e.p * 100 / e.t).toFixed(2));
-          barChartDataIN[1].data.push((e.r * 100 / e.t).toFixed(2));
-          barChartDataIN[2].data.push((e.n * 100 / e.t).toFixed(2));
-          // barChartDataIN[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(2));
+          barChartDataIN[0].data.push((e.p * 100 / e.t).toFixed(0));
+          barChartDataIN[1].data.push((e.r * 100 / e.t).toFixed(0));
+          barChartDataIN[2].data.push((e.n * 100 / e.t).toFixed(0));
+          // barChartDataIN[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
         } else if (e.type === 'PJ') {
-          barChartDataPJ[0].data.push((e.p * 100 / e.t).toFixed(2));
-          barChartDataPJ[1].data.push((e.r * 100 / e.t).toFixed(2));
-          barChartDataPJ[2].data.push((e.n * 100 / e.t).toFixed(2));
+          barChartDataPJ[0].data.push((e.p * 100 / e.t).toFixed(0));
+          barChartDataPJ[1].data.push((e.r * 100 / e.t).toFixed(0));
+          barChartDataPJ[2].data.push((e.n * 100 / e.t).toFixed(0));
           // barChartDataPJ[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
         }
       });

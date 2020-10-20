@@ -18,8 +18,8 @@ namespace Admin5.Controllers
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, string theme, string sousTheme)
         {
             var q = _context.Questionnaires
-                .Where(e => theme == "*" ? true : e.Theme.Contains(theme))
-                .Where(e => sousTheme == "*" ? true : e.SousTheme.Contains(sousTheme))
+                // .Where(e => theme == "*" ? true : e.Theme.Contains(theme))
+                // .Where(e => sousTheme == "*" ? true : e.SousTheme.Contains(sousTheme))
                 
                 ;
 

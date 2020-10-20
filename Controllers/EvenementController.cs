@@ -43,7 +43,9 @@ namespace Admin5.Controllers
                     id = e.Id,
                     categorie = e.Categorie,
                     title = e.Title,
+                    titleAr = e.TitleAr,
                     description = e.Description,
+                    descriptionAr = e.DescriptionAr,
                     date = e.Date,
 
                 })

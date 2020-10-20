@@ -95,8 +95,8 @@
     </div>
 
     <div class="col-md-9">
-      <h4>{{e.title}}</h4>
-      <p>{{e.description.substring(0, 400)}}...</p>
+      <h4>{{mytranslate.langSync === 'fr' ? e.title : e.titleAr}}</h4>
+      <p>{{ mytranslate.langSync === 'fr' ? e.description.substring(0, 400) : e.descriptionAr.substring(0, 400)}}...</p>
       <a (click)="detail(e)" style="font-weight: bold; cursor: pointer; margin-bottom: 10px;">{{ 'admin.event.list.Lireplus' | translate }}</a>
       <!-- <mat-divider></mat-divider> -->
       <mat-divider [inset]="true" style="margin-top: 15px;"></mat-divider>

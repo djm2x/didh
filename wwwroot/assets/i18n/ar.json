@@ -56,8 +56,8 @@
       "list": {
         "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
         "Examen": "استعراض",
-        "libelle": "الدورة",
-        "libelleAr": "الصياغة عربي",
+        "libelle": "استعراض",
+        "libelleAr": "استعراض عربي",
         "Realisé": "منجز ",
         "Rapportnational": "التقرير الوطني",
         "CompilationHCDHSOCIETECIVILE": "تجميع  مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني",
@@ -166,9 +166,11 @@
       },
       "update": {
         "Categorie": " صنف",
-        "title": " عنوان",
         "date": " تاريخ",
-        "description": " وصف"
+        "title": " عنوان",
+        "titleAr": "عربى عنوان",
+        "description": " وصف",
+        "descriptionAr": "عربى وصف"
       }
     },
     "state": {
@@ -300,6 +302,8 @@
         "Questionnaires": " استبيانات",
         "Questionnaire": " استبيان",
         "Recherche": " بحث",
+        "Reporter": "مقرر",
+        "ReporterAr": "عربى مقرر",
         "Theme": " موضوع",
         "Sous_Theme": " موضوع محوري",
         "Rechercher": " بحث",

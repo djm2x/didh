@@ -65,8 +65,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
     this.myForm = this.fb.group({
       id: [this.o.id, [Validators.required, ]],
       title: [this.o.title, [Validators.required, ]],
+      titleAr: [this.o.titleAr, [Validators.required, ]],
       categorie: [this.o.categorie, [Validators.required, ]],
       description: [this.o.description, [Validators.required, ]],
+      descriptionAr: [this.o.descriptionAr, [Validators.required, ]],
       date: [this.o.date, [Validators.required, ]],
     });
   }

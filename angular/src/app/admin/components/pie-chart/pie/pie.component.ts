@@ -18,9 +18,9 @@ export class PieComponent implements OnInit {
   // @Input() type: 'count' | 'taux' = 'taux';
   // @Input() mytitle: '';
   @Input() obs = new Subject<any>();
-  @Input() public showLegend = false;
-  @Input() withGraphe = 0;
-  @Input() height = '62vh';
+  @Input() public showLegend = true;
+  @Input() withGraphe = '100%';
+  @Input() height = '50vh';
   dataToShowInTable = [];
   title = '' || null;
 

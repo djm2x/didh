@@ -54,11 +54,21 @@ export class UowService {
   evenements = new EvenementService();
 
 
-  years = [...Array(new Date().getFullYear() - 2015).keys()].map(e => 2015 + e + 1);
+  years = [...Array(new Date().getFullYear() - 2015).keys()].map(e => 2019 + e + 1);
   // mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
   // etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
   mecanismes = this.http.get<{ name: string, nameAr: string }[]>('assets/json/mecanisme.json');
   etats = this.http.get<{ name: string, nameAr: string }[]>('assets/json/etats.json');
+  themes = this.http.get<{
+    id: number
+    name: string,
+    nameAr: string,
+    sousThemes: {
+      id: number
+      name: string,
+      nameAr: string,
+    }[]
+  }[]>('assets/json/themes.json');
 
   monthsAlpha = [
     { name: 'Janvier', nameAr: 'يناير' },

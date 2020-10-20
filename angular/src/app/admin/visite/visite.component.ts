@@ -306,9 +306,9 @@ export class VisiteComponent implements OnInit {
         // barChartData[0].data.push(+e.p.toFixed(0));
         // barChartData[1].data.push(+e.t.toFixed(0));
         // barChartData[2].data.push(+e.r.toFixed(0));
-        barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
-        barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
-        barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
+        barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+        barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+        barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
       });
 
 

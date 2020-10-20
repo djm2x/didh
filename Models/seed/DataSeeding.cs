@@ -51,12 +51,12 @@ namespace seed
             int id = 1;
             var faker = new Faker<Evenement>(DataSeeding.lang)
                 .CustomInstantiator(f => new Evenement { Id = id++ })
-                .RuleFor(o => o.Title, f => new Bogus.DataSets.Lorem("ar").Word())
-                .RuleFor(o => o.Description, f => new Bogus.DataSets.Lorem("ar").Paragraph(10))
+                .RuleFor(o => o.Title, f => f.Lorem.Word())
+                .RuleFor(o => o.Description, f => f.Lorem.Paragraph(10))
                 .RuleFor(o => o.Categorie, f => "الفئة 1")
 
-                // .RuleFor(o => o.TitleAr, f => new Bogus.DataSets.Lorem("ar").Word())
-                // .RuleFor(o => o.DescriptionAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(10))
+                .RuleFor(o => o.TitleAr, f => new Bogus.DataSets.Lorem("ar").Word())
+                .RuleFor(o => o.DescriptionAr, f => new Bogus.DataSets.Lorem("ar").Paragraph(10))
                 // .RuleFor(o => o.CategorieAr, f => "الفئة 1")
                 .RuleFor(o => o.Date, f => f.Date.Past())
                 ;
@@ -207,16 +207,21 @@ namespace seed
         {
             var id = 1;
             var list = new[] { "Droits catégoriels", "Droits thématiques" };
-            var listAr = new[] { "حقوق الفئات", "الحقوق المواضيعية" };
+            var listAr = new[] { 
+                "حقوق الفئات",
+             "الحقوق المواضيعية" 
+             };
             var faker = new Faker<Questionnaire>(DataSeeding.lang)
                 .CustomInstantiator(f => new Questionnaire { Id = id++ })
-                .RuleFor(o => o.Theme, f => f.PickRandom(listAr))
-                .RuleFor(o => o.SousTheme, f => $"تحت الموضوع {id - 1}")
+                .RuleFor(o => o.Theme, f => id % 2 == 0 ? 2 : 1)
+                .RuleFor(o => o.SousTheme, f => id % 2 == 0 ? f.Random.Number(3, 4) : f.Random.Number(1, 2))
 
-                .RuleFor(o => o.ThemeAr, f => f.PickRandom(listAr))
-                .RuleFor(o => o.SousThemeAr, f => $"تحت الموضوع {id - 1}")
+                // .RuleFor(o => o.ThemeAr, f => id % 2 == 0 ? 2 : 1)
+                // .RuleFor(o => o.SousThemeAr, f => id % 2 == 0 ? f.Random.Number(3, 4) : f.Random.Number(1, 2))
 
                 .RuleFor(o => o.PieceJointe, f => $"")
+                .RuleFor(o => o.Reporter, f => $"Reporter {id}")
+                .RuleFor(o => o.ReporterAr, f => $"{id} مقرر")
                 .RuleFor(o => o.Annee, f => 2020)
                 ;
 

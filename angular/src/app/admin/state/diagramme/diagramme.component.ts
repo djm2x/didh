@@ -210,9 +210,9 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * e.t / 100).toFixed(2));
-      barChartData[1].data.push((e.r * e.t / 100).toFixed(2));
-      barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(2));
+      barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
+      barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
+      barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
     });
 
 
@@ -329,9 +329,9 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
     });
 
 
@@ -355,9 +355,9 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
     });
     // tslint:disable-next-line:max-line-length
     this.axePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Axe') });
@@ -377,9 +377,9 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
     });
     // tslint:disable-next-line:max-line-length
     this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
@@ -399,9 +399,9 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
     });
 
 
@@ -425,29 +425,29 @@ export class DiagrammeComponent implements OnInit {
 
     // if (this.o.etat === 'En cours') {
     //   r.forEach(e => {
-    //     barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(2));
+    //     barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
     //     barChartDataPE[1].data.push(0);
     //     barChartDataPE[2].data.push(0);
     //   });
     // } else if (this.o.etat === 'Réalisé') {
     //   r.forEach(e => {
     //     barChartDataPE[0].data.push(0);
-    //     barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(2));
+    //     barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
     //     barChartDataPE[2].data.push(0);
     //   });
     // } else if (this.o.etat === this.mytranslate.get('admin.organe.list.NonRéalisé')) {
     //   r.forEach(e => {
     //     barChartDataPE[0].data.push(0);
     //     barChartDataPE[1].data.push(0);
-    //     barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(2));
+    //     barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
     //   });
     // } else {
     // }
     r.forEach(e => {
       // barChartDataPE[0].data.push(e.t);
-      barChartDataPE[0].data.push((e.p/* * 100 / e.t*/).toFixed(2));
-      barChartDataPE[1].data.push((e.r/* * 100 / e.t*/).toFixed(2));
-      barChartDataPE[2].data.push((e.n/* * 100 / e.t*/).toFixed(2));
+      barChartDataPE[0].data.push((e.p/* * 100 / e.t*/).toFixed(0));
+      barChartDataPE[1].data.push((e.r/* * 100 / e.t*/).toFixed(0));
+      barChartDataPE[2].data.push((e.n/* * 100 / e.t*/).toFixed(0));
     });
 
 

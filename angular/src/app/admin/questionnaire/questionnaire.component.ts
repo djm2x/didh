@@ -1,5 +1,5 @@
 import { SessionService } from './../../shared/session.service';
-import {  Questionnaire } from 'src/app/Models/models';
+import { Questionnaire } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
 import { merge } from 'rxjs';
@@ -28,8 +28,21 @@ export class QuestionnaireComponent implements OnInit {
   resultsLength = 0;
   isRateLimitReached = false;
   panelOpenState = true;
-  themes: { name: string, sousThemes: string[] }[] = [];
-  sousThemes = [];
+  themes: {
+    id: number
+    name: string,
+    nameAr: string,
+    sousThemes: {
+      id: number
+      name: string,
+      nameAr: string,
+    }[]
+  }[] = [];
+  sousThemes: {
+    id: number
+    name: string,
+    nameAr: string,
+  }[] = [];
 
   theme = new FormControl('');
   sousTheme = new FormControl('');
@@ -39,6 +52,7 @@ export class QuestionnaireComponent implements OnInit {
     { columnDef: 'annee', headName: 'année' },
     { columnDef: 'theme', headName: 'Theme' },
     { columnDef: 'sousTheme', headName: 'Sous theme' },
+    { columnDef: 'reporter', headName: 'reporter' },
     { columnDef: 'pieceJointe', headName: 'Documents' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
@@ -55,6 +69,7 @@ export class QuestionnaireComponent implements OnInit {
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   async ngOnInit() {
+    this.themes = await this.uow.themes.toPromise();
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
@@ -72,14 +87,27 @@ export class QuestionnaireComponent implements OnInit {
       }
     );
 
-    this.themes = await this.http.get<any[]>('assets/json/themes.json').toPromise();
+
   }
 
   getPage(startIndex, pageSize, sortBy, sortDir, theme, sousTheme) {
     this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, theme, sousTheme).subscribe(
       (r: any) => {
         console.log(r.list);
-        this.dataSource = r.list;
+        this.dataSource = (r.list as Questionnaire[]).map(e => {
+          try {
+            const theme$ = this.themes.find(f => f.id === e.theme);
+            const sousTheme$ = theme$.sousThemes.find(f => f.id === e.sousTheme);
+            e.themeDis = this.mytranslate.langSync === 'fr' ? theme$.name : theme$.nameAr;
+            e.sousThemeDis = this.mytranslate.langSync === 'fr' ? sousTheme$.name : sousTheme$.nameAr;
+            return e;
+          } catch (error) {
+            console.warn(error)
+            return e;
+          }
+        });
+
+        // console.log(this.dataSource.map(e => e.sousThemeDis))
         this.resultsLength = r.count;
         this.isLoadingResults = false;
       }
@@ -143,7 +171,7 @@ export class QuestionnaireComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/questionnaire/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'questionnaire'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: { fileName, folder: 'questionnaire' } });
   }
 
 }

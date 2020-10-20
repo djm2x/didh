@@ -17,10 +17,11 @@ export class PieChartComponent implements OnInit {
   // @Input() type: 'count' | 'taux' = 'taux';
   // @Input() mytitle: '';
   @Input() obs = new Subject<IData>();
-  @Input() public showLegend = false;
-  @Input() withGraphe = 1000;
+  @Input() public showLegend = true;
+  @Input() withGraphe = '100%';
   @Input() public positionLegendBottom = false;
   @Input() canvasHeight = 400;
+  @Input() height = '60vh';
 
   title = '' || null;
   // Pie
@@ -49,7 +50,7 @@ export class PieChartComponent implements OnInit {
     plugins: {
       labels: {
         fontColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white',],
-        precision: 2,
+        precision: 0,
         render: 'percentage',
         fontSize: 14,
         fontStyle: 'bold',

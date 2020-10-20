@@ -1,6 +1,6 @@
 <div class="d-flex flex-column align-items-center justify-content-center mb-3" style="cursor: pointer;" (click)="openDialog()">
 
-  <div style="display: block; height: 70vh;" [style.width]="withGraphe">
+  <div style="display: block;" [style.width]="withGraphe" [style.height] = "height">
     <canvas class="chart chart-pie"
     baseChart
     [data]="pieChartData"

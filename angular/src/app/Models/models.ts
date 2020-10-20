@@ -121,7 +121,9 @@ export class Visite {
 export class Evenement {
   id = 0;
   title = '';
+  titleAr = '';
   description = '';
+  descriptionAr = '';
   categorie = '';
 
   date = new Date();
@@ -181,8 +183,12 @@ export class Recommendation {
 
 export class Questionnaire {
   id = 0;
-  theme = '';
-  sousTheme = '';
+  theme = 0;
+  themeDis = '';
+  sousThemeDis = '';
+  sousTheme = 0;
+  reporter = '';
+  reporterAr = '';
   pieceJointe = '';
   annee = new Date().getFullYear();
 }
