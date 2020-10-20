@@ -57,6 +57,7 @@ export class ExamenComponent implements OnInit {
   dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, n: number }>();
 
   examenPageSubject = new Subject();
+  countRec = new Subject();
   dataEpuPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private http: HttpClient, @Inject('BASE_URL') public url: string
@@ -117,7 +118,7 @@ export class ExamenComponent implements OnInit {
       chartData.push(r.epu.n * 100 / r.epu.t);
 
       dataToShowInTable.push(r.epu.p, r.epu.r, r.epu.n);
-
+      this.countRec.next(r.epu.p + r.epu.r + r.epu.n);
 
       // chartData.push(100 - r.epu.t);
 

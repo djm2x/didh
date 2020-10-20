@@ -16,6 +16,7 @@ import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalComponent } from './modal/modal.component';
+import { CountModule } from '../components/count/count.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { ModalComponent } from './modal/modal.component';
     UpdateComponent,
     DetailComponent,
     ArchiveComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +37,7 @@ import { ModalComponent } from './modal/modal.component';
     ManageFilesModule,
     PieChartModule,
     TranslateModule,
+    CountModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'fr'},

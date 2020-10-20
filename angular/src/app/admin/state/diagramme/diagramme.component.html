@@ -165,8 +165,7 @@
         <!-- <div class="col-md-8">
           <app-bar [dataSubject]="mecanismeSubject"></app-bar>
         </div> -->
-
-        <!-- <div class="col-md-12 mb-5 mt-5">
+        <div class="col-md-12 mb-5 mt-5" *ngIf="selectedIndex2 === 0">
           <div class="d-flex justify-content-center w-100" style="margin-top: 2%;margin-bottom: 2%; ">
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
@@ -176,12 +175,16 @@
             </section>
           </div>
 
-          <div *ngFor="let e of axesList; let i=index">
+          <!-- <div *ngFor="let e of axesList; let i=index">
             <app-progress-bar [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
+          </div> -->
+
+          <div class="col-md-12">
+            <div class="chart-size">
+              <app-bar [col]="12" [dataSubject]="axePageSubject"></app-bar>
+            </div>
           </div>
-        </div> -->
-
-
+        </div>
 
 
         <!-- Mise en œuvre des recommandations par départements -->

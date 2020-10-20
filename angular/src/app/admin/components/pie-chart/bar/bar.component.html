@@ -11,6 +11,7 @@
     (click)="openDialog()">
 
     <div [class]="'col-md-' + col" style="display: block; width: 100vw;" [style.height]="height">
+      <!-- <h5 class="XChart">%</h5> -->
       <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
         [legend]="barChartLegend" [chartType]="barChartType" [plugins]="pieChartPlugins" [colors]="pieChartColors"
         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>

@@ -247,22 +247,15 @@ namespace Admin5.Controllers
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
+                .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 ;
 
             var countR = await q.CountAsync();
             
-            q = q.Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat));
-
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
             var department = department0
                 .Where(e => e.RecomOrgs.Count > 0)
                 .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.Label)
-                // .Select(e => new
-                // {
-                //     name = e.RecomOrgs.FirstOrDefault().Organisme.Label,
-                //     p = e.RecomOrgs.Sum(r => r.Recommendation.EtatAvancementChiffre) / e.RecomOrgs.Count(),
-                //     t = (double.Parse(e.RecomOrgs.Count().ToString()) / recommendationsCount) * 100,
-                // })
                 .Select(e => new
                 {
                     name = e.Key,
@@ -278,7 +271,7 @@ namespace Admin5.Controllers
                 ;
 
             
-            countR = await q.CountAsync();
+            // countR = await q.CountAsync();
             // var epu = await q
             //     .GroupBy(e => e.Cycle.Label)
             //     .Select(e => new
@@ -291,10 +284,26 @@ namespace Admin5.Controllers
             //     ;
 
             var axe0 = await q.Include(e => e.Axe).ToListAsync();
-            var axe = axe0.Where(e => e.Axe != null).GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
+            var axe = axe0.Where(e => e.Axe != null)
+                .GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
                 .Select(e => new
                 {
                     name = e.Key,
+                    // nameAr = e.First().Axe.AbvAr,
+                    p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
+                    r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
+                    n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
+                    t = countR,
+                })
+                .ToList()
+                ;
+
+            var epu = axe0.Where(e => e.Axe != null && e.IdCycle != null)
+                .GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
+                .Select(e => new
+                {
+                    name = e.Key,
+                    // nameAr = e.First().Axe.AbvAr,
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
@@ -356,7 +365,7 @@ namespace Admin5.Controllers
             var count = await q.CountAsync();
 
 
-            return Ok(new { mecanisme = await Calc(q), count = recommendationsCount, organe, visite, axe, department, pays = 1, recommandationValues = new { realise, nonRealise, enCours, count } });
+            return Ok(new { mecanisme = await Calc(q), count = recommendationsCount, organe, visite, axe, epu, department, pays = 1, recommandationValues = new { realise, nonRealise, enCours, count } });
         }
 
         private async Task<object> Calc(IQueryable<Recommendation> q)

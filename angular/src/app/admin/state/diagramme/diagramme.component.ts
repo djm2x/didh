@@ -62,6 +62,7 @@ export class DiagrammeComponent implements OnInit {
 
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
+  epuList: { name: string, p: number, t: number }[] = [];
   departementList: { name: string, nameAr: string, p: number, r: number, t: number, n: number, type: string }[] = [];
   payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
@@ -71,6 +72,7 @@ export class DiagrammeComponent implements OnInit {
   pieChartSubject = new BehaviorSubject<IPieData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
   pieChartSubjectR = new BehaviorSubject<IPieData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
 
+  axePageSubject = new Subject();
   examenPageSubject = new Subject();
   organePageSubject = new Subject();
   visitePageSubject = new Subject();
@@ -134,50 +136,15 @@ export class DiagrammeComponent implements OnInit {
       // this.mytranslate.get('admin.event.list.Ajouter_evènement')
       this.axesList = [];
       this.axesList = r.axe;
+      this.epuList = [];
+      this.epuList = r.epu;
       this.departementList = [];
       this.departementList = r.department;
-      this.payeList = [];
-      this.payeList = r.pays;
+      // this.payeList = [];
+      // this.payeList = r.pays;
 
-
-      // const title = 'l’Etat d’avancement des recommandations par axe';
-      // this.listAxes.next({list: r, title});
-      // const barList: { name: string, p: number, t: number, r: number, n: number }[] = [];
-      // const epu = {
-      //   name: this.mytranslate.get('admin.state.Examen_Périodique_universelle'),
-      //   p: r.mecanisme.epu.p * 100 / r.mecanisme.epu.t,
-      //   n: r.mecanisme.epu.n * 100 / r.mecanisme.epu.t,
-      //   r: r.mecanisme.epu.r * 100 / r.mecanisme.epu.t,
-      // };
-
-      // const ot = {
-      //   name: this.mytranslate.get('admin.state.Organes_de_Traités'),
-      //   p: r.mecanisme.ot.p * 100 / r.mecanisme.ot.t,
-      //   n: r.mecanisme.ot.n * 100 / r.mecanisme.ot.t,
-      //   r: r.mecanisme.ot.r * 100 / r.mecanisme.ot.t,
-      // };
-
-      // const ps = {
-      //   name: this.mytranslate.get('admin.state.Procédures_spéciales'),
-      //   p: r.mecanisme.ps.p * 100 / r.mecanisme.ps.t,
-      //   n: r.mecanisme.ps.n * 100 / r.mecanisme.ps.t,
-      //   r: r.mecanisme.ps.r * 100 / r.mecanisme.ps.t,
-      // };
-
-      // if (r.mecanisme.epu.t !== 0) {
-      //   barList.push(epu as any);
-      // }
-      // if (r.mecanisme.ot.t !== 0) {
-      //   barList.push(ot as any);
-      // }
-      // if (r.mecanisme.ps.t !== 0) {
-      //   barList.push(ps as any);
-      // }
-
-      // console.log(this.axesList)
-
-      // this.allMecanismeBar(barList);
       this.stateAxe(this.axesList);
+      this.stateEpu(this.epuList);
       this.stateOrgane(r.organe);
       this.stateVisite(r.visite);
 
@@ -195,8 +162,10 @@ export class DiagrammeComponent implements OnInit {
 
   // tslint:disable-next-line: member-ordering
   selectedIndex = 0;
+  selectedIndex2 = 0;
 
   selectedTabChange(o: MatTabGroup) {
+    this.selectedIndex2 = o.selectedIndex;
     this.selectedIndex = o.selectedIndex - 1;
     if (this.selectedIndex > -1) {
       this.o.mecanisme = this.selectedIndex === 0 ? 'Examen périodique universal'
@@ -237,13 +206,13 @@ export class DiagrammeComponent implements OnInit {
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.state.Etat_avancement')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-      barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-      barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+      barChartData[0].data.push((e.p * e.t / 100).toFixed(2));
+      barChartData[1].data.push((e.r * e.t / 100).toFixed(2));
+      barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(2));
     });
 
 
@@ -356,13 +325,13 @@ export class DiagrammeComponent implements OnInit {
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
-      { data: [], label: 'Non réalisé' },
+      { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé') },
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
     });
 
 
@@ -382,13 +351,35 @@ export class DiagrammeComponent implements OnInit {
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
+    });
+    // tslint:disable-next-line:max-line-length
+    this.axePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Axe') });
+    // });
+  }
+
+  stateEpu(r) {
+    // this.uow.axes.stateAxes().subscribe(r => {
+
+    r = r.filter(e => e.name !== null);
+    // console.log(r);
+    const barChartLabels = r.map(e => e.name);
+    const barChartData = [
+      { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
+    ];
+
+    r.forEach(e => {
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
     });
     // tslint:disable-next-line:max-line-length
     this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
@@ -404,13 +395,13 @@ export class DiagrammeComponent implements OnInit {
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement') },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé') },
-      { data: [], label: 'Non réalisé' },
+      { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé') },
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
-      barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
-      barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
+      barChartData[0].data.push((e.p * 100 / e.t).toFixed(2));
+      barChartData[1].data.push((e.r * 100 / e.t).toFixed(2));
+      barChartData[2].data.push((e.n * 100 / e.t).toFixed(2));
     });
 
 
@@ -444,7 +435,7 @@ export class DiagrammeComponent implements OnInit {
     //     barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(2));
     //     barChartDataPE[2].data.push(0);
     //   });
-    // } else if (this.o.etat === 'Non réalisé') {
+    // } else if (this.o.etat === this.mytranslate.get('admin.organe.list.NonRéalisé')) {
     //   r.forEach(e => {
     //     barChartDataPE[0].data.push(0);
     //     barChartDataPE[1].data.push(0);
@@ -454,9 +445,9 @@ export class DiagrammeComponent implements OnInit {
     // }
     r.forEach(e => {
       // barChartDataPE[0].data.push(e.t);
-      barChartDataPE[0].data.push((e.p/* * 100 / e.t*/).toFixed(0));
-      barChartDataPE[1].data.push((e.r/* * 100 / e.t*/).toFixed(0));
-      barChartDataPE[2].data.push((e.n/* * 100 / e.t*/).toFixed(0));
+      barChartDataPE[0].data.push((e.p/* * 100 / e.t*/).toFixed(2));
+      barChartDataPE[1].data.push((e.r/* * 100 / e.t*/).toFixed(2));
+      barChartDataPE[2].data.push((e.n/* * 100 / e.t*/).toFixed(2));
     });
 
 

@@ -21,6 +21,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import { PieChartModule } from '../components/pie-chart/pie-chart.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalComponent } from './modal/modal.component';
+import { CountModule } from '../components/count/count.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ModalComponent } from './modal/modal.component';
     DetailRapportComponent,
     SituationReserveComponent,
     ArchiveComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +49,7 @@ import { ModalComponent } from './modal/modal.component';
     ManageFilesModule,
     PieChartModule,
     TranslateModule,
+    CountModule,
   ],
   entryComponents: [
     SheetbottomComponent,

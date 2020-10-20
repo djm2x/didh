@@ -68,13 +68,13 @@ export class PieComponent implements OnInit {
         precision: 0,
         fontSize: 14,
         fontStyle: 'bold',
-        // render: 'percentage',
-        render: (args, i) => {
-          const label = args.label;
-          const value = args.value;
+        render: 'percentage',
+        // render: (args, i) => {
+        //   const label = args.label;
+        //   const value = args.value;
 
-          return `${value} % / (${this.dataToShowInTable[args.index]}) `;
-        }
+        //   return `${value} % / (${this.dataToShowInTable[args.index]}) `;
+        // }
       },
       pieceLabel: {
         // fontColor: '#000',

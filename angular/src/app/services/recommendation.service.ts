@@ -55,6 +55,7 @@ export class RecommendationService extends SuperService<Recommendation> {
       },
       recommandationValues: {realise: number, nonRealise: number, enCours: number, count: number}
       axe: { name: string, p: number, t: number, r: number }[],
+      epu: { name: string, p: number, t: number, r: number }[],
       visite: { name: string, p: number, t: number, r: number }[],
       organe: { name: string, p: number, t: number, r: number }[],
       department: { name: string, nameAr: string, p: number, t: number, r: number, n: number, type: string }[]

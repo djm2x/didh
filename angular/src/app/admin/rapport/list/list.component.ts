@@ -65,7 +65,7 @@ export class ListComponent implements OnInit {
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: this.mytranslate.getObs('admin.organe.list.Tauxderecommandationsparorgane') });
 
   organePageSubject = new Subject();
-
+  countRec = new Subject();
   dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
   dataPie = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
@@ -132,7 +132,7 @@ export class ListComponent implements OnInit {
 
       // chartData.push(100 - r.ot.t);
       dataToShowInTable.push(r.ot.p, r.ot.r, r.ot.n);
-
+      this.countRec.next(r.ot.p + r.ot.r + r.ot.n);
       const chartColors = ['#f7801e', '#2b960b', '#db0707',  '#ffffff'];
 
       this.dataPie.next({

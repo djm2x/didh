@@ -20,11 +20,14 @@
       </div>
     </div> -->
 
-    <div class="col-md-6">
+    <div class="col-md-5">
       <app-pie [withGraphe]="'100%'" [height]="'62vh'" [showLegend]="true" [obs]="dataEpuPie"></app-pie>
     </div>
     <!-- <mat-divider [vertical]="true"></mat-divider> -->
-    <div class="col-md-6">
+    <div class="col-md-2">
+      <app-count [count]="countRec" [height]="'62vh'"></app-count>
+    </div>
+    <div class="col-md-5">
       <app-pie-chart [withGraphe]="'100%'" [showLegend]="true" [obs]="pieChartSubjectC"></app-pie-chart>
     </div>
 

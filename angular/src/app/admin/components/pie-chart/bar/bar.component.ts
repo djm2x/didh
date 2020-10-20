@@ -32,7 +32,13 @@ export class BarComponent implements OnInit {
       yAxes: [{
         ticks: {
           beginAtZero: true,
-        }
+        },
+        scaleLabel: {
+          display: true,
+          labelString: '%',
+          fontSize: 20,
+        },
+        position: 'top',
       }]
     },
     legend: {

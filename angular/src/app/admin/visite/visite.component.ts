@@ -59,6 +59,7 @@ export class VisiteComponent implements OnInit {
   visitePage: {name: string, p: number, t: number, r: number}[] = [];
   retate = 0;
   dataPie = new Subject();
+  countRec = new Subject();
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private bottomSheet: MatBottomSheet, @Inject('BASE_URL') public url: string
     , private route: ActivatedRoute, public session: SessionService
@@ -125,7 +126,7 @@ export class VisiteComponent implements OnInit {
 
       // chartData.push(100 - r.ps.t);
       dataToShowInTable.push(r.ps.p, r.ps.r, r.ps.n);
-
+      this.countRec.next(r.ps.p + r.ps.r + r.ps.n);
       const chartColors = ['#f7801e', '#2b960b', '#db0707', '#ffffff'];
 
       this.dataPie.next({
