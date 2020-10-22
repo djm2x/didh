@@ -204,7 +204,8 @@ namespace Admin5.Controllers
 
 
                 // t = (double.Parse(e.Count().ToString()) * 100) / recommendationsCount,
-                t = count,
+                // t = count,
+                    t = e.Count(),
             })
             .ToList();
 
@@ -250,7 +251,7 @@ namespace Admin5.Controllers
                 .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 ;
 
-            var countR = await q.CountAsync();
+            // var countR = await q.CountAsync();
             
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
             var department = department0
@@ -264,7 +265,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = countR,
+                    // t = countR,
+                    t = e.Count(),
                 })
                 .ToList()
 
@@ -293,7 +295,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = countR,
+                    // t = countR,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;
@@ -307,7 +310,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = countR,
+                    // t = countR,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;
@@ -324,7 +328,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = countR,
+                    // t = countR,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;
@@ -339,7 +344,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = countR,
+                    // t = countR,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;
@@ -443,7 +449,7 @@ namespace Admin5.Controllers
 
             var q = _context.Recommendations.Where(e => e.Organe != null).Include(e => e.Organe);
             var list = await q.ToListAsync();
-            var count = await q.CountAsync();
+            // var count = await q.CountAsync();
 
             var list2 = list
                 .GroupBy(e => lng == "fr" ? e.Organe.Label : e.Organe.LabelAr)
@@ -453,7 +459,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = count,
+                    // t = count,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;
@@ -470,7 +477,7 @@ namespace Admin5.Controllers
 
             var q = _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite);
             var list = await q.ToListAsync();
-            var count = await q.CountAsync();
+            // var count = await q.CountAsync();
 
             var list2 = list.GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
                 .Select(e => new
@@ -479,7 +486,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = count,
+                    // t = count,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;

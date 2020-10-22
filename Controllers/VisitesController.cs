@@ -82,7 +82,7 @@ namespace Admin5.Controllers
 
             var q = _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite);
             var list = await q.ToListAsync();
-            var count = await q.CountAsync();
+            // var count = await q.CountAsync();
 
             var list2 = list
                 .GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
@@ -92,7 +92,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    t = count,
+                    // t = count,
+                    t = e.Count(),
                 })
                 .ToList()
                 ;
