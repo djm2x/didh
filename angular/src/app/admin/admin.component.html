@@ -90,13 +90,13 @@
             <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active"
               style="height: 40px !important; margin-right: 1px; background-color: #aaabab;">
               <!-- <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span> -->
-              <span class="myspan" >{{e.name | async | translate}}</span>
+              <span class="myspan2" >{{e.name | async | translate}}</span>
             </mat-list-item>
           </ng-container>
           <ng-template #elseTemplate>
             <mat-list-item [matMenuTriggerFor]="i">
               <!-- <span class="myspan" [style.width]="e.width">{{e.name | async | translate}}</span> -->
-              <span class="myspan" >{{e.name | async | translate}}</span>
+              <span class="myspan2" >{{e.name | async | translate}}</span>
             </mat-list-item>
 
             <mat-menu #i="matMenu" xPosition="after">

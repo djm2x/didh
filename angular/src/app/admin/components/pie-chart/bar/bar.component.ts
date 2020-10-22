@@ -34,7 +34,7 @@ export class BarComponent implements OnInit {
           beginAtZero: true,
         },
         scaleLabel: {
-          display: true,
+          display: false,
           labelString: '%',
           fontSize: 20,
         },

@@ -285,7 +285,7 @@ namespace Admin5.Controllers
 
             var axe0 = await q.Include(e => e.Axe).ToListAsync();
             var axe = axe0.Where(e => e.Axe != null)
-                .GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
+                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -299,7 +299,7 @@ namespace Admin5.Controllers
                 ;
 
             var epu = axe0.Where(e => e.Axe != null && e.IdCycle != null)
-                .GroupBy(e => lng == "fr" ? e.Axe.Label : e.Axe.LabelAr)
+                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,

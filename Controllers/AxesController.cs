@@ -30,7 +30,7 @@ namespace Admin5.Controllers
             var list = await q.ToListAsync();
             var count = await q.CountAsync();
             var list2 = list
-                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.LabelAr)
+                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,
