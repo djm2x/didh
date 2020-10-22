@@ -129,47 +129,47 @@ namespace seed
                 new Axe {
                             Id = 1
                             , Label = "la promotion, le développement démocratique et la primauté du droit"
-                            , LabelAr = "تعزيز البناء الديمقراطي وسيادة القانون", Abv="Développement démocratique et primauté du Droit", AbvAr=""
+                            , LabelAr = "تعزيز البناء الديمقراطي وسيادة القانون", Abv="Développement démocratique et primauté du Droit", AbvAr="البناء الديموقراطي و سيادة القانون"
                             },
                 new Axe {
                             Id = 2
                             , Label = "l’interaction avec le système onusien des droits de l'homme"
-                            , LabelAr = "مواصلة الانخراط والتعاون مع المنظومة الأممية لحقوق الإنسان", Abv="Interaction avec SNU des DH", AbvAr="" 
+                            , LabelAr = "مواصلة الانخراط والتعاون مع المنظومة الأممية لحقوق الإنسان", Abv="Interaction avec SNU des DH", AbvAr="التعاون مع المنظومة الأممية" 
                             },
                 new Axe {
                             Id = 3
                             , Label = "la promotion et la protection des droits de l'homme, à travers la législation et l’harmonisation avec les normes internationales, constitué d’un sous-thème se rapportant à la législation"
-                            , LabelAr = "النهوض بحقوق الإنسان وحمايتها عبر التشريع والملاءمة مع المعايير الدولية", Abv="Harmonisation Juridique", AbvAr="" 
+                            , LabelAr = "النهوض بحقوق الإنسان وحمايتها عبر التشريع والملاءمة مع المعايير الدولية", Abv="Harmonisation Juridique", AbvAr="الملائمة" 
                             },
                 new Axe {
                             Id = 4
                             , Label = "la promotion des droits économiques, sociaux, culturels et environnementaux"
-                            , LabelAr = "النهوض بالحقوق الاقتصادية والاجتماعية والثقافية والبيئية", Abv="DESC", AbvAr="" 
+                            , LabelAr = "النهوض بالحقوق الاقتصادية والاجتماعية والثقافية والبيئية", Abv="DESC", AbvAr="الحقوق الاقتصادية و الاجتماعية و الثقافية و البيئية" 
                             },
                 new Axe {
                             Id = 5
                             , Label = "la protection et la promotion des droits civils et politiques"
-                            , LabelAr = "حماية الحقوق المدنية والسياسية والنهوض بها", Abv="Droits civils et Politiques", AbvAr="" 
+                            , LabelAr = "حماية الحقوق المدنية والسياسية والنهوض بها", Abv="Droits civils et Politiques", AbvAr="الحقوق المدنية و السياسية" 
                             },
                 new Axe {
                             Id = 6
                             , Label = "la promotion et la protection des droits catégoriels"
-                            , LabelAr = "النهوض بالحقوق الفئوية وحمايتها", Abv="Droits Catégoriels ", AbvAr="" 
+                            , LabelAr = "النهوض بالحقوق الفئوية وحمايتها", Abv="Droits Catégoriels ", AbvAr="الحقوق الفئوية" 
                             },
                 new Axe {
                             Id = 7
                             , Label = "la promotion de la culture des droits de l'homme par l'éducation et la formation"
-                            , LabelAr = "النهوض بثقافة حقوق الإنسان من خلال التربية والتكوين", Abv="Education et culture des DH", AbvAr="" 
+                            , LabelAr = "النهوض بثقافة حقوق الإنسان من خلال التربية والتكوين", Abv="Education et culture des DH", AbvAr="النهوض بثقافة حقوق الانسان" 
                             },
                 new Axe {
                             Id = 8
                             , Label = "la promotion du cadre institutionnel pour la protection et la promotion des droits de l'homme"
-                            , LabelAr = "الإطار المؤسساتي لحماية حقوق الإنسان والنهوض بها", Abv="Cadre institutionnel des DH", AbvAr="" 
+                            , LabelAr = "الإطار المؤسساتي لحماية حقوق الإنسان والنهوض بها", Abv="Cadre institutionnel des DH", AbvAr="الاطار المؤسساتي" 
                             },
                 new Axe {
                             Id = 9
                             , Label = "des recommandations d'ordre général"
-                            , LabelAr = "التوصيات العامة", Abv="Recommandations d'ordre général", AbvAr="" 
+                            , LabelAr = "التوصيات العامة", Abv="Recommandations d'ordre général", AbvAr="توصيات عامة" 
                             },
             });
 
