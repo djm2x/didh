@@ -21,7 +21,7 @@ export class PieChartComponent implements OnInit {
   @Input() withGraphe = '100%';
   @Input() public positionLegendBottom = false;
   @Input() canvasHeight = 400;
-  @Input() height = '60vh';
+  @Input() height = '45vh';
 
   title = '' || null;
   // Pie
@@ -40,7 +40,7 @@ export class PieChartComponent implements OnInit {
     legend: {
       //position: 'chartArea',
       position: 'bottom',
-      display: true,
+      display: false,
       align: 'center',
       fullWidth: true,
       labels: {
@@ -90,7 +90,7 @@ export class PieChartComponent implements OnInit {
       this.retate = lang === 'fr' ? 0 : 180;
     });
     // this.pieChartOptions.legend.position = this.positionLegendBottom === false ? 'right' : 'bottom';
-    this.pieChartOptions.legend.display = this.showLegend;
+    // this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(d => {
       // if (d.type === 'stateRecommendationByMecanismeTaux' as any) {

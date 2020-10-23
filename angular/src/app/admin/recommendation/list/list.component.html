@@ -161,11 +161,13 @@
       <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
         <ng-container [matColumnDef]="columnDefs[0].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.code' | translate }}</th>
-          <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.codeRecommendation : row.codeRecommendationAr}}</td>
+          <td mat-cell *matCellDef="let row">
+            {{ mytranslate.langSync === 'fr' ? row.codeRecommendation : displayFrIfArNull(row.codeRecommendation, row.codeRecommendationAr) }}
+          </td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.nom' | translate }}</th>
-          <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.nom : row.nomAr}}</td>
+          <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.nom : displayFrIfArNull(row.nom, row.nomAr)}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[2].columnDef">

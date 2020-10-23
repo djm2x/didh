@@ -111,6 +111,10 @@ export class ListComponent implements OnInit {
     this.autoComplete();
   }
 
+  displayFrIfArNull(fr: string, ar: string) {
+    return ar && ar.length !== 0 ? ar : fr;
+  }
+
   displayMulti(mc: string, et: string) {
     // console.log(mc, et)
     const etat = [
