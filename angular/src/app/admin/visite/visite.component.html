@@ -82,19 +82,9 @@
           <td mat-cell *matCellDef="let row">{{row[columnDefs[1].columnDef] | date : "dd/MM/yyyy"}}</td>
         </ng-container>
 
+
+
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.ps.list.RAPPORT_NATIONAL_DE_LA_VISITE' | translate}}</th>
-          <td mat-cell *matCellDef="let row">
-            <!-- {{row[columnDefs[4].columnDef]}} -->
-
-            <button mat-icon-button [disabled]="row.lienUpload === ''" [matTooltip]="row.lienUpload" color="accent"
-              (click)="showPieceJoin(row.lienUpload)">
-              <mat-icon>cloud_download</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-
-        <ng-container [matColumnDef]="columnDefs[3].columnDef">
           <th mat-header-cell *matHeaderCellDef>
             {{ 'admin.ps.list.RAPPORT_DE_LA_PROCEDURE_REACTION_NATIONALE' | translate}}</th>
           <td mat-cell *matCellDef="let row">
@@ -105,11 +95,23 @@
           </td>
         </ng-container>
 
-        <ng-container [matColumnDef]="columnDefs[4].columnDef">
+        <ng-container [matColumnDef]="columnDefs[3].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.ps.list.PLAN_DE_MISE_EN_OEUVRE' | translate}}</th>
           <td mat-cell *matCellDef="let row">
             <button class="center" mat-icon-button [disabled]="row.miseOeuvrePiece === ''"
               [matTooltip]="row.miseOeuvrePiece" color="accent" (click)="showPieceJoin(row.miseOeuvrePiece)">
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[4].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.ps.list.RAPPORT_NATIONAL_DE_LA_VISITE' | translate}}</th>
+          <td mat-cell *matCellDef="let row">
+            <!-- {{row[columnDefs[4].columnDef]}} -->
+
+            <button mat-icon-button [disabled]="row.lienUpload === ''" [matTooltip]="row.lienUpload" color="accent"
+              (click)="showPieceJoin(row.lienUpload)">
               <mat-icon>cloud_download</mat-icon>
             </button>
           </td>

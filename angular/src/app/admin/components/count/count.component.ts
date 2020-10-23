@@ -11,6 +11,9 @@ export class CountComponent implements OnInit {
   year = new Date().getFullYear();
   @Input() count = new Subject();
   @Input() height = '62vh';
+  @Input() ifEpu = false;
+
+
   constructor(public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
