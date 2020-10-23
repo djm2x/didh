@@ -37,8 +37,8 @@ export class ListComponent implements OnInit {
     { columnDef: 'organismes', headName: 'DEPARTEMENT' },
     { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
     // { columnDef: 'observation', headName: '' },
-    { columnDef: 'complement', headName: '' },
     { columnDef: 'pieceJointe', headName: '' },
+    { columnDef: 'complement', headName: '' },
     { columnDef: 'option', headName: '' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
@@ -112,7 +112,11 @@ export class ListComponent implements OnInit {
   }
 
   displayFrIfArNull(fr: string, ar: string) {
-    return ar || ar.length === 0 ? fr : ar;
+    if (ar === null || ar === undefined || ar === '' || ar === 'null') {
+      return fr;
+    } else {
+      return ar;
+    }
   }
 
   displayMulti(mc: string, et: string) {
