@@ -42,7 +42,7 @@ export class UpdateComponent implements OnInit {
     setTimeout(() => {
       this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
       this.lienUploadTo.next(this.o.lienUpload);
-      this.lienUploadTo.next(this.o.lienUpload);
+      this.discoursTo.next(this.o.discours);
     }, 100);
   }
 

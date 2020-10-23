@@ -112,7 +112,7 @@ export class ListComponent implements OnInit {
   }
 
   displayFrIfArNull(fr: string, ar: string) {
-    return ar && ar.length !== 0 ? ar : fr;
+    return ar || ar.length === 0 ? fr : ar;
   }
 
   displayMulti(mc: string, et: string) {
