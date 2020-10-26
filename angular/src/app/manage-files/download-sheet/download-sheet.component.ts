@@ -15,15 +15,17 @@ export class DownloadSheetComponent implements OnInit {
     , @Inject(MAT_BOTTOM_SHEET_DATA) public data: any, @Inject('BASE_URL') public url: string) { }
 
   ngOnInit() {
+    if (this.data.fileName) {
+      const l = this.data.fileName.split(';');
 
-    const l = this.data.fileName.split(';');
+      l.pop();
 
-    l.pop();
+      this.folder = this.data.folder;
 
-    this.folder = this.data.folder;
+      console.log(l)
+      this.list = l;
 
-    console.log(l)
-    this.list = l;
+    }
   }
 
   async openLink(e: string/*event: MouseEvent*/) {

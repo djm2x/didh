@@ -20,11 +20,15 @@ export class ArchiveComponent implements OnInit {
   }
 
   propertyToList(r) {
-    const l = r.split(';');
+    if (r) {
+      const l = r.split(';');
 
-    l.pop();
+      l.pop();
 
-    return l;
+      return l;
+    } else {
+      return [];
+    }
   }
 
   download(fileName/*event: MouseEvent*/) {

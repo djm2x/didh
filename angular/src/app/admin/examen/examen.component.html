@@ -65,7 +65,7 @@
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Rapportnational' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button [disabled]="row.rapportNational === ''" [matTooltip]="row.rapportNational"
+            <button mat-icon-button [disabled]="disable(row.rapportNational)" [matTooltip]="row.rapportNational"
               color="accent" (click)="showPieceJoin(row.rapportNational)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -75,7 +75,7 @@
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Discoursduprésident' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button [disabled]="row.discours === ''" [matTooltip]="row.discours" color="accent"
+            <button mat-icon-button [disabled]="disable(row.discours)" [matTooltip]="row.discours" color="accent"
               (click)="showPieceJoin(row.discours)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -87,7 +87,7 @@
         <ng-container [matColumnDef]="columnDefs[4].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.ObservationsfinalesADDITIFS' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button [disabled]="row.observationFinale === ''" [matTooltip]="row.observationFinale"
+            <button mat-icon-button [disabled]="disable(row.observationFinale)" [matTooltip]="row.observationFinale"
               color="accent" (click)="showPieceJoin(row.observationFinale)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -97,7 +97,7 @@
         <ng-container [matColumnDef]="columnDefs[6].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.Rapportmi-parcours' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button [disabled]="row.rapportMiParcours === ''" [matTooltip]="row.rapportMiParcours"
+            <button mat-icon-button [disabled]="disable(row.rapportMiParcours)" [matTooltip]="row.rapportMiParcours"
               color="accent" (click)="showPieceJoin(row.rapportMiParcours)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -107,7 +107,7 @@
         <ng-container [matColumnDef]="columnDefs[3].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.CompilationHCDHSOCIETECIVILE' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button [disabled]="row.compilationHCDH === ''" [matTooltip]="row.compilationHCDH"
+            <button mat-icon-button [disabled]="disable(row.compilationHCDH)" [matTooltip]="row.compilationHCDH"
               color="accent" (click)="showPieceJoin(row.compilationHCDH)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -117,7 +117,7 @@
         <ng-container [matColumnDef]="columnDefs[5].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.epu.list.PLANDEMISEENOEUVRE' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button class="center" mat-icon-button [disabled]="row.miseOeuvrePiece === ''"
+            <button class="center" mat-icon-button [disabled]="disable(row.miseOeuvrePiece)"
               [matTooltip]="row.miseOeuvrePiece" color="accent" (click)="showPieceJoin(row.miseOeuvrePiece)">
               <mat-icon>cloud_download</mat-icon>
             </button>

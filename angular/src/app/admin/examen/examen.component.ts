@@ -86,10 +86,14 @@ export class ExamenComponent implements OnInit {
     );
   }
 
+  disable(e: string) {
+    return e && e !== '' ? false : true;
+  }
+
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.examens.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {
-        // console.log(r.list);
+        console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;

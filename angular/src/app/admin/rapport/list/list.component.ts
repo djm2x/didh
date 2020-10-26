@@ -143,6 +143,10 @@ export class ListComponent implements OnInit {
     });
   }
 
+  disable(e: string) {
+    return e && e !== '' ? false : true;
+  }
+
 
   stateMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {

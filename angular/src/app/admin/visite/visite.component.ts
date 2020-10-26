@@ -102,6 +102,10 @@ export class VisiteComponent implements OnInit {
     this.stateOneOFMecanisme();
   }
 
+  disable(e: string) {
+    return e && e !== '' ? false : true;
+  }
+
   stateOneOFMecanisme() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];

@@ -66,7 +66,7 @@
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.list.Rapportnational' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button class="center" mat-icon-button [disabled]="row.conventionPiece === ''"
+            <button class="center" mat-icon-button [disabled]="disable(row.conventionPiece)"
               [matTooltip]="row.conventionPiece" color="accent" (click)="showPieceJoin(row.conventionPiece)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -76,7 +76,7 @@
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.list.Discoursduprésident' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button class="center" mat-icon-button [disabled]="row.discours === null || row.discours === ''"
+            <button class="center" mat-icon-button [disabled]="disable(row.discours)"
               [matTooltip]="row.discours" color="accent" (click)="showPieceJoin(row.discours)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -87,7 +87,7 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.list.Compterenduanalytique' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button *ngIf="session.isPointFocal === false" class="center" mat-icon-button
-              [disabled]="row.analytiquePiece === ''" [matTooltip]="row.analytiquePiece" color="accent"
+              [disabled]="disable(row.analytiquePiece)" [matTooltip]="row.analytiquePiece" color="accent"
               (click)="showPieceJoin(row.analytiquePiece)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -99,7 +99,7 @@
             {{session.isPointFocal === false ? ('admin.organe.list.Observationsfinales' | translate ) : ''}}</th>
           <td mat-cell *matCellDef="let row">
             <button *ngIf="session.isPointFocal === false" class="center" mat-icon-button
-              [disabled]="row.observationPiece === ''" [matTooltip]="row.observationPiece" color="accent"
+              [disabled]="disable(row.observationPiece)" [matTooltip]="row.observationPiece" color="accent"
               (click)="showPieceJoin(row.observationPiece)">
               <mat-icon>cloud_download</mat-icon>
             </button>
@@ -110,7 +110,7 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.list.Rapportparallèle' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button class="center" mat-icon-button
-              [disabled]="row.rapportParallelePiece === null || row.rapportParallelePiece === ''"
+              [disabled]="disable(row.rapportParallelePiece)"
               [matTooltip]="row.rapportParallelePiece" color="accent"
               (click)="showPieceJoin(row.rapportParallelePiece)">
               <mat-icon>cloud_download</mat-icon>
@@ -121,7 +121,7 @@
         <ng-container [matColumnDef]="columnDefs[6].columnDef">
           <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.list.PLANDEMISEENOEUVRE' | translate }}</th>
           <td mat-cell *matCellDef="let row">
-            <button class="center" mat-icon-button [disabled]="row.miseOeuvrePiece === ''"
+            <button class="center" mat-icon-button [disabled]="disable(row.miseOeuvrePiece)"
               [matTooltip]="row.miseOeuvrePiece" color="accent" (click)="showPieceJoin(row.miseOeuvrePiece)">
               <mat-icon>cloud_download</mat-icon>
             </button>

@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   @ViewChild('app', { static: true }) app: ElementRef;
 
 
-  @HostBinding('class') className = 'font-fr';
+  className = 'font-fr';
 
 
   constructor(private splashScreenService: SplashScreenService, public mytranslate: MyTranslateService) { }
@@ -25,6 +25,6 @@ export class AppComponent implements OnInit {
       this.className = r.lang === 'fr' ? 'font-fr' : 'font-ar';
     });
 
-    console.log(this.app.nativeElement);
+    // console.log(this.app.nativeElement);
   }
 }
