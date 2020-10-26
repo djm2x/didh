@@ -1,9 +1,9 @@
-
 <div class="expension">
 
   <mat-accordion>
 
-    <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="box-sizing: border-box;">
+    <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      style="box-sizing: border-box;">
       <mat-divider>
       </mat-divider>
       <form [formGroup]="myForm">
@@ -37,7 +37,8 @@
             <mat-label>{{ 'admin.recommandation.list.Cycle' | translate }}</mat-label>
             <mat-select formControlName="idCycle">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
+              <mat-option *ngFor="let e of cycles | async" [value]="e.id">
+                {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -86,7 +87,8 @@
                 {{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
             </mat-select>
           </mat-form-field>
-
+        </div>
+        <div class="inputs2">
           <mat-form-field appearance="fill" *ngIf="session.isAdmin || session.isSuperViseur">
             <mat-label>{{ 'admin.recommandation.list.DEPARTEMENT' | translate }}</mat-label>
             <mat-select formControlName="idOrganisme">
@@ -114,12 +116,13 @@
 
       <mat-tab-group #myTab class="example-stretched-tabs" #matgroup (selectedTabChange)="selectedTabChange(matgroup)">
         <mat-tab label="Global">
-          <ng-template mat-tab-label >
+          <ng-template mat-tab-label>
             <span (click)="hide()">{{ mytranslate.langSync === 'fr' ? 'Global' : 'شامل'}}</span>
             <!-- {{hideGlobalGraph}} {{indexTohideGlobalGraph}} -->
           </ng-template>
           <ng-template matTabContent>
-            <div class="col-md-12" [style.display]="hideGlobalGraph ? 'none' : 'block'">
+            <!-- <div class="col-md-12" [style.display]="hideGlobalGraph ? 'none' : 'block'"> -->
+            <div class="col-md-12">
               <div class="row w-100">
                 <div class="col-md-6">
                   <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataMec1"></app-pie>
@@ -154,7 +157,7 @@
 
         <mat-tab label="{{ 'admin.ps.Procédure_spéciale' | translate }}">
           <ng-template matTabContent>
-               <app-bar [dataSubject]="visitePageSubject"></app-bar>
+            <app-bar [dataSubject]="visitePageSubject"></app-bar>
           </ng-template>
         </mat-tab>
       </mat-tab-group>
@@ -170,7 +173,7 @@
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
               <div>
-                <h3>{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}</h3>
+                <h3 class="pie-title">{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_Axe' | translate }}</h3>
               </div>
             </section>
           </div>
@@ -193,7 +196,7 @@
             <section
               [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
               <div>
-                <h3>{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}</h3>
+                <h3 class="pie-title">{{ 'admin.state.Mise_en_œuvre_des_recommandations_par_départements' | translate }}</h3>
               </div>
             </section>
           </div>
@@ -204,7 +207,7 @@
                 <app-bar [col]="12" [dataSubject]="departementSubjectPE" [height]="'70vh'"></app-bar>
               </div>
             </div>
-<!--
+            <!--
             <div class="col-md-12">
               <div class="chart-size">
                 <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>

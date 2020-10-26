@@ -1,5 +1,4 @@
 .font-fr {
-
   mat-label {
     font-size: 1em;
   }
@@ -19,7 +18,8 @@
   }
 
   .mat-header-row {
-    .mat-sort-header-button ,.mat-header-cell {
+    .mat-sort-header-button,
+    .mat-header-cell {
       font-size: 1em;
     }
   }
@@ -28,16 +28,18 @@
     font-size: 15px;
   }
 
+  .pie-title {
+    font-size: 1.2em;
+  }
 }
 
 .font-ar {
-
   mat-label {
     font-size: 1.2em;
   }
 
   .mat-tab-label-content {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 
   .myspan {
@@ -51,7 +53,8 @@
   }
 
   .mat-header-row {
-    .mat-sort-header-button ,.mat-header-cell {
+    .mat-sort-header-button,
+    .mat-header-cell {
       font-size: 1.2em;
     }
   }
@@ -59,4 +62,27 @@
   .mat-cell {
     font-size: 17px;
   }
+
+  .pie-title {
+    font-size: 1.5em;
+  }
+
+  .mat-button-wrapper,
+  .mat-raised-button {
+    font-size: 1.1em !important;
+  }
+
+  .mat-button,
+  .mat-fab,
+  .mat-flat-button,
+  .mat-icon-button,
+  .mat-mini-fab,
+  .mat-raised-button,
+  .mat-stroked-button {
+    font-size: 1.1em !important;
+  }
+}
+
+.mat-option-text {
+  font-size: 1.2em !important;
 }

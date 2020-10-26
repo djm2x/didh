@@ -54,12 +54,12 @@ export class RecommendationService extends SuperService<Recommendation> {
         ps: { name: string, p: number, t: number, r: number, n: number }
       },
       recommandationValues: {realise: number, nonRealise: number, enCours: number, count: number}
-      axe: { name: string, p: number, t: number, r: number }[],
-      epu: { name: string, p: number, t: number, r: number }[],
-      visite: { name: string, p: number, t: number, r: number }[],
-      organe: { name: string, p: number, t: number, r: number }[],
+      axe: { name: string, p: number, t: number, r: number, n: number }[],
+      epu: { name: string, p: number, t: number, r: number, n: number }[],
+      visite: { name: string, p: number, t: number, r: number, n: number }[],
+      organe: { name: string, p: number, t: number, r: number, n: number }[],
       department: { name: string, nameAr: string, id: number, p: number, t: number, r: number, n: number, type: string }[]
-      pays: { name: string, p: number, t: number, r: number }[]
+      pays: { name: string, p: number, t: number, r: number, n: number }[]
     }>(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
   }
 

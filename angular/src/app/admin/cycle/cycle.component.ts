@@ -22,6 +22,7 @@ export class CycleComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'label', headName: 'NOM' },
+    { columnDef: 'labelAr', headName: 'NOM Ar' },
     { columnDef: 'option', headName: 'OPTION' },
   ];
 

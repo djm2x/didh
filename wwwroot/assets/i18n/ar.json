@@ -194,7 +194,8 @@
       "Procédures_spéciales": " اللأجراءات الخاصة",
       "Etat_avancement": " التقدم المحرز",
       "Taux": " نسبة",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ التوصيات حسب هيئات المعاهدات"
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ التوصيات حسب هيئات المعاهدات",
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités2": "تنفيذ التوصيات حسب معدل الانجاز"
     },
     "recommandation": {
       "title": "توصية",

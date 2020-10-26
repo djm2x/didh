@@ -67,6 +67,7 @@ export class ListComponent implements OnInit {
   formData = new FormData();
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
+
   constructor(private uow: UowService, public session: SessionService, private bottomSheet: MatBottomSheet
     , public mytranslate: MyTranslateService) { }
 
@@ -93,16 +94,15 @@ export class ListComponent implements OnInit {
     //   });
     // });
 
-    merge(...[this.sort.sortChange, this.paginator.page, this.fromParent]).subscribe(
-      o => {
+    merge(...[this.sort.sortChange, this.paginator.page, this.fromParent]).subscribe((r: any) => {
 
 
-        if (o.mecanisme !== undefined) {
-          this.o = o;
-          // console.log(this.o)
+        if ((r as any).obj/*o.mecanisme !== undefined*/) {
+          this.o = (r as any).obj;
+          console.log(this.o)
         }
         // r === true ? this.paginator.pageIndex = 0 : r = r;
-        !this.paginator.pageSize ? this.paginator.pageSize = 10 : o = o;
+        !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
         // this.o = new Model();
         this.o.startIndex = this.paginator.pageIndex * this.paginator.pageSize;
         this.o.pageSize = this.paginator.pageSize;
@@ -111,12 +111,12 @@ export class ListComponent implements OnInit {
         this.o.nom = '';
         this.o.idPays = 0;
         this.isLoadingResults = true;
-        this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : o.idOrganisme;
+        this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
 
-        this.uow.recommendations.searchAndGet(this.o).subscribe((r: any) => {
+        this.uow.recommendations.searchAndGet(this.o).subscribe((r2: any) => {
           // console.log(r.list);
-          this.dataSource = r.list;
-          this.resultsLength = r.count;
+          this.dataSource = r2.list;
+          this.resultsLength = r2.count;
           this.isLoadingResults = false;
         });
       }

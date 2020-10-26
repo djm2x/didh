@@ -205,6 +205,7 @@ export class ParticipationSession {
 export class Cycle {
   id = 0;
   label = '';
+  labelAr = '';
 }
 
 export class Axe {

@@ -248,7 +248,7 @@ namespace Admin5.Controllers
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
-                .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
+                // .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 ;
 
             // var countR = await q.CountAsync();
@@ -273,7 +273,6 @@ namespace Admin5.Controllers
 
                 ;
 
-            
             // countR = await q.CountAsync();
             // var epu = await q
             //     .GroupBy(e => e.Cycle.Label)
@@ -366,10 +365,13 @@ namespace Admin5.Controllers
 
             //     ;
 
+            q = q.Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat));
             var realise = await q.Where(e => e.EtatAvancementChiffre == 100).CountAsync();
             var nonRealise = await q.Where(e => e.EtatAvancementChiffre == 0).CountAsync();
             var enCours = await q.Where(e => e.EtatAvancementChiffre > 0 && e.EtatAvancementChiffre < 100).CountAsync();
             var count = await q.CountAsync();
+
+
 
 
             return Ok(new { mecanisme = await Calc(q), count = recommendationsCount, organe, visite, axe, epu, department, pays = 1, recommandationValues = new { realise, nonRealise, enCours, count } });

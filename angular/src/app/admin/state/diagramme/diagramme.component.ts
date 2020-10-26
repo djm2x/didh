@@ -44,7 +44,7 @@ export class DiagrammeComponent implements OnInit {
   payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
-  toChild = new Subject<Model>();
+  toChild = new Subject<any>();
   pieChartSubjectC = new BehaviorSubject<IPieData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
   pieChartSubject = new BehaviorSubject<IPieData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
   pieChartSubjectR = new BehaviorSubject<IPieData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
@@ -103,12 +103,33 @@ export class DiagrammeComponent implements OnInit {
     // o.mecanisme = this.o.mecanisme;
     // console.log(o)
 
-    this.toChild.next(Object.assign(new Model(), o));
+    this.toChild.next({ obj: Object.assign(new Model(), o) });
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.o = o;
     console.log(this.o)
 
     this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
+      const etat: string = this.myForm.get('etat').value;
+      if (etat.includes('Non')) {
+        r.axe = r.axe.map(e => { e.r = 0; e.p = 0; return e; });
+        r.epu = r.epu.map(e => { e.r = 0; e.p = 0; return e; });
+        r.organe = r.organe.map(e => { e.r = 0; e.p = 0; return e; });
+        r.visite = r.visite.map(e => { e.r = 0; e.p = 0; return e; });
+        r.department = r.department.map(e => { e.r = 0; e.p = 0; return e; });
+      } else if (etat.includes('cours')) {
+        r.axe = r.axe.map(e => { e.r = 0; e.n = 0; return e; });
+        r.epu = r.epu.map(e => { e.r = 0; e.n = 0; return e; });
+        r.organe = r.organe.map(e => { e.r = 0; e.n = 0; return e; });
+        r.visite = r.visite.map(e => { e.r = 0; e.n = 0; return e; });
+        r.department = r.department.map(e => { e.r = 0; e.n = 0; return e; });
+
+      } else if (etat.includes('Réalisé')) {
+        r.axe = r.axe.map(e => { e.n = 0; e.p = 0; return e; });
+        r.epu = r.epu.map(e => { e.n = 0; e.p = 0; return e; });
+        r.organe = r.organe.map(e => { e.n = 0; e.p = 0; return e; });
+        r.visite = r.visite.map(e => { e.n = 0; e.p = 0; return e; });
+        r.department = r.department.map(e => { e.n = 0; e.p = 0; return e; });
+      }
       // console.log(r);
       // this.mytranslate.get('admin.event.list.Ajouter_evènement')
       this.axesList = [];
@@ -122,6 +143,7 @@ export class DiagrammeComponent implements OnInit {
 
       this.stateAxe(this.axesList);
       this.stateEpu(this.epuList);
+
       this.stateOrgane(r.organe);
       this.stateVisite(r.visite);
 
@@ -323,7 +345,7 @@ export class DiagrammeComponent implements OnInit {
     // this.uow.axes.stateAxes().subscribe(r => {
 
     r = r.filter(e => e.name !== null);
-    // console.log(r);
+    console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
@@ -447,9 +469,13 @@ export class DiagrammeComponent implements OnInit {
   RecommandationValues(r, count: number) {
     // this.uow.recommendations.recommandationValues().subscribe((r: any) => {
     const chartLabels = [];
-    chartLabels.push('Recommandations réalisées');
-    chartLabels.push('Recommandations en cours de réalisation');
-    chartLabels.push('Recommandations non réalisées');
+    // chartLabels.push('Recommandations réalisées');
+    // chartLabels.push('Recommandations en cours de réalisation');
+    // chartLabels.push('Recommandations non réalisées');
+
+    chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
+    chartLabels.push(this.mytranslate.get('admin.organe.list.EnCours'));
+    chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
     // r = r.filter(e => e.name !== null);
     // const barChartLabels = r.map(e => e.name);
     const chartData = [];
@@ -474,8 +500,8 @@ export class DiagrammeComponent implements OnInit {
 
     this.dataValues.next({
       chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-      // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
-      , title: 'Mise en œuvre des recommandations par mécanismes'
+      , title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités')
+      // , title: 'Mise en œuvre des recommandations par mécanismes'
     });
     // })
   }
@@ -522,8 +548,8 @@ export class DiagrammeComponent implements OnInit {
 
     this.dataMec1.next({
       chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-      // , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
-      , title: 'Mise en œuvre des recommandations par mécanismes'
+      , title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités2')
+      // , title: 'Mise en œuvre des recommandations par mécanismes'
     });
 
     // });
