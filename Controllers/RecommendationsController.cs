@@ -261,6 +261,7 @@ namespace Admin5.Controllers
                 {
                     name = e.Key,
                     type = e.First().RecomOrgs.First().Organisme.Type,
+                    id = e.First().RecomOrgs.First().IdOrganisme,
                     nameAr = e.First().RecomOrgs.First().Organisme.LabelAr,
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),

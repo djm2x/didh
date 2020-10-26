@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { SplashScreenService } from './shared/splash-screen.service';
 import { MyTranslateService } from './my.translate.service';
 
@@ -9,6 +9,11 @@ import { MyTranslateService } from './my.translate.service';
 })
 export class AppComponent implements OnInit {
   title = 'Front';
+  @ViewChild('app', { static: true }) app: ElementRef;
+
+
+  @HostBinding('class') className = 'font-fr';
+
 
   constructor(private splashScreenService: SplashScreenService, public mytranslate: MyTranslateService) { }
 
@@ -16,6 +21,10 @@ export class AppComponent implements OnInit {
     this.mytranslate.init();
     this.mytranslate.currentLang().subscribe(r => {
       this.mytranslate.lang.next(r.lang);
+
+      this.className = r.lang === 'fr' ? 'font-fr' : 'font-ar';
     });
+
+    console.log(this.app.nativeElement);
   }
 }

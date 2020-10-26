@@ -20,29 +20,6 @@ export class DiagrammeComponent implements OnInit {
   @Input() obs = new Subject<IData>();
   title = '';
   panelOpenState = false;
-  // Pie
-  // public pieChartOptions: ChartOptions = {
-  //   responsive: true,
-  //   title: {
-  //     text: '',
-  //     display: false,
-  //   },
-  //   legend: {
-  //     position: 'chartArea',
-  //     display: false,
-  //   }
-  // };
-
-  // pieChartLabels: Label[] = [/*['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'*/];
-  // pieChartData: SingleDataSet = [/*300, 500, 100*/];
-  // public pieChartType: ChartType = 'pie';
-  // public pieChartLegend = true;
-  // public pieChartPlugins = [];
-  // public pieChartColors = [
-  //   { backgroundColor: [], },
-  // ];
-
-  //
   update = new Subject();
   o = new Model();
   myForm: FormGroup;
@@ -63,7 +40,7 @@ export class DiagrammeComponent implements OnInit {
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
   epuList: { name: string, p: number, t: number }[] = [];
-  departementList: { name: string, nameAr: string, p: number, r: number, t: number, n: number, type: string }[] = [];
+  departementList: { name: string, nameAr: string, id: number, p: number, r: number, t: number, n: number, type: string }[] = [];
   payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
@@ -410,10 +387,19 @@ export class DiagrammeComponent implements OnInit {
     // });
   }
 
-  stateDepartement(r: { name: string, nameAr: string, p: number, r: number, t: number, n: number, type: string }[]) {
+  stateDepartement(r: { name: string, nameAr: string, id: number, p: number, r: number, t: number, n: number, type: string }[]) {
 
 
     r = r.filter(e => e.name !== null);
+    r = r.filter(e => {
+      if (this.session.isPointFocal || this.session.isProprietaire) {
+        return e.id === this.session.user.idOrganisme;
+      }
+
+      return true;
+    });
+
+    this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     const barChartLabelsPE = r.map(e => this.mytranslate.langSync === 'fr' ? e.name : e.nameAr);
 
     const barChartDataPE = [

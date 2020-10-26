@@ -103,7 +103,7 @@ export class AdminComponent implements OnInit {
     this.router.events.subscribe(route => {
       if (route instanceof NavigationStart) {
         this.route = route.url;
-        console.log(this.route);
+        // console.log(this.route);
       }
     });
   }

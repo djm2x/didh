@@ -1,0 +1,62 @@
+.font-fr {
+
+  mat-label {
+    font-size: 1em;
+  }
+
+  .mat-tab-label-content {
+    font-size: 1em;
+  }
+
+  .myspan {
+    color: white;
+    font-size: 1.1em;
+  }
+
+  .myspan2 {
+    color: white;
+    font-size: 1em;
+  }
+
+  .mat-header-row {
+    .mat-sort-header-button ,.mat-header-cell {
+      font-size: 1em;
+    }
+  }
+
+  .mat-cell {
+    font-size: 15px;
+  }
+
+}
+
+.font-ar {
+
+  mat-label {
+    font-size: 1.2em;
+  }
+
+  .mat-tab-label-content {
+    font-size: 1.2em;
+  }
+
+  .myspan {
+    color: white;
+    font-size: 1.5em;
+  }
+
+  .myspan2 {
+    color: white;
+    font-size: 1.2em;
+  }
+
+  .mat-header-row {
+    .mat-sort-header-button ,.mat-header-cell {
+      font-size: 1.2em;
+    }
+  }
+
+  .mat-cell {
+    font-size: 17px;
+  }
+}

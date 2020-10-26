@@ -12,7 +12,7 @@ export class ArchiveComponent implements OnInit {
   title = '';
   folder = 'examen';
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
-  , @Inject('BASE_URL') public url: string) { }
+    , @Inject('BASE_URL') public url: string) { }
 
   ngOnInit() {
     this.o = this.data.model;
@@ -20,11 +20,15 @@ export class ArchiveComponent implements OnInit {
   }
 
   propertyToList(r) {
-    const l = r.split(';');
+    if (r) {
+      const l = r.split(';');
 
-    l.pop();
+      l.pop();
 
-    return l;
+      return l;
+    } else {
+      return [];
+    }
   }
 
   download(fileName/*event: MouseEvent*/) {
