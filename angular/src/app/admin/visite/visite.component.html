@@ -1,6 +1,6 @@
 <div class="host">
   <app-title title="{{ 'admin.ps.Procédure_spéciales' | translate}}"></app-title>
-  <div class="right">
+  <div class="right" *ngIf="session.isAdmin">
     <button class="mt-3" mat-raised-button color="primary" (click)="add()">
       <mat-icon>add</mat-icon>
       {{ 'admin.ps.Procédure_spéciale' | translate}}

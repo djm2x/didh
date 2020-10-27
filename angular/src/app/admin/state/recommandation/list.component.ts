@@ -123,6 +123,14 @@ export class ListComponent implements OnInit {
     );
   }
 
+  displayFrIfArNull(fr: string, ar: string) {
+    if (ar === null || ar === undefined || ar === '' || ar === 'null') {
+      return fr;
+    } else {
+      return ar;
+    }
+  }
+
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);

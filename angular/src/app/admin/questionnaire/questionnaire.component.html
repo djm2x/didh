@@ -2,7 +2,7 @@
   <app-title title="{{ 'admin.questionnaire.list.Questionnaires' | translate }}"></app-title>
 
 
-  <div class="d-flex flex-row-reverse mt-3 mb-3">
+  <div class="d-flex flex-row-reverse mt-3 mb-3" *ngIf="session.isAdmin">
     <button mat-raised-button color="primary" (click)="add()">
       <mat-icon>add</mat-icon> {{ 'admin.questionnaire.list.Questionnaire' | translate }}
     </button>

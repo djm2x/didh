@@ -1,7 +1,7 @@
 <div class="host">
   <app-title title="{{ 'admin.session.list.Participation_au_session_des_DH' | translate }}"></app-title>
 
-  <div class="d-flex flex-row-reverse mt-3 mb-3">
+  <div class="d-flex flex-row-reverse mt-3 mb-3" *ngIf="session.isAdmin">
     <button mat-raised-button color="primary" (click)="add()">
       <mat-icon>add</mat-icon> {{ 'admin.session.list.Participation' | translate }}
     </button>
