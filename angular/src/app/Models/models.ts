@@ -99,6 +99,7 @@ export class Synthese {
   code = '';
   detail = '';
   detailAr = '';
+  lienUpload = '';
   idRapport = null;
   idUser = 0;
   user = new User();

@@ -14,6 +14,7 @@ namespace Admin5.Models
         public string Code { get; set; }
         public string Detail { get; set; }
         public string DetailAr { get; set; }
+        public string LienUpload { get; set; }
         public int? IdRapport { get; set; }
         public int IdUser { get; set; }
         public Rapport Rapport { get; set; }

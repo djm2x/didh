@@ -244,9 +244,6 @@
         "Axe": "Axe",
         "Sousaxe": "Sous axe",
         "piece-Jointe": "Piece-Jointe"
-      },
-      "detail": {
-        "breadcrumb": "Hôtels"
       }
     },
     "synthese": {
@@ -254,6 +251,7 @@
         "Synthèses": "Synthèses",
         "Synthèse": "Synthèse",
         "Recherche": "Recherche",
+        "lienUpload": "Rapport",
         "Traite": "Traite",
         "Rapport": "Rapport",
         "Emetteur": "Emetteur",

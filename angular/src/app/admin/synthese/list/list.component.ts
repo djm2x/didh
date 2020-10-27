@@ -1,17 +1,18 @@
 import { ActivatedRoute } from '@angular/router';
 
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent, MatBottomSheet } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
-import { Visite, Recommendation } from 'src/app/Models/models';
+import { Visite, Recommendation, Synthese } from 'src/app/Models/models';
 import { DeleteService } from '../../components/delete/delete.service';
 import { DetailComponent } from '../detail/detail.component';
 import { FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
 import { switchMap } from 'rxjs/operators';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 
 @Component({
   selector: 'app-list',
@@ -29,6 +30,7 @@ export class ListComponent implements OnInit {
   columnDefs = [
     { columnDef: 'code', headName: 'CODE' },
     { columnDef: 'detail', headName: 'DETAIL' },
+    { columnDef: 'lienUpload', headName: 'lienUpload' },
     { columnDef: 'option', headName: 'OPTION' },
   ];
   axes = this.uow.axes.get();
@@ -49,7 +51,7 @@ export class ListComponent implements OnInit {
   filteredOptions: Observable<any>;
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, private route: ActivatedRoute, public session: SessionService
-    , public mytranslate: MyTranslateService) { }
+    , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc', this.session.user.idOrganisme, 0, 0, 0, 0, 0);
@@ -111,11 +113,28 @@ export class ListComponent implements OnInit {
     );
   }
 
+  showPieceJoin(fileName) {
+    // const url = `${this.url}/examen/${fileName}`;
+    // window.open(url);
+    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'synthese'}});
+  }
 
-  async delete(o: Recommendation) {
+  disable(e: string) {
+    return e && e !== '' ? false : true;
+  }
+
+
+  async delete(o: Synthese) {
     const r = await this.mydialog.openDialog('synthèse').toPromise();
     if (r === 'ok') {
       this.uow.syntheses.delete(o.id).subscribe(() => this.update.next(true));
+
+      let list = [];
+      o.lienUpload !== '' ? list.push(...this.uow.decoupe(o.lienUpload)) : list = list;
+
+      this.uow.files.deleteFiles(list, 'synthese').subscribe(res => {
+        this.uow.examens.delete(o.id).subscribe(() => this.update.next(true));
+      });
     }
   }
 

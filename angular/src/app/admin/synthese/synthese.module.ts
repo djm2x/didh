@@ -14,6 +14,7 @@ import { DetailComponent } from './detail/detail.component';
 import { FicheSyntheseComponent } from './update/fiche-synthese/fiche-synthese.component';
 import { PopupComponent } from './update/fiche-synthese/popup/popup.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ManageFilesModule } from 'src/app/manage-files/manage-files.module';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     TitleModule,
     TranslateModule,
+    ManageFilesModule,
   ],
   entryComponents: [
     DetailComponent,

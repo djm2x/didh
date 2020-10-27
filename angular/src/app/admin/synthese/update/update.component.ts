@@ -10,6 +10,7 @@ import { UowService } from 'src/app/services/uow.service';
 import { SnackBarService } from 'src/app/loader/snack-bar.service';
 import { MatTabGroup } from '@angular/material';
 import { TabNavigationService } from './tab-navigation.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-update',
@@ -25,17 +26,33 @@ export class UpdateComponent implements OnInit {
   id = 0;
   title = 'Synthese';
 
+  folderToSaveInServer = 'synthese';
+
+  lienUploadTo = new Subject();
+  lienUploadFrom = new Subject();
+
+  eventSubmitFromParent = new Subject();
+
   listRecommendation: Recommendation[] = [];
   eventToChild = new EventEmitter();
 
   constructor(private route: ActivatedRoute, private snack: SnackBarService,
     private uow: UowService, private fb: FormBuilder, private session: SessionService
-    , private navTab: TabNavigationService) { }
+    , private navTab: TabNavigationService, private router: Router) { }
 
   ngOnInit() {
     this.o.idUser = this.session.user.id;
+
     this.createForm();
+
     this.id = +this.route.snapshot.paramMap.get('id');
+
+    this.lienUploadFrom.subscribe(r => this.myForm.get('lienUpload').setValue(r));
+
+    setTimeout(() => {
+      this.lienUploadTo.next(this.o.lienUpload);
+    }, 100);
+
     if (this.id !== 0) {
       this.uow.syntheses.getOne(this.id).subscribe(r => {
         // console.log(r)
@@ -61,6 +78,7 @@ export class UpdateComponent implements OnInit {
       detail: [this.o.detail, Validators.required],
       detailAr: [this.o.detailAr, Validators.required],
       idUser: [this.o.idUser, Validators.required],
+      lienUpload: [this.o.lienUpload, Validators.required],
     });
   }
 
@@ -73,25 +91,26 @@ export class UpdateComponent implements OnInit {
       this.uow.syntheses.post(o).subscribe((s: Synthese) => {
         // const recomOrgs: RecomOrg[] = [];
 
-        const notif: any = {
-          id: 0,
-          date: new Date(),
-          destinataire: '',
-          idConcerner: s.id,
-          idOrganisme: this.session.user.idOrganisme,
-          message: 'Nouvelle synthèse a été ajoutée',
-          priorite: 1,
-          tableConcerner:   'synthese',
-          vu: false
-        };
+        // const notif: any = {
+        //   id: 0,
+        //   date: new Date(),
+        //   destinataire: '',
+        //   idConcerner: s.id,
+        //   idOrganisme: this.session.user.idOrganisme,
+        //   message: 'Nouvelle synthèse a été ajoutée',
+        //   priorite: 1,
+        //   tableConcerner:   'synthese',
+        //   vu: false
+        // };
 
-        this.uow.notifications.post(notif).subscribe(n => {
-          // this.router.navigateByUrl('/admin/synthese/list');
-        });
-        // this.snack.notifyOk('Nouveau synthèse a été ajoutée');
-        this.o = s;
-        this.navTab.navigateTo.next(1);
+        // this.uow.notifications.post(notif).subscribe(n => {
+        // });
+        // // this.snack.notifyOk('Nouveau synthèse a été ajoutée');
+        // this.o = s;
+        // this.navTab.navigateTo.next(1);
+        this.eventSubmitFromParent.next(true);
 
+        this.router.navigateByUrl('/admin/synthese/list');
       });
 
       /*
@@ -107,21 +126,23 @@ export class UpdateComponent implements OnInit {
             }); */
     } else {
       this.uow.syntheses.put(o.id, o).subscribe((r: Synthese) => {
-        const notif: any = {
-          id: 0,
-          date: new Date(),
-          destinataire: '',
-          idConcerner: o.id,
-          message: 'La synthèse a été modifiée',
-          priorite: 1,
-          tableConcerner: 'synthese',
-          vu: false
-        };
-        this.uow.notifications.post(notif).subscribe(n => {
-          // this.router.navigateByUrl('/admin/synthese/list');
-        });
+        // const notif: any = {
+        //   id: 0,
+        //   date: new Date(),
+        //   destinataire: '',
+        //   idConcerner: o.id,
+        //   message: 'La synthèse a été modifiée',
+        //   priorite: 1,
+        //   tableConcerner: 'synthese',
+        //   vu: false
+        // };
+        // this.uow.notifications.post(notif).subscribe(n => {
+        // });
 
-        this.navTab.navigateTo.next(1);
+        // this.navTab.navigateTo.next(1);
+
+        this.eventSubmitFromParent.next(true);
+        this.router.navigateByUrl('/admin/synthese/list');
 
       });
     }
