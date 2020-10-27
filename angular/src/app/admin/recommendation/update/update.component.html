@@ -46,7 +46,7 @@
             <mat-label>{{ 'admin.recommandation.update.Cycle' | translate }}</mat-label>
             <mat-select formControlName="idCycle" [disabled]="!isAdmin">
               <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ e.label }}</mat-option>
+              <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr  }}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -102,7 +102,7 @@
 
         <mat-form-field appearance="fill" style="width: 78%">
           <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
-          <mat-select formControlName="etat" (selectionChange)="etat($event.value)">
+          <mat-select formControlName="etat" (selectionChange)="etat($event.value)" [disabled]="!isAdmin">
             <mat-option value="">...</mat-option>
             <mat-option *ngFor="let e of etats | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
           </mat-select>
@@ -115,7 +115,7 @@
 
         <mat-form-field appearance="fill" style="width: 100%;" *ngIf="showEtatDavancement">
           <mat-label>{{ 'admin.recommandation.update.Etatdavancement' | translate }}</mat-label>
-          <textarea matInput rows="0" formControlName="etatAvancement"></textarea>
+          <textarea matInput rows="0" formControlName="etatAvancement" [readonly]="!isAdmin"></textarea>
         </mat-form-field>
 
         <!-- <mat-form-field appearance="fill" style="width: 100%;">
@@ -125,10 +125,10 @@
 
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>{{ 'admin.recommandation.list.complement' | translate }}</mat-label>
-          <textarea matInput rows="0" formControlName="complement"></textarea>
+          <textarea matInput rows="0" formControlName="complement" [readonly]="!isAdmin"></textarea>
         </mat-form-field>
 
-        <app-upload nameBtn="{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
+        <app-upload [disabled]="!isAdmin" nameBtn="{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}" [folderToSaveInServer]="folderToSaveInServer"
           [propertyOfParent]="pieceJointeTo" [eventSubmitToParent]="pieceJointeFrom"
           [eventSubmitFromParent]="eventSubmitFromParent">
         </app-upload>
@@ -145,7 +145,7 @@
       <button mat-button [routerLink]="['/admin/recommendation/list']" type="button">{{ 'admin.Retour' | translate }}</button>&nbsp;&nbsp;
       <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
       <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm)"
-        [disabled]="myForm.invalid">{{ 'admin.Enregistre' | translate }}</button>
+        [disabled]="myForm.invalid || !isAdmin">{{ 'admin.Enregistre' | translate }}</button>
     </div>
   </div>
 </div>

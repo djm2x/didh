@@ -221,7 +221,7 @@
               <button mat-icon-button color="primary" (click)="detail(row)">
                 <mat-icon>visibility</mat-icon>
               </button>
-              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"  *ngIf="!session.isSuperViseur && !session.isPointFocal">
+              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"  *ngIf="!session.isSuperViseur">
                 <mat-icon>create</mat-icon>
               </button>
               <button mat-icon-button color="warn" (click)="delete(row)"  *ngIf="!session.isPointFocal && !session.isSuperViseur">

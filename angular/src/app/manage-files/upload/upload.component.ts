@@ -12,6 +12,7 @@ export class UploadComponent implements OnInit {
   listToDelete: string[] = [];
   files: File[] = [];
   @Input() nameBtn = '';
+  @Input() disabled = false;
   @Input() folderToSaveInServer = 'folder';
 
   @Input() propertyOfParent = new Subject();
