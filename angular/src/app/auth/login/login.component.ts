@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Models/models';
+import { MyTranslateService } from 'src/app/my.translate.service';
 import { UowService } from 'src/app/services/uow.service';
 import { SessionService } from 'src/app/shared';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
   constructor(private fb: FormBuilder, private uow: UowService
     , private router: Router, public session: SessionService
-    , private snackbar: SnackbarService) { }
+    , public mytranslate: MyTranslateService) { }
 
   async ngOnInit() {
     // test

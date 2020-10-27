@@ -1,5 +1,5 @@
 .font-fr {
-  mat-label {
+  mat-label, .mat-label {
     font-size: 1em;
   }
 
@@ -31,11 +31,15 @@
   .pie-title {
     font-size: 1.2em;
   }
+
+  .auth-title {
+    font-size: 1.6em;
+  }
 }
 
 .font-ar {
-  mat-label {
-    font-size: 1.2em;
+  mat-label, .mat-label {
+    font-size: 1.3em;
   }
 
   .mat-tab-label-content {
@@ -65,6 +69,10 @@
 
   .pie-title {
     font-size: 1.5em;
+  }
+
+  .auth-title {
+    font-size: 2em;
   }
 
   .mat-button-wrapper,

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { MatModule } from '../mat.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatModule,
+    TranslateModule,
   ]
 })
 export class AuthModule { }

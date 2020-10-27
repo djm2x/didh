@@ -222,7 +222,22 @@ export class HomeComponent implements OnInit {
       'Défense Nationale et Gendarmerie Royale',
       'Droits de l’Homme et Relations avec parlement',
       'Développement Social et Solidarité',
-    ]
+      'Affaires Etrangères',
+      'Justice',
+      'Chef du Gouvernement',
+      'Santé',
+      'Emploi',
+      'Commerce et Industrie',
+      'DGAPR',
+      'Habous et des Affaires Islamiques',
+      'Education nationale',
+      'Habitat',
+      'Tourisme',
+    ];
+
+
+
+
 
     const listToShowPEAr = [
       ' الداخلية و الأمن الوطني',
@@ -233,10 +248,21 @@ export class HomeComponent implements OnInit {
       'الدفاع الوطني والدرك الملكي',
       'حقوق الإنسان والعلاقات مع البرلمان',
       'التضامن والتنمية الاجتماعية',
+      'الشؤون الخارجية',
+      'العدل',
+      'رئاسة الحكومة',
+      'الصحة',
+      'الشغل',
+      'التجارة والصناعة',
+      'إدارة السجون',
+      'الأوقاف والشؤون الإسلامية',
+      'التربية الوطنية',
+      'السكنى',
+      'السياحة',
     ];
 
     const listToDelete = [
-      'Chef du Gouvernement',
+      // 'Chef du Gouvernement',
       'Observatoire National des Droits de l’Enfant',
     ]
 
@@ -377,7 +403,7 @@ export class HomeComponent implements OnInit {
 
       this.departementSubjectPJ.next({
         barChartLabels: barChartLabelsPG, barChartData: barChartDataPJ
-       , title: this.mytranslate.get('admin.home.Départementàpouvoirjudiciaire')
+        , title: this.mytranslate.get('admin.home.Départementàpouvoirjudiciaire')
       });
 
       this.departementSubjectIN.next({

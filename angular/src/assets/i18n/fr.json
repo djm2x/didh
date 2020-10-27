@@ -6,6 +6,13 @@
     "recomm": "Recommandations",
     "du": "du",
     "au": "au",
+    "auth": {
+      "Email": "Email",
+      "Emailestpasvalider": "Email est pas valider",
+      "Motdepasse": "Mot de passe",
+      "Connexion": "Connexion",
+      "Choisirunlangue": "Choisir un langue"
+    },
     "header": {
       "SessionsDH": "Sessions DH",
       "Questionnaires": "Questionnaires",
