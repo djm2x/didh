@@ -1,4 +1,5 @@
 **/dist
+**/deploy
 **/e2e
 # **/.vscode
 **/node_modules
