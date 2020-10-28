@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Droits catégoriels ",
+    "nameAr": "حقوق الفئات",
+    "sousThemes": [
+      {
+        "id":1,
+        "name": "sous theme 1",
+        "nameAr": "تحت الموضوع 1"
+      },
+      {
+        "id":2,
+        "name": "sous theme 2",
+        "nameAr": "تحت الموضوع 2"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Droits catégoriels ",
+    "nameAr": "الحقوق المواضيعية",
+    "sousThemes": [
+      {
+        "id":3,
+        "name": "sous theme 3",
+        "nameAr": "تحت الموضوع 3"
+      },
+      {
+        "id":4,
+        "name": "sous theme 4",
+        "nameAr": "تحت الموضوع 4"
+      }
+    ]
+  }
+]
