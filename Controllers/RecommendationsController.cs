@@ -36,7 +36,10 @@ namespace Admin5.Controllers
             var query = _context.Recommendations
                 // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
-                .Where(e => model.Nom == "" ? true : e.Nom.ToLower().Contains(model.Nom.ToLower()))
+                .Where(e => model.Nom == "" ? true : 
+                    lng == "fr" ? e.Nom.ToLower().Contains(model.Nom.ToLower()) :
+                    e.NomAr.ToLower().Contains(model.Nom.ToLower())
+                )
                 .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
@@ -266,6 +269,8 @@ namespace Admin5.Controllers
                     p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
                     r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
                     n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
+                    // c = e.Count() * recommendationsCount / 100,
+                    c = e.Count(),
                     // t = countR,
                     t = e.Count(),
                 })

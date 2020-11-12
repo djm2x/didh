@@ -40,7 +40,7 @@ export class DiagrammeComponent implements OnInit {
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
   epuList: { name: string, p: number, t: number }[] = [];
-  departementList: { name: string, nameAr: string, id: number, p: number, r: number, t: number, n: number, type: string }[] = [];
+  departementList: { name: string, nameAr: string, id: number, p: number, c: number, r: number, t: number, n: number, type: string }[] = [];
   payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
@@ -409,7 +409,7 @@ export class DiagrammeComponent implements OnInit {
     // });
   }
 
-  stateDepartement(r: { name: string, nameAr: string, id: number, p: number, r: number, t: number, n: number, type: string }[]) {
+  stateDepartement(r: { name: string, nameAr: string, id: number, p: number, r: number, t: number, c: number, n: number, type: string }[]) {
 
 
     r = r.filter(e => e.name !== null);
@@ -429,33 +429,15 @@ export class DiagrammeComponent implements OnInit {
       { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('admin.organe.list.Nombre')/*, stack: 'a'*/ },
     ];
 
-    // if (this.o.etat === 'En cours') {
-    //   r.forEach(e => {
-    //     barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
-    //     barChartDataPE[1].data.push(0);
-    //     barChartDataPE[2].data.push(0);
-    //   });
-    // } else if (this.o.etat === 'Réalisé') {
-    //   r.forEach(e => {
-    //     barChartDataPE[0].data.push(0);
-    //     barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
-    //     barChartDataPE[2].data.push(0);
-    //   });
-    // } else if (this.o.etat === this.mytranslate.get('admin.organe.list.NonRéalisé')) {
-    //   r.forEach(e => {
-    //     barChartDataPE[0].data.push(0);
-    //     barChartDataPE[1].data.push(0);
-    //     barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
-    //   });
-    // } else {
-    // }
     r.forEach(e => {
       // barChartDataPE[0].data.push(e.t);
       barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
       barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
       barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
+      barChartDataPE[3].data.push(e.c);
     });
 
 
