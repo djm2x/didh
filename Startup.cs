@@ -134,7 +134,10 @@ namespace Admin5
             }
             else
             {
-                app.Use(async (context, next) =>
+                
+            }
+
+            app.Use(async (context, next) =>
                 {
                     await next();
 
@@ -145,7 +148,6 @@ namespace Admin5
                         await next();
                     }
                 });
-            }
 
 
             app.UseRouting();

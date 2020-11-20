@@ -136,9 +136,11 @@ export class ListComponent implements OnInit {
     if (this.mytranslate.langSync === 'fr') {
       return {m: mc, e: et};
     } else {
+      const m = mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6)));
+      const e = etat.find(o => o.fr.toLowerCase() === et.toLowerCase())
       return {
-        m: mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6))).ar,
-        e: etat.find(o => o.fr.toLowerCase() === et.toLowerCase()).ar,
+        m: m ? m.ar : mc,
+        e: e ? e.ar : et,
       };
     }
   }

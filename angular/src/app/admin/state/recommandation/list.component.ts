@@ -97,29 +97,29 @@ export class ListComponent implements OnInit {
     merge(...[this.sort.sortChange, this.paginator.page, this.fromParent]).subscribe((r: any) => {
 
 
-        if ((r as any).obj/*o.mecanisme !== undefined*/) {
-          this.o = (r as any).obj;
-          console.log(this.o)
-        }
-        // r === true ? this.paginator.pageIndex = 0 : r = r;
-        !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
-        // this.o = new Model();
-        this.o.startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-        this.o.pageSize = this.paginator.pageSize;
-        this.o.sortBy = this.sort.active ? this.sort.active : 'id';
-        this.o.sortDir = this.sort.direction ? this.sort.direction : 'desc';
-        this.o.nom = '';
-        this.o.idPays = 0;
-        this.isLoadingResults = true;
-        this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
-
-        this.uow.recommendations.searchAndGet(this.o).subscribe((r2: any) => {
-          // console.log(r.list);
-          this.dataSource = r2.list;
-          this.resultsLength = r2.count;
-          this.isLoadingResults = false;
-        });
+      if ((r as any).obj/*o.mecanisme !== undefined*/) {
+        this.o = (r as any).obj;
+        console.log(this.o)
       }
+      // r === true ? this.paginator.pageIndex = 0 : r = r;
+      !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
+      // this.o = new Model();
+      this.o.startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+      this.o.pageSize = this.paginator.pageSize;
+      this.o.sortBy = this.sort.active ? this.sort.active : 'id';
+      this.o.sortDir = this.sort.direction ? this.sort.direction : 'desc';
+      this.o.nom = '';
+      this.o.idPays = 0;
+      this.isLoadingResults = true;
+      this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
+
+      this.uow.recommendations.searchAndGet(this.o).subscribe((r2: any) => {
+        // console.log(r.list);
+        this.dataSource = r2.list;
+        this.resultsLength = r2.count;
+        this.isLoadingResults = false;
+      });
+    }
     );
   }
 
@@ -134,7 +134,7 @@ export class ListComponent implements OnInit {
   showPieceJoin(fileName) {
     // const url = `${this.url}/examen/${fileName}`;
     // window.open(url);
-    this.bottomSheet.open(DownloadSheetComponent, { data: {fileName, folder: 'recommandation'}});
+    this.bottomSheet.open(DownloadSheetComponent, { data: { fileName, folder: 'recommandation' } });
   }
 
   displayMulti(mc: string, et: string) {
@@ -151,11 +151,13 @@ export class ListComponent implements OnInit {
     ];
 
     if (this.mytranslate.langSync === 'fr') {
-      return {m: mc, e: et};
+      return { m: mc, e: et };
     } else {
+      const m = mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6)));
+      const e = etat.find(o => o.fr.toLowerCase() === et.toLowerCase())
       return {
-        m: mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6))).ar,
-        e: etat.find(o => o.fr.toLowerCase() === et.toLowerCase()).ar,
+        m: m ? m.ar : mc,
+        e: e ? e.ar : et,
       };
     }
   }
