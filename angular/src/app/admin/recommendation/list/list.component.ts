@@ -50,6 +50,8 @@ export class ListComponent implements OnInit {
   organismes = this.uow.organismes.get();
   axes = this.uow.axes.get();
   sousAxes = [];
+  annee = this.uow.recommendations.annee();
+
   mecanismes = this.uow.mecanismes;
   visites = this.uow.visites.get();
   organes = this.uow.organes.get();
@@ -69,7 +71,7 @@ export class ListComponent implements OnInit {
   o = new Model();
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
-  constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
+  constructor(public uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private fb: FormBuilder, public session: SessionService
     , private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
 
@@ -172,6 +174,7 @@ export class ListComponent implements OnInit {
       etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
+      annee: this.o.annee,
       // idDepartement: this.o.idDepartement,
       startIndex: this.o.startIndex,
       pageSize: this.o.pageSize,
@@ -371,6 +374,7 @@ export class ListComponent implements OnInit {
       this.myForm.get('nom').value.toString() === '' &&
       this.myForm.get('etat').value.toString() === '' &&
       this.myForm.get('idVisite').value.toString() === '0' &&
+      this.myForm.get('annee').value.toString() === '0' &&
       this.myForm.get('mecanisme').value.toString() === '') {
       return true;
     }
@@ -395,6 +399,7 @@ export class Model {
   pageSize = 10;
   sortBy = 'id';
   sortDir = 'desc';
+  annee = new Date().getFullYear()
 }
 
 

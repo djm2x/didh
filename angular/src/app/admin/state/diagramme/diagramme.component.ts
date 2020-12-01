@@ -33,6 +33,8 @@ export class DiagrammeComponent implements OnInit {
   etats = this.uow.etats;
   listAxes = new Subject<any>();
   listOrganisme = new Subject<any>();
+  annee = this.uow.recommendations.annee();
+
   pays = this.uow.pays.get();
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
@@ -72,7 +74,7 @@ export class DiagrammeComponent implements OnInit {
 
   visitePage: { name: string, p: number, t: number, r: number }[] = [];
 
-  constructor(private uow: UowService, private fb: FormBuilder, public session: SessionService
+  constructor(public uow: UowService, private fb: FormBuilder, public session: SessionService
     , public mytranslate: MyTranslateService) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
@@ -234,6 +236,7 @@ export class DiagrammeComponent implements OnInit {
       etat: this.o.etat,
       idPays: this.o.idPays,
       idSousAxe: this.o.idSousAxe,
+      annee: this.o.annee,
       // idDepartement: this.o.idDepartement,
 
       startIndex: this.o.startIndex,

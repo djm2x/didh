@@ -8,20 +8,31 @@
       </mat-divider>
       <form [formGroup]="myForm">
         <div class="inputs2">
-          <mat-form-field appearance="fill">
-            <mat-label>{{ 'admin.recommandation.list.Pays' | translate }}</mat-label>
-            <mat-select formControlName="idPays">
-              <mat-option value="0">...</mat-option>
-              <mat-option *ngFor="let e of pays | async" [value]="e.id">
-                {{ mytranslate.langSync === 'fr' ? e.nom : e.nomAr }}</mat-option>
-            </mat-select>
-          </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
+            <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
             <input matInput formControlName="nom" required>
           </mat-form-field>
-        </div>
+
+          </div>
+          <div class="inputs2">
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.Pays' | translate }}</mat-label>
+              <mat-select formControlName="idPays">
+                <mat-option value="0">...</mat-option>
+                <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.nom : e.nomAr }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.questionnaire.list.année' | translate }}</mat-label>
+              <mat-select formControlName="annee">
+                <mat-option *ngFor="let e of annee | async" [value]="e">{{ e }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
         <div class="inputs2">
 
           <mat-form-field appearance="fill">

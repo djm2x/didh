@@ -48,6 +48,7 @@ namespace Admin5.Controllers
                 .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
                 .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+                .Where(e => model.Annee == 0 ? true : e.Annee == model.Annee)
             ;
 
             var count = await query.CountAsync();
@@ -218,6 +219,18 @@ namespace Admin5.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Annee()
+        {
+            var list = await _context.Recommendations
+                    .Select(e => e.Annee)
+                    .Distinct()
+                   .ToListAsync()
+                ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> StateRecommendationByAxe()
         {
             int recommendationsCount = _context.Recommendations.Count();
@@ -251,6 +264,7 @@ namespace Admin5.Controllers
                 .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
                 .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
+                .Where(e => model.Annee == 0 ? true : e.Annee == model.Annee)
                 // .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 ;
 
