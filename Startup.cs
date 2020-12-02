@@ -97,8 +97,8 @@ namespace Admin5
 
             services.AddDbContext<AdminContext>(options =>
             {
-                // options.UseSqlServer(Configuration.GetConnectionString("didh"));
-                options.UseSqlServer(Configuration.GetConnectionString("db"));
+                options.UseSqlServer(Configuration.GetConnectionString("didh"));
+                // options.UseSqlServer(Configuration.GetConnectionString("db"));
                 // options.UseSqlite(Configuration.GetConnectionString("sqlite"));
                 options.EnableSensitiveDataLogging();
             });
