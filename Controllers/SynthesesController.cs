@@ -29,13 +29,14 @@ namespace Admin5.Controllers
             , int idSousAxe
             )
         {
-             int idUser = HttpContext.GetIdUser();
-            int role = HttpContext.GetRoleUser();
-            bool hasAcess = (role == 1 /*|| role == 2*/) ? true : false;
+            //  int idUser = HttpContext.GetIdUser();
+            // int role = HttpContext.GetRoleUser();
+            // bool hasAcess = (role == 1 /*|| role == 2*/) ? true : false;
             // var b = (e.User.Id == idUser || e.User.IdOrganisme == idOrganisme);
 
             var q = _context.Syntheses
-                .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
+                // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
+                .Where(e => idOrganisme == 0 ? true : (e.User.IdOrganisme == idOrganisme))
                 .Where(e => idOrganismeEmetteur == 0 ? true : e.FicheSyntheses.Any(o => o.IdOrganisme == idOrganismeEmetteur))
                 .Where(e => idTraite == 0 ? true : e.Rapport.IdTraite == idTraite)
                 .Where(e => idRaport == 0 ? true : e.IdRapport == idRaport)

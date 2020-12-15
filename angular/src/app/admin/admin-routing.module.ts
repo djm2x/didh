@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminGuard } from './guard/admin.guard';
+import { StateGuard } from './guard/state.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -16,7 +17,7 @@ const routes: Routes = [
           import('./participation-session/participation-session.module').then(m => m.ParticipationSessionModule),
       },
       { path: 'questionnaire', loadChildren: () => import('./questionnaire/questionnaire.module').then(m => m.QuestionnaireModule), },
-      { path: 'state', loadChildren: () => import('./state/state.module').then(m => m.StateModule), },
+      { path: 'state', loadChildren: () => import('./state/state.module').then(m => m.StateModule), canActivate: [StateGuard]},
       { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canActivate: [AdminGuard] },
       { path: 'pays', loadChildren: () => import('./pays/pays.module').then(m => m.PaysModule) },
       { path: 'synthese', loadChildren: () => import('./synthese/synthese.module').then(m => m.SyntheseModule), },

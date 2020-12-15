@@ -28,18 +28,18 @@ export class ListComponent implements OnInit {
   resultsLength = 0;
   isRateLimitReached = false;
   dataSource = [];
+  // columnDefs = [];
   columnDefs = [
-    { columnDef: 'codeRecommendation', headName: 'CODE' },
-    { columnDef: 'nom', headName: 'INTITULE' },
-    { columnDef: 'mecanisme', headName: 'mecanisme' },
-    { columnDef: 'axe', headName: 'Axe' },
-    { columnDef: 'sousAxe', headName: 'SOUS AXE' },
-    { columnDef: 'organismes', headName: 'DEPARTEMENT' },
-    { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE' },
-    // { columnDef: 'observation', headName: '' },
-    { columnDef: 'pieceJointe', headName: '' },
-    { columnDef: 'complement', headName: '' },
-    { columnDef: 'option', headName: '' },
+    { columnDef: 'codeRecommendation', headName: 'CODE', show: true },
+    { columnDef: 'nom', headName: 'INTITULE', show: true },
+    { columnDef: 'mecanisme', headName: 'mecanisme', show: true },
+    { columnDef: 'axe', headName: 'Axe', show: true },
+    { columnDef: 'sousAxe', headName: 'SOUS AXE', show: true },
+    { columnDef: 'organismes', headName: 'DEPARTEMENT', show: false },
+    { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE', show: false },
+    { columnDef: 'pieceJointe', headName: '', show: false },
+    { columnDef: 'complement', headName: '', show: false },
+    { columnDef: 'option', headName: '', show: true },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
     return e;
@@ -65,6 +65,7 @@ export class ListComponent implements OnInit {
   departementList: { name: string, p: number, r: number, t: number, type: string }[] = [];
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
+
   progress = 0;
   message: any;
   formData = new FormData();
@@ -73,7 +74,16 @@ export class ListComponent implements OnInit {
   filteredOptions: Observable<any>;
   constructor(public uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private fb: FormBuilder, public session: SessionService
-    , private route: ActivatedRoute, private bottomSheet: MatBottomSheet) { }
+    , private route: ActivatedRoute, private bottomSheet: MatBottomSheet) {
+
+    if (this.session.isPublic) {
+      this.columnDefs = this.columnDefs.filter(e => e.show);
+
+      this.displayedColumns = this.columnDefs.map(e => e.columnDef);
+    }
+
+    console.log(this.columnDefs);
+  }
 
   ngOnInit() {
     this.createForm();
@@ -89,6 +99,8 @@ export class ListComponent implements OnInit {
         this.o.sortBy = this.sort.active ? this.sort.active : 'id';
         this.o.sortDir = this.sort.direction ? this.sort.direction : 'desc';
         this.isLoadingResults = true;
+
+        console.log(this.o);
 
         this.searchAndGet(this.o);
       }
@@ -136,7 +148,7 @@ export class ListComponent implements OnInit {
     ];
 
     if (this.mytranslate.langSync === 'fr') {
-      return {m: mc, e: et};
+      return { m: mc, e: et };
     } else {
       const m = mecanisme.find(o => mc.toLowerCase().includes(o.fr.toLowerCase().substring(0, 6)));
       const e = etat.find(o => o.fr.toLowerCase() === et.toLowerCase())

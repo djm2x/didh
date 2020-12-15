@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
     //   { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
     // ] },
 
-    { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session']/*, width: '167px'*/ , children: [] },
+    { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session']/*, width: '167px'*/, children: [] },
     { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'], /*width: '95px' , */children: [] },
     // tslint:disable-next-line:max-line-length Diagrammes et
     // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
@@ -46,20 +46,12 @@ export class AdminComponent implements OnInit {
   ];
 
   navs2 = [
-    // { name: 'Accueil', route: ['/admin/home'], width: '70px' , children: [] },
-    // { name: 'Mecanisme', route: ['/admin/home'], width: '70px' , children: [
-      { name: this.mytranslate.getObs('admin.header.ExamenPériodiqueuniverselle'), route: ['/admin/examen'], /*width: '126px'*/ },
-      { name: this.mytranslate.getObs('admin.header.OrganesdeTraités'), route: ['/admin/rapport'], /*width: '76px'*/ },
-      { name: this.mytranslate.getObs('admin.header.Procéduresspéciales'), route: ['/admin/visite'], /*width: '70px'*/ },
-    // ] },
-    // { name: 'Evènements ', route: ['/admin/evenement'], width: '80px' , children: [] },
-    // { name: 'Questionnaires', route: ['/admin/questionnaire'], width: '95px' , children: [] },
-    // tslint:disable-next-line:max-line-length Diagrammes et
-    // { name: this.mytranslate.getObs('admin.header.Evènements'), route: ['/admin/evenement'], width: '80px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Statistiques'), route: ['/admin/state'], /*width: '150px' , */children: [] },
-    // { name: 'Documentation', route: ['documentation'], width: '100px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Recommandations'), route: ['/admin/recommendation'], /*width: '150px' ,*/ children: [] },
-    { name: this.mytranslate.getObs('admin.header.Synthèse'), route: ['/admin/synthese'], /*width: '170px' ,*/ children: [] },
+    { name: this.mytranslate.getObs('admin.header.ExamenPériodiqueuniverselle'), route: ['/admin/examen'],},
+    { name: this.mytranslate.getObs('admin.header.OrganesdeTraités'), route: ['/admin/rapport'], },
+    { name: this.mytranslate.getObs('admin.header.Procéduresspéciales'), route: ['/admin/visite'], },
+    { name: this.mytranslate.getObs('admin.header.Statistiques'), route: ['/admin/state'],  },
+    { name: this.mytranslate.getObs('admin.header.Recommandations'), route: ['/admin/recommendation'],  },
+    { name: this.mytranslate.getObs('admin.header.Synthèse'), route: ['/admin/synthese'], },
   ];
 
   menus = [
@@ -75,22 +67,19 @@ export class AdminComponent implements OnInit {
 
 
   constructor(public session: SessionService, changeDetectorRef: ChangeDetectorRef
-    , media: MediaMatcher, public router: Router
-    , public mytranslate: MyTranslateService) {
+    , media: MediaMatcher, public router: Router , public mytranslate: MyTranslateService) {
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQuery.addListener((e: MediaQueryListEvent) => changeDetectorRef.detectChanges());
+
+    if (this.session.isPublic) {
+      const i = this.navs2.findIndex(e => e.route.includes('/admin/state'));
+      this.navs2.splice(i, 1);
+    }
   }
 
   ngOnInit() {
-
-
     this.getRoute();
-    // setTimeout(() => {
-    //   this.user = this.session.user;
-    //   console.log(this.user);
-    //   this.snav.toggle();
-    // }, 300);
-
   }
 
   changeLanguage(currentLanguage) {

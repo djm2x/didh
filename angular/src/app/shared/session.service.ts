@@ -87,19 +87,43 @@ export class SessionService {
     return this.user;
   }
 
+  get getName() {
+    if (this.isPublic) {
+      return '---';
+    }
+
+    return this.user.nom + ' ' + this.user.prenom;
+  }
+
+  get isPublic() {
+    return this.user === null || this.user.id === 0;
+  }
+
   get isAdmin() {
+    if (this.isPublic) {
+      return false;
+    }
     return this.user.idProfil === ID_ADMIN;
   }
 
   get isSuperViseur() {
+    if (this.isPublic) {
+      return false;
+    }
     return this.user.idProfil === ID_SUPER_VISUER;
   }
 
   get isPointFocal() {
+    if (this.isPublic) {
+      return false;
+    }
     return this.user.idProfil === ID_POINT_FOCAL;
   }
 
   get isProprietaire() {
+    if (this.isPublic) {
+      return false;
+    }
     return this.user.idProfil === PROPREITAIRE;
   }
 }

@@ -54,7 +54,7 @@ export class ListComponent implements OnInit {
     , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
-    this.getPage(0, 10, 'id', 'desc', this.session.user.idOrganisme, 0, 0, 0, 0, 0);
+    this.getPage(0, 10, 'id', 'desc', this.session.isPublic ? 0 : this.session.user.idOrganisme, 0, 0, 0, 0, 0);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
@@ -66,7 +66,7 @@ export class ListComponent implements OnInit {
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
-          this.session.user.idOrganisme,
+          this.session.isPublic ? 0 : this.session.user.idOrganisme,
           this.idOrganismeEmetteur.value ? this.idOrganismeEmetteur.value : 0,
           this.idTraite.value ? this.idTraite.value : 0,
           this.idRapport.value ? this.idRapport.value : 0,

@@ -79,7 +79,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.columnDefs)
-    this.getPage(0, 10, 'id', 'desc', this.session.user.idOrganisme);
+    this.getPage(0, 10, 'id', 'desc', this.session.isPublic ? 0 : this.session.user.idOrganisme);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
@@ -91,7 +91,7 @@ export class ListComponent implements OnInit {
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
-          this.session.user.idOrganisme
+          this.session.isPublic ? 0 : this.session.user.idOrganisme
         );
       }
     );

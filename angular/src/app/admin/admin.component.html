@@ -1,59 +1,3 @@
-<!-- <nav style="position: fixed; top: 0; z-index: 12;width: 100vw;" class="mat-elevation-z2">
-  <mat-card class="d-flex mat-elevation-z6 w-100 m-0 text-white align-items-center"
-    style="height: 50px;border-radius: 0; background-color: #737373 ">
-
-    <div style="margin: auto 0;">
-    </div>
-    <mat-nav-list class="d-flex align-items-start justify-content-start p-0 ml-auto" style=" height: fit-content;">
-      <div *ngFor="let e of navs; let i=index">
-        <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
-          <mat-list-item  [routerLink]="e.route" routerLinkActive="router-link-active" style="height: 50px !important;">
-            <span class="myspan" [style.width]="e.width">{{e.name}}</span>
-          </mat-list-item>
-        </ng-container>
-        <ng-template #elseTemplate>
-          <mat-list-item  [matMenuTriggerFor]="i">
-            <span class="myspan" [style.width]="e.width">{{e.name}}</span>
-          </mat-list-item>
-
-          <mat-menu #i="matMenu" xPosition="after">
-            <div *ngIf="session.isAdmin">
-              <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route" routerLinkActive="router-link-active">
-                {{c.name}}
-              </button>
-            </div>
-          </mat-menu>
-
-
-        </ng-template>
-
-
-      </div>
-    </mat-nav-list>
-  </mat-card>
-</nav> -->
-
-<!--
-<mat-toolbar class="mat-elevation-z6">
-  <mat-toolbar-row>
-    <p>Système de Suivi des recommandations des mécanismes onusiens des DH</p>
-    <span class="example-spacer"></span>
-    <button mat-button [matMenuTriggerFor]="beforeMenu">Bienvenue, {{session.getUser.nom}}
-      {{session.getUser.prenom}}</button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
-      <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
-      <mat-divider></mat-divider>
-      <div *ngIf="session.isAdmin">
-        <button mat-menu-item *ngFor="let e of menus; let i=index" [routerLink]="e.route" routerLinkActive="router-link-active">
-          {{e.name}}
-        </button>
-      </div>
-    </mat-menu>
-  </mat-toolbar-row>
-</mat-toolbar> me-->
-
-
 <nav style="position: fixed; top: 0px; z-index: 10; width: 100vw;">
   <mat-card class="d-flex mat-elevation-z6 p-0 m-0 text-white align-items-center"
     style="height: 140px;border-radius: 0;width: 100vw; background: linear-gradient(90deg, #2d71a1 0%, #245688 100%);">
@@ -115,11 +59,18 @@
           <mat-icon style="color: white;">power_settings_new</mat-icon>
         </mat-list-item>
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item> <b>{{session.getUser.nom}} {{session.getUser.prenom}}</b> </button>
-          <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
-          <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
-          <mat-divider></mat-divider>
+          <div *ngIf="session.isPublic">
+            <button mat-menu-item [routerLink]="['/auth']" >Se connecter</button>
+          </div>
+
+          <div *ngIf="!session.isPublic">
+            <button mat-menu-item> <b>{{session.getName}}</b> </button>
+            <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
+            <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
+          </div>
+
           <div *ngIf="session.isAdmin">
+            <mat-divider></mat-divider>
             <button mat-menu-item *ngFor="let e of menus; let i=index" [routerLink]="e.route"
               routerLinkActive="router-link-active">
               {{e.name | async | translate}}
@@ -130,32 +81,14 @@
       <!-- second row -->
       <mat-nav-list class="d-flex align-items-start justify-content-start p-0">
         <mat-list-item [routerLink]="['/admin/home']" routerLinkActive="router-link-active">
-          <!-- Bienvenue, {{session.getUser.nom}} {{session.getUser.prenom}} -->
           <mat-icon style="color: white;">home</mat-icon>
         </mat-list-item>
+
+
         <div *ngFor="let e of navs2; let i=index">
-          <ng-container *ngIf="true; else elseTemplate">
             <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active">
-              <!-- <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span> -->
               <span class="myspan">{{e.name | async | translate}}</span>
             </mat-list-item>
-          </ng-container>
-          <ng-template #elseTemplate>
-            <mat-list-item [matMenuTriggerFor]="i" [ngClass]="{'router-link-active': e.route[0].includes('mecanisme')}">
-              <!-- <span class="myspan" [style.width]="e.width">{{e.name}}</span> -->
-              <span class="myspan">{{e.name}}</span>
-              &nbsp;<mat-icon style="color: white;">keyboard_arrow_down</mat-icon>
-            </mat-list-item>
-
-            <mat-menu #i="matMenu" xPosition="after">
-              <div *ngIf="session.isAdmin">
-                <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route"
-                  routerLinkActive="router-link-active">
-                  {{c.name}}
-                </button>
-              </div>
-            </mat-menu>
-          </ng-template>
         </div>
       </mat-nav-list>
     </section>
@@ -167,158 +100,15 @@
 <mat-sidenav-container #sidenav class="example-sidenav-container" style=" z-index: 9;">
   <mat-sidenav #snav [mode]="(!mobileQuery.matches) ? 'side' : 'over'" [opened]="opened" [fixedInViewport]="true"
     fixedTopGap="50">
-    <mat-nav-list class="list" style="width: 220px; padding: 0;">
-      <div class="logo">
-        <img src="../assets/logo-ddh.jpg" alt="marit logo" width="210">
-      </div>
 
-      <mat-divider></mat-divider>
-      <!-- <mat-list-item [routerLink]="['/admin/home']" routerLinkActive="router-link-active">
-        <mat-icon>home</mat-icon>&nbsp;<span>Accueil</span>
-      </mat-list-item>
-      <mat-divider></mat-divider> -->
-      <mat-accordion>
-        <!-- <mat-expansion-panel expanded (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Mecanisme
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-divider></mat-divider>
-
-          <mat-list-item [routerLink]="['/admin/examen']" routerLinkActive="router-link-active">
-            <mat-icon>business</mat-icon>&nbsp;<span>Examen périodique universal</span>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-
-          <mat-list-item [routerLink]="['/admin/rapport']" routerLinkActive="router-link-active">
-            <mat-icon>book</mat-icon>&nbsp;<span>Organes de Traités</span>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item [routerLink]="['/admin/visite']" routerLinkActive="router-link-active">
-            <mat-icon>check_circle_outline</mat-icon>&nbsp;<span>Procédures spéciales</span>
-          </mat-list-item>
-
-        </mat-expansion-panel>
-
-
-
-
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/evenements']" routerLinkActive="router-link-active">
-          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Evènements</span>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/questionnaire']" routerLinkActive="router-link-active">
-          <mat-icon>live_help</mat-icon>&nbsp;<span>Questionnaires</span>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/participation-session']" routerLinkActive="router-link-active">
-          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Participation au session des DH</span>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/state']" routerLinkActive="router-link-active">
-          <mat-icon>equalizer</mat-icon>&nbsp;<span>Diagrammes et statistiques</span>
-        </mat-list-item>
-        <mat-divider *ngIf="!session.isPointFocal"></mat-divider> -->
-
-        <!-- <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/documentation']" routerLinkActive="router-link-active">
-          <mat-icon>queue_play_next</mat-icon>&nbsp;<span>Documentation</span>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/synthese']" routerLinkActive="router-link-active"
-          *ngIf="!session.isPointFocal">
-          <mat-icon>thumbs_up_down</mat-icon>&nbsp;<span>Synthèse</span>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="['/admin/recommendation']" routerLinkActive="router-link-active">
-          <mat-icon>done_all</mat-icon>&nbsp;<span>Recommandations</span>
-        </mat-list-item> -->
-
-
-        <!-- <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                    rb1
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-
-            </mat-expansion-panel> -->
-        <mat-expansion-panel *ngIf="session.isAdmin" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Sécurité
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-list-item [routerLink]="['/admin/user']" routerLinkActive="router-link-active">
-            <mat-icon>group</mat-icon>&nbsp;<span>Utilisateur</span>
-          </mat-list-item>
-          <!-- <mat-list-item [routerLink]="['/admin/permission']" routerLinkActive="router-link-active">
-            <mat-icon>person_add</mat-icon>&nbsp;<span>Permissions</span>
-          </mat-list-item> -->
-          <mat-list-item [routerLink]="['/admin/profil']" routerLinkActive="router-link-active">
-            <mat-icon>control_point_duplicate</mat-icon>&nbsp;<span>Profils</span>
-          </mat-list-item>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel *ngIf="session.isAdmin" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Paramétrage
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-list-item [routerLink]="['/admin/organisme']" routerLinkActive="router-link-active">
-            <mat-icon>account_balance</mat-icon>&nbsp;<span>Organisations</span>
-          </mat-list-item>
-          <mat-list-item [routerLink]="['/admin/organe']" routerLinkActive="router-link-active">
-            <mat-icon>business</mat-icon>&nbsp;<span>Organe de traités</span>
-          </mat-list-item>
-          <mat-list-item [routerLink]="['/admin/cycle']" routerLinkActive="router-link-active">
-            <mat-icon>check_circle_outline</mat-icon>&nbsp;<span>Cycles</span>
-          </mat-list-item>
-          <mat-list-item [routerLink]="['/admin/axe']" routerLinkActive="router-link-active">
-            <mat-icon>call_made</mat-icon>&nbsp;<span>Axes</span>
-          </mat-list-item>
-          <mat-list-item [routerLink]="['/admin/sous-axe']" routerLinkActive="router-link-active">
-            <mat-icon>call_missed_outgoing</mat-icon>&nbsp;<span>Sous axe</span>
-          </mat-list-item>
-          <mat-list-item [routerLink]="['/admin/pays']" routerLinkActive="router-link-active">
-            <mat-icon>location_city</mat-icon>&nbsp;<span>Pays</span>
-          </mat-list-item>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <mat-divider></mat-divider>
-
-
-
-    </mat-nav-list>
 
   </mat-sidenav>
 
   <mat-sidenav-content>
 
-
-    <!-- <div style="margin: 65px auto 15px;" class="mybreadcrumb">
-        <div *ngFor="let s of patchRoute" class="items">
-          <a [routerLink]="['/home/connection']">{{ s !== '-1' ? s : 'nauveau'}}</a><mat-icon>navigate_next</mat-icon>
-        </div>
-      </div> -->
     <main class="" [@routerTransition]="getState(o)" style="margin-top: 142px; height: 100%;">
       <router-outlet #o="outlet"></router-outlet>
     </main>
 
-    <!-- <footer>
-        <mat-toolbar class="mt-2 text" color="primary">
-          <mat-toolbar-row style="height: 70px">
-            <span style="margin-left: auto; margin-right: auto;"> © {{ d | date:"dd/MMMM/yyyy" }} - Yaasin MOURABIT</span>
-          </mat-toolbar-row>
-        </mat-toolbar>
-      </footer> -->
   </mat-sidenav-content>
 </mat-sidenav-container>

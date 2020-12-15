@@ -81,7 +81,7 @@
         <ng-container matColumnDef="option" style="flex-direction: row-reverse;">
           <th mat-header-cell *matHeaderCellDef> </th>
           <td mat-cell *matCellDef="let row">
-            <div class="button-row">
+            <div class="button-row" *ngIf="!session.isPublic">
               <!-- <button mat-icon-button color="primary" (click)="openDialogDetail(row)">
                 <mat-icon>visibility</mat-icon>
               </button> -->

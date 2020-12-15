@@ -31,7 +31,9 @@
                               'visibility'}}</mat-icon>
           </mat-form-field>
           <br>
-          <button mat-raised-button color="primary" type="button" type="submit">{{ 'admin.auth.Connexion' | translate }}</button>
+          <button mat-raised-button color="primary" type="submit">{{ 'admin.auth.Connexion' | translate }}</button>
+          <br>
+          <button mat-raised-button color="warn" type="button" [routerLink]="['/admin']"><mat-icon>home</mat-icon></button>
         </div>
       </mat-card-content>
     </form>

@@ -18,9 +18,9 @@ namespace Admin5.Controllers
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{idOrganisme}")]
         public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, int idOrganisme)
         {
-            int idUser = HttpContext.GetIdUser();
-            int role = HttpContext.GetRoleUser();
-            bool hasAcess = (role == 1 /*|| role == 2*/) ? true : false;
+            // int idUser = HttpContext.GetIdUser();
+            // int role = HttpContext.GetRoleUser();
+            // bool hasAcess = (role == 1 /*|| role == 2*/) ? true : false;
             // var b = (e.User.Id == idUser || e.User.IdOrganisme == idOrganisme);
             var q = _context.Traites
                 // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme/* || e.User.Id == idUser*/))

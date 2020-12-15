@@ -28,9 +28,9 @@ namespace Admin5.Controllers
         [HttpPost]
         public async Task<IActionResult> SearchAndGet(Model model)
         {
-            int idUser = HttpContext.GetIdUser();
-            int role = HttpContext.GetRoleUser();
-            bool hasAcess = (role == 1 || role == 4) ? true : false;
+            // int idUser = HttpContext.GetIdUser();
+            // int role = HttpContext.GetRoleUser();
+            // bool hasAcess = (role == 1 || role == 4) ? true : false;
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
             var query = _context.Recommendations
