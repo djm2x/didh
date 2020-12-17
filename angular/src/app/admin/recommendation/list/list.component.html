@@ -57,7 +57,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" *ngIf="!session.isPublic">
               <mat-label>{{ 'admin.questionnaire.list.année' | translate }}</mat-label>
               <mat-select formControlName="annee">
                 <mat-option *ngFor="let e of annee | async" [value]="e">{{ e }}</mat-option>
@@ -101,7 +101,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" *ngIf="!session.isPublic">
               <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
               <mat-select formControlName="etat">
                 <!-- <mat-option value="0">...</mat-option> -->

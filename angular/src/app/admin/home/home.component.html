@@ -126,7 +126,7 @@
     </section>
   </div> -->
 
-  <div class="row mb-10">
+  <div class="row mb-10" *ngIf="!session.isPublic">
     <div class="col-md-12">
       <div class="mb-5">
         <div class="d-flex align-items-center">
@@ -145,11 +145,11 @@
           </div>
         </div> -->
 
-        <div class="col-md-12">
+        <div class="col-md-12" >
 
             <app-bar [col]="12" [height]="'60vh'" [dataSubject]="departementSubjectPE"></app-bar>
         </div>
-        <div class="row" style="height:70vh;">
+        <div class="row" style="height:70vh;" >
           <div class="col-md-3">
 
               <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>
