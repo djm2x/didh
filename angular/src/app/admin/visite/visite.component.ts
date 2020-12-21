@@ -42,7 +42,7 @@ export class VisiteComponent implements OnInit {
     return e;
   });
 
-  displayedColumns = this.columnDefs.map(e => e.columnDef);
+  displayedColumns = this.columnDefs.filter(e => e.columnDef !== 'discours' && e.columnDef !== 'miseOeuvrePiece').map(e => e.columnDef);
   progress = 0;
   message: any;
   formData = new FormData();

@@ -56,7 +56,7 @@ export class ListComponent implements OnInit {
   // 3.Observations finales
   // 4.Rapport de suivi de la mise en œuvre
 
-  displayedColumns = this.columnDefs.map(e => e.columnDef);
+  displayedColumns = this.columnDefs.filter(e => e.columnDef !== 'miseOeuvrePiece').map(e => e.columnDef);
   progress = 0;
   message: any;
   formData = new FormData();

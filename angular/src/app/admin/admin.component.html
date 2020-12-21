@@ -30,28 +30,12 @@
         </mat-menu>
 
         <div *ngFor="let e of navs; let i=index">
-          <ng-container *ngIf="e.children && e.children.length === 0; else elseTemplate">
             <mat-list-item [routerLink]="e.route" routerLinkActive="router-link-active"
               style="height: 40px !important; margin-right: 1px; background-color: #aaabab;">
               <!-- <span class="myspan" [style.width]="e.width ? e.width : 'auto'">{{e.name | async | translate}}</span> -->
               <span class="myspan2" >{{e.name | async | translate}}</span>
             </mat-list-item>
-          </ng-container>
-          <ng-template #elseTemplate>
-            <mat-list-item [matMenuTriggerFor]="i">
-              <!-- <span class="myspan" [style.width]="e.width">{{e.name | async | translate}}</span> -->
-              <span class="myspan2" >{{e.name | async | translate}}</span>
-            </mat-list-item>
 
-            <mat-menu #i="matMenu" xPosition="after">
-              <div *ngIf="session.isAdmin">
-                <button mat-menu-item *ngFor="let c of e.children; let i2=index" [routerLink]="c.route"
-                  routerLinkActive="router-link-active">
-                  {{c.name | async | translate}}
-                </button>
-              </div>
-            </mat-menu>
-          </ng-template>
         </div>
         <mat-list-item [matMenuTriggerFor]="beforeMenu"
           style="background-color: #aaabab00;height: 40px !important;margin-right: 1px;">

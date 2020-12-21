@@ -6,7 +6,7 @@ import { SessionService } from 'src/app/shared';
 @Injectable({
   providedIn: 'root'
 })
-export class StateGuard implements CanActivate {
+export class PublicGuard implements CanActivate {
 
   constructor(private session: SessionService, private router: Router) { }
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

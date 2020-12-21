@@ -122,6 +122,7 @@ export class ExamenComponent implements OnInit {
       chartData.push(r.epu.n * 100 / r.epu.t);
 
       dataToShowInTable.push(r.epu.p, r.epu.r, r.epu.n);
+
       this.countRec.next(r.epu.p + r.epu.r + r.epu.n);
 
       // chartData.push(100 - r.epu.t);

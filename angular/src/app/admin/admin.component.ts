@@ -1,11 +1,9 @@
 import { Router, NavigationStart, RouterOutlet } from '@angular/router';
-import { Component, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
-import { MatButton } from '@angular/material';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { routerTransition } from '../shared/animations';
 import { SessionService } from '../shared';
 import { User } from '../Models/models';
-import { TranslateService } from '@ngx-translate/core';
 import { MyTranslateService } from '../my.translate.service';
 @Component({
   selector: 'app-admin',
@@ -14,35 +12,19 @@ import { MyTranslateService } from '../my.translate.service';
   animations: [routerTransition],
 })
 export class AdminComponent implements OnInit {
-  @ViewChild('btndev', { static: true }) btndev: MatButton;
-  @ViewChild('snav', { static: true }) snav: any;
   keyDevTools = '';
   panelOpenState = false;
   mobileQuery: MediaQueryList;
   currentSection = 'section1';
-  userImg = '../../assets/caisse.jpg';
   opened = false;
   idRole = -1;
   isConnected = false;
-  // montantCaisse = this.s.notify;
   route = this.router.url;
   user = new User();
   navs = [
-    // { name: 'Accueil', route: ['/admin/home'], width: '70px' , children: [] },
-    // { name: 'Mecanisme', route: ['/admin/home'], width: '70px' , children: [
-    //   { name: 'Examen Périodique universel', route: ['/admin/examen'], width: '126px' },
-    //   { name: 'Organes de Traités', route: ['/admin/rapport'], width: '76px' },
-    //   { name: 'Procédures spéciales', route: ['/admin/visite'], width: '70px' },
-    // ] },
-
-    { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session']/*, width: '167px'*/, children: [] },
-    { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'], /*width: '95px' , */children: [] },
-    // tslint:disable-next-line:max-line-length Diagrammes et
-    // { name: 'Participation aux sessions\r\n des droits de l’homme', route: ['/admin/participation-session'], width: '167px' , children: [] },
-    // { name: 'Statistiques', route: ['/admin/state'], width: '100px' , children: [] },
-    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['/admin/evenement'], /*width: '100px' ,*/ children: [] },
-    // { name: 'Recommandations', route: ['/admin/recommendation'], width: '113px' , children: [] },
-    // { name: 'Synthèse', route: ['/admin/synthese'], width: '70px' , children: [] },
+    { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session'] },
+    { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'] },
+    { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['/admin/evenement'] },
   ];
 
   navs2 = [
@@ -73,8 +55,11 @@ export class AdminComponent implements OnInit {
     this.mobileQuery.addListener((e: MediaQueryListEvent) => changeDetectorRef.detectChanges());
 
     if (this.session.isPublic) {
-      const i = this.navs2.findIndex(e => e.route.includes('/admin/state'));
-      this.navs2.splice(i, 1);
+      // const i = this.navs2.findIndex(e => e.route.includes('/admin/state'));
+      // this.navs2.splice(i, 1);
+
+      this.navs2 = this.navs2.filter(e => !e.route.includes('/admin/state'));
+      this.navs = this.navs.filter(e => !e.route.includes('/admin/questionnaire'));
     }
   }
 

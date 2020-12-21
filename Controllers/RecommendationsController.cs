@@ -401,6 +401,38 @@ namespace Admin5.Controllers
 
             // int recommendationsCount = _context.Recommendations.Count();
 
+            var l = await q.ToListAsync();
+            l = l.GroupBy(e => e.CodeRecommendation).Select(e => e.First()).ToList();
+
+            var t = l.Where(e => e.IdCycle != null).Count();
+            var n = l.Where(e => e.IdCycle != null && e.EtatAvancementChiffre == 0).Count();
+            var r = l.Where(e => e.IdCycle != null && e.EtatAvancementChiffre == 100).Count();
+            var p = l.Where(e => e.IdCycle != null && e.EtatAvancementChiffre < 100 && e.EtatAvancementChiffre > 0).Count();
+
+            var epu = new { n, r, p, t };
+
+            t = l.Where(e => e.IdOrgane != null).Count();
+            n = l.Where(e => e.IdOrgane != null && e.EtatAvancementChiffre == 0).Count();
+            r = l.Where(e => e.IdOrgane != null && e.EtatAvancementChiffre == 100).Count();
+            p = l.Where(e => e.IdOrgane != null && e.EtatAvancementChiffre < 100 && e.EtatAvancementChiffre > 0).Count();
+            // var h = t == 0 ? 1 : t;
+            // var h2 = 0/1;
+            var ot = new { n, r, p, t };
+
+            t = l.Where(e => e.IdVisite != null).Count();
+            n = l.Where(e => e.IdVisite != null && e.EtatAvancementChiffre == 0).Count();
+            r = l.Where(e => e.IdVisite != null && e.EtatAvancementChiffre == 100).Count();
+            p = l.Where(e => e.IdVisite != null && e.EtatAvancementChiffre < 100 && e.EtatAvancementChiffre > 0).Count();
+
+            var ps = new { n, r, p, t };
+
+            return new { epu, ot, ps, count = 0 };
+
+        }
+
+        private async Task<object> Calc0(IQueryable<Recommendation> q)
+        {
+
             var t = await q.Where(e => e.IdCycle != null).CountAsync();
             var n = await q.Where(e => e.IdCycle != null && e.EtatAvancementChiffre == 0).CountAsync();
             var r = await q.Where(e => e.IdCycle != null && e.EtatAvancementChiffre == 100).CountAsync();
