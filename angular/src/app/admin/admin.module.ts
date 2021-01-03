@@ -5,13 +5,14 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 
 import { MatModule } from '../mat.module';
-import { MatSnackBarModule, MatProgressSpinnerModule, MAT_DATE_LOCALE } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-// import { Moment, MatMomentDateModule } from 'moment';
 
 
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+
 import { MyTranslateService } from '../my.translate.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [

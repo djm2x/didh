@@ -1,7 +1,7 @@
 import { SessionService } from 'src/app/shared';
 import { UowService } from 'src/app/services/uow.service';
 import { Component, OnInit, ViewChild, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { Moment } from 'moment';
+
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
