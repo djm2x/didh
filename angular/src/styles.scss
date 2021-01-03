@@ -8,27 +8,29 @@
 @import "./iconfont/material-icons.css";
 @import "./styles-font-size.scss";
 
-body {
-  // font-family: 'Source Sans Pro', sans-serif !important;
-}
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+// @import url("https://fonts.googleapis.com/css?family=Montserrat");
+// @import "~@angular/material/theming";
+// $custom-typography: mat-typography-config(
+//   $font-family: "Montserrat",
+//   $headline: mat-typography-level(32px, 48px, 700),
+//   $body-1: mat-typography-level(16px, 24px, 500),
+// );
+
+// @include angular-material-typography($custom-typography);
+
 html,
 body {
   height: 100%;
   --gray: #ebebeb;
   --primary: #2d71a1;
   --body-background: #f2f0ef;
-  background-color: var(--body-background);
-}
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
+  background-color: var(--body-background);
 }
 
 // .mat-progress-spinner circle, .mat-spinner circle {
@@ -46,11 +48,16 @@ mat-dialog-container {
   padding: 0 !important;
 }
 
-.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+.mat-fab.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-mini-fab.mat-primary,
+.mat-raised-button.mat-primary {
   background-color: var(--primary);
 }
 
-.mat-button.mat-warn, .mat-icon-button.mat-warn, .mat-stroked-button.mat-warn {
+.mat-button.mat-warn,
+.mat-icon-button.mat-warn,
+.mat-stroked-button.mat-warn {
   color: #cb4b11;
 }
 
@@ -78,12 +85,12 @@ mat-icon {
   padding-right: 0 !important;
 }
 
-.mat-row:nth-child(even){
+.mat-row:nth-child(even) {
   background-color: #ebebeb !important;
 }
 
-.mat-row:nth-child(odd){
-  background-color:#ffffff !important;
+.mat-row:nth-child(odd) {
+  background-color: #ffffff !important;
 }
 
 // .mat-header-cell:nth-child(2),.mat-cell:nth-child(2){

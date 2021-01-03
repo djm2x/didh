@@ -66,3 +66,29 @@ dotnet publish -o D:/chemin souhaite
 ### Useful Angular cli command:
 ng g m commun --route commun --module parametrage
 
+
+### sql server drop foreign key command
+
+ALTER TABLE [dbo].[Recommendations]
+DROP CONSTRAINT  [FK_Recommendations_SousAxes_IdSousAxe]; 
+
+### sqlite drop foreign key command
+PRAGMA foreign_keys = OFF;
+
+BEGIN TRANSACTION;
+
+CREATE TABLE Pets_new( 
+    PetId INTEGER PRIMARY KEY, 
+    PetName,
+    TypeId
+);
+
+INSERT INTO Pets_new SELECT * FROM Pets;
+
+DROP TABLE Pets;
+
+ALTER TABLE Pets_new RENAME TO Pets;
+
+COMMIT;
+
+PRAGMA foreign_keys = ON;

@@ -215,6 +215,8 @@ export class Axe {
   labelAr = '';
   abv = '';
   abvAr = '';
+
+  sousAxes: SousAxe[] = [];
 }
 
 export class Organe {

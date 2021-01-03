@@ -85,7 +85,7 @@ namespace Admin5.Controllers
         // }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<T>>> Get()
+        public virtual async Task<ActionResult<IEnumerable<T>>> Get()
         {
             return await _context.Set<T>().OrderByName<T>("Id").ToListAsync();
         }

@@ -17,8 +17,8 @@ namespace Admin5.Models
         public string CodeRecommendationAr { get; set; }
         public string Mecanisme { get; set; }
         public int? IdCycle { get; set; }
-        public int? IdAxe { get; set; }
-        public int? IdSousAxe { get; set; }
+        public string Axes { get; set; }
+        public string SousAxes { get; set; }
         public int? IdOrgane { get; set; }
         public int? IdVisite { get; set; }
         public int? IdPays { get; set; }
@@ -35,8 +35,7 @@ namespace Admin5.Models
         // public Organisme Organisme { get; set; }
         public Visite Visite { get; set; }
         public Organe Organe { get; set; }
-        public Axe Axe { get; set; }
-        public SousAxe SousAxe { get; set; }
+        
         public Cycle Cycle { get; set; }
         public Pays Pays { get; set; }
         public virtual ICollection<RecomOrg> RecomOrgs { get; set; }

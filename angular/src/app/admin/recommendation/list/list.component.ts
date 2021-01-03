@@ -54,7 +54,7 @@ export class ListComponent implements OnInit {
   organismes = this.uow.organismes.get();
   axes = this.uow.axes.get();
   sousAxes = [];
-  annee = this.uow.recommendations.annee();
+  annee = [];
 
   mecanismes = this.uow.mecanismes;
   visites = this.uow.visites.get();
@@ -92,6 +92,12 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.isLoadingResults = false;
+
+    this.uow.recommendations.annee().subscribe(e => {
+      this.annee = e;
+      this.myForm.get('annee').setValue(this.annee[0]);
+    });
+
     // this.searchAndGet(this.o);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
@@ -230,6 +236,7 @@ export class ListComponent implements OnInit {
   reset() {
     this.o = new Model();
     this.createForm();
+    this.myForm.get('annee').setValue(this.annee[0]);
     this.searchAndGet(this.o);
   }
 

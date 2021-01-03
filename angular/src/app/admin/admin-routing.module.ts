@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AdminGuard } from './guard/admin.guard';
 import { PublicGuard } from './guard/state.guard';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -10,6 +11,7 @@ const routes: Routes = [
     path: '', component: AdminComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'test', component: TestComponent},
       { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule), },
       { path: 'home1', loadChildren: () => import('./home1/home1.module').then(m => m.Home1Module), },
       {

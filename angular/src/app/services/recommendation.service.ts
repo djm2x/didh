@@ -13,7 +13,7 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   annee() {
-    return this.http.get(`${this.urlApi}/${this.controller}/annee`);
+    return this.http.get<number[]>(`${this.urlApi}/${this.controller}/annee`);
   }
 
   recommandationValues() {

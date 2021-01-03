@@ -1,0 +1,31 @@
+<div class="container pt-5">
+  <div>
+
+    <form [formGroup]="myForm" class="row pt-5">
+      <mat-form-field appearance="fill" class="col-md-12">
+        <mat-label>Axes</mat-label>
+        <mat-select formControlName="idSousAxe" multiple>
+          <!-- <mat-option>-- ... --</mat-option> -->
+          <mat-optgroup *ngFor="let a of axes" [label]="mytranslate.langSync === 'fr' ? a.label : a.labelAr">
+            <mat-option *ngFor="let e of axes" [value]="e.id">
+              {{mytranslate.langSync === 'fr' ? e.label : e.labelAr}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="col-md-12">
+        <mat-label>Toppings</mat-label>
+        <mat-select formControlName="idAxe" multiple>
+          <mat-option *ngFor="let a of axes" [value]="a.id">{{mytranslate.langSync === 'fr' ? a.label : a.labelAr}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+
+  {{myForm.value | json}}
+  {{o | json}}
+</div>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Admin5.Controllers
 {
@@ -22,15 +23,15 @@ namespace Admin5.Controllers
             // int recommendationsCount = await _context.Recommendations.CountAsync();
 
             var q = _context.Recommendations
-                .Where(e => e.Axe != null)
+                .Where(e => e.Axes != null)
                 .Where(e => mecanisme == "" ? true : e.IdCycle != null)
-                .Include(e => e.Axe)
+                .Include(e => e.Axes)
                 ;
 
             var list = await q.ToListAsync();
             // var count = await q.CountAsync();
             var list2 = list
-                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
+                .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -44,6 +45,12 @@ namespace Admin5.Controllers
                 ;
 
             return Ok(list2);
+        }
+
+        [HttpGet]
+        public override async Task<ActionResult<IEnumerable<Axe>>> Get()
+        {
+            return await _context.Axes.Include(e => e.SousAxes).ToListAsync();
         }
         
     }

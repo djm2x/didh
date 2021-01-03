@@ -13,10 +13,13 @@ import { MyTranslateService } from '../my.translate.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TestComponent } from './test/test.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AdminComponent,
+    TestComponent,
   ],
   imports: [
     CommonModule,
@@ -24,8 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     TranslateModule,
     // HttpClientModule,
     MatModule,
-    // FormsModule,
-    // ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
   ],

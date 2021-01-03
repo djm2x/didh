@@ -206,16 +206,18 @@ namespace Admin5.Models
                 entity.Property(e => e.IdOrgane);
                 entity.Property(e => e.EtatAvancement);
                 entity.Property(e => e.EtatAvancementChiffre);
-                entity.Property(e => e.IdAxe);
-                entity.Property(e => e.IdSousAxe);
+                // entity.Property(e => e.IdAxe);
+                // entity.Property(e => e.IdSousAxe);
                 entity.Property(e => e.Annee);
                 entity.Property(e => e.Etat);
+                entity.Property(e => e.Axes);
+                entity.Property(e => e.SousAxes);
                 // entity.Property(e => e.IdOrganisme).IsRequired();
                 // entity.HasOne(d => d.Organisme).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdOrganisme);
-                entity.HasOne(d => d.Axe).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdAxe);
+                // entity.HasOne(d => d.Axe).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdAxe);
 
-                entity.HasOne(d => d.SousAxe).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdSousAxe)
-                .OnDelete(DeleteBehavior.NoAction);
+                // entity.HasOne(d => d.SousAxe).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdSousAxe)
+                // .OnDelete(DeleteBehavior.NoAction);
 
                 entity.HasOne(d => d.Cycle).WithMany(p => p.Recommendations).HasForeignKey(d => d.IdCycle);
                 entity.HasMany(d => d.SyntheseRecommandations).WithOne(p => p.Recommendation).HasForeignKey(d => d.IdRecommandation);
@@ -260,9 +262,9 @@ namespace Admin5.Models
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Label);
-                entity.HasMany(d => d.Recommendations).WithOne(p => p.Axe)
-                .HasForeignKey(d => d.IdAxe)
-                .OnDelete(DeleteBehavior.Cascade);
+                // entity.HasMany(d => d.Recommendations).WithOne(p => p.Axes)
+                // .HasForeignKey(d => d.IdAxe)
+                // .OnDelete(DeleteBehavior.Cascade);
                 entity.Property(e => e.Abv);
                 entity.Property(e => e.AbvAr);
                 entity.HasMany(d => d.SousAxes).WithOne(p => p.Axe).HasForeignKey(d => d.IdAxe)
@@ -277,8 +279,7 @@ namespace Admin5.Models
                 entity.Property(e => e.Label);
                 entity.Property(e => e.IdAxe);
                 entity.HasOne(d => d.Axe).WithMany(p => p.SousAxes).HasForeignKey(d => d.IdAxe);
-                entity.HasMany(d => d.Recommendations).WithOne(p => p.SousAxe).HasForeignKey(d => d.IdSousAxe)
-                ;
+                // entity.HasMany(d => d.Recommendations).WithOne(p => p.SousAxes).HasForeignKey(d => d.IdSousAxe);
             });
 
 

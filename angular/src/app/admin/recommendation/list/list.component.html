@@ -60,7 +60,7 @@
             <mat-form-field appearance="fill" *ngIf="!session.isPublic">
               <mat-label>{{ 'admin.questionnaire.list.année' | translate }}</mat-label>
               <mat-select formControlName="annee">
-                <mat-option *ngFor="let e of annee | async" [value]="e">{{ e }}</mat-option>
+                <mat-option *ngFor="let e of annee" [value]="e">{{ e }}</mat-option>
               </mat-select>
             </mat-form-field>
 

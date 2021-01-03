@@ -9,7 +9,6 @@ namespace Admin5.Models
         public Axe()
         {
             SousAxes = new HashSet<SousAxe>();
-            Recommendations = new HashSet<Recommendation>();
         }
 
         public int Id { get; set; }
@@ -21,6 +20,6 @@ namespace Admin5.Models
         
         // [JsonIgnore]
         public virtual ICollection<SousAxe> SousAxes { get; set; }
-        public virtual ICollection<Recommendation> Recommendations { get; set; }
+        // public virtual ICollection<Recommendation> Recommendations { get; set; }
     }
 }

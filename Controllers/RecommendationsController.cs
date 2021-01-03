@@ -71,8 +71,8 @@ namespace Admin5.Controllers
                         Etat = e.Etat,
                         Annee = e.Annee,
                         Mecanisme = e.Mecanisme,
-                        Axe = lng == "fr" ? e.Axe.Label : e.Axe.LabelAr,
-                        SousAxe = lng == "fr" ? e.SousAxe.Label : e.SousAxe.LabelAr,
+                        Axe = lng == "fr" ? e.Axes.Label : e.Axes.LabelAr,
+                        SousAxe = lng == "fr" ? e.SousAxes.Label : e.SousAxes.LabelAr,
                         Observation = e.Observation,
                         Complement = e.Complement,
                         PieceJointe = e.PieceJointe,
@@ -304,9 +304,9 @@ namespace Admin5.Controllers
             //     .SumAsync(e => e.p)
             //     ;
 
-            var axe0 = await q.Include(e => e.Axe).ToListAsync();
-            var axe = axe0.Where(e => e.Axe != null)
-                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
+            var axe0 = await q.Include(e => e.Axes).ToListAsync();
+            var axe = axe0.Where(e => e.Axes != null)
+                .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -320,8 +320,8 @@ namespace Admin5.Controllers
                 .ToList()
                 ;
 
-            var epu = axe0.Where(e => e.Axe != null && e.IdCycle != null)
-                .GroupBy(e => lng == "fr" ? e.Axe.Abv : e.Axe.AbvAr)
+            var epu = axe0.Where(e => e.Axes != null && e.IdCycle != null)
+                .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
                 .Select(e => new
                 {
                     name = e.Key,
@@ -563,7 +563,7 @@ namespace Admin5.Controllers
                 .Select(e => new
                 {
                     table = e.RecomOrgs.FirstOrDefault().Organisme.Label,
-                    value = e.Axe.Recommendations.Count
+                    value = e.Axes.Recommendations.Count
                 })
                 .Distinct()
                 .ToListAsync()
@@ -826,8 +826,8 @@ namespace Admin5.Controllers
         {
             var list = await _context.Recommendations
                 .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
-                .Include(e => e.Axe)
-                .GroupBy(e => e.Axe.Label)
+                .Include(e => e.Axes)
+                .GroupBy(e => e.Axes.Label)
                 .Select(e => new { axe = e.Key, recommandations = e.Count() })
                 .ToListAsync()
                 ;
@@ -842,8 +842,8 @@ namespace Admin5.Controllers
             var list = await _context.Recommendations
                 .Where(e => idTraite == 0 ? true : e.SyntheseRecommandations.Any(sr => sr.Synthese.Rapport.IdTraite == idTraite))
                 .Where(e => e.Cycle.Id == lastCycle.Id)
-                .Include(e => e.Axe)
-                .GroupBy(e => e.Axe.Label)
+                .Include(e => e.Axes)
+                .GroupBy(e => e.Axes.Label)
                 .Select(e => new { axe = e.Key, recommandations = e.Count() })
                 .ToListAsync()
                 ;
@@ -858,8 +858,8 @@ namespace Admin5.Controllers
                 .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
                 .Where(e => idOrgane == 0 ? true : e.IdOrgane == idOrgane)
                 .Where(e => idVisite == 0 ? true : e.IdVisite == idVisite)
-                .Include(e => e.Axe)
-                .GroupBy(e => e.Axe.Label)
+                .Include(e => e.Axes)
+                .GroupBy(e => e.Axes.Label)
                 .Select(e => new { axe = e.Key, recommandations = e.Count() })
                 .ToListAsync()
                 ;
@@ -971,8 +971,8 @@ namespace Admin5.Controllers
         public async Task<ActionResult<Recommendation>> GetDetail(int id)
         {
             var model = await _context.Recommendations.Where(e => e.Id == id)
-            .Include(e => e.Axe)
-            .Include(e => e.SousAxe)
+            .Include(e => e.Axes)
+            .Include(e => e.SousAxes)
             .Include(e => e.Cycle)
             .Include(e => e.Visite)
             .Include(e => e.Organe)
