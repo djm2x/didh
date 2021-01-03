@@ -1,9 +1,9 @@
 # App web System de suivi ..
 
 ## Le projet à éte developpé par les technologies suivantes : 
-[ASP.net Core 3.1 SDK](https://dotnet.microsoft.com/download)
+[ASP.net Core 5.0 SDK](https://dotnet.microsoft.com/download)
 
-[Node js et NPM](https://nodejs.org/en/download/) & [Angular 9](https://cli.angular.io/)
+[Node js et NPM](https://nodejs.org/en/download/) & [Angular 11](https://cli.angular.io/)
 
 [Git for Windows](https://git-scm.com/downloads)
 
@@ -11,7 +11,7 @@
 
 ### clone le repo
 ```
-git clone https://github.com/djm2x/mem
+git clone https://github.com/djm2x/didh
 ```
 
 ### Pour installer les dependences éxécuter la commande suivante : 
