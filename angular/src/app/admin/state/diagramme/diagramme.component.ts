@@ -16,7 +16,7 @@ import { Model } from '../../recommendation/list/list.component';
   styleUrls: ['./diagramme.component.scss']
 })
 export class DiagrammeComponent implements OnInit {
-  @ViewChild('matgroup', { static: false }) myTab: MatTabGroup;
+  @ViewChild('matgroup') myTab: MatTabGroup;
   @Input() obs = new Subject<IData>();
   title = '';
   panelOpenState = false;
