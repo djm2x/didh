@@ -1,7 +1,6 @@
 import { SessionService } from './../../shared/session.service';
 import { Examen } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
 import { merge, Subject, BehaviorSubject, Observable } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
@@ -14,6 +13,10 @@ import { ArchiveComponent } from './archive/archive.component';
 import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { ModalComponent } from './modal/modal.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-examen',

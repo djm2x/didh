@@ -2,13 +2,15 @@ import { DetailRapportComponent } from './detail-rapport/detail-rapport.componen
 import { Rapport } from './../../../../Models/models';
 import { PopupComponent } from '../popup/popup.component';
 import { Component, OnInit, EventEmitter, Input, ViewChild, Inject } from '@angular/core';
-import { MatDialog, MatBottomSheet, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { DeleteService } from 'src/app/admin/components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { Visite } from 'src/app/Models/models';
 import { SheetbottomComponent } from 'src/app/admin/components/sheetbottom/sheetbottom.component';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { merge } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-piece-jointes',

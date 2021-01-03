@@ -1,11 +1,13 @@
 import { Synthese, FicheSynthese } from './../../../../Models/models';
 import { Component, OnInit, EventEmitter, Input, ViewChild, Inject } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { DeleteService } from 'src/app/admin/components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { merge } from 'rxjs';
 import { PopupComponent } from './popup/popup.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-fiche-synthese',

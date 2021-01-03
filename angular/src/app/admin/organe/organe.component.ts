@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { merge } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { Organe } from 'src/app/Models/models';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-organe',
   templateUrl: './organe.component.html',

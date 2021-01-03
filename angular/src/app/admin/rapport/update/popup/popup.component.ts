@@ -2,7 +2,7 @@ import { Synthese } from './../../../../Models/models';
 import { Component, OnInit, Inject, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Visite, Rapport } from 'src/app/Models/models';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UowService } from 'src/app/services/uow.service';
 
 @Component({

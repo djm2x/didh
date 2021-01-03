@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, EventEmitter, Input } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent, MatInput, MatBottomSheet } from '@angular/material';
 import { merge, Observable, Subject } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
@@ -12,6 +11,9 @@ import { switchMap } from 'rxjs/operators';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { Model } from '../../recommendation/list/list.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-recomm',

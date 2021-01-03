@@ -1,7 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent, MatBottomSheet } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
@@ -13,6 +12,11 @@ import { SessionService } from 'src/app/shared';
 import { switchMap } from 'rxjs/operators';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-list',

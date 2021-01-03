@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { merge } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { Axe } from 'src/app/Models/models';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-axe',
   templateUrl: './axe.component.html',

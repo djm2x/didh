@@ -5,9 +5,9 @@ import { UowService } from 'src/app/services/uow.service';
 import { Subject } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from '../detail/detail.component';
-import { MatDialog } from '@angular/material';
 import * as pluginLabels from 'chartjs-plugin-labels';
 import * as Chart from 'chart.js';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',

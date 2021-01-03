@@ -2,7 +2,10 @@ import { SessionService } from './../../../shared/session.service';
 import { Rapport, Traite } from './../../../Models/models';
 
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { merge, BehaviorSubject, Subject, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';

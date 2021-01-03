@@ -7,8 +7,9 @@ import { Subject, merge, BehaviorSubject, Observable } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from 'src/app/shared';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { MatTabGroup, MatAutocompleteSelectedEvent } from '@angular/material';
 import { Model } from '../../recommendation/list/list.component';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-diagramme',

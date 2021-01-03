@@ -15,18 +15,18 @@ import { LoaderInterceptor } from './loader/loader-interceptor';
 import { DeleteComponent } from './admin/components/delete/delete.component';
 import { SheetbottomComponent } from './admin/components/sheetbottom/sheetbottom.component';
 
-import {
-  MatToolbarModule,
-  MatProgressSpinnerModule,
-  MatDividerModule,
-  MatButtonModule,
-  MatSnackBarModule,
-  MatDialogModule,
-  MatListModule,
-} from '@angular/material';
+
 
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,

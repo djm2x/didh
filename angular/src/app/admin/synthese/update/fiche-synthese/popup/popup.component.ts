@@ -2,10 +2,11 @@ import { FicheSynthese } from './../../../../../Models/models';
 import { Component, OnInit, Inject, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Visite, Rapport } from 'src/app/Models/models';
-import { MatDialogRef, MAT_DIALOG_DATA, MatAutocompleteSelectedEvent } from '@angular/material';
 import { UowService } from 'src/app/services/uow.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-popup',

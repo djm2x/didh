@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SelectionModel, SelectionChange } from '@angular/cdk/collections';
@@ -7,6 +6,9 @@ import { Organisme } from 'src/app/Models/models';
 import { FormControl } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
 import { SessionService } from 'src/app/shared';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-organismes',

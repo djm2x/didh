@@ -8,9 +8,9 @@ import { Synthese, Recommendation } from 'src/app/Models/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackBarService } from 'src/app/loader/snack-bar.service';
-import { MatTabGroup } from '@angular/material';
 import { TabNavigationService } from './tab-navigation.service';
 import { Subject } from 'rxjs';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-update',

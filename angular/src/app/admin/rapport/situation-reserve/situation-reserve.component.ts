@@ -3,8 +3,8 @@ import { UowService } from 'src/app/services/uow.service';
 import { Component, OnInit } from '@angular/core';
 import { Subject, merge } from 'rxjs';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
-import { MatBottomSheet } from '@angular/material';
 import { startWith } from 'rxjs/operators';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-situation-reserve',
@@ -31,15 +31,15 @@ export class SituationReserveComponent implements OnInit {
         this.uow.situationReserves.getFirst().subscribe(r => {
 
           this.o = r;
-    
+
           setTimeout(() => {
             this.propertyUrlTo.next(this.o.url);
           }, 100);
-    
+
         });
       }
     );
-   
+
 
     this.propertyUrlFrom.subscribe((r: string) => this.o.url = r);
 

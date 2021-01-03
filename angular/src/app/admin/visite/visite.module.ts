@@ -7,8 +7,7 @@ import { VisiteComponent } from './visite.component';
 import { UpdateComponent } from './update/update.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+
 import { MatModule } from 'src/app/mat.module';
 import { DetailComponent } from './detail/detail.component';
 import { ArchiveComponent } from './archive/archive.component';
@@ -40,7 +39,7 @@ import { CountModule } from '../components/count/count.module';
     CountModule,
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'fr'},
+    // {provide: MAT_DATE_LOCALE, useValue: 'fr'},
   ],
   entryComponents: [
     UpdateComponent,

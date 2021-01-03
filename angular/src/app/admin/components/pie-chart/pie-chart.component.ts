@@ -5,7 +5,7 @@ import { UowService } from 'src/app/services/uow.service';
 import { Subject, Observable } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from './detail/detail.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import * as pluginLabels from 'chartjs-plugin-labels';
 @Component({
   selector: 'app-pie-chart',

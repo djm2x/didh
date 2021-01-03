@@ -7,7 +7,8 @@
 // import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 // import { SessionService } from 'src/app/shared';
 // import { MyTranslateService } from 'src/app/my.translate.service';
-// import { MatTabGroup, MatAutocompleteSelectedEvent } from '@angular/material';
+// import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatTabGroup } from '@angular/material/tabs';
 // import { Model } from '../../recommendation/list/list.component';
 
 // @Component({

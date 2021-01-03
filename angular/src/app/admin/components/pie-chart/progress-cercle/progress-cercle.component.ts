@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject, Observable, of } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { MatDialog } from '@angular/material';
 import { DetailComponent } from '../detail/detail.component';
 
 @Component({
@@ -52,7 +52,7 @@ export class ProgressCercleComponent implements OnInit {
 
           this.o.nbt = r.nbt;
           this.o.nbp = r.nbp;
-          this.o.nbr = r.nbr; 
+          this.o.nbr = r.nbr;
 
 
           console.log(this.o)

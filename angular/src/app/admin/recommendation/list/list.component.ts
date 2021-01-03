@@ -1,7 +1,9 @@
 import { DetailComponent } from '../detail/detail.component';
 
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog, MatAutocompleteSelectedEvent, MatInput, MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { merge, Observable } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
@@ -13,6 +15,8 @@ import { SessionService } from 'src/app/shared';
 import { switchMap } from 'rxjs/operators';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-list',

@@ -1,6 +1,6 @@
 import { Recommendation } from './../../../Models/models';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UowService } from 'src/app/services/uow.service';
 import { Visite } from 'src/app/Models/models';

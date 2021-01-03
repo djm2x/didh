@@ -1,11 +1,12 @@
 import { Rapport } from './../../../../../Models/models';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { merge } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
 import { SelectionModel, SelectionChange } from '@angular/cdk/collections';
 import { Organisme, Synthese } from 'src/app/Models/models';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-synthese',

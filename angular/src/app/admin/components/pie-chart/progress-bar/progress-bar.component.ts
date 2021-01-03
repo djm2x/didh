@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DetailComponent } from '../detail/detail.component';
 
 @Component({

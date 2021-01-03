@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
 import { Subject, Observable } from 'rxjs';
@@ -44,7 +44,7 @@ export class PieComponent implements OnInit {
 
           // console.log(dataLabel, value)
 
-          return dataLabel;
+          return dataLabel as any;
         }
       }
     },

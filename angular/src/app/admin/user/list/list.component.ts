@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { Observable, merge } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { UowService } from 'src/app/services/uow.service';
 import { DeleteService } from '../../components/delete/delete.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list',
