@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
 using System.Linq;
 using System.Collections.Generic;
+using Admin5.Providers;
 
 namespace Admin5.Controllers
 {
@@ -22,29 +23,47 @@ namespace Admin5.Controllers
 
             // int recommendationsCount = await _context.Recommendations.CountAsync();
 
-            var q = _context.Recommendations
-                .Where(e => e.Axes != null)
-                .Where(e => mecanisme == "" ? true : e.IdCycle != null)
-                .Include(e => e.Axes)
-                ;
+            // var q = _context.Recommendations
+            //     .Where(e => e.Axes != null)
+            //     .Where(e => mecanisme == "" ? true : e.IdCycle != null)
+            //     .Include(e => e.Axes)
+            //     ;
 
-            var list = await q.ToListAsync();
-            // var count = await q.CountAsync();
-            var list2 = list
-                .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
+            var l = await _context.Axes
                 .Select(e => new
                 {
-                    name = e.Key,
-                    p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
-                    r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
-                    n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    // // t = count,
-                    t = e.Count(),
+                    axe = e,
+                    recommendations = _context.Recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
                 })
-                .ToList()
+                .Select(e => new
+                {
+                    name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
+                    p = e.recommendations.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
+                    r = e.recommendations.Where(s => s.EtatAvancementChiffre == 100).Count(),
+                    n = e.recommendations.Where(s => s.EtatAvancementChiffre == 0).Count(),
+                    // // t = count,
+                    t = e.recommendations.Count(),
+                })
+                .ToListAsync()
                 ;
 
-            return Ok(list2);
+            // var list = await q.ToListAsync();
+            // // var count = await q.CountAsync();
+            // var list2 = list
+            //     .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
+            //     .Select(e => new
+            //     {
+            //         name = e.Key,
+            //         p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
+            //         r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
+            //         n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
+            //         // // t = count,
+            //         t = e.Count(),
+            //     })
+            //     .ToList()
+            //     ;
+
+            return Ok(l);
         }
 
         [HttpGet]
@@ -52,6 +71,6 @@ namespace Admin5.Controllers
         {
             return await _context.Axes.Include(e => e.SousAxes).ToListAsync();
         }
-        
+
     }
 }

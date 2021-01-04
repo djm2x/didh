@@ -40,8 +40,8 @@ namespace Admin5.Controllers
                 .Where(e => idOrganismeEmetteur == 0 ? true : e.FicheSyntheses.Any(o => o.IdOrganisme == idOrganismeEmetteur))
                 .Where(e => idTraite == 0 ? true : e.Rapport.IdTraite == idTraite)
                 .Where(e => idRaport == 0 ? true : e.IdRapport == idRaport)
-                .Where(e => idAxe == 0 ? true : e.SyntheseRecommandations.Any(r => r.Recommendation.IdAxe == idAxe))
-                .Where(e => idSousAxe == 0 ? true : e.SyntheseRecommandations.Any(r => r.Recommendation.IdSousAxe == idSousAxe))
+                // .Where(e => idAxe == 0 ? true : e.SyntheseRecommandations.Any(r => r.Recommendation.IdAxe == idAxe))
+                // .Where(e => idSousAxe == 0 ? true : e.SyntheseRecommandations.Any(r => r.Recommendation.IdSousAxe == idSousAxe))
                 .OrderByName<Synthese>(sortBy, sortDir == "desc")
                 ;
 

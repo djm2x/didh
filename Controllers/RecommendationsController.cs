@@ -36,15 +36,15 @@ namespace Admin5.Controllers
             var query = _context.Recommendations
                 // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
-                .Where(e => model.Nom == "" ? true : 
+                .Where(e => model.Nom == "" ? true :
                     lng == "fr" ? e.Nom.ToLower().Contains(model.Nom.ToLower()) :
                     e.NomAr.ToLower().Contains(model.Nom.ToLower())
                 )
                 .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
-                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
+                .Where(e => model.IdAxe == 0 ? true : JsonHandler.ToListInt(e.Axes).Contains(model.IdAxe))
+                .Where(e => model.IdSousAxe == 0 ? true : JsonHandler.ToListInt(e.SousAxes).Contains(model.IdSousAxe))
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
-                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
                 .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
                 .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
@@ -52,6 +52,9 @@ namespace Admin5.Controllers
             ;
 
             var count = await query.CountAsync();
+
+            var axes = await _context.Axes.ToListAsync();
+            var sousAxes = await _context.SousAxes.ToListAsync();
 
             var list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
                     .Skip(model.StartIndex)
@@ -71,8 +74,8 @@ namespace Admin5.Controllers
                         Etat = e.Etat,
                         Annee = e.Annee,
                         Mecanisme = e.Mecanisme,
-                        Axe = lng == "fr" ? e.Axes.Label : e.Axes.LabelAr,
-                        SousAxe = lng == "fr" ? e.SousAxes.Label : e.SousAxes.LabelAr,
+                        Axe = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
+                        SousAxe = sousAxes.Where(r => JsonHandler.ToListInt(e.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
                         Observation = e.Observation,
                         Complement = e.Complement,
                         PieceJointe = e.PieceJointe,
@@ -90,11 +93,11 @@ namespace Admin5.Controllers
 
 
             var query = _context.Recommendations
-               .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
-               .Where(e => idOrgane == 0 ? true : e.IdOrgane == idOrgane)
-               .Where(e => idVisite == 0 ? true : e.IdVisite == idVisite)
-               .Where(e => idAxe == 0 ? true : e.IdAxe == idAxe)
-               .Where(e => idSousAxe == 0 ? true : e.IdSousAxe == idSousAxe)
+                .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
+                .Where(e => idOrgane == 0 ? true : e.IdOrgane == idOrgane)
+                .Where(e => idVisite == 0 ? true : e.IdVisite == idVisite)
+                .Where(e => idAxe == 0 ? true : JsonHandler.ToListInt(e.Axes).Contains(idAxe))
+                .Where(e => idSousAxe == 0 ? true : JsonHandler.ToListInt(e.SousAxes).Contains(idSousAxe))
             //    .Include(e => e.RecomOrgs)
             //    .Select(e => e)
                ;
@@ -209,7 +212,7 @@ namespace Admin5.Controllers
 
                 // t = (double.Parse(e.Count().ToString()) * 100) / recommendationsCount,
                 // t = count,
-                    t = e.Count(),
+                t = e.Count(),
             })
             .ToList();
 
@@ -233,14 +236,19 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> StateRecommendationByAxe()
         {
-            int recommendationsCount = _context.Recommendations.Count();
+            var recommendations = await _context.Recommendations.ToListAsync();
+            int recommendationsCount = recommendations.Count();
             var list = await _context.Axes
                     .Select(e => new
                     {
                         id = e.Id,
                         table = e.Label,
                         // value = e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count(),
-                        value = (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100,
+                        // value = (double.Parse(e.Recommendations.Count().ToString()) / recommendationsCount) * 100,
+                        value =
+                            (double.Parse(recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).Count().ToString()) / recommendationsCount) * 100,
+
+
                     })
                    .ToListAsync()
                 ;
@@ -261,15 +269,15 @@ namespace Admin5.Controllers
                 // .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
-                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
-                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
+                .Where(e => model.IdAxe == 0 ? true : JsonHandler.ToListInt(e.Axes).Contains(model.IdAxe))
+                .Where(e => model.IdSousAxe == 0 ? true : JsonHandler.ToListInt(e.SousAxes).Contains(model.IdSousAxe))
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
                 .Where(e => model.Annee == 0 ? true : e.Annee == model.Annee)
                 // .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 ;
 
             // var countR = await q.CountAsync();
-            
+
             var department0 = await q.Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync();
             var department = department0
                 .Where(e => e.RecomOrgs.Count > 0)
@@ -304,9 +312,20 @@ namespace Admin5.Controllers
             //     .SumAsync(e => e.p)
             //     ;
 
-            var axe0 = await q.Include(e => e.Axes).ToListAsync();
+            // var axe0 = await q.Include(e => e.Axes).ToListAsync();
+
+            var axe0 = await q
+                .Select(e => new
+                {
+                    IdCycle = e.IdCycle,
+                    EtatAvancementChiffre = e.EtatAvancementChiffre,
+                    Axes = _context.Axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).ToList()
+                })
+                .ToListAsync();
+
+
             var axe = axe0.Where(e => e.Axes != null)
-                .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
+                .GroupBy(e => lng == "fr" ? e.Axes.Select(a => a.Abv) : e.Axes.Select(a => a.AbvAr))
                 .Select(e => new
                 {
                     name = e.Key,
@@ -321,7 +340,7 @@ namespace Admin5.Controllers
                 ;
 
             var epu = axe0.Where(e => e.Axes != null && e.IdCycle != null)
-                .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
+                .GroupBy(e => lng == "fr" ? e.Axes.Select(a => a.Abv) : e.Axes.Select(a => a.AbvAr))
                 .Select(e => new
                 {
                     name = e.Key,
@@ -549,139 +568,139 @@ namespace Admin5.Controllers
             return Ok(list2);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> StateParamOrganisme(Model model)
-        {
-            var list = await _context.Recommendations
-                .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
-                .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
-                .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
-                .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
-                .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
-                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
-                // .GroupBy(e => e.IdAxe)
-                .Select(e => new
-                {
-                    table = e.RecomOrgs.FirstOrDefault().Organisme.Label,
-                    value = e.Axes.Recommendations.Count
-                })
-                .Distinct()
-                .ToListAsync()
-                ;
+        // [HttpPost]
+        // public async Task<IActionResult> StateParamOrganisme(Model model)
+        // {
+        //     var list = await _context.Recommendations
+        //         .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
+        //         .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
+        //         .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
+        //         .Where(e => model.IdAxe == 0 ? true : e.IdAxe == model.IdAxe)
+        //         .Where(e => model.IdSousAxe == 0 ? true : e.IdSousAxe == model.IdSousAxe)
+        //         .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
+        //         // .GroupBy(e => e.IdAxe)
+        //         .Select(e => new
+        //         {
+        //             table = e.RecomOrgs.FirstOrDefault().Organisme.Label,
+        //             value = e.Axes.Recommendations.Count
+        //         })
+        //         .Distinct()
+        //         .ToListAsync()
+        //         ;
 
 
-            return Ok(list);
-        }
+        //     return Ok(list);
+        // }
 
-        [HttpGet]
-        public async Task<IActionResult> StateRecommendationByMecanismeTaux()
-        {
-            int recommendationsCount = _context.Recommendations.Count();
-            var axe = await _context.Axes
-                .Select(e => e.Recommendations.Count())
-                .FirstOrDefaultAsync()
-                ;
+        // [HttpGet]
+        // public async Task<IActionResult> StateRecommendationByMecanismeTaux()
+        // {
+        //     int recommendationsCount = _context.Recommendations.Count();
+        //     var axe = await _context.Axes
+        //         .Select(e => e.Recommendations.Count())
+        //         .FirstOrDefaultAsync()
+        //         ;
 
-            var visite = await _context.Visites
-                .Select(e => e.Recommendations.Count())
-                .FirstOrDefaultAsync()
-               ;
+        //     var visite = await _context.Visites
+        //         .Select(e => e.Recommendations.Count())
+        //         .FirstOrDefaultAsync()
+        //        ;
 
-            var organe = await _context.Organes
-                .Select(e => e.Recommendations.Count())
-                .FirstOrDefaultAsync()
-                ;
+        //     var organe = await _context.Organes
+        //         .Select(e => e.Recommendations.Count())
+        //         .FirstOrDefaultAsync()
+        //         ;
 
-            var list = new[] { new { table = "", value = 0.0 } }.ToList();
+        //     var list = new[] { new { table = "", value = 0.0 } }.ToList();
 
-            list.Add(new { table = "Examen Périodique universel", value = (double.Parse(axe.ToString()) / recommendationsCount) * 100 });
-            list.Add(new { table = "Organes de Traités", value = (double.Parse(organe.ToString()) / recommendationsCount) * 100 });
-            list.Add(new { table = "Procédures spéciales", value = (double.Parse(visite.ToString()) / recommendationsCount) * 100 });
+        //     list.Add(new { table = "Examen Périodique universel", value = (double.Parse(axe.ToString()) / recommendationsCount) * 100 });
+        //     list.Add(new { table = "Organes de Traités", value = (double.Parse(organe.ToString()) / recommendationsCount) * 100 });
+        //     list.Add(new { table = "Procédures spéciales", value = (double.Parse(visite.ToString()) / recommendationsCount) * 100 });
 
-            return Ok(list);
-        }
+        //     return Ok(list);
+        // }
 
-        [HttpGet]
-        public async Task<IActionResult> stateEPU()
-        {
-            int recommendationsCount = _context.Recommendations.Count();
+        // [HttpGet]
+        // public async Task<IActionResult> stateEPU()
+        // {
+        //     int recommendationsCount = _context.Recommendations.Count();
 
-            var p = await _context.Recommendations
-                    .Where(e => e.IdCycle != null)
-                    .SumAsync(e => e.EtatAvancementChiffre)
-                ;
+        //     var p = await _context.Recommendations
+        //             .Where(e => e.IdCycle != null)
+        //             .SumAsync(e => e.EtatAvancementChiffre)
+        //         ;
 
-            var t = await _context.Recommendations
-                    .Where(e => e.IdCycle != null)
-                    .CountAsync()
-                ;
+        //     var t = await _context.Recommendations
+        //             .Where(e => e.IdCycle != null)
+        //             .CountAsync()
+        //         ;
 
-            return Ok(new { p = p / t, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
-        }
+        //     return Ok(new { p = p / t, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
+        // }
 
-        [HttpGet]
-        public async Task<IActionResult> stateOT()
-        {
-            int recommendationsCount = _context.Recommendations.Count();
+        // [HttpGet]
+        // public async Task<IActionResult> stateOT()
+        // {
+        //     int recommendationsCount = _context.Recommendations.Count();
 
-            var p = await _context.Recommendations
-                    .Where(e => e.IdOrgane != null)
-                    .SumAsync(e => e.EtatAvancementChiffre)
-                ;
+        //     var p = await _context.Recommendations
+        //             .Where(e => e.IdOrgane != null)
+        //             .SumAsync(e => e.EtatAvancementChiffre)
+        //         ;
 
-            var t = await _context.Recommendations
-                    .Where(e => e.IdOrgane != null)
-                    .CountAsync()
-                ;
+        //     var t = await _context.Recommendations
+        //             .Where(e => e.IdOrgane != null)
+        //             .CountAsync()
+        //         ;
 
-            return Ok(new { p = p / t, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
-        }
+        //     return Ok(new { p = p / t, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
+        // }
 
-        [HttpGet]
-        public async Task<IActionResult> statePS()
-        {
-            int recommendationsCount = _context.Recommendations.Count();
+        // [HttpGet]
+        // public async Task<IActionResult> statePS()
+        // {
+        //     int recommendationsCount = _context.Recommendations.Count();
 
-            var p = await _context.Recommendations
-                    .Where(e => e.IdVisite != null)
-                    .SumAsync(e => e.EtatAvancementChiffre)
-                ;
+        //     var p = await _context.Recommendations
+        //             .Where(e => e.IdVisite != null)
+        //             .SumAsync(e => e.EtatAvancementChiffre)
+        //         ;
 
-            var t = await _context.Recommendations
-                    .Where(e => e.IdVisite != null)
-                    .CountAsync()
-                ;
+        //     var t = await _context.Recommendations
+        //             .Where(e => e.IdVisite != null)
+        //             .CountAsync()
+        //         ;
 
-            return Ok(new { p = p / t, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
-        }
+        //     return Ok(new { p = p / t, t = (double.Parse(t.ToString()) / recommendationsCount) * 100 });
+        // }
 
-        [HttpGet]
-        public async Task<IActionResult> StateRecommendationByMecanismePercentage()
-        {
-            var axe = await _context.Axes
-                    .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
-                   .FirstOrDefaultAsync()
-                ;
+        // [HttpGet]
+        // public async Task<IActionResult> StateRecommendationByMecanismePercentage()
+        // {
+        //     var axe = await _context.Axes
+        //             .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+        //            .FirstOrDefaultAsync()
+        //         ;
 
-            var visite = await _context.Visites
-                   .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
-                   .FirstOrDefaultAsync()
-               ;
+        //     var visite = await _context.Visites
+        //            .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+        //            .FirstOrDefaultAsync()
+        //        ;
 
-            var organe = await _context.Organes
-                .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
-                .FirstOrDefaultAsync()
-            ;
+        //     var organe = await _context.Organes
+        //         .Select(e => e.Recommendations.Sum(r => r.EtatAvancementChiffre) / e.Recommendations.Count())
+        //         .FirstOrDefaultAsync()
+        //     ;
 
-            var list = new[] { new { table = "", value = 0 } }.ToList();
+        //     var list = new[] { new { table = "", value = 0 } }.ToList();
 
-            list.Add(new { table = "Examen Périodique universel", value = axe });
-            list.Add(new { table = "Organes de Traités", value = organe });
-            list.Add(new { table = "Procédures spéciales", value = visite });
+        //     list.Add(new { table = "Examen Périodique universel", value = axe });
+        //     list.Add(new { table = "Organes de Traités", value = organe });
+        //     list.Add(new { table = "Procédures spéciales", value = visite });
 
 
-            return Ok(list);
-        }
+        //     return Ok(list);
+        // }
 
 
         // [HttpGet("{table}/{type}")]
@@ -766,8 +785,16 @@ namespace Admin5.Controllers
             int recommendationsCount = 0;
             if (table == "axe")
             {
-                recommendationsCount = await _context.Recommendations.Where(r => r.IdCycle != null).CountAsync();
-                list = await _context.Axes.Where(e => e.Recommendations.Any(r => r.IdCycle != null))
+                var recommendations = await _context.Recommendations.Where(r => r.IdCycle != null).ToListAsync();
+                recommendationsCount = recommendations.Count();
+
+                list = await _context.Axes//.Where(e => e.Recommendations.Any(r => r.IdCycle != null))
+                    .Select(e => new
+                    {
+                        Abv = e.Abv,
+                        LabelAr = e.LabelAr,
+                        Recommendations = recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
+                    })
                     .Select(e => new
                     {
                         table = lng == "fr" ? e.Abv : e.LabelAr,
@@ -821,51 +848,51 @@ namespace Admin5.Controllers
         }
 
 
-        [HttpGet("{idCycle}")]
-        public async Task<IActionResult> RecommandationByAxe(int idCycle)
-        {
-            var list = await _context.Recommendations
-                .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
-                .Include(e => e.Axes)
-                .GroupBy(e => e.Axes.Label)
-                .Select(e => new { axe = e.Key, recommandations = e.Count() })
-                .ToListAsync()
-                ;
+        // [HttpGet("{idCycle}")]
+        // public async Task<IActionResult> RecommandationByAxe(int idCycle)
+        // {
+        //     var list = await _context.Recommendations
+        //         .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
+        //         .Include(e => e.Axes)
+        //         .GroupBy(e => e.Axes.Label)
+        //         .Select(e => new { axe = e.Key, recommandations = e.Count() })
+        //         .ToListAsync()
+        //         ;
 
-            return Ok(list);
-        }
+        //     return Ok(list);
+        // }
 
-        [HttpGet("{idTraite}")]
-        public async Task<IActionResult> RecommandationByConvention(int idTraite)
-        {
-            var lastCycle = _context.Cycles.AsEnumerable().LastOrDefault();
-            var list = await _context.Recommendations
-                .Where(e => idTraite == 0 ? true : e.SyntheseRecommandations.Any(sr => sr.Synthese.Rapport.IdTraite == idTraite))
-                .Where(e => e.Cycle.Id == lastCycle.Id)
-                .Include(e => e.Axes)
-                .GroupBy(e => e.Axes.Label)
-                .Select(e => new { axe = e.Key, recommandations = e.Count() })
-                .ToListAsync()
-                ;
+        // [HttpGet("{idTraite}")]
+        // public async Task<IActionResult> RecommandationByConvention(int idTraite)
+        // {
+        //     var lastCycle = _context.Cycles.AsEnumerable().LastOrDefault();
+        //     var list = await _context.Recommendations
+        //         .Where(e => idTraite == 0 ? true : e.SyntheseRecommandations.Any(sr => sr.Synthese.Rapport.IdTraite == idTraite))
+        //         .Where(e => e.Cycle.Id == lastCycle.Id)
+        //         .Include(e => e.Axes)
+        //         .GroupBy(e => e.Axes.Label)
+        //         .Select(e => new { axe = e.Key, recommandations = e.Count() })
+        //         .ToListAsync()
+        //         ;
 
-            return Ok(list);
-        }
+        //     return Ok(list);
+        // }
 
-        [HttpGet("{idCycle}/{idOrgane}/{idVisite}")]
-        public async Task<IActionResult> RecommandationByMecanisme(int idCycle, int idOrgane, int idVisite)
-        {
-            var list = await _context.Recommendations
-                .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
-                .Where(e => idOrgane == 0 ? true : e.IdOrgane == idOrgane)
-                .Where(e => idVisite == 0 ? true : e.IdVisite == idVisite)
-                .Include(e => e.Axes)
-                .GroupBy(e => e.Axes.Label)
-                .Select(e => new { axe = e.Key, recommandations = e.Count() })
-                .ToListAsync()
-                ;
+        // [HttpGet("{idCycle}/{idOrgane}/{idVisite}")]
+        // public async Task<IActionResult> RecommandationByMecanisme(int idCycle, int idOrgane, int idVisite)
+        // {
+        //     var list = await _context.Recommendations
+        //         .Where(e => idCycle == 0 ? true : e.IdCycle == idCycle)
+        //         .Where(e => idOrgane == 0 ? true : e.IdOrgane == idOrgane)
+        //         .Where(e => idVisite == 0 ? true : e.IdVisite == idVisite)
+        //         .Include(e => e.Axes)
+        //         .GroupBy(e => e.Axes.Label)
+        //         .Select(e => new { axe = e.Key, recommandations = e.Count() })
+        //         .ToListAsync()
+        //         ;
 
-            return Ok(list);
-        }
+        //     return Ok(list);
+        // }
 
         // [HttpPost]
         // public async Task<IActionResult> SearchAndGet2(Model model)
