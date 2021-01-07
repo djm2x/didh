@@ -13,10 +13,6 @@ namespace Admin5.Providers
 {
     public static class JsonHandler
     {
-        public static string FirstCharToUpper(string str)
-        {
-            return str?.First().ToString().ToUpper() + str?.Substring(1);
-        }
 
         public static List<int> ToListInt(string jsonArrayOfInt) {
 
