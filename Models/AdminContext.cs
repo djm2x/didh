@@ -331,14 +331,14 @@ namespace Admin5.Models
             modelBuilder
                 .Profils()
                 .Users()
-                .Visites()
-                .Cycles()
-                .Organes()
-                .Axes()
-                .Pays()
-                .SousAxes()
-                .Organismes()
-                .Recommendations()
+                // .Visites()
+                // .Cycles()
+                // .Organes()
+                // .Axes()
+                // .Pays()
+                // .SousAxes()
+                // .Organismes()
+                // .Recommendations()
 
                 .Traites()
                 .Rapports()
@@ -351,7 +351,7 @@ namespace Admin5.Models
 
 
 
-                .RecomOrgs()
+                // .RecomOrgs()
 
 
                 // .Notifications()

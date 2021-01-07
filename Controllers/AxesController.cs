@@ -29,23 +29,27 @@ namespace Admin5.Controllers
             //     .Include(e => e.Axes)
             //     ;
 
-            var l = await _context.Axes
-                .Select(e => new
-                {
-                    axe = e,
-                    recommendations = _context.Recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
-                })
-                .Select(e => new
-                {
-                    name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
-                    p = e.recommendations.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
-                    r = e.recommendations.Where(s => s.EtatAvancementChiffre == 100).Count(),
-                    n = e.recommendations.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    // // t = count,
-                    t = e.recommendations.Count(),
-                })
-                .ToListAsync()
-                ;
+            var recommendations = await _context.Recommendations.ToListAsync();
+
+            var l0 = await _context.Axes.ToListAsync();
+
+            var l1 = l0.Select(e => new
+            {
+                axe = e,
+                recommendations = recommendations.Where(r => r.Axes == null ? false : JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
+            }).ToList();
+
+            var l = l1.Select(e => new
+            {
+                name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
+                p = e.recommendations.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
+                r = e.recommendations.Where(s => s.EtatAvancementChiffre == 100).Count(),
+                n = e.recommendations.Where(s => s.EtatAvancementChiffre == 0).Count(),
+                // // t = count,
+                t = e.recommendations.Count(),
+            })
+               .ToList()
+               ;
 
             // var list = await q.ToListAsync();
             // // var count = await q.CountAsync();

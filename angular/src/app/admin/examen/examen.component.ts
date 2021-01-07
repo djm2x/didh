@@ -17,6 +17,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-examen',
@@ -49,31 +50,29 @@ export class ExamenComponent implements OnInit {
   });
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
-  progress = 0;
-  message: any;
-  formData = new FormData();
+  // progress = 0;
+  // message: any;
+  // formData = new FormData();
+
+  // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
+  // pieChartSubjectR = new BehaviorSubject<IData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
+
+  // dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, n: number }>();
 
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
-  pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
-  pieChartSubjectR = new BehaviorSubject<IData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
-
-  dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, n: number }>();
-
   examenPageSubject = new Subject();
   countRec = new Subject();
   dataEpuPie = new Subject();
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private http: HttpClient, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
+    this.examenPageSubjectGet();
+    this.dataEpuPieGet();
 
-
-    // this.stateMecanisme();
-    this.stateAxe();
-    this.stateOneOFMecanisme();
-    setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300);
-    merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
+    merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
@@ -85,8 +84,7 @@ export class ExamenComponent implements OnInit {
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
         );
-      }
-    );
+      });
   }
 
   disable(e: string) {
@@ -104,7 +102,7 @@ export class ExamenComponent implements OnInit {
     );
   }
 
-  stateOneOFMecanisme() {
+  dataEpuPieGet() {
     this.uow.recommendations.stateMecanisme().subscribe(r => {
       const chartLabels = [];
       chartLabels.push(this.mytranslate.get('admin.organe.list.EnCours'));
@@ -201,19 +199,19 @@ export class ExamenComponent implements OnInit {
   }
 
 
-  stateMecanisme() {
-    this.uow.recommendations.stateMecanisme().subscribe(r => {
-      // console.log(r)
-      r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
-      (r.epu as any).count = r.count;
-      this.dataEpu.next(r.epu);
-      // r.epu.p = +(r.epu.p * r.epu.t / 100).toFixed(0);
-      // r.epu.r = +(r.epu.r * r.epu.t / 100).toFixed(0);
-      console.log({ r: r.epu, });
-    });
-  }
+  // stateMecanisme() {
+  //   this.uow.recommendations.stateMecanisme().subscribe(r => {
+  //     // console.log(r)
+  //     r.epu.name = this.mytranslate.getObs('admin.home.ExamenPériodiqueuniversell');
+  //     (r.epu as any).count = r.count;
+  //     this.dataEpu.next(r.epu);
+  //     // r.epu.p = +(r.epu.p * r.epu.t / 100).toFixed(0);
+  //     // r.epu.r = +(r.epu.r * r.epu.t / 100).toFixed(0);
+  //     console.log({ r: r.epu, });
+  //   });
+  // }
 
-  stateAxe() {
+  examenPageSubjectGet() {
     this.uow.axes.stateAxes('epu').subscribe(r => {
 
       r = r.filter(e => e.name !== null);

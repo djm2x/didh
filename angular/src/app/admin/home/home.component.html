@@ -1,130 +1,9 @@
 <div class="host">
 
   <div class="d-flex justify-content-center mb-5">
-    <img [src]="(mytranslate.lang | async) === 'fr' ? 'assets/1.jpg' : 'assets/1_ar.jpg'" alt="" srcset="" style="width: 100%;">
+    <img [src]="(mytranslate.lang | async) === 'fr' ? 'assets/1.jpg' : 'assets/1_ar.jpg'" alt="" srcset=""
+      style="width: 100%;">
   </div>
-
-  <!-- <div class="d-flex justify-content-center w-100 mb-5">
-    <section class="super-title2" style="margin-bottom: 0%;">
-      <div>
-        <h3 style="font-size: 20px;">{{ 'admin.home.SystèmedeSuividesrecommandations' | translate }}</h3>
-      </div>
-    </section>
-  </div>
-
-  <div class="justify-content-center p-2"
-    style="background-color: #00000040;color: #fff; padding: 0px;margin-top: -1%; padding-left: 6px;padding-right: 6px;">
-    <h3 style="font-size: 1.1em;color: #fff;font-weight: 200; text-align: left;">«
-      {{ 'admin.home.droitHomme' | translate }} »</h3>
-    <h3 class="textSouTitre ">{{ 'admin.home.sousTitreDroitHomme' | translate }}</h3>
-  </div>
-
-  <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
-    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-      <div>
-        <h3>{{ 'admin.home.Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme' | translate }}</h3>
-      </div>
-    </section>
-  </div> -->
-
-  <div class="row mt-3 justify-content-center">
-    <!-- <mat-form-field class="col-md-6">
-      <mat-label>Mecanismes</mat-label>
-      <mat-select (selectionChange)="selectChange($event.value)" value="Examen périodique universal">
-        <mat-option *ngFor="let e of mecanismes" [value]="e">{{ e }}</mat-option>
-      </mat-select>
-    </mat-form-field> -->
-
-    <div class="col-md-12">
-      <div class="row w-100">
-
-        <!-- <div class="col-md-12">
-          <div class="chart-size">
-            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
-              [marginLegend]="'12px 15px -200px -271px'" [marginLeftTitle]="'3.9%'"
-              [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataEpu">
-            </app-progress-cercle>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-size">
-            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
-              [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'3.9%'"
-              [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataOt">
-            </app-progress-cercle>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-size">
-            <app-progress-cercle [showLegend]="true" [marginh5Title]="'-28px -1px -26px 5px'"
-              [marginLegend]="'12px 15px -200px -237px'" [marginLeftTitle]="'6%'"
-              [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="200" [data]="dataPs">
-            </app-progress-cercle>
-          </div>
-        </div> -->
-
-
-        <!-- <div class="col-md-6">
-          <app-pie [withGraphe]="700" [showLegend]="true" [obs]="dataMec1"></app-pie>
-        </div>
-        <div class="col-md-6">
-          <app-pie [withGraphe]="700" [showLegend]="true" [obs]="dataValues"></app-pie>
-        </div> -->
-
-        <!-- <div class="col-md-12">
-
-          <ul class="legend" style="width: 1000px;height: 10px;">
-            <div class="row"></div><span class="superawesome"></span>Taux de recommandation par mécanisme
-
-            <span class="awesome"> </span>Taux de recommandation En cours de réalisation par mécanisme
-
-            <span class="kindaawesome"></span>Taux de recommandation réalisé par mécanisme
-          </ul>
-        </div> -->
-
-      </div>
-    </div>
-
-  </div>
-
-  <!-- <mat-divider> </mat-divider> -->
-  <!-- <h3>Mise en œuvre des recommandations </h3> -->
-
-
-  <!-- <div class="d-flex justify-content-center w-100 mt-5 mb-5">
-      <section
-        [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-        <div>
-          <h3>{{ 'admin.home.Miseenœuvredesaxe' | translate }}</h3>
-        </div>
-      </section>
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-
-        <div class="d-flex flex-column align-items-center" style="position: relative;height: 350px; direction: ltr;">
-          <div class="d-flex flex-nowrap" style="position: absolute;top: 87px;z-index: 10;width: 1500px;">
-            <span *ngFor="let e of axesValue; let i=index" [style.margin-left.px]="i === 0 ? 16 : '150'"
-              style="color: white; font-weight: bold;">
-              {{e.value.toString().length >= 2 ? e.value.toFixed(0) : '0' + e.value.toFixed(0)}} %
-            </span>
-          </div>
-          <img style="position: absolute;width: 1500px; margin: 0 auto;" src="assets/meo.png">
-
-        </div>
-      </div>
-    </div> -->
-
-  <!-- <mat-divider> </mat-divider> -->
-
-  <!-- <div class="d-flex justify-content-center w-100 mb-5" style="margin-top: 50px;">
-    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-      <div>
-        <h3>{{ 'admin.home.Miseenœuvredesrecommandationspardépartements' | translate }}</h3>
-      </div>
-    </section>
-  </div> -->
 
   <div class="row mb-10" *ngIf="!session.isPublic">
     <div class="col-md-12">
@@ -135,37 +14,26 @@
             {{ 'admin.home.Etatdavancementdesrecommandations–départements' | translate }}
           </h2>
         </div>
-        <!-- <div class="d-flex flex-wrap justify-content-center">
-          <div *ngFor="let e of list; let i=index">
 
-            <app-progress-cercle [marginLegend]="'12px 15px -106px -200px'" [marginh5Title]="'-99px -5px 10px 5px'"
-              [showLegend]="true" [transform]="(mytranslate.lang | async) === 'fr' ? 22 : -10" [diameter]="150"
-              [isInForLoop]="true" [widthText]="'200px'" [fontSize]=".7" [width]="170" [o]="e"></app-progress-cercle>
-
-          </div>
-        </div> -->
-
-        <div class="col-md-12" >
-
-            <app-bar [col]="12" [height]="'60vh'" [dataSubject]="departementSubjectPE"></app-bar>
+        <div class="col-md-12">
+          <app-bar [col]="12" [height]="'60vh'" [dataSubject]="departementSubjectPE"></app-bar>
         </div>
-        <div class="row" style="height:70vh;" >
-          <div class="col-md-3">
 
-              <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>
+        <div class="row" style="height:70vh;">
+
+          <div class="col-md-3">
+            <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>
           </div>
 
           <div class="col-md-3">
-              <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>
+            <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>
           </div>
 
           <div class="col-md-6">
-
-              <app-bar [col]="12" [height]="'55vh'" [dataSubject]="departementSubjectIN"></app-bar>
+            <app-bar [col]="12" [height]="'55vh'" [dataSubject]="departementSubjectIN"></app-bar>
           </div>
+
         </div>
-
-
       </div>
     </div>
   </div>

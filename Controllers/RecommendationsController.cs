@@ -195,7 +195,7 @@ namespace Admin5.Controllers
 
             var list = list0
             // .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
-            .GroupBy(e => e.Organisme.Label)
+            .GroupBy(e => e.Organisme.Label) 
             .Select(e => new
             {
                 name = e.Key,

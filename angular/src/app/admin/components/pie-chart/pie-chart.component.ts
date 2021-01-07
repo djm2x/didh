@@ -93,26 +93,6 @@ export class PieChartComponent implements OnInit {
     // this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(d => {
-      // if (d.type === 'stateRecommendationByMecanismeTaux' as any) {
-      //   this.title = d.title;
-      //   this.uow.recommendations.stateRecommendationByMecanismeTaux().subscribe(r => {
-      //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-      //     this.pieChartData = r.map(e => e.value);
-
-      //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-      //   });
-      // } else if (d.type === 'stateRecommendationByMecanismePercentage' as any) {
-      //   this.title = d.title;
-      //   this.uow.recommendations.stateRecommendationByMecanismePercentage().subscribe(r => {
-      //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
-      //     this.pieChartData = r.map(e => e.value);
-
-      //     this.pieChartColors[0].backgroundColor = this.getColors(this.pieChartLabels.length);
-      //   });
-      // } else {
-
-      // }
-
       if (d.title instanceof Observable) {
         d.title.subscribe(t => this.title = t)
       } else {

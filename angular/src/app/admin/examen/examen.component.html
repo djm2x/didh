@@ -10,20 +10,9 @@
 
   <div class="row justify-content-center">
 
-
-    <!-- <div class="col-md-5" style="margin-bottom: 10%;">
-      <div class="chart-size">
-        <app-progress-cercle  [showTable]="true" [showLegend]="true" [marginh5Title]="'19px 7px -24px 64px'"
-          [marginLegend]="'0px 27px -261px -236px'" [marginLeftTitle]="'3.9%'"
-          [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataEpu">
-        </app-progress-cercle>
-      </div>
-    </div> -->
-
     <div class="col-md-5">
       <app-pie [obs]="dataEpuPie"></app-pie>
     </div>
-    <!-- <mat-divider [vertical]="true"></mat-divider> -->
     <div class="col-md-2 p-0">
       <app-count ifEpu="true" [count]="countRec" [height]="'55vh'"></app-count>
     </div>
@@ -36,20 +25,7 @@
         <app-bar [col]="12" [height]="'70vh'" [dataSubject]="examenPageSubject"></app-bar>
       </div>
     </div>
-
-
   </div>
-  <!-- <div class="row" style="margin-top: -5%; margin-bottom: 0%;">
-
-    <div class="col-md-6">
-      <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubject"></app-pie-chart>
-    </div>
-    <div class="col-md-6">
-      <app-pie-chart [withGraphe]="600" [showLegend]="false" [obs]="pieChartSubjectR"></app-pie-chart>
-    </div>
-
-  </div> -->
-
 
   <div class="example-container mat-elevation-z8 mt-3">
     <div class="example-loading-shade" *ngIf="isLoadingResults">

@@ -25,7 +25,9 @@ namespace Admin5.Providers
                 jsonArrayOfInt = $"[{jsonArrayOfInt}]";
             }
 
-            return JsonConvert.DeserializeObject<List<int>>(jsonArrayOfInt);
+            var list = JsonConvert.DeserializeObject<List<int>>(jsonArrayOfInt);
+
+            return list;
         }
         
 
