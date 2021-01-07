@@ -29,7 +29,5 @@ namespace Admin5.Providers
 
             return list;
         }
-        
-
     }
 }
