@@ -74,8 +74,8 @@ namespace Admin5.Controllers
                         Etat = e.Etat,
                         Annee = e.Annee,
                         Mecanisme = e.Mecanisme,
-                        Axe = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
-                        SousAxe = sousAxes.Where(r => JsonHandler.ToListInt(e.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
+                        Axe = axes.Where(axe => JsonHandler.ToListInt(e.Axes).Contains(axe.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
+                        SousAxe = sousAxes.Where(sousAxe => JsonHandler.ToListInt(e.SousAxes).Contains(sousAxe.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
                         Observation = e.Observation,
                         Complement = e.Complement,
                         PieceJointe = e.PieceJointe,
@@ -785,10 +785,11 @@ namespace Admin5.Controllers
             int recommendationsCount = 0;
             if (table == "axe")
             {
-                var recommendations = await _context.Recommendations.Where(r => r.IdCycle != null).ToListAsync();
+                var recommendations = await _context.Recommendations.Where(r => r.Axes != null).ToListAsync();
                 recommendationsCount = recommendations.Count();
 
-                list = await _context.Axes//.Where(e => e.Recommendations.Any(r => r.IdCycle != null))
+                var l0 = await _context.Axes.ToListAsync();
+                list = l0//.Where(e => e.Recommendations.Any(r => r.IdCycle != null))
                     .Select(e => new
                     {
                         Abv = e.Abv,
@@ -801,7 +802,7 @@ namespace Admin5.Controllers
                         value = e.Recommendations.Where(r => r.IdCycle != null).Count() * 100 / recommendationsCount,
                     })
                     .Distinct()
-                    .ToListAsync()
+                    .ToList()
                 ;
             }
             else if (table == "organe")

@@ -14,7 +14,12 @@ namespace Admin5.Providers
     public static class JsonHandler
     {
 
-        public static List<int> ToListInt(string jsonArrayOfInt) {
+        public static List<int> ToListInt(string jsonArrayOfInt) 
+        {
+            if (jsonArrayOfInt == null)
+            {
+                return new List<int>();
+            }
 
             if (!jsonArrayOfInt.Contains("["))
             {
