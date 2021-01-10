@@ -164,19 +164,20 @@ export class Recommendation {
   mecanisme = '';
 
   idCycle = 0;
-  idAxe = 0;
+  axes = '';
+  sousAxes = '';
+
   pieceJointe = '';
   etatAvancementChiffre = 0;
   idOrgane = null;
   idVisite = null;
-  idSousAxe = null;
   idPays = null;
   annee = null;
   recomOrgs: RecomOrg[] = [];
   organe = new Organe();
   visite = new Visite();
-  axe = new Axe();
-  sousAxe = new SousAxe();
+  // axe = new Axe();
+  // sousAxe = new SousAxe();
   cycle = new Cycle();
   pays = new Pays();
   syntheseRecommandations: SyntheseRecommandation[] = [];

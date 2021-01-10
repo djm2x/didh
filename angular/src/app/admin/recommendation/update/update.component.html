@@ -67,7 +67,7 @@
           </mat-form-field>
         </div>
         <div class="inputs2">
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.Axe' | translate }}</mat-label>
             <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
@@ -80,6 +80,28 @@
             <mat-select formControlName="idSousAxe" [disabled]="!isAdmin">
               <mat-option value="">...</mat-option>
               <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+          <!-- {{myForm.value | json}} -->
+
+          <mat-form-field appearance="fill">
+            <mat-label>{{ 'admin.recommandation.list.Axe' | translate }}</mat-label>
+            <mat-select formControlName="axes" multiple>
+              <mat-option *ngFor="let a of axes | async" [value]="a.id">{{mytranslate.langSync === 'fr' ? a.label : a.labelAr}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>{{ 'admin.recommandation.list.Sousaxe' | translate }}</mat-label>
+            <mat-select formControlName="sousAxes" multiple>
+              <!-- <mat-option>-- ... --</mat-option> -->
+              <mat-optgroup *ngFor="let a of axes | async" [label]="mytranslate.langSync === 'fr' ? a.label : a.labelAr">
+                <mat-option *ngFor="let e of a.sousAxes" [value]="e.id">
+                  {{mytranslate.langSync === 'fr' ? e.label : e.labelAr}}
+                </mat-option>
+              </mat-optgroup>
             </mat-select>
           </mat-form-field>
         </div>
@@ -144,7 +166,7 @@
     <div class="actions">
       <button mat-button [routerLink]="['/admin/recommendation/list']" type="button">{{ 'admin.Retour' | translate }}</button>&nbsp;&nbsp;
       <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
-      <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm)"
+      <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
         [disabled]="myForm.invalid || !isAdmin">{{ 'admin.Enregistre' | translate }}</button>
     </div>
   </div>

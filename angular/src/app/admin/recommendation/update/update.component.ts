@@ -45,9 +45,13 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
+
+    this.stringArray();
+
+
     this.pieceJointeFrom.subscribe(r => this.myForm.get('pieceJointe').setValue(r));
 
-    setTimeout(() =>  this.pieceJointeTo.next(this.o.pieceJointe) , 100);
+    setTimeout(() => this.pieceJointeTo.next(this.o.pieceJointe), 100);
 
     this.id = +this.route.snapshot.paramMap.get('id');
     if (this.id !== 0) {
@@ -61,15 +65,42 @@ export class UpdateComponent implements OnInit {
         });
         this.eventToChild.emit(this.listOrganisme);
         // this.title = 'Modifier Utilisateur';
-        this.uow.sousAxes.getByIdAxe(this.o.idAxe).subscribe(s => {
-          this.sousAxes = s as any[];
-          setTimeout(() =>  this.pieceJointeTo.next(this.o.pieceJointe) , 100);
-          this.createForm();
-        });
+        // this.uow.sousAxes.getByIdAxe(this.o.axes).subscribe(s => {
+        //   this.sousAxes = s as any[];
+        //   setTimeout(() =>  this.pieceJointeTo.next(this.o.pieceJointe) , 100);
+        this.createForm();
+        // });
+
+        this.stringArray();
       });
     }
 
 
+  }
+
+  stringArray() {
+    this.myForm.get('axes').setValue(this.check(this.o.axes));
+    this.myForm.get('sousAxes').setValue(this.check(this.o.sousAxes));
+
+    // this.myForm.get('axes').valueChanges.subscribe((e: string[]) => {
+    //   this.o.axes = JSON.stringify(e);
+    // });
+
+    // this.myForm.get('sousAxes').valueChanges.subscribe((e: string[]) => {
+    //   this.o.sousAxes = JSON.stringify(e);
+    // });
+  }
+
+  check(e: string) {
+    if (!e || e === '') {
+      return [];
+    }
+
+    if (e.includes('[')) {
+      return JSON.parse(e);
+    } else {
+      return [+e];
+    }
   }
 
   get isAdmin() {
@@ -95,8 +126,8 @@ export class UpdateComponent implements OnInit {
       idVisite: [this.o.idVisite],
       idOrgane: [this.o.idOrgane,],
       idCycle: [this.o.idCycle,],
-      idAxe: [this.o.idAxe, /*Validators.required*/],
-      idSousAxe: [this.o.idSousAxe, /*Validators.required*/],
+      axes: [this.o.axes, /*Validators.required*/],
+      sousAxes: [this.o.sousAxes, /*Validators.required*/],
       etat: [this.o.etat, /*Validators.required*/],
       etatAvancement: [this.o.etatAvancement],
       etatAvancementChiffre: [this.o.etatAvancementChiffre],
@@ -127,13 +158,15 @@ export class UpdateComponent implements OnInit {
     return this.mecanisme.value === 'Organes de traités';
   }
 
-  submit(form: FormGroup) {
-    const recommendation = form.value;
+  submit(o: Recommendation) {
 
-    console.log(recommendation);
+    o.axes = JSON.stringify(o.axes);
+    o.sousAxes = JSON.stringify(o.sousAxes);
+
+    console.log(o);
     // return;
     if (this.id === 0) {
-      this.uow.recommendations.post(recommendation).subscribe((r: Recommendation) => {
+      this.uow.recommendations.post(o).subscribe((r: Recommendation) => {
 
         const recomOrgs: RecomOrg[] = [];
         this.listOrganisme.map(o => {
@@ -162,7 +195,7 @@ export class UpdateComponent implements OnInit {
 
       });
     } else {
-      this.uow.recommendations.put(recommendation.id, recommendation).subscribe((r: Recommendation) => {
+      this.uow.recommendations.put(o.id, o).subscribe((r: Recommendation) => {
         const recomOrgs: RecomOrg[] = [];
         this.listOrganisme.map(o => {
           recomOrgs.push({ idOrganisme: o.id, idRecommendation: this.o.id, date: new Date() } as any);
@@ -173,7 +206,7 @@ export class UpdateComponent implements OnInit {
             id: 0,
             date: new Date(),
             destinataire: '',
-            idConcerner: recommendation.id,
+            idConcerner: o.id,
             idOrganisme: this.session.user.idOrganisme,
             message: 'La recommandation a été modifiée',
             priorite: 1,
@@ -206,10 +239,10 @@ export class UpdateComponent implements OnInit {
     if (etat.includes('Réalisé')) {
       v = 100;
       // this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
-    } else if (etat.includes('Non')){
+    } else if (etat.includes('Non')) {
       v = 0;
       // this.myForm.get('etatAvancementChiffre').disable({onlySelf: true, emitEvent: false});
-    } else if (etat.includes('cours')){
+    } else if (etat.includes('cours')) {
       v = v > 5 ? v : 5;
       this.myForm.get('etatAvancementChiffre').enable();
     } else {
