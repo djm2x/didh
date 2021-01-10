@@ -56,32 +56,29 @@ namespace Admin5.Controllers
             var axes = await _context.Axes.ToListAsync();
             var sousAxes = await _context.SousAxes.ToListAsync();
 
-            var list = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
+            var l0 = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
                     .Skip(model.StartIndex)
                     .Take(model.PageSize)
-                    // .Include(e => e.RecomOrgs)
-                    // .Include(e => e.Axe)
-                    // .Include(e => e.Organe)
-                    // .Include(e => e.Visite)
-                    // .Include(e => e.SousAxe)
-                    .Select(e => new
-                    {
-                        id = e.Id,
-                        CodeRecommendation = e.CodeRecommendation,
-                        Nom = e.Nom,
-                        CodeRecommendationAr = e.CodeRecommendationAr,
-                        NomAr = e.NomAr,
-                        Etat = e.Etat,
-                        Annee = e.Annee,
-                        Mecanisme = e.Mecanisme,
-                        Axe = axes.Where(axe => JsonHandler.ToListInt(e.Axes).Contains(axe.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
-                        SousAxe = sousAxes.Where(sousAxe => JsonHandler.ToListInt(e.SousAxes).Contains(sousAxe.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr),
-                        Observation = e.Observation,
-                        Complement = e.Complement,
-                        PieceJointe = e.PieceJointe,
-                        organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr)
-                    })
                     .ToListAsync();
+
+            var list = l0.Select(e => new
+                {
+                    id = e.Id,
+                    CodeRecommendation = e.CodeRecommendation,
+                    Nom = e.Nom,
+                    CodeRecommendationAr = e.CodeRecommendationAr,
+                    NomAr = e.NomAr,
+                    Etat = e.Etat,
+                    Annee = e.Annee,
+                    Mecanisme = e.Mecanisme,
+                    Axe = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
+                    SousAxe = sousAxes.Where(r => JsonHandler.ToListInt(e.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
+                    Observation = e.Observation,
+                    Complement = e.Complement,
+                    PieceJointe = e.PieceJointe,
+                    organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr)
+                })
+                .ToList();
 
             return Ok(new { list = list, count = count });
         }
@@ -195,7 +192,7 @@ namespace Admin5.Controllers
 
             var list = list0
             // .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
-            .GroupBy(e => e.Organisme.Label) 
+            .GroupBy(e => e.Organisme.Label)
             .Select(e => new
             {
                 name = e.Key,
@@ -312,32 +309,45 @@ namespace Admin5.Controllers
             //     .SumAsync(e => e.p)
             //     ;
 
-            // var axe0 = await q.Include(e => e.Axes).ToListAsync();
+            var axes = await _context.Axes.ToListAsync();
 
-            var axe0 = await q
+            var recommendationFiltred = await q.ToListAsync();
+
+            
+
+            var axe1 = axes
+                .Select(e => new
+                {
+                    axe = lng == "fr" ? e.Abv : e.AbvAr,
+                    recommendation = recommendationFiltred.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList(),
+                })
+                .ToList();
+            
+
+
+            var axe = axe1
+                .Select(e => new
+                {
+                    name = e.axe,
+                    // nameAr = e.First().Axe.AbvAr,
+                    p = e.recommendation.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
+                    r = e.recommendation.Where(s => s.EtatAvancementChiffre == 100).Count(),
+                    n = e.recommendation.Where(s => s.EtatAvancementChiffre == 0).Count(),
+                    // t = countR,
+                    t = e.recommendation.Count(),
+                })
+                .ToList()
+                ;
+
+            //
+            var axe0 = recommendationFiltred
                 .Select(e => new
                 {
                     IdCycle = e.IdCycle,
                     EtatAvancementChiffre = e.EtatAvancementChiffre,
-                    Axes = _context.Axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).ToList()
+                    Axes = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).ToList()
                 })
-                .ToListAsync();
-
-
-            var axe = axe0.Where(e => e.Axes != null)
-                .GroupBy(e => lng == "fr" ? e.Axes.Select(a => a.Abv) : e.Axes.Select(a => a.AbvAr))
-                .Select(e => new
-                {
-                    name = e.Key,
-                    // nameAr = e.First().Axe.AbvAr,
-                    p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
-                    r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
-                    n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                    // t = countR,
-                    t = e.Count(),
-                })
-                .ToList()
-                ;
+                .ToList();
 
             var epu = axe0.Where(e => e.Axes != null && e.IdCycle != null)
                 .GroupBy(e => lng == "fr" ? e.Axes.Select(a => a.Abv) : e.Axes.Select(a => a.AbvAr))

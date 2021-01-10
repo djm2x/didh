@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.StaticFiles;
 using Newtonsoft.Json;
+using System;
 
 namespace Admin5.Providers
 {
@@ -16,6 +17,9 @@ namespace Admin5.Providers
 
         public static List<int> ToListInt(string jsonArrayOfInt) 
         {
+            // Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            // Console.WriteLine(jsonArrayOfInt);
+            // Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             if (jsonArrayOfInt == null)
             {
                 return new List<int>();

@@ -100,7 +100,7 @@ namespace Admin5
                 // options.UseSqlServer(Configuration.GetConnectionString("didh"));
                 // options.UseSqlServer(Configuration.GetConnectionString("db"));
                 options.UseSqlite(Configuration.GetConnectionString("sqlite"));
-                options.EnableSensitiveDataLogging();
+                // options.EnableSensitiveDataLogging();
             });
 
         }
