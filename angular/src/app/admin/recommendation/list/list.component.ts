@@ -422,7 +422,7 @@ export class Model {
   pageSize = 10;
   sortBy = 'id';
   sortDir = 'desc';
-  annee = new Date().getFullYear()
+  annee = 0;
 }
 
 

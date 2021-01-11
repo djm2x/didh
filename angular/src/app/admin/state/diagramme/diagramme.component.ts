@@ -32,22 +32,21 @@ export class DiagrammeComponent implements OnInit {
   organes = this.uow.organes.get();
   cycles = this.uow.cycles.get();
   etats = this.uow.etats;
-  listAxes = new Subject<any>();
-  listOrganisme = new Subject<any>();
-  annee = this.uow.recommendations.annee();
-
   pays = this.uow.pays.get();
-  myAuto = new FormControl('');
-  filteredOptions: Observable<any>;
+  // listAxes = new Subject<any>();
+  // listOrganisme = new Subject<any>();
+  annee: number[] = []; // = this.uow.recommendations.annee();
+
+  // myAuto = new FormControl('');
+  // filteredOptions: Observable<any>;
 
   mecanismeSubject = new Subject();
   axesList: { name: string, p: number, t: number }[] = [];
   epuList: { name: string, p: number, t: number }[] = [];
-  departementList: { name: string, nameAr: string, id: number, p: number, c: number, r: number, t: number, n: number, type: string }[] = [];
-  payeList: { name: string, p: number, t: number }[] = [];
+  // payeList: { name: string, p: number, t: number }[] = [];
   rotateY = 0;
 
-  toChild = new Subject<any>();
+  toRecomendationComponent = new Subject<any>();
   pieChartSubjectC = new BehaviorSubject<IPieData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
   pieChartSubject = new BehaviorSubject<IPieData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
   pieChartSubjectR = new BehaviorSubject<IPieData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
@@ -57,18 +56,19 @@ export class DiagrammeComponent implements OnInit {
   organePageSubject = new Subject();
   visitePageSubject = new Subject();
 
+  departementList: { name: string, nameAr: string, id: number, p: number, c: number, r: number, t: number, n: number, type: string }[] = [];
   departementSubjectPE = new Subject();
-  departementSubjectAutre = new Subject();
-  departementSubjectIN = new Subject();
-  departementSubjectPJ = new Subject();
+  // departementSubjectAutre = new Subject();
+  // departementSubjectIN = new Subject();
+  // departementSubjectPJ = new Subject();
 
   dataMec1 = new Subject();
   dataValues = new Subject();
 
-  @Input() widthOne = 0;
-  @Input() widthTwo = 0;
-  @Input() widthThree = 0;
-  @Input() title2 = '';
+  // @Input() widthOne = 0;
+  // @Input() widthTwo = 0;
+  // @Input() widthThree = 0;
+  // @Input() title2 = '';
 
   hideGlobalGraph = true;
   indexTohideGlobalGraph = 0;
@@ -83,7 +83,7 @@ export class DiagrammeComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     const o = event.option.value as any;
     console.log(o);
-    this.myAuto.setValue(o.label);
+    // this.myAuto.setValue(o.label);
     (this.myForm.get('idOrganisme') as FormControl).setValue(o.id);
   }
   ngOnInit() {
@@ -93,12 +93,11 @@ export class DiagrammeComponent implements OnInit {
       this.rotateY = r === 'fr' ? 0 : 180;
     });
 
-    setTimeout(() => {
+    this.uow.recommendations.annee().subscribe(r => {
+      this.annee = r;
       this.reset();
-      // this.idCycle.setValue(1);
-    }, 300);
-    // this.stateMecanisme1();
-    // this.RecommandationValues();
+    });
+
   }
 
   searchAndGet(o: Model) {
@@ -106,7 +105,7 @@ export class DiagrammeComponent implements OnInit {
     // o.mecanisme = this.o.mecanisme;
     // console.log(o)
 
-    this.toChild.next({ obj: Object.assign(new Model(), o) });
+    this.toRecomendationComponent.next({ obj: Object.assign(new Model(), o) });
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.o = o;
     console.log(this.o)
@@ -271,6 +270,7 @@ export class DiagrammeComponent implements OnInit {
     // this.o.mecanisme = 'Examen périodique universal';
     // this.o.idCycle = 1;
     this.createForm();
+    this.myForm.get('annee').setValue(this.annee[this.annee.length -1]);
     this.searchAndGet(this.o);
     this.myTab.selectedIndex = 0;
     // this.toChild.next(this.o);

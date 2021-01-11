@@ -72,6 +72,19 @@ ng g m commun --route commun --module parametrage
 ALTER TABLE [dbo].[Recommendations]
 DROP CONSTRAINT  [FK_Recommendations_SousAxes_IdSousAxe]; 
 
+USE db_didh2;  
+GO  
+ALTER TABLE [dbo].[Recommendations]
+DROP CONSTRAINT [IdAxe];   
+GO  
+
+ALTER TABLE [dbo].[Recommendations]
+DROP CONSTRAINT [IdSousAxe];   
+GO  
+
+ALTER TABLE [dbo].[Recommendations] ALTER COLUMN [IdAxe] varchar(1000) ; 
+ALTER TABLE [dbo].[Recommendations] ALTER COLUMN [IdSousAxe] varchar(1000) ; 
+
 ### sqlite drop foreign key command
 PRAGMA foreign_keys = OFF;
 

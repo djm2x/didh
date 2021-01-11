@@ -28,7 +28,7 @@
             <mat-form-field appearance="fill">
               <mat-label>{{ 'admin.questionnaire.list.année' | translate }}</mat-label>
               <mat-select formControlName="annee">
-                <mat-option *ngFor="let e of annee | async" [value]="e">{{ e }}</mat-option>
+                <mat-option *ngFor="let e of annee" [value]="e">{{ e }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -218,30 +218,12 @@
                 <app-bar [col]="12" [dataSubject]="departementSubjectPE" [height]="'70vh'"></app-bar>
               </div>
             </div>
-            <!--
-            <div class="col-md-12">
-              <div class="chart-size">
-                <app-bar [col]="12" [dataSubject]="departementSubjectPJ"></app-bar>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="chart-size">
-                <app-bar [col]="12" [dataSubject]="departementSubjectIN"></app-bar>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="chart-size">
-                <app-bar [col]="12" [dataSubject]="departementSubjectAutre"></app-bar>
-              </div>
-            </div> -->
           </div>
 
         </div>
 
         <div class="mx-2 mt-2">
-          <app-recomm [fromParent]="toChild"></app-recomm>
+          <app-recomm [fromParent]="toRecomendationComponent"></app-recomm>
         </div>
       </div>
     </mat-expansion-panel>
