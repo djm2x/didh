@@ -85,6 +85,20 @@ GO
 ALTER TABLE [dbo].[Recommendations] ALTER COLUMN [IdAxe] varchar(1000) ; 
 ALTER TABLE [dbo].[Recommendations] ALTER COLUMN [IdSousAxe] varchar(1000) ; 
 
+----
+
+select [CodeRecommendation], [Axes], [SousAxes]
+from Recommendations
+where [CodeRecommendation] in
+(
+SELECT [CodeRecommendation]
+FROM Recommendations
+group by [CodeRecommendation] having count(*) > 1
+)
+
+order by [CodeRecommendation]
+;
+
 ### sqlite drop foreign key command
 PRAGMA foreign_keys = OFF;
 
