@@ -176,21 +176,21 @@ export class UpdateComponent implements OnInit {
         this.uow.recomOrgs.postRange(recomOrgs).subscribe(e => {
           console.log(e);
 
-          const notif: Notification = {
-            id: 0,
-            date: new Date(),
-            destinataire: '',
-            idConcerner: r.id,
-            idOrganisme: this.session.user.idOrganisme,
-            message: 'Nouvelle recommandation a été ajoutée',
-            priorite: 1,
-            tableConcerner: 'recommandation',
-            vu: false
-          };
-          this.uow.notifications.post(notif).subscribe(n => {
-            this.router.navigateByUrl('/admin/recommendation/list');
-            this.eventSubmitFromParent.next(true);
-          });
+          // const notif: Notification = {
+          //   id: 0,
+          //   date: new Date(),
+          //   destinataire: '',
+          //   idConcerner: r.id,
+          //   idOrganisme: this.session.user.idOrganisme,
+          //   message: 'Nouvelle recommandation a été ajoutée',
+          //   priorite: 1,
+          //   tableConcerner: 'recommandation',
+          //   vu: false
+          // };
+          // this.uow.notifications.post(notif).subscribe(n => {
+          // });
+          this.router.navigateByUrl('/admin/recommendation/list');
+          this.eventSubmitFromParent.next(true);
         });
 
       });
@@ -202,21 +202,21 @@ export class UpdateComponent implements OnInit {
         });
 
         this.uow.recomOrgs.putRange(this.o.recomOrgs, recomOrgs).subscribe(e => {
-          const notif: Notification = {
-            id: 0,
-            date: new Date(),
-            destinataire: '',
-            idConcerner: o.id,
-            idOrganisme: this.session.user.idOrganisme,
-            message: 'La recommandation a été modifiée',
-            priorite: 1,
-            tableConcerner: 'recommandation',
-            vu: false
-          };
-          this.uow.notifications.post(notif).subscribe(n => {
-            this.router.navigateByUrl('/admin/recommendation/list');
-            this.eventSubmitFromParent.next(true);
-          });
+          // const notif: Notification = {
+          //   id: 0,
+          //   date: new Date(),
+          //   destinataire: '',
+          //   idConcerner: o.id,
+          //   idOrganisme: this.session.user.idOrganisme,
+          //   message: 'La recommandation a été modifiée',
+          //   priorite: 1,
+          //   tableConcerner: 'recommandation',
+          //   vu: false
+          // };
+          // this.uow.notifications.post(notif).subscribe(n => {
+          // });
+          this.router.navigateByUrl('/admin/recommendation/list');
+          this.eventSubmitFromParent.next(true);
         });
       });
     }

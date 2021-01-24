@@ -86,7 +86,7 @@ export class ListComponent implements OnInit {
       this.displayedColumns = this.columnDefs.map(e => e.columnDef);
     }
 
-    console.log(this.columnDefs);
+    // console.log(this.columnDefs);
   }
 
   ngOnInit() {
@@ -397,7 +397,7 @@ export class ListComponent implements OnInit {
       this.myForm.get('nom').value.toString() === '' &&
       this.myForm.get('etat').value.toString() === '' &&
       this.myForm.get('idVisite').value.toString() === '0' &&
-      this.myForm.get('annee').value.toString() === '0' &&
+      this.myForm.get('annee').value?.toString() === '0' &&
       this.myForm.get('mecanisme').value.toString() === '') {
       return true;
     }

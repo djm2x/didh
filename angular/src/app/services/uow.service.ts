@@ -3,7 +3,7 @@ import { PaysService } from './pays.service';
 import { SituationReserveService } from './situation-reserve.service';
 import { OrganeService } from './organe.service';
 import { TraiteService } from './traite.service';
-import { NotificationService } from './notification.service';
+// import { NotificationService } from './notification.service';
 import { CycleService } from './cycle.service';
 import { RecommendationService } from './recommendation.service';
 import { VisiteService } from './visite.service';
@@ -36,7 +36,7 @@ export class UowService {
   files = new FileUploadService();
   cycles = new CycleService();
   organes = new OrganeService();
-  notifications = new NotificationService();
+  // notifications = new NotificationService();
   sousAxes = new SousAxeService();
   axes = new AxeService();
   pays = new PaysService();

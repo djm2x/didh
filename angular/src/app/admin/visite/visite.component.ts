@@ -205,19 +205,19 @@ export class VisiteComponent implements OnInit {
   add() {
     this.openDialog(new Visite(), this.mytranslate.get('admin.ps.list.Ajouter_Procédure_spéciale')).subscribe(result => {
       if (result) {
-        const notif: Notification = {
-          id: 0,
-          date: new Date(),
-          destinataire: '',
-          idConcerner: result.id,
-          idOrganisme: this.session.user.idOrganisme,
-          message: 'Nouvelle Procédure spéciale a été ajouter',
-          priorite: 1,
-          tableConcerner: 'visite',
-          vu: false
-        };
-        this.uow.notifications.post(notif).subscribe(n => {
-        });
+        // const notif: Notification = {
+        //   id: 0,
+        //   date: new Date(),
+        //   destinataire: '',
+        //   idConcerner: result.id,
+        //   idOrganisme: this.session.user.idOrganisme,
+        //   message: 'Nouvelle Procédure spéciale a été ajouter',
+        //   priorite: 1,
+        //   tableConcerner: 'visite',
+        //   vu: false
+        // };
+        // this.uow.notifications.post(notif).subscribe(n => {
+        // });
 
         this.update.next(true);
       }
@@ -235,19 +235,19 @@ export class VisiteComponent implements OnInit {
   edit(o: Visite) {
     this.openDialog(o, this.mytranslate.get('admin.ps.list.Modifier_Procédure_spéciale')).subscribe((result: any) => {
       if (result) {
-        const notif: Notification = {
-          id: 0,
-          date: new Date(),
-          destinataire: '',
-          idConcerner: o.id,
-          idOrganisme: this.session.user.idOrganisme,
-          message: 'La Procédure spéciale a été modifiée',
-          priorite: 1,
-          tableConcerner: 'visite',
-          vu: false
-        };
+        // const notif: Notification = {
+        //   id: 0,
+        //   date: new Date(),
+        //   destinataire: '',
+        //   idConcerner: o.id,
+        //   idOrganisme: this.session.user.idOrganisme,
+        //   message: 'La Procédure spéciale a été modifiée',
+        //   priorite: 1,
+        //   tableConcerner: 'visite',
+        //   vu: false
+        // };
 
-        this.uow.notifications.post(notif).subscribe(n => { });
+        // this.uow.notifications.post(notif).subscribe(n => { });
         this.update.next(true);
       }
     });

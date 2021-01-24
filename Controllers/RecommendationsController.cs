@@ -59,6 +59,7 @@ namespace Admin5.Controllers
             var l0 = await query.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
                     .Skip(model.StartIndex)
                     .Take(model.PageSize)
+                    .Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme)
                     .ToListAsync();
 
             var list = l0.Select(e => new
@@ -76,7 +77,7 @@ namespace Admin5.Controllers
                     Observation = e.Observation,
                     Complement = e.Complement,
                     PieceJointe = e.PieceJointe,
-                    organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr)
+                    organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr).ToList(),
                 })
                 .ToList();
 

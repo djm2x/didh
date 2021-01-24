@@ -123,20 +123,20 @@ export class UpdateComponent implements OnInit {
         this.eventSubmitFromParent.next(true);
         // this.uow.rapports.uploadFiles(this.formData).subscribe(rs => {
         this.o = r;
-        const notif: any = {
-          id: 0,
-          date: new Date(),
-          destinataire: '',
-          idConcerner: r.id,
-          idOrganisme: this.session.user.idOrganisme,
-          message: 'Nouveau traité a été ajoutée',
-          priorite: 1,
-          tableConcerner: 'traite',
-          vu: false
-        };
-        this.uow.notifications.post(notif).subscribe(n => {
-          // this.router.navigateByUrl('/admin/rapport/list');
-        });
+        // const notif: any = {
+        //   id: 0,
+        //   date: new Date(),
+        //   destinataire: '',
+        //   idConcerner: r.id,
+        //   idOrganisme: this.session.user.idOrganisme,
+        //   message: 'Nouveau traité a été ajoutée',
+        //   priorite: 1,
+        //   tableConcerner: 'traite',
+        //   vu: false
+        // };
+        // this.uow.notifications.post(notif).subscribe(n => {
+        //   // this.router.navigateByUrl('/admin/rapport/list');
+        // });
         // this.snack.notifyOk('Nouveau traité a été ajoutée');
 
 
@@ -179,7 +179,7 @@ export class UpdateComponent implements OnInit {
           vu: false
         };
 
-        this.uow.notifications.post(notif).subscribe(n => {});
+        // this.uow.notifications.post(notif).subscribe(n => {});
 
         // const formData = new FormData();
         // if (this.conventionPiece) {
