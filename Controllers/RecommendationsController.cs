@@ -432,7 +432,7 @@ namespace Admin5.Controllers
             // int recommendationsCount = _context.Recommendations.Count();
 
             var l = await q.ToListAsync();
-            l = l.GroupBy(e => e.CodeRecommendation).Select(e => e.First()).ToList();
+            // l = l.GroupBy(e => e.CodeRecommendation).Select(e => e.First()).ToList();
 
             var t = l.Where(e => e.IdCycle != null).Count();
             var n = l.Where(e => e.IdCycle != null && e.EtatAvancementChiffre == 0).Count();
