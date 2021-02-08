@@ -6,8 +6,11 @@ using Admin5.Providers;
 using System.Linq;
 using System.Collections.Generic;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class TraitesController : SuperController<Traite>

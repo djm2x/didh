@@ -5,9 +5,11 @@ using Admin5.Models;
 using System.Linq;
 using System.Collections.Generic;
 using Admin5.Providers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AxesController : SuperController<Axe>

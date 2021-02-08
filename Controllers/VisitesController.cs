@@ -9,8 +9,11 @@ using Admin5.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class VisitesController : SuperController<Visite>

@@ -12,8 +12,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Admin5.Providers;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class OrganismeController : SuperController<Organisme>

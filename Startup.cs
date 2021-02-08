@@ -28,7 +28,6 @@ namespace Admin5
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -43,8 +42,8 @@ namespace Admin5
                    builder
                    // .WithOrigins ("http://localhost:4200")
                    .AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
                });
            });
             //
@@ -53,18 +52,7 @@ namespace Admin5
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             //auth
-            // services.AddDistributedMemoryCache();
-
-            services.Configure<IISOptions>(options =>
-            {
-                options.AutomaticAuthentication = false;
-            });
-
-            // services.AddSession(options =>
-            // {
-            //     // Set a short timeout for easy testing.
-            //     options.IdleTimeout = TimeSpan.FromSeconds(10);
-            // });
+            
             //Provide a secret key to Encrypt and Decrypt the Token
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -98,8 +86,8 @@ namespace Admin5
             services.AddDbContext<AdminContext>(options =>
             {
                 // options.UseSqlServer(Configuration.GetConnectionString("didh"));
-                options.UseSqlServer(Configuration.GetConnectionString("db"));
-                // options.UseSqlite(Configuration.GetConnectionString("sqlite"));
+                // options.UseSqlServer(Configuration.GetConnectionString("db"));
+                options.UseSqlite(Configuration.GetConnectionString("sqlite"));
                 // options.EnableSensitiveDataLogging();
             });
 

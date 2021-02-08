@@ -10,8 +10,11 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Admin5.Providers;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class RapportsController : SuperController<Rapport>

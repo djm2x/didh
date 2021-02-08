@@ -10,8 +10,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using System.Linq.Expressions;
-using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Admin5.Providers;
@@ -20,6 +18,7 @@ using Helpers;
 
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UsersController : SuperController<User>
@@ -31,68 +30,29 @@ namespace Admin5.Controllers
         }
 
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{nom}/{prenom}/{organisme}")]
-        public async Task<IActionResult> GetAll(
-            int startIndex,
-            int pageSize,
-            string sortBy,
-            string sortDir,
-            string nom,
-            string prenom,
-            int organisme
-        )
+        public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, string nom, string prenom, int organisme)
         {
 
-            IQueryable<User> query = _context.Users
-            // .FromSqlRaw($"SELECT * FROM dbo.[Users] order by {sortBy} {sortDir} OFFSET {startIndex} ROWS FETCH NEXT {pageSize} ROWS ONLY")
-            // ;
-
-            // q = nom == "*" ? q : q.Where(u => u.Nom.Contains(nom));
-            // q = prenom == "*" ? q : q.Where(u => u.Prenom.Contains(prenom));
-            // q = organisme == 0 ? q : q.Where(u => u.IdOrganisme == organisme);
-
-
-
-            .Where(u => nom == "*" ? true : u.Nom.Contains(nom))
-            .Where(u => prenom == "*" ? true : u.Prenom.Contains(prenom))
-            .Where(u => organisme == 0 ? true : u.IdOrganisme == organisme)
-            // .FromSqlRaw($"SELECT * FROM dbo.[User] order by {sortBy} {sortDir} OFFSET {startIndex} ROWS FETCH NEXT {pageSize} ROWS ONLY;")
-            // .Skip(startIndex)
-            // .Take(pageSize)
-            // q.Include(u => u.Organisme).Include(u => u.Profil);
-            // .ToListAsync()
-            ;
-
-
-            int count = 0;
-            var list = new List<User>();
-            if (nom != "*" || prenom != "*" || organisme != 0)
-            {
-                count = await query.CountAsync();
-
-                list = await query.OrderByName<User>(sortBy, sortDir == "desc")
-                    .Skip(startIndex)
-                    .Take(pageSize)
-                    .Include(e => e.Organisme)
-                    .Include(e => e.Profil)
-                    .ToListAsync()
+            var q = _context.Users.Where(u => nom == "*" ? true : u.Nom.Contains(nom))
+                .Where(u => prenom == "*" ? true : u.Prenom.Contains(prenom))
+                .Where(u => organisme == 0 ? true : u.IdOrganisme == organisme)
                 ;
-            }
-            else
-            {
-                count = await _context.Users.CountAsync();
 
-                list = await query.OrderByName<User>(sortBy, sortDir == "desc")
-                    .Skip(startIndex)
-                    .Take(pageSize)
-                    .Include(e => e.Organisme)
-                    .Include(e => e.Profil)
-                    .ToListAsync()
-                ;
-            }
+
+            int count = await q.CountAsync();
+
+            var list = await q.OrderByName<User>(sortBy, sortDir == "desc")
+                   .Skip(startIndex)
+                   .Take(pageSize)
+                   .Include(e => e.Organisme)
+                   .Include(e => e.Profil)
+                   .ToListAsync()
+               ;
 
             return Ok(new { list = list, count = count });
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<User>> LogIn(UserDTO model)
         {
@@ -141,14 +101,6 @@ namespace Admin5.Controllers
             }
 
             return BadRequest("Mot pass est pas correct");
-        }
-
-        [HttpGet]
-        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<string>> GetTokken()
-        {
-            var token = await HttpContext.GetTokenAsync("access_token");
-            return token;
         }
 
     }

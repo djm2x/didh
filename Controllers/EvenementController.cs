@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Admin5.Models;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using Newtonsoft.Json;
-using System.Linq.Expressions;
-using System.Reflection;
 using Admin5.Providers;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class EvenementsController : SuperController<Evenement>

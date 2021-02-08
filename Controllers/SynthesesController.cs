@@ -6,8 +6,11 @@ using System.Linq;
 using Admin5.Providers;
 using System.Collections.Generic;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class SynthesesController : SuperController<Synthese>

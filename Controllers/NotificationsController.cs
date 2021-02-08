@@ -5,8 +5,11 @@ using Admin5.Models;
 using Admin5.Providers;
 using System.Linq;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Admin5.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class NotificationsController : SuperController<Notification>
