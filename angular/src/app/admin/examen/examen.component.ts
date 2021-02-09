@@ -6,13 +6,10 @@ import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { UowService } from 'src/app/services/uow.service';
-import { SnackbarService } from 'src/app/shared/snakebar.service';
-import { ActivatedRoute } from '@angular/router';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { ModalComponent } from './modal/modal.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -50,14 +47,7 @@ export class ExamenComponent implements OnInit {
   });
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
-  // progress = 0;
-  // message: any;
-  // formData = new FormData();
 
-  // pieChartSubject = new BehaviorSubject<IData>({ table: 'axe', type: 'etat', title: this.mytranslate.getObs('admin.epu.list.Miseenœuvredesrecommandationsparaxe') });
-  // pieChartSubjectR = new BehaviorSubject<IData>({ table: 'axe', type: 'realise', title: this.mytranslate.getObs('admin.epu.list.Realisé') });
-
-  // dataEpu = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number, n: number }>();
 
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
   examenPageSubject = new Subject();
@@ -65,8 +55,8 @@ export class ExamenComponent implements OnInit {
   dataEpuPie = new Subject();
 
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
-    , private http: HttpClient, @Inject('BASE_URL') public url: string
-    , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
+    , @Inject('BASE_URL') public url: string, public mytranslate: MyTranslateService
+    , public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.examenPageSubjectGet();
@@ -109,7 +99,6 @@ export class ExamenComponent implements OnInit {
       chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
       chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
 
-      console.log(r)
 
       const chartData = [];
       const dataToShowInTable = [];
