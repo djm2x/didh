@@ -23,25 +23,15 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            // int recommendationsCount = await _context.Recommendations.CountAsync();
-
-            // var q = _context.Recommendations
-            //     .Where(e => e.Axes != null)
-            //     .Where(e => mecanisme == "" ? true : e.IdCycle != null)
-            //     .Include(e => e.Axes)
-            //     ;
-
             var recommendations = await _context.Recommendations.ToListAsync();
 
-            var l0 = await _context.Axes.ToListAsync();
-
-            var l1 = l0.Select(e => new
+            var list = (await _context.Axes.ToListAsync())
+            .Select(e => new
             {
                 axe = e,
                 recommendations = recommendations.Where(r => r.Axes == null ? false : JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
-            }).ToList();
-
-            var l = l1.Select(e => new
+            })
+            .Select(e => new
             {
                 name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
                 p = e.recommendations.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
@@ -50,26 +40,10 @@ namespace Admin5.Controllers
                 // // t = count,
                 t = e.recommendations.Count(),
             })
-               .ToList()
-               ;
+            .ToList()
+            ;
 
-            // var list = await q.ToListAsync();
-            // // var count = await q.CountAsync();
-            // var list2 = list
-            //     .GroupBy(e => lng == "fr" ? e.Axes.Abv : e.Axes.AbvAr)
-            //     .Select(e => new
-            //     {
-            //         name = e.Key,
-            //         p = e.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
-            //         r = e.Where(s => s.EtatAvancementChiffre == 100).Count(),
-            //         n = e.Where(s => s.EtatAvancementChiffre == 0).Count(),
-            //         // // t = count,
-            //         t = e.Count(),
-            //     })
-            //     .ToList()
-            //     ;
-
-            return Ok(l);
+            return Ok(list);
         }
 
         [HttpGet]
@@ -77,6 +51,82 @@ namespace Admin5.Controllers
         {
             return await _context.Axes.Include(e => e.SousAxes).ToListAsync();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> StateDetailByMecanisme() // bar graph
+        {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
+            var recommendations = await _context.Recommendations.ToListAsync();
+
+            var list = (await _context.Axes.ToListAsync())
+            .Select(e => new
+            {
+                axe = e,
+                recommendations = recommendations.Where(r => r.Axes == null ? false : JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
+            })
+            .Select(e => new
+            {
+                name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
+
+                one = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.one)).Count(),
+                two = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.two)).Count(),
+                three = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.three)).Count(),
+                four = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.four)).Count(),
+
+                total = e.recommendations.Count(),
+            })
+            .ToList()
+            ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateByMecanisme() // pie right graph
+        {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
+            var recommendations = await _context.Recommendations.Where(r => r.Axes != null).ToListAsync();
+            int lastCyle = await _context.Cycles.Select(e => e.Id).LastOrDefaultAsync();
+            int recommendationsCount = recommendations.Count();
+
+            var list = (await _context.Axes.ToListAsync())
+                .Select(e => new
+                {
+                    axe = e,
+                    Recommendations = recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
+                })
+                .Select(e => new
+                {
+                    table = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
+                    value = e.Recommendations.Where(r => r.IdCycle != null && r.IdCycle == lastCyle).Count() * 100 / recommendationsCount,
+                })
+                .Distinct()
+                .ToList()
+            ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MecanismeState() // pie left graph
+        {
+            int lastCyle = await _context.Cycles.Select(e => e.Id).LastOrDefaultAsync();
+
+            var list = await _context.Recommendations.Where(e => e.IdCycle != null && e.IdCycle == lastCyle && e.Annee != 2008).ToListAsync();
+
+            var one = list.Where(s => s.EtatAvancement.Equals(Etat.one)).Count();
+            var two = list.Where(s => s.EtatAvancement.Equals(Etat.two)).Count();
+            var three = list.Where(s => s.EtatAvancement.Equals(Etat.three)).Count();
+            var four = list.Where(s => s.EtatAvancement.Equals(Etat.four)).Count();
+
+            var total = list.Count();
+
+            return Ok(new { one, two, three, total });
+        }
+
+
 
     }
 }

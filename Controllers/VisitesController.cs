@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
 using Microsoft.AspNetCore.Authorization;
+using Admin5.Providers;
 
 namespace Admin5.Controllers
 {
@@ -23,23 +24,6 @@ namespace Admin5.Controllers
         {
             _hostingEnvironment = hostingEnvironment;
         }
-
-        // [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}")]
-        // public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir)
-        // {
-
-        //     var list = await _context.Visites
-        //         // .FromSqlRaw($"SELECT * FROM dbo.[Visite] order by {sortBy} {sortDir} OFFSET {startIndex} ROWS FETCH NEXT {pageSize} ROWS ONLY")
-        //         .FromSqlRaw($"SELECT * FROM dbo.[Visites] order by {sortBy} {sortDir}")
-        //         .Skip(startIndex)
-        //         .Take(pageSize)
-        //         .ToListAsync();
-
-        //     int count = await _context.Visites.CountAsync();
-
-
-        //     return Ok(new { list = list, count = count });
-        // }
 
         [HttpPost]
         public string PostFile(IFormFile file)
@@ -102,6 +86,74 @@ namespace Admin5.Controllers
                 ;
 
             return Ok(list2);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateDetailByMecanisme() // bar graph
+        {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
+            var list = (await _context.Recommendations.Where(e => e.Visite != null).Include(e => e.Visite).ToListAsync())
+                .GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
+                .Select(e => new
+                {
+                    name = e.Key,
+
+                    one = e.Where(s => s.EtatAvancement.Equals(Etat.one)).Count(),
+                    two = e.Where(s => s.EtatAvancement.Equals(Etat.two)).Count(),
+                    three = e.Where(s => s.EtatAvancement.Equals(Etat.three)).Count(),
+                    four = e.Where(s => s.EtatAvancement.Equals(Etat.four)).Count(),
+
+                    total = e.Count(),
+                })
+                .ToList()
+                ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> StateByMecanisme() // pie right graph
+        {
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
+            var recommendations = await _context.Recommendations.Where(r => r.Axes != null).ToListAsync();
+            int lastCyle = await _context.Cycles.Select(e => e.Id).LastOrDefaultAsync();
+            int recommendationsCount = recommendations.Count();
+
+            var list = (await _context.Axes.ToListAsync())
+                .Select(e => new
+                {
+                    axe = e,
+                    Recommendations = recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
+                })
+                .Select(e => new
+                {
+                    table = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
+                    value = e.Recommendations.Where(r => r.IdCycle != null && r.IdCycle == lastCyle).Count() * 100 / recommendationsCount,
+                })
+                .Distinct()
+                .ToList()
+            ;
+
+            return Ok(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MecanismeState() // pie left graph
+        {
+            int lastCyle = await _context.Cycles.Select(e => e.Id).LastOrDefaultAsync();
+
+            var list = await _context.Recommendations.Where(e => e.IdCycle != null && e.IdCycle == lastCyle && e.Annee != 2008).ToListAsync();
+
+            var one = list.Where(s => s.EtatAvancement.Equals(Etat.one)).Count();
+            var two = list.Where(s => s.EtatAvancement.Equals(Etat.two)).Count();
+            var three = list.Where(s => s.EtatAvancement.Equals(Etat.three)).Count();
+            var four = list.Where(s => s.EtatAvancement.Equals(Etat.four)).Count();
+
+            var total = list.Count();
+
+            return Ok(new { one, two, three, total });
         }
 
     }

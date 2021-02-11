@@ -719,17 +719,15 @@ namespace Admin5.Controllers
                 var recommendations = await _context.Recommendations.Where(r => r.Axes != null).ToListAsync();
                 recommendationsCount = recommendations.Count();
 
-                var l0 = await _context.Axes.ToListAsync();
-                list = l0//.Where(e => e.Recommendations.Any(r => r.IdCycle != null))
+                list = (await _context.Axes.ToListAsync())
                     .Select(e => new
                     {
-                        Abv = e.Abv,
-                        LabelAr = e.LabelAr,
+                        axe = e,
                         Recommendations = recommendations.Where(r => JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
                     })
                     .Select(e => new
                     {
-                        table = lng == "fr" ? e.Abv : e.LabelAr,
+                        table = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
                         value = e.Recommendations.Where(r => r.IdCycle != null).Count() * 100 / recommendationsCount,
                     })
                     .Distinct()
