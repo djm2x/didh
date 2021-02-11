@@ -25,7 +25,7 @@ export class PieComponent implements OnInit {
   title = '' || null;
 
   arr2 = new Subject();
-  index = 0;
+  // index = 0;
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -58,6 +58,7 @@ export class PieComponent implements OnInit {
       // position: 'right',
       display: false,
       align: 'center',
+      fullWidth: true,
       labels: {
         fontSize: 16,
       }
@@ -116,13 +117,18 @@ export class PieComponent implements OnInit {
       this.retate = lang === 'fr' ? 0 : 180;
     });
 
-    this.pieChartOptions.legend.display = this.showLegend;
+    // this.pieChartOptions.legend.display = this.showLegend;
 
     this.obs.subscribe(r => {
       this.title = r.title;
       this.pieChartLabels = r.chartLabels;
       this.pieChartData = r.chartData.map((e: number) => +e.toFixed(0));
-      this.pieChartColors[0].backgroundColor = r.chartColors; // this.getColors(this.pieChartLabels.length);
+      this.pieChartColors[0].backgroundColor
+        = (r.chartColors as string[]).length === 0 ? this.getColors(this.pieChartLabels.length) : r.chartColors;
+
+      if ((r.chartColors as string[]).length === 0) {
+        return;
+      }
 
       const rest = 100 - r.chartData.map((e: number) => +e.toFixed(0)).reduce((c, p) => c + p);
 
@@ -133,21 +139,21 @@ export class PieComponent implements OnInit {
 
         console.log('there is alot of space here', rest)
       }
-      this.dataToShowInTable = r.dataToShowInTable.map((e: number) => e);
-      this.count = r.count;
-      // console.log(this.pieChartData, this.pieChartLabels);
+      // this.dataToShowInTable = r.dataToShowInTable.map((e: number) => e);
+      // this.count = r.count;
+      // // console.log(this.pieChartData, this.pieChartLabels);
 
-      this.arr = r.chartData.map((e, i) => i);
-      this.list = [];
-      this.pieChartLabels.forEach((e, i) => {
-        const value = this.pieChartData[i] as number;
-        if (value !== 0) {
-          this.list.push({
-            name: e.toString(),
-            value: this.pieChartData[i] as number,
-          });
-        }
-      });
+      // this.arr = r.chartData.map((e, i) => i);
+      // this.list = [];
+      // this.pieChartLabels.forEach((e, i) => {
+      //   const value = this.pieChartData[i] as number;
+      //   if (value !== 0) {
+      //     this.list.push({
+      //       name: e.toString(),
+      //       value: this.pieChartData[i] as number,
+      //     });
+      //   }
+      // });
     });
 
   }

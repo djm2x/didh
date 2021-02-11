@@ -69,10 +69,10 @@ namespace Admin5.Controllers
             {
                 name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
 
-                one = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.one)).Count(),
-                two = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.two)).Count(),
-                three = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.three)).Count(),
-                four = e.recommendations.Where(s => s.EtatAvancement.Equals(Etat.four)).Count(),
+                one = e.recommendations.Where(s => s.Etat.Equals(Etat.one)).Count(),
+                two = e.recommendations.Where(s => s.Etat.Equals(Etat.two)).Count(),
+                three = e.recommendations.Where(s => s.Etat.Equals(Etat.three)).Count(),
+                four = e.recommendations.Where(s => s.Etat.Equals(Etat.four)).Count(),
 
                 total = e.recommendations.Count(),
             })
@@ -88,7 +88,7 @@ namespace Admin5.Controllers
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
             var recommendations = await _context.Recommendations.Where(r => r.Axes != null).ToListAsync();
-            int lastCyle = await _context.Cycles.Select(e => e.Id).LastOrDefaultAsync();
+           int lastCycle = await _context.Cycles.OrderByDescending(e => e.Id).Select(e => e.Id).FirstOrDefaultAsync();
             int recommendationsCount = recommendations.Count();
 
             var list = (await _context.Axes.ToListAsync())
@@ -99,8 +99,8 @@ namespace Admin5.Controllers
                 })
                 .Select(e => new
                 {
-                    table = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
-                    value = e.Recommendations.Where(r => r.IdCycle != null && r.IdCycle == lastCyle).Count() * 100 / recommendationsCount,
+                    name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
+                    one = e.Recommendations.Where(r => r.IdCycle != null && r.IdCycle == lastCycle).Count() * 100 / recommendationsCount,
                 })
                 .Distinct()
                 .ToList()
@@ -112,18 +112,18 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> MecanismeState() // pie left graph
         {
-            int lastCyle = await _context.Cycles.Select(e => e.Id).LastOrDefaultAsync();
+            int lastCycle = await _context.Cycles.OrderByDescending(e => e.Id).Select(e => e.Id).FirstOrDefaultAsync();
 
-            var list = await _context.Recommendations.Where(e => e.IdCycle != null && e.IdCycle == lastCyle && e.Annee != 2008).ToListAsync();
+            var list = await _context.Recommendations.Where(e => e.IdCycle != null && e.IdCycle == lastCycle && e.Annee != 2008).ToListAsync();
 
-            var one = list.Where(s => s.EtatAvancement.Equals(Etat.one)).Count();
-            var two = list.Where(s => s.EtatAvancement.Equals(Etat.two)).Count();
-            var three = list.Where(s => s.EtatAvancement.Equals(Etat.three)).Count();
-            var four = list.Where(s => s.EtatAvancement.Equals(Etat.four)).Count();
+            var one = list.Where(s => s.Etat.Equals(Etat.one)).Count();
+            var two = list.Where(s => s.Etat.Equals(Etat.two)).Count();
+            var three = list.Where(s => s.Etat.Equals(Etat.three)).Count();
+            var four = list.Where(s => s.Etat.Equals(Etat.four)).Count();
 
             var total = list.Count();
 
-            return Ok(new { one, two, three, total });
+            return Ok(new { one, two, three, four, total });
         }
 
 

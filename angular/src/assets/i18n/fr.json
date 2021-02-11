@@ -1,4 +1,8 @@
 ﻿{
+  "EnCours": "En cours",
+  "Réalisé": "Réalisé",
+  "NonRéalisé": "Non Réalisé",
+  "Recommendation_continue": "Recommendation continue",
   "admin": {
     "lang": "Langage",
     "Enregistre": "Enregistre",
@@ -99,6 +103,7 @@
         "EnCours": "En cours",
         "Réalisé": "Réalisé",
         "NonRéalisé": "Non Réalisé",
+        "Recommendation_continue": "Recommendation continue",
         "Nombre": "Nombre",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "Mise en œuvre des recommandations par Organes de Traités"
       },
@@ -295,9 +300,9 @@
         "Année": "Année",
         "Discours_de_Mr_le_Ministre": "Discours de Mr le Ministre",
         "Documents_de_session": "Documents de session",
-        "Ajouter_ParticipationSession":"Ajouter ParticipationSession",
-        "Modifier_Participation_Session":"Modifier Participation Session",
-        "Participation_Session":"Participation Session"
+        "Ajouter_ParticipationSession": "Ajouter ParticipationSession",
+        "Modifier_Participation_Session": "Modifier Participation Session",
+        "Participation_Session": "Participation Session"
       },
       "update": {
         "Session": "Session",
@@ -320,12 +325,10 @@
         "Réinitialiser": "Réinitialiser",
         "année": "année",
         "Documents": "Documents",
-        "Ajouter_Questionnaire":"Ajouter Questionnaire",
-        "Modifier_Questionnaire":"Modifier Questionnaire"
+        "Ajouter_Questionnaire": "Ajouter Questionnaire",
+        "Modifier_Questionnaire": "Modifier Questionnaire"
       },
-      "update": {
-
-      }
+      "update": {}
     }
   }
 }

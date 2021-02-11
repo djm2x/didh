@@ -704,7 +704,7 @@ f) Continuer de fournir des subventions aux organisations non gouvernementales s
 -  (ج) اتخاذ تدابير عاجلة لمعالجة الأوضاع المعيشية للأطفال في مراكز حماية الطفولة، ونقل الأطفال المهمشين والمحرومين من هذه المراكز دون إبطاء، وضمان استفادتهم من برامج رعاية ذوي القربى والحضانة ولمّ شملهم بأسرهم متى كان ذلك يصب في مصلحتهم العليا؛
 - (د) المسارعة إلى إنشاء وحدات لحماية الأطفال ووحدات دعم في المستشفيات ومراكز الشرطة في المناطق التي لم تُنشأ فيها بعد، ولا سيما في المناطق الريفية والنائية، وإنشاء آليات تظلم في مؤسسات الرعاية البديلة ومراكز الاحتجاز، وإمداد جميع هذه الآليات بما يلزم من موارد بشرية ومالية وتقنية كي يتسنى لها حماية الأطفال من جميع أشكال العنف بفاعلية؛
 -  (و) مواصلة تقديم المنح إلى المنظمات غير الحكومية المتخصصة التي تنفذ برامج الوقاية وإعادة التأهيل للأطفال المعرضين للعنف أو ضحاياه؛', N'R39P1P3P4P6', N'ت.39.ف.1.ف.3.ف4.ف.6', N'Organes de Traités', null, '[7]', '[]', 7, null, null, 'En cours', '', 30, '', '', '', 2020),
-(906, N'-…élaborer et appliquer une politique pour protéger les droits des adolescentes enceintes et de leurs enfants……….', N'-          ووضع وتنفيذ سياسة لحماية حقوق المراهقات الحوامل والمراهقات الأمهات وأطفالهن،', N'R47P2', N'ت.47.ف.2', N'Organes de Traités', null, '[7]', '[]', null, null, null, 'Réalisé', '', 100, '', '', '', 2020),
+(906, N'-…élaborer et appliquer une politique pour protéger les droits des adolescentes enceintes et de leurs enfants……….', N'-          ووضع وتنفيذ سياسة لحماية حقوق المراهقات الحوامل والمراهقات الأمهات وأطفالهن،', N'R47P2', N'ت.47.ف.2', N'Organes de Traités', null, '[7]', '[]', 7, null, null, 'Réalisé', '', 100, '', '', '', 2020),
 (907, N'Appelant l’attention sur les lignes directrices relatives à la protection de remplacement pour les enfants (résolution 64/142 de l’Assemblée générale, annexe), le Comité demande au Maroc:
 a) De faire en sorte que la pauvreté financière et matérielle ou les situations qui en résultent directement et exclusivement ne soient jamais l’unique raison de retirer un enfant à ses parents, de placer l’enfant dans une structure de protection de remplacement ou d’empêcher la réinsertion sociale de l’enfant;
 c) De renforcer les mécanismes de détection précoce des enfants vivant dans des conditions difficiles et de mettre en place des programmes de soutien aux parents et aux mères célibataires, ainsi que des programmes communautaires, en vue de réduire rapidement le recours au placement d’enfants en institution;
@@ -861,7 +861,8 @@ GO
 -->>>>>>>>>’>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 INSERT INTO RecomOrgs (IdRecommendation, IdOrganisme, Date) values
-(723, 21, '2020-12-01'),
+
+(723, 21, '2020-12-01'),
 (723, 2, '2020-12-01'),
 (723, 6, '2020-12-01'),
 (724, 3, '2020-12-01'),

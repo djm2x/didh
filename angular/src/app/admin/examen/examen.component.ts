@@ -52,7 +52,9 @@ export class ExamenComponent implements OnInit {
   pieChartSubjectC = new BehaviorSubject<IData>({ table: 'axe', type: 'taux', title: this.mytranslate.getObs('admin.epu.list.Tauxderecommandationsparaxe') });
   examenPageSubject = new Subject();
   countRec = new Subject();
-  dataEpuPie = new Subject();
+  mecanismeState = new Subject();
+  stateByMecanisme = new Subject();
+
 
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , @Inject('BASE_URL') public url: string, public mytranslate: MyTranslateService
@@ -60,7 +62,9 @@ export class ExamenComponent implements OnInit {
 
   ngOnInit() {
     this.examenPageSubjectGet();
-    this.dataEpuPieGet();
+    this.getMecanismeState();
+    this.getStateByMecanisme();
+    // this.dataEpuPieGet()
 
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
@@ -92,41 +96,96 @@ export class ExamenComponent implements OnInit {
     );
   }
 
-  dataEpuPieGet() {
-    this.uow.recommendations.stateMecanisme().subscribe(r => {
+  getMecanismeState() {
+    this.uow.axes.mecanismeState().subscribe(r => {
       const chartLabels = [];
-      chartLabels.push(this.mytranslate.get('admin.organe.list.EnCours'));
-      chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
-      chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
+      chartLabels.push(this.mytranslate.get('NonRéalisé'));
+      chartLabels.push(this.mytranslate.get('EnCours'));
+      chartLabels.push(this.mytranslate.get('Recommendation_continue'));
+      chartLabels.push(this.mytranslate.get('Réalisé'));
 
 
       const chartData = [];
       const dataToShowInTable = [];
 
-      // chartData.push(r.epu.p * r.epu.t / 100);
-      // chartData.push(r.epu.r * r.epu.t / 100);
-      // chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
+      chartData.push(r.one * 100 / r.total);
+      chartData.push(r.two * 100 / r.total);
+      chartData.push(r.three * 100 / r.total);
+      chartData.push(r.four * 100 / r.total);
 
-      chartData.push(r.epu.p * 100 / r.epu.t);
-      chartData.push(r.epu.r * 100 / r.epu.t);
-      chartData.push(r.epu.n * 100 / r.epu.t);
+      dataToShowInTable.push(r.one, r.two, r.three, r.four);
 
-      dataToShowInTable.push(r.epu.p, r.epu.r, r.epu.n);
+      this.countRec.next(r.one + r.two + r.three + r.four);
 
-      this.countRec.next(r.epu.p + r.epu.r + r.epu.n);
+      const chartColors = [
+        '#db0707',
+        '#f7801e',
+        '#2d71a1',
+        '#2b960b',
+        '#ffffff'
+      ];
 
-      // chartData.push(100 - r.epu.t);
-
-
-      const chartColors = ['#f7801e', '#2b960b', '#db0707', '#ffffff'];
-
-      this.dataEpuPie.next({
-        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+      this.mecanismeState.next({
+        chartLabels, chartData, chartColors, dataToShowInTable
         , title: this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle')
       });
 
     });
   }
+
+  getStateByMecanisme() {
+    this.uow.axes.stateByMecanisme().subscribe(r => {
+
+      const chartLabels = r.map(e => e.name/*.substring(0, 40) + ' ...'*/);
+      const chartData = r.map(e => +e.one.toFixed(0));
+      const chartColors = [ ];
+      const dataToShowInTable = [];
+
+
+
+      this.stateByMecanisme.next({
+        chartLabels, chartData, chartColors, dataToShowInTable
+        , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
+      });
+
+    });
+  }
+
+  // dataEpuPieGet() {
+  //   this.uow.recommendations.stateMecanisme().subscribe(r => {
+  //     const chartLabels = [];
+  //     chartLabels.push(this.mytranslate.get('admin.organe.list.EnCours'));
+  //     chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
+  //     chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
+
+
+  //     const chartData = [];
+  //     const dataToShowInTable = [];
+
+  //     // chartData.push(r.epu.p * r.epu.t / 100);
+  //     // chartData.push(r.epu.r * r.epu.t / 100);
+  //     // chartData.push(r.epu.t - (r.epu.p * r.epu.t / 100) - (r.epu.r * r.epu.t / 100));
+
+  //     chartData.push(r.epu.p * 100 / r.epu.t);
+  //     chartData.push(r.epu.r * 100 / r.epu.t);
+  //     chartData.push(r.epu.n * 100 / r.epu.t);
+
+  //     dataToShowInTable.push(r.epu.p, r.epu.r, r.epu.n);
+
+  //     this.countRec.next(r.epu.p + r.epu.r + r.epu.n);
+
+  //     // chartData.push(100 - r.epu.t);
+
+
+  //     const chartColors = ['#f7801e', '#2b960b', '#db0707', '#ffffff'];
+
+  //     this.mecanismeState.next({
+  //       chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
+  //       , title: this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle')
+  //     });
+
+  //   });
+  // }
 
   openDialog(o: Examen, text) {
     const dialogRef = this.dialog.open(UpdateComponent, {

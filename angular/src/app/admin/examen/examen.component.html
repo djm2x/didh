@@ -11,7 +11,7 @@
   <div class="row justify-content-center">
 
     <div class="col-md-5">
-      <app-pie [obs]="dataEpuPie"></app-pie>
+      <app-pie [obs]="mecanismeState"></app-pie>
     </div>
 
     <div class="col-md-2 p-0">
@@ -19,8 +19,12 @@
     </div>
 
     <div class="col-md-5">
-      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+      <app-pie [obs]="stateByMecanisme"></app-pie>
     </div>
+
+    <!-- <div class="col-md-5">
+      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+    </div> -->
 
     <div class="col-md-12">
       <div class="chart-size">

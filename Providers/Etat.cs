@@ -14,9 +14,9 @@ namespace Admin5.Providers
 {
         public static class Etat
         {
-            public static string one = "Réalisé";
+            public static string one = "Non réalisé";
             public static string two = "En cours";
             public static string three = "Recommendation continue";
-            public static string four = "Non réalisé";
+            public static string four = "Réalisé";
         }
 }
