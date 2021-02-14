@@ -97,17 +97,17 @@ export class PieComponent implements OnInit {
   pieChartData: SingleDataSet = [/*300, 500, 100*/];
   @Input() public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-
-  public pieChartColors = [{ backgroundColor: [] }];
-
+  public pieChartPlugins = [pluginLabels];
+  public pieChartColors = [
+    { backgroundColor: [], },
+  ];
   list: { name: string, value: number }[] = [];
-
   retate = 0;
-
   arr: bigint[] = [];
 
   count: number; // count recommandations
-  constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) {
+  constructor(private uow: UowService, public mytranslate: MyTranslateService
+    , public dialog: MatDialog) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
@@ -119,6 +119,7 @@ export class PieComponent implements OnInit {
     });
 
     // this.pieChartOptions.legend.display = this.showLegend;
+
     this.obs.subscribe(r => {
       this.title = r.title;
       this.pieChartLabels = r.chartLabels;

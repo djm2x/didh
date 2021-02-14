@@ -69,17 +69,17 @@ export class BarComponent implements OnInit {
   public barChartLabels: Label[] = [/*'2006', '2007', '2008', '2009', '2010', '2011', '2012'*/];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-  // pieChartPlugins = [
-  //   pluginLabels,
-  //   {
-  //     beforeInit: (chart, options) => {
-  //       chart.legend.afterFit = function() {
-  //         // this.padding += 20;
-  //         this.height += 15; // must use `function` and not => because of `this`
-  //       };
-  //     },
-  //   }
-  // ];
+  pieChartPlugins = [
+    pluginLabels,
+    {
+      beforeInit: (chart, options) => {
+        chart.legend.afterFit = function() {
+          // this.padding += 20;
+          this.height += 15; // must use `function` and not => because of `this`
+        };
+      },
+    }
+  ];
   public barChartData: ChartDataSets[] = [
     { data: [/*65, 59, 80, 81, 56, 55, 40*/], label: '' },
     // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
