@@ -1,4 +1,7 @@
 export class StateOne {
+  id ? = 0;
+  type ? = '';
+  count ? = 0;
   name = '';
   one = 0;
   two = 0;

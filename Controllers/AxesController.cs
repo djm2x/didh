@@ -17,35 +17,6 @@ namespace Admin5.Controllers
         public AxesController(AdminContext context) : base(context)
         { }
 
-
-        [HttpGet("{mecanisme}")]
-        public async Task<IActionResult> StateAxes(string mecanisme) // used
-        {
-            string lng = Request.Headers["mylang"].FirstOrDefault();
-
-            var recommendations = await _context.Recommendations.ToListAsync();
-
-            var list = (await _context.Axes.ToListAsync())
-            .Select(e => new
-            {
-                axe = e,
-                recommendations = recommendations.Where(r => r.Axes == null ? false : JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
-            })
-            .Select(e => new
-            {
-                name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
-                p = e.recommendations.Where(s => s.EtatAvancementChiffre < 100 && s.EtatAvancementChiffre > 0).Count(),
-                r = e.recommendations.Where(s => s.EtatAvancementChiffre == 100).Count(),
-                n = e.recommendations.Where(s => s.EtatAvancementChiffre == 0).Count(),
-                // // t = count,
-                t = e.recommendations.Count(),
-            })
-            .ToList()
-            ;
-
-            return Ok(list);
-        }
-
         [HttpGet]
         public override async Task<ActionResult<IEnumerable<Axe>>> Get()
         {
@@ -87,8 +58,8 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            var recommendations = await _context.Recommendations.Where(r => r.Axes != null).ToListAsync();
-           int lastCycle = await _context.Cycles.OrderByDescending(e => e.Id).Select(e => e.Id).FirstOrDefaultAsync();
+            int lastCycle = await _context.Cycles.OrderByDescending(e => e.Id).Select(e => e.Id).FirstOrDefaultAsync();
+            var recommendations = await _context.Recommendations.Where(r => r.Axes != null && r.IdCycle == lastCycle).ToListAsync();
             int recommendationsCount = recommendations.Count();
 
             var list = (await _context.Axes.ToListAsync())
@@ -100,7 +71,7 @@ namespace Admin5.Controllers
                 .Select(e => new
                 {
                     name = lng == "fr" ? e.axe.Abv : e.axe.AbvAr,
-                    one = e.Recommendations.Where(r => r.IdCycle != null && r.IdCycle == lastCycle).Count() * 100 / recommendationsCount,
+                    one = e.Recommendations.Count() * 100 / recommendationsCount,
                 })
                 .Distinct()
                 .ToList()

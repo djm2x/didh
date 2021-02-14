@@ -8,12 +8,13 @@
   </div>
 
   <div class=" mb-5" style="cursor: pointer;"
-    (click)="openDialog()">
+    >
+    <!-- (click)="openDialog()" -->
 
     <div [class]="'col-md-' + col" style="display: block; width: 100vw;" [style.height]="height">
       <!-- <h5 class="XChart">%</h5> -->
       <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [legend]="barChartLegend" [chartType]="barChartType" [plugins]="pieChartPlugins" [colors]="pieChartColors"
+        [legend]="barChartLegend" [chartType]="barChartType" [colors]="pieChartColors"
         (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
 
       <!-- <button class="m-1" mat-mini-fab color="accent" (click)="randomize()"><mat-icon>compare_arrows</mat-icon></button> -->

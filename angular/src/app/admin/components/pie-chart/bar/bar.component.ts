@@ -1,12 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label, SingleDataSet, monkeyPatchChartJsTooltip, monkeyPatchChartJsLegend } from 'ng2-charts';
-import { UowService } from 'src/app/services/uow.service';
+import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from '../detail/detail.component';
 import * as pluginLabels from 'chartjs-plugin-labels';
-import * as Chart from 'chart.js';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-bar',
@@ -71,17 +69,17 @@ export class BarComponent implements OnInit {
   public barChartLabels: Label[] = [/*'2006', '2007', '2008', '2009', '2010', '2011', '2012'*/];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-  pieChartPlugins = [
-    pluginLabels,
-    {
-      beforeInit: (chart, options) => {
-        chart.legend.afterFit = function() {
-          // this.padding += 20;
-          this.height += 15; // must use `function` and not => because of `this`
-        };
-      },
-    }
-  ];
+  // pieChartPlugins = [
+  //   pluginLabels,
+  //   {
+  //     beforeInit: (chart, options) => {
+  //       chart.legend.afterFit = function() {
+  //         // this.padding += 20;
+  //         this.height += 15; // must use `function` and not => because of `this`
+  //       };
+  //     },
+  //   }
+  // ];
   public barChartData: ChartDataSets[] = [
     { data: [/*65, 59, 80, 81, 56, 55, 40*/], label: '' },
     // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
@@ -90,10 +88,10 @@ export class BarComponent implements OnInit {
 
   public pieChartColors = [
     // { backgroundColor: ['#d17c36', '#2d71a1'], },
-    { backgroundColor: '#d17c36' },
-    { backgroundColor: '#7dc460' },
     { backgroundColor: '#db0707' },
-    { backgroundColor: '#a19b9e' },
+    { backgroundColor: '#f7801e' },
+    { backgroundColor: '#2d71a1' },
+    { backgroundColor: '#2b960b' },
   ];
 
   @Input() dataSubject = new Subject();
@@ -126,18 +124,18 @@ export class BarComponent implements OnInit {
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
       // console.log(this.barChartLabels)
 
-      r.barChartLabels.forEach((e, i) => {
-        this.list.push({
-          name: e.toString(),
-          // p: +this.barChartData.find(f => f.label === 'En cours').data[i] as number,
-          // r: +this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
-          // n: +this.barChartData.find(f => f.label.toLowerCase() === 'Non réalisé'.toLowerCase()).data[i] as number,
-          // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
-          p: +this.barChartData.find((f, j) => j === 0).data[i] as number,
-          r: +this.barChartData.find((f, j) => j === 1).data[i] as number,
-          n: +this.barChartData.find((f, j) => j === 2).data[i] as number,
-        } as any);
-      });
+      // r.barChartLabels.forEach((e, i) => {
+      //   this.list.push({
+      //     name: e.toString(),
+      //     // p: +this.barChartData.find(f => f.label === 'En cours').data[i] as number,
+      //     // r: +this.barChartData.find(f => f.label === 'Réalisé').data[i] as number,
+      //     // n: +this.barChartData.find(f => f.label.toLowerCase() === 'Non réalisé'.toLowerCase()).data[i] as number,
+      //     // t: this.barChartData.find(f => f.label === 'Taux').data[i] as number,
+      //     p: +this.barChartData.find((f, j) => j === 0).data[i] as number,
+      //     r: +this.barChartData.find((f, j) => j === 1).data[i] as number,
+      //     n: +this.barChartData.find((f, j) => j === 2).data[i] as number,
+      //   } as any);
+      // });
 
 
       // console.log(this.list)

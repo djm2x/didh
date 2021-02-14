@@ -141,9 +141,10 @@ export class ListComponent implements OnInit {
 
   displayMulti(mc: string, et: string) {
     const etat = [
-      { fr: 'Réalisé', ar: 'منجز' },
       { fr: 'Non Réalisé', ar: 'غير منجز' },
-      { fr: 'En cours', ar: 'في طور الإنجاز' }
+      { fr: 'En cours', ar: 'في طور الإنجاز' },
+      { fr: 'Recommendation continue', ar: 'توصية مستمرة' },
+      { fr: 'Réalisé', ar: 'منجز' },
     ];
 
     const mecanisme = [

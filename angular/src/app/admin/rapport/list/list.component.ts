@@ -18,7 +18,6 @@ import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/down
 import { ArchiveComponent } from '../archive/archive.component';
 import { IData } from '../../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-list',
@@ -51,34 +50,19 @@ export class ListComponent implements OnInit {
   text = ``;
   text2 = this.text.substring(0, 600);
 
-  // tslint:disable-next-line:max-line-length
-
-
-  // . Convention/Protocole
-  // 2. Rapport national
-  // 3.Observations finales
-  // 4.Rapport de suivi de la mise en œuvre
-
   displayedColumns = this.columnDefs.filter(e => e.columnDef !== 'miseOeuvrePiece').map(e => e.columnDef);
   progress = 0;
   message: any;
-  formData = new FormData();
-
-  pieChartSubject = new BehaviorSubject<IData>({ table: 'organe', type: 'etat', title: 'Etat d’avancement des recommandations par organe' });
-  pieChartSubjectC = new BehaviorSubject<IData>({ table: 'organe', type: 'taux', title: this.mytranslate.getObs('admin.organe.list.Tauxderecommandationsparorgane') });
-
-  organePageSubject = new Subject();
+  // formData = new FormData();
   countRec = new Subject();
-  dataOt = new Subject<{ name: string | Observable<string>, p: number, t: number, r: number }>();
-  dataPie = new Subject();
+  mecanismeState = new Subject();
+  stateByMecanisme = new Subject();
+  stateDetailByMecanisme = new Subject();
+
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet, public session: SessionService
-    , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) {
-
-    // if (this.session.isPointFocal === false) {
-    //   this.columnDefs.push({ columnDef: 'miseOeuvrePiece', headName: 'Rapport de suivi de la mise en œuvre' })
-    // }
-  }
+    , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) { }
 
   ngOnInit() {
     // console.log(this.columnDefs)
@@ -98,94 +82,23 @@ export class ListComponent implements OnInit {
         );
       }
     );
-    this.route.queryParams.subscribe(params => {
-      const id = params['data'];
-      if (id) {
-        this.uow.rapports.getOne(id).subscribe(r => {
-          this.openDialog(r);
-        });
-      }
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   const id = params['data'];
+    //   if (id) {
+    //     this.uow.rapports.getOne(id).subscribe(r => {
+    //       this.openDialog(r);
+    //     });
+    //   }
+    // });
 
-    this.stateOrgane();
-    this.stateMecanisme();
-    this.stateOneOFMecanisme();
+    this.getMecanismeState();
+    this.getStateByMecanisme();
+    this.getStateDetailByMecanisme();
 
-  }
-
-  stateOneOFMecanisme() {
-    this.uow.recommendations.stateMecanisme().subscribe(r => {
-      const chartLabels = [];
-      chartLabels.push(this.mytranslate.get('admin.organe.list.Etatavancement'));
-      chartLabels.push(this.mytranslate.get('admin.organe.list.Réalisé'));
-      chartLabels.push(this.mytranslate.get('admin.organe.list.NonRéalisé'));
-
-      // chartLabels.push('')
-
-      const chartData = [];
-      const dataToShowInTable = [];
-
-      // chartData.push(r.ot.p * r.ot.t / 100);
-      // chartData.push(r.ot.r * r.ot.t / 100);
-      // chartData.push(r.ot.t - (r.ot.p * r.ot.t / 100) - (r.ot.r * r.ot.t / 100));
-
-      chartData.push(r.ot.p * 100 / r.ot.t);
-      chartData.push(r.ot.r * 100 / r.ot.t);
-      chartData.push(r.ot.n * 100 / r.ot.t);
-
-      // chartData.push(100 - r.ot.t);
-      dataToShowInTable.push(r.ot.p, r.ot.r, r.ot.n);
-      this.countRec.next(r.ot.p + r.ot.r + r.ot.n);
-      const chartColors = ['#f7801e', '#2b960b', '#db0707',  '#ffffff'];
-
-      this.dataPie.next({
-        chartLabels, chartData, chartColors, dataToShowInTable, count: r.count
-        , title: this.mytranslate.get('admin.home.OrganesdeTraités')
-      });
-
-    });
   }
 
   disable(e: string) {
     return e && e !== '' ? false : true;
-  }
-
-
-  stateMecanisme() {
-    this.uow.recommendations.stateMecanisme().subscribe(r => {
-      r.ot.name = this.mytranslate.getObs('admin.home.OrganesdeTraités');
-      (r.ot as any).count = r.count;
-      this.dataOt.next(r.ot);
-    });
-  }
-
-
-  stateOrgane() {
-    this.uow.recommendations.stateOrgane().subscribe(r => {
-
-      r = r.filter(e => e.name !== null);
-      console.log(r);
-      const barChartLabels = r.map(e => e.name);
-      const barChartData = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
-      ];
-
-      r.forEach(e => {
-        // barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-        // barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-        // barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-
-        barChartData[0].data.push((e.p * 100 / e.t).toFixed(0));
-        barChartData[1].data.push((e.r * 100 / e.t).toFixed(0));
-        barChartData[2].data.push((e.n * 100 / e.t).toFixed(0));
-
-        // barChartData[2].data.push(e.t.toFixed(0));
-      });
-      // tslint:disable-next-line:max-line-length
-      this.organePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
-    });
   }
 
   getPage(startIndex, pageSize, sortBy, sortDir, idOrganisme) {
@@ -260,15 +173,86 @@ export class ListComponent implements OnInit {
     this.bottomSheet.open(DownloadSheetComponent, { data: { fileName, folder: 'traite' } });
   }
 
-  // activeDownload(o: Traite) {
-  //   o.rapports.map(r => {
-  //     if (r.pieceJointe !== '') {
-  //       return false;
-  //     }
-  //   });
+  /**
+   * graphs
+   */
+  getMecanismeState() {
+    this.uow.organes.mecanismeState().subscribe(r => {
+      const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('NonRéalisé'));
+      chartLabels.push(this.mytranslate.get('EnCours'));
+      chartLabels.push(this.mytranslate.get('Recommendation_continue'));
+      chartLabels.push(this.mytranslate.get('Réalisé'));
 
-  //   return true;
-  // }
+
+      const chartData = [];
+      const dataToShowInTable = [];
+
+      chartData.push(r.one * 100 / r.total);
+      chartData.push(r.two * 100 / r.total);
+      chartData.push(r.three * 100 / r.total);
+      chartData.push(r.four * 100 / r.total);
+
+      dataToShowInTable.push(r.one, r.two, r.three, r.four);
+
+      this.countRec.next(r.one + r.two + r.three + r.four);
+
+      const chartColors = [
+        '#db0707',
+        '#f7801e',
+        '#2d71a1',
+        '#2b960b',
+        '#ffffff'
+      ];
+
+      this.mecanismeState.next({
+        chartLabels, chartData, chartColors, dataToShowInTable
+        , title: this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle')
+      });
+
+    });
+  }
+
+  getStateByMecanisme() {
+    this.uow.organes.stateByMecanisme().subscribe(r => {
+
+      const chartLabels = r.map(e => e.name/*.substring(0, 40) + ' ...'*/);
+      const chartData = r.map(e => +e.one.toFixed(0));
+      const chartColors = [ ];
+      const dataToShowInTable = [];
+
+      this.stateByMecanisme.next({
+        chartLabels, chartData, chartColors, dataToShowInTable
+        , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
+      });
+
+    });
+  }
+
+  getStateDetailByMecanisme() { // bar
+    this.uow.organes.stateDetailByMecanisme().subscribe(r => {
+
+      r = r.filter(e => e.name !== null);
+      // console.log(r);
+      const barChartLabels = r.map(e => e.name);
+      const dataToShowInTable = []
+      const barChartData = [
+        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      ];
+
+      r.forEach(e => {
+        barChartData[0].data.push((e.one * 100 / e.total).toFixed(0));
+        barChartData[1].data.push((e.two * 100 / e.total).toFixed(0));
+        barChartData[2].data.push((e.three * 100 / e.total).toFixed(0));
+        barChartData[3].data.push((e.four * 100 / e.total).toFixed(0));
+      });
+
+      this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
+    });
+  }
 }
 
 

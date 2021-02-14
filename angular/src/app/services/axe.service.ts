@@ -12,9 +12,9 @@ export class AxeService  extends SuperService<Axe> {
     super('axes');
   }
 
-  stateAxes(mecanisme: string) {
-    return this.http.get<{ name: string, p: number, t: number, r: number, n: number }[]>(`${this.urlApi}/${this.controller}/stateAxes/${mecanisme}`);
-  }
+  // stateAxes(mecanisme: string) {
+  //   return this.http.get<{ name: string, p: number, t: number, r: number, n: number }[]>(`${this.urlApi}/${this.controller}/stateAxes/${mecanisme}`);
+  // }
 
   stateDetailByMecanisme() {
     return this.http.get<StateOne[]>(`${this.urlApi}/${this.controller}/stateDetailByMecanisme`);

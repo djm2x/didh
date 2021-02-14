@@ -35,14 +35,14 @@
           </div>
         <div class="inputs2">
 
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
             <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
               <mat-option value="0">...</mat-option>
               <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">
                 {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field appearance="fill" *ngIf="cycleActive">
             <mat-label>{{ 'admin.recommandation.list.Cycle' | translate }}</mat-label>
@@ -71,13 +71,13 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
             <mat-select formControlName="etat">
               <mat-option *ngFor="let e of etats | async" [value]="e.name">
                 {{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
         <div class="inputs2">
 
@@ -136,10 +136,10 @@
             <div class="col-md-12">
               <div class="row w-100">
                 <div class="col-md-6">
-                  <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataMec1"></app-pie>
+                  <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="mecanismePieValue"></app-pie>
                 </div>
                 <div class="col-md-6">
-                  <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="dataValues"></app-pie>
+                  <app-pie [withGraphe]="'100%'" [showLegend]="true" [obs]="recommendationPieValues"></app-pie>
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@
           <div class="d-flex flex-wrap justify-content-center ">
             <div class="col-md-12">
               <div class="chart-size">
-                <app-bar [col]="12" [dataSubject]="departementSubjectPE" [height]="'70vh'"></app-bar>
+                <app-bar [col]="12" [dataSubject]="departementSubjectAll" [height]="'70vh'"></app-bar>
               </div>
             </div>
           </div>

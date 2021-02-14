@@ -2,6 +2,7 @@ import { Recommendation } from './../Models/models';
 import { Injectable } from '@angular/core';
 import { SuperService } from './super.service';
 import { Observable } from 'rxjs';
+import { StateOne } from '../Models/state-models';
 
 @Injectable({
   providedIn: 'root'
@@ -50,31 +51,50 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   stateParamAxe(o) {
-    return this.http.post<{
-      count: number,
-      mecanisme: {
-        epu: { name: string, p: number, t: number, r: number, n: number },
-        ot: { name: string, p: number, t: number, r: number, n: number },
-        ps: { name: string, p: number, t: number, r: number, n: number }
-      },
-      recommandationValues: {realise: number, nonRealise: number, enCours: number, count: number}
-      axe: { name: string, p: number, t: number, r: number, n: number }[],
-      epu: { name: string, p: number, t: number, r: number, n: number }[],
-      visite: { name: string, p: number, t: number, r: number, n: number }[],
-      organe: { name: string, p: number, t: number, r: number, n: number }[],
-      department: { name: string, nameAr: string, id: number, p: number, c: number, t: number, r: number, n: number, type: string }[]
-      pays: { name: string, p: number, t: number, r: number, n: number }[]
-    }>(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
+    return this.http.post<
+      {
+        axe: StateOne[]
+        , epu: StateOne[]
+        , organe: StateOne[]
+        , visite: StateOne[]
+        , department: StateOne[]
+        , mecanisme: {
+          epu: { total: number },
+          organe: { total: number },
+          visite: { total: number }
+        },
+        recommandationValues: { nonRealise: number, enCours: number, enCoursRealisation: number, realise: number, count: number },
+        count: number,
+      }
+    >(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
   }
 
-  stateMecanisme() {
-    return this.http.get<{
-      epu: { name: string | Observable<string>, p: number, t: number, r: number, n: number},
-      ot: { name: string | Observable<string>, p: number, t: number, r: number , n: number},
-      ps: { name: string | Observable<string>, p: number, t: number, r: number , n: number},
-      count: number,
-    }>(`${this.urlApi}/${this.controller}/stateMecanisme`);
-  }
+  // stateParamAxe0(o) {
+  //   return this.http.post<{
+  //     count: number,
+  //     mecanisme: {
+  //       epu: { name: string, p: number, t: number, r: number, n: number },
+  //       ot: { name: string, p: number, t: number, r: number, n: number },
+  //       ps: { name: string, p: number, t: number, r: number, n: number }
+  //     },
+  //     recommandationValues: { realise: number, nonRealise: number, enCours: number, count: number }
+  //     axe: { name: string, p: number, t: number, r: number, n: number }[],
+  //     epu: { name: string, p: number, t: number, r: number, n: number }[],
+  //     visite: { name: string, p: number, t: number, r: number, n: number }[],
+  //     organe: { name: string, p: number, t: number, r: number, n: number }[],
+  //     department: { name: string, nameAr: string, id: number, p: number, c: number, t: number, r: number, n: number, type: string }[]
+  //     pays: { name: string, p: number, t: number, r: number, n: number }[]
+  //   }>(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
+  // }
+
+  // stateMecanisme() {
+  //   return this.http.get<{
+  //     epu: { name: string | Observable<string>, p: number, t: number, r: number, n: number },
+  //     ot: { name: string | Observable<string>, p: number, t: number, r: number, n: number },
+  //     ps: { name: string | Observable<string>, p: number, t: number, r: number, n: number },
+  //     count: number,
+  //   }>(`${this.urlApi}/${this.controller}/stateMecanisme`);
+  // }
 
   stateParamOrganisme(o) {
     return this.http.post(`${this.urlApi}/${this.controller}/stateParamOrganisme`, o);
@@ -140,7 +160,7 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   stateVisite() {
-    return this.http.get<{ name: string, p: number, t: number, r: number, n: number  }[]>(`${this.urlApi}/${this.controller}/stateVisite`);
+    return this.http.get<{ name: string, p: number, t: number, r: number, n: number }[]>(`${this.urlApi}/${this.controller}/stateVisite`);
   }
 
 }

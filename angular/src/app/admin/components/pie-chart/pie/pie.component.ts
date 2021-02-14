@@ -80,9 +80,10 @@ export class PieComponent implements OnInit {
       pieceLabel: {
         // fontColor: '#000',
         render: (args) => {
+          console.log(args)
           const label = args.label;
           const value = args.value;
-          this.arr2.next(args);
+          // this.arr2.next(args);
           return label + ': ' + value;
         }
       }
@@ -96,17 +97,17 @@ export class PieComponent implements OnInit {
   pieChartData: SingleDataSet = [/*300, 500, 100*/];
   @Input() public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-  public pieChartPlugins = [pluginLabels];
-  public pieChartColors = [
-    { backgroundColor: [], },
-  ];
+
+  public pieChartColors = [{ backgroundColor: [] }];
+
   list: { name: string, value: number }[] = [];
+
   retate = 0;
+
   arr: bigint[] = [];
 
   count: number; // count recommandations
-  constructor(private uow: UowService, public mytranslate: MyTranslateService
-    , public dialog: MatDialog) {
+  constructor(public mytranslate: MyTranslateService, public dialog: MatDialog) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
@@ -118,7 +119,6 @@ export class PieComponent implements OnInit {
     });
 
     // this.pieChartOptions.legend.display = this.showLegend;
-
     this.obs.subscribe(r => {
       this.title = r.title;
       this.pieChartLabels = r.chartLabels;
@@ -130,15 +130,15 @@ export class PieComponent implements OnInit {
         return;
       }
 
-      const rest = 100 - r.chartData.map((e: number) => +e.toFixed(0)).reduce((c, p) => c + p);
+      // const rest = 100 - r.chartData.map((e: number) => +e.toFixed(0)).reduce((c, p) => c + p);
 
-      if (rest > 10) {
-        this.pieChartLabels.push('');
-        this.pieChartData.push(rest);
-        this.pieChartColors[0].backgroundColor.push('#fff')
+      // if (rest > 10) {
+      //   this.pieChartLabels.push('');
+      //   this.pieChartData.push(rest);
+      //   this.pieChartColors[0].backgroundColor.push('#fff')
 
-        console.log('there is alot of space here', rest)
-      }
+      //   console.log('there is alot of space here', rest)
+      // }
       // this.dataToShowInTable = r.dataToShowInTable.map((e: number) => e);
       // this.count = r.count;
       // // console.log(this.pieChartData, this.pieChartLabels);
@@ -173,10 +173,10 @@ export class PieComponent implements OnInit {
   getColors(length) {
     // tslint:disable-next-line:max-line-length
     const pallet = [
-      '#d97f2a', // orange
-      '#2d71a1', // blue
-      '#c2c3c6', // gray
-      '#ba6446',
+      '#db0707',
+      '#f7801e',
+      '#2d71a1',
+      '#2b960b',
       '#7dc460', // green
       '#fdb93a',
       '#59b8ce',

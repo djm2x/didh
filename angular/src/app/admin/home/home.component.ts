@@ -68,18 +68,27 @@ export class HomeComponent implements OnInit {
       'السياحة',
     ];
 
-    const listToDelete = [
-      // 'Chef du Gouvernement',
-      'Observatoire National des Droits de l’Enfant',
-    ]
+    const listToDelete = ['Observatoire National des Droits de l’Enfant'];
 
-    const listToWorkWith: { name: string, p: number, r: number, n: number, t: number, type: string, }[] = [];
+    const listToWorkWith: {
+      name: string,
+      type: string,
+      one: number,
+      two: number,
+      three: number,
+      four: number,
+      total: number,
+    }[] = [];
 
-
-    this.uow.recommendations.stateRecommendationByOrganisme()
-      .subscribe((r: { name: string, p: number, r: number, n: number, t: number, type: string }[]) => {
-
-      console.log(r);
+    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: {
+      name: string,
+      type: string,
+      one: number,
+      two: number,
+      three: number,
+      four: number,
+      total: number,
+    }[]) => {
       // return
       r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
 
@@ -88,10 +97,11 @@ export class HomeComponent implements OnInit {
           if (p.includes(e.name)) {
             const o = {
               name: p,
-              p: e.p,
-              r: e.r,
-              n: e.n,
-              t: e.t,
+              one: e.one,
+              two: e.two,
+              three: e.three,
+              four: e.four,
+              total: e.total,
               type: e.type,
               nameAr: listToShowPEAr[index], // (e as any).nameAr
             };
@@ -99,10 +109,11 @@ export class HomeComponent implements OnInit {
             const i = listToWorkWith.findIndex(w => w.name.includes(o.name));
 
             if (i !== -1) {
-              listToWorkWith[i].p += o.p;
-              listToWorkWith[i].r += o.r;
-              listToWorkWith[i].n += o.n;
-              listToWorkWith[i].t += o.t;
+              listToWorkWith[i].one += o.one;
+              listToWorkWith[i].two += o.two;
+              listToWorkWith[i].three += o.three;
+              listToWorkWith[i].four += o.four;
+              listToWorkWith[i].total += o.total;
             } else {
               listToWorkWith.push(o);
             }
@@ -122,54 +133,59 @@ export class HomeComponent implements OnInit {
 
 
       const barChartDataPE = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       ];
 
       const barChartDataIN = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       ];
 
       const barChartDataPJ = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       ];
 
       const barChartDataAutre = [
-        { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       ];
 
 
       listToWorkWith.forEach(e => {
         if (e.type === 'PE') {
-          barChartDataPE[0].data.push((e.p * 100 / e.t).toFixed(0));
-          barChartDataPE[1].data.push((e.r * 100 / e.t).toFixed(0));
-          barChartDataPE[2].data.push((e.n * 100 / e.t).toFixed(0));
+          barChartDataPE[0].data.push((e.one * 100 / e.total).toFixed(0));
+          barChartDataPE[1].data.push((e.two * 100 / e.total).toFixed(0));
+          barChartDataPE[2].data.push((e.three * 100 / e.total).toFixed(0));
+          barChartDataPE[3].data.push((e.four * 100 / e.total).toFixed(0));
         }
-      })
+      });
 
       r.forEach(e => {
         if (e.type === 'Autre') {
-          barChartDataAutre[0].data.push((e.p * 100 / e.t).toFixed(0));
-          barChartDataAutre[1].data.push((e.r * 100 / e.t).toFixed(0));
-          barChartDataAutre[2].data.push((e.n * 100 / e.t).toFixed(0));
-          // barChartDataAutre[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
+          barChartDataAutre[0].data.push((e.one * 100 / e.total).toFixed(0));
+          barChartDataAutre[1].data.push((e.two * 100 / e.total).toFixed(0));
+          barChartDataAutre[2].data.push((e.three * 100 / e.total).toFixed(0));
+          barChartDataAutre[3].data.push((e.four * 100 / e.total).toFixed(0));
         } else if (e.type === 'IN') {
-          barChartDataIN[0].data.push((e.p * 100 / e.t).toFixed(0));
-          barChartDataIN[1].data.push((e.r * 100 / e.t).toFixed(0));
-          barChartDataIN[2].data.push((e.n * 100 / e.t).toFixed(0));
-          // barChartDataIN[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
+          barChartDataIN[0].data.push((e.one * 100 / e.total).toFixed(0));
+          barChartDataIN[1].data.push((e.two * 100 / e.total).toFixed(0));
+          barChartDataIN[2].data.push((e.three * 100 / e.total).toFixed(0));
+          barChartDataIN[3].data.push((e.four * 100 / e.total).toFixed(0));
         } else if (e.type === 'PJ') {
-          barChartDataPJ[0].data.push((e.p * 100 / e.t).toFixed(0));
-          barChartDataPJ[1].data.push((e.r * 100 / e.t).toFixed(0));
-          barChartDataPJ[2].data.push((e.n * 100 / e.t).toFixed(0));
-          // barChartDataPJ[2].data.push((e.t - (e.p * 100 / e.t) - (e.r * 100 / e.t)).toFixed(0));
+          barChartDataPJ[0].data.push((e.one * 100 / e.total).toFixed(0));
+          barChartDataPJ[1].data.push((e.two * 100 / e.total).toFixed(0));
+          barChartDataPJ[2].data.push((e.three * 100 / e.total).toFixed(0));
+          barChartDataPJ[3].data.push((e.four * 100 / e.total).toFixed(0));
         }
       });
 

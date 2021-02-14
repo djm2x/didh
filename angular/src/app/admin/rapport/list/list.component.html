@@ -11,35 +11,23 @@
   <app-intros mecanisme="organe"></app-intros>
 
   <div class="row mb-4 justify-content-center">
-    <!-- <div class="col-md-6">
-      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
-    </div>
-    <div class="col-md-6">
-      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
-    </div> -->
-    <!-- <div class="col-md-5" style="margin-bottom: 10%;">
-      <app-progress-cercle [showTable]="true" [showLegend]="true" [marginh5Title]="'19px 7px -24px 64px'"
-        [marginLegend]="'0px 27px -261px -236px'" [marginLeftTitle]="'3.9%'"
-        [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataOt">
-      </app-progress-cercle>
-    </div> -->
     <div class="col-md-5">
-      <app-pie [obs]="dataPie"></app-pie>
+      <app-pie [obs]="mecanismeState"></app-pie>
     </div>
-    <!-- <mat-divider [vertical]="true"></mat-divider> -->
+
     <div class="col-md-2 p-0">
-      <app-count [count]="countRec" [height]="'62vh'"></app-count>
+      <app-count ifEpu="true" [count]="countRec" [height]="'55vh'"></app-count>
     </div>
+
     <div class="col-md-5">
-      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
+      <app-pie [obs]="stateByMecanisme"></app-pie>
     </div>
 
     <div class="col-md-12">
-      <app-bar [dataSubject]="organePageSubject" [height]="'70vh'"></app-bar>
+      <div class="chart-size">
+        <app-bar [col]="12" [height]="'70vh'" [dataSubject]="stateDetailByMecanisme"></app-bar>
+      </div>
     </div>
-
-
-
   </div>
 
   <div class="example-container mat-elevation-z8">

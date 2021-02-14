@@ -8,62 +8,24 @@
   </div>
   <app-intros mecanisme="ps"></app-intros>
 
-  <div class="row justify-content-center">
-    <!-- <div class="col-md-6">
-      <app-pie-chart [obs]="pieChartSubject"></app-pie-chart>
-    </div>
-    <div class="col-md-6">
-      <app-pie-chart [obs]="pieChartSubjectC"></app-pie-chart>
-    </div> -->
-
-    <!-- <div class="d-flex justify-content-center w-100" style="margin-top: 2%; ">
-    <section [className]="(mytranslate.lang | async) === 'fr' ? 'super-title border-left' : 'super-title border-right'">
-      <div>
-        <h3>{{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}</h3>
-      </div>
-    </section>
-  </div> -->
-
-
-
-
-    <!-- <div class="col-md-5" style="margin-bottom: 7%;">
-      <app-progress-cercle [showTable]="true" [showLegend]="true" [marginh5Title]="'19px 7px -24px 64px'"
-        [marginLegend]="'0px 27px -261px -236px'" [marginLeftTitle]="'6%'"
-        [transform]="(mytranslate.lang | async) === 'fr' ? 40 : -40" [diameter]="240" [data]="dataPs">
-      </app-progress-cercle>
-    </div> -->
-
+  <div class="row mb-4 justify-content-center">
     <div class="col-md-5">
-      <app-pie [obs]="dataPie"></app-pie>
+      <app-pie [obs]="mecanismeState"></app-pie>
     </div>
-    <!-- <mat-divider [vertical]="true"></mat-divider> -->
+
     <div class="col-md-2 p-0">
-      <app-count [count]="countRec" [height]="'62vh'"></app-count>
+      <app-count ifEpu="true" [count]="countRec" [height]="'55vh'"></app-count>
     </div>
+
     <div class="col-md-5">
-      <!-- <app-pie-chart [positionLegendBottom]="(mytranslate.lang | async) === 'fr' ? true : false" [withGraphe]="800" [showLegend]="true" [obs]="pieChartSubjectC"> -->
-        <app-pie-chart [obs]="pieChartSubjectC">
-      </app-pie-chart>
+      <app-pie [obs]="stateByMecanisme"></app-pie>
     </div>
 
-    <div class="col-md-12 mb-5 mt-5">
-      <app-bar [dataSubject]="visitePageSubject" [height]="'70vh'"></app-bar>
-
-      <!-- <div *ngFor="let e of visitePage; let i=index">
-        <app-progress-bar [widthThree]="e.r" [widthOne]="e.p" [widthTwo]="e.t" [title]="e.name"></app-progress-bar>
-      </div> -->
-
-      <!-- <div class="d-flex flex-column justify-content-center mt-4">
-        <img src="assets/line.png" height="10px" width="280px" [style.transform]="'rotateY(' + retate + 'deg)'">
-        <h5 style="color: #737473; margin: 5px 0 10px 5px;">
-          {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate}}
-        </h5>
-      </div> -->
+    <div class="col-md-12">
+      <div class="chart-size">
+        <app-bar [col]="12" [height]="'70vh'" [dataSubject]="stateDetailByMecanisme"></app-bar>
+      </div>
     </div>
-
-
-
   </div>
 
   <div class="example-container mat-elevation-z8">
