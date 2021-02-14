@@ -1,4 +1,8 @@
 ﻿{
+  "Réalisé": "منجز",
+  "NonRéalisé": "غير منجز",
+  "EnCours": "في طور الإنجاز",
+  "Recommendation_continue": "توصية مستمرة",
   "admin": {
     "lang": "لغة",
     "Enregistre": "حفظ",
@@ -98,8 +102,8 @@
         "Taux": "نسبة",
         "Réalisé": "منجز",
         "NonRéalisé": "غير منجز",
-        "Nombre": "عدد",
         "EnCours": "في طور الإنجاز",
+        "Nombre": "عدد",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "وضعية التنفيذ حسب هيئات المعاهدات"
       },
       "update": {
@@ -323,10 +327,7 @@
         "Ajouter_Questionnaire": " إضافة استبيان",
         "Modifier_Questionnaire": " تعديل استبيان"
       },
-      "update": {
-
-      }
+      "update": {}
     }
   }
-
 }
