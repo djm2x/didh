@@ -49,6 +49,11 @@
             [eventSubmitFromParent]="eventSubmitFromParent">
           </app-upload-select>
 
+          <app-upload-select nameBtn="{{ 'admin.ps.commentaire' | translate }}"
+              [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="commentaireTo"
+              [eventSubmitToParent]="commentaireFrom" [eventSubmitFromParent]="eventSubmitFromParent">
+            </app-upload-select>
+
         <mat-form-field appearance="fill">
           <mat-label>{{ 'admin.ps.update.Lien_externe' | translate }}</mat-label>
           <input matInput formControlName="lienRapport">

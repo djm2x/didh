@@ -41,6 +41,8 @@ export class ListComponent implements OnInit {
     { columnDef: 'observationPiece', headName: `Observations finales` },
     { columnDef: 'rapportParallelePiece', headName: `Rapport  parallèle` },
     { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
+    { columnDef: 'rapportINDH', headName: 'rapportINDH' },
+    { columnDef: 'avisPosition', headName: 'avisPosition' },
     { columnDef: 'option', headName: '...' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
@@ -244,10 +246,10 @@ export class ListComponent implements OnInit {
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push((e.one * 100 / e.total).toFixed(0));
-        barChartData[1].data.push((e.two * 100 / e.total).toFixed(0));
-        barChartData[2].data.push((e.three * 100 / e.total).toFixed(0));
-        barChartData[3].data.push((e.four * 100 / e.total).toFixed(0));
+        barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+        barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+        barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+        barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       });
 
       this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });

@@ -14,5 +14,6 @@ namespace Admin5.Models
         public string ObservationFinale { get; set; }
         public string RapportMiParcours { get; set; }
         public string MiseOeuvrePiece { get; set; }
+        public string RapportINDH { get; set; }
     }
 }

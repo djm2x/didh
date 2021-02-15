@@ -54,18 +54,18 @@
             <!--  -->
             <div class="row justify-content-center" style="margin-bottom: 15px;">
 
-              <app-upload-select nameBtn="{{ 'admin.organe.list.Rapportnational' | translate}}" [folderToSaveInServer]="folderToSaveInServer"
-                [propertyOfParent]="conventionPieceTo" [eventSubmitToParent]="conventionPieceFrom"
-                [eventSubmitFromParent]="eventSubmitFromParent">
+              <app-upload-select nameBtn="{{ 'admin.organe.list.Rapportnational' | translate}}"
+                [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="conventionPieceTo"
+                [eventSubmitToParent]="conventionPieceFrom" [eventSubmitFromParent]="eventSubmitFromParent">
               </app-upload-select>
-              <app-upload-select nameBtn="{{ 'admin.organe.list.Discoursduprésident' | translate}}" [folderToSaveInServer]="folderToSaveInServer"
-                [propertyOfParent]="discoursTo" [eventSubmitToParent]="discoursFrom"
-                [eventSubmitFromParent]="eventSubmitFromParent">
+              <app-upload-select nameBtn="{{ 'admin.organe.list.Discoursduprésident' | translate}}"
+                [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="discoursTo"
+                [eventSubmitToParent]="discoursFrom" [eventSubmitFromParent]="eventSubmitFromParent">
               </app-upload-select>
 
-              <app-upload-select nameBtn="{{ 'admin.organe.list.Compterenduanalytique' | translate}}" [folderToSaveInServer]="folderToSaveInServer"
-                [propertyOfParent]="analytiquePieceTo" [eventSubmitToParent]="analytiquePieceFrom"
-                [eventSubmitFromParent]="eventSubmitFromParent">
+              <app-upload-select nameBtn="{{ 'admin.organe.list.Compterenduanalytique' | translate}}"
+                [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="analytiquePieceTo"
+                [eventSubmitToParent]="analytiquePieceFrom" [eventSubmitFromParent]="eventSubmitFromParent">
               </app-upload-select>
 
               <app-upload-select nameBtn="{{'admin.organe.list.Observationsfinales' | translate}}"
@@ -73,20 +73,32 @@
                 [eventSubmitToParent]="observationPieceFrom" [eventSubmitFromParent]="eventSubmitFromParent">
               </app-upload-select>
 
-              <app-upload-select nameBtn="{{ 'admin.organe.list.Rapportparallèle' | translate}}" [folderToSaveInServer]="folderToSaveInServer"
-                [propertyOfParent]="rapportParallelePieceTo" [eventSubmitToParent]="rapportParallelePieceFrom"
-                [eventSubmitFromParent]="eventSubmitFromParent">
+              <app-upload-select nameBtn="{{ 'admin.organe.list.Rapportparallèle' | translate}}"
+                [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="rapportParallelePieceTo"
+                [eventSubmitToParent]="rapportParallelePieceFrom" [eventSubmitFromParent]="eventSubmitFromParent">
               </app-upload-select>
 
               <app-upload-select nameBtn="{{ 'admin.organe.list.PLANDEMISEENOEUVRE' | translate}}"
                 [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="miseOeuvrePieceTo"
                 [eventSubmitToParent]="miseOeuvrePieceFrom" [eventSubmitFromParent]="eventSubmitFromParent">
               </app-upload-select>
+
+              <app-upload-select nameBtn="{{ 'admin.organe.rapportINDH' | translate }}"
+                [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="rapportINDHTo"
+                [eventSubmitToParent]="rapportINDHFrom" [eventSubmitFromParent]="eventSubmitFromParent">
+              </app-upload-select>
+
+              <app-upload-select nameBtn="{{ 'admin.organe.avisPosition' | translate }}"
+              [folderToSaveInServer]="folderToSaveInServer" [propertyOfParent]="avisPositionTo"
+              [eventSubmitToParent]="avisPositionFrom" [eventSubmitFromParent]="eventSubmitFromParent">
+            </app-upload-select>
+
             </div>
           </div>
         </form>
         <div class="actions">
-          <button mat-button [routerLink]="['/admin/rapport/list']" type="button">{{ 'admin.Retour' | translate }}</button>&nbsp;&nbsp;
+          <button mat-button [routerLink]="['/admin/rapport/list']" type="button">{{ 'admin.Retour' | translate
+            }}</button>&nbsp;&nbsp;
           <!-- <button mat-button (click)="reset()" type="button">Annuler</button>&nbsp;&nbsp; -->
           <button mat-raised-button cdkFocusInitial color="primary" (click)="submit(myForm.value)"
             [disabled]="myForm.invalid">{{ 'admin.Enregistre' | translate }}</button>

@@ -64,6 +64,7 @@
       "InstitutionsNationales": "المؤسسات الوطنية"
     },
     "epu": {
+      "rapportINDH": "تقرير المؤسسة الوطنية لحقوق الإنسان",
       "list": {
         "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
         "Examen": "الإستعراض",
@@ -89,6 +90,8 @@
       "situation_des_réserves": " وضعية التحفظات",
       "Pièce-jointe": " المرفقات",
       "Telecharger": " تحميل",
+      "rapportINDH": "تقرير المؤسسة الوطنية لحقوق الإنسان",
+      "avisPosition": "الآراء والمواقف",
       "list": {
         "Tauxderecommandationsparorgane": "التوصيات حسب الهيئات",
         "Organesdetraité": " هيئات المعاهدات",
@@ -141,6 +144,7 @@
     "ps": {
       "Procédure_spéciales": "الاجراءات الخاصة",
       "Procédure_spéciale": "الاجراء الخاص",
+      "commentaire": "تعليق/مداخلة المملكة ",
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ التوصيات حسب الاجراءات الخاصة",
       "list": {
         "Tauxderecommandationsparvisite": "معدل التوصية لكل زيارة",

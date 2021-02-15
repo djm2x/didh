@@ -64,6 +64,7 @@
       "InstitutionsNationales": "Institutions Nationales"
     },
     "epu": {
+      "rapportINDH": "Rapport de l’INDH",
       "list": {
         "Examenpériodiqueuniversal": "Examen périodique universel",
         "Examen": "Examen",
@@ -89,6 +90,8 @@
       "situation_des_réserves": "situation des réserves",
       "Pièce-jointe": "Pièce-jointe",
       "Telecharger": "Telecharger",
+      "rapportINDH": "Rapport de l’INDH",
+      "avisPosition": "Avis et Positions",
       "list": {
         "Tauxderecommandationsparorgane": "Taux de recommandations par organe",
         "Organesdetraité": "Organes de Traités",
@@ -114,6 +117,8 @@
         "Datederatification": "Date de ratification",
         "Rapport": "Rapport",
         "Traité": "Traité",
+        "rapportINDH": "Rapport de l’INDH",
+        "avisPosition": "Avis et Positions",
         "traite": {
           "list": {
             "PIECE": "PIECE",
@@ -142,6 +147,7 @@
     "ps": {
       "Procédure_spéciales": "Procédure spéciales",
       "Procédure_spéciale": "Procédure spéciale",
+      "commentaire": "Commentaire / intervention du Royaume ",
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "Mise en œuvre des recommandations par Procédures spéciales",
       "list": {
         "Tauxderecommandationsparvisite": "Taux de recommandations par visite",

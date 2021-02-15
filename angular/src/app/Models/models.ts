@@ -38,6 +38,7 @@ export class Examen {
   observationFinale = '';
   rapportMiParcours = '';
   discours = '';
+  rapportINDH = '';
   miseOeuvrePiece = '';
 }
 
@@ -66,6 +67,8 @@ export class Traite {
   analytiquePiece = '';
   discours = '';
   rapportParallelePiece = '';
+  rapportINDH = '';
+  avisPosition = '';
   rapports: Rapport[] = [];
   user = new User();
 }
@@ -117,6 +120,7 @@ export class Visite {
   lienRapport = '';
   lienUpload = '';
   miseOeuvrePiece = '';
+  commentaire = '';
 }
 
 export class Evenement {

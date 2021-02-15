@@ -41,6 +41,12 @@ export class UpdateComponent implements OnInit {
   rapportParallelePieceTo = new Subject();
   rapportParallelePieceFrom = new Subject();
   //
+  rapportINDHTo = new Subject();
+  rapportINDHFrom = new Subject();
+  //
+  avisPositionTo = new Subject();
+  avisPositionFrom = new Subject();
+
   eventSubmitFromParent = new Subject();
 
   constructor(private route: ActivatedRoute, private snack: SnackBarService
@@ -70,6 +76,8 @@ export class UpdateComponent implements OnInit {
           this.observationPieceTo.next(this.o.observationPiece);
           this.miseOeuvrePieceTo.next(this.o.miseOeuvrePiece);
           this.analytiquePieceTo.next(this.o.analytiquePiece);
+          this.rapportINDHTo.next(this.o.rapportINDH);
+          this.avisPositionTo.next(this.o.avisPosition);
         }, 100);
       });
     }
@@ -80,6 +88,8 @@ export class UpdateComponent implements OnInit {
     this.observationPieceFrom.subscribe(r => this.myForm.get('observationPiece').setValue(r));
     this.miseOeuvrePieceFrom.subscribe(r => this.myForm.get('miseOeuvrePiece').setValue(r));
     this.analytiquePieceFrom.subscribe(r => this.myForm.get('analytiquePiece').setValue(r));
+    this.rapportINDHFrom.subscribe(r => this.myForm.get('rapportINDH').setValue(r));
+    this.avisPositionFrom.subscribe(r => this.myForm.get('avisPosition').setValue(r));
     // this.dataFromChild.subscribe((r: { datasource: any[], file: File, rapportToDelete: any[] }) => {
     //   this.rapports = r.datasource;
     //   if (r.file) {
@@ -110,6 +120,8 @@ export class UpdateComponent implements OnInit {
       miseOeuvrePiece: [this.o.miseOeuvrePiece],
       analytiquePiece: [this.o.analytiquePiece],
       rapportParallelePiece: [this.o.rapportParallelePiece],
+      rapportINDH: [this.o.rapportINDH],
+      avisPosition: [this.o.avisPosition],
     });
   }
 

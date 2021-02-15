@@ -327,21 +327,21 @@ export class ListComponent implements OnInit {
 
     r.forEach(e => {
       if (e.type === 'PE') {
-        barChartDataPE[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartDataPE[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartDataPE[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        barChartDataPE[0].data.push(+(e.p * e.t / 100).toFixed(0));
+        barChartDataPE[1].data.push(+(e.r * e.t / 100).toFixed(0));
+        barChartDataPE[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
       } else if (e.type === 'Autre') {
-        barChartDataAutre[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartDataAutre[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartDataAutre[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        barChartDataAutre[0].data.push(+(e.p * e.t / 100).toFixed(0));
+        barChartDataAutre[1].data.push(+(e.r * e.t / 100).toFixed(0));
+        barChartDataAutre[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
       } else if (e.type === 'IN') {
-        barChartDataIN[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartDataIN[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartDataIN[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        barChartDataIN[0].data.push(+(e.p * e.t / 100).toFixed(0));
+        barChartDataIN[1].data.push(+(e.r * e.t / 100).toFixed(0));
+        barChartDataIN[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
       } else if (e.type === 'PJ') {
-        barChartDataPJ[0].data.push((e.p * e.t / 100).toFixed(0));
-        barChartDataPJ[1].data.push((e.r * e.t / 100).toFixed(0));
-        barChartDataPJ[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+        barChartDataPJ[0].data.push(+(e.p * e.t / 100).toFixed(0));
+        barChartDataPJ[1].data.push(+(e.r * e.t / 100).toFixed(0));
+        barChartDataPJ[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
       }
     });
 

@@ -40,6 +40,7 @@ export class ExamenComponent implements OnInit {
     { columnDef: 'observationFinale', headName: 'Observations finales/ADDITIFS' },
     { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
     { columnDef: 'rapportMiParcours', headName: 'Rapport mi-parcours' },
+    { columnDef: 'rapportINDH', headName: 'rapportINDH' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
     e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
@@ -226,10 +227,10 @@ export class ExamenComponent implements OnInit {
       ];
 
       r.forEach(e => {
-        barChartData[0].data.push((e.one * 100 / e.total).toFixed(0));
-        barChartData[1].data.push((e.two * 100 / e.total).toFixed(0));
-        barChartData[2].data.push((e.three * 100 / e.total).toFixed(0));
-        barChartData[3].data.push((e.four * 100 / e.total).toFixed(0));
+        barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+        barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+        barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+        barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       });
 
       this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });

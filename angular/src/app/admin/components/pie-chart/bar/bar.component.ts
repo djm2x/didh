@@ -4,8 +4,10 @@ import { Label } from 'ng2-charts';
 import { Subject } from 'rxjs';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { DetailComponent } from '../detail/detail.component';
-import * as pluginLabels from 'chartjs-plugin-labels';
 import { MatDialog } from '@angular/material/dialog';
+// import * as pluginLabels from 'chartjs-plugin-labels';
+// import * as Chart from 'chart.js';
+
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
@@ -48,21 +50,21 @@ export class BarComponent implements OnInit {
         padding: 10,
       }
     },
-    plugins: {
+    // plugins: {
 
-      labels: {
-        // fontColor: ['#00000000',],
-        precision: 0,
-        render: 'value',
-      },
-      pieceLabel: {
-        render: (args) => {
-          const label = args.label;
-          const value = args.value;
-          return label + ': ' + value;
-        }
-      },
-    }
+    //   labels: {
+    //     // fontColor: ['#00000000',],
+    //     precision: 0,
+    //     render: 'value',
+    //   },
+    //   pieceLabel: {
+    //     render: (args) => {
+    //       const label = args.label;
+    //       const value = args.value;
+    //       return label + ': ' + value;
+    //     }
+    //   },
+    // }
   };
 
 
@@ -70,7 +72,7 @@ export class BarComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   pieChartPlugins = [
-    pluginLabels,
+    // pluginLabels,
     {
       beforeInit: (chart, options) => {
         chart.legend.afterFit = function() {
@@ -117,6 +119,8 @@ export class BarComponent implements OnInit {
       this.title = r.title;
       this.barChartLabels = r.barChartLabels; // .map(e => e.toString().substring(0, 35) + ' ...');
       this.barChartData = r.barChartData;
+
+      console.log(r)
       // console.log(this.barChartData[0].data[0])
       // console.log(this.barChartData[1].data[0])
       // console.log(this.barChartData[2].data[0])

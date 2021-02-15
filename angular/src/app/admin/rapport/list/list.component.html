@@ -116,6 +116,28 @@
           </td>
         </ng-container>
 
+        <ng-container [matColumnDef]="columnDefs[7].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.rapportINDH' | translate }}</th>
+          <td mat-cell *matCellDef="let row">
+            <button class="center" mat-icon-button
+              [disabled]="disable(row.rapportINDH)"
+              [matTooltip]="row.rapportINDH" color="accent"
+              (click)="showPieceJoin(row.rapportINDH)">
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="columnDefs[8].columnDef">
+          <th mat-header-cell *matHeaderCellDef>{{ 'admin.organe.avisPosition' | translate }}</th>
+          <td mat-cell *matCellDef="let row">
+            <button class="center" mat-icon-button [disabled]="disable(row.avisPosition)"
+              [matTooltip]="row.avisPosition" color="accent" (click)="showPieceJoin(row.avisPosition)">
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
 
         <ng-container matColumnDef="option" style="flex-direction: row-reverse;">
           <th mat-header-cell *matHeaderCellDef> </th>

@@ -19,6 +19,8 @@ namespace Admin5.Models
         public string AnalytiquePiece { get; set; }
         public string RapportParallelePiece { get; set; }
         public string Discours { get; set; }
+        public string RapportINDH { get; set; }
+        public string AvisPosition { get; set; }
         public DateTime DateRatification { get; set; }
         public DateTime DateSignature { get; set; }
         public virtual ICollection<Rapport> Rapports { get; set; }

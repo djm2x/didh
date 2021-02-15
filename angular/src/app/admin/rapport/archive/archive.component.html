@@ -69,6 +69,28 @@
           </mat-list>
         </div>
 
+        <mat-divider [vertical]="true"> </mat-divider>
+
+        <div class="col">
+          <p style="font-weight:bold;">{{ 'admin.organe.update.rapportINDH' | translate }}</p>
+          <mat-list role="list">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportINDH)">
+              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <mat-divider [vertical]="true"> </mat-divider>
+
+        <div class="col">
+          <p style="font-weight:bold;">{{ 'admin.organe.update.avisPosition' | translate }}</p>
+          <mat-list role="list">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.avisPosition)">
+              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
       </div>
 
     </div>

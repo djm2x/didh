@@ -232,9 +232,9 @@ export class DiagrammeComponent implements OnInit {
   //   ];
 
   //   r.forEach(e => {
-  //     barChartData[0].data.push((e.p * e.t / 100).toFixed(0));
-  //     barChartData[1].data.push((e.r * e.t / 100).toFixed(0));
-  //     barChartData[2].data.push((e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+  //     barChartData[0].data.push(+(e.p * e.t / 100).toFixed(0));
+  //     barChartData[1].data.push(+(e.r * e.t / 100).toFixed(0));
+  //     barChartData[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
   //   });
 
 
@@ -354,10 +354,10 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push((e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push((e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push((e.four * 100 / e.total).toFixed(0));
+      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
 
@@ -380,10 +380,10 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push((e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push((e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push((e.four * 100 / e.total).toFixed(0));
+      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
     // tslint:disable-next-line:max-line-length
     this.axePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Axe') });
@@ -402,10 +402,10 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((+e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push((+e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push((+e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push((+e.four * 100 / e.total).toFixed(0));
+      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
     // tslint:disable-next-line:max-line-length
@@ -427,10 +427,10 @@ export class DiagrammeComponent implements OnInit {
     ];
 
     r.forEach(e => {
-      barChartData[0].data.push((e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push((e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push((e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push((e.four * 100 / e.total).toFixed(0));
+      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
 
@@ -467,10 +467,10 @@ export class DiagrammeComponent implements OnInit {
 
     r.forEach(e => {
       // barChartDataPE[0].data.push(e.t);
-      barChartDataPE[0].data.push((e.one * 100 / e.total).toFixed(0));
-      barChartDataPE[1].data.push((e.two * 100 / e.total).toFixed(0));
-      barChartDataPE[2].data.push((e.three * 100 / e.total).toFixed(0));
-      barChartDataPE[3].data.push((e.four * 100 / e.total).toFixed(0));
+      barChartDataPE[0].data.push(+(e.one * 100 / e.total).toFixed(0));
+      barChartDataPE[1].data.push(+(e.two * 100 / e.total).toFixed(0));
+      barChartDataPE[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartDataPE[4].data.push(e.count);
     });
 

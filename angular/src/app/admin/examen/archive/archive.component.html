@@ -8,8 +8,8 @@
   <div class="content">
     <div mat-dialog-content>
       <div class="row">
- 
-        
+
+
         <div class="col">
           <p style="font-weight:bold;">{{ 'admin.epu.list.Rapportnational' | translate }}</p>
           <mat-list role="list">
@@ -50,7 +50,7 @@
           </mat-list>
         </div>
 
-        
+
 
         <mat-divider [vertical]="true"> </mat-divider>
 
@@ -62,13 +62,24 @@
             </mat-list-item>
           </mat-list>
         </div>
-        
+
         <mat-divider [vertical]="true"> </mat-divider>
 
         <div class="col">
           <p style="font-weight:bold;">{{ 'admin.epu.list.Rapportmi-parcours' | translate }}</p>
           <mat-list role="list">
             <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportMiParcours)">
+              <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <mat-divider [vertical]="true"> </mat-divider>
+
+        <div class="col">
+          <p style="font-weight:bold;">{{ 'admin.epu.rapportINDH' | translate }}</p>
+          <mat-list role="list">
+            <mat-list-item matRipple style="cursor: pointer;" (click)="download(e.substring(0, e.length-1))" *ngFor="let e of propertyToList(o.rapportINDH)">
               <span style="font-size: .9em;">- {{e.substring(14, e.length-1)}}</span>
             </mat-list-item>
           </mat-list>

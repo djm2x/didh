@@ -47,8 +47,11 @@ export class QuestionnaireComponent implements OnInit {
     nameAr: string,
   }[] = [];
 
-  theme = new FormControl('');
-  sousTheme = new FormControl('');
+  theme = new FormControl(0);
+  sousTheme = new FormControl(0);
+  annee = new FormControl(/*new Date().getFullYear()*/0);
+  reporter = new FormControl('');
+  reporterAr = new FormControl('');
 
   dataSource = [];
   columnDefs = [
@@ -67,7 +70,7 @@ export class QuestionnaireComponent implements OnInit {
   progress = 0;
   message: any;
   formData = new FormData();
-  constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
+  constructor(public uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private http: HttpClient, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
@@ -84,8 +87,11 @@ export class QuestionnaireComponent implements OnInit {
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
-          this.theme.value !== '' ? this.theme.value : '*',
-          this.sousTheme.value !== '' ? this.sousTheme.value : '*',
+          this.theme.value !== 0 ? this.theme.value : 0,
+          this.sousTheme.value !== 0 ? this.sousTheme.value : 0,
+          this.annee.value !== 0 ? this.annee.value : 0,
+          this.reporter.value !== '' ? this.reporter.value : '*',
+          this.reporterAr.value !== '' ? this.reporterAr.value : '*',
         );
       }
     );
@@ -93,8 +99,8 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir, theme, sousTheme) {
-    this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, theme, sousTheme).subscribe(
+  getPage(startIndex, pageSize, sortBy, sortDir, theme, sousTheme, annee, reporter, reporterAr) {
+    this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, theme, sousTheme, annee, reporter, reporterAr).subscribe(
       (r: any) => {
         console.log(r.list);
         this.dataSource = (r.list as Questionnaire[]).map(e => {
@@ -128,8 +134,8 @@ export class QuestionnaireComponent implements OnInit {
     return dialogRef.afterClosed();
   }
 
-  selectChange(name: string) {
-    this.sousThemes = this.themes.find(e => e.name.includes(name)).sousThemes;
+  selectChange(id: number) {
+    this.sousThemes = this.themes.find(e => e.id === id).sousThemes;
   }
 
   add() {
@@ -153,8 +159,11 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   reset() {
-    this.theme.setValue('');
-    this.sousTheme.setValue('');
+    this.theme.setValue(0);
+    this.sousTheme.setValue(0);
+    this.annee.setValue(0);
+    this.reporter.setValue('');
+    this.reporterAr.setValue('');
     this.update.next(true);
   }
 
