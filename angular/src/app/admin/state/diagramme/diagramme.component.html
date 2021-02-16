@@ -28,7 +28,7 @@
             <mat-form-field appearance="fill">
               <mat-label>{{ 'admin.questionnaire.list.année' | translate }}</mat-label>
               <mat-select formControlName="annee">
-                <mat-option *ngFor="let e of annee" [value]="e">{{ e }}</mat-option>
+                <mat-option *ngFor="let e of annees" [value]="e.annee">{{ mytranslate.langSync === 'fr' ? e.anneeDisplay : e.anneeDisplayAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 

@@ -9,7 +9,7 @@
 }
 
 .mat-header-row {
-  background-color: #a0a0a0  !important;
+  background-color: #79797973  !important;
   .mat-sort-header-button ,.mat-header-cell {
     // font-weight: bolder !important;
     // nothing
@@ -118,3 +118,14 @@ table {
   max-width: 24px !important;
 }
 
+
+td.mat-cell, td.mat-footer-cell, th.mat-sort-header
+{
+  border-left-width: 2px !important;
+  border-left-style: solid !important;
+  border-left-color: rgba(0, 0, 0, 0.12) !important;
+  // text-align: left !important;
+  // justify-content: left !important;
+  // margin-left: 1px;
+  // font-weight: 200;
+}

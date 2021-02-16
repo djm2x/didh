@@ -78,6 +78,8 @@ export class ExamenComponent implements OnInit {
           this.sort.direction ? this.sort.direction : 'desc',
         );
       });
+
+    this.uow.recommendations.mecanismeCount('examen').subscribe(r => this.countRec.next(r));
   }
 
   disable(e: string) {
@@ -178,7 +180,7 @@ export class ExamenComponent implements OnInit {
 
       dataToShowInTable.push(r.one, r.two, r.three, r.four);
 
-      this.countRec.next(r.one + r.two + r.three + r.four);
+
 
       const chartColors = [
         '#db0707',
@@ -190,7 +192,7 @@ export class ExamenComponent implements OnInit {
 
       this.mecanismeState.next({
         chartLabels, chartData, chartColors, dataToShowInTable
-        , title: this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle')
+        , title: this.mytranslate.get('admin.header.Etat de mise en œuvre')
       });
 
     });
@@ -201,7 +203,7 @@ export class ExamenComponent implements OnInit {
 
       const chartLabels = r.map(e => e.name/*.substring(0, 40) + ' ...'*/);
       const chartData = r.map(e => +e.one.toFixed(0));
-      const chartColors = [ ];
+      const chartColors = [];
       const dataToShowInTable = [];
 
       this.stateByMecanisme.next({

@@ -25,9 +25,6 @@ namespace Admin5.Controllers
         [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}")]
         public virtual async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir)
         {
-            // int i = typeof(T).FullName.LastIndexOf('.');
-            // string tableName = typeof(T).FullName.Substring(i + 1) + "s";
-
             var list = await _context.Set<T>()
                 .OrderByName<T>(sortBy, sortDir == "desc")
                 .Skip(startIndex)

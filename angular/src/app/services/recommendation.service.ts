@@ -14,7 +14,7 @@ export class RecommendationService extends SuperService<Recommendation> {
   }
 
   annee() {
-    return this.http.get<number[]>(`${this.urlApi}/${this.controller}/annee`);
+    return this.http.get<{annee: number, anneeDisplay: string, anneeDisplayAr: string}[]>(`${this.urlApi}/${this.controller}/annee`);
   }
 
   recommandationValues() {
@@ -67,6 +67,10 @@ export class RecommendationService extends SuperService<Recommendation> {
         count: number,
       }
     >(`${this.urlApi}/${this.controller}/stateParamAxe`, o);
+  }
+
+  mecanismeCount(name: string) {
+    return this.http.get<number>(`${this.urlApi}/${this.controller}/mecanismeCount/${name}`);
   }
 
   // stateParamAxe0(o) {

@@ -12,6 +12,7 @@ export class CountComponent implements OnInit {
   @Input() count = new Subject();
   @Input() height = '62vh';
   @Input() ifEpu = false;
+  @Input() title = '';
 
 
   constructor(public mytranslate: MyTranslateService) { }

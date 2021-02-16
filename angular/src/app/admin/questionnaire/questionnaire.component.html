@@ -37,11 +37,11 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="col-md-5">
+          <mat-form-field appearance="fill" class="col-md-5" *ngIf="mytranslate.langSync === 'fr'">
             <mat-label>{{ 'admin.questionnaire.list.Reporter' | translate }}</mat-label>
             <input matInput [formControl]="reporter" required>
           </mat-form-field>
-          <mat-form-field appearance="fill" class="col-md-5">
+          <mat-form-field appearance="fill" class="col-md-5" *ngIf="mytranslate.langSync === 'ar'">
             <mat-label>{{ 'admin.questionnaire.list.ReporterAr' | translate }}</mat-label>
             <input matInput [formControl]="reporterAr" required>
           </mat-form-field>

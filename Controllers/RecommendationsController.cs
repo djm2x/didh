@@ -79,6 +79,26 @@ namespace Admin5.Controllers
             return Ok(new { list = list, count = count });
         }
 
+        [HttpGet("{name}")]
+        public async Task<IActionResult> mecanismeCount(string name)
+        {
+            var q = _context.Recommendations;
+
+            if (name == "examen")
+            {
+                return Ok (await q.Where(e => e.IdCycle != null).CountAsync());
+            }
+
+            if (name == "organe")
+            {
+                return Ok (await q.Where(e => e.IdOrgane != null).CountAsync());
+            }
+
+            return Ok (await q.Where(e => e.IdVisite != null).CountAsync());
+        }
+
+
+
         [HttpGet]
         public async Task<IActionResult> RecommandationValues()
         {
@@ -92,13 +112,22 @@ namespace Admin5.Controllers
         [HttpGet]
         public async Task<IActionResult> Annee()
         {
-            var list = await _context.Recommendations.Select(e => e.Annee)
-                .Distinct()
-                .OrderByDescending(e => e)
-                .ToListAsync()
+            // var list = await _context.Recommendations.Select(e => e.Annee)
+            //     .Distinct()
+            //     .OrderByDescending(e => e)
+            //     .ToListAsync()
+            //     ;
+
+            var list0 = (await _context.Recommendations.Where(e => e.Annee != null).ToListAsync()).GroupBy(e => e.Annee)
+                .Select(e => new {
+                    annee = e.Key,
+                    AnneeDisplay = e.First().AnneeDisplay,
+                    AnneeDisplayAr = e.First().AnneeDisplayAr,
+                })
+                .ToList()
                 ;
 
-            return Ok(list);
+            return Ok(list0);
         }
 
         [HttpPost]

@@ -7,7 +7,7 @@
     "lang": "لغة",
     "Enregistre": "حفظ",
     "Retour": "عودة",
-    "recomm": "توصية",
+    "Recommandations": "توصية",
     "du": "من",
     "au": "الى",
     "auth": {
@@ -21,7 +21,11 @@
       "SessionsDH": "دورات مجلس حقوق الانسان",
       "Questionnaires": "استبيانات",
       "Documentation": "أجندة الفحص",
+      "examenCount": "في طور التتبع والأعمال",
+      "organeCount": "تشمل أخر فحص",
+      "visiteCount": "في طور التتبع والأعمال",
       "ExamenPériodiqueuniverselle": "الاستعراض الدوري الشامل",
+      "Etat de mise en œuvre": "وضعية التنفيد",
       "OrganesdeTraités": "هيئات المعاهدات",
       "Procéduresspéciales": "الاجراءات الخاصة",
       "ExamenPériodiqueuniverselleRealise": "Réalisé",
@@ -36,7 +40,7 @@
       "Evènements": "تظاهرات",
       "Statistiques": "إحصائيات",
       "Recommandations": "توصيات",
-      "Synthèse": "أعمال المتابعة",
+      "Synthèse": "أعمال التتبع",
       "Utilisateur": "مستخدم",
       "Profils": "ملفات شخصية",
       "Organisations": "منظمات",
@@ -48,7 +52,7 @@
       "Annee": "سنة"
     },
     "home": {
-      "SystèmedeSuividesrecommandations": "نظام تتبع تنفيذ التوصيات الصادرة عني الأليات الأممية لحقوق الإنسان",
+      "SystèmedeSuividesrecommandations": "نظام تتبع تنفيذ التوصيات الصادرة عن الآليات الأممية لحقوق الإنسان",
       "droitHomme": "نريد للعالم الذي يرثه أطفالنا أن يقوم على أساس القيم المجسدة في ميثاق الأمم المتحدة، وهي: السلام والعدل والاحترام وحقوق الإنسان والتسامح والتضامن. وهذه قيم تعتنقها جميع الأديان الكبرى، ونسعى نحن لجعلها تتجلى في حياتنا اليومية ",
       "sousTitreDroitHomme": "مقتطف من خطاب الأمين العام للأمم المتحدة، أنطونيو غوتيريش، في مراسم أداء اليمين يوم 12 دجنبر 2016",
       "Miseenœuvredesrecommandationsdesmécanismesonusiensdesdroitsdelhomme": "تفعيل توصيات آليات الأمم المتحدة لحقوق الإنسان",
@@ -65,7 +69,7 @@
     },
     "epu": {
       "rapportINDH": "تقرير المؤسسة الوطنية لحقوق الإنسان",
-      "list": {
+        "list": {
         "Examenpériodiqueuniversal": "الاستعراض الدوري الشامل",
         "Examen": "الإستعراض",
         "libelle": "الإستعراض",
@@ -79,7 +83,7 @@
         "Rapportmi-parcours": "التقرير نصف المرحلي",
         "Miseenœuvredesrecommandationsparaxe": "تنفيذ التوصيات حسب المحاور",
         "EtatAvancementderecommandationsparaxe": "وضعية التنفيذ حسب المحاور",
-        "Tauxderecommandationsparaxe": "التوصيات حسب المحاور",
+        "Tauxderecommandationsparaxe": "توزيع التوصيات حسب المحاور",
         "AjouterExamen": "إضافة إستعراض",
         "ModifierExamen": "تعديل إستعراض"
       }
@@ -93,7 +97,7 @@
       "rapportINDH": "تقرير المؤسسة الوطنية لحقوق الإنسان",
       "avisPosition": "الآراء والمواقف",
       "list": {
-        "Tauxderecommandationsparorgane": "التوصيات حسب الهيئات",
+        "Tauxderecommandationsparorgane": "توزيع التوصيات حسب الهيئات",
         "Organesdetraité": " هيئات المعاهدات",
         "Rapportnational": " التقرير الوطني",
         "Discoursduprésident": " كلمة رئيس الوفد",
@@ -105,8 +109,8 @@
         "Taux": "نسبة",
         "Réalisé": "منجز",
         "NonRéalisé": "غير منجز",
-        "EnCours": "في طور الإنجاز",
         "Nombre": "عدد",
+        "EnCours": "في طور الإنجاز",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "وضعية التنفيذ حسب هيئات المعاهدات"
       },
       "update": {
@@ -147,7 +151,7 @@
       "commentaire": "تعليق/مداخلة المملكة ",
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "تنفيذ التوصيات حسب الاجراءات الخاصة",
       "list": {
-        "Tauxderecommandationsparvisite": "معدل التوصية لكل زيارة",
+        "Tauxderecommandationsparvisite": "توزيع التوصيات حسب الزيارات",
         "MANDAT": " الإجراء",
         "Date_de_la_visite": " تاريخ الزيارة",
         "RAPPORT_NATIONAL_DE_LA_VISITE": " وضعية التنفيذ",
@@ -226,6 +230,8 @@
         "Etatdavancement": " التقدم المحرز",
         "PieceJointe": " المرفقات",
         "Organisme": " منظمة",
+        "AnneeDisplay": "affichage de l'année ",
+        "AnneeDisplayAr": "عرض العام ",
         "ORGANISMES": " منظمات",
         "ADRESSE": " عنوان"
       },
@@ -302,7 +308,7 @@
         "session": " دورة",
         "Année": " سنة",
         "Discours_de_Mr_le_Ministre": " كلمة السيد الرئيس",
-        "Documents_de_session": " تقرير الدورة ",
+        "Documents_de_session": " ملف الدورة ",
         "Ajouter_ParticipationSession": " إضافة مشاركة في الدورة",
         "Modifier_Participation_Session": " تعديل مشاركة في الدورة",
         "Participation_Session": " مشاركة في الدورة"
@@ -331,7 +337,10 @@
         "Ajouter_Questionnaire": " إضافة استبيان",
         "Modifier_Questionnaire": " تعديل استبيان"
       },
-      "update": {}
+      "update": {
+
+      }
     }
   }
+
 }

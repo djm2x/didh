@@ -17,6 +17,20 @@ namespace Admin5.Controllers
     {
         public VisitesController(AdminContext context) : base(context)  { }
 
+        [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}")]
+        public override async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir)
+        {
+            var list = await _context.Visites
+                .OrderByName<Visite>("Date", sortDir == "desc")
+                .Skip(startIndex)
+                .Take(pageSize)
+                .ToListAsync()
+                ;
+            int count = await _context.Visites.CountAsync();
+
+            return Ok(new { list = list, count = count });
+        }
+
 
        [HttpGet]
         public async Task<IActionResult> StateDetailByMecanisme() // used

@@ -97,6 +97,8 @@ export class ListComponent implements OnInit {
     this.getStateByMecanisme();
     this.getStateDetailByMecanisme();
 
+    this.uow.recommendations.mecanismeCount('organe').subscribe(r => this.countRec.next(r));
+
   }
 
   disable(e: string) {
@@ -197,8 +199,6 @@ export class ListComponent implements OnInit {
 
       dataToShowInTable.push(r.one, r.two, r.three, r.four);
 
-      this.countRec.next(r.one + r.two + r.three + r.four);
-
       const chartColors = [
         '#db0707',
         '#f7801e',
@@ -209,7 +209,7 @@ export class ListComponent implements OnInit {
 
       this.mecanismeState.next({
         chartLabels, chartData, chartColors, dataToShowInTable
-        , title: this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle')
+        , title: this.mytranslate.get('admin.header.Etat de mise en œuvre')
       });
 
     });
@@ -225,7 +225,7 @@ export class ListComponent implements OnInit {
 
       this.stateByMecanisme.next({
         chartLabels, chartData, chartColors, dataToShowInTable
-        , title: this.mytranslate.get('admin.epu.list.Tauxderecommandationsparaxe')
+        , title: this.mytranslate.get('admin.organe.list.Tauxderecommandationsparorgane')
       });
 
     });

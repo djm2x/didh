@@ -30,6 +30,8 @@ namespace Admin5.Models
         public string PieceJointe { get; set; }
 
         public int? Annee { get; set; }
+        public string AnneeDisplay { get; set; }
+        public string AnneeDisplayAr { get; set; }
 
         // public int IdOrganisme { get; set; }
         // public Organisme Organisme { get; set; }

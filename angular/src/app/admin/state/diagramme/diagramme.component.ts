@@ -36,7 +36,7 @@ export class DiagrammeComponent implements OnInit {
   pays = this.uow.pays.get();
   // listAxes = new Subject<any>();
   // listOrganisme = new Subject<any>();
-  annee: number[] = []; // = this.uow.recommendations.annee();
+  annees: {annee: number, anneeDisplay: string, anneeDisplayAr: string}[] = []; // = this.uow.recommendations.annee();
 
   // myAuto = new FormControl('');
   // filteredOptions: Observable<any>;
@@ -84,11 +84,11 @@ export class DiagrammeComponent implements OnInit {
     });
 
     this.uow.recommendations.annee().subscribe(r => {
-      this.annee = r;
+      this.annees = r;
       console.log(r)
 
       setTimeout(() => {
-        this.myForm.get('annee').setValue(this.annee[0])
+        this.myForm.get('annee').setValue(this.annees[0])
       }, 300);
       this.reset();
     });
@@ -291,7 +291,7 @@ export class DiagrammeComponent implements OnInit {
     // this.o.mecanisme = 'Examen périodique universal';
     // this.o.idCycle = 1;
     this.createForm();
-    this.myForm.get('annee').setValue(this.annee[this.annee.length - 1]);
+    this.myForm.get('annee').setValue(this.annees[this.annees.length - 1]);
     this.searchAndGet(this.o);
     this.myTab.selectedIndex = 0;
     // this.toChild.next(this.o);

@@ -136,6 +136,10 @@ export class UpdateComponent implements OnInit {
       pieceJointe: [this.o.pieceJointe],
       idPays: [this.o.idPays, /*Validators.required*/],
       annee: [this.o.annee],
+      anneeDisplay: [this.o.anneeDisplay],
+      anneeDisplayAr: [this.o.anneeDisplayAr],
+
+
 
       // idSynthese: [this.o.idSynthese, Validators.required],
     });

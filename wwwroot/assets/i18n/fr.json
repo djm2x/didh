@@ -7,7 +7,7 @@
     "lang": "Langage",
     "Enregistre": "Enregistre",
     "Retour": "Retour",
-    "recomm": "Recommandations",
+    "Recommandations": "Recommandations",
     "du": "du",
     "au": "au",
     "auth": {
@@ -21,7 +21,11 @@
       "SessionsDH": "Sessions DH",
       "Questionnaires": "Questionnaires",
       "Documentation": "Calendrier des Examens",
+      "examenCount": "En cours de suivi et d'affaires",
+      "organeCount": "Inclure le dernier Traiter",
+      "visiteCount": "En cours de suivi et d'affaires ",
       "ExamenPériodiqueuniverselle": "Examen Périodique universel",
+      "Etat de mise en œuvre": "Etat de mise en œuvre",
       "ExamenPériodiqueuniverselleRealise": "Epu : Réalisé",
       "ExamenPériodiqueuniverselleNonRealise": "Epu : Non Réalisé",
       "ExamenPériodiqueuniverselleEnCours": "Epu : EnCours",
@@ -230,6 +234,8 @@
         "PieceJointe": "Piece Jointe",
         "Organisme": "Organisme",
         "ORGANISMES": "Organismes",
+        "AnneeDisplay": "affichage de l'année ",
+        "AnneeDisplayAr": "عرض العام ",
         "ADRESSE": "Adresse"
       },
       "list": {

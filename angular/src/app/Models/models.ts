@@ -166,6 +166,8 @@ export class Recommendation {
   etatAvancement = '';
   observation = '';
   mecanisme = '';
+  anneeDisplay = '';
+  anneeDisplayAr = '';
 
   idCycle = 0;
   axes = '';
