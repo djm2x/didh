@@ -15,7 +15,7 @@
     "prod": "npm run prod-front && npm run prod-back",
     "init": "git init && git remote add origin https://github.com/djm2x/didh.git",
     "cmt": "git add . && git commit -m \"commit\"",
-    "push": "git add . && git commit -m \"add attachement file\" && git push -u origin didh-v2",
+    "push": "git add . && git commit -m \"deploy\" && git push -u origin didh-v2",
     "git-login": "git config --global user.email",
     "git": "npm run f-git-cm && npm run b-git-cm",
     "test": "echo \"Error: no test specified\" && exit 1"
