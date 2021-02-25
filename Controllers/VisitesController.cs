@@ -10,7 +10,7 @@ using Admin5.Providers;
 
 namespace Admin5.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class VisitesController : SuperController<Visite>

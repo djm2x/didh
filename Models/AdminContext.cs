@@ -59,6 +59,21 @@ namespace Admin5.Models
                 entity.Property(e => e.Url);
             });
 
+            modelBuilder.Entity<Questionnaire>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.IdAxe);
+                entity.Property(e => e.IdSousAxe);
+                entity.Property(e => e.Annee);
+                entity.Property(e => e.PieceJointe);
+
+                entity.HasOne(d => d.Axe).WithMany(p => p.Questionnaires).HasForeignKey(d => d.IdAxe);
+                entity.HasOne(d => d.SousAxe).WithMany(p => p.Questionnaires).HasForeignKey(d => d.IdSousAxe);
+
+            });
+
             modelBuilder.Entity<Examen>(entity =>
            {
                entity.HasKey(e => e.Id);

@@ -40,6 +40,10 @@ export class UpdateComponent implements OnInit {
   //
   eventSubmitFromParent = new Subject();
   //
+
+  axes = this.uow.axes.get();
+  sousAxes = [];
+
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any
     , private fb: FormBuilder, public uow: UowService, public mytranslate: MyTranslateService) { }
 
@@ -51,10 +55,9 @@ export class UpdateComponent implements OnInit {
     this.themes = await this.uow.themes.toPromise();
 
     if (this.o.id !== 0) {
-      // const t = this.themes.find(e => e.name.includes(this.o.theme));
-      // this.sousThemes = t ? t.sousThemes : [];
+      this.uow.sousAxes.get().subscribe(r => this.sousAxes = r);
 
-      this.selectChange(this.o.theme)
+      // this.selectChange(this.o.theme)
     }
 
 
@@ -66,17 +69,23 @@ export class UpdateComponent implements OnInit {
 
   }
 
+  axeChange(idAxe: number) {
+    this.uow.sousAxes.getByIdAxe(idAxe).subscribe(r => {
+      this.sousAxes = r as any[];
+    });
+  }
+
   createForm() {
     this.myForm = this.fb.group({
       id: this.o.id,
-      theme: [this.o.theme, Validators.required],
+      theme: [this.o.theme],
       sousTheme: [this.o.sousTheme],
-      // themeAr: [this.o.themeAr],
-      // sousThemeAr: [this.o.sousThemeAr],
+      idAxe: [this.o.idAxe, Validators.required],
+      idSousAxe: [this.o.idSousAxe],
       pieceJointe: [this.o.pieceJointe],
       reporter: [this.o.reporter],
       reporterAr: [this.o.reporterAr],
-      annee: [this.o.annee],
+      annee: [this.o.annee, Validators.required],
     });
   }
 

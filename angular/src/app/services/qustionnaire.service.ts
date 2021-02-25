@@ -11,9 +11,9 @@ export class QuestionnaireService  extends SuperService<Questionnaire> {
     super('Questionnaires');
   }
 
-  getAll(startIndex, pageSize, sortBy, sortDir, theme, sousTheme, annee, reporter, reporterAr) {
+  getAll(startIndex, pageSize, sortBy, sortDir, idAxe, idSousAxe, annee) {
     return this.http.get(
-      `${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${theme}/${sousTheme}/${annee}/${reporter}/${reporterAr}`);
+      `${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${idAxe}/${idSousAxe}/${annee}`);
   }
 
 }

@@ -20,6 +20,6 @@ namespace Admin5.Models
         
         // [JsonIgnore]
         public virtual ICollection<SousAxe> SousAxes { get; set; }
-        // public virtual ICollection<Recommendation> Recommendations { get; set; }
+        public virtual ICollection<Questionnaire> Questionnaires { get; set; }
     }
 }

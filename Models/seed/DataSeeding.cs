@@ -79,7 +79,7 @@ namespace seed
                 .RuleFor(o => o.Fix, f => f.Phone.PhoneNumber("(+212)5 ## ##-##-##"))
                 .RuleFor(o => o.Username, (f, u) => f.Internet.UserName(u.Nom, u.Prenom))
                 .RuleFor(o => o.Actif, (f, u) => f.Random.Bool())
-                .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
+                // .RuleFor(o => o.IdOrganisme, f => f.Random.Number(1, 6))
                 .RuleFor(o => o.IdProfil, f => f.Random.Number(2, 4));
             // f.Company.CompanyName()
 

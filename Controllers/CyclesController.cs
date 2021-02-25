@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Admin5.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class CyclesController : SuperController<Cycle>

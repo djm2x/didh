@@ -15,5 +15,7 @@ namespace Admin5.Models
         public int IdAxe { get; set; }
         public Axe Axe { get; set; }
         // [System.Text.Json.Serialization.JsonIgnore]
+        public virtual ICollection<Questionnaire> Questionnaires { get; set; }
+
     }
 }

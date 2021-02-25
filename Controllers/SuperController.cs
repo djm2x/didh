@@ -12,7 +12,7 @@ using System.Linq.Expressions;
 
 namespace Admin5.Controllers
 {
-    // [Authorize]
+    // //[Authorize]
     public class SuperController<T> : ControllerBase where T : class
     {
         protected readonly AdminContext _context;

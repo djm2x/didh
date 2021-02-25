@@ -47,8 +47,8 @@ export class QuestionnaireComponent implements OnInit {
     nameAr: string,
   }[] = [];
 
-  theme = new FormControl(0);
-  sousTheme = new FormControl(0);
+  idAxe = new FormControl(0);
+  idSousAxe = new FormControl(0);
   annee = new FormControl(/*new Date().getFullYear()*/0);
   reporter = new FormControl('');
   reporterAr = new FormControl('');
@@ -56,9 +56,9 @@ export class QuestionnaireComponent implements OnInit {
   dataSource = [];
   columnDefs = [
     { columnDef: 'annee', headName: 'année' },
-    { columnDef: 'theme', headName: 'Theme' },
-    { columnDef: 'sousTheme', headName: 'Sous theme' },
-    { columnDef: 'reporter', headName: 'reporter' },
+    { columnDef: 'axe', headName: 'axe' },
+    { columnDef: 'sousAxe', headName: 'sousAxe' },
+    // { columnDef: 'reporter', headName: 'reporter' },
     { columnDef: 'pieceJointe', headName: 'Documents' },
     { columnDef: 'option', headName: 'OPTION' },
   ].map(e => {
@@ -70,6 +70,10 @@ export class QuestionnaireComponent implements OnInit {
   progress = 0;
   message: any;
   formData = new FormData();
+
+  axes = this.uow.axes.get();
+  sousAxes = [];
+
   constructor(public uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private http: HttpClient, @Inject('BASE_URL') public url: string
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
@@ -87,11 +91,11 @@ export class QuestionnaireComponent implements OnInit {
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
-          this.theme.value !== 0 ? this.theme.value : 0,
-          this.sousTheme.value !== 0 ? this.sousTheme.value : 0,
+          this.idAxe.value !== 0 ? this.idAxe.value : 0,
+          this.idSousAxe.value !== 0 ? this.idSousAxe.value : 0,
           this.annee.value !== 0 ? this.annee.value : 0,
-          this.reporter.value !== '' ? this.reporter.value : '*',
-          this.reporterAr.value !== '' ? this.reporterAr.value : '*',
+          // this.reporter.value !== '' ? this.reporter.value : '*',
+          // this.reporterAr.value !== '' ? this.reporterAr.value : '*',
         );
       }
     );
@@ -99,8 +103,15 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir, theme, sousTheme, annee, reporter, reporterAr) {
-    this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, theme, sousTheme, annee, reporter, reporterAr).subscribe(
+
+  axeChange(idAxe: number) {
+    this.uow.sousAxes.getByIdAxe(idAxe).subscribe(r => {
+      this.sousAxes = r as any[];
+    });
+  }
+
+  getPage(startIndex, pageSize, sortBy, sortDir, idAxe, idSousAxe, annee) {
+    this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, idAxe, idSousAxe, annee).subscribe(
       (r: any) => {
         console.log(r.list);
         this.dataSource = (r.list as Questionnaire[]).map(e => {
@@ -159,8 +170,8 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   reset() {
-    this.theme.setValue(0);
-    this.sousTheme.setValue(0);
+    this.idAxe.setValue(0);
+    this.idSousAxe.setValue(0);
     this.annee.setValue(0);
     this.reporter.setValue('');
     this.reporterAr.setValue('');

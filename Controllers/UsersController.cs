@@ -18,7 +18,7 @@ using Helpers;
 
 namespace Admin5.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UsersController : SuperController<User>

@@ -191,6 +191,10 @@ export class Recommendation {
 
 export class Questionnaire {
   id = 0;
+  idAxe = 0;
+  axe = new Axe();
+  idSousAxe = 0;
+  sousAxe = new SousAxe();
   theme = 0;
   themeDis = '';
   sousThemeDis = '';
