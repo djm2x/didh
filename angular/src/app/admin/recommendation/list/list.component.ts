@@ -17,6 +17,8 @@ import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/down
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { ExcelService } from 'src/app/shared/excel.service';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-list',
@@ -26,35 +28,37 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class ListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild('mytable', { static: true }) table: MatTable<Recommendation>;
   // @ViewChild('myAutocomplete', { static: true }) myAutocomplete: MatInput;
   update = new EventEmitter();
   isLoadingResults = true;
   resultsLength = 0;
   isRateLimitReached = false;
-  dataSource = [];
+  dataSource: Recommendation[] = [];
   // columnDefs = [];
   columnDefs = [
-    { columnDef: 'codeRecommendation', headName: 'CODE', show: true },
-    { columnDef: 'nom', headName: 'INTITULE', show: true },
-    { columnDef: 'mecanisme', headName: 'mecanisme', show: true },
-    { columnDef: 'axe', headName: 'Axe', show: true },
-    { columnDef: 'sousAxe', headName: 'SOUS AXE', show: true },
-    { columnDef: 'organismes', headName: 'DEPARTEMENT', show: false },
-    { columnDef: 'etat', headName: 'ETAT DE MISE EN OEUVRE', show: false },
-    { columnDef: 'pieceJointe', headName: '', show: false },
-    { columnDef: 'complement', headName: '', show: false },
+    { columnDef: 'codeRecommendation', headName: 'admin.recommandation.list.code', show: true },
+    { columnDef: 'nom', headName: 'admin.recommandation.list.nom', show: true },
+    { columnDef: 'mecanisme', headName: 'admin.recommandation.list.mecanisme', show: true },
+    { columnDef: 'axe', headName: 'admin.recommandation.list.Axe', show: true },
+    { columnDef: 'sousAxe', headName: 'admin.recommandation.list.Sousaxe', show: true },
+    { columnDef: 'organismes', headName: 'admin.recommandation.list.DEPARTEMENT', show: false },
+    { columnDef: 'etat', headName: 'admin.recommandation.list.Etatdemisenoeuvre', show: false },
+    { columnDef: 'pieceJointe', headName: 'admin.recommandation.list.OBSERVATIONS', show: false },
+    { columnDef: 'complement', headName: 'admin.recommandation.list.complement', show: false },
     { columnDef: 'option', headName: '', show: true },
-  ].map(e => {
-    e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
-    return e;
-  });
+  ]
+  // .map(e => {
+  //   e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
+  //   return e;
+  // });
   //
   panelOpenState = false;
   //
   organismes = this.uow.organismes.get();
   axes = this.uow.axes.get();
   sousAxes = [];
-  annees: {annee: number, anneeDisplay: string, anneeDisplayAr: string}[] = [];
+  annees: { annee: number, anneeDisplay: string, anneeDisplayAr: string }[] = [];
 
   mecanismes = this.uow.mecanismes;
   visites = this.uow.visites.get();
@@ -78,7 +82,7 @@ export class ListComponent implements OnInit {
   filteredOptions: Observable<any>;
   constructor(public uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , public mytranslate: MyTranslateService, private fb: FormBuilder, public session: SessionService
-    , private route: ActivatedRoute, private bottomSheet: MatBottomSheet) {
+    , private route: ActivatedRoute, private bottomSheet: MatBottomSheet, private excel: ExcelService) {
 
     if (this.session.isPublic) {
       this.columnDefs = this.columnDefs.filter(e => e.show);
@@ -134,6 +138,25 @@ export class ListComponent implements OnInit {
     });
 
     this.autoComplete();
+
+
+  }
+
+  generateExcel() {
+    const myBody: any[] = this.dataSource.map((e, i) => {
+      return {
+        [this.mytranslate.get('admin.recommandation.list.code')]: this.mytranslate.langSync === 'fr' ? e.codeRecommendation : e.codeRecommendationAr,
+        [this.mytranslate.get('admin.recommandation.list.nom')]: this.mytranslate.langSync === 'fr' ? e.nom : e.nomAr,
+        [this.mytranslate.get('admin.recommandation.list.mecanisme')]: this.displayMulti(e.mecanisme, e.etat).m,
+        [this.mytranslate.get('admin.recommandation.list.Axe')]: ((e as any).axe as string[])?.join('; '),
+        [this.mytranslate.get('admin.recommandation.list.Sousaxe')]: ((e as any).sousAxe as string[])?.join('; '),
+        [this.mytranslate.get('admin.recommandation.list.DEPARTEMENT')]: (e as any).organismes,
+        [this.mytranslate.get('admin.recommandation.list.Etatdemisenoeuvre')]: this.displayMulti(e.mecanisme, e.etat).e,
+        [this.mytranslate.get('admin.recommandation.list.complement')]: e.complement,
+      };
+    });
+
+    this.excel.json_to_sheet(myBody);
   }
 
   displayFrIfArNull(fr: string, ar: string) {
@@ -261,92 +284,92 @@ export class ListComponent implements OnInit {
 
     return dialogRef.afterClosed();
   }
-  stateDepartement(r: { name: string, p: number, r: number, t: number, type: string }[]) {
-    console.log(r);
-    const listToDeletePE = [
-      'DGSN',
-      'Fonction Public',
-      'pêche',
-      'Eau',
-      'Environnement',
-      'Culture',
-      'gendarmerie',
-      'chef de gouvernement',
-    ]
+  // stateDepartement(r: { name: string, p: number, r: number, t: number, type: string }[]) {
+  //   console.log(r);
+  //   const listToDeletePE = [
+  //     'DGSN',
+  //     'Fonction Public',
+  //     'pêche',
+  //     'Eau',
+  //     'Environnement',
+  //     'Culture',
+  //     'gendarmerie',
+  //     'chef de gouvernement',
+  //   ]
 
-    const listToShowPE = [
-      'Intérieur et DGSN',
-      'Finance et Fonction Public',
-      'Agriculture et pêche',
-      'Equipement, Eau et Environnement',
-      'Communication et Culture',
-      'Défense et gendarmerie',
-      'Droits de l’Homme et Relations avec le parlement',
-      'Développement social et solidarité',
-      'Supprimer le chef de gouvernement',
-      'Supprimer l’Observatoire des droits de l’homme',
-    ]
+  //   const listToShowPE = [
+  //     'Intérieur et DGSN',
+  //     'Finance et Fonction Public',
+  //     'Agriculture et pêche',
+  //     'Equipement, Eau et Environnement',
+  //     'Communication et Culture',
+  //     'Défense et gendarmerie',
+  //     'Droits de l’Homme et Relations avec le parlement',
+  //     'Développement social et solidarité',
+  //     'Supprimer le chef de gouvernement',
+  //     'Supprimer l’Observatoire des droits de l’homme',
+  //   ]
 
-    const listToDeleteAutre = [
-      'Observatoire des droits de l’homme',
-    ]
+  //   const listToDeleteAutre = [
+  //     'Observatoire des droits de l’homme',
+  //   ]
 
-    // this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
+  //   // this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
-    r = r.filter(e => e.name !== null);
-    // console.log(r);
+  //   r = r.filter(e => e.name !== null);
+  //   // console.log(r);
 
-    // r = r.filter(e => ).map(e => {
+  //   // r = r.filter(e => ).map(e => {
 
-    //   return e;
-    // })
-    const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
+  //   //   return e;
+  //   // })
+  //   const barChartLabelsPE = r.filter(e => e.type === 'PE').map(e => e.name);
 
-    const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
-    const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
-    const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
+  //   const barChartLabelsIN = r.filter(e => e.type === 'IN').map(e => e.name);
+  //   const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
+  //   const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
 
-    // console.log(barChartLabels)
-    // console.log(barChartLabels1)
+  //   // console.log(barChartLabels)
+  //   // console.log(barChartLabels1)
 
-    const barChartDataPE = [
-      { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-      { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
-    ];
+  //   const barChartDataPE = [
+  //     { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+  //     { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+  //     { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+  //   ];
 
-    const barChartDataIN = barChartDataPE;
-    const barChartDataPJ = barChartDataPE;
-    const barChartDataAutre = barChartDataPE;
+  //   const barChartDataIN = barChartDataPE;
+  //   const barChartDataPJ = barChartDataPE;
+  //   const barChartDataAutre = barChartDataPE;
 
-    // const barChartData1 = [
-    //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
-    //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-    //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
-    // ];
+  //   // const barChartData1 = [
+  //   //   { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
+  //   //   { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
+  //   //   { data: [], label: 'Non réalisé'/*, stack: 'a'*/ },
+  //   // ];
 
 
-    r.forEach(e => {
-      if (e.type === 'PE') {
-        barChartDataPE[0].data.push(+(e.p * e.t / 100).toFixed(0));
-        barChartDataPE[1].data.push(+(e.r * e.t / 100).toFixed(0));
-        barChartDataPE[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      } else if (e.type === 'Autre') {
-        barChartDataAutre[0].data.push(+(e.p * e.t / 100).toFixed(0));
-        barChartDataAutre[1].data.push(+(e.r * e.t / 100).toFixed(0));
-        barChartDataAutre[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      } else if (e.type === 'IN') {
-        barChartDataIN[0].data.push(+(e.p * e.t / 100).toFixed(0));
-        barChartDataIN[1].data.push(+(e.r * e.t / 100).toFixed(0));
-        barChartDataIN[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      } else if (e.type === 'PJ') {
-        barChartDataPJ[0].data.push(+(e.p * e.t / 100).toFixed(0));
-        barChartDataPJ[1].data.push(+(e.r * e.t / 100).toFixed(0));
-        barChartDataPJ[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-      }
-    });
+  //   r.forEach(e => {
+  //     if (e.type === 'PE') {
+  //       barChartDataPE[0].data.push(+(e.p * e.t / 100).toFixed(0));
+  //       barChartDataPE[1].data.push(+(e.r * e.t / 100).toFixed(0));
+  //       barChartDataPE[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+  //     } else if (e.type === 'Autre') {
+  //       barChartDataAutre[0].data.push(+(e.p * e.t / 100).toFixed(0));
+  //       barChartDataAutre[1].data.push(+(e.r * e.t / 100).toFixed(0));
+  //       barChartDataAutre[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+  //     } else if (e.type === 'IN') {
+  //       barChartDataIN[0].data.push(+(e.p * e.t / 100).toFixed(0));
+  //       barChartDataIN[1].data.push(+(e.r * e.t / 100).toFixed(0));
+  //       barChartDataIN[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+  //     } else if (e.type === 'PJ') {
+  //       barChartDataPJ[0].data.push(+(e.p * e.t / 100).toFixed(0));
+  //       barChartDataPJ[1].data.push(+(e.r * e.t / 100).toFixed(0));
+  //       barChartDataPJ[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
+  //     }
+  //   });
 
-  }
+  // }
   searchAndGet(o: Model) {
     console.log(o);
     this.o = o;
@@ -357,7 +380,10 @@ export class ListComponent implements OnInit {
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
-        this.stateDepartement(this.departementList);
+        // this.stateDepartement(this.departementList);
+        console.log(this.table)
+
+
 
       }, e => this.isLoadingResults = false,
     );

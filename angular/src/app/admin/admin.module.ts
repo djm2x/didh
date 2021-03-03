@@ -15,6 +15,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TestComponent } from './test/test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExcelService } from '../shared/excel.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'fr' },
+    ExcelService,
     // {
     //   provide: MAT_DIALOG_DEFAULT_OPTIONS,
     //   useValue: { hasBackdrop: true, direction: mytranslate.langSync === 'fr' ? 'ltr' : 'rtl', height: '500px' }

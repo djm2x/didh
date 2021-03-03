@@ -3,11 +3,20 @@
   <app-title title="{{ 'admin.recommandation.list.Recommandations' | translate }}"></app-title>
 
   <div class="right">
-    <button *ngIf="!session.isPointFocal && !session.isSuperViseur && !session.isPublic" class="mt-3" style="margin: 20px 0 0" mat-raised-button color="primary"
-      [routerLink]="['/admin/recommendation/update', 0]">
-      <mat-icon>add</mat-icon>
-      {{ 'admin.recommandation.list.Recommandation' | translate }}
-    </button>
+
+
+
+    <div class="d-flex flex-row-reverse pt-3 mb-3">
+      <button *ngIf="!session.isPointFocal && !session.isSuperViseur && !session.isPublic" mat-raised-button
+        color="primary" [routerLink]="['/admin/recommendation/update', 0]">
+        <mat-icon>add</mat-icon> {{ 'admin.recommandation.list.Recommandation' | translate }}
+      </button>
+      &nbsp;
+      <button mat-raised-button color="warn" (click)="generateExcel()" *ngIf="false">
+        <mat-icon>cloud_download</mat-icon> Excel
+      </button>
+
+    </div>
   </div>
   <div class="expension">
     <mat-accordion>
@@ -41,11 +50,11 @@
 
           <div class="inputs2">
 
-          <mat-form-field appearance="fill">
-            <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
-            <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
-            <input matInput formControlName="nom" required>
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>{{ 'admin.recommandation.list.nom' | translate }}</mat-label>
+              <!-- <textarea matInput rows="0" formControlName="nom" required></textarea> -->
+              <input matInput formControlName="nom" required>
+            </mat-form-field>
 
           </div>
           <div class="inputs2">
@@ -53,14 +62,16 @@
               <mat-label>{{ 'admin.recommandation.list.Pays' | translate }}</mat-label>
               <mat-select formControlName="idPays">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.nom : e.nomAr }}</mat-option>
+                <mat-option *ngFor="let e of pays | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.nom :
+                  e.nomAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="fill" *ngIf="!session.isPublic">
               <mat-label>{{ 'admin.questionnaire.list.année' | translate }}</mat-label>
               <mat-select formControlName="annee">
-                <mat-option *ngFor="let e of annees" [value]="e.annee">{{ mytranslate.langSync === 'fr' ? e.anneeDisplay : e.anneeDisplayAr }}</mat-option>
+                <mat-option *ngFor="let e of annees" [value]="e.annee">{{ mytranslate.langSync === 'fr' ? e.anneeDisplay
+                  : e.anneeDisplayAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -73,7 +84,8 @@
               <mat-label>{{ 'admin.recommandation.list.mecanisme' | translate }}</mat-label>
               <mat-select formControlName="mecanisme" (selectionChange)="selectChange($event.value)">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
+                <mat-option *ngFor="let e of mecanismes | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ?
+                  e.name : e.nameAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -81,7 +93,8 @@
               <mat-label>{{ 'admin.recommandation.list.Cycle' | translate }}</mat-label>
               <mat-select formControlName="idCycle">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr  }}</mat-option>
+                <mat-option *ngFor="let e of cycles | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label :
+                  e.labelAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -89,7 +102,8 @@
               <mat-label>{{ 'admin.recommandation.list.Visite' | translate }}</mat-label>
               <mat-select formControlName="idVisite">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.mandat : e.mandatAr }}</mat-option>
+                <mat-option *ngFor="let e of visites | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.mandat
+                  : e.mandatAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -97,7 +111,8 @@
               <mat-label>{{ 'admin.recommandation.list.Organe' | translate }}</mat-label>
               <mat-select formControlName="idOrgane">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                <mat-option *ngFor="let e of organes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label
+                  : e.labelAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -105,7 +120,8 @@
               <mat-label>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</mat-label>
               <mat-select formControlName="etat">
                 <!-- <mat-option value="0">...</mat-option> -->
-                <mat-option *ngFor="let e of etats | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name : e.nameAr }}</mat-option>
+                <mat-option *ngFor="let e of etats | async" [value]="e.name">{{ mytranslate.langSync === 'fr' ? e.name :
+                  e.nameAr }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -115,7 +131,8 @@
               <mat-label>{{ 'admin.recommandation.list.Axe' | translate }}</mat-label>
               <mat-select formControlName="idAxe" (selectionChange)="axeChange($event.value)">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                <mat-option *ngFor="let e of axes | async" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label :
+                  e.labelAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -123,7 +140,8 @@
               <mat-label>{{ 'admin.recommandation.list.Sousaxe' | translate }}</mat-label>
               <mat-select formControlName="idSousAxe">
                 <mat-option value="0">...</mat-option>
-                <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label : e.labelAr }}</mat-option>
+                <mat-option *ngFor="let e of sousAxes" [value]="e.id">{{ mytranslate.langSync === 'fr' ? e.label :
+                  e.labelAr }}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -153,7 +171,7 @@
             {{ 'admin.recommandation.list.Rechercher' | translate }}
           </button>
           &nbsp;
-          <button mat-raised-button (click)="reset()" >
+          <button mat-raised-button (click)="reset()">
             <mat-icon>refresh</mat-icon>
             {{ 'admin.recommandation.list.Réinitialiser' | translate }}
           </button>
@@ -170,40 +188,42 @@
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
     <div class="example-table-container">
-      <table mat-table #table [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
+      <table mat-table #mytable [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
         <ng-container [matColumnDef]="columnDefs[0].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.code' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ (columnDefs[0].headName | translate) }}</th>
           <td mat-cell *matCellDef="let row">
-            {{ mytranslate.langSync === 'fr' ? row.codeRecommendation : displayFrIfArNull(row.codeRecommendation, row.codeRecommendationAr) }}
+            {{ mytranslate.langSync === 'fr' ? row.codeRecommendation : displayFrIfArNull(row.codeRecommendation,
+            row.codeRecommendationAr) }}
           </td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[1].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.nom' | translate }}</th>
-          <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.nom : displayFrIfArNull(row.nom, row.nomAr)}}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[1].headName| translate }}</th>
+          <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.nom : displayFrIfArNull(row.nom,
+            row.nomAr)}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[2].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.mecanisme' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[2].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{displayMulti(row.mecanisme, row.etat).m}}</td>
         </ng-container>
         <ng-container [matColumnDef]="columnDefs[3].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Axe' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[3].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
         </ng-container>
 
         <ng-container [matColumnDef]="columnDefs[4].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Sousaxe' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[4].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef]}}</td>
         </ng-container>
 
-        <ng-container [matColumnDef]="'organismes'" [style.display]="'none'">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.DEPARTEMENT' | translate }}</th>
+        <ng-container [matColumnDef]="'organismes'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[5].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{row.organismes}}</td>
         </ng-container>
 
-        <ng-container [matColumnDef]="'etat'" [style.display]="'none'">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Etatdemisenoeuvre' | translate }}</th>
+        <ng-container [matColumnDef]="'etat'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[6].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{displayMulti(row.mecanisme, row.etat).e}}</td>
         </ng-container>
 
@@ -211,8 +231,8 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[7].columnDef]}}</td>
         </ng-container> -->
-        <ng-container [matColumnDef]="'pieceJointe'" [style.display]="'none'">
-          <th mat-header-cell *matHeaderCellDef>{{ 'admin.recommandation.list.OBSERVATIONS' | translate }}</th>
+        <ng-container [matColumnDef]="'pieceJointe'">
+          <th mat-header-cell *matHeaderCellDef>{{ columnDefs[7].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button [disabled]="row.pieceJointe === ''" [matTooltip]="row.pieceJointe" color="accent"
               (click)="showPieceJoin(row.pieceJointe)">
@@ -221,8 +241,8 @@
           </td>
         </ng-container>
 
-        <ng-container [matColumnDef]="'complement'" [style.display]="'none'">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.complement' | translate }}</th>
+        <ng-container [matColumnDef]="'complement'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[1].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{row.complement}}</td>
         </ng-container>
 
@@ -234,10 +254,12 @@
               <button mat-icon-button color="primary" (click)="detail(row)">
                 <mat-icon>visibility</mat-icon>
               </button>
-              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"  *ngIf="!session.isSuperViseur">
+              <button mat-icon-button color="primary" [routerLink]="['/admin/recommendation/update', row.id]"
+                *ngIf="!session.isSuperViseur">
                 <mat-icon>create</mat-icon>
               </button>
-              <button mat-icon-button color="warn" (click)="delete(row)"  *ngIf="!session.isPointFocal && !session.isSuperViseur">
+              <button mat-icon-button color="warn" (click)="delete(row)"
+                *ngIf="!session.isPointFocal && !session.isSuperViseur">
                 <mat-icon>delete_sweep</mat-icon>
               </button>
 
