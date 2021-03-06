@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { startWith } from 'rxjs/operators';
+import { ExcelService } from 'src/app/shared/excel.service';
 
 @Component({
   selector: 'app-examen',
@@ -31,7 +32,7 @@ export class ExamenComponent implements OnInit {
 
   text = '';
   text2 = this.text.substring(0, 600);
-  dataSource = [];
+  dataSource: Examen[] = [];
   columnDefs = [
     { columnDef: 'libelle', headName: 'libelle' },
     { columnDef: 'rapportNational', headName: 'Rapport national' },
@@ -57,7 +58,8 @@ export class ExamenComponent implements OnInit {
 
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , @Inject('BASE_URL') public url: string, public mytranslate: MyTranslateService
-    , public session: SessionService, private bottomSheet: MatBottomSheet) { }
+    , public session: SessionService, private bottomSheet: MatBottomSheet
+    , private excel: ExcelService) { }
 
   ngOnInit() {
     this.getMecanismeState();

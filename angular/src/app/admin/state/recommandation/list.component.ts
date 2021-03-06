@@ -14,6 +14,7 @@ import { Model } from '../../recommendation/list/list.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { ExcelService } from 'src/app/shared/excel.service';
 
 @Component({
   selector: 'app-recomm',
@@ -71,7 +72,7 @@ export class ListComponent implements OnInit {
   filteredOptions: Observable<any>;
 
   constructor(private uow: UowService, public session: SessionService, private bottomSheet: MatBottomSheet
-    , public mytranslate: MyTranslateService) { }
+    , public mytranslate: MyTranslateService, private excel: ExcelService) { }
 
   ngOnInit() {
     this.isLoadingResults = false;
@@ -123,6 +124,23 @@ export class ListComponent implements OnInit {
       });
     }
     );
+  }
+
+  generateExcel() {
+    const myBody: any[] = this.dataSource.map((e, i) => {
+      return {
+        [this.mytranslate.get('admin.recommandation.list.code')]: this.mytranslate.langSync === 'fr' ? e.codeRecommendation : e.codeRecommendationAr,
+        [this.mytranslate.get('admin.recommandation.list.nom')]: this.mytranslate.langSync === 'fr' ? e.nom : e.nomAr,
+        [this.mytranslate.get('admin.recommandation.list.mecanisme')]: this.displayMulti(e.mecanisme, e.etat).m,
+        [this.mytranslate.get('admin.recommandation.list.Axe')]: ((e as any).axe as string[])?.join('; '),
+        [this.mytranslate.get('admin.recommandation.list.Sousaxe')]: ((e as any).sousAxe as string[])?.join('; '),
+        [this.mytranslate.get('admin.recommandation.list.DEPARTEMENT')]: (e as any).organismes,
+        [this.mytranslate.get('admin.recommandation.list.Etatdemisenoeuvre')]: this.displayMulti(e.mecanisme, e.etat).e,
+        [this.mytranslate.get('admin.recommandation.list.complement')]: e.complement,
+      };
+    });
+
+    this.excel.json_to_sheet(myBody);
   }
 
   displayFrIfArNull(fr: string, ar: string) {

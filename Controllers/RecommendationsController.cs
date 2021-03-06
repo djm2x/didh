@@ -15,11 +15,7 @@ namespace Admin5.Controllers
     [ApiController]
     public class RecommendationsController : SuperController<Recommendation>
     {
-        private IWebHostEnvironment _hostingEnvironment;
-        public RecommendationsController(AdminContext context, IWebHostEnvironment hostingEnvironment) : base(context)
-        {
-            _hostingEnvironment = hostingEnvironment;
-        }
+        public RecommendationsController(AdminContext context) : base(context) { }
 
         [HttpPost]
         public async Task<IActionResult> SearchAndGet(Model model)
@@ -58,23 +54,23 @@ namespace Admin5.Controllers
                 .Take(model.PageSize)
                 // .Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme)
                 .ToList().Select(e => new
-            {
-                id = e.Id,
-                CodeRecommendation = e.CodeRecommendation,
-                Nom = e.Nom,
-                CodeRecommendationAr = e.CodeRecommendationAr,
-                NomAr = e.NomAr,
-                Etat = e.Etat,
-                Annee = e.Annee,
-                Mecanisme = e.Mecanisme,
-                Axe = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
-                SousAxe = sousAxes.Where(r => JsonHandler.ToListInt(e.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
-                Observation = e.Observation,
-                Complement = e.Complement,
-                PieceJointe = e.PieceJointe,
-                organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr).ToList(),
-            })
-                .ToList();
+                {
+                    id = e.Id,
+                    CodeRecommendation = e.CodeRecommendation,
+                    Nom = e.Nom,
+                    CodeRecommendationAr = e.CodeRecommendationAr,
+                    NomAr = e.NomAr,
+                    Etat = e.Etat,
+                    Annee = e.Annee,
+                    Mecanisme = e.Mecanisme,
+                    Axe = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
+                    SousAxe = sousAxes.Where(r => JsonHandler.ToListInt(e.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
+                    Observation = e.Observation,
+                    Complement = e.Complement,
+                    PieceJointe = e.PieceJointe,
+                    organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr).ToList(),
+                }).ToList()
+                ;
 
             return Ok(new { list = list, count = count });
         }

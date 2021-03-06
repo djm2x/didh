@@ -99,7 +99,7 @@ export class ListComponent implements OnInit {
 
     this.uow.recommendations.annee().subscribe(e => {
       this.annees = e;
-      this.myForm.get('annee').setValue(this.annees[0]);
+      this.myForm.get('annee').setValue(this.annees[0].annee);
       console.log(e)
     });
 
@@ -261,7 +261,7 @@ export class ListComponent implements OnInit {
   reset() {
     this.o = new Model();
     this.createForm();
-    this.myForm.get('annee').setValue(this.annees[0]);
+    this.myForm.get('annee').setValue(this.annees[0].annee);
     this.searchAndGet(this.o);
   }
 

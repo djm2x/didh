@@ -88,7 +88,7 @@ export class DiagrammeComponent implements OnInit {
       console.log(r)
 
       setTimeout(() => {
-        this.myForm.get('annee').setValue(this.annees[0])
+        this.myForm.get('annee').setValue(this.annees[0].annee)
       }, 300);
       this.reset();
     });

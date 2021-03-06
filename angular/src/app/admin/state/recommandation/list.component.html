@@ -48,6 +48,10 @@
   </mat-paginator>
 </div> -->
 
+<button mat-raised-button color="warn" (click)="generateExcel()" *ngIf="false">
+  <mat-icon>cloud_download</mat-icon> Excel
+</button>
+
 
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade" *ngIf="isLoadingResults">
