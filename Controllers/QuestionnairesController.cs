@@ -45,6 +45,7 @@ namespace Admin5.Controllers
                      Annee = e.Annee,
                      Axe = lng == "fr" ? e.Axe.Label : e.Axe.LabelAr,
                      SousAxe = lng == "fr" ? e.SousAxe.Label : e.SousAxe.LabelAr,
+                     PieceJointe = e.PieceJointe,
                  })
                 .ToListAsync()
                 ;

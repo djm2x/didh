@@ -114,18 +114,20 @@ export class QuestionnaireComponent implements OnInit {
     this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, idAxe, idSousAxe, annee).subscribe(
       (r: any) => {
         console.log(r.list);
-        this.dataSource = (r.list as Questionnaire[]).map(e => {
-          try {
-            const theme$ = this.themes.find(f => f.id === e.theme);
-            const sousTheme$ = theme$.sousThemes.find(f => f.id === e.sousTheme);
-            e.themeDis = this.mytranslate.langSync === 'fr' ? theme$.name : theme$.nameAr;
-            e.sousThemeDis = this.mytranslate.langSync === 'fr' ? sousTheme$.name : sousTheme$.nameAr;
-            return e;
-          } catch (error) {
-            console.warn(error)
-            return e;
-          }
-        });
+        // this.dataSource = (r.list as Questionnaire[]).map(e => {
+        //   try {
+        //     const theme$ = this.themes.find(f => f.id === e.theme);
+        //     const sousTheme$ = theme$.sousThemes.find(f => f.id === e.sousTheme);
+        //     e.themeDis = this.mytranslate.langSync === 'fr' ? theme$.name : theme$.nameAr;
+        //     e.sousThemeDis = this.mytranslate.langSync === 'fr' ? sousTheme$.name : sousTheme$.nameAr;
+        //     return e;
+        //   } catch (error) {
+        //     console.warn(error)
+        //     return e;
+        //   }
+        // });
+
+        this.dataSource = r.list;
 
         // console.log(this.dataSource.map(e => e.sousThemeDis))
         this.resultsLength = r.count;
