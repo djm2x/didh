@@ -1,5 +1,5 @@
 import { Router, NavigationStart, RouterOutlet } from '@angular/router';
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, Inject } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { routerTransition } from '../shared/animations';
 import { SessionService } from '../shared';
@@ -49,7 +49,8 @@ export class AdminComponent implements OnInit {
 
 
   constructor(public session: SessionService, changeDetectorRef: ChangeDetectorRef
-    , media: MediaMatcher, public router: Router , public mytranslate: MyTranslateService) {
+    , media: MediaMatcher, public router: Router , public mytranslate: MyTranslateService
+    , @Inject('BASE_URL') private url: string) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQuery.addListener((e: MediaQueryListEvent) => changeDetectorRef.detectChanges());
@@ -65,6 +66,12 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.getRoute();
+  }
+
+  download() {
+    const appname = 'electron-0.0.0-ia32.nsis.7z'; // 'sys-info.exe';
+    const url = `${this.url}/download/${appname}`;
+    window.open(url);
   }
 
   changeLanguage(currentLanguage) {
