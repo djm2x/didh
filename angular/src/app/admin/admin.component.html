@@ -55,7 +55,9 @@
 
           <div *ngIf="session.isAdmin">
             <mat-divider></mat-divider>
-            <button mat-menu-item (click)="download()">dowload application</button>
+            <button mat-menu-item (click)="download()" >
+              <mat-icon color="primary">cloud_download</mat-icon> {{'didh-app' | translate}}
+            </button>
             <mat-divider></mat-divider>
             <button mat-menu-item *ngFor="let e of menus; let i=index" [routerLink]="e.route"
               routerLinkActive="router-link-active">

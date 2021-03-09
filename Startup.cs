@@ -151,7 +151,7 @@ namespace Admin5
             app.UseMiddleware<ErrorHandler>();
 
             var provider = new FileExtensionContentTypeProvider();
-            provider.Mappings.Add(".exe", "application/octect-stream");
+            // provider.Mappings.Add(".exe", "application/octect-stream");
             app.UseStaticFiles(new StaticFileOptions
             {
                 ServeUnknownFileTypes = true, //allow unkown file types also to be served
@@ -159,7 +159,7 @@ namespace Admin5
                 ContentTypeProvider = provider
             });
 
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
