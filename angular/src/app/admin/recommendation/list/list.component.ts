@@ -104,6 +104,10 @@ export class ListComponent implements OnInit {
     });
 
     // this.searchAndGet(this.o);
+    this.o.idOrganisme = this.session.isPointFocal ? this.session.user.idOrganisme : 0;
+
+    this.myForm.get('idOrganisme').setValue(this.o.idOrganisme);
+
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
@@ -115,11 +119,12 @@ export class ListComponent implements OnInit {
         this.o.sortDir = this.sort.direction ? this.sort.direction : 'desc';
         this.isLoadingResults = true;
 
-        console.log(this.o);
+        // console.log(this.o);
 
         this.searchAndGet(this.o);
       }
     );
+
 
     // this.uow.cycles.get().subscribe(r => {
     //   this.cycles = r as any[];
@@ -140,6 +145,15 @@ export class ListComponent implements OnInit {
     this.autoComplete();
 
 
+  }
+
+
+  showDownload(idsOrganisme: number[]) {
+    if (!idsOrganisme || this.session.isPointFocal === false) {
+      return true;
+    }
+
+    return idsOrganisme.includes(this.session.user.idOrganisme);
   }
 
   generateExcel() {
@@ -373,7 +387,7 @@ export class ListComponent implements OnInit {
   searchAndGet(o: Model) {
     console.log(o);
     this.o = o;
-    this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
+    // this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.uow.recommendations.searchAndGet(this.o).subscribe(
       (r: any) => {
         console.log(r.list);

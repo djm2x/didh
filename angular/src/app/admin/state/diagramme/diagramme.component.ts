@@ -115,28 +115,6 @@ export class DiagrammeComponent implements OnInit {
 
     this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
       const etat: string = this.myForm.get('etat').value;
-      // console.log(etat)
-      // if (etat.includes('Non')) {
-      //   r.axe = r.axe.map(e => { e.r = 0; e.p = 0; return e; });
-      //   r.epu = r.epu.map(e => { e.r = 0; e.p = 0; return e; });
-      //   r.organe = r.organe.map(e => { e.r = 0; e.p = 0; return e; });
-      //   r.visite = r.visite.map(e => { e.r = 0; e.p = 0; return e; });
-      //   r.department = r.department.map(e => { e.r = 0; e.p = 0; return e; });
-      // } else if (etat.includes('cours')) {
-      //   r.axe = r.axe.map(e => { e.r = 0; e.n = 0; return e; });
-      //   r.epu = r.epu.map(e => { e.r = 0; e.n = 0; return e; });
-      //   r.organe = r.organe.map(e => { e.r = 0; e.n = 0; return e; });
-      //   r.visite = r.visite.map(e => { e.r = 0; e.n = 0; return e; });
-      //   r.department = r.department.map(e => { e.r = 0; e.n = 0; return e; });
-
-      // } else if (etat.includes('Réalisé')) {
-      //   r.axe = r.axe.map(e => { e.n = 0; e.p = 0; return e; });
-      //   r.epu = r.epu.map(e => { e.n = 0; e.p = 0; return e; });
-      //   r.organe = r.organe.map(e => { e.n = 0; e.p = 0; return e; });
-      //   r.visite = r.visite.map(e => { e.n = 0; e.p = 0; return e; });
-      //   r.department = r.department.map(e => { e.n = 0; e.p = 0; return e; });
-      // }
-
       if (etat && etat !== '') {
         r = this.handleEtat(etat, r) as any;
       }

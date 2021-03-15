@@ -25,22 +25,30 @@ namespace Admin5.Controllers
             // bool hasAcess = (role == 1 || role == 4) ? true : false;
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            var query = (await _context.Recommendations.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc").ToListAsync())
-                // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
-                .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
+            var q = await _context.Recommendations.OrderByName<Recommendation>(model.SortBy, model.SortDir == "desc")
                 .Where(e => model.Nom == "" ? true :
                     lng == "fr" ? e.Nom.ToLower().Contains(model.Nom.ToLower()) :
                     e.NomAr.ToLower().Contains(model.Nom.ToLower())
                 )
                 .Where(e => model.Etat == "" ? true : e.Etat.ToLower().Contains(model.Etat.ToLower()))
                 .Where(e => model.IdPays == 0 ? true : e.IdPays == model.IdPays)
-                .Where(e => model.IdAxe == 0 ? true : JsonHandler.ToListInt(e.Axes).Contains(model.IdAxe))
-                .Where(e => model.IdSousAxe == 0 ? true : JsonHandler.ToListInt(e.SousAxes).Contains(model.IdSousAxe))
+
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
                 .Where(e => model.Mecanisme == "" ? true : e.Mecanisme == model.Mecanisme)
                 .Where(e => model.IdVisite == 0 ? true : e.IdVisite == model.IdVisite)
                 .Where(e => model.IdOrgane == 0 ? true : e.IdOrgane == model.IdOrgane)
                 .Where(e => model.Annee == 0 ? true : e.Annee == model.Annee)
+
+                .Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme)
+                .Include(e => e.Cycle)
+                .Include(e => e.Visite)
+                .Include(e => e.Organe)
+                .ToListAsync()
+                ;
+            // .Where(e => hasAcess ? true : (e.User.IdOrganisme == idOrganisme))
+            var query = q.Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(o => o.IdOrganisme == model.IdOrganisme))
+                 .Where(e => model.IdAxe == 0 ? true : JsonHandler.ToListInt(e.Axes).Contains(model.IdAxe))
+                .Where(e => model.IdSousAxe == 0 ? true : JsonHandler.ToListInt(e.SousAxes).Contains(model.IdSousAxe))
                 .ToList()
             ;
 
@@ -63,16 +71,54 @@ namespace Admin5.Controllers
                     Etat = e.Etat,
                     Annee = e.Annee,
                     Mecanisme = e.Mecanisme,
+                    Visite = lng == "fr" ? e.Visite?.Mandat : e.Visite?.MandatAr,
+                    Cycle = lng == "fr" ? e.Cycle?.Label : e.Cycle?.LabelAr,
+                    Organe = lng == "fr" ? e.Organe?.Label : e.Organe?.LabelAr,
                     Axe = axes.Where(r => JsonHandler.ToListInt(e.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
                     SousAxe = sousAxes.Where(r => JsonHandler.ToListInt(e.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr).ToList(),
                     Observation = e.Observation,
                     Complement = e.Complement,
                     PieceJointe = e.PieceJointe,
-                    organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme.Label : r.Organisme.LabelAr).ToList(),
+                    organismes = e.RecomOrgs.Select(r => lng == "fr" ? r.Organisme?.Label : r.Organisme?.LabelAr).ToList(),
+                    idsOrganisme = e.RecomOrgs.Select(r => r.IdOrganisme).ToList()
                 }).ToList()
                 ;
 
             return Ok(new { list = list, count = count });
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Recommendation>> GetDetail(int id)
+        {
+            var axes = await _context.Axes.ToListAsync();
+            var sousAxes = await _context.SousAxes.ToListAsync();
+
+            string lng = Request.Headers["mylang"].FirstOrDefault();
+
+            var model = await _context.Recommendations.Where(e => e.Id == id)
+            // .Include(e => e.Axe)
+            // .Include(e => e.SousAxe)
+            .Include(e => e.Cycle)
+            .Include(e => e.Visite)
+            .Include(e => e.Organe)
+            .FirstOrDefaultAsync();
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            model.Axes = axes.Where(r => JsonHandler.ToListInt(model.Axes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr)
+                .ToList()
+                .Aggregate((a, b) => a + ", " + b)
+                ;
+
+            model.SousAxes = sousAxes.Where(r => JsonHandler.ToListInt(model.SousAxes).Contains(r.Id)).Select(r => lng == "fr" ? r.Label : r.LabelAr)
+                .ToList()
+                .Aggregate((a, b) => a + ", " + b)
+                ;
+
+            return Ok(model);
         }
 
         [HttpGet("{name}")]
@@ -82,15 +128,15 @@ namespace Admin5.Controllers
 
             if (name == "examen")
             {
-                return Ok (await q.Where(e => e.IdCycle != null).CountAsync());
+                return Ok(await q.Where(e => e.IdCycle != null).CountAsync());
             }
 
             if (name == "organe")
             {
-                return Ok (await q.Where(e => e.IdOrgane != null).CountAsync());
+                return Ok(await q.Where(e => e.IdOrgane != null).CountAsync());
             }
 
-            return Ok (await q.Where(e => e.IdVisite != null).CountAsync());
+            return Ok(await q.Where(e => e.IdVisite != null).CountAsync());
         }
 
 
@@ -115,7 +161,8 @@ namespace Admin5.Controllers
             //     ;
 
             var list0 = (await _context.Recommendations.Where(e => e.Annee != null).ToListAsync()).GroupBy(e => e.Annee)
-                .Select(e => new {
+                .Select(e => new
+                {
                     annee = e.Key,
                     AnneeDisplay = e.First().AnneeDisplay,
                     AnneeDisplayAr = e.First().AnneeDisplayAr,
@@ -131,7 +178,7 @@ namespace Admin5.Controllers
         {
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
-            
+
 
             var q = (await _context.Recommendations.Include(e => e.Visite).Include(e => e.Organe).Include(e => e.RecomOrgs).ThenInclude(e => e.Organisme).ToListAsync())
                 .Where(e => model.IdCycle == 0 ? true : e.IdCycle == model.IdCycle)
@@ -144,7 +191,7 @@ namespace Admin5.Controllers
                 .Where(e => model.IdSousAxe == 0 ? true : JsonHandler.ToListInt(e.SousAxes).Contains(model.IdSousAxe))
                 .Where(e => model.IdOrganisme == 0 ? true : e.RecomOrgs.Any(r => r.IdOrganisme == model.IdOrganisme))
                 .Where(e => model.Annee == 0 ? true : e.Annee == model.Annee)
-                
+
                 .ToList()
                 // .Where(e => model.Etat == "" ? true : e.Etat.Contains(model.Etat))
                 ;
@@ -152,7 +199,7 @@ namespace Admin5.Controllers
 
             var department = q
                 .Where(e => e.RecomOrgs.Count > 0)
-                .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.Label)
+                .GroupBy(e => lng == "fr" ? e.RecomOrgs.FirstOrDefault().Organisme.Label : e.RecomOrgs.FirstOrDefault().Organisme.LabelAr)
                 .Select(e => new
                 {
                     id = e.First().RecomOrgs.First().IdOrganisme,
