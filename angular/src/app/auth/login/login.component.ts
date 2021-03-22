@@ -6,6 +6,7 @@ import { MyTranslateService } from 'src/app/my.translate.service';
 import { UowService } from 'src/app/services/uow.service';
 import { SessionService } from 'src/app/shared';
 import { SnackbarService } from 'src/app/shared/snakebar.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { SnackbarService } from 'src/app/shared/snakebar.service';
   // animations: anime
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  isDev = environment.production === false;
   // for test
   displayedColumns: string[] = ['email', 'password', 'profil'];
   dataSource = [

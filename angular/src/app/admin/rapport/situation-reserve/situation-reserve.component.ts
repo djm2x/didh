@@ -5,6 +5,7 @@ import { Subject, merge } from 'rxjs';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { startWith } from 'rxjs/operators';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { SessionService } from 'src/app/shared';
 
 @Component({
   selector: 'app-situation-reserve',
@@ -23,7 +24,7 @@ export class SituationReserveComponent implements OnInit {
   //
   update = new Subject();
 
-  constructor(private uow: UowService, private bottomSheet: MatBottomSheet) { }
+  constructor(private uow: UowService, private bottomSheet: MatBottomSheet, public session: SessionService) { }
 
   ngOnInit() {
     merge(...[this.update]).pipe(startWith(null as any)).subscribe(

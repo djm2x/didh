@@ -20,7 +20,6 @@
         <mat-list-item [matMenuTriggerFor]="lang"
           style=" background-color: #aaabab00;height: 40px !important; margin-right: 1px;">
           <span style="color: white;">
-            <!-- {{ 'admin.lang' | translate }} -->
             <mat-icon>language</mat-icon>
           </span>
         </mat-list-item>
@@ -49,7 +48,7 @@
 
           <div *ngIf="!session.isPublic">
             <button mat-menu-item> <b>{{session.getName}}</b> </button>
-            <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button>
+            <!-- <button mat-menu-item [routerLink]="['/admin/compte']">Info Compte</button> -->
             <button mat-menu-item (click)="disconnect()">Se déconnecter</button>
           </div>
 
