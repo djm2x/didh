@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     // test
-    this.o.email = 'mourabit@angular.io';
-    this.o.password = '123';
+    // this.o.email = 'mourabit@angular.io';
+    // this.o.password = '123';
     this.createForm();
 
     // this.checkbox.valueChanges.subscribe(r => console.log(r));
