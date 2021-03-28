@@ -131,7 +131,7 @@ export class ListComponent implements OnInit {
       return {
         [this.mytranslate.get('admin.recommandation.list.code')]: this.mytranslate.langSync === 'fr' ? e.codeRecommendation : e.codeRecommendationAr,
         [this.mytranslate.get('admin.recommandation.list.nom')]: this.mytranslate.langSync === 'fr' ? e.nom : e.nomAr,
-        [this.mytranslate.get('admin.recommandation.list.mecanisme')]: this.displayMulti(e.mecanisme, e.etat).m,
+        [this.mytranslate.get('admin.recommandation.list.mecanisme')]: `${e.organe ?? ''}${e.cycle ?? ''}${e.visite ?? ''}`,
         [this.mytranslate.get('admin.recommandation.list.Axe')]: ((e as any).axe as string[])?.join('; '),
         [this.mytranslate.get('admin.recommandation.list.Sousaxe')]: ((e as any).sousAxe as string[])?.join('; '),
         [this.mytranslate.get('admin.recommandation.list.DEPARTEMENT')]: (e as any).organismes,

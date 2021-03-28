@@ -12,7 +12,7 @@
         <mat-icon>add</mat-icon> {{ 'admin.recommandation.list.Recommandation' | translate }}
       </button>
       &nbsp;
-      <button mat-raised-button color="warn" (click)="generateExcel()" *ngIf="false">
+      <button mat-raised-button color="warn" (click)="generateExcel()" [disabled]="dataSource.length === 0">
         <mat-icon>cloud_download</mat-icon> Excel
       </button>
 
@@ -192,22 +192,23 @@
     </div>
     <div class="example-table-container">
       <table mat-table #mytable [dataSource]="dataSource" multiTemplateDataRows aria-label="Elements" matSort>
-        <ng-container [matColumnDef]="columnDefs[0].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ (columnDefs[0].headName | translate) }}</th>
+
+        <ng-container [matColumnDef]="'codeRecommendation'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ ('admin.recommandation.list.code'  | translate) }}</th>
           <td mat-cell *matCellDef="let row">
             {{ mytranslate.langSync === 'fr' ? row.codeRecommendation : displayFrIfArNull(row.codeRecommendation,
             row.codeRecommendationAr) }}
           </td>
         </ng-container>
 
-        <ng-container [matColumnDef]="columnDefs[1].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[1].headName| translate }}</th>
+        <ng-container [matColumnDef]="'nom'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.nom' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{ mytranslate.langSync === 'fr' ? row.nom : displayFrIfArNull(row.nom,
             row.nomAr)}}</td>
         </ng-container>
 
-        <ng-container [matColumnDef]="columnDefs[2].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[2].headName| translate }}</th>
+        <ng-container [matColumnDef]="'mecanisme'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.mecanisme' | translate }}</th>
           <td mat-cell *matCellDef="let row">
             <!-- {{displayMulti(row.mecanisme, row.etat).m}} -->
             {{row.organe}}
@@ -215,12 +216,12 @@
             {{row.visite}}
           </td>
         </ng-container>
-        <ng-container [matColumnDef]="columnDefs[3].columnDef">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[3].headName| translate }}</th>
+        <ng-container [matColumnDef]="'axe'">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'admin.recommandation.list.Axe' | translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[3].columnDef]}}</td>
         </ng-container>
 
-        <ng-container [matColumnDef]="columnDefs[4].columnDef">
+        <ng-container [matColumnDef]="'sousAxe'">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ columnDefs[4].headName| translate }}</th>
           <td mat-cell *matCellDef="let row">{{row[columnDefs[4].columnDef]}}</td>
         </ng-container>
@@ -284,7 +285,7 @@
     </div>
 
     <mat-paginator #paginator [length]="resultsLength" pageIndex="0" pageSize="10"
-      [pageSizeOptions]="[10, 25, 50, 100, 250]" showFirstLastButtons>
+      [pageSizeOptions]="[10, 25, 50, 100, 250, resultsLength]" showFirstLastButtons>
     </mat-paginator>
   </div>
 </div>
