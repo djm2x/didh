@@ -88,7 +88,7 @@ export class DiagrammeComponent implements OnInit {
       console.log(r)
 
       setTimeout(() => {
-        this.myForm.get('annee').setValue(this.annees[0].annee)
+        // this.myForm.get('annee').setValue(this.annees[0].annee)
       }, 300);
       this.reset();
     });
@@ -269,7 +269,7 @@ export class DiagrammeComponent implements OnInit {
     // this.o.mecanisme = 'Examen périodique universal';
     // this.o.idCycle = 1;
     this.createForm();
-    this.myForm.get('annee').setValue(this.annees[this.annees.length - 1]);
+    // this.myForm.get('annee').setValue(this.annees[this.annees.length - 1]);
     this.searchAndGet(this.o);
     this.myTab.selectedIndex = 0;
     // this.toChild.next(this.o);

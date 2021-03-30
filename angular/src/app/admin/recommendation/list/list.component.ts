@@ -99,7 +99,7 @@ export class ListComponent implements OnInit {
 
     this.uow.recommendations.annee().subscribe(e => {
       this.annees = e;
-      this.myForm.get('annee').setValue(this.annees[0].annee);
+      // this.myForm.get('annee').setValue(this.annees[0].annee);
       console.log(e)
     });
 
@@ -164,11 +164,13 @@ export class ListComponent implements OnInit {
         [this.mytranslate.get('admin.recommandation.list.mecanisme')]: `${e.organe ?? ''}${e.cycle ?? ''}${e.visite ?? ''}`,
         [this.mytranslate.get('admin.recommandation.list.Axe')]: ((e as any).axe as string[])?.join('; '),
         [this.mytranslate.get('admin.recommandation.list.Sousaxe')]: ((e as any).sousAxe as string[])?.join('; '),
-        [this.mytranslate.get('admin.recommandation.list.DEPARTEMENT')]: (e as any).organismes,
+        [this.mytranslate.get('admin.recommandation.list.DEPARTEMENT')]: (e as any).organismes?.join('; '),
         [this.mytranslate.get('admin.recommandation.list.Etatdemisenoeuvre')]: this.displayMulti(e.mecanisme, e.etat).e,
         [this.mytranslate.get('admin.recommandation.list.complement')]: e.complement,
       };
     });
+
+    // console.log(myBody)
 
     this.excel.json_to_sheet(myBody);
   }
@@ -275,7 +277,7 @@ export class ListComponent implements OnInit {
   reset() {
     this.o = new Model();
     this.createForm();
-    this.myForm.get('annee').setValue(this.annees[0].annee);
+    // this.myForm.get('annee').setValue(this.annees[0].annee);
     this.searchAndGet(this.o);
   }
 
@@ -439,7 +441,7 @@ export class ListComponent implements OnInit {
       this.myForm.get('nom').value.toString() === '' &&
       this.myForm.get('etat').value.toString() === '' &&
       this.myForm.get('idVisite').value.toString() === '0' &&
-      this.myForm.get('annee').value?.toString() === '0' &&
+      this.myForm.get('annee').value?.toString() === '' &&
       this.myForm.get('mecanisme').value.toString() === '') {
       return true;
     }
