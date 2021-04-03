@@ -20,6 +20,7 @@
     },
     "header": {
       "SessionsDH": "Sessions DH",
+      "Textes de référence": "Textes de référence",
       "Questionnaires": "Questionnaires",
       "Documentation": "Calendrier des Examens",
       "examenCount": "En cours de suivi et d'affaires",
@@ -111,7 +112,7 @@
         "EnCours": "En cours",
         "Réalisé": "Réalisé",
         "NonRéalisé": "Non Réalisé",
-        "Recommendation_continue": "Recommendation continue",
+        "Recommendation_continue": "En continu",
         "Nombre": "Nombre",
         "MiseenœuvredesrecommandationsparOrganesdeTraités": "Mise en œuvre des recommandations par Organes de Traités"
       },
@@ -218,8 +219,8 @@
       "Procédures_spéciales": "Procédures spéciales",
       "Etat_avancement": "En cours",
       "Taux": "Taux",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "Mise en œuvre des recommandations par mécanismes",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités2": "Mise en œuvre des recommandations par taux d'avancement"
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "Etat de mise en œuvre",
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités2": "Mécanismes onusiens"
     },
     "recommandation": {
       "title": "Recommandation",

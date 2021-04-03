@@ -20,6 +20,7 @@
     },
     "header": {
       "SessionsDH": "دورات مجلس حقوق الانسان",
+      "Textes de référence": "نصوص مرجعية ",
       "Questionnaires": "استبيانات",
       "Documentation": "أجندة الفحص",
       "examenCount": "برسم الجولة الثالثة",
@@ -215,8 +216,8 @@
       "Procédures_spéciales": " اللأجراءات الخاصة",
       "Etat_avancement": " التقدم المحرز",
       "Taux": " نسبة",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "تنفيذ التوصيات حسب هيئات المعاهدات",
-      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités2": "تنفيذ التوصيات حسب معدل الانجاز"
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités": "حصيلة التنفيد",
+      "Mise_en_œuvre_des_recommandations_par_Organes_de_Traités2": "الأليات الاممية"
     },
     "recommandation": {
       "title": "توصية",
