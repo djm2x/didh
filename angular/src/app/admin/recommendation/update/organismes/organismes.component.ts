@@ -48,8 +48,8 @@ export class OrganismesComponent implements OnInit {
   constructor(private uow: UowService, private session: SessionService) { }
 
   ngOnInit() {
-    // console.log(this.selection.hasValue());
-    // console.log(this.isAllSelected());
+    // // console.log(this.selection.hasValue());
+    // // console.log(this.isAllSelected());
     this.listFromParent.subscribe(r => {
       this.selectedList = r;
       this.selectedList.forEach(row => {
@@ -92,7 +92,7 @@ export class OrganismesComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const o = event.option.value as any;
-    console.log(o);
+    // console.log(o);
     this.idOrganisme = o.id;
     this.update.next(true);
     // this.myAuto.setValue(o.label);
@@ -108,7 +108,7 @@ export class OrganismesComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir, idOrganisme) {
     this.uow.organismes.getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme).subscribe(
       (r: any) => {
-        // console.log(r.list);
+        // // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -140,7 +140,7 @@ export class OrganismesComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.paginator.pageSize;
-    // console.log(numSelected, numRows)
+    // // console.log(numSelected, numRows)
     return numSelected === numRows;
   }
 

@@ -27,7 +27,7 @@ export class DetailRapportComponent implements OnInit {
     this.o = this.data.model;
     this.dataSource = this.o.syntheses;
     this.title = this.data.title;
-    console.log(this.o);
+    // console.log(this.o);
   }
 
   onNoClick(): void {

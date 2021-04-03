@@ -31,7 +31,7 @@ export class DoughnutComponent implements OnInit {
       enabled: false,
       callbacks: {
         label: (tooltipItem, data) => {
-          // console.log(tooltipItem, data)
+          // // console.log(tooltipItem, data)
           const i = tooltipItem.index;
           const name = data.labels[i];
           const pFake = +data.datasets[0].data[0];
@@ -69,7 +69,7 @@ export class DoughnutComponent implements OnInit {
       if (d.type === 'stateEPU' as any) {
         this.title = d.title;
         this.uow.recommendations.stateEPU().subscribe(r => {
-          // console.log(r)
+          // // console.log(r)
           this.pieChartLabels = lbs;
           const p = (r.p * r.t) / 100;
           const t = r.t - (r.p * r.t) / 100;
@@ -113,7 +113,7 @@ export class DoughnutComponent implements OnInit {
 
     })
     if (this.isInForLoop) {
-      // console.log(this.elementFromForLoop)
+      // // console.log(this.elementFromForLoop)
       this.title = this.elementFromForLoop.name;
       this.pieChartLabels = lbs;
       this.pieChartData = [this.elementFromForLoop.p /*- r.t*/, this.elementFromForLoop.t, 100 - this.elementFromForLoop.p];
@@ -123,7 +123,7 @@ export class DoughnutComponent implements OnInit {
 
     // this.pieChartOptions.title.text = this.mytitle;
     //   this.uow.recommendations.genericByRecommendation(this.table, this.type).subscribe(r => {
-    //     console.log(r);
+    //     // console.log(r);
     //     this.pieChartLabels = r.map(e => e.table/*.split(' ')*/);
     //     this.pieChartData = r.map(e => e.value);
 

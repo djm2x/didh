@@ -75,7 +75,7 @@ export class BarComponent implements OnInit {
     // pluginLabels,
     {
       beforeInit: (chart, options) => {
-        chart.legend.afterFit = function() {
+        chart.legend.afterFit = function () {
           // this.padding += 20;
           this.height += 15; // must use `function` and not => because of `this`
         };
@@ -90,10 +90,10 @@ export class BarComponent implements OnInit {
 
   public pieChartColors = [
     // { backgroundColor: ['#d17c36', '#2d71a1'], },
-    { backgroundColor: '#db0707' },
-    { backgroundColor: '#f7801e' },
-    { backgroundColor: '#2d71a1' },
-    { backgroundColor: '#2b960b' },
+    { backgroundColor: '#2b960b' }, // realise
+    { backgroundColor: '#db0707' }, // nonRealise
+    { backgroundColor: '#f7801e' }, // enCours
+    { backgroundColor: '#2d71a1' }, // recommendationContinue
   ];
 
   @Input() dataSubject = new Subject();
@@ -117,16 +117,38 @@ export class BarComponent implements OnInit {
 
     this.dataSubject.subscribe((r: { barChartLabels: Label[], barChartData: ChartDataSets[], title: string }) => {
       this.title = r.title;
+      let nonRealise = r.barChartLabels[0];
+      let enCours = r.barChartLabels[1];
+      let recommendationContinue = r.barChartLabels[2];
+      let realise = r.barChartLabels[3];
+
+      r.barChartLabels[0] = realise;
+      r.barChartLabels[1] = nonRealise;
+      r.barChartLabels[2] = enCours;
+      r.barChartLabels[3] = recommendationContinue;
+
+
       this.barChartLabels = r.barChartLabels; // .map(e => e.toString().substring(0, 35) + ' ...');
+
+      nonRealise = r.barChartData[0] as any;
+      enCours = r.barChartData[1] as any;
+      recommendationContinue = r.barChartData[2] as any;
+      realise = r.barChartData[3] as any;
+
+      r.barChartData[0] = realise as any;
+      r.barChartData[1] = nonRealise as any;
+      r.barChartData[2] = enCours as any;
+      r.barChartData[3] = recommendationContinue as any;
+
       this.barChartData = r.barChartData;
 
-      console.log(r)
-      // console.log(this.barChartData[0].data[0])
-      // console.log(this.barChartData[1].data[0])
-      // console.log(this.barChartData[2].data[0])
+      // console.log(r)
+      // // console.log(this.barChartData[0].data[0])
+      // // console.log(this.barChartData[1].data[0])
+      // // console.log(this.barChartData[2].data[0])
 
       // this.pieChartColors[0].backgroundColor = this.getColors(2);
-      // console.log(this.barChartLabels)
+      // // console.log(this.barChartLabels)
 
       // r.barChartLabels.forEach((e, i) => {
       //   this.list.push({
@@ -142,7 +164,7 @@ export class BarComponent implements OnInit {
       // });
 
 
-      // console.log(this.list)
+      // // console.log(this.list)
 
     });
   }
@@ -155,17 +177,17 @@ export class BarComponent implements OnInit {
     };
 
     this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
-      console.log(r);
+      // console.log(r);
     });
   }
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    // console.log(event, active);
+    // // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    // console.log(event, active);
+    // // console.log(event, active);
   }
 
   public randomize(): void {

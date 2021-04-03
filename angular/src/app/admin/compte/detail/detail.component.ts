@@ -32,7 +32,7 @@ export class DetailComponent implements OnInit {
     // if (this.id !== 0) {
     this.uow.users.getOne(this.session.user.id).subscribe(r => {
       this.o = r as User;
-      console.log(this.o);
+      // console.log(this.o);
       this.createForm();
       // this.title = 'Modifier Utilisateur';
     });
@@ -60,9 +60,9 @@ export class DetailComponent implements OnInit {
     const user = f.value;
     // user.actif = Number(user.actif);
     delete (user as any).password2;
-    console.log(user);
+    // console.log(user);
     if (user.Password === user.Password2) {
-      console.log(user)
+      // console.log(user)
       this.uow.users.put(user.id, user).subscribe(r => {
         this.session.updateUser(user);
         // this.router.navigateByUrl('/admin/utilisateurs');

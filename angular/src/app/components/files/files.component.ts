@@ -38,12 +38,12 @@ export class FilesComponent implements OnInit {
         this.formData.append(nameFile, file, nameFile);
         this.pieceJointe += `${nameFile};`;
         this.pieceJointeToShow.push(`${file.lastModified}_${file.name};`);
-        // console.log('>>>>>>>>>>>>>');
-        // console.log(file);
+        // // console.log('>>>>>>>>>>>>>');
+        // // console.log(file);
         this.sendFormDataToParent.next({formData: this.formData, urls:  this.pieceJointe});
       }
     });
-    console.log(this.pieceJointe);
+    // console.log(this.pieceJointe);
 
     // to delete
 
@@ -60,9 +60,9 @@ export class FilesComponent implements OnInit {
     this.pieceJointeToShow = this.pieceJointeToShow.filter(e => e !== nameFile);
     this.formData.delete(nameFile);
     // this.files = this.files.splice(i, 1);
-    console.log(this.pieceJointe);
+    // console.log(this.pieceJointe);
     this.pieceJointe = this.pieceJointe.replace(`${nameFile};`, '');
-    console.log(this.pieceJointe);
+    // console.log(this.pieceJointe);
 
     this.sendFormDataToParent.next({formData: this.formData, urls:  this.pieceJointe});
     // this.files = [];

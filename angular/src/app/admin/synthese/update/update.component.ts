@@ -55,7 +55,7 @@ export class UpdateComponent implements OnInit {
 
     if (this.id !== 0) {
       this.uow.syntheses.getOne(this.id).subscribe(r => {
-        // console.log(r)
+        // // console.log(r)
         this.o = r as Synthese;
         // this.o.syntheseRecommandations.forEach(e => {
         //   this.listRecommendation.push(e.recommendation);
@@ -63,7 +63,7 @@ export class UpdateComponent implements OnInit {
 
         this.title = 'Modifier synthese';
         this.eventToChild.emit(this.o.syntheseRecommandations);
-        // console.log('la lissssssssssssssssste', this.o.syntheseRecommandations);
+        // // console.log('la lissssssssssssssssste', this.o.syntheseRecommandations);
         this.createForm();
       });
     }
@@ -84,7 +84,7 @@ export class UpdateComponent implements OnInit {
 
   submit(form: FormGroup) {
     const o = form.value;
-    // console.log(form)
+    // // console.log(form)
     if (this.id === 0) {
 
 
@@ -118,7 +118,7 @@ export class UpdateComponent implements OnInit {
               this.router.navigateByUrl('/admin/synthese/list');
 
               this.uow.recomOrgs.postRange(recomOrgs).subscribe(e => {
-                console.log(e);
+                // console.log(e);
                 this.router.navigateByUrl('/admin/recommendation/list');
               });
 
@@ -168,8 +168,8 @@ export class UpdateComponent implements OnInit {
       i = e.id;
       return b;
     });
-    // console.log('>>>>>>>>>>>>>>>>>>');
-    // console.log(this.listRecommendation);
+    // // console.log('>>>>>>>>>>>>>>>>>>');
+    // // console.log(this.listRecommendation);
   }
 
 

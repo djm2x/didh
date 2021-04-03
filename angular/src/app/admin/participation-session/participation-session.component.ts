@@ -84,7 +84,7 @@ export class ParticipationSessionComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir, session) {
     this.uow.participations.getAll(startIndex, pageSize, sortBy, sortDir, session).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -123,7 +123,7 @@ export class ParticipationSessionComponent implements OnInit {
   async delete(o: ParticipationSession) {
     const r = await this.mydialog.openDialog(this.mytranslate.get('admin.session.list.Participation_Session')).toPromise();
     if (r === 'ok') {
-      // console.log(o);
+      // // console.log(o);
       let list = [];
       o.discours !== '' ? list.push(...this.uow.decoupe(o.discours)) : list = list;
       o.documents !== '' ? list.push(...this.uow.decoupe(o.documents)) : list = list;

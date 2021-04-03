@@ -57,7 +57,7 @@ export class UpdateComponent implements OnInit {
     if (this.id !== 0) {
       this.uow.recommendations.getOne(this.id).subscribe(r => {
         this.o = r as Recommendation;
-        // console.log(r);
+        // // console.log(r);
         this.handleEtatAvancementChiffre(this.o.etat);
 
         this.o.recomOrgs.forEach(e => {
@@ -167,7 +167,7 @@ export class UpdateComponent implements OnInit {
     o.axes = JSON.stringify(o.axes);
     o.sousAxes = JSON.stringify(o.sousAxes);
 
-    console.log(o);
+    // console.log(o);
     // return;
     if (this.id === 0) {
       this.uow.recommendations.post(o).subscribe((r: Recommendation) => {
@@ -178,7 +178,7 @@ export class UpdateComponent implements OnInit {
         });
 
         this.uow.recomOrgs.postRange(recomOrgs).subscribe(e => {
-          console.log(e);
+          // console.log(e);
 
           // const notif: Notification = {
           //   id: 0,
@@ -233,7 +233,7 @@ export class UpdateComponent implements OnInit {
   }
 
   etat(etat: string) {
-    console.log(etat)
+    // console.log(etat)
 
     this.handleEtatAvancementChiffre(etat);
   }
@@ -278,8 +278,8 @@ export class UpdateComponent implements OnInit {
       i = e.id;
       return b;
     });
-    // console.log('>>>>>>>>>>>>>>>>>>');
-    // console.log(this.listOrganisme);
+    // // console.log('>>>>>>>>>>>>>>>>>>');
+    // // console.log(this.listOrganisme);
   }
 
   reset() {

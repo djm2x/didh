@@ -91,7 +91,7 @@ export class ExamenComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.examens.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -139,7 +139,7 @@ export class ExamenComponent implements OnInit {
   async delete(o: Examen) {
     const r = await this.mydialog.openDialog('Examen').toPromise();
     if (r === 'ok') {
-      // console.log(o);
+      // // console.log(o);
       let list = [];
 
       o.rapportNational !== '' ? list.push(...this.uow.decoupe(o.rapportNational)) : list = list;
@@ -166,29 +166,29 @@ export class ExamenComponent implements OnInit {
   getMecanismeState() {
     this.uow.axes.mecanismeState().subscribe(r => {
       const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('Réalisé'));
       chartLabels.push(this.mytranslate.get('NonRéalisé'));
       chartLabels.push(this.mytranslate.get('EnCours'));
       chartLabels.push(this.mytranslate.get('Recommendation_continue'));
-      chartLabels.push(this.mytranslate.get('Réalisé'));
 
 
       const chartData = [];
       const dataToShowInTable = [];
 
+      chartData.push(r.four * 100 / r.total);
       chartData.push(r.one * 100 / r.total);
       chartData.push(r.two * 100 / r.total);
       chartData.push(r.three * 100 / r.total);
-      chartData.push(r.four * 100 / r.total);
 
       dataToShowInTable.push(r.one, r.two, r.three, r.four);
 
 
 
       const chartColors = [
+        '#2b960b',
         '#db0707',
         '#f7801e',
         '#2d71a1',
-        '#2b960b',
         '#ffffff'
       ];
 
@@ -220,7 +220,7 @@ export class ExamenComponent implements OnInit {
     this.uow.axes.stateDetailByMecanisme().subscribe(r => {
 
       r = r.filter(e => e.name !== null);
-      // console.log(r);
+      // // console.log(r);
       const barChartLabels = r.map(e => e.name);
       const dataToShowInTable = []
       const barChartData = [

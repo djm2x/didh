@@ -41,15 +41,15 @@ export class SyntheseComponent implements OnInit {
   constructor(private uow: UowService) { }
 
   ngOnInit() {
-    // console.log(this.selection.hasValue());
-    // console.log(this.isEdit);
+    // // console.log(this.selection.hasValue());
+    // // console.log(this.isEdit);
     // if (this.isEdit) {
     //   const idCycle = this.selectedList ? this.selectedList[0].idCycle : 0;
     //   if (idCycle !== 0) {
     //     this.getPage(0, 10, 'id', 'desc', idCycle);
     //   }
     // }
-    // console.log(this.rapport.syntheses);
+    // // console.log(this.rapport.syntheses);
     // this.rapport.map(r => {
     this.selectedList = this.rapport.syntheses;
     this.selectedList.forEach(row => {
@@ -82,7 +82,7 @@ export class SyntheseComponent implements OnInit {
     this.isLoadingResults = true;
     this.uow.syntheses.getAllWithNoRapport(startIndex, pageSize, sortBy, sortDir, idRapport).subscribe(
       (r: any) => {
-        // console.log(r.list);
+        // // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -120,7 +120,7 @@ export class SyntheseComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.paginator.pageSize;
-    // console.log(numSelected, numRows)
+    // // console.log(numSelected, numRows)
     return numSelected === numRows;
   }
 

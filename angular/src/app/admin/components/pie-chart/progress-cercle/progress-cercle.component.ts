@@ -48,14 +48,14 @@ export class ProgressCercleComponent implements OnInit {
           this.o.r = r.r;
           this.count = (r as any).count;
 
-          console.log((r as any).count)
+          // console.log((r as any).count)
 
           this.o.nbt = r.nbt;
           this.o.nbp = r.nbp;
           this.o.nbr = r.nbr;
 
 
-          console.log(this.o)
+          // console.log(this.o)
         });
 
       } else {
@@ -82,7 +82,7 @@ export class ProgressCercleComponent implements OnInit {
     };
 
     this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
-      console.log(r);
+      // console.log(r);
     });
   }
 

@@ -126,7 +126,7 @@ export class UpdateComponent implements OnInit {
   // setIcon(filaName) {
   //   const i = filaName.lastIndexOf('.');
   //   const s = filaName.substring(i + 1);
-  //   // console.log(s);
+  //   // // console.log(s);
   //   return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
   // }
 

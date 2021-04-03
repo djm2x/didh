@@ -100,7 +100,7 @@ export class ListComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const o = event.option.value as any;
-    // console.log(o);
+    // // console.log(o);
     this.myAuto.setValue(o.label);
     this.idOrganismeEmetteur.setValue(o.id);
   }
@@ -109,7 +109,7 @@ export class ListComponent implements OnInit {
     this.uow.syntheses.getAll(
       startIndex, pageSize, sortBy, sortDir, idOrganisme, idOrganismeEmetteur, idTraite, idRapport, idAxe, idSousAxe).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -175,7 +175,7 @@ export class ListComponent implements OnInit {
   selectChange(idTraite: number) {
     this.uow.rapports.getByIdTraite(idTraite).subscribe(r => {
       this.rapports = r as any[];
-      console.log(r);
+      // console.log(r);
     });
   }
 

@@ -1,0 +1,10 @@
+02.04.2021
+-  (done) supprimer Sessions DH  et mettre à sa place "Textes de référence" (DIDIH_APP)
+-  (done) remplacer "RC"  avec  "en continu"   et " توصية مستمرة"  avec "انجاز مستمر " dans le tableau des recommandation et des statistiques 
+ (la nom enclature de la page d'accueil doit être la même dans tout le système
+- (done) dans la clé des graphe commencer toujours pas réalisé
+- (done) Mettre la couleur avant le texte dans la clé des graphe de tout le système
+
+dans la partie statistiques;
+- (done) dans Global les deux premiers graphes doivent s'échanger (le nom doit être comme dans la page d'accueil)
+- (done) remplacer "Procédure spéciale" par "Procédures spéciales   et "الاجراء الخاص" par   "الاجراءات الخاصة"

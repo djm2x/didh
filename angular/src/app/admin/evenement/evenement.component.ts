@@ -38,7 +38,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   title = new FormControl('');
 
   constructor(private uow: UowService, public dialog: MatDialog
-    , private mydialog: DeleteService, @Inject('BASE_URL') private url: string 
+    , private mydialog: DeleteService, @Inject('BASE_URL') private url: string
     , public session: SessionService, public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
@@ -98,7 +98,7 @@ export class EvenementComponent implements OnInit, OnDestroy {
   getPage(startIndex, pageSize, sortBy, sortDir, title,) {
     const sub = this.uow.evenements.getAll(startIndex, pageSize, sortBy, sortDir,  title,).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;

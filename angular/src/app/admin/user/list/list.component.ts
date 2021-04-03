@@ -72,7 +72,7 @@ export class ListComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir, nom, prenom, organisme) {
     this.uow.users.getAll(startIndex, pageSize, sortBy, sortDir, nom, prenom, organisme).subscribe(
       (r: any) => {
-        console.log(r);
+        // console.log(r);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;

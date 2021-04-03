@@ -22,7 +22,8 @@ export class AdminComponent implements OnInit {
   route = this.router.url;
   user = new User();
   navs = [
-    { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session'] },
+    // { name: this.mytranslate.getObs('admin.header.SessionsDH'), route: ['/admin/participation-session'] },
+    { name: this.mytranslate.getObs('admin.header.Textes de référence'), route: ['/admin/didh-app'] },
     { name: this.mytranslate.getObs('admin.header.Questionnaires'), route: ['/admin/questionnaire'] },
     { name: this.mytranslate.getObs('admin.header.Documentation'), route: ['/admin/evenement'] },
   ];
@@ -68,6 +69,18 @@ export class AdminComponent implements OnInit {
     this.getRoute();
   }
 
+  navigate(route: string[]) {
+    const isDownloadble = route[0]?.includes('didh-app');
+    // console.log(route[0]?.includes('didh-app'), route)
+    if (isDownloadble) {
+      const appname = 'didih-app.exe'; // 'sys-info.exe';
+      const url = `${this.url}/download/${appname}`;
+      window.open(url);
+    } else {
+      this.router.navigate(route);
+    }
+  }
+
   download() {
     const appname = 'didih-app.exe'; // 'sys-info.exe';
     const url = `${this.url}/download/${appname}`;
@@ -84,7 +97,7 @@ export class AdminComponent implements OnInit {
     this.router.events.subscribe(route => {
       if (route instanceof NavigationStart) {
         this.route = route.url;
-        // console.log(this.route);
+        // // console.log(this.route);
       }
     });
   }

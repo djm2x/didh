@@ -62,8 +62,8 @@ export class RecommendationsComponent implements OnInit {
     , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
-    // console.log(this.selection.hasValue());
-    // console.log(this.isEdit);
+    // // console.log(this.selection.hasValue());
+    // // console.log(this.isEdit);
     // if (this.isEdit) {
     //   const idOrganisme = this.selectedList ? this.selectedList[0].idOrganisme : 0;
     //   if (idOrganisme !== 0) {
@@ -72,7 +72,7 @@ export class RecommendationsComponent implements OnInit {
     // }
     this.uow.recommendations.getByIdSynthese(this.synthese.id).subscribe(r => {
       this.selectedList = r as any[];
-      // console.log(this.selectedList)
+      // // console.log(this.selectedList)
       this.selectedList.forEach(row => {
         this.todeleteList.push({ idRecommandation: row.id, idSynthese: this.synthese.id } as any);
         this.selection.select(row);
@@ -85,7 +85,7 @@ export class RecommendationsComponent implements OnInit {
     if (this.synthese.id !== 0) {
       this.isEdit = true;
       // const mecanisme = this.selectedList[0] ? this.selectedList[0].mecanisme : '';
-      // console.log('>>>>>>>>>>>>>> : ', this.selectedList[0]);
+      // // console.log('>>>>>>>>>>>>>> : ', this.selectedList[0]);
       // if (mecanisme !== '') {
       //   this.mecanisme = mecanisme;
       //   this.selectInput.setValue(mecanisme);
@@ -127,7 +127,7 @@ export class RecommendationsComponent implements OnInit {
     this.uow.recommendations.getAllForSynthese(
       startIndex, pageSize, sortBy, sortDir, idCycle, idOrgane, idVisite, idAxe, idSousAxe).subscribe(
         (r: any) => {
-          console.log(r.list);
+          // console.log(r.list);
           this.dataSource = r.list;
           this.resultsLength = r.count;
           this.isLoadingResults = false;
@@ -142,8 +142,8 @@ export class RecommendationsComponent implements OnInit {
     this.selectedList.map(r => {
       this.synRecm.push({ idRecommandation: r.id, idSynthese: this.synthese.id } as any);
     });
-    // console.log('listRecommendation', this.selectedList, 'this.o.recommendations', this.o.recommendations)
-    console.log(this.todeleteList, this.synRecm);
+    // // console.log('listRecommendation', this.selectedList, 'this.o.recommendations', this.o.recommendations)
+    // console.log(this.todeleteList, this.synRecm);
     this.uow.syntheseRecommandations.putRange(this.todeleteList, this.synRecm).subscribe(e => {
       // this.navTab.navigateTo.next(2);
       this.todeleteList = this.synRecm;
@@ -160,7 +160,7 @@ export class RecommendationsComponent implements OnInit {
   }
 
   selectChange(id) {
-    // console.log(this.idCycle.value, this.idOrgane.value, this.idVisite.value);
+    // // console.log(this.idCycle.value, this.idOrgane.value, this.idVisite.value);
 
   }
 
@@ -178,9 +178,9 @@ export class RecommendationsComponent implements OnInit {
   // }
 
   isSelected(row): boolean {
-    // console.log(this.selectedList)
-    // this.selectedList.forEach(e => console.log(+e.id, +row.id))
-    // console.log(this.selectedList.find(e => +e.id === +row.id) ? true : false);
+    // // console.log(this.selectedList)
+    // this.selectedList.forEach(e => // console.log(+e.id, +row.id))
+    // // console.log(this.selectedList.find(e => +e.id === +row.id) ? true : false);
     return this.selectedList.find(e => e.id === row.id) ? true : false;
   }
 
@@ -192,7 +192,7 @@ export class RecommendationsComponent implements OnInit {
     } else {
       this.selectedList.splice(i, 1);
     }
-    // console.log(this.todeleteList);
+    // // console.log(this.todeleteList);
     // this.eventToParent.next(this.selectedList);
   }
 
@@ -200,7 +200,7 @@ export class RecommendationsComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selectedList.length;
     const numRows = this.paginator.pageSize;
-    // console.log(numSelected, numRows)
+    // // console.log(numSelected, numRows)
     return numSelected === numRows;
   }
 

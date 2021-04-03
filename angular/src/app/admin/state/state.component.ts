@@ -40,19 +40,19 @@ export class StateComponent implements OnInit {
 
   ngOnInit() {
     // this.uow.users.count().subscribe(r => {
-    //   console.log(r);
+    //   // console.log(r);
     // });
     // this.reactionTest.subscribe(r => {
     //   // TRY THIS
     //   this.cd.detectChanges();
     //   // OR THIS
     //   // this.cd.markForCheck();
-    //   console.log('reger that');
+    //   // console.log('reger that');
     // });
   }
 
   // dateSelected(value: Moment) {
-  //   console.log(value);
+  //   // console.log(value);
   // }
 
 }

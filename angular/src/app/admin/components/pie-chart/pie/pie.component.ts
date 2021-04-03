@@ -42,7 +42,7 @@ export class PieComponent implements OnInit {
           const dataLabel = data.labels[tooltipItem.index];
           const value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
 
-          // console.log(dataLabel, value)
+          // // console.log(dataLabel, value)
 
           return dataLabel as any;
         }
@@ -80,7 +80,7 @@ export class PieComponent implements OnInit {
       pieceLabel: {
         // fontColor: '#000',
         render: (args) => {
-          console.log(args)
+          // console.log(args)
           const label = args.label;
           const value = args.value;
           // this.arr2.next(args);
@@ -138,11 +138,11 @@ export class PieComponent implements OnInit {
       //   this.pieChartData.push(rest);
       //   this.pieChartColors[0].backgroundColor.push('#fff')
 
-      //   console.log('there is alot of space here', rest)
+      //   // console.log('there is alot of space here', rest)
       // }
       // this.dataToShowInTable = r.dataToShowInTable.map((e: number) => e);
       // this.count = r.count;
-      // // console.log(this.pieChartData, this.pieChartLabels);
+      // // // console.log(this.pieChartData, this.pieChartLabels);
 
       // this.arr = r.chartData.map((e, i) => i);
       // this.list = [];
@@ -167,18 +167,18 @@ export class PieComponent implements OnInit {
     };
 
     this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
-      console.log(r);
+      // console.log(r);
     });
   }
 
   getColors(length) {
     // tslint:disable-next-line:max-line-length
     const pallet = [
+      '#2b960b',// green
       '#db0707',
       '#f7801e',
       '#2d71a1',
-      '#2b960b',
-      '#7dc460', // green
+      '#7dc460',
       '#fdb93a',
       '#59b8ce',
       '#5c5c5f',

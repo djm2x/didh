@@ -90,7 +90,7 @@ export class ListComponent implements OnInit {
       this.displayedColumns = this.columnDefs.map(e => e.columnDef);
     }
 
-    // console.log(this.columnDefs);
+    // // console.log(this.columnDefs);
   }
 
   ngOnInit() {
@@ -100,7 +100,7 @@ export class ListComponent implements OnInit {
     this.uow.recommendations.annee().subscribe(e => {
       this.annees = e;
       // this.myForm.get('annee').setValue(this.annees[0].annee);
-      console.log(e)
+      // console.log(e)
     });
 
     // this.searchAndGet(this.o);
@@ -119,7 +119,7 @@ export class ListComponent implements OnInit {
         this.o.sortDir = this.sort.direction ? this.sort.direction : 'desc';
         this.isLoadingResults = true;
 
-        // console.log(this.o);
+        // // console.log(this.o);
 
         this.searchAndGet(this.o);
       }
@@ -170,7 +170,7 @@ export class ListComponent implements OnInit {
       };
     });
 
-    // console.log(myBody)
+    // // console.log(myBody)
 
     this.excel.json_to_sheet(myBody);
   }
@@ -184,7 +184,7 @@ export class ListComponent implements OnInit {
   }
 
   displayMulti(mc: string, et: string) {
-    // console.log(mc, et)
+    // // console.log(mc, et)
     const etat = [
       { fr: 'Non Réalisé', ar: 'غير منجز' },
       { fr: 'En cours', ar: 'في طور الإنجاز' },
@@ -220,7 +220,7 @@ export class ListComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const o = event.option.value as any;
-    console.log(o);
+    // console.log(o);
     this.myAuto.setValue(o.label);
     (this.myForm.get('idOrganisme') as FormControl).setValue(o.id);
   }
@@ -301,7 +301,7 @@ export class ListComponent implements OnInit {
     return dialogRef.afterClosed();
   }
   // stateDepartement(r: { name: string, p: number, r: number, t: number, type: string }[]) {
-  //   console.log(r);
+  //   // console.log(r);
   //   const listToDeletePE = [
   //     'DGSN',
   //     'Fonction Public',
@@ -333,7 +333,7 @@ export class ListComponent implements OnInit {
   //   // this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, p: number, r: number, t: number, type: string }[]) => {
 
   //   r = r.filter(e => e.name !== null);
-  //   // console.log(r);
+  //   // // console.log(r);
 
   //   // r = r.filter(e => ).map(e => {
 
@@ -345,8 +345,8 @@ export class ListComponent implements OnInit {
   //   const barChartLabelsPG = r.filter(e => e.type === 'PG').map(e => e.name);
   //   const barChartLabelsAutre = r.filter(e => e.type === 'Autre').map(e => e.name);
 
-  //   // console.log(barChartLabels)
-  //   // console.log(barChartLabels1)
+  //   // // console.log(barChartLabels)
+  //   // // console.log(barChartLabels1)
 
   //   const barChartDataPE = [
   //     { data: [], label: this.mytranslate.get('admin.organe.list.Etatavancement')/*, stack: 'a'*/ },
@@ -387,17 +387,17 @@ export class ListComponent implements OnInit {
 
   // }
   searchAndGet(o: Model) {
-    console.log(o);
+    // console.log(o);
     this.o = o;
     // this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.uow.recommendations.searchAndGet(this.o).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
         // this.stateDepartement(this.departementList);
-        console.log(this.table)
+        // console.log(this.table)
 
 
 
@@ -408,7 +408,7 @@ export class ListComponent implements OnInit {
   async delete(o: Recommendation) {
     const r = await this.mydialog.openDialog('recommandation').toPromise();
     if (r === 'ok') {
-      // console.log(o);
+      // // console.log(o);
       let list = [];
 
       o.pieceJointe !== '' ? list.push(...this.uow.decoupe(o.pieceJointe)) : list = list;

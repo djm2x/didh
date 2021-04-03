@@ -40,7 +40,7 @@ export class PopupComponent implements OnInit {
     this.o = this.data.model;
     this.title = this.data.title;
     this.pieceJointe = this.o.ficheUrl;
-    console.log(this.o)
+    // console.log(this.o)
     // this.filename = this.o.lienUpload === '' ? this.filename : this.o.lienUpload;
     this.createForm();
     if (this.title === 'edit') {
@@ -50,7 +50,7 @@ export class PopupComponent implements OnInit {
       // pieces.pop();
       // pieces.forEach(e => this.pieceJointeToShow.push(e));
       // this.pieceJointe = this.o.pieceJointe;
-      // console.log(this.pieceJointeToShow);
+      // // console.log(this.pieceJointeToShow);
       // this.pieceJointeToShow.push(`${f.lastModified}_${f.name};`);
       // this.createForm();
 
@@ -68,7 +68,7 @@ export class PopupComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const o = event.option.value as any;
-    console.log(o);
+    // console.log(o);
     this.myAuto.setValue(o.label);
     (this.myForm.get('idOrganisme') as FormControl).setValue(o.id);
   }
@@ -92,7 +92,7 @@ export class PopupComponent implements OnInit {
 
 
 
-    // console.log(this.listSynthese);
+    // // console.log(this.listSynthese);
     // const synthIds: number[] = [];
 
 
@@ -129,23 +129,23 @@ export class PopupComponent implements OnInit {
   }
 
   openInput(o/*: HTMLInputElement*/) {
-    // console.log('>>>>>>>>>>>>>');
+    // // console.log('>>>>>>>>>>>>>');
     o.click();
   }
 
   upload(files: FileList) {
-    // console.log('>>>>>>>>>>>>>');
-    // console.log(this.pieceJointe)
+    // // console.log('>>>>>>>>>>>>>');
+    // // console.log(this.pieceJointe)
     if (this.oneFile) {
       this.file = files.item(0);
       this.pieceJointe = `${this.file.lastModified}_${this.file.name}`;
       this.o.ficheUrl = this.pieceJointe;
-      // console.log(this.pieceJointe)
+      // // console.log(this.pieceJointe)
       // this.formData = new FormData();
       // this.formData.append(nameFile, file, nameFile);
       // this.pieceJointeToShow[0] = `${file.lastModified}_${file.name};`;
-      // console.log('>>>>>>>>>>>>>');
-      // console.log(file);
+      // // console.log('>>>>>>>>>>>>>');
+      // // console.log(file);
     } else {
 
 
@@ -157,14 +157,14 @@ export class PopupComponent implements OnInit {
           this.formData.append(nameFile, file, nameFile);
           this.pieceJointe += `${nameFile};`;
           this.pieceJointeToShow.push(`${file.lastModified}_${file.name};`);
-          // console.log('>>>>>>>>>>>>>');
-          // console.log(file);
+          // // console.log('>>>>>>>>>>>>>');
+          // // console.log(file);
         }
 
 
       });
     }
-    // console.log(this.pieceJointe);
+    // // console.log(this.pieceJointe);
 
     // to delete
   }
@@ -181,9 +181,9 @@ export class PopupComponent implements OnInit {
       // this.pieceJointeToShow = this.pieceJointeToShow.filter(e => e !== nameFile);
       // this.formData.delete(nameFile);
       // // this.files = this.files.splice(i, 1);
-      // console.log(this.pieceJointe);
+      // // console.log(this.pieceJointe);
       // this.pieceJointe = this.pieceJointe.replace(`${nameFile};`, '');
-      // console.log(this.pieceJointe);
+      // // console.log(this.pieceJointe);
       // // this.files = [];
       // // this.filename = 'Choisie un rapport';
       // // this.myForm.get('pieceJointe').setValue('');
@@ -199,7 +199,7 @@ export class PopupComponent implements OnInit {
   setIcon(filaName) {
     const i = filaName.lastIndexOf('.');
     const s = filaName.substring(i + 1);
-    // console.log(s);
+    // // console.log(s);
     return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
   }
 

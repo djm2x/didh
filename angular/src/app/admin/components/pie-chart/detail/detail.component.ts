@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit {
 
     this.data.type === 'cercle' ? this.o = this.data.model : this.list = this.data.model;
     // this.title = this.data.title;
-    console.log(this.o);
+    // console.log(this.o);
 
     // if (this.mytranslate.langSync === 'fr') {
     //   return 'État d\'avancement : ' + prc + '% - Réaliser : ' + realise + '% - Taux : ' + taux.toFixed(0) + '%';

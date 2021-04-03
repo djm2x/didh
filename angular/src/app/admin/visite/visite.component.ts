@@ -1,23 +1,20 @@
 import { SessionService } from './../../shared/session.service';
-import { Notification, Visite } from 'src/app/Models/models';
+import { Visite } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { merge, BehaviorSubject, Subject, Observable } from 'rxjs';
+import { merge,  Subject } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
-import { HttpEventType } from '@angular/common/http';
 import { UowService } from 'src/app/services/uow.service';
-import { SnackbarService } from 'src/app/shared/snakebar.service';
 import { ActivatedRoute } from '@angular/router';
 import { DetailComponent } from './detail/detail.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
-import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
-import { ModalComponent } from './modal/modal.component';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-visite',
@@ -67,9 +64,7 @@ export class VisiteComponent implements OnInit {
 
   ngOnInit() {
 
-    setTimeout(() => this.getPage(0, 10, 'id', 'desc'), 300)
-      ;
-    merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
+    merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
@@ -121,7 +116,7 @@ export class VisiteComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.visites.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -193,7 +188,7 @@ export class VisiteComponent implements OnInit {
   async delete(o: Visite) {
     const r = await this.mydialog.openDialog('Procédure spéciale').toPromise();
     if (r === 'ok') {
-      // console.log(o);
+      // // console.log(o);
       let list = [];
       o.lienUpload !== '' ? list.push(...this.uow.decoupe(o.lienUpload)) : list = list;
       o.discours !== '' ? list.push(...this.uow.decoupe(o.discours)) : list = list;
@@ -216,27 +211,27 @@ export class VisiteComponent implements OnInit {
   getMecanismeState() {
     this.uow.visites.mecanismeState().subscribe(r => {
       const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('Réalisé'));
       chartLabels.push(this.mytranslate.get('NonRéalisé'));
       chartLabels.push(this.mytranslate.get('EnCours'));
       chartLabels.push(this.mytranslate.get('Recommendation_continue'));
-      chartLabels.push(this.mytranslate.get('Réalisé'));
 
 
       const chartData = [];
       const dataToShowInTable = [];
 
+      chartData.push(r.four * 100 / r.total);
       chartData.push(r.one * 100 / r.total);
       chartData.push(r.two * 100 / r.total);
       chartData.push(r.three * 100 / r.total);
-      chartData.push(r.four * 100 / r.total);
 
       dataToShowInTable.push(r.one, r.two, r.three, r.four);
 
       const chartColors = [
+        '#2b960b',
         '#db0707',
         '#f7801e',
         '#2d71a1',
-        '#2b960b',
         '#ffffff'
       ];
 
@@ -268,7 +263,7 @@ export class VisiteComponent implements OnInit {
     this.uow.visites.stateDetailByMecanisme().subscribe(r => {
 
       r = r.filter(e => e.name !== null);
-      // console.log(r);
+      // // console.log(r);
       const barChartLabels = r.map(e => e.name);
       const dataToShowInTable = []
       const barChartData = [

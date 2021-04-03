@@ -14,9 +14,9 @@ export class LoaderComponent implements OnInit {
   ngOnInit() {
     // this.loader.isLoading.subscribe(
     //   r => {
-    //     console.log('loader = ', r);
+    //     // console.log('loader = ', r);
     //   },
-    //   e => console.log(e)
+    //   e => // console.log(e)
     // );
   }
 }

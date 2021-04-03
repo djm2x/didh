@@ -16,7 +16,7 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.o = this.data.model;
     this.title = this.data.title;
-    console.log(this.o);
+    // console.log(this.o);
   }
 
   onNoClick(): void {

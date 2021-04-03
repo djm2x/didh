@@ -40,7 +40,7 @@ export class ProgressBarComponent implements OnInit {
     };
 
     this.dialog.open(DetailComponent, conf).afterClosed().subscribe(r => {
-      console.log(r);
+      // console.log(r);
     });
   }
 

@@ -35,7 +35,7 @@ export class DetailComponent implements OnInit {
     this.dataSource = this.o.syntheseRecommandations.map(e => e.recommendation);
     // this.title = typeof(Synthese).name.toUpperCase;
     this.title = this.data.title;
-    console.log(this.o);
+    // console.log(this.o);
   }
 
   onNoClick(): void {

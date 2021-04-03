@@ -22,7 +22,7 @@ export class DownloadSheetComponent implements OnInit {
 
       this.folder = this.data.folder;
 
-      console.log(l)
+      // console.log(l)
       this.list = l;
 
     }
@@ -30,7 +30,7 @@ export class DownloadSheetComponent implements OnInit {
 
   async openLink(e: string/*event: MouseEvent*/) {
     // this.bottomSheetRef.dismiss();
-    // console.log(p);
+    // // console.log(p);
     const lastLettre = +e.substring(e.length - 1, e.length);
 
     e = isNaN(lastLettre) ? e : e.substring(0, e.length - 1);

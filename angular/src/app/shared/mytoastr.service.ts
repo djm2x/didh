@@ -41,7 +41,7 @@
 //   // toastInfo = (title, msg) => {
 //   //   return this.toastr.info(msg, title, {
 
-//   //   }); // .onAction.subscribe(r => console.log(r));
+//   //   }); // .onAction.subscribe(r => // console.log(r));
 //   // }
 
 //   // toastWarning = (title, msg) => {
@@ -51,7 +51,7 @@
 //   //     disableTimeOut: true,
 //   //     tapToDismiss: false,
 //   //     // preventDuplicates = false;
-//   //   }).onAction.subscribe(r => console.log(r));
+//   //   }).onAction.subscribe(r => // console.log(r));
 
 //   // }
 // }

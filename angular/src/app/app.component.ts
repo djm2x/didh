@@ -25,6 +25,6 @@ export class AppComponent implements OnInit {
       this.className = r.lang === 'fr' ? 'font-fr' : 'font-ar';
     });
 
-    // console.log(this.app.nativeElement);
+    // // console.log(this.app.nativeElement);
   }
 }

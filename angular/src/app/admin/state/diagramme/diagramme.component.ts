@@ -85,7 +85,7 @@ export class DiagrammeComponent implements OnInit {
 
     this.uow.recommendations.annee().subscribe(r => {
       this.annees = r;
-      console.log(r)
+      // console.log(r)
 
       setTimeout(() => {
         // this.myForm.get('annee').setValue(this.annees[0].annee)
@@ -97,21 +97,21 @@ export class DiagrammeComponent implements OnInit {
 
   // selected(event: MatAutocompleteSelectedEvent): void {
   //   const o = event.option.value as any;
-  //   console.log(o);
+  //   // console.log(o);
   //   // this.myAuto.setValue(o.label);
   //   (this.myForm.get('idOrganisme') as FormControl).setValue(o.id);
   // }
 
   searchAndGet(o: Model) {
-    // console.log(o);
+    // // console.log(o);
     // o.mecanisme = this.o.mecanisme;
-    // console.log(o)
+    // // console.log(o)
 
     this.toRecomendationComponent.next({ obj: Object.assign(new Model(), o) });
 
     this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
     this.o = o;
-    console.log(this.o)
+    // console.log(this.o)
 
     this.uow.recommendations.stateParamAxe(this.o).subscribe((r) => {
       const etat: string = this.myForm.get('etat').value;
@@ -119,7 +119,7 @@ export class DiagrammeComponent implements OnInit {
         r = this.handleEtat(etat, r) as any;
       }
 
-      // console.log(r);
+      // // console.log(r);
       // this.mytranslate.get('admin.event.list.Ajouter_evènement')
       this.axesList = [];
       this.axesList = r.axe;
@@ -154,8 +154,8 @@ export class DiagrammeComponent implements OnInit {
     r.visite = r.visite.map(e => ({ one: one ? e.one : 0, two: two ? e.two : 0, three: three ? e.three : 0, four: four ? e.four : 0, name: e.name, total: e.total })) as any;
     r.department = r.department.map(e => ({ one: one ? e.one : 0, two: two ? e.two : 0, three: three ? e.three : 0, four: four ? e.four : 0, name: e.name, total: e.total })) as any;
 
-    console.log(one, two, three, four)
-    console.log(r)
+    // console.log(one, two, three, four)
+    // console.log(r)
 
     return r;
   }
@@ -200,7 +200,7 @@ export class DiagrammeComponent implements OnInit {
 
   // allMecanismeBar(r: { name: string, p: number, t: number, r: number }[]) {
   //   r = r.filter(e => e.name !== null);
-  //   // console.log(r);
+  //   // // console.log(r);
   //   // r = [r[this.selectedIndex]];
   //   const barChartLabels = r.map(e => e.name);
   //   const barChartData = [
@@ -276,7 +276,7 @@ export class DiagrammeComponent implements OnInit {
   }
 
   search(o: Model) {
-    // console.log(o.idPays, this.myForm.get('idPays').value, o)
+    // // console.log(o.idPays, this.myForm.get('idPays').value, o)
 
     this.searchAndGet(o);
   }
@@ -322,20 +322,20 @@ export class DiagrammeComponent implements OnInit {
     // this.uow.recommendations.stateOrgane().subscribe(r => {
 
     r = r.filter(e => e.name !== null);
-    // console.log(r);
+    // // console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
 
@@ -351,17 +351,17 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
     // tslint:disable-next-line:max-line-length
     this.axePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Axe') });
@@ -373,17 +373,17 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
     // tslint:disable-next-line:max-line-length
@@ -395,20 +395,20 @@ export class DiagrammeComponent implements OnInit {
     // this.uow.visites.stateVisites().subscribe(r => {
 
     r = r.filter(e => e.name !== null);
-    // console.log(r);
+    // // console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
 
@@ -436,19 +436,19 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartDataPE = [
       // { data: [], label: this.mytranslate.langSync === 'fr' ? 'Nombre' : 'عدد' },
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('admin.organe.list.Nombre')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
       // barChartDataPE[0].data.push(e.t);
+      barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartDataPE[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartDataPE[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartDataPE[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartDataPE[4].data.push(e.count);
     });
 
@@ -463,19 +463,19 @@ export class DiagrammeComponent implements OnInit {
   RecommandationValues(r: { nonRealise: number, enCours: number, enCoursRealisation: number, realise: number, count: number }) {
     // this.uow.recommendations.recommandationValues().subscribe((r: any) => {
     const chartLabels = [];
+    chartLabels.push(this.mytranslate.get('Réalisé'));
     chartLabels.push(this.mytranslate.get('NonRéalisé'));
     chartLabels.push(this.mytranslate.get('EnCours'));
     chartLabels.push(this.mytranslate.get('Recommendation_continue'));
-    chartLabels.push(this.mytranslate.get('Réalisé'));
     // r = r.filter(e => e.name !== null);
     // const barChartLabels = r.map(e => e.name);
     const chartData = [];
     const dataToShowInTable = [];
 
+    chartData.push(r.realise * 100 / r.count);
     chartData.push(r.nonRealise * 100 / r.count);
     chartData.push(r.enCours * 100 / r.count);
     chartData.push(r.enCoursRealisation * 100 / r.count);
-    chartData.push(r.realise * 100 / r.count);
 
     const chartColors = [];
     // for (let i = 0; i < 3; i++) {
@@ -507,9 +507,9 @@ export class DiagrammeComponent implements OnInit {
   stateMecanisme1(mecanisme: { epu: { total: number }, organe: { total: number }, visite: { total: number } }, count: number) {
     // this.uow.recommendations.stateMecanisme().subscribe(r => {
 
-    // console.log('>>>>>>>>>>>>>>>>>');
-    // console.log(r);
-    // console.log('>>>>>>>>>>>>>>>>>');
+    // // console.log('>>>>>>>>>>>>>>>>>');
+    // // console.log(r);
+    // // console.log('>>>>>>>>>>>>>>>>>');
 
     const chartLabels = [];
     chartLabels.push(this.mytranslate.get('admin.header.ExamenPériodiqueuniverselle'))

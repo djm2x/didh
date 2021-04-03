@@ -53,7 +53,7 @@ export class CycleComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir) {
     this.uow.cycles.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;

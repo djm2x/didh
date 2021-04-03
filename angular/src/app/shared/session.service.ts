@@ -54,7 +54,7 @@ export class SessionService {
 
   // this methode is for our auth guard
   get isSignedIn(): boolean {
-    // console.log(!!localStorage.getItem(USER) ||
+    // // console.log(!!localStorage.getItem(USER) ||
     // !!localStorage.getItem(TOKEN) ||
     // !!localStorage.getItem(ROLE));
     return !!localStorage.getItem(USER) ||
@@ -79,8 +79,8 @@ export class SessionService {
       console.warn('error localstorage data', error);
     }
 
-    // console.log('token here : ', this.token);
-    // console.log('idRole here : ', this.idRole);
+    // // console.log('token here : ', this.token);
+    // // console.log('idRole here : ', this.idRole);
   }
 
   get getUser() {

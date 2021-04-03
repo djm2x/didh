@@ -19,7 +19,7 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private loaderService: LoaderService, public router: Router
     , public snackBar: SnackBarService, private session: SessionService
     , public mytranslate: MyTranslateService) {
-      // console.log(this.session.token);
+      // // console.log(this.session.token);
     }
 
   removeRequest(req: HttpRequest<any>) {
@@ -61,12 +61,12 @@ export class LoaderInterceptor implements HttpInterceptor {
             if (err.status === 401 || err.status === 403) {
               // this.toast.toastError(err.status); // , err.statusText);
               // this.snackBar.notifyAlert(`${err.status}: ${err.statusText}`);
-              // console.log(err.status, err.statusText);
+              // // console.log(err.status, err.statusText);
               // this.session.doSignOut();
               // this.router.navigate(['auth/login']);
               this.snackBar.manageStatusCode(err.status);
             } else {
-              // console.log(err);
+              // // console.log(err);
               // this.toast.toastError(err.error);
               const er = err.error ? `${err.status}: ${err.error.Description}` : `${err.status}`
               this.snackBar.manageStatusCode(err.status);

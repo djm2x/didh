@@ -10,8 +10,8 @@
 
     <div class="mt-3">
       <div *ngFor="let e of pieChartLabels; let i=index" style="display: flex;margin-bottom: 7px;max-width: 50vw;width: 100%;">
-          <span style="color: gray; font-size: 1em; margin: 0 10px;">{{e}}</span>
-          <div style="width: 43px; height: 18px; border: 1px solid white;" [style.backgroundColor]="this.pieChartColors[0].backgroundColor[i]"></div>
+        <div style="width: 43px; height: 18px; border: 1px solid white;" [style.backgroundColor]="this.pieChartColors[0].backgroundColor[i]"></div>
+        <span style="color: gray; font-size: 1em; margin: 0 10px;">{{e}}</span>
       </div>
     </div>
 

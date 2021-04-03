@@ -12,7 +12,7 @@ export class SheetbottomComponent implements OnInit {
   constructor(private bottomSheetRef: MatBottomSheetRef<SheetbottomComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {}
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     this.o = this.data;
   }
 

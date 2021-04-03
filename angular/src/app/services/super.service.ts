@@ -29,7 +29,7 @@ export class SuperService<T> implements ISuperService {
   delete = (id) => this.http.delete<any>(`${this.urlApi}/${this.controller}/delete/${id}`);
 
   updateRange(o: T[]) {
-    // console.log("updating : ", o)
+    // // console.log("updating : ", o)
     return this.http.post(`${this.urlApi}/${this.controller}/updateRange`, o);
   }
 
@@ -38,17 +38,17 @@ export class SuperService<T> implements ISuperService {
   }
 
   postRange(o: T[]) {
-    // console.log("updating : ", o)
+    // // console.log("updating : ", o)
     return this.http.post(`${this.urlApi}/${this.controller}/postRange`, o);
   }
 
   autocomplete(column: string, name: string) {
-    // console.log("updating : ", o)
+    // // console.log("updating : ", o)
     return this.http.get(`${this.urlApi}/${this.controller}/autocomplete/${column}/${name}`);
   }
 
   autocompletePost(column: string, name: string) {
-    // console.log("updating : ", o)
+    // // console.log("updating : ", o)
     return this.http.post(`${this.urlApi}/${this.controller}/autocompletePost`, {column, name});
   }
 }

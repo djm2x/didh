@@ -46,7 +46,7 @@ export class StatePieComponent implements OnInit {
 
   ngOnInit() {
     this.obs.subscribe((r: { list: {table: string, value: number}[], title: string }) => {
-      console.log(r)
+      // console.log(r)
       this.title = r.title;
       this.pieChartLabels = r.list.map(e => e.table/*.split(' ')*/);
       this.pieChartData = r.list.map(e => e.value);

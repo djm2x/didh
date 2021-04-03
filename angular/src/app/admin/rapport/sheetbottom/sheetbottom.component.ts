@@ -15,11 +15,11 @@ export class SheetbottomComponent implements OnInit {
     , private uow: UowService, @Inject('BASE_URL') public url: string) { }
 
   ngOnInit() {
-    // console.log(this.data);
+    // // console.log(this.data);
     // this.o = this.data as Rapport;
     // this.pieces = this.o.pieceJointe.split(';');
     // this.pieces.pop();
-    // console.log(this.pieces);
+    // // console.log(this.pieces);
 
     this.o = this.data as Traite;
     this.rapports = this.o.rapports;
@@ -28,7 +28,7 @@ export class SheetbottomComponent implements OnInit {
 
   async openLink(p/*event: MouseEvent*/) {
     // this.bottomSheetRef.dismiss();
-    console.log(p);
+    // console.log(p);
     const url = `${this.url}/rapport/${p}`;
     window.open(url);
     // try {

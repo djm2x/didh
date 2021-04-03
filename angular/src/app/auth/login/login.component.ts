@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.o.password = this.isDev ? '123' : '';
     this.createForm();
 
-    // this.checkbox.valueChanges.subscribe(r => console.log(r));
+    // this.checkbox.valueChanges.subscribe(r => // console.log(r));
     // * remeber me
     // const s = JSON.parse(localStorage.getItem('user'));
     // if (s) {
@@ -77,10 +77,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   submit(myForm) {
-    // console.log(myForm.value);
+    // // console.log(myForm.value);
     const o = myForm.value;
     // this.snackbar.openMySnackBar('login...');
-    console.log(o);
+    // console.log(o);
     this.uow.users.login(o).subscribe((r: any) => {
     this.session.doSignIn(r.user, r.token, r.idRole);
     setTimeout(() => this.router.navigate(['/admin']), 500);
@@ -102,6 +102,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy');
+    // console.log('ngOnDestroy');
   }
 }

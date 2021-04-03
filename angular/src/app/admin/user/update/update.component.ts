@@ -39,7 +39,7 @@ export class UpdateComponent implements OnInit {
     if (this.id !== 0) {
       this.uow.users.getOne(this.id).subscribe(r => {
         this.o = r as User;
-        console.log(this.o);
+        // console.log(this.o);
         this.title = 'Modifier Utilisateur';
         this.createForm();
       });
@@ -75,7 +75,7 @@ export class UpdateComponent implements OnInit {
           this.router.navigateByUrl('/admin/user');
         });
       } else {
-        console.log(user);
+        // console.log(user);
         this.uow.users.put(user.id, user).subscribe(r => {
           this.router.navigateByUrl('/admin/user');
         });

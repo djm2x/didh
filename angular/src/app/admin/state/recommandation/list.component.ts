@@ -87,10 +87,10 @@ export class ListComponent implements OnInit {
     //   o.nom = '';
     //   o.idPays = 0;
 
-    //   console.log(o.mecanisme)
+    //   // console.log(o.mecanisme)
 
     //   this.uow.recommendations.searchAndGet(o).subscribe((r: any) => {
-    //     console.log(r.list);
+    //     // console.log(r.list);
     //     this.dataSource = r.list;
     //     this.resultsLength = r.count;
     //     this.isLoadingResults = false;
@@ -102,7 +102,7 @@ export class ListComponent implements OnInit {
 
       if ((r as any).obj/*o.mecanisme !== undefined*/) {
         this.o = (r as any).obj;
-        console.log(this.o)
+        // console.log(this.o)
       }
       // r === true ? this.paginator.pageIndex = 0 : r = r;
       !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
@@ -117,7 +117,7 @@ export class ListComponent implements OnInit {
       this.o.idOrganisme = this.session.isPointFocal || this.session.isProprietaire ? this.session.user.idOrganisme : this.o.idOrganisme;
 
       this.uow.recommendations.searchAndGet(this.o).subscribe((r2: any) => {
-        // console.log(r.list);
+        // // console.log(r.list);
         this.dataSource = r2.list;
         this.resultsLength = r2.count;
         this.isLoadingResults = false;
@@ -161,7 +161,7 @@ export class ListComponent implements OnInit {
     const etat = [
       { fr: 'Non Réalisé', ar: 'غير منجز' },
       { fr: 'En cours', ar: 'في طور الإنجاز' },
-      { fr: 'Recommendation continue', ar: 'توصية مستمرة' },
+      { fr: 'Recommendation continue', ar: 'انجاز مستمر' },
       { fr: 'Réalisé', ar: 'منجز' },
     ];
 

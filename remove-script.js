@@ -6,7 +6,7 @@ function main() {
 
     if (fs.existsSync(path)) {
         fs.rmdirSync(path, { recursive: true });
-        console.log('remove folder migrations succssfuly')
+        // console.log('remove folder migrations succssfuly')
     }
 }
 
@@ -14,7 +14,7 @@ function main() {
 try {
     main();
 } catch (e) {
-    console.log('>>>>>>>>>>>> remove-script trace begin')
-    console.log(e)
-    console.log('>>>>>>>>>>>> remove-script trace end')
+    // console.log('>>>>>>>>>>>> remove-script trace begin')
+    // console.log(e)
+    // console.log('>>>>>>>>>>>> remove-script trace end')
 }

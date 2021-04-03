@@ -113,7 +113,7 @@ export class QuestionnaireComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir, idAxe, idSousAxe, annee) {
     this.uow.questionnaires.getAll(startIndex, pageSize, sortBy, sortDir, idAxe, idSousAxe, annee).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         // this.dataSource = (r.list as Questionnaire[]).map(e => {
         //   try {
         //     const theme$ = this.themes.find(f => f.id === e.theme);
@@ -129,7 +129,7 @@ export class QuestionnaireComponent implements OnInit {
 
         this.dataSource = r.list;
 
-        // console.log(this.dataSource.map(e => e.sousThemeDis))
+        // // console.log(this.dataSource.map(e => e.sousThemeDis))
         this.resultsLength = r.count;
         this.isLoadingResults = false;
       }

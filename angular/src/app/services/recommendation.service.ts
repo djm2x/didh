@@ -104,7 +104,7 @@ export class RecommendationService extends SuperService<Recommendation> {
     return this.http.post(`${this.urlApi}/${this.controller}/stateParamOrganisme`, o);
   }
   // updateRange(o) {
-  //   // console.log("updating : ", o)
+  //   // // console.log("updating : ", o)
   //   return this.http.post(`${this.urlApi}/${this.controller}/updateRange`, o);
   // }
 

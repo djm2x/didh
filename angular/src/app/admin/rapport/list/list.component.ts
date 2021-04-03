@@ -67,7 +67,7 @@ export class ListComponent implements OnInit {
     , private route: ActivatedRoute, @Inject('BASE_URL') public url: string) { }
 
   ngOnInit() {
-    // console.log(this.columnDefs)
+    // // console.log(this.columnDefs)
     this.getPage(0, 10, 'id', 'desc', this.session.isPublic ? 0 : this.session.user.idOrganisme);
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
@@ -108,7 +108,7 @@ export class ListComponent implements OnInit {
   getPage(startIndex, pageSize, sortBy, sortDir, idOrganisme) {
     this.uow.traites.getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme).subscribe(
       (r: any) => {
-        // console.log(r.list);
+        // // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -167,7 +167,7 @@ export class ListComponent implements OnInit {
   }
 
   showPieceJoin2(o: Traite) {
-    console.log(o);
+    // console.log(o);
     this.bottomSheet.open(SheetbottomComponent, { data: o, });
   }
 
@@ -183,27 +183,27 @@ export class ListComponent implements OnInit {
   getMecanismeState() {
     this.uow.organes.mecanismeState().subscribe(r => {
       const chartLabels = [];
+      chartLabels.push(this.mytranslate.get('Réalisé'));
       chartLabels.push(this.mytranslate.get('NonRéalisé'));
       chartLabels.push(this.mytranslate.get('EnCours'));
       chartLabels.push(this.mytranslate.get('Recommendation_continue'));
-      chartLabels.push(this.mytranslate.get('Réalisé'));
 
 
       const chartData = [];
       const dataToShowInTable = [];
 
+      chartData.push(r.four * 100 / r.total);
       chartData.push(r.one * 100 / r.total);
       chartData.push(r.two * 100 / r.total);
       chartData.push(r.three * 100 / r.total);
-      chartData.push(r.four * 100 / r.total);
 
       dataToShowInTable.push(r.one, r.two, r.three, r.four);
 
       const chartColors = [
+        '#2b960b',
         '#db0707',
         '#f7801e',
         '#2d71a1',
-        '#2b960b',
         '#ffffff'
       ];
 
@@ -235,7 +235,7 @@ export class ListComponent implements OnInit {
     this.uow.organes.stateDetailByMecanisme().subscribe(r => {
 
       r = r.filter(e => e.name !== null);
-      // console.log(r);
+      // // console.log(r);
       const barChartLabels = r.map(e => e.name);
       const dataToShowInTable = []
       const barChartData = [

@@ -60,12 +60,12 @@ export class UpdateComponent implements OnInit {
       this.uow.traites.getOne(this.id).subscribe(r => {
         this.o = r as any;
         // this.rapportsToChild.next(this.o.rapports);
-        console.log(this.o)
+        // console.log(this.o)
         // const pieces = this.o.pieceJointe.split(';');
         // pieces.pop();
         // pieces.forEach(e => this.pieceJointeToShow.push(e));
         // this.pieceJointe = this.o.pieceJointe;
-        // console.log(this.pieceJointeToShow);
+        // // console.log(this.pieceJointeToShow);
         // this.pieceJointeToShow.push(`${f.lastModified}_${f.name};`);
         this.createForm();
 
@@ -93,15 +93,15 @@ export class UpdateComponent implements OnInit {
     // this.dataFromChild.subscribe((r: { datasource: any[], file: File, rapportToDelete: any[] }) => {
     //   this.rapports = r.datasource;
     //   if (r.file) {
-    //     console.log(r.file)
+    //     // console.log(r.file)
     //     const nameFile = `${r.file.lastModified}_${r.file.name}` as string;
     //     this.formData.append(nameFile, r.file, nameFile);
     //   }
 
     //   this.rapportToDelete = r.rapportToDelete;
     //   this.pieceJointeToDelete = this.rapportToDelete.map((e: Rapport) => e.pieceJointe);
-    //   // console.log('>>>>>>>>>>>>>>>>>>>>>');
-    //   // console.log(this.rapports);
+    //   // // console.log('>>>>>>>>>>>>>>>>>>>>>');
+    //   // // console.log(this.rapports);
     // });
 
 
@@ -209,9 +209,9 @@ export class UpdateComponent implements OnInit {
         //   formData.append(nameFile, this.observationPiece, nameFile);
         // }
 
-        // // console.log(this.conventionPiece)
-        // // console.log(this.miseOeuvrePiece)
-        // // console.log(this.observationPiece)
+        // // // console.log(this.conventionPiece)
+        // // // console.log(this.miseOeuvrePiece)
+        // // // console.log(this.observationPiece)
 
         // if (formData) {
         //   await this.uow.files.uploadFiles(formData, 'traite').toPromise();
@@ -238,7 +238,7 @@ export class UpdateComponent implements OnInit {
   }
 
   // openInput(o/*: HTMLInputElement*/) {
-  //   // console.log('>>>>>>>>>>>>>');
+  //   // // console.log('>>>>>>>>>>>>>');
   //   o.click();
   // }
 
@@ -305,7 +305,7 @@ export class UpdateComponent implements OnInit {
   // setIcon(filaName) {
   //   const i = filaName.lastIndexOf('.');
   //   const s = filaName.substring(i + 1);
-  //   // console.log(s);
+  //   // // console.log(s);
   //   return (s === 'pdf' || s === 'pdf;') ? 'assets/svg/pdf.svg' : 'assets/svg/word.svg';
   // }
 

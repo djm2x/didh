@@ -59,13 +59,13 @@ export class FicheSyntheseComponent implements OnInit {
   }
 
   test() {
-    console.log()
+    // console.log()
   }
 
   getPage(startIndex, pageSize, sortBy, sortDir, idSynthese) {
     this.uow.ficheSyntheses.getAll(startIndex, pageSize, sortBy, sortDir, idSynthese).subscribe(
       (r: any) => {
-        console.log(r.list);
+        // console.log(r.list);
         this.dataSource = r.list;
         this.resultsLength = r.count;
         this.isLoadingResults = false;
@@ -125,7 +125,7 @@ export class FicheSyntheseComponent implements OnInit {
   }
 
   // toParentComponent(datasource, file, rapportToDelete/*, pieceDeleted*/) {
-  //   console.log({
+  //   // console.log({
   //     datasource, // list rapprot
   //     file, // all files
   //     rapportToDelete, // case edit: if there is something to delete

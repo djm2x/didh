@@ -30,7 +30,7 @@ export class DetailComponent implements OnInit {
     this.o = this.data.model;
     this.dataSource = this.o.rapports;
     this.title = this.data.title;
-    console.log(this.o);
+    // console.log(this.o);
   }
 
   onNoClick(): void {
