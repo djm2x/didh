@@ -116,6 +116,8 @@ export class HomeComponent implements OnInit {
         });
       });
 
+      r = r.filter(e => e);
+
       const barChartLabelsPE = listToWorkWith.filter(e => e.type === 'PE')
         .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
 
@@ -127,7 +129,6 @@ export class HomeComponent implements OnInit {
 
       const barChartLabelsAutre = r.filter(e => e.type === 'Autre')
         .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
-
 
       const barChartDataPE = [
         { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
@@ -185,6 +186,11 @@ export class HomeComponent implements OnInit {
           barChartDataPJ[3].data.push(+(e.four * 100 / e.total).toFixed(0));
         }
       });
+
+      console.log(barChartLabelsAutre)
+      console.log(r)
+      console.log(barChartDataAutre)
+
 
       this.departementSubjectAutre.next({
         barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre

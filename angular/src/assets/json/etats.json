@@ -2,5 +2,5 @@
     {"name": "Réalisé", "nameAr": "منجز" },
     {"name": "En cours", "nameAr": "في طور" },
     {"name": "Non réalisé", "nameAr": "غير منجز" },
-    {"name": "Recommendation continue", "nameAr": "توصية مستمرة" }
+    {"name": "En continue", "nameAr": "انجاز مستمر " }
 ]

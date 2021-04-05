@@ -10,9 +10,9 @@ export class OrganismeService  extends SuperService<Organisme> {
     super('organisme');
   }
 
-  getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme) {
+  getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme, type) {
     return this.http.get(
-      `${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${idOrganisme}`);
+      `${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${idOrganisme}/${type}`);
   }
 
 }

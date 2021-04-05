@@ -23,8 +23,8 @@ namespace Admin5.Controllers
             string lng = Request.Headers["mylang"].FirstOrDefault();
             
             var q = _context.Questionnaires
-                .Where(e => idAxe == 0 ? true : e.Theme == idAxe)
-                .Where(e => idSousAxe == 0 ? true : e.SousTheme == idSousAxe)
+                .Where(e => idAxe == 0 ? true : e.IdAxe == idAxe)
+                .Where(e => idSousAxe == 0 ? true : e.IdSousAxe == idSousAxe)
                 .Where(e => annee == 0 ? true : e.Annee == annee)
                 // .Where(e => reporter == "*" ? true : e.Reporter.ToLower().Contains(reporter.ToLower()))
                 // .Where(e => reporterAr == "*" ? true : e.ReporterAr.ToLower().Contains(reporterAr.ToLower()))

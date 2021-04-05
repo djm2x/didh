@@ -106,7 +106,7 @@ export class OrganismesComponent implements OnInit {
   }
 
   getPage(startIndex, pageSize, sortBy, sortDir, idOrganisme) {
-    this.uow.organismes.getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme).subscribe(
+    this.uow.organismes.getAll(startIndex, pageSize, sortBy, sortDir, idOrganisme, '*').subscribe(
       (r: any) => {
         // // console.log(r.list);
         this.dataSource = r.list;

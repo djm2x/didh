@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -8,6 +9,7 @@ import { UowService } from 'src/app/services/uow.service';
 import { Organisme } from 'src/app/Models/models';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { MatDialog } from '@angular/material/dialog';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-organisme',
@@ -21,6 +23,8 @@ export class OrganismeComponent implements OnInit {
   isLoadingResults = true;
   resultsLength = 0;
   isRateLimitReached = false;
+  panelOpenState = true;
+  type = new FormControl('');
 
   dataSource = [];
   columnDefs = [
@@ -40,8 +44,7 @@ export class OrganismeComponent implements OnInit {
     , public mytranslate: MyTranslateService) { }
 
   ngOnInit() {
-    this.getPage(0, 10, 'id', 'desc');
-    merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
+    merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
@@ -52,13 +55,23 @@ export class OrganismeComponent implements OnInit {
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
+          this.type.value === '' ? '*' : this.type.value,
           );
       }
     );
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir) {
-    this.uow.organismes.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
+  search() {
+    this.update.next(true);
+  }
+
+  reset() {
+    this.type.setValue('');
+    this.update.next(true);
+  }
+
+  getPage(startIndex, pageSize, sortBy, sortDir, type) {
+    this.uow.organismes.getAll(startIndex, pageSize, sortBy, sortDir, 0, type).subscribe(
       (r: any) => {
         // console.log(r.list);
         this.dataSource = r.list;

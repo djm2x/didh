@@ -43,8 +43,10 @@ export class BarComponent implements OnInit {
     },
     legend: {
       position: 'top',
-      // display: false,
+      display: false,
+      rtl: true,
       align: 'center',
+      textDirection: 'rtl',
       labels: {
         fontSize: 16,
         padding: 10,
@@ -117,30 +119,33 @@ export class BarComponent implements OnInit {
 
     this.dataSubject.subscribe((r: { barChartLabels: Label[], barChartData: ChartDataSets[], title: string }) => {
       this.title = r.title;
-      let nonRealise = r.barChartLabels[0];
-      let enCours = r.barChartLabels[1];
-      let recommendationContinue = r.barChartLabels[2];
-      let realise = r.barChartLabels[3];
 
-      r.barChartLabels[0] = realise;
-      r.barChartLabels[1] = nonRealise;
-      r.barChartLabels[2] = enCours;
-      r.barChartLabels[3] = recommendationContinue;
+      console.log(r)
+
+      // const nonRealise = r.barChartLabels[0];
+      // const enCours = r.barChartLabels[1];
+      // const recommendationContinue = r.barChartLabels[2];
+      // const realise = r.barChartLabels[3];
+
+      // r.barChartLabels[0] = realise;
+      // r.barChartLabels[1] = nonRealise;
+      // r.barChartLabels[2] = enCours;
+      // r.barChartLabels[3] = recommendationContinue;
 
 
-      this.barChartLabels = r.barChartLabels; // .map(e => e.toString().substring(0, 35) + ' ...');
+      this.barChartLabels =  this.swap(r.barChartLabels); // .map(e => e.toString().substring(0, 35) + ' ...');
 
-      nonRealise = r.barChartData[0] as any;
-      enCours = r.barChartData[1] as any;
-      recommendationContinue = r.barChartData[2] as any;
-      realise = r.barChartData[3] as any;
+      // const nonRealise2 = r.barChartData[0] as any;
+      // const enCours2 = r.barChartData[1] as any;
+      // const recommendationContinue2 = r.barChartData[2] as any;
+      // const realise2 = r.barChartData[3] as any;
 
-      r.barChartData[0] = realise as any;
-      r.barChartData[1] = nonRealise as any;
-      r.barChartData[2] = enCours as any;
-      r.barChartData[3] = recommendationContinue as any;
+      // r.barChartData[0] = realise2 as any;
+      // r.barChartData[1] = nonRealise2 as any;
+      // r.barChartData[2] = enCours2 as any;
+      // r.barChartData[3] = recommendationContinue2 as any;
 
-      this.barChartData = r.barChartData;
+      this.barChartData = this.swap(r.barChartData);
 
       // console.log(r)
       // // console.log(this.barChartData[0].data[0])
@@ -168,6 +173,11 @@ export class BarComponent implements OnInit {
 
     });
   }
+
+  swap(arra: any[]): any[] {
+    [arra[0], arra[arra.length - 1]] = [arra[arra.length - 1], arra[0]];
+    return arra;
+}
 
   openDialog() {
     const conf = {
