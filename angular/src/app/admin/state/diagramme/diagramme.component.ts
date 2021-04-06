@@ -325,17 +325,17 @@ export class DiagrammeComponent implements OnInit {
     // // console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
 
@@ -351,17 +351,17 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
     // tslint:disable-next-line:max-line-length
     this.axePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Axe') });
@@ -373,17 +373,17 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
     // tslint:disable-next-line:max-line-length
@@ -398,17 +398,17 @@ export class DiagrammeComponent implements OnInit {
     // // console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
+      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
     });
 
 
@@ -436,20 +436,20 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartDataPE = [
       // { data: [], label: this.mytranslate.langSync === 'fr' ? 'Nombre' : 'عدد' },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
       { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('admin.organe.list.Nombre')/*, stack: 'a'*/ },
+      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      // { data: [], label: this.mytranslate.get('admin.organe.list.Nombre')/*, stack: 'a'*/ },
     ];
 
     r.forEach(e => {
       // barChartDataPE[0].data.push(e.t);
-      barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
       barChartDataPE[0].data.push(+(e.one * 100 / e.total).toFixed(0));
       barChartDataPE[1].data.push(+(e.two * 100 / e.total).toFixed(0));
       barChartDataPE[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartDataPE[4].data.push(e.count);
+      barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
+      // barChartDataPE[4].data.push(e.count);
     });
 
 

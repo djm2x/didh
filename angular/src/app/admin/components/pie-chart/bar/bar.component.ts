@@ -43,10 +43,10 @@ export class BarComponent implements OnInit {
     },
     legend: {
       position: 'top',
-      display: false,
-      rtl: true,
+      // display: false,
+      rtl: this.mytranslate.langSync === 'ar',
       align: 'center',
-      textDirection: 'rtl',
+      // textDirection: this.mytranslate.langSync === 'fr'
       labels: {
         fontSize: 16,
         padding: 10,
