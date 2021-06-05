@@ -38,7 +38,7 @@ namespace Admin5.Controllers
             string lng = Request.Headers["mylang"].FirstOrDefault();
 
             var list = (await _context.Recommendations.Where(e => e.IdVisite != null).Include(e => e.Visite).ToListAsync())
-                .GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
+                .GroupBy(e => lng == "fr" ? (e.Visite.Abr == "" ? e.Visite.Mandat : e.Visite.Abr) : (e.Visite.AbrAr == "" ? e.Visite.MandatAr : e.Visite.AbrAr))
                 .Select(e => new
                 {
                     name = e.Key,
@@ -65,7 +65,7 @@ namespace Admin5.Controllers
             var list = await _context.Visites
                 .Select(e => new
                 {
-                    name = lng == "fr" ? e.Mandat : e.MandatAr,
+                    name = lng == "fr" ? (e.Abr == "" ? e.Mandat : e.Abr) : (e.AbrAr == "" ? e.MandatAr : e.AbrAr),
                     one = e.Recommendations.Where(e => e.IdVisite != null).Count() * 100 / recommendationsCount,
                 })
                 .Distinct()

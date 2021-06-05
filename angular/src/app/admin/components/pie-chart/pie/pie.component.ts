@@ -184,11 +184,11 @@ export class PieComponent implements OnInit {
       '#5c5c5f',
       '#ef4f42',
       '#a5a6aa',
-      // '#85144b', a31414
-      // '#F012BE',
-      // '#3D9970',
-      // '#111111',
-      // '#AAAAAA',
+      '#85144b', //a31414
+      '#F012BE',
+      '#3D9970',
+      '#111111',
+      '#AAAAAA',
     ];
     // const pallet = ['#d17c36', '#496488', '#84bc5b'];
     const colors = [];

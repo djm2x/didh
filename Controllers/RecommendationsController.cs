@@ -260,7 +260,7 @@ namespace Admin5.Controllers
                 ;
 
             var visite = (q.Where(e => e.Visite != null))
-                .GroupBy(e => lng == "fr" ? e.Visite.Mandat : e.Visite.MandatAr)
+                .GroupBy(e => lng == "fr" ? (e.Visite.Abr == "" ? e.Visite.Mandat : e.Visite.Abr) : (e.Visite.AbrAr == "" ? e.Visite.MandatAr : e.Visite.AbrAr))
                 .Select(e => new
                 {
                     name = e.Key,

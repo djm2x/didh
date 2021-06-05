@@ -37,21 +37,33 @@ export class ListComponent implements OnInit {
   dataSource: Recommendation[] = [];
   // columnDefs = [];
   columnDefs = [
-    { columnDef: 'codeRecommendation', headName: 'admin.recommandation.list.code', show: true },
-    { columnDef: 'nom', headName: 'admin.recommandation.list.nom', show: true },
-    { columnDef: 'mecanisme', headName: 'admin.recommandation.list.mecanisme', show: true },
-    { columnDef: 'axe', headName: 'admin.recommandation.list.Axe', show: true },
-    { columnDef: 'sousAxe', headName: 'admin.recommandation.list.Sousaxe', show: true },
-    { columnDef: 'organismes', headName: 'admin.recommandation.list.DEPARTEMENT', show: false },
-    { columnDef: 'etat', headName: 'admin.recommandation.list.Etatdemisenoeuvre', show: false },
-    { columnDef: 'pieceJointe', headName: 'admin.recommandation.list.OBSERVATIONS', show: false },
-    { columnDef: 'complement', headName: 'admin.recommandation.list.complement', show: false },
-    { columnDef: 'option', headName: '', show: true },
+    { columnDef: 'codeRecommendation',  show: true },
+    { columnDef: 'nom',  show: true },
+    { columnDef: 'mecanisme',  show: true },
+    { columnDef: 'axe',  show: true },
+    { columnDef: 'sousAxe',  show: true },
+    { columnDef: 'organismes', show: false },
+    { columnDef: 'etat', show: false },
+    // { columnDef: 'pieceJointe', show: false },
+    { columnDef: 'complement', show: false },
+    { columnDef: 'option',  show: true },
   ]
   // .map(e => {
   //   e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
   //   return e;
   // });
+  displayedColumns = [
+    'codeRecommendation',
+    'nom',
+    'mecanisme',
+    'axe',
+    'sousAxe',
+    'organismes',
+    'etat',
+    // 'pieceJointe',
+    'complement',
+    'option',
+  ];
   //
   panelOpenState = false;
   //
@@ -72,7 +84,6 @@ export class ListComponent implements OnInit {
 
   departementList: { name: string, p: number, r: number, t: number, type: string }[] = [];
 
-  displayedColumns = this.columnDefs.map(e => e.columnDef);
 
   progress = 0;
   message: any;
@@ -188,7 +199,7 @@ export class ListComponent implements OnInit {
     const etat = [
       { fr: 'Non Réalisé', ar: 'غير منجز' },
       { fr: 'En cours', ar: 'في طور الإنجاز' },
-      { fr: 'Recommendation continue', ar: 'توصية مستمرة' },
+      { fr: 'Recommendation continue', ar: 'تنفيذ مستمر' },
       { fr: 'Réalisé', ar: 'منجز' },
     ];
 

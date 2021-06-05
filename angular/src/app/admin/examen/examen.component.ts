@@ -1,14 +1,12 @@
 import { SessionService } from './../../shared/session.service';
 import { Examen } from 'src/app/Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
-import { merge, Subject, BehaviorSubject, Observable } from 'rxjs';
+import { merge, Subject } from 'rxjs';
 import { UpdateComponent } from './update/update.component';
 import { DeleteService } from '../components/delete/delete.service';
-import { HttpClient, HttpEventType } from '@angular/common/http';
 import { UowService } from 'src/app/services/uow.service';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from './archive/archive.component';
-import { IData } from '../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,22 +31,18 @@ export class ExamenComponent implements OnInit {
   text = '';
   text2 = this.text.substring(0, 600);
   dataSource: Examen[] = [];
-  columnDefs = [
-    { columnDef: 'libelle', headName: 'libelle' },
-    { columnDef: 'rapportNational', headName: 'Rapport national' },
-    { columnDef: 'compilationHCDH', headName: 'Compilation HCDH/SOCIETE CIVILE' },
-    { columnDef: 'discours', headName: 'Discours du président' },
-    { columnDef: 'observationFinale', headName: 'Observations finales/ADDITIFS' },
-    { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
-    { columnDef: 'rapportMiParcours', headName: 'Rapport mi-parcours' },
-    { columnDef: 'rapportINDH', headName: 'rapportINDH' },
-    { columnDef: 'option', headName: 'OPTION' },
-  ].map(e => {
-    e.headName = e.headName === '' ? e.columnDef.toUpperCase() : e.headName.toUpperCase();
-    return e;
-  });
 
-  displayedColumns = this.columnDefs.map(e => e.columnDef);
+  displayedColumns = [
+    'libelle', // الإستعراض
+    'rapportNational', // التقرير الوطني
+    'rapportINDH', // تقرير المؤسسة الوطنية لحقوق الإنسان
+    'compilationHCDH', // تجميع مفوضيّة الأمم المتّحدة السامية لحقوق الإنسان/المجتمع المدني
+    'discours', // كلمة رئيس الوفد
+    'observationFinale', // التوصيات
+    // 'miseOeuvrePiece',
+    'rapportMiParcours', // التقرير نصف المرحلي
+    'option'
+  ];
 
   countRec = new Subject();
   mecanismeState = new Subject();

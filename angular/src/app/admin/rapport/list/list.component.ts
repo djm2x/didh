@@ -1,22 +1,18 @@
 import { SessionService } from './../../../shared/session.service';
-import { Rapport, Traite } from './../../../Models/models';
-
+import { Traite } from './../../../Models/models';
 import { Component, OnInit, ViewChild, EventEmitter, Inject } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { merge, BehaviorSubject, Subject, Observable } from 'rxjs';
+import { merge, Subject } from 'rxjs';
 import { UowService } from 'src/app/services/uow.service';
-import { SnackbarService } from 'src/app/shared/snakebar.service';
-import { Visite, Recommendation } from 'src/app/Models/models';
 import { DeleteService } from '../../components/delete/delete.service';
 import { SheetbottomComponent } from '../sheetbottom/sheetbottom.component';
 import { ActivatedRoute } from '@angular/router';
 import { DetailComponent } from '../detail/detail.component';
 import { DownloadSheetComponent } from 'src/app/manage-files/download-sheet/download-sheet.component';
 import { ArchiveComponent } from '../archive/archive.component';
-import { IData } from '../../components/pie-chart/pie-chart.component';
 import { MyTranslateService } from 'src/app/my.translate.service';
 
 @Component({
@@ -40,7 +36,7 @@ export class ListComponent implements OnInit {
     { columnDef: 'analytiquePiece', headName: 'Compte rendu analytique' },
     { columnDef: 'observationPiece', headName: `Observations finales` },
     { columnDef: 'rapportParallelePiece', headName: `Rapport  parallèle` },
-    { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
+    // { columnDef: 'miseOeuvrePiece', headName: 'PLAN DE MISE EN OEUVRE' },
     { columnDef: 'rapportINDH', headName: 'rapportINDH' },
     { columnDef: 'avisPosition', headName: 'avisPosition' },
     { columnDef: 'option', headName: '...' },
@@ -49,10 +45,20 @@ export class ListComponent implements OnInit {
     return e;
   });
 
+  displayedColumns = [
+    'nom', // هيئات المعاهدات
+    'conventionPiece', // التقرير الوطني
+    'rapportINDH', // تقرير المؤسسة الوطنية لحقوق الإنسان
+    'rapportParallelePiece', // تقارير موازية
+    'discours', // كلمة رئيس الوفد
+    'analytiquePiece', // تقرير تحليلي
+    'observationPiece', // الملاحظات النهائية
+    'avisPosition', // الآراء والمواقف
+    'option',
+  ];
   text = ``;
   text2 = this.text.substring(0, 600);
 
-  displayedColumns = this.columnDefs.filter(e => e.columnDef !== 'miseOeuvrePiece').map(e => e.columnDef);
   progress = 0;
   message: any;
   // formData = new FormData();

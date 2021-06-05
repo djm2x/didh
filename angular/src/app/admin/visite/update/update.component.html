@@ -24,6 +24,16 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
+          <mat-label>{{ 'Abréviation' | translate }}</mat-label>
+          <input matInput formControlName="abr" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>{{ 'Abréviation arab' | translate }}</mat-label>
+          <input matInput formControlName="abrAr" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
           <mat-label>{{ 'admin.ps.update.Discours_du_président' | translate }}</mat-label>
           <textarea matInput formControlName="discours" placeholder="Discours du président"></textarea>
         </mat-form-field>

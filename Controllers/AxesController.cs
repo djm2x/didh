@@ -34,7 +34,7 @@ namespace Admin5.Controllers
             .Select(e => new
             {
                 axe = e,
-                recommendations = recommendations.Where(r => r.Axes == null ? false : JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
+                recommendations = recommendations.Where(r => r.Axes == null || r.IdCycle == null ? false : JsonHandler.ToListInt(r.Axes).Contains(e.Id)).ToList()
             })
             .Select(e => new
             {

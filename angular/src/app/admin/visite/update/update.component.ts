@@ -56,6 +56,8 @@ export class UpdateComponent implements OnInit {
       id: this.o.id,
       mandat: [this.o.mandat, Validators.required],
       mandatAr: [this.o.mandatAr, Validators.required],
+      abr: [this.o.abr],
+      abrAr: [this.o.abrAr],
       discours: [this.o.discours],
       date: [this.o.date, Validators.required],
       lienRapport: [this.o.lienRapport],

@@ -114,8 +114,10 @@ export class Visite {
   id = 0;
   // objet = '';
   mandat = '';
-  discours = '';
   mandatAr = '';
+  discours = '';
+  abr = '';
+  abrAr = '';
   date = new Date();
   lienRapport = '';
   lienUpload = '';
