@@ -47,6 +47,7 @@ namespace Admin5.Controllers
 
                 total = e.recommendations.Count(),
             })
+            .OrderByDescending(e => e.four * 100 / e.total)
             .ToList()
             ;
 

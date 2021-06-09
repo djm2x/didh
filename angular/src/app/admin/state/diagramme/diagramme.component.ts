@@ -189,39 +189,10 @@ export class DiagrammeComponent implements OnInit {
   }
 
   selectChange(mecanisme: string) {
-    // this.idVisite.setValue(0);
-    // this.idCycle.setValue(this.cycles[0].id);
-    // this.idOrgane.setValue(0);
-
     this.idCycle.setValue(mecanisme.includes('Examen périodique universal') ? 1 : 0);
     this.idOrgane.setValue(mecanisme.includes('Organes de traités') ? 1 : 0);
     this.idVisite.setValue(mecanisme.includes('Procédure spéciale') ? 1 : 0);
   }
-
-  // allMecanismeBar(r: { name: string, p: number, t: number, r: number }[]) {
-  //   r = r.filter(e => e.name !== null);
-  //   // // console.log(r);
-  //   // r = [r[this.selectedIndex]];
-  //   const barChartLabels = r.map(e => e.name);
-  //   const barChartData = [
-  //     { data: [], label: this.mytranslate.get('admin.state.Etat_avancement')/*, stack: 'a'*/ },
-  //     { data: [], label: this.mytranslate.get('admin.organe.list.Réalisé')/*, stack: 'a'*/ },
-  //     { data: [], label: this.mytranslate.get('admin.organe.list.NonRéalisé')/*, stack: 'a'*/ },
-  //   ];
-
-  //   r.forEach(e => {
-  //     barChartData[0].data.push(+(e.p * e.t / 100).toFixed(0));
-  //     barChartData[1].data.push(+(e.r * e.t / 100).toFixed(0));
-  //     barChartData[2].data.push(+(e.t - (e.p * e.t / 100) - (e.r * e.t / 100)).toFixed(0));
-  //   });
-
-
-
-  //   // tslint:disable-next-line:max-line-length
-  //   // this.mecanismeSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Organes_de_Traités') });
-
-
-  // }
 
   createForm() {
     this.myForm = this.fb.group({
@@ -305,17 +276,17 @@ export class DiagrammeComponent implements OnInit {
     return false;
   }
 
-  getColors(length) {
-    // tslint:disable-next-line:max-line-length
-    const pallet = ['#0074D9', '#FF4136', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
-    const colors = [];
+  // getColors(length) {
+  //   // tslint:disable-next-line:max-line-length
+  //   const pallet = ['#0074D9', '#FF4136', '#2ECC40', '#FF851B', '#7FDBFF', '#B10DC9', '#FFDC00', '#001f3f', '#39CCCC', '#01FF70', '#85144b', '#F012BE', '#3D9970', '#111111', '#AAAAAA'];
+  //   const colors = [];
 
-    for (let i = 0; i < length; i++) {
-      colors.push(pallet[i % pallet.length]);
-    }
+  //   for (let i = 0; i < length; i++) {
+  //     colors.push(pallet[i % pallet.length]);
+  //   }
 
-    return colors;
-  }
+  //   return colors;
+  // }
 
 
   stateOrgane(r) {
@@ -324,19 +295,13 @@ export class DiagrammeComponent implements OnInit {
     r = r.filter(e => e.name !== null);
     // // console.log(r);
     const barChartLabels = r.map(e => e.name);
-    const barChartData = [
-      { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
-    ];
 
-    r.forEach(e => {
-      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-    });
+    const barChartData = [
+      { data: r.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
+    ];
 
 
 
@@ -351,18 +316,11 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
     ];
-
-    r.forEach(e => {
-      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-    });
     // tslint:disable-next-line:max-line-length
     this.axePageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.state.Mise_en_œuvre_des_recommandations_par_Axe') });
   }
@@ -373,18 +331,11 @@ export class DiagrammeComponent implements OnInit {
 
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
     ];
-
-    r.forEach(e => {
-      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-    });
 
     // tslint:disable-next-line:max-line-length
     this.examenPageSubject.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
@@ -398,18 +349,11 @@ export class DiagrammeComponent implements OnInit {
     // // console.log(r);
     const barChartLabels = r.map(e => e.name);
     const barChartData = [
-      { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
     ];
-
-    r.forEach(e => {
-      barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-      barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-      barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-    });
 
 
     // tslint:disable-next-line:max-line-length {{ 'admin.ps.Mise_en_œuvre_des_recommandations_par_Procédures_spéciales' | translate }}
@@ -435,22 +379,11 @@ export class DiagrammeComponent implements OnInit {
     // const barChartLabelsPE = r.map(e => this.mytranslate.langSync === 'fr' ? e.name : e.nameAr);
 
     const barChartDataPE = [
-      // { data: [], label: this.mytranslate.langSync === 'fr' ? 'Nombre' : 'عدد' },
-      { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-      { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
-      // { data: [], label: this.mytranslate.get('admin.organe.list.Nombre')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+      { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
     ];
-
-    r.forEach(e => {
-      // barChartDataPE[0].data.push(e.t);
-      barChartDataPE[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-      barChartDataPE[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-      barChartDataPE[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-      barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-      // barChartDataPE[4].data.push(e.count);
-    });
 
 
 

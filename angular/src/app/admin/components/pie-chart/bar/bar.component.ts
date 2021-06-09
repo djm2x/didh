@@ -93,9 +93,9 @@ export class BarComponent implements OnInit {
   public pieChartColors = [
     // { backgroundColor: ['#d17c36', '#2d71a1'], },
     { backgroundColor: '#2b960b' }, // realise
-    { backgroundColor: '#db0707' }, // nonRealise
+    { backgroundColor: '#2d71a1' }, // nonRealise
     { backgroundColor: '#f7801e' }, // enCours
-    { backgroundColor: '#2d71a1' }, // recommendationContinue
+    { backgroundColor: '#db0707' }, // recommendationContinue
   ];
 
   @Input() dataSubject = new Subject();
@@ -133,7 +133,7 @@ export class BarComponent implements OnInit {
       // r.barChartLabels[3] = recommendationContinue;
 
 
-      this.barChartLabels =  this.swap(r.barChartLabels); // .map(e => e.toString().substring(0, 35) + ' ...');
+      this.barChartLabels =  r.barChartLabels; // this.swap(r.barChartLabels); // .map(e => e.toString().substring(0, 35) + ' ...');
 
       // const nonRealise2 = r.barChartData[0] as any;
       // const enCours2 = r.barChartData[1] as any;
@@ -145,7 +145,7 @@ export class BarComponent implements OnInit {
       // r.barChartData[2] = enCours2 as any;
       // r.barChartData[3] = recommendationContinue2 as any;
 
-      this.barChartData = this.swap(r.barChartData);
+      this.barChartData = r.barChartData; //this.swap(r.barChartData);
 
       // console.log(r)
       // // console.log(this.barChartData[0].data[0])

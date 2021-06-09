@@ -82,7 +82,8 @@ export class HomeComponent implements OnInit {
       total: number,
     }[] = [];
 
-    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: { name: string, type: string, one: number, two: number, three: number, four: number, total: number,
+    this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: {
+      name: string, type: string, one: number, two: number, three: number, four: number, total: number,
     }[]) => {
       // return
       r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
@@ -130,67 +131,42 @@ export class HomeComponent implements OnInit {
       const barChartLabelsAutre = r.filter(e => e.type === 'Autre')
         .map(e => this.mytranslate.langSync === 'fr' ? e.name : (e as any).nameAr);
 
+      //
+      const pe = listToWorkWith.filter(e => e.type === 'PE');
+
       const barChartDataPE = [
-        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+        { data: pe.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé') },
+        { data: pe.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue') },
+        { data: pe.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours') },
+        { data: pe.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé') },
       ];
 
-      const barChartDataIN = [
-        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
-      ];
-
-      const barChartDataPJ = [
-        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
-      ];
+      const autre = r.filter(e => e.type === 'Autre');
 
       const barChartDataAutre = [
-        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+        { data: autre.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé') },
+        { data: autre.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue') },
+        { data: autre.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours') },
+        { data: autre.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé') },
       ];
 
+      const IN = r.filter(e => e.type === 'IN');
 
-      listToWorkWith.forEach(e => {
-        if (e.type === 'PE') {
-          barChartDataPE[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-          barChartDataPE[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-          barChartDataPE[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-          barChartDataPE[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-        }
-      });
+      const barChartDataIN = [
+        { data: IN.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé') },
+        { data: IN.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue') },
+        { data: IN.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours') },
+        { data: IN.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé') },
+      ];
 
-      r.forEach(e => {
-        if (e.type === 'Autre') {
-          barChartDataAutre[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-          barChartDataAutre[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-          barChartDataAutre[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-          barChartDataAutre[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-        } else if (e.type === 'IN') {
-          barChartDataIN[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-          barChartDataIN[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-          barChartDataIN[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-          barChartDataIN[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-        } else if (e.type === 'PJ') {
-          barChartDataPJ[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-          barChartDataPJ[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-          barChartDataPJ[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-          barChartDataPJ[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-        }
-      });
+      const PJ = r.filter(e => e.type === 'PJ');
 
-      console.log(barChartLabelsAutre)
-      console.log(r)
-      console.log(barChartDataAutre)
-
+      const barChartDataPJ = [
+        { data: PJ.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé') },
+        { data: PJ.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue') },
+        { data: PJ.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours') },
+        { data: PJ.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé') },
+      ];
 
       this.departementSubjectAutre.next({
         barChartLabels: barChartLabelsAutre, barChartData: barChartDataAutre

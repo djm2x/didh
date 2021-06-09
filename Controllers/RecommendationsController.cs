@@ -215,6 +215,7 @@ namespace Admin5.Controllers
                     total = e.Count(),
                     count = e.Count(),
                 })
+                .OrderByDescending(e => e.four * 100 / e.total)
                 .ToList()
 
                 ;
@@ -240,6 +241,7 @@ namespace Admin5.Controllers
 
                     total = e.recommendation.Count(),
                 })
+                .OrderByDescending(e => e.four * 100 / e.total)
                 .ToList()
                 ;
 
@@ -256,6 +258,7 @@ namespace Admin5.Controllers
 
                     total = e.Count(),
                 })
+                .OrderByDescending(e => e.four * 100 / e.total)
                 .ToList()
                 ;
 
@@ -271,6 +274,7 @@ namespace Admin5.Controllers
 
                     total = e.Count(),
                 })
+                .OrderByDescending(e => e.four * 100 / e.total)
                 .ToList()
                 ;
 

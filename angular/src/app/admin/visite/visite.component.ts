@@ -267,18 +267,11 @@ export class VisiteComponent implements OnInit {
       const barChartLabels = r.map(e => e.name);
       const dataToShowInTable = []
       const barChartData = [
-        { data: [], label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
-        { data: [], label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+        { data: r.map(e => +(e.four * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Réalisé')/*, stack: 'a'*/ },
+        { data: r.map(e => +(e.three * 100 / e.total).toFixed(0)), label: this.mytranslate.get('Recommendation_continue')/*, stack: 'a'*/ },
+        { data: r.map(e => +(e.two * 100 / e.total).toFixed(0)), label: this.mytranslate.get('EnCours')/*, stack: 'a'*/ },
+        { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       ];
-
-      r.forEach(e => {
-        barChartData[0].data.push(+(e.one * 100 / e.total).toFixed(0));
-        barChartData[1].data.push(+(e.two * 100 / e.total).toFixed(0));
-        barChartData[2].data.push(+(e.three * 100 / e.total).toFixed(0));
-        barChartData[3].data.push(+(e.four * 100 / e.total).toFixed(0));
-      });
 
       this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
     });
