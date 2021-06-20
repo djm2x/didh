@@ -79,7 +79,7 @@ export class QuestionnaireComponent implements OnInit {
     , public mytranslate: MyTranslateService, public session: SessionService, private bottomSheet: MatBottomSheet) { }
 
   async ngOnInit() {
-    this.themes = await this.uow.themes.toPromise();
+    // this.themes = await this.uow.themes.toPromise();
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).pipe(startWith(null as any)).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;

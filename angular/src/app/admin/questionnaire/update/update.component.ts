@@ -52,7 +52,7 @@ export class UpdateComponent implements OnInit {
     this.title = this.data.title;
 
     this.createForm();
-    this.themes = await this.uow.themes.toPromise();
+    // this.themes = await this.uow.themes.toPromise();
 
     if (this.o.id !== 0) {
       this.uow.sousAxes.get().subscribe(r => this.sousAxes = r);

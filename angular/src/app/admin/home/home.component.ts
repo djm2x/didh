@@ -21,54 +21,42 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.stateRecommendationByOrganisme();
+    // const lfr = []
+    // Promise.all([
+    //   'رئاسة الحكومة',
+    //   'العلاقات مع البرلمان و  حقوق الإنسان',
+    //   ' الفلاحة و الصيد البحري و المياه والغابات',
+    //   'الدفاع الوطني والدرك الملكي',
+    //   'الشؤون العامة والحكامة  و إصلاح الإدارة و الاقتصاد والمالية',
+    //   'التكوين المهني و التعليم العالي  و التربية الوطنية',
+    //   ' المغاربة المقيمون بالخارج و الشؤون الخارجية',
+    //   'العدل',
+    //   'الاتصال و الثقافة و الشباب والرياضة',
+    //   'الأمن الوطني و الداخلية',
+    //   'الأوقاف والشؤون الإسلامية',
+    //   'السكنى',
+    //   'السياحة',
+    //   'الصحة',
+    //   'التجهيز و النقل و الماء',
+    //   ' البيئة و الطاقة والمعادن',
+    //   'الشغل',
+    //   'إدارة السجون',
+    //   'التنمية الاجتماعية والتضامن',
+    //   'التجارة والصناعة',
+    //   'المندوبية السامية للتخطيط',
+    // ].map(async e => {
+    //   const r = await this.uow.recommendations.searchByName(e).toPromise();
+
+    //   lfr.push(r);
+
+    //   console.log(lfr.map(c => c.nom));
+    // }))
   }
 
-  stateRecommendationByOrganisme() {
-    const listToShowPE = [
-      'Intérieur et DGSN',
-      'Economie et Finances et Fonction Public',
-      'Agriculture et Pêche maritime',
-      'Equipement, Eau et Environnement',
-      'Communication et Culture',
-      'Défense Nationale et Gendarmerie Royale',
-      'Droits de l’Homme et Relations avec parlement',
-      'Développement Social et Solidarité',
-      'Affaires Etrangères',
-      'Justice',
-      'Chef du Gouvernement',
-      'Santé',
-      'Emploi',
-      'Commerce et Industrie',
-      'DGAPR',
-      'Habous et des Affaires Islamiques',
-      'Education nationale',
-      'Habitat',
-      'Tourisme',
-      'HCP',
-    ];
+  async stateRecommendationByOrganisme() {
+    const listToShowPE = (await this.uow.organismeHomePE.toPromise())?.fr;
 
-    const listToShowPEAr = [
-      ' الداخلية و الأمن الوطني',
-      'المالية و الوظيفة العمومية',
-      'الفلاحة و الصيد البحري',
-      'التجهيز و النقل و الماء و البيئة',
-      'الاتصال و الثقافة',
-      'الدفاع الوطني والدرك الملكي',
-      'حقوق الإنسان والعلاقات مع البرلمان',
-      'التضامن والتنمية الاجتماعية',
-      'الشؤون الخارجية',
-      'العدل',
-      'رئاسة الحكومة',
-      'الصحة',
-      'الشغل',
-      'التجارة والصناعة',
-      'إدارة السجون',
-      'الأوقاف والشؤون الإسلامية',
-      'التربية الوطنية',
-      'السكنى',
-      'السياحة',
-      'المندوبية السامية للتخطيط',
-    ];
+    const listToShowPEAr = (await this.uow.organismeHomePE.toPromise())?.ar;
 
     const listToDelete = ['Observatoire National des Droits de l’Enfant'];
 
@@ -83,23 +71,24 @@ export class HomeComponent implements OnInit {
     }[] = [];
 
     this.uow.recommendations.stateRecommendationByOrganisme().subscribe((r: {
-      name: string, type: string, one: number, two: number, three: number, four: number, total: number,
+      name: string, nameAr: string, type: string, one: number, two: number, three: number, four: number, total: number,
     }[]) => {
       // return
       r = r.filter(e => e.type && e.type !== '' && listToDelete.includes(e.name) === false && e.name !== undefined);
 
       r.forEach(e => {
-        listToShowPE.forEach((p, index) => {
-          if (p.includes(e.name)) {
+        listToShowPEAr.forEach((p, index) => {
+          // console.log(p.includes(e.name), p,e.nameAr)
+          if (p.includes(e.nameAr)) {
             const o = {
-              name: p,
+              nameAr: p,
               one: e.one,
               two: e.two,
               three: e.three,
               four: e.four,
               total: e.total,
               type: e.type,
-              nameAr: listToShowPEAr[index], // (e as any).nameAr
+              name: listToShowPE[index], // (e as any).nameAr
             };
 
             const i = listToWorkWith.findIndex(w => w.name.includes(o.name));

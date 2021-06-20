@@ -58,17 +58,21 @@ export class UowService {
   // mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
   // etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
   mecanismes = this.http.get<{ name: string, nameAr: string }[]>('assets/json/mecanisme.json');
+
+  organismeHomePE = this.http.get<{ fr: string[], ar: string[] }>('assets/json/organisme_home_pe.json');
+
+
   etats = this.http.get<{ name: string, nameAr: string }[]>('assets/json/etats.json');
-  themes = this.http.get<{
-    id: number
-    name: string,
-    nameAr: string,
-    sousThemes: {
-      id: number
-      name: string,
-      nameAr: string,
-    }[]
-  }[]>('assets/json/themes.json');
+  // themes = this.http.get<{
+  //   id: number
+  //   name: string,
+  //   nameAr: string,
+  //   sousThemes: {
+  //     id: number
+  //     name: string,
+  //     nameAr: string,
+  //   }[]
+  // }[]>('assets/json/themes.json');
 
   monthsAlpha = [
     { name: 'Janvier', nameAr: 'يناير' },

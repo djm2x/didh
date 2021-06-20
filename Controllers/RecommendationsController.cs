@@ -17,6 +17,21 @@ namespace Admin5.Controllers
     {
         public RecommendationsController(AdminContext context) : base(context) { }
 
+
+        [HttpGet("{name}")]
+        public async Task<IActionResult> SearchByName(string name)
+        {
+            string lng = "ar";// Request.Headers["mylang"].FirstOrDefault();
+
+            var r = await  _context.Recommendations.Where(e => 
+                lng == "fr" ? name.Contains(e.Nom) : name.Contains(e.NomAr))
+                .FirstOrDefaultAsync();
+
+            
+
+            return Ok(new {r?.Nom});
+        }
+
         [HttpPost]
         public async Task<IActionResult> SearchAndGet(Model model)
         {
@@ -328,6 +343,7 @@ namespace Admin5.Controllers
 
                     total = e.Count(),
                 })
+                .OrderByDescending(e => e.four * 100 / e.total)
                 .ToList()
                 ;
 

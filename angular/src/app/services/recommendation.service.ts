@@ -13,6 +13,10 @@ export class RecommendationService extends SuperService<Recommendation> {
     super('recommendations');
   }
 
+  searchByName(name) {
+    return this.http.get<string>(`${this.urlApi}/${this.controller}/searchByName/${name}`);
+  }
+
   annee() {
     return this.http.get<{annee: number, anneeDisplay: string, anneeDisplayAr: string}[]>(`${this.urlApi}/${this.controller}/annee`);
   }
