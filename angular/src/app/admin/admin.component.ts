@@ -1,3 +1,4 @@
+import { UowService } from 'src/app/services/uow.service';
 import { Router, NavigationStart, RouterOutlet } from '@angular/router';
 import { Component, ChangeDetectorRef, OnInit, Inject } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -51,7 +52,7 @@ export class AdminComponent implements OnInit {
 
   constructor(public session: SessionService, changeDetectorRef: ChangeDetectorRef
     , media: MediaMatcher, public router: Router , public mytranslate: MyTranslateService
-    , @Inject('BASE_URL') private url: string) {
+    , @Inject('BASE_URL') private url: string, private uow: UowService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQuery.addListener((e: MediaQueryListEvent) => changeDetectorRef.detectChanges());
@@ -69,11 +70,11 @@ export class AdminComponent implements OnInit {
     this.getRoute();
   }
 
-  navigate(route: string[]) {
+  async navigate(route: string[]) {
     const isDownloadble = route[0]?.includes('didh-app');
     // console.log(route[0]?.includes('didh-app'), route)
     if (isDownloadble) {
-      const appname = 'didih-app.exe'; // 'sys-info.exe';
+      const appname = (await this.uow.config.toPromise())?.download;
       const url = `${this.url}/download/${appname}`;
       window.open(url);
     } else {
@@ -81,8 +82,8 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  download() {
-    const appname = 'didih-app.exe'; // 'sys-info.exe';
+  async download() {
+    const appname = (await this.uow.config.toPromise())?.download;
     const url = `${this.url}/download/${appname}`;
     window.open(url);
   }

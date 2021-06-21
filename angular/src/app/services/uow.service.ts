@@ -58,6 +58,7 @@ export class UowService {
   // mecanismes = ['Examen périodique universal', 'Organes de traités', 'Procédure spéciale'];
   // etats = ['Réalisé', 'En cours', 'En continue', 'Non réalisé'];
   mecanismes = this.http.get<{ name: string, nameAr: string }[]>('assets/json/mecanisme.json');
+  config = this.http.get<{ download: string, appName: string }>('assets/json/config.json');
 
   organismeHomePE = this.http.get<{ fr: string[], ar: string[] }>('assets/json/organisme_home_pe.json');
 
