@@ -102,6 +102,7 @@
       "avisPosition": "Avis et Positions",
       "list": {
         "Tauxderecommandationsparorgane": "Taux de recommandations par organe",
+        "Mise en œuvre des recommandations par Organe de Traité": "Mise en œuvre des recommandations par Organe de Traité",
         "Organesdetraité": "Organes de Traités",
         "Rapportnational": "Rapport national",
         "Discoursduprésident": "Discours du président",
@@ -159,6 +160,7 @@
       "Mise_en_œuvre_des_recommandations_par_Procédures_spéciales": "Mise en œuvre des recommandations par Procédures spéciales",
       "list": {
         "Tauxderecommandationsparvisite": "Taux de recommandations par visite",
+        "Mise en œuvre des recommandations par Procédure spéciale": "Mise en œuvre des recommandations par Procédure spéciale",
         "MANDAT": "MANDAT",
         "Date_de_la_visite": "date de la visite",
         "RAPPORT_NATIONAL_DE_LA_VISITE": "Etat de mise en œuvre",
