@@ -11,4 +11,9 @@ export class PaysService  extends SuperService<Pays> {
     super('Pays');
   }
 
+
+  getAll(startIndex, pageSize, sortBy, sortDir, nom) {
+    return this.http.get(
+      `${this.urlApi}/${this.controller}/getAll/${startIndex}/${pageSize}/${sortBy}/${sortDir}/${nom}`);
+  }
 }

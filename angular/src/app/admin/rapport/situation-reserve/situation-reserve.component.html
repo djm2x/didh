@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="session.isPublic === false">
     <h4>{{ 'admin.organe.situation_des_réserves' | translate }}</h4>
 
     <div class="row" style="margin-bottom: 15px;">

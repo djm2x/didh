@@ -7,6 +7,7 @@ import { DeleteService } from '../components/delete/delete.service';
 import { UowService } from 'src/app/services/uow.service';
 import { Pays } from 'src/app/Models/models';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pays',
@@ -17,6 +18,8 @@ export class PaysComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   update = new EventEmitter();
+  panelOpenState = true;
+  nom = new FormControl('');
   isLoadingResults = true;
   resultsLength = 0;
   isRateLimitReached = false;
@@ -33,25 +36,35 @@ export class PaysComponent implements OnInit {
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService, ) { }
 
   ngOnInit() {
-    this.getPage(0, 10, 'id', 'desc');
+    this.getAll(0, 10, 'id', 'desc', '');
     merge(...[this.sort.sortChange, this.paginator.page, this.update]).subscribe(
       r => {
         r === true ? this.paginator.pageIndex = 0 : r = r;
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
         const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
         this.isLoadingResults = true;
-        this.getPage(
+        this.getAll(
           startIndex,
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
+          this.nom.value === '' ? '*' : this.nom.value,
         );
       }
     );
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir) {
-    this.uow.pays.getList(startIndex, pageSize, sortBy, sortDir).subscribe(
+  search() {
+    this.update.next(true);
+  }
+
+  reset() {
+    this.nom.setValue('');
+    this.update.next(true);
+  }
+
+  getAll(startIndex, pageSize, sortBy, sortDir, nom) {
+    this.uow.pays.getAll(startIndex, pageSize, sortBy, sortDir, nom).subscribe(
       (r: any) => {
         // console.log(r.list);
         this.dataSource = r.list;

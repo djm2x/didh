@@ -25,7 +25,12 @@
         </mat-divider>
         <div class="row m-2">
 
-          <mat-form-field appearance="fill" class="col-md-6">
+          <mat-form-field appearance="fill" class="col-md-5">
+            <mat-label>{{ 'Nom' | translate }}</mat-label>
+            <input matInput [formControl]="nom" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="col-md-5">
             <mat-label>Type</mat-label>
             <mat-select [formControl]="type">
               <mat-option *ngFor="let e of ['', 'PE', 'PJ', 'IN', 'Autre']" [value]="e">{{ e }}</mat-option>

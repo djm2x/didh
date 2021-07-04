@@ -24,13 +24,14 @@ namespace Admin5.Controllers
         public OrganismeController(AdminContext context) : base(context)
         { }
 
-        [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{idOrganisme}/{type}")]
-        public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, int idOrganisme, string type)
+        [HttpGet("{startIndex}/{pageSize}/{sortBy}/{sortDir}/{idOrganisme}/{type}/{nom}")]
+        public async Task<IActionResult> GetAll(int startIndex, int pageSize, string sortBy, string sortDir, int idOrganisme, string type, string nom)
         {
            
             var q = _context.Organismes
                 .Where(e => idOrganisme == 0 ? true : e.Id == idOrganisme)
                 .Where(e => type == "*" ? true : e.Type == type)
+                .Where(e => nom == "*" ? true : (e.Label.ToLower().Contains(nom) || e.LabelAr.ToLower().Contains(nom)))
                 .OrderByName<Organisme>(sortBy, sortDir == "desc")
                 ;
 

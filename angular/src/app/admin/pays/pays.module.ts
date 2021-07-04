@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { MatModule } from './../../mat.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
   entryComponents: [
     UpdateComponent

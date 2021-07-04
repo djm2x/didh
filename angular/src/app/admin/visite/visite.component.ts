@@ -273,7 +273,7 @@ export class VisiteComponent implements OnInit {
         { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       ];
 
-      this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.MiseenœuvredesrecommandationsparOrganesdeTraités') });
+      this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.ps.list.Mise en œuvre des recommandations par Procédure spéciale') });
     });
   }
 

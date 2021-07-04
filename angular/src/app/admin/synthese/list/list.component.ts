@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
     { columnDef: 'code', headName: 'CODE' },
     { columnDef: 'detail', headName: 'DETAIL' },
     { columnDef: 'lienUpload', headName: 'lienUpload' },
-    { columnDef: 'option', headName: 'OPTION' },
+    // { columnDef: 'option', headName: 'OPTION' },
   ];
   axes = this.uow.axes.get();
   sousAxes = [];
@@ -51,11 +51,18 @@ export class ListComponent implements OnInit {
   panelOpenState = false;
 
   displayedColumns = this.columnDefs.map(e => e.columnDef);
+
   myAuto = new FormControl('');
   filteredOptions: Observable<any>;
+
   constructor(private uow: UowService, public dialog: MatDialog, private mydialog: DeleteService
     , private snack: SnackbarService, private route: ActivatedRoute, public session: SessionService
-    , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet) { }
+    , public mytranslate: MyTranslateService, private bottomSheet: MatBottomSheet) {
+      if (session.isPublic === false) {
+        this.columnDefs.push({ columnDef: 'option', headName: 'OPTION' });
+        this.displayedColumns = this.columnDefs.map(e => e.columnDef);
+      }
+     }
 
   ngOnInit() {
     this.getPage(0, 10, 'id', 'desc', this.session.isPublic ? 0 : this.session.user.idOrganisme, 0, 0, 0, 0, 0);

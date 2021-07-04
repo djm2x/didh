@@ -251,7 +251,7 @@ export class ListComponent implements OnInit {
         { data: r.map(e => +(e.one * 100 / e.total).toFixed(0)), label: this.mytranslate.get('NonRéalisé')/*, stack: 'a'*/ },
       ];
 
-      this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.epu.list.EtatAvancementderecommandationsparaxe') });
+      this.stateDetailByMecanisme.next({ barChartLabels, barChartData, title: this.mytranslate.get('admin.organe.list.Mise en œuvre des recommandations par Organe de Traité') });
     });
   }
 }

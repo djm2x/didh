@@ -24,7 +24,9 @@ export class OrganismeComponent implements OnInit {
   resultsLength = 0;
   isRateLimitReached = false;
   panelOpenState = true;
+
   type = new FormControl('');
+  nom = new FormControl('');
 
   dataSource = [];
   columnDefs = [
@@ -50,12 +52,13 @@ export class OrganismeComponent implements OnInit {
         !this.paginator.pageSize ? this.paginator.pageSize = 10 : r = r;
         const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
         this.isLoadingResults = true;
-        this.getPage(
+        this.getAll(
           startIndex,
           this.paginator.pageSize,
           this.sort.active ? this.sort.active : 'id',
           this.sort.direction ? this.sort.direction : 'desc',
           this.type.value === '' ? '*' : this.type.value,
+          this.nom.value === '' ? '*' : this.nom.value,
           );
       }
     );
@@ -67,11 +70,12 @@ export class OrganismeComponent implements OnInit {
 
   reset() {
     this.type.setValue('');
+    this.nom.setValue('');
     this.update.next(true);
   }
 
-  getPage(startIndex, pageSize, sortBy, sortDir, type) {
-    this.uow.organismes.getAll(startIndex, pageSize, sortBy, sortDir, 0, type).subscribe(
+  getAll(startIndex, pageSize, sortBy, sortDir, type, nom) {
+    this.uow.organismes.getAll(startIndex, pageSize, sortBy, sortDir, 0, type, nom).subscribe(
       (r: any) => {
         // console.log(r.list);
         this.dataSource = r.list;

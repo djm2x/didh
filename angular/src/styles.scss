@@ -8,19 +8,6 @@
 @import "./iconfont/material-icons.css";
 @import "./styles-font-size.scss";
 
-
-// Define a custom typography config that overrides the font-family as well as the
-// `headlines` and `body-1` levels.
-// @import url("https://fonts.googleapis.com/css?family=Montserrat");
-// @import "~@angular/material/theming";
-// $custom-typography: mat-typography-config(
-//   $font-family: "Montserrat",
-//   $headline: mat-typography-level(32px, 48px, 700),
-//   $body-1: mat-typography-level(16px, 24px, 500),
-// );
-
-// @include angular-material-typography($custom-typography);
-
 html,
 body {
   height: 100%;
